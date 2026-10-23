@@ -1,0 +1,170 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle2_Down.anim": "c5d88e87b26c9bfe361cf0fa7be4a2bcfebccc7b82378f72db4c4f1b5bbf84b7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Tushuidan1.anim": "3248b332952a3dc5b7cf815ddf7165188fa89d6d785084647d610339b03fa7ff",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/move_2.anim": "299e2d25a095d1c6b06dd1d53db78a46dc014b03d388ff10d3cee440e9c3d1ae",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Tiaoza.anim": "4601d93d8a9585789e6384e16b56967286d34c7db5de50b178bf55087ad51692",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/move_to_dive.anim": "e0389af2c04fd7bd569da6f31bb32ea0595c63199d95f19f14cf0db26a474fd9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_shayu.mat": "cac6864b2efafe68904594437c1eb136db5f40093857495005f8eec9514d4bf4",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh.asset": "7d4d21810d847ba25cfd297cbe309706e160d21a6fddef89df1bc65909fb8959",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Tushuidan2.anim": "23739cd59ead5444630b1be722672f1fe384ec346e377fa9f9d5da3f4d72caac",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_to_dive.anim": "ce91a4ec67cb6550b6aa9a3baec736966ed7286541661480d6cad0fc64fb4e1d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/die_1.anim": "fee945002abb0dd02dd541ded1a5e24d713b0256b0bef9b687a855ff5799aa83",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle1_Up.anim": "0a72b5d18629974aa2656736bdd924869a0f37090db365b0d2aef38a9a4d8031",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dive_to_idle.anim": "c858229f0999a2b5d95f7ea7256c7b9e05f8be6154fb86a53e7ee2c15e48d913",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dive_loop.anim": "f0c3a4bddaefd4a796fe2d259471d0d28c2dc469139e77b2b942721b14b12ad8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_16.anim": "23d3f4e2dccd274a52484063a5d45be8b79e69635b4b98755b5eebe2004c44ce",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_shayu.prefab": "6e68d0a4177662cfbc6c86397646bbdd61b1d9c0108adcf22d06ad1b3eb6052e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_sy_body.png": "a3df1f1382c27c2e7029518400451da609e16d18c9efa3106cab8475e9354b67",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_25.anim": "8322890cda32a6b52f21ecfa15cefcb0e9e6d948a55d18ce1a6823789504533f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Shangyao.anim": "f6c0dd07a519bf230a7cba1d89b9bccdde1ab026d787d3143e2c0f0bbf5816c2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dive_to_move.anim": "f779a4ea3cbad406be8f131a5053c9a94773267779d29469a9df4a2885d95f22"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_52002.glb",
+    "animations": [
+      {
+        "name": "dive_loop_clip",
+        "duration": 0.13333334,
+        "loop": true,
+        "tracks": 129,
+        "source_name": "dive_loop"
+      },
+      {
+        "name": "idle2_down",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 61,
+        "source_name": "idle2_down"
+      },
+      {
+        "name": "move",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 129,
+        "source_name": "move"
+      },
+      {
+        "name": "shangyao",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "shangyao"
+      },
+      {
+        "name": "tiaoza",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "tiaoza"
+      },
+      {
+        "name": "dive_to_idle",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "dive_to_idle"
+      },
+      {
+        "name": "dive_to_move",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "dive_to_move"
+      },
+      {
+        "name": "idle_to_dive",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "idle_to_dive"
+      },
+      {
+        "name": "move_to_dive",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "move_to_dive"
+      },
+      {
+        "name": "tushuidan1",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "tushuidan1"
+      },
+      {
+        "name": "tushuidan2",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "tushuidan2"
+      },
+      {
+        "name": "die",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "die"
+      },
+      {
+        "name": "idle1_up",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 129,
+        "source_name": "idle1_up"
+      },
+      {
+        "name": "behit1",
+        "duration": 0.16666667,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "behit1"
+      },
+      {
+        "name": "behit2",
+        "duration": 0.36666667,
+        "loop": false,
+        "tracks": 129,
+        "source_name": "behit2"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.6571613550186157,
+        -0.08065593559750632,
+        -3.8993753935976105
+      ],
+      "max": [
+        1.6573771834373474,
+        1.973970900889253,
+        2.710319071511204
+      ],
+      "size": [
+        3.314538538455963,
+        2.0546268364867593,
+        6.609694465108815
+      ]
+    },
+    "meshes": 1,
+    "nodes": 64,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "198": 7,
+      "199": 7,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 12
+    },
+    "bytes": 1765308,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_shayu.prefab",
+    "source_sha256": "6e68d0a4177662cfbc6c86397646bbdd61b1d9c0108adcf22d06ad1b3eb6052e",
+    "default_animations": {
+      "idle": "dive_to_idle",
+      "run": "move"
+    }
+  }
+}

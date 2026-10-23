@@ -1,0 +1,58 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/Chara/mesh_body_Slime_01.asset": "0f7055efc49493a506505efbba670f2c0206c728aba104d83282ddbe89b08a6e",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/Chara/mesh_body_Jewelry merchant_simplified.asset": "8f6c4b100ff09f999f4a2c603efac914da9fdb30d33efb7cee1c58dfb1bdb6c3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_baoshishangren_NPC_body.mat": "e567c5ecccbea80c1edc9060574c9f1924f1ab802360e43f8d174361354357a9",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/EnvUnit/EnvUnit_General__Shop_.asset": "4d681c4c1b2ec5b54b6ecdb7f3354bb8145709292b3011d15ee3268ceb713354",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/Chara/mesh_body_Slime_02_simplified.asset": "47fd152b1f8929d448f46f1da856f75393ee3857df25362ffd20a7391b0dac85",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_liulangshangrenNPC_body.png": "abef4ed9b57713d17862e49c40279b46227ddfc691071a4f0b1c730767692dda",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Material/mat_fx_25040801_monsterpartner_energyflow.mat": "efd7e945934a9ac7a1c99b06e0a207d3d3302acabe7ca8d1e2de216612e14a42",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Material/mat_fx_25040801_monsterpartner_barrier.mat": "e5a0fa61de62385cc1eed7bf1bbcbf764ef821b9bea4d47d2f8b685c8b4965de",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/EnvUnit/Texture/EnvUnit_NPC_MonsterPartner__BaseColor_.png": "8d81e3f0b394b36e3212c38cce8e8d1b889d5ad47cb25b712267a5973b146dcf",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/Scenes/LevelMap_1060201.prefab": "752fb64a03de2a5dca523645704c3e259e5a427425a91b3f7683a2b23e753356",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/FX/fbx_fx_cylindercenter_2.asset": "e5b72c9c11f1003ccc1286ea5be3227d2dab0e67bd4181cf150ae2c0c3aac9ea",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Texture/tex_fx_trail_46.png": "d779edcf590296f072ab058c35b60bcf800d302aaa552b0824fa64e26125a975",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_liulangshangren_NPC.mat": "1a246754480b8b8b868d44cbb65cc85332d5030fd9b98a6ca9c116917024f63f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Texture/tex_fx_mask_35.png": "a0da12c8f1619606ae4a94e94bbbcb3e24ad8be834f92fd2c137687c1b4bf531",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_baoshishangren_NPC_throne.mat": "ee162a06e006b54193b18bc4212201d7c83d01207381a5fcd7645704b8db3bad",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/Chara/mesh_body_Crystal throne.asset": "43f2c4a0f89bf799320bf6c6e45f462eb9fe73f99654f13cfb4edf38a4a2156c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_baoshishangrenNPC_body.png": "a2f1043265f4542b5006177412323a0046df45a36d27bff9c8bc40183ed4c469",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/EnvUnit/EnvUnit_Maincity__MonsterPartner_.asset": "abb72c5c07aaa3d3da3ded4a83d30c9c493427350e14292dd2d6690e5c003f2c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/EnvUnit/Material/EnvUnit_NPC_MonsterPartner.mat": "6aba1db6150c47074341ffc7f6b966811a44a9c40f0f1ad8d3c1ab993dcf0b48",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Campaign/Recovered/_00001_Media/Models/Chara/skin_furry_npc_liulangshangren_simplified.asset": "29007df44d874769e4443747b01d20bfeb62efec2d1cd835033b6d0304830b2a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_baoshishangren_NPC_SmileSlime.mat": "a9713b4f2ff4bd94d66f37f8b59ec07953b86c265d3957d34433494902e7bed9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat": "8962a0c15f3004a23b871886fbe9be273f11863709bede6ee3727ab4b86bfd1b"
+  },
+  "result": {
+    "path": "res://assets/environments/LevelMap_1060201.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        44.4458460410931,
+        -0.006093004361780427,
+        38.2473472980779
+      ],
+      "max": [
+        53.92282681651973,
+        4.311369921367684,
+        56.463460975972936
+      ],
+      "size": [
+        9.476980775426632,
+        4.3174629257294646,
+        18.216113677895038
+      ]
+    },
+    "meshes": 9,
+    "nodes": 1957,
+    "skins": 4,
+    "unsupported": {},
+    "bytes": 1293492,
+    "source": "OfflineUnity/Assets/Campaign/Recovered/Scenes/LevelMap_1060201.prefab",
+    "source_sha256": "752fb64a03de2a5dca523645704c3e259e5a427425a91b3f7683a2b23e753356",
+    "default_animations": {},
+    "markers": "res://assets/environments/LevelMap_1060201.markers.json",
+    "colliders": 187
+  }
+}

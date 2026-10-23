@@ -1,0 +1,119 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_haixianghuwei_body_low.asset": "23de66779671019deb15e6948842f501c254565bbec6cf17c7147c2b7e0c01e2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_26.anim": "d34affa795676000f11b47c51eab957a8c5799d78e52bedb01c0ebe372f5fb76",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforback.anim": "4d9c0d084ea90145281586d5b49cb4633e03bfc836ba404549e9180972946ffd",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_hxhw_body.mat": "b223678dfd825e686bfd56109318657e38d2438717118144712a389bc7ae7ed2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_15.anim": "1747194c7c12868f76f65500e511dc230ebf013055177349d404f9236c8693de",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_0.anim": "945b60f381143496e4c889556cf2a0e439b15a6f5246d53249bcda0a0f923dbc",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_haixianghuwei_low.prefab": "72ad33f653c72c726355f60ca436d0d83b97036d0804a68a264e9b9c4d20aca7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_hxhw_body.png": "7ae3b6b69b987861b8af97567edd1ce44ae0a4e087c498fd7b89e71c9d3ba333",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_30.anim": "08f83fdb4fe73dd47eec8ca642f81d38dd9833ab3b5cca4e879fac2da122aa00",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_13.anim": "2eafbe4eb214b246a26ca99240c826744faf9cb5bdc8ae59438a3904e1300d30",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_4.anim": "e24581cca344bafa8fee521fe23a15bb1798f4fa38543e83cb7a7a988354a99a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_5.anim": "7914b8ece2d2787bad1f90ae4bee33fd33d0194453e273ec263cf7b4ac107df4"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_31003.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 177,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack2",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "attack2"
+      },
+      {
+        "name": "damage",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "damage"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "attack"
+      },
+      {
+        "name": "moveback",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 174,
+        "source_name": "moveback"
+      },
+      {
+        "name": "moveforward",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 177,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "behit",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -4.287546157836914,
+        -0.024738369259126758,
+        -0.7264676463987023
+      ],
+      "max": [
+        2.075928115844727,
+        2.3576769418612145,
+        0.7850909504729814
+      ],
+      "size": [
+        6.363474273681641,
+        2.382415311120341,
+        1.5115585968716836
+      ]
+    },
+    "meshes": 1,
+    "nodes": 94,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 2006348,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_haixianghuwei_low.prefab",
+    "source_sha256": "72ad33f653c72c726355f60ca436d0d83b97036d0804a68a264e9b9c4d20aca7",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack"
+    }
+  }
+}

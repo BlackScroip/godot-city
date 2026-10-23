@@ -1,0 +1,149 @@
+{
+	"schema": 1,
+	"apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+	"entries": {
+		"1": "sword_satk_normal",
+		"2": "sickle_satk",
+		"3": "axe_satk_start",
+		"4": "wand_satk1",
+		"5": "bow_satk",
+		"6": "orb_satk_start",
+		"7": "lance_satk"
+	},
+	"buffs": {
+		"200202": {"expiryLayers": 1, "disposeBuff": "200200", "disposeLayers": 1},
+		"200208": {"syncSource": "200202", "syncTargets": ["200201", "200212", "294201"]}
+	},
+	"actions": {
+		"axe_satk_end": {
+			"can_hit": true,
+			"stable_value": 1000,
+			"source_sha256": "3bf2859ef970bb848f6588020eaca59610e5660f5fa2addee4196f7104e7f615"
+		},
+		"axe_satk_loop": {
+			"can_hit": true,
+			"stable_value": 1000,
+			"source_sha256": "62bb97eac56d944e9e4b38bb8f5a4262968c93c283a07701c5678bbefa9b5cc9"
+		},
+		"axe_satk_start": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "f9b8da44efa9eee461742ddf81e6fbf31ec7142022b06c76c27d70a9a0549ffa"
+		},
+		"bow_fullsatk": {
+			"can_hit": false,
+			"stable_value": 0,
+			"source_sha256": "3da0667e8cab93b5e7d1989d7ebb011b294eca039b1e6bc4cb3f5ab395494354"
+		},
+		"bow_fullsatk_weapon4_combine": {
+			"can_hit": false,
+			"stable_value": 0,
+			"source_sha256": "aea500871855b01c763eabfb3279ff0a70d09c6fab832edd2ef41b8ecd7b1914"
+		},
+		"bow_satk": {
+			"can_hit": true,
+			"stable_value": 100,
+			"source_sha256": "7098b1b83a15b4d1c055bd60fe6656b00beb77d3c586e8d4c0f064124b72f53c"
+		},
+		"bow_satk0_weapon4": {
+			"can_hit": true,
+			"stable_value": 100,
+			"source_sha256": "63e25dd586b2d251e469a54946f6dbc800e7e330e72476c82a9336fe558b9343"
+		},
+		"bow_satk1_weapon4": {
+			"can_hit": true,
+			"stable_value": 100,
+			"source_sha256": "9d704b6a0016ba28a677219a8b54f1560974cd12778a9496c5b30075cca8e977"
+		},
+		"lance_satk": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "088ddd49e484a23517c14856f0fa740ad7be34f73e9a8420d3eee18bcb17cb56"
+		},
+		"lance_satk_nomal": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "cee39e397657297dcbb84c5e22737fab2df13f7e7c442323ad1edf6aba07eaa1"
+		},
+		"lance_satk_nomal2": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "cb037ae24f25a01af04e5b7fce72d05240f2ec7cdbf5bdb7ec7339e05c80a94a"
+		},
+		"lance_satk_special": {
+			"can_hit": false,
+			"stable_value": 200,
+			"source_sha256": "262b6d38a38dbb157d0f17f43304eb16d77c728b99d82d2f1c0265758f8d5fd1"
+		},
+		"orb_satk_loop_1": {
+			"can_hit": true,
+			"stable_value": 0,
+			"source_sha256": "c3ec2b856d6fc73cccf4879dbb4797f287348ae40e7a500eefc142c3e36ced19"
+		},
+		"orb_satk_shoot": {
+			"can_hit": false,
+			"stable_value": 0,
+			"source_sha256": "2daeb26b6ca75b9304f032b33fcacb8b25e6321ab953fcd350c5a69ae9b7190c"
+		},
+		"orb_satk_start": {
+			"can_hit": false,
+			"stable_value": 0,
+			"source_sha256": "473ea241a5d7fa88deba9d759ff80e1f8daef702f2ff0a92d2e250d3327adafb"
+		},
+		"orb_smite_0jp": {
+			"can_hit": true,
+			"stable_value": 0,
+			"source_sha256": "4f48c4f7d62ce9381045316a51bd65505692026c66aa0ff3f84e9be615f62282"
+		},
+		"sickle_satk": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "6a7f024140b7b5740d9bba96577bfa858913e3de45801b8e48b4958731973304"
+		},
+		"sickle_satk_special": {
+			"can_hit": false,
+			"stable_value": 200,
+			"source_sha256": "c22eb967bc3fb5434aab73b72cc205f0719a120d0304f91284c4855fb0b50f29"
+		},
+		"sword_SmiteDerivative": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "98c9d5af7e7eba5824eb7876af5c70185d170bf2ed314af61fdbfc7ce28e360f"
+		},
+		"sword_SmiteDerivative_Normal": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "5d5e3e0575a18df858a729d8722871d108e5b64d3decf480c1d6765ee4ed129b"
+		},
+		"sword_satk_normal": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "52868fedf1f483109204252af315eaf1ca5a02128f808e5056d1f59ef220863d"
+		},
+		"sword_satk_normal_attack": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "40c5b0852af7fc43e24e94b9fde1edcbcf75ff9fbf1f0d475a96ec1647e39387"
+		},
+		"sword_satk_normal_ready": {
+			"can_hit": true,
+			"stable_value": 200,
+			"source_sha256": "12b5a343df9285888cf57c9cf535def8632ee23ee2405d10d403bdaa48a539ed"
+		},
+		"sword_satk_upgrade": {
+			"can_hit": false,
+			"stable_value": 200,
+			"source_sha256": "415836684bac772275680f316d351f0df5d210b1cb3b763448a3b1e7bcc696c3"
+		},
+		"wand_satk1": {
+			"can_hit": true,
+			"stable_value": 100,
+			"source_sha256": "8edafb0d4de23f45304963c9179ffd60e1f1f88b8a30f0d759707492e426dfa4"
+		},
+		"wand_satk2": {
+			"can_hit": true,
+			"stable_value": 100,
+			"source_sha256": "b1154ca349c22c77aad9818e009b938e9622dac64403881c64bae1a89331de76"
+		}
+	}
+}

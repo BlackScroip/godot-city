@@ -1,0 +1,120 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_feishe_body.mat": "b139205b905174fd0799ba215393988c4452c79ec25f56708721e746fc3a628a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_32.anim": "ed4741bfa72457f5317139fd8404720499110b65ab3ea4487d081cdd05c3ad24",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body_low simplified mesh.asset": "32e45e53ee4852d9632c39e254b1a1dd3b247c0b59f4f2b096041b489aec5450",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_feishe_low.prefab": "dc5e269523db9042be05a9835eeed43ce15b00e73fe6c85b1e32e67a9aebe5f0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_feishe_body.png": "d93c0bf57e9da99ab6bd961a8d4071f571584d5e13a3a73bc07da0aeaf076908",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/run_0.anim": "c2c6a7680d1c00d44363a5d9c16671f76782482aeab5c3427b863b11584f94f5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack2_20.anim": "c6538c777571b93bbc64aea3c829eeb1698137873b7ff47b7aed2645467defc2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/runback.anim": "25dc30a9d108f875b80d51e55ef7570e9a1fe19301fada75de8b1519fda28e67",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack1_19.anim": "2876441dfd1b6717756b4c2d68da55629e33f8097342d6506bc1c790b8ae48ea",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_2.anim": "3c9a0c770fd39aa8de266d8a46e8c1e7e1a561410b102b133bca6e08f41917f9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_20.anim": "9ac574007abb49f33a5cbb5937b837da6e07f22e6b53d321e9a3bd1b256ef63f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_2.anim": "4701416716995065da72c667d566768f8a00fe61528940e32dbf87d0295772c1"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_21003.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 93,
+        "source_name": "idle"
+      },
+      {
+        "name": "move",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 93,
+        "source_name": "move"
+      },
+      {
+        "name": "attack",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 93,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 81,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 93,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 93,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack2",
+        "duration": 1.8666667,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "attack2"
+      },
+      {
+        "name": "runaway",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 93,
+        "source_name": "runaway"
+      },
+      {
+        "name": "behit",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 81,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.64539635181427,
+        0.011285348702164362,
+        -2.587538855325499
+      ],
+      "max": [
+        0.6452093124389648,
+        1.7738291327458555,
+        0.696763767088634
+      ],
+      "size": [
+        1.2906056642532349,
+        1.762543784043691,
+        3.284302622414133
+      ]
+    },
+    "meshes": 1,
+    "nodes": 44,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 603
+    },
+    "bytes": 853800,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_feishe_low.prefab",
+    "source_sha256": "dc5e269523db9042be05a9835eeed43ce15b00e73fe6c85b1e32e67a9aebe5f0",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move",
+      "attack": "attack"
+    }
+  }
+}

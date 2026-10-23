@@ -1,0 +1,118 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_14.anim": "c8f039d91f9a7cdfe1fe330a6a8806b7c066097b65fe43083a2e1cd5b6723e64",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1.anim": "09c808531b6230a0f142cba4894e0552ffb834afa6633d59d3c3eeab2f05e899",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/tex_monster_toumaoshou_body.mat": "a6763f538d8ce240a349563bd7d95ea50d7ac461439f78dda7e2ae4190632ae8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_hxtms_body.png": "daa931bb183b15b90bb2fa42e12c5dcb0180801b0416ae8f1a5f4eccc1d06903",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_14.anim": "0ab4d2b4c79499a991bb1d078295415a3953e9009465c9c98b20be6fd2025d78",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_10.anim": "c952235f4de464166b4d5155247d389af65b2eb95fca721908203984c3fd0f2c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_6.anim": "e785356590e6b6ae8cf12f50f6fc14000342905029f7939d04efb8c823c245ac",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_17.anim": "13b4278a0eea34f7b276f727883c398b53fe5d1f827b7d3cb87fbeb2773f3209",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_15.anim": "7aae2aa8c61f733283854356e87d32efeef79787126380350e091057587e4b4f",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/Haixiang_Toumaoshou@Skin_low_simplified.asset": "6cb9c385408ecdf5fbf0247da0ea6989c2711d1102a9e83f059da4509f3047c8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_11.anim": "7f7b25cdeb604d8212cedb9b8464506022848bb7e66d1693e95724dc210d8667",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_haixiangtoumaoshou_low.prefab": "a47d1579b38e543244b535d10a144ba6b8c8057e224e6c1d2ebcb7ed9e81bac6"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_31004.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 180,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack2",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "attack2"
+      },
+      {
+        "name": "damage",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "damage"
+      },
+      {
+        "name": "attack",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "attack"
+      },
+      {
+        "name": "moveback",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 177,
+        "source_name": "moveback"
+      },
+      {
+        "name": "moveforward_1",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 177,
+        "source_name": "moveforward 1"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 184,
+        "source_name": "dead"
+      },
+      {
+        "name": "behit",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -3.433052299511365,
+        0.009612878063418753,
+        -0.7657602873990214
+      ],
+      "max": [
+        2.1417134748335735,
+        3.015270752729239,
+        0.7944523781315664
+      ],
+      "size": [
+        5.574765774344939,
+        3.0056578746658205,
+        1.560212665530588
+      ]
+    },
+    "meshes": 1,
+    "nodes": 96,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 1966808,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_haixiangtoumaoshou_low.prefab",
+    "source_sha256": "a47d1579b38e543244b535d10a144ba6b8c8057e224e6c1d2ebcb7ed9e81bac6",
+    "default_animations": {
+      "idle": "idle",
+      "attack": "attack"
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_chimera_body.mat": "40ba5312a9520bc03b4008fd0a104a21cbb21989d3513e085784da4fc3e521b6",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Roar_2.anim": "f5e5ce25404cc7bd76c522b83e774d07d9d2f48b4d3cb22d2eec346b55e89fb1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_27.anim": "188a4691e565e639a0dcdc617c4857c0043ce6a8bccff00889efaf6edb5483ca",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_chimera.prefab": "1ed0769f776eaef757b01b8e64af329b581a2d19a999fc2ad84c16c92ec52fec",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_1.anim": "ed7bdc90f5d74993c6759af3e69719799b4d6f3a55bc70a5d657d008b46cc2ab",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack5_1.anim": "4b0fb2aa3f1d3a14d92ac52fc9d4034c1abbdb63d94c6cb096887e82f23f6967",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Skill.anim": "eabe70329db1dea8b94288cb47a33cfe48cf61d6539708a1060e7f00d453a116",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_11.anim": "1cff3cd784b76ffd724363d79172bd13246247fc7ecf3fba20c01424c86d3299",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/Tex_monster_Chimera_body.png": "036d396759f2acc57515b5022131a53f2756f937f9d513998b17248358cd593e",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/Mesh_body_13.asset": "664a3671381b37d8f7750de0106befbacbb7fb35a7a4d528381d23b3d41364d7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_21.anim": "95662fb3cb5abd646fa78effbd4f54a2cc180ee16e14bb81d78270b1ced51b4a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_6.anim": "152175150f3494b4ac2eb2224ad0cf2110ecf562c694ecb95d48ac55aadb7042",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_1.anim": "4c1d209e907633b5791f82600e79113f644dc6dad24146745a5bfb8341340844",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_0.anim": "13c9923f97594f969637cb1c31fd1e536234ab93a386ac233f3027048fe900c1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/RunToBornPoint.anim": "6b8580bf4f776618c5ce359369d419c7a90221f2d2d2e0f4da5f91d5d0d85570",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_12.anim": "a4254978293a4e406f8e780a2a4f3d0c928a707f252175b83187006f7edc6e04"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_52001.glb",
+    "animations": [
+      {
+        "name": "roar",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "roar"
+      },
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 306,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack5",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 320,
+        "source_name": "attack5"
+      },
+      {
+        "name": "attack1",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 306,
+        "source_name": "attack1"
+      },
+      {
+        "name": "attack2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 306,
+        "source_name": "attack2"
+      },
+      {
+        "name": "attack4",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 306,
+        "source_name": "attack4"
+      },
+      {
+        "name": "skill",
+        "duration": 5.0333333,
+        "loop": false,
+        "tracks": 306,
+        "source_name": "skill"
+      },
+      {
+        "name": "moveback",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 306,
+        "source_name": "moveback"
+      },
+      {
+        "name": "moveforward",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 306,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "attack3",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 378,
+        "source_name": "attack3"
+      },
+      {
+        "name": "dead",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 306,
+        "source_name": "dead"
+      },
+      {
+        "name": "runtobornpoint",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 306,
+        "source_name": "runtobornpoint"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.5528171620278073,
+        -0.01080045981490737,
+        -3.073502235180066
+      ],
+      "max": [
+        1.6979212575645737,
+        3.2972431322211375,
+        2.2558338543763137
+      ],
+      "size": [
+        3.250738419592381,
+        3.3080435920360447,
+        5.32933608955638
+      ]
+    },
+    "meshes": 1,
+    "nodes": 155,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 5,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 6810848,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_chimera.prefab",
+    "source_sha256": "1ed0769f776eaef757b01b8e64af329b581a2d19a999fc2ad84c16c92ec52fec",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack1"
+    }
+  }
+}

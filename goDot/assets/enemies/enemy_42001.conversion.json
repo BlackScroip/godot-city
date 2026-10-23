@@ -1,0 +1,142 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_8.anim": "08c3f1e06f88139af0522d01c05eb8445a5f9e85a6c92b4759ee3fb4d86dd5bf",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_22.anim": "a8f2734228a9367a7e89f14e79555a491546aecf62d90dd0e548a5921dc4e08a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_23.anim": "644e3f8c1bfecce115fd2adccba9c293d3b4eadf3cae56cf060528dadb4a9357",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_12.anim": "c3e4c7684232ea03be4bbe095ee35d3a2ee8169ca53432d634903cc7d4a10f3a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_37.anim": "e2ead6bbf0ca91a2d497e660a89a254034faaa02462d5920b97ca612bdcc7702",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_zhadanchuanshanjia_body.png": "c646121fc7363fc86cfe98ed707d5bcfd0a673161560858da71560832f68645a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_3.anim": "41667383f22cda94dc219e9b91a3502f153754429d57804eab2ee45ff9a9ff0d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_9.anim": "680f0ab4eb542beef2d50fd616e17a949e1c40c3f717024f24269aad9077331f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Turnleft.anim": "4a12ae7348f14fbf6af789f31f965f70e8f7628f8443da3c1f459cf5191fdafe",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_zhadanchuanshanjia_low.prefab": "045e284a317029bcc25947e6369c4f099bed36806bad5843ec6559b29b89e07e",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_chuanshanjia.asset": "cc23cdc60863d2d385e4cdd89045ad46c01d4e968eefb19a4b68ad68786609e5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Turnright.anim": "e6d82f2915f606ce0aac556260f1aa8f493808eaf3f2394c67fbf8e7710fa4c9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_16.anim": "e1257321a464c468d7c20ac6cf2c7598cbacf5a0b3d5a1474b82bd1609fb17e8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_zhadanchuanshanjia_body.mat": "846d258754f69bbe69fae2d5cd2ee3cc1245fd82dc04bd994d431193fc8b4306"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_42001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 132,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 135,
+        "source_name": "attack2"
+      },
+      {
+        "name": "attack3",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 138,
+        "source_name": "attack3"
+      },
+      {
+        "name": "damage1",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 138,
+        "source_name": "damage1"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 138,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack1",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 138,
+        "source_name": "attack1"
+      },
+      {
+        "name": "moveforward",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 135,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "turnleft",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 136,
+        "source_name": "turnleft"
+      },
+      {
+        "name": "turnright",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 135,
+        "source_name": "turnright"
+      },
+      {
+        "name": "dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 139,
+        "source_name": "dead"
+      },
+      {
+        "name": "moveback",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 135,
+        "source_name": "moveback"
+      },
+      {
+        "name": "behit",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 138,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.8560315203402504,
+        0.0002688365106915053,
+        -2.347488925963347
+      ],
+      "max": [
+        0.8565695154931083,
+        1.873698147942026,
+        2.099188677896604
+      ],
+      "size": [
+        1.7126010358333588,
+        1.8734293114313345,
+        4.446677603859952
+      ]
+    },
+    "meshes": 1,
+    "nodes": 77,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 2148732,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_zhadanchuanshanjia_low.prefab",
+    "source_sha256": "045e284a317029bcc25947e6369c4f099bed36806bad5843ec6559b29b89e07e",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack1"
+    }
+  }
+}

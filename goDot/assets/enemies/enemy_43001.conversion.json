@@ -1,0 +1,272 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_10.anim": "77790db07a5043fead7b469b8d0d7ca81176afb55bb55e07da034bb5bde59a93",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dizziness_p1.anim": "ef9751a972e08f094ef5c55424b2665790219975ee4fbdb4e028538a148eb55e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack5_3.anim": "4fdf17547457dddd77796022c0dc1df443988df40cade6b183137f303f93ab6f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_5.anim": "281fbac306029d0296b8b9dc0611a0c33d59d8c4a80e8723c7439dadb8fc92de",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_Part1_0.anim": "ce887f2ff052ddda4f59fdc96b7ea066e7f4387653068a454a61685e6ca21e14",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dizziness_p3.anim": "1ebe9c1bf55bd21a2df3a4aa8cd18eb7a1b5e63153925cd024dd0a2cfe8b6812",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_9.anim": "ae74b4bb5001e6963be67a9b2a80715f2cfcae90fbe30ecf4a5bd2b266b22ceb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_Part1.anim": "0218720d33c74a0ab2bb1c202dc6fdb4c6e1b8f01ccfb211d93f72d7f70f5385",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_10.anim": "07fe3ce35dddda5847b1d97c816029eb6bc46d1fb08fe78fb3459dcc968a4a7f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dizziness_p2.anim": "0540de63b8a0566ce5324b7787aca2a5238a660c15e9eb33ecd717683b5d7c29",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_Part4.anim": "a794184e3404eb763d3e50ddae042f085841069d71f9addf56bd73a801048711",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_25.anim": "7b2bad0fff01736948d36548c3eb00b44f0c51ee4cc5809ca21b7d7a2f74b670",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_Part3.anim": "cdbc9edb4f2281995bae6a074b384cb581024a9d341db2ffc412b7623e7a382a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_Part1_0.anim": "8fab3376ee4547bf41fd62d819c0804babc7e717288f56fd34868a14bd2ac703",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/MonsterSupport/jvshimoxiang_Stage2.anim": "e3004178a0a9e1ddff72ed562b2d5df43ee2b998c795430d1679a7065293a24c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/Tex_monster_jushimoxiang_body.png": "b27ff9dbd3e0cff028fb0261e74ac815781da0ac41bdce78b019ca3532c4d280",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/BossPose_0.anim": "98745b74a4a766b75f130f3005c21afbebbc7b67f0bc0fd30424f3d47d6a15f2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_16.anim": "2cdb60055d9cfcc4bbaa6ef238e0236a1b49832a826a57835a54f57922865dd4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead.anim": "826e82c68b0f4620b3314f9dd47492f60e59693f679949443507977368547f2b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle.anim": "17fbe4328eb84e5b4718270164c85a4329783101ab3c663a249c6ea1e422a392",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_jushimoxiang.prefab": "c825b641566d5eac4ed45596832b4ad86a58709b23727a5e2d00c3a61d39f7af",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_Part2_0.anim": "ace2860be6ed04ad1dbde2bbd5568f343d485f84476723d7fcfbf049eec60381",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_Part2_0.anim": "8406608ecb0c31ec2c0b98aee43a6635d2bdb79d493870feacaf6fa1db3676db",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Appear_0.anim": "4e6cb9e58ead1e95a8d5976721da5052be87ea41270b8870142d9208bab6b555",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_jushimoxiang_body.mat": "582ece87d2a4639db3d409ee703dba8aeaf9efd23798d880e53b58909cf35cb0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/MonsterSupport/jvshimoxiang_Stage1.anim": "37eed67d2702583de5458de157de8c53fe99b89e7edd8d87a2ff2e27cccd1d84",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_0.anim": "6ba2ac7f7da7e74c7bf1bc7a1948c5498ff27859c395a4381c12df7e2e1f11d4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_Part2_0.anim": "244d5bd75e9094b8ed69b4e92f823a4460ff17b20b8a34754288c2ac367334cc",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dizziness_0.anim": "ad3188490b58bfbd8f46913efe5d2a21a2846df8527595a2149e73a34468f0e8",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_jushimoxiang.asset": "f7ba4c28cd1bf0f1fc4d1d891f5049ea5a2b7ff628d1813d94d6be780e4705db",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_8.anim": "da4d248ad674e0c0f5f8adfefd5134eb1c3190be5f113f9b5abd576d745ee1f2"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_43001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 168,
+        "source_name": "idle"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.7666667,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "damage2"
+      },
+      {
+        "name": "appear",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "appear"
+      },
+      {
+        "name": "attack1",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack1"
+      },
+      {
+        "name": "attack2",
+        "duration": 6.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack2"
+      },
+      {
+        "name": "attack3",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack3"
+      },
+      {
+        "name": "attack4",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack4"
+      },
+      {
+        "name": "attack5",
+        "duration": 7.0333333,
+        "loop": false,
+        "tracks": 201,
+        "source_name": "attack5"
+      },
+      {
+        "name": "dead",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "dead"
+      },
+      {
+        "name": "damage",
+        "duration": 1.1,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "damage"
+      },
+      {
+        "name": "moveback",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 168,
+        "source_name": "moveback"
+      },
+      {
+        "name": "moveforward",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 168,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "bosspose",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "bosspose"
+      },
+      {
+        "name": "monstersupport_stage1",
+        "duration": 6.0000005,
+        "loop": false,
+        "tracks": 189,
+        "source_name": "monstersupport_stage1"
+      },
+      {
+        "name": "monstersupport_stage2",
+        "duration": 6.0000005,
+        "loop": false,
+        "tracks": 189,
+        "source_name": "monstersupport_stage2"
+      },
+      {
+        "name": "attack3_part1",
+        "duration": 0.8666667,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack3_part1"
+      },
+      {
+        "name": "attack3_part2",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack3_part2"
+      },
+      {
+        "name": "attack3_part3",
+        "duration": 0.36666667,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack3_part3"
+      },
+      {
+        "name": "attack3_part4",
+        "duration": 0.7,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack3_part4"
+      },
+      {
+        "name": "attack2_part1",
+        "duration": 2.7,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack2_part1"
+      },
+      {
+        "name": "attack2_part2",
+        "duration": 3.3666666,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack2_part2"
+      },
+      {
+        "name": "attack4_part1",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack4_part1"
+      },
+      {
+        "name": "attack4_part2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "attack4_part2"
+      },
+      {
+        "name": "dizziness",
+        "duration": 5.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "dizziness"
+      },
+      {
+        "name": "dizziness_p1",
+        "duration": 1.2666667,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "dizziness_p1"
+      },
+      {
+        "name": "dizziness_p2",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "dizziness_p2"
+      },
+      {
+        "name": "dizziness_p3",
+        "duration": 1.8,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "dizziness_p3"
+      },
+      {
+        "name": "behit",
+        "duration": 1.1,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -4.9179610312688915,
+        -0.0049703907639808455,
+        -1.1004011029544412
+      ],
+      "max": [
+        4.918842047382537,
+        6.152500893938626,
+        2.2975709462038116
+      ],
+      "size": [
+        9.836803078651428,
+        6.1574712847026065,
+        3.397972049158253
+      ]
+    },
+    "meshes": 1,
+    "nodes": 83,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 5,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 1434
+    },
+    "bytes": 6552084,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_jushimoxiang.prefab",
+    "source_sha256": "c825b641566d5eac4ed45596832b4ad86a58709b23727a5e2d00c3a61d39f7af",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack1"
+    }
+  }
+}

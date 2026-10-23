@@ -1,0 +1,111 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack_6.anim": "5a4a438abc0f0527247c23e69c0c1e8356a83e6d1d8633528f0c2d81cb325806",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_tubolong_body.mat": "14ec8dc986c740b57fa3043c9e78801c1086a89c87367382de9bacaf6c782577",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_tubolong_low.prefab": "fab9cce23b21dda3d60a4f6bbb5976b8773848d9c1da5efe98d665693e20f83a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_38.anim": "b9e19f5a9f7bdc21f8c404fce91ed0e24bab218b5126b5857a96bc0734c1d834",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_19.anim": "6e5cef540c27c19e15780a36667f6954e1704892bb2c963c996fd1837cb049d2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_4.anim": "5315e392a5b31985c43aa02b8555d1fbfa4ee8f7979ef40f4f99fe514a62b49a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_4.anim": "d102de496ab2992a2efc4630749d6d784aadf422c32cc1f8b5e678edb2d91a05",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_10141_body.png": "b5121b7a36537a65f7dff53a4e3a389397a3f2c1a10d39314bfb8ed350ab5fa1",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_tubolong.asset": "85f195b797a53548c4c6e925aad0c83db13c3b5230bf29d1f8fcb432c5287d39",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_22.anim": "174034f4544184f366e785f880c6b7609a57cca8fe8efcae3d675670a343bc98",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_4.anim": "9178114f9c2269f8e731f3fdd12bf633d22266a0c53ec62b926dc464fbc7f07e"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_21005.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 141,
+        "source_name": "idle"
+      },
+      {
+        "name": "damage",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "damage"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 2.5416667,
+        "loop": false,
+        "tracks": 141,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 141,
+        "source_name": "attack"
+      },
+      {
+        "name": "moveback",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 141,
+        "source_name": "moveback"
+      },
+      {
+        "name": "moveforward",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 141,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "behit",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.73420672416687,
+        0.006639676005763229,
+        -0.9968096734915147
+      ],
+      "max": [
+        0.7332391619682311,
+        1.6949150815287615,
+        0.5727402332657763
+      ],
+      "size": [
+        1.4674458861351012,
+        1.6882754055229983,
+        1.569549906757291
+      ]
+    },
+    "meshes": 1,
+    "nodes": 79,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 1197672,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_tubolong_low.prefab",
+    "source_sha256": "fab9cce23b21dda3d60a4f6bbb5976b8773848d9c1da5efe98d665693e20f83a",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack"
+    }
+  }
+}

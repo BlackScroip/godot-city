@@ -1,0 +1,97 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/BeHit2_7.anim": "bea21b0af726963791cc6a03314560fdd9167fbe66a3be76fd1d54b1d8eceb9d",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/slm_normal_body.asset": "95fce79b0cc196ca62461cef0e3e0db9102bb265df6a2a40274a1bb9e515bb14",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Move_4.anim": "99a751c428c351131297e82468f56f1d48c5e4468f82e63f7ce0fce82b5c2d9d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_shilaimuDiamond.prefab": "d3f123a660c678d40841fa39008ab0c7a77e15c5a4d649414f62a22925519fee",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_1.anim": "4f8ef83166d94ad7f0b0ac16ce9f6df7c2a7bee16ea7c7a382c176ba7cccd1f3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/RunAway.anim": "14e3807b5e3be4128d0d2d86c3225505b27b53f757c8b8d6fa3625427c48d85b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_15.anim": "7211a62af7384beb587790849df6abd03fb1b936d24fb11f3fcce629b8ee713a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_shilaimuDiamond_body.mat": "a867cd99a248aba0e672a9dfefeb33010f23749c0d051ff21385a03e68bf9b05",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_shilaimuDiamond_body.png": "f8ad496d6b6a175978c34c8010c02b535f161353a14d5803545afc28ca70bad7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/BeHit1.anim": "d7376ccf446d87078483e71a00fac7fb1c7fbd0999f61a8e69574932cf7c4814"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_90003.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 33,
+        "source_name": "idle"
+      },
+      {
+        "name": "move",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 35,
+        "source_name": "move"
+      },
+      {
+        "name": "behit1",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 35,
+        "source_name": "behit1"
+      },
+      {
+        "name": "behit2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 39,
+        "source_name": "behit2"
+      },
+      {
+        "name": "dead",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 35,
+        "source_name": "dead"
+      },
+      {
+        "name": "runaway",
+        "duration": 2.5000002,
+        "loop": false,
+        "tracks": 35,
+        "source_name": "runaway"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -2.5833954884281347,
+        0.0017885572750822587,
+        -1.558923760208019
+      ],
+      "max": [
+        -0.9360065131402433,
+        1.4047145953521856,
+        -0.27822924120193065
+      ],
+      "size": [
+        1.6473889752878914,
+        1.4029260380771034,
+        1.2806945190060883
+      ]
+    },
+    "meshes": 1,
+    "nodes": 44,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "198": 13,
+      "199": 13,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 240676,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_shilaimuDiamond.prefab",
+    "source_sha256": "d3f123a660c678d40841fa39008ab0c7a77e15c5a4d649414f62a22925519fee",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move"
+    }
+  }
+}

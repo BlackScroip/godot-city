@@ -1,0 +1,347 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@switchchara_enter.anim": "a64ebc09d3f557de9271314770b9eeab5d0d98e52778c3dd82867fa2b3d05f90",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Attack3_3.anim": "ed1ab8ad7ac8ecea5b1915be6c2753ade7c175e708097bde1edd52d82c2684f8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Player/myplayer_gongnan_simply.prefab": "e52a47f7628ba06fc4550c1050f2bd8b66169897676ee4cfac2c734fb59d26e1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/bow_satk_restPeriod.anim": "73593bf8aa2e77a15cbc416a78706abbb579c74ceeebf276977303517b1a0d51",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_1.anim": "63b0d3a105f285eca1cfab93690db0a0dc15c4e08c2d7cccfc33881526485c6c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit.anim": "8cdd379d3e9c4834ed575b5e1e0ffcd5fb9c9ed80c4faf1683dd099a3288ab49",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Dodge_2.anim": "50fc5404e78b6c920f275d7604c0a91a461d2c47ababa3849067c09760ed6e7d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/reborn.anim": "6c52a09e03b7bae0897940f8f48c81210aa72f1423cf270f3837b1e38259c916",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/bow@satk_weapon4_start.anim": "e55e7e3b816516bd273a99675807cdd5765460cdc6376140bd1f4b85a21b0200",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/bow@satk_weapon4_loop.anim": "fdbb98ebaf938318f0015b50dfa2c4766ad23438f141430e4e455aa9db7663b9",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Chara/nesh_face simplified mesh.asset": "68cdc2343b990370c16bbf98763bee359a9236515fbaf6b0b27af0ecfafb01e0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_gongnan_face.png": "c1bdd38f4dc095b7d0bc362a894ef31af8500185b074107e86a93caf75c26847",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/bow@satk_weapon4_end.anim": "9c3a3d61660e111a64b4fe7c84937f4226b6d1df1b2591aa8585f14a583cf7ce",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitfly_end.anim": "b0beeeae22292c424cfb3435b17efc7423438d41c9ecc4e6905efb6cff07b3f3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Run.anim": "db9a23e8f8e07a67c6b799400fd0cd3dbbd271863a5211a47b88f8da059d66f3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_gongnan_hair.png": "2171215dd933093b7697ccf2105e78a4c766f8e68b06d0a5dbbf6ee6843afc20",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitback.anim": "5982e27df16153fcf9f0972e8b78403a379f794bd71708cdc83aee84ff8c3633",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Attack3Derivative.anim": "59d58a790c89fb3d0df0f3020c4b6fa407d8f9861573bc62c1357a16257412b3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Transfer_3.anim": "8af02e118ddceeaac8da7ea4b435d96920615424a69ee1384a37038247921aca",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_gongnan_body.png": "3ac30ef33c6c733c6bfbcb6dab016e51950c8bf081610fabd8bd040ef860b05e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Attack1_4.anim": "c02b9501bc9ba442fc6ada7a7e19c2794406caada39d712d0480187be711752b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_0.anim": "1ee485a6903aa1e2d809e5aeea60dab2785e65f336120fa001646fd9d389c2fe",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_gongnan_body.mat": "897950db66a4bc4b92bf9779bc0a45aa9cb32e9867f0c6442413706cb945c158",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_2.anim": "b77adfb87157b7964cf298c2aa6fe0c3ba29dcf4d31d3ec22cb537f327710ec2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Summon.anim": "1dd51b343813ea5ffdb6e628f7510f0ad0ce2fa5088d54a66b6afd363c70345d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_gongnan_hair.mat": "ba871cb88643ab0354b3d9dc4c740b2f15bc628e1e3e61b4445c2d372aa64ae6",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/skill_guanchuanjianDerivative.anim": "b79ae629eade4f54ae1f98fba8437daf062f66cbd4c22cf1808378de22e9c7ff",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/DodgeAttack_1.anim": "cc468dd8a2662edea3c00cb03e2e1f684ecae9e357ce9e32b17bea5510fb0fc8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/specialattackloop_move_idle.anim": "abf8bc90989b6bcffdb06a861f3562a0bb825c41b706d4564a0304d522754387",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Chara/skin_furry_gongnan_simplified.asset": "bbd0c90fda7b2546357d2c7d33635c373428506946e14450f32129cbedceb07a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitfly_start.anim": "f814f59e2dded9dbded170adedd002a9261f861a83f647bc146bad2b2c9c2e8f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Attack2_3.anim": "233695591c4b1084ffb025ca0c5b1f5ef1900e6a6284dc906d99b9e5edd0de28",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/skill_guanchuanjian.anim": "8a65ece877001f8c213a92885642e20829e6b71fc2f076fbc2b94daf3e1a5d54",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_3.anim": "ed9781b81334176278013105a1cd957446b3398983ab706ce5e0b4e251ac01ad",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/SAtk_2.anim": "8b91c7173a413fb754a2569ff24acbf1c03858e2dd8a468441ae49c629c79ec5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_gongnan_face.mat": "600b6a063b048f394f0b9d25cd565641976ca81ed3f7237f41798c02193640f5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Idle.anim": "2ed1b35a25fabce09b158b5060691bd3fc8294e6fa1708025573932d58280df4",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Chara/mesh_hair simplified mesh_4.asset": "ebca0b419fd42fa5a7d1d8e57569ce03647ad04104101c2d2a25fecac9cb40ba",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/behit_4.anim": "24a3ece08e5f98a991c3f81831e62610a2a1df5f79cf5f98c4558bcfee15ab1d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitfly_loop.anim": "2978aa066ca65809bea219027fe8903aa6ab5729066f1794b846e5af4e2e50d3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/bow_satk_shoot.anim": "dcf5dd6c8a26b186eaee4f271a607282d7e985eb076498d9fdef12ecdec26115",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/bow_satk_jump.anim": "d9e122e875baa7355b1b834dd2072c458b43515eb0be0c8c6d4dcf26f84dc09e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/skill_jianyu.anim": "3be220852614a3c85023e0411d52e06a2b2a9ed990605799eb42ffca0525f547",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/dead.anim": "d70edd63a05f2965e85a3276fb96f14077327895a1e37c950373069aeb953d2e"
+  },
+  "result": {
+    "path": "res://assets/characters/character_5.glb",
+    "animations": [
+      {
+        "name": "Inited",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 210,
+        "source_name": "Inited"
+      },
+      {
+        "name": "common_behit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@behit"
+      },
+      {
+        "name": "common_behit_hitfly_end",
+        "duration": 1.2333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@behit_hitfly_end"
+      },
+      {
+        "name": "common_behit_hitfly_loop_clip",
+        "duration": 0.033333335,
+        "loop": true,
+        "tracks": 162,
+        "source_name": "common@behit_hitfly_loop"
+      },
+      {
+        "name": "common_behit_hitfly_start",
+        "duration": 0.33333334,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@behit_hitfly_start"
+      },
+      {
+        "name": "common_switchchara_enter",
+        "duration": 1.125,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@switchchara_enter"
+      },
+      {
+        "name": "bow_attack1",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@attack1"
+      },
+      {
+        "name": "bow_attack2",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@attack2"
+      },
+      {
+        "name": "bow_attack3",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@attack3"
+      },
+      {
+        "name": "bow_skill_jianyu",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@skill_jianyu"
+      },
+      {
+        "name": "bow_skill_guanchuanjian",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@skill_guanchuanjian"
+      },
+      {
+        "name": "bow_idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 210,
+        "source_name": "bow@idle"
+      },
+      {
+        "name": "bow_run",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 210,
+        "source_name": "bow@run"
+      },
+      {
+        "name": "common_dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 183,
+        "source_name": "common@dead"
+      },
+      {
+        "name": "common_reborn",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@reborn"
+      },
+      {
+        "name": "bow_dodgeatk",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@dodgeatk"
+      },
+      {
+        "name": "bow_dodge",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@dodge"
+      },
+      {
+        "name": "bow_satk",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk"
+      },
+      {
+        "name": "bow_attack_derivative",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@attack_derivative"
+      },
+      {
+        "name": "bow_satk_shoot",
+        "duration": 0.13333334,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk_shoot"
+      },
+      {
+        "name": "bow_satk_jump",
+        "duration": 0.56666666,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk_jump"
+      },
+      {
+        "name": "bow_satk_restperiod",
+        "duration": 0.8666667,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk_restperiod"
+      },
+      {
+        "name": "bow_skill_guanchuanjian_derivative",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@skill_guanchuanjian_derivative"
+      },
+      {
+        "name": "common_Summon",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 174,
+        "source_name": "common@Summon"
+      },
+      {
+        "name": "bow_behit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 225,
+        "source_name": "bow@behit"
+      },
+      {
+        "name": "bow_transfer",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 219,
+        "source_name": "bow@transfer"
+      },
+      {
+        "name": "bow_satk_weapon4_loop_clip",
+        "duration": 0.6,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk_weapon4_loop"
+      },
+      {
+        "name": "bow_satk_weapon4_start",
+        "duration": 0.3,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk_weapon4_start"
+      },
+      {
+        "name": "bow_satk_weapon4_end",
+        "duration": 1.2,
+        "loop": false,
+        "tracks": 210,
+        "source_name": "bow@satk_weapon4_end"
+      },
+      {
+        "name": "BeHit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "BeHit"
+      },
+      {
+        "name": "BeHit_Sword",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 177,
+        "source_name": "BeHit_Sword"
+      },
+      {
+        "name": "BeHit_Sickle",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 192,
+        "source_name": "BeHit_Sickle"
+      },
+      {
+        "name": "BeHit_Axe",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 198,
+        "source_name": "BeHit_Axe"
+      },
+      {
+        "name": "BeHit_Bow",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 225,
+        "source_name": "BeHit_Bow"
+      },
+      {
+        "name": "BeHit_Wand",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 192,
+        "source_name": "BeHit_Wand"
+      },
+      {
+        "name": "BeHit_Orb",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "BeHit_Orb"
+      },
+      {
+        "name": "Blend",
+        "duration": 0.9333334,
+        "loop": true,
+        "tracks": 9,
+        "source_name": "Blend"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.6204659938812256,
+        0.0020961677612688634,
+        -0.47492380268412415
+      ],
+      "max": [
+        0.6204659938812256,
+        1.6336910895430465,
+        0.30584069537943903
+      ],
+      "size": [
+        1.2409319877624512,
+        1.6315949217817778,
+        0.7807644980635632
+      ]
+    },
+    "meshes": 3,
+    "nodes": 123,
+    "skins": 3,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "animation_unbound_path": 591
+    },
+    "bytes": 5149896,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Player/myplayer_gongnan_simply.prefab",
+    "source_sha256": "e52a47f7628ba06fc4550c1050f2bd8b66169897676ee4cfac2c734fb59d26e1",
+    "default_animations": {
+      "idle": "bow_idle",
+      "run": "bow_run",
+      "attack": "bow_attack1"
+    }
+  }
+}

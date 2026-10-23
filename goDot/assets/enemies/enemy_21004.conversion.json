@@ -1,0 +1,102 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/jump.anim": "9b047bd4dfc8b220e5843a23ab442400bb48f9646d234b9083c338e772603d4b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_xianrenzhang_low.prefab": "5f726a12fdc09447c4732cc3770854bb9c814e8f7ccf4cf0d2077aaff8667177",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_21.anim": "583db20ad21d8c41fdac3a4b7b7968411e282fc2db693164d0911dba10661d48",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack_2.anim": "c4b10461dbce1f1e2dcf27a889c2d46d9d7ead0ea26f362468c0f29f399538b0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_xianrenzhang_body.mat": "5d36fcc8ba86a16764b1eeadd154be49f32c90005105458f11cd406243bc16e9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_17.anim": "0ab9162d9bff1589cb8f38f371860cb6cea5607930792b454283332e138ceda2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_0.anim": "118b876983fb714217d94addc87e0ba6b52acf23f9cfd67a2ddccd87d3738a23",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_23.anim": "92712b641431e11fd0144d8c456fbd7821526ce6c97922fbb10dcc195efbd8a5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_xianrenzhang_body.png": "f65e2a95785b7fc8986234fed5d99cfbdc2e78923e22fdee2c3770106c3c87f4",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_xianrenzhang.asset": "f677502f2cd24961b45a0f5339f39ed2474b204f4c031f4ed95fc28075718b4a"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_21004.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.6666667,
+        "loop": true,
+        "tracks": 132,
+        "source_name": "idle"
+      },
+      {
+        "name": "damage",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 130,
+        "source_name": "damage"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.7,
+        "loop": false,
+        "tracks": 132,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 84,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack",
+        "duration": 5.0000005,
+        "loop": false,
+        "tracks": 133,
+        "source_name": "attack"
+      },
+      {
+        "name": "jump",
+        "duration": 2.0,
+        "loop": false,
+        "tracks": 132,
+        "source_name": "jump"
+      },
+      {
+        "name": "behit",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 130,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.3831063985824585,
+        0.008783567352831943,
+        -0.47621066122159866
+      ],
+      "max": [
+        1.3834134578704835,
+        1.685462408308479,
+        0.47590345871783524
+      ],
+      "size": [
+        2.766519856452942,
+        1.676678840955647,
+        0.9521141199394338
+      ]
+    },
+    "meshes": 1,
+    "nodes": 58,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 1171392,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_xianrenzhang_low.prefab",
+    "source_sha256": "5f726a12fdc09447c4732cc3770854bb9c814e8f7ccf4cf0d2077aaff8667177",
+    "default_animations": {
+      "idle": "idle",
+      "attack": "attack"
+    }
+  }
+}

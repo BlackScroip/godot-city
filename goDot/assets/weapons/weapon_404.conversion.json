@@ -1,0 +1,44 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/FX/fbx_fx_helixplane_17.asset": "b8b47ce2f7ed787d96660449edc71a959ab8358c6c2073c2531196269de299a3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_40003_low.prefab": "3392f6abbdb6c81334710be148f8ee8d620c26a8503b59ad4124700df19feea4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_40003_wand.mat": "33fcb470b8b5673e4d65b76797af5cbe7a79adf6ee3e8737e23c74ba41de2f83",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_40003_wand.png": "00e037abe5d52307ec4d7396038c4b26b9457486be80e2339c6a2b9fc057e1f6",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_weapon_40003_1.asset": "373513e44a937946f28d2391ed0632020e2bdcd1dc3ab65eb2cb34e17f3e201b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Material/mat_fx_24092603_40003_waterflow.mat": "807f9f49d079fb07191b322435f65eedc5ac92f16b507e791fe11edf497c7f85",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Texture/tex_fx_noise_28.png": "340412ee0644ec7d17d865909fead62640f080289d0ee1643e6a49f0f97ea834"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_404.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.43218578388101137,
+        -0.3930594024877026,
+        -0.5100340369808782
+      ],
+      "max": [
+        0.32567865257397915,
+        0.38460406333118413,
+        1.447646206399765
+      ],
+      "size": [
+        0.7578644364549905,
+        0.7776634658188868,
+        1.9576802433806433
+      ]
+    },
+    "meshes": 2,
+    "nodes": 10,
+    "skins": 0,
+    "unsupported": {
+      "198": 4,
+      "199": 4
+    },
+    "bytes": 117640,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_40003_low.prefab",
+    "source_sha256": "3392f6abbdb6c81334710be148f8ee8d620c26a8503b59ad4124700df19feea4",
+    "default_animations": {}
+  }
+}

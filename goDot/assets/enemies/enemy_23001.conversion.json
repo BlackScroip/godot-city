@@ -1,0 +1,272 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_4.anim": "a1847cfe4b4350e4b8971feb01f8c1b0a450e44c3016988c3315f490e2297444",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4.anim": "15f99f7cb85acaa9ded0fe2e963107752e4e69041efd09906bee853a7c21e8ad",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_Charge.anim": "a0a358d3bb7d726c5cae043452da1aa3443a36e64b30fb7bb1e86a2b8d5678ca",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_10.anim": "fe3ae36de9c75b8778355db536bc504c86d34a5ec90121478808c1e93d0bf338",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead1.anim": "7b277e8e25b659e0eb0aa52cf6dfbaab3f55e36106b9fb5bb262869df34020be",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_Air.anim": "f283b679a465038605508f4a941f0d98df9259436796986ba543d8e737ca9fc3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1 (2).anim": "7b68e32695a58d841a7e60889c649e79cdb31630b767667c7404bd3a368c0cfa",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1 (5).anim": "f0ee90a315be05045ec4fb5c5dae399c7b9d41afdc62634355193a26ff3ce726",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack5.anim": "5292da20a5fc26d21ea778ce286ab1eeb7f947563d859a13ccb43dcbafbd72b9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_7.anim": "6f8861a2da6db2b583dacc7a9e9a1ce30d279b6fa6b4d237fcaa79818edceeeb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_Dash.anim": "95da3a641c2e2853fa1f322d61c1e581d1f747a7aaf7631b21a0ba3975267971",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_10210_body.png": "e0b8b4affd7d0d3d7982a620bbe7da9defc065e68c8a2bdcda14478b66ac3066",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack6.anim": "46a9c6d904925a24d8c8bbdac67c898757119530a38896fc5c85babebe1dc2b5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_Part1.anim": "7e3c425b21c6c8bf7f85d82998674ce991dc5f57079d970e9693a21874b287a9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_15.anim": "6551457f90b403698c37c6325a38226e0179b0932c782241ddcd03d1be2f0bf8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead2.anim": "9bfc0217ae286b6782dbfdb547eb975f992c857fc3a1c6b633a7ceaa3addd70f",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body_7.asset": "e87f44df1077c3b0f680e41a4476d58d3203be22e7a7f64f569bef55ffeab3f1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1 (4).anim": "60c2355797669f2125cba892db91ba181aa95500ec12d13c6caa59c48f024e93",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_Air.anim": "5db56d77fe1224f2b483f0aa01ededfd2575f16c9b58c5c29858a9c9026dc35e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/MonsterSupport/Gelifenniaoshou_Stage2.anim": "7f08ed17abb295e1f0d9b082f956a81dd2820bb0f281ebf77e21f9f38fd766af",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_13.anim": "35ba00f15115975dd26b7e3a5706aff884238fdfef6d6cfd591c1c0b35de8181",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1 (1).anim": "d0e1bc8744119854dac794bffdefde24526782dff14ef87fa4a4f842faae22f9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1 (3).anim": "87e4a4decd087f3a9bed4782015bc9c507ce59d348542d9aa0418600f594db11",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_attack.anim": "1834d498c174b992212acdf3578b5f793c3e39a43d2041c303ad3f9de0894c68",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle2.anim": "23adf29ed7e4e3ad7bbbc7e02f10b6434d6af12884e0257694957f3c8dd05ca0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/MonsterSupport/Gelifenniaoshou_Stage1.anim": "3bc15f8ad577b1bcdb38ecbed83e07885825687f99898a4df7daea523ae9ce88",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_gelifenniaoshou.prefab": "b3391d8c17720a03c90a22ce3248d5554336a7bb8713278cbfefd663bc328d75",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/BossPose.anim": "ae147c8880dd8ce36c98751b75eb8a52f4f26a9a2aafe48f81d9ecc69e7591ad",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_10210_body.mat": "53036e898c9ff49183e708a43b7031d9b0a841ddba3cb1243721100a7d2b2db6",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_21.anim": "952323cff6fa16ef515b3a434e9d66349d8e66ef2385618e1150eea13a3f7577",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle1.anim": "8d7dc226dd06586b1476131e8019c8753baf5c569bae298a199452623b8872e8"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_23001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "idle"
+      },
+      {
+        "name": "move_forward",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "move_forward"
+      },
+      {
+        "name": "move_back",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "move_back"
+      },
+      {
+        "name": "idle_air",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "idle_air"
+      },
+      {
+        "name": "move_forward_air",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "move_forward_air"
+      },
+      {
+        "name": "move_back_air",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "move_back_air"
+      },
+      {
+        "name": "attack1",
+        "duration": 4.5333333,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "attack1"
+      },
+      {
+        "name": "attack2",
+        "duration": 4.5333333,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "attack2"
+      },
+      {
+        "name": "attack3",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "attack3"
+      },
+      {
+        "name": "attack4_air",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "attack4_air"
+      },
+      {
+        "name": "attack5_air",
+        "duration": 5.0333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "attack5_air"
+      },
+      {
+        "name": "attack6_air",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 343,
+        "source_name": "attack6_air"
+      },
+      {
+        "name": "dead1",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 361,
+        "source_name": "dead1"
+      },
+      {
+        "name": "dead2_air",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "dead2_air"
+      },
+      {
+        "name": "monstersupport_stage1",
+        "duration": 2.0,
+        "loop": false,
+        "tracks": 450,
+        "source_name": "monstersupport_stage1"
+      },
+      {
+        "name": "monstersupport_stage2",
+        "duration": 4.0,
+        "loop": false,
+        "tracks": 450,
+        "source_name": "monstersupport_stage2"
+      },
+      {
+        "name": "bosspose",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 285,
+        "source_name": "bosspose"
+      },
+      {
+        "name": "move_forward_air_fast",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "move_forward_air fast"
+      },
+      {
+        "name": "attack2_part1",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "attack2_part1"
+      },
+      {
+        "name": "attack2_dash",
+        "duration": 0.6666667,
+        "loop": true,
+        "tracks": 342,
+        "source_name": "attack2_dash"
+      },
+      {
+        "name": "attack1_1",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "attack1 (1)"
+      },
+      {
+        "name": "attack1_2",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "attack1 (2)"
+      },
+      {
+        "name": "attack1_3",
+        "duration": 0.7,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "attack1 (3)"
+      },
+      {
+        "name": "attack1_4",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "attack1 (4)"
+      },
+      {
+        "name": "attack1_5",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 347,
+        "source_name": "attack1 (5)"
+      },
+      {
+        "name": "attack2_charge",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "attack2_charge"
+      },
+      {
+        "name": "attack2_attack",
+        "duration": 0.7,
+        "loop": false,
+        "tracks": 342,
+        "source_name": "attack2_attack"
+      },
+      {
+        "name": "behit",
+        "duration": 1.6666667,
+        "loop": false,
+        "tracks": 3,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -2.7865417893066406,
+        0.04067242410168479,
+        -2.646701051322732
+      ],
+      "max": [
+        2.788846521972656,
+        3.433329792326716,
+        1.8646819007469908
+      ],
+      "size": [
+        5.575388311279297,
+        3.392657368225031,
+        4.511382952069723
+      ]
+    },
+    "meshes": 1,
+    "nodes": 171,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 45
+    },
+    "bytes": 11154448,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_gelifenniaoshou.prefab",
+    "source_sha256": "b3391d8c17720a03c90a22ce3248d5554336a7bb8713278cbfefd663bc328d75",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move_forward",
+      "attack": "attack1"
+    }
+  }
+}

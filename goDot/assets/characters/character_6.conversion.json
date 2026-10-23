@@ -1,0 +1,331 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/attack3_2.anim": "f68bcc44c94e79e4a52ff6b3a9af5e2f8e4f0437f0141a1f8b92ef8921267a13",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@switchchara_enter.anim": "a64ebc09d3f557de9271314770b9eeab5d0d98e52778c3dd82867fa2b3d05f90",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/attack2_0.anim": "a20ff58aab8b043421c7767e73a61b849352e0949fa3d92f9e3f0508ff669930",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/dodgeattack_3.anim": "3b7dc085694c23f2ddcf19fbe01b9a5e2408868b3c9c26cb99a821abc9862521",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_1.anim": "63b0d3a105f285eca1cfab93690db0a0dc15c4e08c2d7cccfc33881526485c6c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit.anim": "8cdd379d3e9c4834ed575b5e1e0ffcd5fb9c9ed80c4faf1683dd099a3288ab49",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Player/myplayer_zhunv_simply.prefab": "f95d64bda6a1b134a9a73ce8e9231825e0aef8ff616727716622487c01f24537",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/skill_shengguangshenpan.anim": "0d32e10bc6542b1f4f5f9fd6ddeb1694ca17b2d9d8db1fbdce8f6c144e7c986e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_zhunv_body.mat": "14014c5839aaf66ecd33f2155d6e4f3bb9b72dc3800a703aff9389422c41224f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/reborn.anim": "6c52a09e03b7bae0897940f8f48c81210aa72f1423cf270f3837b1e38259c916",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/transfer_1.anim": "9502610de356ecfb45bd0819cfae780529e6cdbe2e1591fa0d3016762d72ab06",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_zhunv_face.png": "fa485a844b0d40b22ad231d7e5dc64e70ead9f1161e9423b5e7c9fed8a9d342a",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Chara/skin_furry_zhunv_simplified.asset": "b39ac24b04a38150f9eb5aae1e24bdd810eecd9fd4b9f5bf73f6dc1ec1b7fc20",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/sword@specialattackloop.anim": "323433e7bd19a5e1147c886ed26f1450ed89d0851dfee87d94022cf40129864e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitfly_end.anim": "b0beeeae22292c424cfb3435b17efc7423438d41c9ecc4e6905efb6cff07b3f3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitback.anim": "5982e27df16153fcf9f0972e8b78403a379f794bd71708cdc83aee84ff8c3633",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/skill_shengguangshenpanDerivative.anim": "c64c957263f015fa917360f2d8aa523412aece6370029471b2329085b578e97f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/SAtk_shoot.anim": "0c82387ac212f433e8f05766214bdeb3dbbd6f940904e6f1283f8ca4bad3a922",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_0.anim": "1ee485a6903aa1e2d809e5aeea60dab2785e65f336120fa001646fd9d389c2fe",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/attack1_3.anim": "ced5c7efaa662bec60ffbc271ab155ef5cd4bc7f48f2451f3318f9838522db90",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/SAtk_loop.anim": "8740b05609cc85e7d4909ff0b712130149286ffb05d4558a7e58720d6d8b89a3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_2.anim": "b77adfb87157b7964cf298c2aa6fe0c3ba29dcf4d31d3ec22cb537f327710ec2",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Chara/mesh_hair simplified mesh_5.asset": "7b2fb61b3a2f2b1119237836c70d7a980de0142b4f281f57a01bf1e073ee719d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/run_2.anim": "eff4a0223ffb0c5c1e6202cc1d229e7b4b1de9c3eecf99dea79f5f1907d8adf7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Summon.anim": "1dd51b343813ea5ffdb6e628f7510f0ad0ce2fa5088d54a66b6afd363c70345d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/SAtk_start.anim": "46a7726784cb7330f37ee5f27eb14a0e973daa1ad3e108998350fc835f3d19e7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/specialattackloop_move_idle.anim": "abf8bc90989b6bcffdb06a861f3562a0bb825c41b706d4564a0304d522754387",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/SAtk.anim": "5772c01fc78395c972e330aa9a5e5495e680e7012d4102085b4df34ae9db7a06",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/AttackDerivative.anim": "1e444f79f54368f614b055b5aae615db507a801d498aa33b25bc9c89d8bcc1ac",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitfly_start.anim": "f814f59e2dded9dbded170adedd002a9261f861a83f647bc146bad2b2c9c2e8f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_zhunv_hair.png": "a46f4c0b9e2b6df9a846916e5f4cb2b2361b7e0e116ff8ae14206ea6c6e0520f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_zhunv_face.mat": "42c43f3d59976feec2b2e000233f8241a12a726d52318d6e1bcf1228bada9271",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/Behit_3.anim": "ed9781b81334176278013105a1cd957446b3398983ab706ce5e0b4e251ac01ad",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Chara/mesh_face simplified mesh_6.asset": "4570fd047cb9ade1ad865f06c56dd9bbf26d3651f2ce788ab777a640c556ec47",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/behit_4.anim": "24a3ece08e5f98a991c3f81831e62610a2a1df5f79cf5f98c4558bcfee15ab1d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/dodge_3.anim": "b2535e420ffaae7f1f3bc2628630793344825b0309ae3a4bd272dfc34f583d8c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/idle_4.anim": "555063d62bf93b7574c75364a811d0d792ef6cdafe71ec87bb61c5ccc302140d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Texture/tex_furry_zhunv_body.png": "018c2ef31a3b39ac417b5a66af57b6e47cc6fb9466c9ea738c287cb735dc1f21",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/common@behit_hitfly_loop.anim": "2978aa066ca65809bea219027fe8903aa6ab5729066f1794b846e5af4e2e50d3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/skill_shenzhijianglin.anim": "4c6e252f7b8c94e625e1e568e8104da7e34494a4f65ef3d03f8db33610193b1f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Material/mat_furry_zhunv_hair.mat": "5c16a034ace12c913f2c39e8434745a5abe7e4db855eb7aab0b1f9782b9072c4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Chara/Animation/Furry/dead.anim": "d70edd63a05f2965e85a3276fb96f14077327895a1e37c950373069aeb953d2e"
+  },
+  "result": {
+    "path": "res://assets/characters/character_6.glb",
+    "animations": [
+      {
+        "name": "Inited",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 345,
+        "source_name": "Inited"
+      },
+      {
+        "name": "common_behit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@behit"
+      },
+      {
+        "name": "common_behit_hitfly_end",
+        "duration": 1.2333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@behit_hitfly_end"
+      },
+      {
+        "name": "common_behit_hitfly_loop_clip",
+        "duration": 0.033333335,
+        "loop": true,
+        "tracks": 162,
+        "source_name": "common@behit_hitfly_loop"
+      },
+      {
+        "name": "common_behit_hitfly_start",
+        "duration": 0.33333334,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@behit_hitfly_start"
+      },
+      {
+        "name": "common_switchchara_enter",
+        "duration": 1.125,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@switchchara_enter"
+      },
+      {
+        "name": "orb_attack1",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 351,
+        "source_name": "orb@attack1"
+      },
+      {
+        "name": "orb_attack2",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@attack2"
+      },
+      {
+        "name": "orb_attack3",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@attack3"
+      },
+      {
+        "name": "orb_dodgeatk",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@dodgeatk"
+      },
+      {
+        "name": "orb_skill_shengguangshenpan",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@skill_shengguangshenpan"
+      },
+      {
+        "name": "orb_skill_shenzhijianglin",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@skill_shenzhijianglin"
+      },
+      {
+        "name": "orb_idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 345,
+        "source_name": "orb@idle"
+      },
+      {
+        "name": "orb_run",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 345,
+        "source_name": "orb@run"
+      },
+      {
+        "name": "common_dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 171,
+        "source_name": "common@dead"
+      },
+      {
+        "name": "common_reborn",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@reborn"
+      },
+      {
+        "name": "orb_dodge",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@dodge"
+      },
+      {
+        "name": "orb_satk",
+        "duration": 0.7000003,
+        "loop": true,
+        "tracks": 6,
+        "source_name": "orb@satk"
+      },
+      {
+        "name": "orb_attack_derivative",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@attack_derivative"
+      },
+      {
+        "name": "orb_skill_shengguangshenpan_derivative",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@skill_shengguangshenpan_derivative"
+      },
+      {
+        "name": "orb_satk__2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb_satk"
+      },
+      {
+        "name": "orb_satk_start",
+        "duration": 0.8666667,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@satk_start"
+      },
+      {
+        "name": "orb_satk_loop_clip",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@satk_loop"
+      },
+      {
+        "name": "orb_satk_shoot",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 345,
+        "source_name": "orb@satk_shoot"
+      },
+      {
+        "name": "common_Summon",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "common@Summon"
+      },
+      {
+        "name": "orb_behit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 381,
+        "source_name": "orb@behit"
+      },
+      {
+        "name": "orb_transfer",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 359,
+        "source_name": "orb@transfer"
+      },
+      {
+        "name": "BeHit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 162,
+        "source_name": "BeHit"
+      },
+      {
+        "name": "BeHit_Sword",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 165,
+        "source_name": "BeHit_Sword"
+      },
+      {
+        "name": "BeHit_Sickle",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 207,
+        "source_name": "BeHit_Sickle"
+      },
+      {
+        "name": "BeHit_Axe",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 174,
+        "source_name": "BeHit_Axe"
+      },
+      {
+        "name": "BeHit_Bow",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 180,
+        "source_name": "BeHit_Bow"
+      },
+      {
+        "name": "BeHit_Wand",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 168,
+        "source_name": "BeHit_Wand"
+      },
+      {
+        "name": "BeHit_Orb",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 381,
+        "source_name": "BeHit_Orb"
+      },
+      {
+        "name": "Blend",
+        "duration": 0.9333334,
+        "loop": true,
+        "tracks": 9,
+        "source_name": "Blend"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.6204659748077396,
+        0.000728713683543436,
+        -0.38471145210649976
+      ],
+      "max": [
+        0.6204660129547116,
+        1.6830182699163574,
+        0.21880427071446193
+      ],
+      "size": [
+        1.2409319877624512,
+        1.682289556232814,
+        0.6035157228209617
+      ]
+    },
+    "meshes": 3,
+    "nodes": 175,
+    "skins": 3,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "animation_unbound_path": 504
+    },
+    "bytes": 7383704,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Player/myplayer_zhunv_simply.prefab",
+    "source_sha256": "f95d64bda6a1b134a9a73ce8e9231825e0aef8ff616727716622487c01f24537",
+    "default_animations": {
+      "idle": "orb_idle",
+      "run": "orb_run",
+      "attack": "orb_attack1"
+    }
+  }
+}

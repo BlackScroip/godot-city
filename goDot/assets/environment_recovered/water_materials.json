@@ -1,0 +1,884 @@
+{
+  "EnvFloatingIsland_Detail_[OnLandWater]": {
+    "shader_path_id": "-6473736215580875022",
+    "bundle": 1,
+    "path_id": "-5627748348202969516",
+    "colors": {
+      "_CausticsSpeed": {
+        "r": -0.10000000149011612,
+        "g": 0.05000000074505806,
+        "b": 0,
+        "a": 0
+      },
+      "_ColorDeep": {
+        "r": 0.17288179695606232,
+        "g": 0.3137184679508209,
+        "b": 0.349056601524353,
+        "a": 1
+      },
+      "_ColorShallow": {
+        "r": 0.1108490526676178,
+        "g": 0.3912319540977478,
+        "b": 0.4433962106704712,
+        "a": 0.3959999978542328
+      },
+      "_FlowSpeed": {
+        "r": 0.30000001192092896,
+        "g": 0.20000000298023224,
+        "b": 0,
+        "a": 0
+      },
+      "_FoamColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.09799999743700027
+      },
+      "_HorizonColor": {
+        "r": 0.23499999940395355,
+        "g": 0.9049999713897705,
+        "b": 1,
+        "a": 1
+      },
+      "_IntersectionColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_WaveASpeed": {
+        "r": 1,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_WaveBSpeed": {
+        "r": 0.5,
+        "g": 0.800000011920929,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "_BumpScale": 1,
+      "_BumpTiling": 1,
+      "_CausticsBrightness": 4.829999923706055,
+      "_CausticsEnable": 0,
+      "_CausticsIntensity": 0.5,
+      "_CausticsScale": 5,
+      "_CausticsSpeed": 0.10000000149011612,
+      "_CausticsTiling": 0.5,
+      "_DepthRange": 0.4699999988079071,
+      "_DepthTransition": 1,
+      "_DepthVertical": 5.889999866485596,
+      "_DisableDepthTexture": 0,
+      "_DistortionStrength": 0.30000001192092896,
+      "_EdgeFade": 7.369999885559082,
+      "_FoamBaseAmount": 0.4099999964237213,
+      "_FoamBlur": 0.15000000596046448,
+      "_FoamClipping": 0.7300000190734863,
+      "_FoamDistortion": 0.10000000149011612,
+      "_FoamEnable": 1,
+      "_FoamIntensity": 1,
+      "_FoamNoiseScale": 8,
+      "_FoamNoiseSpeed": 0.20000000298023224,
+      "_FoamSpeed": 0.029999999329447746,
+      "_FoamSubSpeed": -0.25,
+      "_FoamSubTiling": 0.5,
+      "_FoamTiling": -0.12999999523162842,
+      "_FoamWaveAmount": 0,
+      "_FoamWidth": 0.4000000059604645,
+      "_GerstnerEnable": 0,
+      "_HorizonDistance": 7.599999904632568,
+      "_IntersectionClipping": 0.42800000309944153,
+      "_IntersectionEnable": 1,
+      "_IntersectionFalloff": 1,
+      "_IntersectionLength": 1.7899999618530273,
+      "_IntersectionRippleDist": 64,
+      "_IntersectionRippleStrength": 0.35499998927116394,
+      "_IntersectionSpeed": 0.05999999865889549,
+      "_IntersectionTiling": 0.17000000178813934,
+      "_Opacity": 0.8500000238418579,
+      "_RefractionChromaticAberration": 0,
+      "_RefractionOn": 0,
+      "_RefractionStrength": 0.2669999897480011,
+      "_WaveALength": 20,
+      "_WaveASteepness": 0.5,
+      "_WaveBLength": 10,
+      "_WaveBSteepness": 0.30000001192092896,
+      "_WaveHeight": 0,
+      "_WaveSpeed": 1,
+      "_WaveSteepness": 0,
+      "_WavesEnable": 0,
+      "_WorldSpaceUV": 1
+    }
+  },
+  "EnvSeal_WaterFall": {
+    "shader_path_id": "-4698155739361515650",
+    "bundle": 1,
+    "path_id": "-522109103408967963",
+    "colors": {
+      "Color_A271762B": {
+        "r": 0.003346535610035062,
+        "g": 0.021219009533524513,
+        "b": 0.14126332104206085,
+        "a": 0.9803921580314636
+      },
+      "Color_AFFD055F": {
+        "r": 0.7156937718391418,
+        "g": 0.8796225786209106,
+        "b": 0.9386858940124512,
+        "a": 1
+      },
+      "Color_E0824245": {
+        "r": 0,
+        "g": 0.08865560591220856,
+        "b": 0.34191444516181946,
+        "a": 0.9215686321258545
+      },
+      "Color_b6745e534bad48b7b4cbd4c7da724615": {
+        "r": 0.30588236451148987,
+        "g": 0.33725491166114807,
+        "b": 0.35686275362968445,
+        "a": 1
+      },
+      "_BaseColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_Color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_EmissionColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "_FormTiling": {
+        "r": 0.30000001192092896,
+        "g": 0.20000000298023224,
+        "b": 0,
+        "a": 0
+      },
+      "_FresColor": {
+        "r": 0.6597539186477661,
+        "g": 0.6597539186477661,
+        "b": 0.6597539186477661,
+        "a": 0
+      },
+      "_GlobalSpeed": {
+        "r": 0,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_SpecColor": {
+        "r": 0.20000000298023224,
+        "g": 0.20000000298023224,
+        "b": 0.20000000298023224,
+        "a": 1
+      },
+      "_WaveTiling": {
+        "r": 3,
+        "g": 3,
+        "b": 0,
+        "a": 0
+      },
+      "_rippleTiling": {
+        "r": 1,
+        "g": 2,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "Vector1_1": 0,
+      "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.4000000059604645,
+      "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 12.199999809265137,
+      "Vector1_4830f1fa588b45d2819e15a4b69ec032": 5,
+      "Vector1_53B9698E": 0.5,
+      "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+      "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 24.100000381469727,
+      "Vector1_7da725783e8a4c839247558169c9111a": 2,
+      "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0,
+      "Vector1_93DCFAA9": 2.5,
+      "Vector1_972e1747dcad4452851abeb6ba9d9d47": 0.30000001192092896,
+      "Vector1_C5543ECF": 1.5,
+      "Vector1_E23798DE": 0.09000000357627869,
+      "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+      "_Alpha": 1,
+      "_AlphaClip": 0,
+      "_AlphaToMask": 0,
+      "_Blend": 0,
+      "_BlendModePreserveSpecular": 1,
+      "_BumpScale": 1,
+      "_ClearCoatMask": 0,
+      "_ClearCoatSmoothness": 0,
+      "_Cull": 2,
+      "_Cutoff": 0.5,
+      "_DetailAlbedoMapScale": 1,
+      "_DetailNormalMapScale": 1,
+      "_DstBlend": 0,
+      "_DstBlendAlpha": 0,
+      "_EnvironmentReflections": 1,
+      "_Float": -1,
+      "_FoamTextureStrenth": 1.6699999570846558,
+      "_FoamVertexColor": -1,
+      "_FresPower": 3,
+      "_GlossMapScale": 0,
+      "_Glossiness": 0,
+      "_GlossyReflections": 0,
+      "_IsOrtographic": 0,
+      "_MODE": 0,
+      "_Metallic": 0,
+      "_Mode": 0,
+      "_OcclusionStrength": 1,
+      "_Parallax": 0.004999999888241291,
+      "_QueueControl": 0,
+      "_QueueOffset": 0,
+      "_ReceiveShadows": 1,
+      "_Smoothness": 0.5,
+      "_SmoothnessTextureChannel": 0,
+      "_SpecularHighlights": 1,
+      "_SrcBlend": 1,
+      "_SrcBlendAlpha": 1,
+      "_Surface": 0,
+      "_USEFOAMTEXTURE": 1,
+      "_WorkflowMode": 1,
+      "_ZWrite": 1,
+      "_isPool": 0
+    }
+  },
+  "EnvDetails_River": {
+    "shader_path_id": "-4698155739361515650",
+    "bundle": 1,
+    "path_id": "1569788434841436399",
+    "colors": {
+      "Color_A271762B": {
+        "r": 0.07843136787414551,
+        "g": 0.7156550288200378,
+        "b": 1,
+        "a": 0.6470587849617004
+      },
+      "Color_AFFD055F": {
+        "r": 2.8284270763397217,
+        "g": 2.8284270763397217,
+        "b": 2.8284270763397217,
+        "a": 1
+      },
+      "Color_E0824245": {
+        "r": 0,
+        "g": 1,
+        "b": 0.3738570213317871,
+        "a": 0.6588234901428223
+      },
+      "Color_b6745e534bad48b7b4cbd4c7da724615": {
+        "r": 1,
+        "g": 0.802344024181366,
+        "b": 0.34433960914611816,
+        "a": 1
+      },
+      "_BaseColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_Color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_EmissionColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "_FormTiling": {
+        "r": 1,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_FresColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0
+      },
+      "_GlobalSpeed": {
+        "r": 0.30000001192092896,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "_SpecColor": {
+        "r": 0.20000000298023224,
+        "g": 0.20000000298023224,
+        "b": 0.20000000298023224,
+        "a": 1
+      },
+      "_WaveTiling": {
+        "r": 4,
+        "g": 4,
+        "b": 0,
+        "a": 0
+      },
+      "_rippleTiling": {
+        "r": 3,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "Vector1_1": 1,
+      "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.30000001192092896,
+      "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 7.800000190734863,
+      "Vector1_4830f1fa588b45d2819e15a4b69ec032": 6.599999904632568,
+      "Vector1_53B9698E": 0.5,
+      "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+      "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 4,
+      "Vector1_7da725783e8a4c839247558169c9111a": 0.5,
+      "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.20000000298023224,
+      "Vector1_93DCFAA9": 2.0999999046325684,
+      "Vector1_972e1747dcad4452851abeb6ba9d9d47": 0.3700000047683716,
+      "Vector1_C5543ECF": 1.5,
+      "Vector1_E23798DE": 0.1899999976158142,
+      "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+      "_Alpha": 1,
+      "_AlphaClip": 0,
+      "_AlphaToMask": 0,
+      "_Blend": 0,
+      "_BlendModePreserveSpecular": 1,
+      "_BumpScale": 1,
+      "_ClearCoatMask": 0,
+      "_ClearCoatSmoothness": 0,
+      "_Cull": 2,
+      "_Cutoff": 0.5,
+      "_DetailAlbedoMapScale": 1,
+      "_DetailNormalMapScale": 1,
+      "_DstBlend": 0,
+      "_DstBlendAlpha": 0,
+      "_EnvironmentReflections": 1,
+      "_Float": 0,
+      "_FoamTextureStrenth": 1,
+      "_FoamVertexColor": 0,
+      "_FresPower": 10,
+      "_GlossMapScale": 0,
+      "_Glossiness": 0,
+      "_GlossyReflections": 0,
+      "_IsOrtographic": 0,
+      "_MODE": 0,
+      "_Metallic": 0,
+      "_Mode": 0.949999988079071,
+      "_OcclusionStrength": 1,
+      "_Parallax": 0.004999999888241291,
+      "_QueueControl": 0,
+      "_QueueOffset": 0,
+      "_ReceiveShadows": 1,
+      "_Smoothness": 0.5,
+      "_SmoothnessTextureChannel": 0,
+      "_SpecularHighlights": 1,
+      "_SrcBlend": 1,
+      "_SrcBlendAlpha": 1,
+      "_Surface": 0,
+      "_USEFOAMTEXTURE": 1,
+      "_WorkflowMode": 1,
+      "_ZWrite": 1,
+      "_isPool": 0
+    }
+  },
+  "EnvDetails_WaterFall": {
+    "shader_path_id": "-4698155739361515650",
+    "bundle": 1,
+    "path_id": "6564640874230674781",
+    "colors": {
+      "Color_A271762B": {
+        "r": 0.07843136787414551,
+        "g": 0.7156550288200378,
+        "b": 1,
+        "a": 0.6470587849617004
+      },
+      "Color_AFFD055F": {
+        "r": 2.8284270763397217,
+        "g": 2.8284270763397217,
+        "b": 2.8284270763397217,
+        "a": 1
+      },
+      "Color_E0824245": {
+        "r": 0,
+        "g": 1,
+        "b": 0.3738570213317871,
+        "a": 0.6588234901428223
+      },
+      "Color_b6745e534bad48b7b4cbd4c7da724615": {
+        "r": 1,
+        "g": 0.802344024181366,
+        "b": 0.34433960914611816,
+        "a": 1
+      },
+      "_BaseColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_Color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_EmissionColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "_FormTiling": {
+        "r": 0.30000001192092896,
+        "g": 0.20000000298023224,
+        "b": 0,
+        "a": 0
+      },
+      "_FresColor": {
+        "r": 0.6597539186477661,
+        "g": 0.6597539186477661,
+        "b": 0.6597539186477661,
+        "a": 0
+      },
+      "_GlobalSpeed": {
+        "r": 0,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_SpecColor": {
+        "r": 0.20000000298023224,
+        "g": 0.20000000298023224,
+        "b": 0.20000000298023224,
+        "a": 1
+      },
+      "_WaveTiling": {
+        "r": 3,
+        "g": 3,
+        "b": 0,
+        "a": 0
+      },
+      "_rippleTiling": {
+        "r": 1,
+        "g": 2,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "Vector1_1": 0,
+      "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.4000000059604645,
+      "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 12.199999809265137,
+      "Vector1_4830f1fa588b45d2819e15a4b69ec032": 5,
+      "Vector1_53B9698E": 0.5,
+      "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+      "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 24.100000381469727,
+      "Vector1_7da725783e8a4c839247558169c9111a": 2,
+      "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.12999999523162842,
+      "Vector1_93DCFAA9": 2.5,
+      "Vector1_972e1747dcad4452851abeb6ba9d9d47": 0.30000001192092896,
+      "Vector1_C5543ECF": 1.5,
+      "Vector1_E23798DE": 0.09000000357627869,
+      "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+      "_Alpha": 1,
+      "_AlphaClip": 0,
+      "_AlphaToMask": 0,
+      "_Blend": 0,
+      "_BlendModePreserveSpecular": 1,
+      "_BumpScale": 1,
+      "_ClearCoatMask": 0,
+      "_ClearCoatSmoothness": 0,
+      "_Cull": 2,
+      "_Cutoff": 0.5,
+      "_DetailAlbedoMapScale": 1,
+      "_DetailNormalMapScale": 1,
+      "_DstBlend": 0,
+      "_DstBlendAlpha": 0,
+      "_EnvironmentReflections": 1,
+      "_Float": -1,
+      "_FoamTextureStrenth": 1.6699999570846558,
+      "_FoamVertexColor": -1,
+      "_FresPower": 10,
+      "_GlossMapScale": 0,
+      "_Glossiness": 0,
+      "_GlossyReflections": 0,
+      "_IsOrtographic": 0,
+      "_MODE": 0,
+      "_Metallic": 0,
+      "_Mode": 0,
+      "_OcclusionStrength": 1,
+      "_Parallax": 0.004999999888241291,
+      "_QueueControl": 0,
+      "_QueueOffset": 21,
+      "_ReceiveShadows": 1,
+      "_Smoothness": 0.5,
+      "_SmoothnessTextureChannel": 0,
+      "_SpecularHighlights": 1,
+      "_SrcBlend": 1,
+      "_SrcBlendAlpha": 1,
+      "_Surface": 0,
+      "_USEFOAMTEXTURE": 1,
+      "_WorkflowMode": 1,
+      "_ZWrite": 1,
+      "_isPool": 0
+    }
+  },
+  "EnvSeal_River": {
+    "shader_path_id": "-4698155739361515650",
+    "bundle": 1,
+    "path_id": "8207632086267057194",
+    "colors": {
+      "Color_A271762B": {
+        "r": 0.01043921522796154,
+        "g": 0.021272823214530945,
+        "b": 0.08627451211214066,
+        "a": 1
+      },
+      "Color_AFFD055F": {
+        "r": 0.6745283007621765,
+        "g": 0.9306154847145081,
+        "b": 1,
+        "a": 1
+      },
+      "Color_E0824245": {
+        "r": 0,
+        "g": 0.08872107416391373,
+        "b": 0.3396226167678833,
+        "a": 0.9019607901573181
+      },
+      "Color_b6745e534bad48b7b4cbd4c7da724615": {
+        "r": 0.46422216296195984,
+        "g": 0.5500999689102173,
+        "b": 0.6037735939025879,
+        "a": 1
+      },
+      "_BaseColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_Color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_EmissionColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "_FormTiling": {
+        "r": 2,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_FresColor": {
+        "r": 0,
+        "g": 0.02248428203165531,
+        "b": 0.10377359390258789,
+        "a": 0
+      },
+      "_GlobalSpeed": {
+        "r": 0.8299999833106995,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "_SpecColor": {
+        "r": 0.20000000298023224,
+        "g": 0.20000000298023224,
+        "b": 0.20000000298023224,
+        "a": 1
+      },
+      "_WaveTiling": {
+        "r": 3,
+        "g": 3,
+        "b": 0,
+        "a": 0
+      },
+      "_rippleTiling": {
+        "r": 2,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "Vector1_1": 0.20000000298023224,
+      "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.30000001192092896,
+      "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 4,
+      "Vector1_4830f1fa588b45d2819e15a4b69ec032": 15,
+      "Vector1_53B9698E": 0.12999999523162842,
+      "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+      "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 2.5,
+      "Vector1_7da725783e8a4c839247558169c9111a": 1,
+      "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.15000000596046448,
+      "Vector1_93DCFAA9": 1.5499999523162842,
+      "Vector1_972e1747dcad4452851abeb6ba9d9d47": 2,
+      "Vector1_C5543ECF": 1.350000023841858,
+      "Vector1_E23798DE": 0.029999999329447746,
+      "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+      "_Alpha": 1,
+      "_AlphaClip": 0,
+      "_AlphaToMask": 0,
+      "_Blend": 0,
+      "_BlendModePreserveSpecular": 1,
+      "_BumpScale": 1,
+      "_ClearCoatMask": 0,
+      "_ClearCoatSmoothness": 0,
+      "_Cull": 2,
+      "_Cutoff": 0.5,
+      "_DetailAlbedoMapScale": 1,
+      "_DetailNormalMapScale": 1,
+      "_DstBlend": 0,
+      "_DstBlendAlpha": 0,
+      "_EnvironmentReflections": 1,
+      "_Float": 0,
+      "_FoamTextureStrenth": 1,
+      "_FoamVertexColor": 0,
+      "_FresPower": 3.5,
+      "_GlossMapScale": 0,
+      "_Glossiness": 0,
+      "_GlossyReflections": 0,
+      "_IsOrtographic": 0,
+      "_MODE": 0,
+      "_Metallic": 0,
+      "_Mode": 0.949999988079071,
+      "_OcclusionStrength": 1,
+      "_Parallax": 0.004999999888241291,
+      "_QueueControl": 0,
+      "_QueueOffset": 0,
+      "_ReceiveShadows": 1,
+      "_Smoothness": 0.5,
+      "_SmoothnessTextureChannel": 0,
+      "_SpecularHighlights": 1,
+      "_SrcBlend": 1,
+      "_SrcBlendAlpha": 1,
+      "_Surface": 0,
+      "_USEFOAMTEXTURE": 1,
+      "_WorkflowMode": 1,
+      "_ZWrite": 1,
+      "_isPool": 0
+    }
+  },
+  "EnvFloatingIsland_Detail_[Water]": {
+    "shader_path_id": "-6473736215580875022",
+    "bundle": 1,
+    "path_id": "8408445971342637000",
+    "colors": {
+      "_CausticsSpeed": {
+        "r": -0.10000000149011612,
+        "g": 0.05000000074505806,
+        "b": 0,
+        "a": 0
+      },
+      "_ColorDeep": {
+        "r": 0,
+        "g": 0.7665515542030334,
+        "b": 0.9339622855186462,
+        "a": 1
+      },
+      "_ColorShallow": {
+        "r": 0,
+        "g": 0.843137264251709,
+        "b": 1,
+        "a": 0.3959999978542328
+      },
+      "_FlowSpeed": {
+        "r": 0.30000001192092896,
+        "g": 0.20000000298023224,
+        "b": 0,
+        "a": 0
+      },
+      "_FoamColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.09799999743700027
+      },
+      "_HorizonColor": {
+        "r": 0.23499999940395355,
+        "g": 0.9049999713897705,
+        "b": 1,
+        "a": 1
+      },
+      "_IntersectionColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_WaveASpeed": {
+        "r": 1,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_WaveBSpeed": {
+        "r": 0.5,
+        "g": 0.800000011920929,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "_BumpScale": 1,
+      "_BumpTiling": 1,
+      "_CausticsBrightness": 4.829999923706055,
+      "_CausticsEnable": 0,
+      "_CausticsIntensity": 0.5,
+      "_CausticsScale": 5,
+      "_CausticsSpeed": 0.10000000149011612,
+      "_CausticsTiling": 0.5,
+      "_DepthRange": 0.10000000149011612,
+      "_DepthTransition": 1,
+      "_DepthVertical": 5.889999866485596,
+      "_DisableDepthTexture": 0,
+      "_DistortionStrength": 0.30000001192092896,
+      "_EdgeFade": 7.369999885559082,
+      "_FoamBaseAmount": 1,
+      "_FoamBlur": 0.15000000596046448,
+      "_FoamClipping": 0.9800000190734863,
+      "_FoamDistortion": 0.10000000149011612,
+      "_FoamEnable": 1,
+      "_FoamIntensity": 1,
+      "_FoamNoiseScale": 8,
+      "_FoamNoiseSpeed": 0.20000000298023224,
+      "_FoamSpeed": 0.029999999329447746,
+      "_FoamSubSpeed": -0.25,
+      "_FoamSubTiling": 0.5,
+      "_FoamTiling": 0.05000000074505806,
+      "_FoamWaveAmount": 0,
+      "_FoamWidth": 0.4000000059604645,
+      "_GerstnerEnable": 0,
+      "_HorizonDistance": 7.599999904632568,
+      "_IntersectionClipping": 0.42800000309944153,
+      "_IntersectionEnable": 1,
+      "_IntersectionFalloff": 1,
+      "_IntersectionLength": 1.7899999618530273,
+      "_IntersectionRippleDist": 64,
+      "_IntersectionRippleStrength": 0.35499998927116394,
+      "_IntersectionSpeed": 0.05999999865889549,
+      "_IntersectionTiling": 0.17000000178813934,
+      "_Opacity": 0.8500000238418579,
+      "_RefractionChromaticAberration": 0,
+      "_RefractionOn": 0,
+      "_RefractionStrength": 0.2669999897480011,
+      "_WaveALength": 20,
+      "_WaveASteepness": 0.5,
+      "_WaveBLength": 10,
+      "_WaveBSteepness": 0.30000001192092896,
+      "_WaveHeight": 0,
+      "_WaveSpeed": 1,
+      "_WaveSteepness": 0,
+      "_WavesEnable": 0,
+      "_WorldSpaceUV": 1
+    }
+  },
+  "Simple_Water": {
+    "shader_path_id": "-4698155739361515650",
+    "bundle": 5852,
+    "path_id": "1915331770308093822",
+    "colors": {
+      "Color_A271762B": {
+        "r": 0.07843136787414551,
+        "g": 0.7156550288200378,
+        "b": 1,
+        "a": 0.6470587849617004
+      },
+      "Color_AFFD055F": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "Color_E0824245": {
+        "r": 0,
+        "g": 1,
+        "b": 0.9130989909172058,
+        "a": 0.6588234901428223
+      },
+      "Color_b6745e534bad48b7b4cbd4c7da724615": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "_FormTiling": {
+        "r": 1,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_FresColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0
+      },
+      "_GlobalSpeed": {
+        "r": 1.4900000095367432,
+        "g": 5.570000171661377,
+        "b": 0,
+        "a": 0
+      },
+      "_WaveTiling": {
+        "r": 1,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      },
+      "_rippleTiling": {
+        "r": 1,
+        "g": 1,
+        "b": 0,
+        "a": 0
+      }
+    },
+    "floats": {
+      "Vector1_1": 1,
+      "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.800000011920929,
+      "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 20,
+      "Vector1_4830f1fa588b45d2819e15a4b69ec032": 2,
+      "Vector1_53B9698E": 4,
+      "Vector1_667b757cacad456b914a6435f3b21f79": 0.029999999329447746,
+      "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 3,
+      "Vector1_7da725783e8a4c839247558169c9111a": 0.20000000298023224,
+      "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 1,
+      "Vector1_93DCFAA9": 5,
+      "Vector1_972e1747dcad4452851abeb6ba9d9d47": 1,
+      "Vector1_C5543ECF": 5,
+      "Vector1_E23798DE": 0.009999999776482582,
+      "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.6000000238418579,
+      "_Alpha": 0,
+      "_FoamTextureStrenth": 1,
+      "_FoamVertexColor": 0,
+      "_FresPower": 10,
+      "_MODE": 0,
+      "_QueueControl": -1,
+      "_QueueOffset": 0,
+      "_USEFOAMTEXTURE": 1,
+      "_isPool": 0
+    }
+  }
+}

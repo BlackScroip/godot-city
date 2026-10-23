@@ -1,0 +1,151 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_7.anim": "966c51ad85e4e9b453f480e53e5e2943c76d18b0b2fa4882508328b91f3ccf9f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_10330_body.mat": "05ae10696ad3735190aeb189a760927c02f9d429759351f89ae3a4195d8ae60a",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/monster_body_low.asset": "45b6c86ed8e5a6479ef5984aa461e41c84e9e1921ac08ec018efab5b18a1658c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_3.anim": "2913471fc12c4353201063c5d868c3267506543717c2c2abcfa26d3f1cbe68f8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback.anim": "ba08d9e203c4982600fbea06c9de306ee94adf2eb7e0c351de9fa93bb3fdb99b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_15.anim": "bf305cad29e0239863bef3ede6e6f7ef6b74bf101e046e5e5c965fa7786d582b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_32.anim": "1c6373add896674c7ef656dbefb39f96470cc506e1fd2f63d41472b39fa2baed",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_13.anim": "ca9c5b33312c75a178f6ddf3af1472a704b366c73c316af9cb9eef7f9b0da42a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_2.anim": "49a71fe62baf4d83079d853a42fdfbb4eccb666f015360b02abc3e4338b41c48",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_17.anim": "7d34d03c9b546b75b12f012592cb877116e7c1cc0bcba2dc882f99fff48835cb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_24.anim": "542184fc043ff5d47b9db264478dce35e47efccc0e3e401875fa704024ba406d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveright_2.anim": "372e41eb1c51bd60c4fa6624a3adbfe80055dc16913f2f137b01f9c8447d4c9a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_shuixiyi_low.prefab": "3cad3fee8a745fc90718b75ec60026ea7a1e8ba647aef7e294cca7c931555ef9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_11.anim": "8a64b43163b01d6c680d20a957e6d413295bf38fe7062c030a7ff453e3614521",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_10330_body.png": "ce5d76951185962502f5e861a6c47e617b03025a726a6bbd2267d3e2a028ba5f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveleft_2.anim": "8d9538c4d82f97a4011491e7b56aceea409aa064d37a24ace08a73e533af76c0"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_12001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 160,
+        "source_name": "idle"
+      },
+      {
+        "name": "move_forward",
+        "duration": 1.2333333,
+        "loop": false,
+        "tracks": 157,
+        "source_name": "move_forward"
+      },
+      {
+        "name": "attack",
+        "duration": 3.1,
+        "loop": false,
+        "tracks": 196,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.5666667,
+        "loop": false,
+        "tracks": 199,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 2.7666667,
+        "loop": false,
+        "tracks": 190,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 4.7,
+        "loop": false,
+        "tracks": 183,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack2",
+        "duration": 2.8333333,
+        "loop": false,
+        "tracks": 203,
+        "source_name": "attack2"
+      },
+      {
+        "name": "move_back",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 158,
+        "source_name": "move_back"
+      },
+      {
+        "name": "move_left",
+        "duration": 1.2333333,
+        "loop": true,
+        "tracks": 157,
+        "source_name": "move_left"
+      },
+      {
+        "name": "move_right",
+        "duration": 1.2333333,
+        "loop": true,
+        "tracks": 164,
+        "source_name": "move_right"
+      },
+      {
+        "name": "attack3",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 183,
+        "source_name": "attack3"
+      },
+      {
+        "name": "attack4",
+        "duration": 6.866667,
+        "loop": false,
+        "tracks": 186,
+        "source_name": "attack4"
+      },
+      {
+        "name": "behit",
+        "duration": 1.5666667,
+        "loop": false,
+        "tracks": 199,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.7658477783213523,
+        0.029944152070006,
+        -3.6287218724799875
+      ],
+      "max": [
+        0.7650241851796243,
+        1.6154910634302748,
+        1.9358764693342652
+      ],
+      "size": [
+        1.5308719635009767,
+        1.585546911360269,
+        5.564598341814253
+      ]
+    },
+    "meshes": 1,
+    "nodes": 103,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 3218080,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_shuixiyi_low.prefab",
+    "source_sha256": "3cad3fee8a745fc90718b75ec60026ea7a1e8ba647aef7e294cca7c931555ef9",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move_forward",
+      "attack": "attack"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "tables": {
+    "AbilityItems": {
+      "rows": 1020,
+      "sha256": "ec90c445a24eacaf7b136049d17364c026424ece58ad068f71dbc1a0d3dfee87",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/AbilityItems.json"
+    },
+    "AchieveData": {
+      "rows": 62,
+      "sha256": "6f08eba8fbd2f48d93e450a761941a2063e46efbe33fcb4acfb3134e69b152a6",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/AchieveData.json"
+    },
+    "AdvantureEventData": {
+      "rows": 65,
+      "sha256": "ef8e9e62ff4daa96cfa2425c45aba1dbeee401f0a8c9e7b6369fa6cee87f1135",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/AdvantureEventData.json"
+    },
+    "Buffs": {
+      "rows": 3130,
+      "sha256": "1db83663003715b0b37b98ce8eff20fb58195b36bb006f955a92150e8cc3de80",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/Buffs.json"
+    },
+    "CatMealData": {
+      "rows": 12,
+      "sha256": "4ee6b3c73ab636eb835c205223d23ac9fbf16e0bb0d2f7857171a9f2b7c7e466",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CatMealData.json"
+    },
+    "CharData": {
+      "rows": 8,
+      "sha256": "553949926795e171afb8c9954bca72f7bb3f19b2b6f12676b8237f41cf658aba",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharData.json"
+    },
+    "CharTalentData": {
+      "rows": 147,
+      "sha256": "6e90732615f2b34a947c364eb6a1ee58f2d165b8609d2910e1974faad3947f18",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharTalentData.json"
+    },
+    "CharTalentLevelData": {
+      "rows": 441,
+      "sha256": "56435f795ab57a978c7b8e4c4f1341bdfd1b6bb8a8694ffd43c19e0ec4b4bc41",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharTalentLevelData.json"
+    },
+    "CharaTalentAwakeTreeData": {
+      "rows": 75,
+      "sha256": "d0b76a78cd2a9f6fd7b44ec3bf5ee154165ba22545a70ffbe1e69813e35a8bb6",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharaTalentAwakeTreeData.json"
+    },
+    "DamageValues": {
+      "rows": 597,
+      "sha256": "be76909548920ef78ac45910913b6d6eefe1714b280ea36c7c0fe59d35a4bc8f",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/DamageValues.json"
+    },
+    "EnemyData": {
+      "rows": 39,
+      "sha256": "7b30e305d70e1f5dacab4eb86cd8b2df0622165dd67c714a51cf44d92b6069a2",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/EnemyData.json"
+    },
+    "ItemPoolData": {
+      "rows": 21,
+      "sha256": "3849fd159efe118bd76afaea6ddb0e48a346acd11576b29b57fd2f55a8c85b88",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/ItemPoolData.json"
+    },
+    "ItemPoolSubData": {
+      "rows": 302,
+      "sha256": "744fb955da13a5140a0ead79d763bc314a62fdd8dbdbf98553cc669b93da8fc8",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/ItemPoolSubData.json"
+    },
+    "LootData": {
+      "rows": 358,
+      "sha256": "bdda7923faf6c293c44cc187e2716683e1b2228338bdbaef749588828ae08cbd",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/LootData.json"
+    },
+    "MallTradeData": {
+      "rows": 38,
+      "sha256": "5378b2428f5e0812050906ba7a5f4ca5da81a0b325f501924e1da9ea4b2d6f98",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MallTradeData.json"
+    },
+    "MallTradeDetailsData": {
+      "rows": 29,
+      "sha256": "33ef3dec46bbc68e8da4bea61d6878f76c0a58ea5ec70b588c880df6778b2226",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MallTradeDetailsData.json"
+    },
+    "MaterialData": {
+      "rows": 44,
+      "sha256": "177adce53bbb348c9114ee93351184e1508c7c1790e1e6ea449719a5dfd073d5",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MaterialData.json"
+    },
+    "MonsterPartnerData": {
+      "rows": 39,
+      "sha256": "61323c221c13f4005564717b5bb3a110b41a4d7061ea5faf405e3cfeece673bd",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MonsterPartnerData.json"
+    },
+    "MonsterWorkData": {
+      "rows": 16,
+      "sha256": "b08d0e45e030cc1a6f75eaad382dea62301c2dd9e7009d0aa1b991f746797b8e",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MonsterWorkData.json"
+    },
+    "NPCData": {
+      "rows": 16,
+      "sha256": "12f391ff9e63a7eb024c374906ab61997e1cf98b45ed03f1dce127b758a12436",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/NPCData.json"
+    },
+    "NPCFunctionData": {
+      "rows": 247,
+      "sha256": "568404c2f20859a30e835124e8b77f03148b065408e6b7cc996a581b1ca6db0f",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/NPCFunctionData.json"
+    },
+    "RelationshipAmplifyData": {
+      "rows": 100,
+      "sha256": "c9eda26ee133d6c97e6fbf3a64779db3d028eff4e8a74b935c474724fb242fc4",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/RelationshipAmplifyData.json"
+    },
+    "RelationshipTokenData": {
+      "rows": 90,
+      "sha256": "196a8239b8f81bbd1f8c56bb311e5445bdaad37f70d9be1f29685d36bc0cd38a",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/RelationshipTokenData.json"
+    },
+    "RogueConfigData": {
+      "rows": 1,
+      "sha256": "685ccc7e9d6f11b312df6d46b56b49e28d2a78317d9acd2495cf2782934d2383",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/RogueConfigData.json"
+    },
+    "ShopTreasureBoxData": {
+      "rows": 6,
+      "sha256": "ae362b24917db9b550e6dbebffc84b770fddf3a608868551c9f0113712f14a83",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/ShopTreasureBoxData.json"
+    },
+    "SubAchieveData": {
+      "rows": 241,
+      "sha256": "7cb9d2c66caf8530fb2e5cdfbbbe45e241d96cd5626f3cf37a9007785a1d9e86",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/SubAchieveData.json"
+    },
+    "TalentTreeData": {
+      "rows": 61,
+      "sha256": "ba136c7bb261b7ad8dec2d02bf44323c61fc5e468693c2035fba0afc31b7d1fa",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/TalentTreeData.json"
+    },
+    "TalentTreeLevelData": {
+      "rows": 151,
+      "sha256": "e38bace34f54f9e1e452d11d50f4ad8a742fa41c1de92ef42ce9653aeb9074ec",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/TalentTreeLevelData.json"
+    },
+    "UnlockData": {
+      "rows": 630,
+      "sha256": "01cac3493665c6f79ee33fb1551a15b0c9a2e9a71e2e9b08fd649a9f2a05e69d",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/UnlockData.json"
+    },
+    "WeaponData": {
+      "rows": 40,
+      "sha256": "43404be3a0da39fa578974f861ef73ec2a89e9dd6f79e90736ad46f5dfaeb393",
+      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/WeaponData.json"
+    }
+  }
+}

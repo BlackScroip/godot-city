@@ -1,0 +1,103 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_22.anim": "a813eb48a011e2e37f67aa3b43b59cd4bdb43577a9fcd0630f8c6668f777ed37",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_xiaoshanzhu_low.prefab": "55cf6dc8184167a439191a3ddecc6903baaac1a44281c3c924cd4976d418928d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_xiaoshanzhu_body.mat": "6116a2006b0251af80460350c5a2d3cd6e376af4c1dd541bf3a47138c58a54f9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/run_3.anim": "52347593246835873b65116c40c28e3cadd5ba9f57bcdde3dae9939d91494fc5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_22.anim": "580019a552cf4680badf062de19a60e1874d9d54e6513bf6ac004d1bf4bd9387",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body_low_8.asset": "c96c8bf1a35f0f1b74e04c26a28587148ecec05879cc0ec73a62d86a2ed1af1b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack.anim": "d3ed4a9b465580c44eb1d1152c61571af661ebf75862c00cf8801cde18feb9f3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_8.anim": "d3c78a1431f12a1d25f335a71ae5738920600dc92686a7f4769dff4501d9153e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_xiaoshanzhu_body.png": "4ad02fbd7c355319d44f5518d25bfc46e8615747b5fe3dd066e9b6d85bbf409b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_24.anim": "b63a1c0fe5b6172ba2b4505508f3f0df9225c5b4446da8ad93597ad38ff0d017"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_11005.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 117,
+        "source_name": "idle"
+      },
+      {
+        "name": "move_forward",
+        "duration": 0.7,
+        "loop": true,
+        "tracks": 118,
+        "source_name": "move_forward"
+      },
+      {
+        "name": "attack",
+        "duration": 4.5333333,
+        "loop": false,
+        "tracks": 118,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 117,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 117,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 84,
+        "source_name": "damage2"
+      },
+      {
+        "name": "behit",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 117,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.5984066128730774,
+        0.005014636966612723,
+        -1.2351501116655077
+      ],
+      "max": [
+        0.5977742075920105,
+        1.4171728387979137,
+        1.192812395838439
+      ],
+      "size": [
+        1.196180820465088,
+        1.412158201831301,
+        2.4279625075039464
+      ]
+    },
+    "meshes": 1,
+    "nodes": 56,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 968800,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_xiaoshanzhu_low.prefab",
+    "source_sha256": "55cf6dc8184167a439191a3ddecc6903baaac1a44281c3c924cd4976d418928d",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move_forward",
+      "attack": "attack"
+    }
+  }
+}

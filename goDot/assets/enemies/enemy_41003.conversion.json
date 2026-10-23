@@ -1,0 +1,111 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_18.anim": "c56c248f6ee69871dc00004416404e78473a1a842d0a711cff5369a57fd1db4a",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_youlingfashi.asset": "bee5c80b16b47e5e4ee83e559ae2991444afb0b1c5086d5bfb4f15103f23ffb0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_youlingfashi_body.png": "c5d338851c9f3a4a9a6691795679e59b81d4041f73b29205526def94f5e75889",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_14.anim": "05e3aa23830440d8cb4114d261066bed99f137051f58d95ed5af8c1ebf133b2f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_3.anim": "2324a2b1bfb9453bbca67680f96a011f1185750fcea74a16430afe301cc0c2d8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/blink.anim": "6c798a65146b9763df6f3ceb02d90f477698adf2a6bc57caa101315026e799c6",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_youlingfashi_low.prefab": "0444304dd8bfcd134012a7fe2a73384cf879becebe83e0982d8f0a4b669d1961",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_6.anim": "6103bbc0543d4c7fc6b2de03351eb9de68d7e18ca9b4607ab250e7bb89579410",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/run_2.anim": "21ba6d36340cd3eb8f9a00fdf62f930e0194b6bd2ea931b860f1b92bdc587ff7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack_3.anim": "68ce6e486b04b4df8c075e3d26554b96362ee31cacc1f5a3bf48da509500cf04",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_youlingfashi_body.mat": "60a6c61569ecd91a365daa574db973f00a501005c9e9fb59ee6a3966df45944b"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_41003.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0,
+        "loop": false,
+        "tracks": 21,
+        "source_name": "idle"
+      },
+      {
+        "name": "move",
+        "duration": 2.0,
+        "loop": false,
+        "tracks": 21,
+        "source_name": "move"
+      },
+      {
+        "name": "attack",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 21,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 21,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 24,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 24,
+        "source_name": "damage2"
+      },
+      {
+        "name": "runaway",
+        "duration": 2.2,
+        "loop": false,
+        "tracks": 24,
+        "source_name": "runaway"
+      },
+      {
+        "name": "behit",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 21,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.8741229663640261,
+        0.03244847738438979,
+        -0.47035231099556574
+      ],
+      "max": [
+        1.1409836942777039,
+        1.282192693250212,
+        0.4501810543511532
+      ],
+      "size": [
+        2.01510666064173,
+        1.249744215865822,
+        0.9205333653467189
+      ]
+    },
+    "meshes": 1,
+    "nodes": 22,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 239292,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_youlingfashi_low.prefab",
+    "source_sha256": "0444304dd8bfcd134012a7fe2a73384cf879becebe83e0982d8f0a4b669d1961",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move",
+      "attack": "attack"
+    }
+  }
+}

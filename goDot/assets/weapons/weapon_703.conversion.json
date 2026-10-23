@@ -1,0 +1,41 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_70002_lance.png": "9842db19e3247dfe04ce602d43fa6884e71945a19c875b04d6b2ad56368bd945",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_70002_lance.mat": "cd0de4be0782f49707303445ac6f1084f82aaaf28f0fe225a2c0ca38429981d0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_70002.prefab": "bd716e290b38ba559868f97bfa698c027fca7a66949f103a50688a88ca42ad84",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_wuqi_qiang3.asset": "07475e4e2ddc7ebc98e1528b3e8d08f5c7f0a8ff5a78029b9eb6c64a09f3c3fa"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_703.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.2830857876688242,
+        -0.5285426526353937,
+        -0.2869744978554531
+      ],
+      "max": [
+        0.2830857876688242,
+        1.76426510677561,
+        0.2869743788871226
+      ],
+      "size": [
+        0.5661715753376484,
+        2.2928077594110037,
+        0.5739488767425758
+      ]
+    },
+    "meshes": 1,
+    "nodes": 8,
+    "skins": 0,
+    "unsupported": {
+      "198": 5,
+      "199": 5
+    },
+    "bytes": 92560,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_70002.prefab",
+    "source_sha256": "bd716e290b38ba559868f97bfa698c027fca7a66949f103a50688a88ca42ad84",
+    "default_animations": {}
+  }
+}

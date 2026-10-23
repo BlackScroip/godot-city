@@ -1,0 +1,151 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_23.anim": "e66f9762320eee80cfa54fa6ab5ecdfdb4a84faa7db5d144a4333bb283dde821",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_Start.anim": "3ec1d358088b06f2b08d89d74e11f8f2f4920cd22f1a05760201890390f73dd3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_padijvchong_body.mat": "06d32a5a683320ac45285c6a04ef2d72f6b45175440233681f169d6bf1d1157c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_7.anim": "b9a177d75a8401ec114f0052dc9e1ba24677359dae8595f5499d0f5c03b83c43",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_End.anim": "d7ef44966ef44ea909479dfc2b41dd0b4ad1cce60a7953d999e44046b5cc8d80",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_Loop.anim": "99a9bfbe5178e5a9c4898f43490073efd2383cbaafbccb22b7fbb92563591857",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_Loop.anim": "82fb01be16d25c047fd981fd93fd11adcfb10e10a4b5e1cd9f6c7cd3bb3c04b8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_6.anim": "a5f92dc9710934f5157898938a25e7e3517156a29c50bd8150da5d43bef9bab4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_28.anim": "de453334254255ca3c18d34ab38cae057b336f44698cb03118ba85f3c89c9abf",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_End.anim": "4e37c6e6d1aef05fb4e045bfbb42123b7f1ecfa9de65369d0682b888fe1e5f69",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_padijuchong low.prefab": "1de6d591fd090a56d4d27e28b6eec29f1325ab589997f4b709033ada309786a4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_Start_0.anim": "dcb7dc161e49594efc7fdfcd1978fe2ae66de9d35994cbf47fd375bb786f6859",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_1.anim": "11107b0383811b7586d3cab555976baa4a8a5f9b7b70533699cbd0a996cdc0c7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_15.anim": "18b6d0bc49d09c45b7f281760dfb5eee7a97f3543c94d0dc8ce4773e20abf1c7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_xinpadijuchong_body.png": "f1aa099baf2ba5b886017ae88372a6e7d5e107f17d960ee714f15f8ca6f6d4c4",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body_low_6.asset": "5db10480a7cad74c91fe2bd69e5cc8c09257f2cf28499c999a9f3652c381b683"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_22001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 90,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack2",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "attack2"
+      },
+      {
+        "name": "moveforward",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 90,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "dead",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 78,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack3_start",
+        "duration": 1.7,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "attack3_start"
+      },
+      {
+        "name": "attack3_loop_clip",
+        "duration": 0.7,
+        "loop": true,
+        "tracks": 90,
+        "source_name": "attack3_loop"
+      },
+      {
+        "name": "attack3_end",
+        "duration": 5.2,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "attack3_end"
+      },
+      {
+        "name": "attack1_start",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "attack1_start"
+      },
+      {
+        "name": "attack1_end",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "attack1_end"
+      },
+      {
+        "name": "attack1_loop_clip",
+        "duration": 0.06666667,
+        "loop": true,
+        "tracks": 90,
+        "source_name": "attack1_loop"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "damage2"
+      },
+      {
+        "name": "damage",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "damage"
+      },
+      {
+        "name": "behit",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 90,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.5956917256116867,
+        0.009394731319232684,
+        -2.7521890560335573
+      ],
+      "max": [
+        0.5985581781715155,
+        3.14629166636812,
+        0.9261009398636794
+      ],
+      "size": [
+        1.1942499037832022,
+        3.1368969350488873,
+        3.6782899958972366
+      ]
+    },
+    "meshes": 1,
+    "nodes": 56,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 12
+    },
+    "bytes": 1536940,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_padijuchong low.prefab",
+    "source_sha256": "1de6d591fd090a56d4d27e28b6eec29f1325ab589997f4b709033ada309786a4",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward"
+    }
+  }
+}

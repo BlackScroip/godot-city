@@ -1,0 +1,103 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_12.anim": "67d6267f99f2d3ee4bfab3673bebe71ba184dc2d7195f663044ad7658b668214",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_4.anim": "0d7c711984540881123af8be1288db3aca33120ceb719ca84a3a64b6f0bf23bb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_mozhaowa_body.png": "e4144483694d508d95019ce26636bb85a7d4ed6f9a2b665742f530213c5e087d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_mozhaowa_low.prefab": "b07d024aa2a5ffb01f75dbe36ca64b3a6f2acdc063ff57dd7431a4f700f5710c",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_mozhaowa.asset": "1fdc3222f6dde711208311db9617bc7c83b8f049acf69a628b6a39bef982f7d1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack_8.anim": "b28490d85de5853270c5e487939d7fe26a8b22ecd73518b90214ca481472416b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_mozhaowa_body.mat": "420ec11697db8765a071fbf0eebd51409c391a8524195ac8041aa6e6213095a1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_18.anim": "77bcc974c38347996284c33302fa9fa87bc13ada6281d93f3cc8333b7a57f7f4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_0.anim": "3782d3770312450ac35b6f182f9b99234231d586f26d2dcc7dca8ab52c98dd55",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_20.anim": "4b40f165d8be96d596d3d6d7fb5c4009db02f059801da36aafc51d291d78d822"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_11003.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 156,
+        "source_name": "idle"
+      },
+      {
+        "name": "dead",
+        "duration": 1.7,
+        "loop": false,
+        "tracks": 159,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 156,
+        "source_name": "attack"
+      },
+      {
+        "name": "moveforward",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 156,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "damage",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 156,
+        "source_name": "damage"
+      },
+      {
+        "name": "damage2",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 156,
+        "source_name": "damage2"
+      },
+      {
+        "name": "behit",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 156,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.2634241785794498,
+        -0.03439005564002595,
+        -1.2838895093796894
+      ],
+      "max": [
+        1.2711400763583183,
+        1.3450863218778333,
+        0.7356024867705311
+      ],
+      "size": [
+        2.5345642549377683,
+        1.3794763775178591,
+        2.0194919961502205
+      ]
+    },
+    "meshes": 1,
+    "nodes": 88,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 1050492,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_mozhaowa_low.prefab",
+    "source_sha256": "b07d024aa2a5ffb01f75dbe36ca64b3a6f2acdc063ff57dd7431a4f700f5710c",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack"
+    }
+  }
+}

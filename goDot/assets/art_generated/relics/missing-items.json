@@ -1,0 +1,902 @@
+[
+  {
+    "id": 20127,
+    "name": "战甲护符",
+    "type": "套装遗物",
+    "rarity": 2,
+    "color": "blue",
+    "hex": "#4b9fe8",
+    "path": "res://assets/art_generated/relics/relic_20127.png",
+    "subject": "armor-shaped protective amulet. Rugged tribal protection gear, beast teeth, thick leather and worn iron.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 战甲护符. Subject: armor-shaped protective amulet. Rugged tribal protection gear, beast teeth, thick leather and worn iron. RARITY: 2 star, BLUE rim #4b9fe8; restrained blue inner edge glow.",
+    "cell": {
+      "column": 22,
+      "row": 0
+    }
+  },
+  {
+    "id": 20561,
+    "name": "岩之史莱姆",
+    "type": "套装遗物",
+    "rarity": 2,
+    "color": "blue",
+    "hex": "#4b9fe8",
+    "path": "res://assets/art_generated/relics/relic_20561.png",
+    "subject": "grey rocky slime with little stone plates. Cute rounded elemental slime creature, clear simple eyes and dimensional jelly silhouette.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 岩之史莱姆. Subject: grey rocky slime with little stone plates. Cute rounded elemental slime creature, clear simple eyes and dimensional jelly silhouette. RARITY: 2 star, BLUE rim #4b9fe8; restrained blue inner edge glow.",
+    "cell": {
+      "column": 26,
+      "row": 0
+    }
+  },
+  {
+    "id": 21152,
+    "name": "生锈骑士头盔",
+    "type": "套装遗物",
+    "rarity": 2,
+    "color": "blue",
+    "hex": "#4b9fe8",
+    "path": "res://assets/art_generated/relics/relic_21152.png",
+    "subject": "rusty closed knight helmet. Medieval steel helmet with readable visor and fine crafted silhouette.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 生锈骑士头盔. Subject: rusty closed knight helmet. Medieval steel helmet with readable visor and fine crafted silhouette. RARITY: 2 star, BLUE rim #4b9fe8; restrained blue inner edge glow.",
+    "cell": {
+      "column": 1,
+      "row": 1
+    }
+  },
+  {
+    "id": 20150,
+    "name": "商人古董",
+    "type": "套装遗物",
+    "rarity": 3,
+    "color": "purple",
+    "hex": "#af70e3",
+    "path": "res://assets/art_generated/relics/relic_20150.png",
+    "subject": "small ornate antique amphora. Merchant gold and aged brass, refined engraved surfaces and rich jewel accents.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 商人古董. Subject: small ornate antique amphora. Merchant gold and aged brass, refined engraved surfaces and rich jewel accents. RARITY: 3 star, PURPLE rim #af70e3; restrained purple inner edge glow.",
+    "cell": {
+      "column": 26,
+      "row": 1
+    }
+  },
+  {
+    "id": 23150,
+    "name": "潮汐权杖",
+    "type": "强化遗物",
+    "rarity": 3,
+    "color": "purple",
+    "hex": "#af70e3",
+    "path": "res://assets/art_generated/relics/relic_23150.png",
+    "subject": "tidal scepter. Deep ocean blue, flowing wave contours and silver marine fittings.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 潮汐权杖. Subject: tidal scepter. Deep ocean blue, flowing wave contours and silver marine fittings. RARITY: 3 star, PURPLE rim #af70e3; restrained purple inner edge glow.",
+    "cell": {
+      "column": 11,
+      "row": 2
+    }
+  },
+  {
+    "id": 23151,
+    "name": "潮汐海螺",
+    "type": "强化遗物",
+    "rarity": 3,
+    "color": "purple",
+    "hex": "#af70e3",
+    "path": "res://assets/art_generated/relics/relic_23151.png",
+    "subject": "spiral tidal conch. Deep ocean blue, flowing wave contours and silver marine fittings.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 潮汐海螺. Subject: spiral tidal conch. Deep ocean blue, flowing wave contours and silver marine fittings. RARITY: 3 star, PURPLE rim #af70e3; restrained purple inner edge glow.",
+    "cell": {
+      "column": 12,
+      "row": 2
+    }
+  },
+  {
+    "id": 20436,
+    "name": "原初试剂",
+    "type": "旧日遗物",
+    "rarity": 3,
+    "color": "purple",
+    "hex": "#af70e3",
+    "path": "res://assets/art_generated/relics/relic_20436.png",
+    "subject": "Sealed clear glass vial of colorless primordial liquid with faint chaotic suspended motes.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 原初试剂. Subject: Sealed clear glass vial of colorless primordial liquid with faint chaotic suspended motes. RARITY: 3 star, PURPLE rim #af70e3; restrained purple inner edge glow.",
+    "cell": {
+      "column": 19,
+      "row": 2
+    }
+  },
+  {
+    "id": 20157,
+    "name": "风灵双头刃",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20157.png",
+    "subject": "double-ended blade. Light azure-teal wind spirit equipment, elegant feather patterns and fine swirling air.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 风灵双头刃. Subject: double-ended blade. Light azure-teal wind spirit equipment, elegant feather patterns and fine swirling air. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 13,
+      "row": 3
+    }
+  },
+  {
+    "id": 20552,
+    "name": "魔力项链",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20552.png",
+    "subject": "blue crystal pendant necklace. Pure blue arcane crystal energy in polished silver mounts, clean luminous facets.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 魔力项链. Subject: blue crystal pendant necklace. Pure blue arcane crystal energy in polished silver mounts, clean luminous facets. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 25,
+      "row": 3
+    }
+  },
+  {
+    "id": 20553,
+    "name": "魔力手套",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20553.png",
+    "subject": "sorcerers glove with crystal fittings. Pure blue arcane crystal energy in polished silver mounts, clean luminous facets.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 魔力手套. Subject: sorcerers glove with crystal fittings. Pure blue arcane crystal energy in polished silver mounts, clean luminous facets. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 26,
+      "row": 3
+    }
+  },
+  {
+    "id": 21111,
+    "name": "米诺陶诺斯之斧",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21111.png",
+    "subject": "massive minotaur battle axe. Minotaur giant beast relic, huge bones, rugged iron and thick hide.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 米诺陶诺斯之斧. Subject: massive minotaur battle axe. Minotaur giant beast relic, huge bones, rugged iron and thick hide. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 1,
+      "row": 4
+    }
+  },
+  {
+    "id": 21112,
+    "name": "米诺陶诺斯之手",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21112.png",
+    "subject": "minotaur armored fist gauntlet. Minotaur giant beast relic, huge bones, rugged iron and thick hide.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 米诺陶诺斯之手. Subject: minotaur armored fist gauntlet. Minotaur giant beast relic, huge bones, rugged iron and thick hide. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 2,
+      "row": 4
+    }
+  },
+  {
+    "id": 21121,
+    "name": "勇者之剑",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21121.png",
+    "subject": "heroic straight sword. Classic heroic equipment in clean gold, silver and royal blue, sacred justice details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 勇者之剑. Subject: heroic straight sword. Classic heroic equipment in clean gold, silver and royal blue, sacred justice details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 4,
+      "row": 4
+    }
+  },
+  {
+    "id": 21122,
+    "name": "勇者之盾",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21122.png",
+    "subject": "heroic kite shield. Classic heroic equipment in clean gold, silver and royal blue, sacred justice details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 勇者之盾. Subject: heroic kite shield. Classic heroic equipment in clean gold, silver and royal blue, sacred justice details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 5,
+      "row": 4
+    }
+  },
+  {
+    "id": 21123,
+    "name": "勇者之盔",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21123.png",
+    "subject": "heroic knight helmet. Classic heroic equipment in clean gold, silver and royal blue, sacred justice details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 勇者之盔. Subject: heroic knight helmet. Classic heroic equipment in clean gold, silver and royal blue, sacred justice details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 6,
+      "row": 4
+    }
+  },
+  {
+    "id": 21131,
+    "name": "吟唱者之杖",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21131.png",
+    "subject": "singers magic staff. Scholar-bard equipment, purple and gold cloth, elegant musical and arcane engravings.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 吟唱者之杖. Subject: singers magic staff. Scholar-bard equipment, purple and gold cloth, elegant musical and arcane engravings. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 7,
+      "row": 4
+    }
+  },
+  {
+    "id": 21132,
+    "name": "吟唱者之帽",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21132.png",
+    "subject": "soft scholarly pointed hat. Scholar-bard equipment, purple and gold cloth, elegant musical and arcane engravings.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 吟唱者之帽. Subject: soft scholarly pointed hat. Scholar-bard equipment, purple and gold cloth, elegant musical and arcane engravings. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 8,
+      "row": 4
+    }
+  },
+  {
+    "id": 21133,
+    "name": "吟唱者之符纹",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21133.png",
+    "subject": "parchment rune with a clear musical sigil. Scholar-bard equipment, purple and gold cloth, elegant musical and arcane engravings.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 吟唱者之符纹. Subject: parchment rune with a clear musical sigil. Scholar-bard equipment, purple and gold cloth, elegant musical and arcane engravings. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 9,
+      "row": 4
+    }
+  },
+  {
+    "id": 21141,
+    "name": "冰龙之牙",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21141.png",
+    "subject": "large sharp dragon fang. Ancient ice dragon material, translucent icy blue with cold white mist and frosted edges.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 冰龙之牙. Subject: large sharp dragon fang. Ancient ice dragon material, translucent icy blue with cold white mist and frosted edges. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 10,
+      "row": 4
+    }
+  },
+  {
+    "id": 21143,
+    "name": "冰龙之鳞片",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21143.png",
+    "subject": "single dragon scale. Ancient ice dragon material, translucent icy blue with cold white mist and frosted edges.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 冰龙之鳞片. Subject: single dragon scale. Ancient ice dragon material, translucent icy blue with cold white mist and frosted edges. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 12,
+      "row": 4
+    }
+  },
+  {
+    "id": 21171,
+    "name": "巨魔的钢盔",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21171.png",
+    "subject": "huge trolls steel helmet. Oversized crude troll forged iron, rusty rough surface and brutal heavy rivets.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 巨魔的钢盔. Subject: huge trolls steel helmet. Oversized crude troll forged iron, rusty rough surface and brutal heavy rivets. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 13,
+      "row": 4
+    }
+  },
+  {
+    "id": 21172,
+    "name": "巨魔的盾牌",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21172.png",
+    "subject": "heavy trolls shield. Oversized crude troll forged iron, rusty rough surface and brutal heavy rivets.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 巨魔的盾牌. Subject: heavy trolls shield. Oversized crude troll forged iron, rusty rough surface and brutal heavy rivets. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 14,
+      "row": 4
+    }
+  },
+  {
+    "id": 21173,
+    "name": "巨魔的镣铐",
+    "type": "套装遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_21173.png",
+    "subject": "massive trolls shackles. Oversized crude troll forged iron, rusty rough surface and brutal heavy rivets.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 巨魔的镣铐. Subject: massive trolls shackles. Oversized crude troll forged iron, rusty rough surface and brutal heavy rivets. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 15,
+      "row": 4
+    }
+  },
+  {
+    "id": 23060,
+    "name": "海之怒",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23060.png",
+    "subject": "furious cresting wave captured in an orb. Deep ocean blue and aquamarine jewel tones, flowing water shapes and tiny bubbles.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 海之怒. Subject: furious cresting wave captured in an orb. Deep ocean blue and aquamarine jewel tones, flowing water shapes and tiny bubbles. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 16,
+      "row": 4
+    }
+  },
+  {
+    "id": 23082,
+    "name": "破碎烈焰石",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23082.png",
+    "subject": "broken flame crystal. Crimson magma, glowing orange fissures and flowing fire runes on dark metal.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 破碎烈焰石. Subject: broken flame crystal. Crimson magma, glowing orange fissures and flowing fire runes on dark metal. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 26,
+      "row": 4
+    }
+  },
+  {
+    "id": 23112,
+    "name": "惩戒匕首",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23112.png",
+    "subject": "judgement dagger. Sacred judgement artifact with sharp white-and-gold cross motifs and refined radiant edges.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 惩戒匕首. Subject: judgement dagger. Sacred judgement artifact with sharp white-and-gold cross motifs and refined radiant edges. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 11,
+      "row": 5
+    }
+  },
+  {
+    "id": 23120,
+    "name": "雷霆之力",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23120.png",
+    "subject": "compact lightning energy core. Deep blue storm energy, small bright electric arcs and sharp silver-blue details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 雷霆之力. Subject: compact lightning energy core. Deep blue storm energy, small bright electric arcs and sharp silver-blue details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 13,
+      "row": 5
+    }
+  },
+  {
+    "id": 23121,
+    "name": "雷霆卷轴",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23121.png",
+    "subject": "storm spell scroll. Deep blue storm energy, small bright electric arcs and sharp silver-blue details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 雷霆卷轴. Subject: storm spell scroll. Deep blue storm energy, small bright electric arcs and sharp silver-blue details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 14,
+      "row": 5
+    }
+  },
+  {
+    "id": 23122,
+    "name": "雷霆水晶",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23122.png",
+    "subject": "storm crystal. Deep blue storm energy, small bright electric arcs and sharp silver-blue details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 雷霆水晶. Subject: storm crystal. Deep blue storm energy, small bright electric arcs and sharp silver-blue details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 15,
+      "row": 5
+    }
+  },
+  {
+    "id": 23123,
+    "name": "雷霆鳞甲",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23123.png",
+    "subject": "lightning scale chest armor. Deep blue storm energy, small bright electric arcs and sharp silver-blue details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 雷霆鳞甲. Subject: lightning scale chest armor. Deep blue storm energy, small bright electric arcs and sharp silver-blue details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 16,
+      "row": 5
+    }
+  },
+  {
+    "id": 23124,
+    "name": "雷霆之花",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23124.png",
+    "subject": "lightning flower with crystalline petals. Deep blue storm energy, small bright electric arcs and sharp silver-blue details.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 雷霆之花. Subject: lightning flower with crystalline petals. Deep blue storm energy, small bright electric arcs and sharp silver-blue details. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 17,
+      "row": 5
+    }
+  },
+  {
+    "id": 23130,
+    "name": "天界彩虹弓",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23130.png",
+    "subject": "rainbow celestial bow. Holy heavenly feather motifs, pearl-white gold and restrained rainbow reflections.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 天界彩虹弓. Subject: rainbow celestial bow. Holy heavenly feather motifs, pearl-white gold and restrained rainbow reflections. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 18,
+      "row": 5
+    }
+  },
+  {
+    "id": 23132,
+    "name": "天界秘石",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23132.png",
+    "subject": "mysterious celestial gemstone. Holy heavenly feather motifs, pearl-white gold and restrained rainbow reflections.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 天界秘石. Subject: mysterious celestial gemstone. Holy heavenly feather motifs, pearl-white gold and restrained rainbow reflections. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 20,
+      "row": 5
+    }
+  },
+  {
+    "id": 23133,
+    "name": "天使斗篷",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23133.png",
+    "subject": "angel feather cloak. Holy heavenly feather motifs, pearl-white gold and restrained rainbow reflections.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 天使斗篷. Subject: angel feather cloak. Holy heavenly feather motifs, pearl-white gold and restrained rainbow reflections. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 21,
+      "row": 5
+    }
+  },
+  {
+    "id": 23143,
+    "name": "星火之薪",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_23143.png",
+    "subject": "bundle of enchanted firewood. Warm glowing embers and tiny leaping sparks on practical adventurer objects.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 星火之薪. Subject: bundle of enchanted firewood. Warm glowing embers and tiny leaping sparks on practical adventurer objects. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 23,
+      "row": 5
+    }
+  },
+  {
+    "id": 20572,
+    "name": "精灵沙",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20572.png",
+    "subject": "vial of sparkling fairy sand. Crystal-clear natural green and soft fairy dust, pristine luminous natural material.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 精灵沙. Subject: vial of sparkling fairy sand. Crystal-clear natural green and soft fairy dust, pristine luminous natural material. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 26,
+      "row": 5
+    }
+  },
+  {
+    "id": 20573,
+    "name": "精灵泉水",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20573.png",
+    "subject": "bottle of pure elven spring water. Crystal-clear natural green and soft fairy dust, pristine luminous natural material.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 精灵泉水. Subject: bottle of pure elven spring water. Crystal-clear natural green and soft fairy dust, pristine luminous natural material. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 0,
+      "row": 6
+    }
+  },
+  {
+    "id": 20582,
+    "name": "猎人地图",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20582.png",
+    "subject": "rolled hunting map. Practical hunter leather, beast teeth and worn brass, restrained utilitarian craftsmanship.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 猎人地图. Subject: rolled hunting map. Practical hunter leather, beast teeth and worn brass, restrained utilitarian craftsmanship. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 1,
+      "row": 6
+    }
+  },
+  {
+    "id": 20583,
+    "name": "猎人陷阱",
+    "type": "强化遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20583.png",
+    "subject": "open compact metal hunting trap. Practical hunter leather, beast teeth and worn brass, restrained utilitarian craftsmanship.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 猎人陷阱. Subject: open compact metal hunting trap. Practical hunter leather, beast teeth and worn brass, restrained utilitarian craftsmanship. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 2,
+      "row": 6
+    }
+  },
+  {
+    "id": 20427,
+    "name": "平庸之力",
+    "type": "旧日遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20427.png",
+    "subject": "Plain exceptionally heavy rough grey stone, no magical energy, strong grounded silhouette.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 平庸之力. Subject: Plain exceptionally heavy rough grey stone, no magical energy, strong grounded silhouette. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 3,
+      "row": 6
+    }
+  },
+  {
+    "id": 20431,
+    "name": "领主试炼徽章",
+    "type": "旧日遗物",
+    "rarity": 4,
+    "color": "orange",
+    "hex": "#ed9a40",
+    "path": "res://assets/art_generated/relics/relic_20431.png",
+    "subject": "Scratched golden noble family crest badge with an engraved heraldic shield.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 领主试炼徽章. Subject: Scratched golden noble family crest badge with an engraved heraldic shield. RARITY: 4 star, ORANGE rim #ed9a40; restrained orange inner edge glow.",
+    "cell": {
+      "column": 4,
+      "row": 6
+    }
+  },
+  {
+    "id": 23030,
+    "name": "闪耀手甲",
+    "type": "强化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_23030.png",
+    "subject": "crystal gauntlet. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 闪耀手甲. Subject: crystal gauntlet. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 15,
+      "row": 6
+    }
+  },
+  {
+    "id": 23031,
+    "name": "闪耀宝珠",
+    "type": "强化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_23031.png",
+    "subject": "perfectly round crystal orb. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 闪耀宝珠. Subject: perfectly round crystal orb. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 16,
+      "row": 6
+    }
+  },
+  {
+    "id": 23032,
+    "name": "闪耀史莱姆",
+    "type": "强化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_23032.png",
+    "subject": "small cute crystal slime. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 闪耀史莱姆. Subject: small cute crystal slime. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 17,
+      "row": 6
+    }
+  },
+  {
+    "id": 23033,
+    "name": "闪耀指环",
+    "type": "强化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_23033.png",
+    "subject": "faceted crystal finger ring. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 闪耀指环. Subject: faceted crystal finger ring. Brilliant golden translucent crystal, refined bright facets and restrained sparkling highlights. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 18,
+      "row": 6
+    }
+  },
+  {
+    "id": 20574,
+    "name": "万物之灵",
+    "type": "强化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_20574.png",
+    "subject": "tiny cosmic orb gathering many colors of living light. Crystal-clear natural green and soft fairy dust, pristine luminous natural material.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 万物之灵. Subject: tiny cosmic orb gathering many colors of living light. Crystal-clear natural green and soft fairy dust, pristine luminous natural material. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 0,
+      "row": 7
+    }
+  },
+  {
+    "id": 20424,
+    "name": "枯竭的复苏宝石",
+    "type": "旧日遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_20424.png",
+    "subject": "Black obsidian resurrection gem with an extinguished ember inside.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 枯竭的复苏宝石. Subject: Black obsidian resurrection gem with an extinguished ember inside. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 9,
+      "row": 7
+    }
+  },
+  {
+    "id": 20442,
+    "name": "错误宝石",
+    "type": "旧日遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_20442.png",
+    "subject": "Translucent magical crystal with dislocated impossible geometric facets inside.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 错误宝石. Subject: Translucent magical crystal with dislocated impossible geometric facets inside. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 12,
+      "row": 7
+    }
+  },
+  {
+    "id": 20443,
+    "name": "厚积薄发",
+    "type": "旧日遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_20443.png",
+    "subject": "Very thick old ordinary notebook with heavy pages and a subtle compressed magical glow.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 厚积薄发. Subject: Very thick old ordinary notebook with heavy pages and a subtle compressed magical glow. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 13,
+      "row": 7
+    }
+  },
+  {
+    "id": 22021,
+    "name": "绝望面具",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22021.png",
+    "subject": "Pale twisted theatrical mask silently crying, dark hollow eyes and fine cracks.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 绝望面具. Subject: Pale twisted theatrical mask silently crying, dark hollow eyes and fine cracks. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 15,
+      "row": 7
+    }
+  },
+  {
+    "id": 22031,
+    "name": "凋零花朵",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22031.png",
+    "subject": "Single withered black flower with curled petals and a faint sickly violet aura.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 凋零花朵. Subject: Single withered black flower with curled petals and a faint sickly violet aura. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 16,
+      "row": 7
+    }
+  },
+  {
+    "id": 22061,
+    "name": "灾厄羽毛",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22061.png",
+    "subject": "Single ominous black feather with fine drifting shadow wisps.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 灾厄羽毛. Subject: Single ominous black feather with fine drifting shadow wisps. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 19,
+      "row": 7
+    }
+  },
+  {
+    "id": 22071,
+    "name": "斗士水杯",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22071.png",
+    "subject": "Cracked old bronze fighter cup with a dried poisonous purple residue inside.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 斗士水杯. Subject: Cracked old bronze fighter cup with a dried poisonous purple residue inside. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 20,
+      "row": 7
+    }
+  },
+  {
+    "id": 22081,
+    "name": "腐败面包",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22081.png",
+    "subject": "Hard dark loaf of bread covered in patches of green mold.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 腐败面包. Subject: Hard dark loaf of bread covered in patches of green mold. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 21,
+      "row": 7
+    }
+  },
+  {
+    "id": 22111,
+    "name": "腐败王冠",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22111.png",
+    "subject": "Corrupted crown constructed from twisted thorns and small ancient bones.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 腐败王冠. Subject: Corrupted crown constructed from twisted thorns and small ancient bones. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 24,
+      "row": 7
+    }
+  },
+  {
+    "id": 22121,
+    "name": "不公天平",
+    "type": "诅咒遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22121.png",
+    "subject": "Crooked unbalanced bronze scales with one lowered pan and a dark red droplet.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 不公天平. Subject: Crooked unbalanced bronze scales with one lowered pan and a dark red droplet. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 25,
+      "row": 7
+    }
+  },
+  {
+    "id": 22052,
+    "name": "水晶龙鳞甲",
+    "type": "净化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22052.png",
+    "subject": "Flawless transparent dragon-crystal chest armor with flowing white inner light.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 水晶龙鳞甲. Subject: Flawless transparent dragon-crystal chest armor with flowing white inner light. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 11,
+      "row": 8
+    }
+  },
+  {
+    "id": 22142,
+    "name": "异界手甲",
+    "type": "净化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22142.png",
+    "subject": "Sleek pure white gauntlet with flowing astral silver lines and a star-shaped gem.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 异界手甲. Subject: Sleek pure white gauntlet with flowing astral silver lines and a star-shaped gem. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 20,
+      "row": 8
+    }
+  },
+  {
+    "id": 22152,
+    "name": "王女的宝物",
+    "type": "净化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22152.png",
+    "subject": "Exquisite royal crystal music box with gold fittings and a faint pure glow.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 王女的宝物. Subject: Exquisite royal crystal music box with gold fittings and a faint pure glow. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 21,
+      "row": 8
+    }
+  },
+  {
+    "id": 22202,
+    "name": "贤者之环",
+    "type": "净化遗物",
+    "rarity": 5,
+    "color": "red",
+    "hex": "#e85c61",
+    "path": "res://assets/art_generated/relics/relic_22202.png",
+    "subject": "Thin floating golden wisdom halo with fine sacred runes.",
+    "prompt": "Simplified hand-painted 2D fantasy RPG inventory icon, readable at 48 pixels. Chunky compact silhouette, bold dark outline, few broad painted shading planes, modest highlights, no photorealistic texture or microdetail. Object centered and fully visible, occupying 72 percent of square. Dark charcoal slate tile with thin flat rarity-colored rim, subtly rounded corners, no ornamental metal corner caps. Natural material colors distinct from rarity rim. No text, labels, numbers, stars or watermark. Item: 贤者之环. Subject: Thin floating golden wisdom halo with fine sacred runes. RARITY: 5 star, RED rim #e85c61; restrained red inner edge glow.",
+    "cell": {
+      "column": 26,
+      "row": 8
+    }
+  }
+]

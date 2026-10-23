@@ -1,0 +1,2100 @@
+class_name DungeonCombat
+extends RefCounted
+
+signal impact_confirmed(impact: Dictionary)
+
+const FEEL = preload("res://assets/feel_settings.tres")
+
+const DATA_PATH = "res://assets/data/combat.json"
+const SUPPORTED_ATTRIBUTES = ["BaseAtk", "BaseDef", "BaseHp", "MoveSpeedRate", "HpAddFixed", "HpAddRate", "AttackSpeedRate", "AtkAddFixed", "AtkAddRate", "DefAddFixed", "DefAddRate", "CriticalRate", "CriticalMulti", "NormalAtkDamageRate", "DodgeAtkDamageRate", "SubSkillDamageRate", "MainSkillDamageRate", "SpecialAtkDamageRate", "AllElementDamageRate", "AllElementResist", "HealRate", "None", "FireDamageRate", "WaterDamageRate", "ThunderDamageRate", "WindDamageRate", "LightDamageRate", "DarkDamageRate", "FireResist", "WaterResist", "ThunderResist", "WindResist", "LightResist", "DarkResist"]
+static var _shared_catalog: Dictionary = {}
+static var _shared_actions: Dictionary = {}
+static var _shared_buffs: Dictionary = {}
+static var _shared_summons: Dictionary = {}
+static var _heavy_catalog: Dictionary = {}
+
+var catalog: Dictionary = {}
+var fighter: Dictionary = {}
+var enemy: Dictionary = {}
+var character_id: int = 0
+var enemy_id: int = 0
+var actor_key: String = ""
+var difficulty: int = 0
+var health: float = 100.0
+var attack: float = 85.0
+var defense: float = 70.0
+var armor: float = 0.0
+var shield: float = 0.0
+var max_health: float:
+	get:
+		return maxf(1.0, (_base_max_health + attribute("BaseHp") + attribute("HpAddFixed")) * (1.0 + attribute("HpAddRate") / 1000.0))
+	set(value):
+		_base_max_health = maxf(1.0, value)
+var hp: float:
+	get:
+		return health
+	set(value):
+		health = clampf(value, 0.0, max_health)
+var max_hp: float:
+	get:
+		return max_health
+	set(value):
+		max_health = value
+var move_speed: float:
+	get:
+		return float(fighter.get("speed", enemy.get("speed", 5.0))) * move_multiplier()
+var busy: float = 0.0
+var invincible: float = 0.0
+var frozen: float = 0.0
+var current_action: String = ""
+var energy: Array = [0.0, 0.0, 0.0, 0.0, 0.0]
+var cooldowns: Array = [0.0, 0.0, 0.0, 0.0, 0.0]
+var statuses: Dictionary = {}
+var diagnostics: Array = []
+var events: Array = []
+var custom_properties: Dictionary = {"InputMove": false, "InputAttack": false, "InputAttack_LongPress": false, "InputSkill": false}
+var charging: bool = false
+var charge_released: bool = false
+var charge_elapsed: float = 0.0
+var _base_max_health: float = 100.0
+var _clock: float = 0.0
+var _slow_time: float = 0.0
+var _slow_scale: float = 1.0
+var _combo: int = 0
+var _combo_expiry: float = 0.0
+var _cast_sequence: int = 0
+var _current_slot: int = 0
+var _random_state: int = 1
+var _pending: Array = []
+var _external: Dictionary = {}
+var _progression_roots: Dictionary = {}
+var _progression_owned: Array = []
+var _external_numeric_buffs: Array = []
+var _action_index: Dictionary = {}
+var _buff_index: Dictionary = {}
+var _summon_index: Dictionary = {}
+var _dead_emitted: bool = false
+var _emission_sequence: int = 0
+var _condition_depth: int = 0
+var _buff_casters: Dictionary = {}
+var _dodge_time: float = 0.0
+var _block_time: float = 0.0
+var _anti_heal_time: float = 0.0
+var _attribute_stack: Dictionary = {}
+var action_elapsed := 0.0
+var action_step := -1.0
+var action_tick_delta := 0.0
+var impact_pause := 0.0
+var stagger_remaining := 0.0
+var _impact_gate := 0.0
+var _stagger_grace := 0.0
+var _recovery_credit := 0.0
+var _compensate_pause := false
+
+func apply_hit_stop(duration: float, compensate := false) -> bool:
+	if not FEEL.impact_enabled or health <= 0: return false
+	if _impact_gate > 0:
+		if impact_pause > 0:
+			var elapsed = maxf(0.0, FEEL.hit_stop_interval - _impact_gate)
+			impact_pause = maxf(impact_pause, clampf(duration, 0, FEEL.hit_stop_limit) - elapsed)
+		return false
+	impact_pause = maxf(impact_pause, clampf(duration, 0, FEEL.hit_stop_limit))
+	if impact_pause <= 0: return false
+	_impact_gate = FEEL.hit_stop_interval
+	_compensate_pause = compensate
+	return true
+
+func apply_stagger(duration: float, interrupt := false) -> bool:
+	if not FEEL.impact_enabled or duration <= 0 or health <= 0: return false
+	if not fighter.is_empty():
+		if stagger_remaining > 0 or _stagger_grace > 0 or _current_slot == 1: return false
+		duration = minf(duration, FEEL.player_stagger_limit)
+		_stagger_grace = duration + FEEL.player_stagger_grace
+	stagger_remaining = maxf(stagger_remaining, duration)
+	if interrupt:
+		_cancel_sequence(_cast_sequence)
+		busy = 0
+		charging = false
+		_clear_charge()
+		custom_properties.InputAttack_LongPress = false
+		_emit_event("action_cancelled", {"sequence": _cast_sequence})
+	return true
+
+func clear_impact_state() -> void:
+	impact_pause = 0.0
+	stagger_remaining = 0.0
+	_impact_gate = 0.0
+	_stagger_grace = 0.0
+	_recovery_credit = 0.0
+	_compensate_pause = false
+
+func action_phase() -> String:
+	var definition = _action("ActGroup_playerchara" if enemy.is_empty() else str(enemy.get("group", "")), current_action)
+	var speed = maxf(0.01, float(custom_properties.get("_feel_action_speed", 1)))
+	var first = INF
+	var last = 0.0
+	for hit in definition.get("hits", []):
+		if not bool(hit.get("enabled", false)): continue
+		first = minf(first, float(hit.time) / speed)
+		last = maxf(last, float(hit.time) / speed)
+	for command in definition.get("events", []):
+		if not command.get("enabled", false) or command.get("type", "") != "EET_AddSummonUnit": continue
+		first = minf(first, float(command.time) / speed)
+		last = maxf(last, float(command.time) / speed)
+	if action_elapsed < first and first < INF: return "windup"
+	return "impact" if action_elapsed < last + 0.06 and first < INF else "recovery"
+
+func _action_event(event: Dictionary) -> bool:
+	return int(event.get("sequence", -1)) == _cast_sequence and bool(event.get("action_timeline", event.get("summon_id", "").is_empty() and (event.has("command") or event.has("hit"))))
+
+func _using_heavy_graph() -> bool:
+	return enemy.is_empty() and (_current_slot == 4 or bool(custom_properties.get("_heavy_graph", _current_slot == 0 and custom_properties.get("AttackModeStr", "normal") == "satk")))
+
+func configure(catalog_value: Variant = null, _systems: Variant = null, char_id: int = 1, difficulty_value: int = 0, seed_value: int = 1) -> Dictionary:
+	if not _load_catalog(catalog_value):
+		return _result(false, "Combat database missing", char_id)
+	_reset()
+	for definition in catalog.get("characters", []):
+		if int(definition.id) == char_id:
+			fighter = definition
+			break
+	if fighter.is_empty():
+		return _result(false, "Unknown character", char_id)
+	character_id = char_id
+	actor_key = "character:%s" % char_id
+	difficulty = clampi(difficulty_value, 0, 10)
+	_random_state = seed_value & 0xffffffff
+	attack = float(fighter.attack)
+	defense = float(fighter.defense)
+	max_health = float(fighter.hp)
+	health = max_health
+	for index in range(mini(5, fighter.skills.size())):
+		energy[index] = float(fighter.skills[index].maxSp)
+	for id in fighter.get("passives", []):
+		add_buff(str(id), 1)
+	return _result(true, "Character ready", char_id)
+
+func configure_enemy(id: int, seed_value: int = 1, difficulty_value: int = 0, catalog_value: Variant = null) -> Dictionary:
+	if not _load_catalog(catalog_value):
+		return _result(false, "Combat database missing", id)
+	_reset()
+	for definition in catalog.get("enemies", []):
+		if int(definition.id) == id:
+			enemy = definition
+			break
+	if enemy.is_empty():
+		return _result(false, "Unknown enemy", id)
+	enemy_id = id
+	actor_key = "enemy:%s" % id
+	difficulty = clampi(difficulty_value, 0, 10)
+	_random_state = seed_value & 0xffffffff
+	attack = float(enemy.attack)
+	defense = float(enemy.get("defense", 0.0))
+	max_health = float(enemy.hp)
+	health = max_health
+	return _result(true, "Enemy ready", id)
+
+func input_block_reason(slot: int) -> String:
+	if fighter.is_empty() or slot < 0 or slot >= fighter.get("skills", []).size(): return "Unknown skill"
+	if health <= 0: return "Defeated"
+	if frozen > 0: return "Frozen"
+	if float(energy[slot]) + 0.001 < float(fighter.skills[slot].sp): return "Insufficient energy"
+	if slot == 4 and character_id == 3 and special_resource() < 1: return "Requires rage"
+	if slot == 4 and character_id == 4 and special_resource() < 25: return "Requires 25 water energy"
+	return ""
+
+func cancel_held_input() -> void:
+	custom_properties.InputAttack_LongPress = false
+	custom_properties.InputAttack = false
+	if charging or (_using_heavy_graph() and busy > 0):
+		_cancel_sequence(_cast_sequence)
+		busy = 0.0
+		charging = false
+		charge_released = false
+		_clear_charge()
+		_emit_event("action_cancelled", {"sequence": _cast_sequence})
+
+func input_action_delay(slot: int) -> float:
+	if slot == 1: return 0.0
+	if stagger_remaining > 0: return maxf(stagger_remaining, busy)
+	if _using_heavy_graph() and busy > 0:
+		var definition = _action("ActGroup_playerchara", current_action)
+		var speed = maxf(0.01, float(custom_properties.get("_feel_action_speed", 1)))
+		for command in definition.get("events", []):
+			if not command.get("enabled", false) or command.get("type", "") != "EET_Interrupt": continue
+			var target = str(command.get("target", ""))
+			var skill_window = slot in [2, 3] and target == "sys_checkskill"
+			var attack_window = slot in [0, 4] and (target == "sys_checkatk_1" or fighter.get("combo", []).has(target))
+			if not skill_window and not attack_window: continue
+			if not _conditions(command.get("conditions", []), bool(command.get("all", true))): continue
+			var raw = JSON.parse_string(str(command.get("raw", "{}")))
+			if not raw is Dictionary: continue
+			var eligible = false
+			for condition in raw.get("Conditions", []):
+				if condition.get("InterruptType", "") == "EIT_CheckCustomPropertyBool" and condition.get("Property", "") == ("InputSkill" if skill_window else "InputAttack") and condition.get("CompareVal", false): eligible = true
+				if condition.get("InterruptType", "") == "EIT_CheckAttackMode" and (condition.get("ModeType", "") == "Special") != (slot == 4): eligible = false; break
+			if not eligible: continue
+			var start = float(command.get("time", 0)) / speed
+			var duration = float(command.get("duration", 0)) / speed
+			if duration > 0 and action_elapsed > start + duration: continue
+			return minf(busy, maxf(0.0, start - action_elapsed))
+	# Normal attacks explicitly expose InputSkill interrupts in the source timeline.
+	if enemy.is_empty() and _current_slot == 0 and slot in [2, 3]:
+		var definition = _action("ActGroup_playerchara", current_action)
+		var elapsed = action_elapsed
+		var speed = maxf(0.01, float(custom_properties.get("_feel_action_speed", 1)))
+		for command in definition.get("events", []):
+			if not command.get("enabled", false) or command.get("target", "") != "sys_checkskill": continue
+			var raw = JSON.parse_string(str(command.get("raw", "{}")))
+			var conditions: Array = raw.get("Conditions", []) if raw is Dictionary else []
+			if conditions.size() != 1: continue
+			var condition: Dictionary = conditions[0]
+			if condition.get("InterruptType", "") == "EIT_CheckCustomPropertyBool" and condition.get("Property", "") == "InputSkill" and condition.get("CompareVal", false):
+				return minf(busy, maxf(0, float(command.get("time", 0)) / speed - elapsed))
+	return busy
+
+func cancel_normal_attack() -> void:
+	if not enemy.is_empty() or _current_slot != 0: return
+	_cancel_sequence(_cast_sequence)
+	busy = 0.0
+	_emit_event("action_cancelled", {"sequence": _cast_sequence})
+
+func request_attack(slot: int, pressed: bool = true) -> Dictionary:
+	if slot == 4:
+		if not pressed:
+			custom_properties.InputAttack_LongPress = false
+			custom_properties.InputAttack = false
+			charge_released = charging
+			return _result(true, "Heavy attack released")
+	if not pressed:
+		if slot == 0 and custom_properties.get("AttackModeStr", "normal") == "normal": custom_properties.InputAttack = false
+		return _result(true, "Input released")
+	if not enemy.is_empty():
+		return request_enemy_attack()
+	if fighter.is_empty() or slot < 0 or slot >= fighter.get("skills", []).size():
+		return _result(false, "Unknown skill", slot)
+	if health <= 0:
+		return _result(false, "Defeated", slot)
+	if frozen > 0:
+		return _result(false, "Frozen", slot)
+	if slot == 4 and _current_slot == 4 and busy > 0:
+		custom_properties.InputAttack_LongPress = true
+		custom_properties.InputAttack = true
+		custom_properties.AttackModeStr = "satk"
+		charge_released = false
+		return _result(true, "Heavy input held")
+	if input_action_delay(slot) > 0:
+		return _result(false, "Action in progress", slot)
+	var skill: Dictionary = fighter.skills[slot]
+	if float(cooldowns[slot]) > 0:
+		return _result(false, "Cooling down", slot)
+	if float(energy[slot]) + 0.001 < float(skill.sp):
+		return _result(false, "Insufficient energy", slot)
+	if slot == 4 and character_id == 4 and special_resource() < 25:
+		return _result(false, "Requires 25 water energy", slot)
+	if slot == 4 and character_id == 3 and special_resource() < 1:
+		return _result(false, "Requires rage", slot)
+	var action_name = str(skill.action)
+	if slot == 0:
+		if _clock > _combo_expiry:
+			_combo = 0
+		action_name = str(fighter.combo[_combo % fighter.combo.size()])
+		var authored_next = str(custom_properties.get("_feel_next_combo", ""))
+		if _clock <= _combo_expiry and not _action("ActGroup_playerchara", authored_next).is_empty(): action_name = authored_next
+		_combo = (_combo + 1) % fighter.combo.size()
+	if slot == 4:
+		action_name = str(_heavy_catalog.get("entries", {}).get(str(character_id), action_name))
+	for entry in statuses.values():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") == "EBT_SpecialChangeAction":
+			var raw = definition.get("raw_data", {})
+			if (raw.get("Type") == "NorAtk" and slot == 0) or (raw.get("Type") == "SpecialAtk" and slot == 4):
+				action_name = str(raw.get("ModifyId", action_name))
+	var action_def = _action("ActGroup_playerchara", action_name)
+	if action_def.is_empty():
+		_report("Missing original action " + action_name)
+		return _result(false, "Missing original action " + action_name, slot)
+	if slot == 1:
+		clear_impact_state()
+		_cancel_sequence(_cast_sequence)
+		custom_properties.InputAttack_LongPress = false
+		custom_properties.InputAttack = false
+		charging = false
+		_clear_charge()
+		invincible = maxf(invincible, 0.38)
+	energy[slot] = float(energy[slot]) - float(skill.sp)
+	if slot == 4:
+		custom_properties.InputAttack_LongPress = true
+		custom_properties.InputAttack = true
+		custom_properties.AttackModeStr = "satk"
+	elif slot == 0:
+		custom_properties.AttackModeStr = "normal"
+	cooldowns[slot] = float(skill.cooldown)
+	_start(action_def, slot)
+	_combo_expiry = _clock + busy + 1.3
+	return _result(true, "Action started", int(skill.id))
+
+func request_enemy_attack() -> Dictionary:
+	if enemy.is_empty() or busy > 0 or health <= 0 or frozen > 0 or stagger_remaining > 0 or impact_pause > 0:
+		return _result(false, "Enemy cannot act", enemy_id)
+	_queue_enemy_phases()
+	var queued: Array = custom_properties.get("_enemy_phase_actions", [])
+	var phase_action = str(queued.pop_front()) if not queued.is_empty() else ""
+	custom_properties["_enemy_phase_actions"] = queued
+	var actions: Array = _enemy_action_pool()
+	if enemy.get("behavior") == "flee":
+		phase_action = "runaway"
+	if actions.is_empty():
+		if phase_action.is_empty():
+			_report("No recovered attacks: %s" % enemy_id)
+			return _result(false, "No recovered attacks", enemy_id)
+	var action_name = phase_action
+	if action_name.is_empty():
+		action_name = str(actions[_combo % actions.size()])
+		_combo += 1
+	var action_def = _action(str(enemy.group), action_name)
+	if action_def.is_empty():
+		_report("Missing enemy action: " + action_name)
+		return _result(false, "Missing enemy action", enemy_id)
+	# Attack selection is a declared offline reconstruction, not the recovered behavior tree.
+	_cancel_sequence(_cast_sequence)
+	_start(action_def, 0)
+	busy = maxf(busy, float(custom_properties.get("BB_AttackCD", enemy.cooldown)))
+	return _result(true, "Enemy attack started", enemy_id)
+
+func enemy_phase() -> int:
+	return int(custom_properties.get("_enemy_phase", 0))
+
+func _queue_enemy_phases() -> void:
+	var triggered: Array = custom_properties.get("_enemy_phase_triggered", [])
+	var queued: Array = custom_properties.get("_enemy_phase_actions", [])
+	for rule in enemy.get("phase_rules", []):
+		var phase_id = int(rule.phase)
+		if triggered.has(phase_id) or triggered.has(float(phase_id)):
+			continue
+		var ratio = health / max_health * 1000.0
+		var threshold = float(rule.hp_per_mille)
+		if not (ratio < threshold if rule.get("compare") == "less" else ratio <= threshold):
+			continue
+		triggered.append(phase_id)
+		custom_properties["_enemy_phase"] = maxi(enemy_phase(), phase_id)
+		for property in rule.get("properties", {}):
+			custom_properties[property] = rule.properties[property]
+		if rule.has("attack_cooldown"):
+			custom_properties["BB_AttackCD"] = float(rule.attack_cooldown)
+		for action in rule.get("actions", []):
+			if not _action(str(enemy.group), str(action)).is_empty():
+				queued.append(str(action))
+			else:
+				_report("Phase action missing: %s %s" % [enemy_id, action])
+		_emit_event("phase_changed", {"phase": phase_id, "threshold": threshold, "source": enemy.get("ai_source", ""), "rule_basis": "serialized_configuration_with_reconstructed_scheduler"})
+	custom_properties["_enemy_phase_triggered"] = triggered
+	custom_properties["_enemy_phase_actions"] = queued
+
+func _enemy_action_pool() -> Array:
+	var candidates: Array = enemy.get("ai_action_ids", enemy.get("actions", [])).duplicate()
+	var actions: Array = []
+	for candidate in candidates:
+		var action = str(candidate)
+		if not action.to_lower().contains("attack") and not action.to_lower().contains("combo"):
+			continue
+		if action.to_lower().contains("wait") or _action(str(enemy.group), action).is_empty():
+			continue
+		if enemy_id == 23001:
+			if bool(custom_properties.get("BB_IsFlyState", false)) != ["attack4", "attack5", "attack7"].has(action):
+				continue
+			if action == "attack3" or action == "attack6":
+				continue
+		if enemy_id == 43001 and action.begins_with("EX_") and buff_layers("45400004") <= 0:
+			continue
+		if enemy_id == 52001 and action == "attack6" and enemy_phase() == 0:
+			continue
+		if not actions.has(action):
+			actions.append(action)
+	return actions
+
+func tick(delta: float) -> void:
+	if not is_finite(delta) or delta < 0:
+		_report("Invalid combat delta")
+		return
+	action_tick_delta = delta
+	if health <= 0:
+		_emit_death()
+		return
+	var action_delta = maxf(0.0, delta - frozen)
+	var held = minf(action_delta, maxf(impact_pause, stagger_remaining))
+	action_step = maxf(0.0, action_delta - held)
+	if FEEL.impact_enabled and bool(custom_properties.get("_rhythm_enabled", false)) and busy > 0:
+		var phase = action_phase()
+		var rate = 0.92 if phase == "windup" else 1.08 if phase == "impact" else 1.0
+		var before = action_step
+		action_step *= rate
+		_recovery_credit += before - action_step
+	if _compensate_pause and stagger_remaining <= 0: _recovery_credit += minf(action_delta, impact_pause)
+	if _using_heavy_graph() and action_phase() == "recovery" and not is_zero_approx(_recovery_credit):
+		var repayment = clampf(_recovery_credit, -action_step * 0.5, action_step * 0.5)
+		action_step += repayment
+		_recovery_credit -= repayment
+	impact_pause = maxf(0.0, impact_pause - delta)
+	stagger_remaining = maxf(0.0, stagger_remaining - delta)
+	_impact_gate = maxf(0.0, _impact_gate - delta)
+	_stagger_grace = maxf(0.0, _stagger_grace - delta)
+	action_elapsed += action_step
+	# Shift only the current action. Spawned payloads and status clocks stay live.
+	var timeline_delay = action_delta - action_step
+	if not is_zero_approx(timeline_delay):
+		for scheduled in _pending:
+			if _action_event(scheduled): scheduled.at += timeline_delay
+	var was_busy = busy > 0
+	frozen = maxf(0.0, frozen - delta)
+	_slow_time = maxf(0.0, _slow_time - delta)
+	_clock += action_delta
+	if enemy_id == 23001 and enemy_phase() > 0:
+		var flight_timer = float(custom_properties.get("_flight_timer", 0)) + action_delta
+		if flight_timer >= 60.0:
+			flight_timer -= 60.0
+			custom_properties["BB_IsFlyState"] = not bool(custom_properties.get("BB_IsFlyState", false))
+			var phase_actions: Array = custom_properties.get("_enemy_phase_actions", [])
+			phase_actions.append("attack3" if bool(custom_properties.BB_IsFlyState) else "attack6")
+			custom_properties["_enemy_phase_actions"] = phase_actions
+		custom_properties["_flight_timer"] = flight_timer
+	busy = maxf(0.0, busy - action_step)
+	var remaining_hit = false
+	for scheduled in _pending:
+		if _action_event(scheduled) and scheduled.has("hit") and float(scheduled.at) > _clock:
+			remaining_hit = true
+			break
+	if not _using_heavy_graph() and not remaining_hit and not is_zero_approx(_recovery_credit):
+		var compensation = minf(_recovery_credit, busy)
+		busy -= compensation
+		_recovery_credit -= compensation
+	if was_busy and busy <= 0:
+		notify_gameplay("action_end", {"slot": _current_slot, "action": current_action})
+	invincible = maxf(0.0, invincible - delta)
+	_dodge_time = maxf(0.0, _dodge_time - delta)
+	_block_time = maxf(0.0, _block_time - delta)
+	_anti_heal_time = maxf(0.0, _anti_heal_time - delta)
+	if not fighter.is_empty():
+		for slot in range(mini(5, fighter.skills.size())):
+			cooldowns[slot] = maxf(0.0, float(cooldowns[slot]) - delta)
+			var recharge = 1.1 if slot == 1 else 2.0 if slot == 2 else 0.0
+			energy[slot] = minf(float(fighter.skills[slot].maxSp), float(energy[slot]) + delta * recharge)
+	var remaining = delta
+	while remaining > 0.000001:
+		var step = minf(0.01, remaining)
+		_tick_statuses(step)
+		remaining -= step
+	if charging:
+		charge_elapsed += action_step
+	_pending.sort_custom(_event_before)
+	var guard = 0
+	while not _pending.is_empty() and float(_pending[0].at) <= _clock and guard < 4096:
+		guard += 1
+		var event: Dictionary = _pending.pop_front()
+		if health <= 0:
+			continue
+		if event.has("condition_effect"):
+			_apply_condition_effect(event.condition_effect)
+		elif event.has("hit"):
+			_emit_hit(event)
+		else:
+			_execute(event)
+		_pending.sort_custom(_event_before)
+	if guard >= 4096:
+		_report("Timeline event budget exceeded")
+	_tick_attack_collision_gate()
+	if was_busy and _using_heavy_graph():
+		_tick_heavy_interrupts()
+	if health <= 0:
+		_emit_death()
+
+func confirm_hit(hit: Dictionary) -> void:
+	if not fighter.is_empty():
+		var definition: Dictionary = hit.get("definition", {})
+		energy[3] = minf(float(fighter.skills[3].maxSp), float(energy[3]) + maxf(1.0, float(definition.get("charge", 0))))
+		for application in definition.get("ownerBuffs", []):
+			add_buff(str(application.id), int(application.layers))
+	_confirm_status_hit(hit)
+
+func receive(hit: Dictionary, caster_attack: float = 0.0) -> float:
+	hit["receiver_key"] = actor_key
+	var hit_source = hit.get("source")
+	hit["source_key"] = hit_source.actor_key if hit_source is DungeonCombat else str(hit.get("source_key", ""))
+	hit["resolved_damage"] = 0.0
+	hit["resolved_absorbed"] = 0.0
+	hit["resolved_critical"] = false
+	hit["resolved_accepted"] = false
+	if invincible > 0 or _dodge_time > 0 or _block_time > 0 or health <= 0 or (bool(hit.get("attack_collision", true)) and not can_receive_attack()):
+		if health > 0 and (_dodge_time > 0 or _block_time > 0 or _current_slot == 1):
+			notify_gameplay("dodge", {"definition": hit.get("definition", {}), "attacker": hit.get("source"), "dodge_type": "Block" if _block_time > 0 else "BeHiterAutoDodge" if _dodge_time > 0 else "Dodge"})
+		return 0.0
+	var definition: Dictionary = hit.get("definition", {}).duplicate()
+	var source = hit.get("source")
+	var context = {"hit": hit, "damage_rate": 0.0, "fixed_add": 0.0, "final_add": 0.0, "defense_penetration": 0.0, "critical_rate": float(hit.get("critical_rate", 0)), "critical_multi": float(hit.get("critical_multi", 1.5)), "min_damage": 0.0, "max_damage": INF, "can_critical": bool(definition.get("critical", false))}
+	if source is DungeonCombat:
+		source._apply_combat_modifiers(context, self, source, false)
+	_apply_combat_modifiers(context, self, source if source is DungeonCombat else null, true)
+	var critical = bool(hit.get("critical", false))
+	if bool(context.can_critical) and hit.has("critical_roll"):
+		critical = float(hit.critical_roll) < float(context.critical_rate)
+	var value = maxf(0.0, float(hit.get("uncritical_damage", hit.get("damage", 0))))
+	if not hit.has("uncritical_damage") and bool(hit.get("critical", false)):
+		value /= maxf(0.01, float(hit.get("critical_multi", 1.5)))
+	value = value * (float(context.critical_multi) if critical else 1.0) * maxf(0.0, 1.0 + float(context.damage_rate)) + float(context.fixed_add)
+	var effective_defense = (defense + attribute("BaseDef") + attribute("DefAddFixed")) * (1.0 + attribute("DefAddRate") / 1000.0)
+	effective_defense *= maxf(0.0, 1.0 - float(context.defense_penetration))
+	# The APK coefficients are recovered; this defense curve is explicitly reconstructed.
+	value *= 100.0 / (100.0 + maxf(0.0, effective_defense)) * maxf(0.0, 1.0 - attribute("AllElementResist") / 1000.0)
+	var element = str(context.get("element", definition.get("element", "")))
+	definition["element"] = element
+	definition["actType"] = context.get("act_type", definition.get("actType", ""))
+	value *= maxf(0.0, 1.0 - attribute(element + "Resist") / 1000.0)
+	value = clampf(value + float(context.final_add), float(context.min_damage), float(context.max_damage))
+	value = maxf(0.0, value)
+	var absorbed = minf(shield, value)
+	var total_absorbed = absorbed
+	shield -= absorbed
+	value -= absorbed
+	absorbed = minf(armor, value)
+	total_absorbed += absorbed
+	armor -= absorbed
+	value -= absorbed
+	var previous = health
+	health = maxf(0.0, health - value)
+	_apply_health_locks(previous)
+	for application in definition.get("targetBuffs", []):
+		if source is DungeonCombat and source != self:
+			_buff_casters[str(application.id)] = weakref(source)
+		add_buff(str(application.id), int(application.layers), caster_attack)
+	_emit_event("received_hit", {"damage": previous - health, "absorbed": total_absorbed, "damage_id": int(definition.get("damageId", 0)), "element": element, "critical": critical})
+	hit["resolved_damage"] = previous - health
+	hit["resolved_absorbed"] = total_absorbed
+	hit["resolved_critical"] = critical
+	hit["resolved_accepted"] = true
+	if previous > health or total_absorbed > 0:
+		var impact = hit.duplicate(true)
+		impact.erase("source")
+		impact_confirmed.emit(impact)
+		_emit_event("impact_confirmed", impact)
+	if previous > health:
+		var history: Array = custom_properties.get("_recent_damage", [])
+		history = history.filter(func(item): return float(item.at) >= _clock - 1.0)
+		history.append({"at": _clock, "damage": previous - health})
+		custom_properties["_recent_damage"] = history
+		notify_gameplay("injured", {"damage": previous - health, "definition": definition, "attacker": source})
+		if source is DungeonCombat:
+			source.notify_gameplay("cause_damage", {"damage": previous - health, "definition": definition, "critical": critical, "target": self})
+	if health <= 0:
+		if source is DungeonCombat:
+			source.notify_gameplay("kill", {"target": self, "enemy_id": enemy_id, "rank": enemy.get("rank", "Normal")})
+		_emit_death()
+	return previous - health
+
+func apply_area(event: Dictionary, same_camp: bool, squared_distance: float, is_host: bool = false) -> bool:
+	var definition: Dictionary = event.get("definition", {})
+	if health <= 0 or not is_finite(squared_distance) or squared_distance < 0 or squared_distance > pow(float(definition.get("radius", 0)), 2):
+		return false
+	if is_host and not bool(definition.get("includeSelf", false)):
+		return false
+	if not is_host and same_camp != bool(definition.get("sameCamp", false)):
+		return false
+	if not bool(definition.get("addAfterHit", false)):
+		for application in definition.get("targetBuffs", []):
+			if event.get("source") is DungeonCombat:
+				bind_buff_caster(str(application.id), event.source)
+			add_buff(str(application.id), int(application.layers), float(event.get("caster_attack", 0)))
+	var hit_def = {"damageId": int(definition.get("damageId", 0)), "attribute": definition.get("attribute", "None"), "element": definition.get("element", "None"), "actType": definition.get("actType", "None"), "targetBuffs": definition.get("targetBuffs", []) if bool(definition.get("addAfterHit", false)) else []}
+	var area_hit = event.duplicate()
+	area_hit.merge({"definition": hit_def, "damage": float(event.get("damage", 0)) if bool(definition.get("enableDamage", true)) else 0.0, "distance": sqrt(squared_distance), "attack_collision": false}, true)
+	receive(area_hit, float(event.get("caster_attack", 0)))
+	return true
+
+func confirm_direct_damage(previous_health: float, context: Dictionary) -> void:
+	if not is_finite(previous_health) or previous_health <= health or invincible > 0 or _dodge_time > 0 or _block_time > 0: return
+	_emission_sequence += 1
+	var impact = context.duplicate(true)
+	impact.erase("source")
+	impact.merge({"receiver_key": actor_key, "resolved_damage": previous_health - health, "resolved_absorbed": 0.0, "resolved_critical": false, "resolved_accepted": true}, true)
+	if not impact.has("emission"): impact["emission"] = _emission_sequence
+	impact_confirmed.emit(impact)
+	_emit_event("impact_confirmed", impact)
+
+func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: int = 0) -> bool:
+	if id.is_empty() or layers == 0:
+		return false
+	if depth > 16:
+		_report("Buff initialization recursion exceeds 16: " + id)
+		return false
+	var definition: Dictionary = _buff_index.get(id, {})
+	if definition.is_empty():
+		_report("Missing buff " + id)
+		return false
+	if caster_attack < 0:
+		caster_attack = effective_attack_power()
+	if layers > 0:
+		for old in definition.get("clear", []):
+			statuses.erase(str(old))
+	var type = str(definition.get("type", "Unknown"))
+	if type == "EBT_SpecialBuffHP":
+		var settings = _settings(definition)
+		var amount = max_health * float(settings.get("MaxHpPercentChange", definition.get("healPercent", 0))) / 1000.0 + float(settings.get("MaxHpValueChange", settings.get("FixValueChange", 0)))
+		if definition.get("raw_data", {}).get("ChangeMode") == "DamageDef":
+			var damage = _damage_data(int(settings.get("DamageDefId", 0)))
+			if damage.is_empty():
+				_report("Healing damage definition missing: %s %s" % [id, settings.get("DamageDefId", 0)])
+			else:
+				amount = _damage_value(damage, caster_attack)
+		var multiplier_buff = str(settings.get("BeMutiplyBuffId", ""))
+		if not multiplier_buff.is_empty():
+			amount *= buff_layers(multiplier_buff)
+		if _anti_heal_time > 0:
+			amount = 0.0
+		health = clampf(health + amount * (1.0 + attribute("HealRate") / 1000.0), 0.0, max_health)
+		_emit_event("heal", {"id": id, "amount": amount})
+		notify_gameplay("heal", {"amount": amount})
+		return true
+	if bool(definition.get("setState", false)):
+		frozen = maxf(frozen, float(definition.get("freezeTime", 0)))
+		invincible = maxf(invincible, float(definition.get("godTime", 0)))
+		if float(definition.get("slowTime", 0)) > 0:
+			_slow_time = maxf(_slow_time, float(definition.slowTime))
+			_slow_scale = maxf(0.0, float(definition.get("slowScale", 1)))
+		var settings = _settings(definition)
+		_dodge_time = maxf(_dodge_time, float(settings.get("DodgeTime", 0)) / 1000.0)
+		_block_time = maxf(_block_time, float(settings.get("BlockTime", 0)) / 1000.0)
+		_anti_heal_time = maxf(_anti_heal_time, float(settings.get("AntiHealTime", 0)) / 1000.0)
+	if type == "EBT_ModifyTargetBuffValue" and not str(definition.get("modify", "")).is_empty() and str(definition.get("syncSource", "")).is_empty():
+		add_buff(str(definition.modify), int(definition.get("modifyLayers", 0)), caster_attack, depth + 1)
+		return true
+	var created = not statuses.has(id)
+	if created and layers < 0:
+		return false
+	if created:
+		var timers: Array = []
+		var delays: Array = []
+		var initial_cooldown = 0.0
+		for condition in definition.get("raw_data", {}).get("Conditions", []):
+			if condition.get("ConditionType") == "ECT_CheckBuffCD" and bool(condition.get("InitResetCD", false)):
+				initial_cooldown = maxf(initial_cooldown, float(condition.get("ColdTime", 0)) / 1000.0)
+		for trigger in definition.get("triggers", []):
+			timers.append(maxf(initial_cooldown, float(trigger.get("initialDelay", 0))))
+			delays.append(-1.0)
+		statuses[id] = {"id": id, "layers": 0, "time": float(definition.get("duration", -1)), "tick": maxf(0.0, float(definition.get("firstDelay", 1))), "attack": caster_attack, "modifier_cooldown": 0.0, "trigger_cooldowns": timers, "trigger_delays": delays, "lock_count": 0}
+	var entry: Dictionary = statuses[id]
+	var caster = _caster_for(id)
+	if type == "EBT_NBuffAddCasterUnitAttribToReceiverProperty" and bool(definition.get("raw_data", {}).get("IsSnapShootMode", false)):
+		var settings = _settings(definition, caster)
+		entry.attribute_basis = (caster if caster != null else self).stat_value(str(settings.get("Attr_CasterUnit", "None")))
+	if caster != null:
+		entry.caster_actor = caster.character_id if caster.character_id > 0 else caster.enemy_id
+		entry.caster_key = caster.actor_key
+	else:
+		entry.caster_actor = character_id if character_id > 0 else enemy_id
+		entry.caster_key = actor_key
+	var level_settings = _settings(definition, caster)
+	var maximum_layers = maxi(1, int(definition.get("maxLayers", 1)) + int(level_settings.get("MaxLayerAdd", 0)))
+	var duration = float(definition.get("duration", -1))
+	if duration >= 0: duration += float(level_settings.get("InitLifeTimeAdd", 0)) / 1000.0
+	var old_layers = int(entry.layers)
+	entry.layers = clampi(int(entry.layers) + layers, 0, maximum_layers)
+	if created or not bool(definition.get("keepDuration", false)):
+		entry.time = duration
+	entry.attack = caster_attack
+	if int(entry.layers) == 0:
+		if type != "EBT_SpecialCustomStateBar":
+			statuses.erase(id)
+		return true
+	if created:
+		for condition in definition.get("raw_data", {}).get("Conditions", []):
+			if condition.get("ConditionType") == "ECT_CheckBuffCD" and bool(condition.get("InitResetCD", false)):
+				entry.raw_cooldown = maxf(float(entry.get("raw_cooldown", 0)), float(condition.get("ColdTime", 0)) / 1000.0)
+		for child in definition.get("initial", []):
+			if _buff_casters.has(id):
+				_buff_casters[str(child)] = _buff_casters[id]
+			add_buff(str(child), 1, caster_attack, depth + 1)
+		_apply_extra_buff(definition, entry, caster_attack, depth)
+	if float(definition.get("duration", -1)) == 0:
+		for index in range(definition.get("triggers", []).size()):
+			var rule: Dictionary = definition.triggers[index]
+			if not bool(rule.get("onHit", false)) and rule.get("addedBuffs", []).is_empty() and float(entry.trigger_cooldowns[index]) <= 0 and _requirements(rule):
+				_fire(entry, index, caster_attack, depth + 1)
+	if layers > 0:
+		for listener in statuses.values().duplicate():
+			var listener_def: Dictionary = _buff_index.get(listener.id, {})
+			for index in range(listener_def.get("triggers", []).size()):
+				var rule: Dictionary = listener_def.triggers[index]
+				if rule.get("addedBuffs", []).has(id) and float(listener.trigger_cooldowns[index]) <= 0 and _requirements(rule):
+					_fire(listener, index, caster_attack, depth + 1)
+	if type == "EBT_SpecialCounterTrigger" and int(entry.layers) >= int(definition.get("maxLayers", 1)):
+		var raw: Dictionary = definition.get("raw_data", {})
+		_apply_raw_buff(raw.get("AddBuffWhenLayerMax", {}), caster_attack, depth + 1)
+		entry.layers = maxi(0, int(entry.layers) - int(raw.get("ReduceLayerWhenLayerMax", 0)))
+	if type == "EBT_NumericalBuff":
+		for stat in definition.get("stats", []):
+			if not SUPPORTED_ATTRIBUTES.has(str(stat.attribute)):
+				_report("Attribute needs system adapter: %s buff %s" % [stat.attribute, id])
+	elif type == "Unknown" or (type != "EBT_ConditionBuff" and not str(definition.get("unsupported", "")).is_empty()):
+		_report("Buff rule requires review: %s %s %s" % [id, type, definition.get("unsupported", "")])
+	if type == "EBT_SpecialTriggerRangeDamage" and not bool(definition.get("selfOnlyDamage", false)) and not definition.get("area") is Dictionary:
+		_report("Unsupported area effect: %s %s" % [id, definition.get("areaUnsupported", "")])
+	notify_gameplay("buff_add", {"id": id, "layers": int(entry.layers) - old_layers, "before": old_layers, "after": int(entry.layers)})
+	return true
+
+func buff_layers(id: String) -> int:
+	return int(statuses[id].layers) if statuses.has(id) else 0
+
+func remove_buff(id: String) -> void:
+	statuses.erase(id)
+
+func special_resource() -> int:
+	return buff_layers(str(fighter.get("jp", "")))
+
+func charge_stage() -> int:
+	return 3 if buff_layers("700003") > 0 else 2 if buff_layers("700002") > 0 else 1 if buff_layers("700001") > 0 else 0
+
+func is_transformed() -> bool:
+	return buff_layers("700200") > 0 or buff_layers("200202") > 0 or buff_layers("200400") > 0
+
+func can_receive_attack() -> bool:
+	return busy <= 0 or bool(custom_properties.get("_action_can_hit", true))
+
+func _tick_attack_collision_gate() -> void:
+	if busy <= 0: return
+	var definition = _action("ActGroup_playerchara" if enemy.is_empty() else str(enemy.get("group", "")), current_action)
+	var elapsed = action_elapsed * maxf(0.01, float(custom_properties.get("_feel_action_speed", 1)))
+	var previous = float(custom_properties.get("_can_hit_evaluated", -1.0))
+	var active: Dictionary = custom_properties.get("_can_hit_windows", {})
+	var commands: Array = definition.get("events", []).filter(func(command): return command.get("enabled", false) and command.get("type", "") == "EET_CanBeHit")
+	commands.sort_custom(func(a, b): return float(a.time) < float(b.time))
+	for index in commands.size():
+		var command: Dictionary = commands[index]
+		var start = float(command.get("time", 0))
+		var duration = float(command.get("duration", 0))
+		if elapsed + 0.000001 < start: continue
+		var triggered = previous < start and elapsed + 0.000001 >= start
+		var key = str(index)
+		if triggered:
+			if not _conditions(command.get("conditions", []), bool(command.get("all", true))): continue
+			if duration > 0: active[key] = true
+		elif not active.has(key) or elapsed > start + duration + 0.000001:
+			continue
+		var raw = JSON.parse_string(str(command.get("raw", "{}")))
+		if raw is Dictionary and raw.has("IsCanBeHit"):
+			custom_properties["_action_can_hit"] = bool(raw.IsCanBeHit)
+	# Native Exit is a no-op: the last write survives until this action is reset.
+	custom_properties["_can_hit_evaluated"] = elapsed
+	custom_properties["_can_hit_windows"] = active
+
+func is_busy() -> bool:
+	return busy > 0
+
+func effective_attack_power() -> float:
+	return (attack + attribute("BaseAtk") + attribute("AtkAddFixed")) * (1.0 + attribute("AtkAddRate") / 1000.0)
+
+func move_multiplier() -> float:
+	return (0.0 if frozen > 0 else _slow_scale if _slow_time > 0 else 1.0) * maxf(0.1, 1.0 + attribute("MoveSpeedRate") / 1000.0)
+
+func attribute(name: String) -> float:
+	var value = float(_external.get(name, 0.0))
+	if _attribute_stack.has(name):
+		return value
+	_attribute_stack[name] = true
+	for entry in statuses.values():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") == "EBT_NumericalBuff" and not _external_numeric_buffs.has(entry.id):
+			var settings = _settings(definition, _caster_for(str(entry.id)))
+			var stats: Array = settings.get("BuffDataList", [])
+			if stats.is_empty() and definition.get("raw_data", {}).get("BuffSettingDataList", []).is_empty():
+				stats = definition.get("stats", [])
+			for stat in stats:
+				var stat_name = str(stat.get("Attr", stat.get("attribute", "")))
+				if stat_name == name:
+					value += float(stat.get("AddValue", stat.get("value", 0))) * int(entry.layers)
+		elif definition.get("type") == "EBT_NBuffAddCasterUnitAttribToReceiverProperty":
+			var settings = _settings(definition, _caster_for(str(entry.id)))
+			if settings.get("Attr_Receiver") != name:
+				continue
+			var caster = _caster_for(str(entry.id))
+			var basis = float(entry.attribute_basis) if entry.has("attribute_basis") else (caster if caster != null else self).stat_value(str(settings.get("Attr_CasterUnit", "None")))
+			var addition = 0.0
+			if basis >= float(settings.get("StartThresholdValue", 0)):
+				if settings.get("AddModeType") == "PerNumAddMode":
+					addition = floor((basis - float(settings.get("StartThresholdValue", 0))) / maxf(0.001, float(settings.get("PerNumValue", 1)))) * float(settings.get("PerAddValue", 0))
+				else:
+					addition = float(settings.get("AddValue", 0)) + basis * float(settings.get("MulValue", 0)) / 1000.0
+			if float(settings.get("FinalMaxAddValue", -1)) >= 0:
+				addition = minf(addition, float(settings.FinalMaxAddValue))
+			value += addition * int(entry.layers)
+	_attribute_stack.erase(name)
+	return value
+
+func set_external_attributes(attributes: Dictionary) -> void:
+	_external = attributes.duplicate()
+	health = minf(health, max_health)
+
+func set_stats(attack_value: float, defense_value: float, max_hp_value: float) -> void:
+	attack = attack_value
+	defense = defense_value
+	max_health = max_hp_value
+	health = minf(health, max_health)
+
+func set_progression_buffs(roots: Array, externally_counted_numeric_ids: Array = []) -> void:
+	var next: Dictionary = {}
+	for root in roots:
+		if root is Dictionary and not str(root.get("id", "")).is_empty() and int(root.get("layers", 0)) > 0:
+			next[str(root.id)] = int(next.get(str(root.id), 0)) + int(root.layers)
+	_external_numeric_buffs = externally_counted_numeric_ids.duplicate()
+	var required: Dictionary = {}
+	for id in next:
+		_collect_initial(str(id), required)
+	for id in _progression_owned.duplicate():
+		if not required.has(id):
+			if _buff_index.get(id, {}).get("type") != "EBT_SpecialCustomStateBar":
+				statuses.erase(id)
+			_progression_owned.erase(id)
+	for id in next:
+		var before = int(_progression_roots.get(id, 0))
+		if before == int(next[id]) or (statuses.has(id) and not _progression_owned.has(id)):
+			continue
+		var existing = statuses.keys()
+		add_buff(id, int(next[id]) - before)
+		for added in statuses:
+			if not existing.has(added) and required.has(added):
+				_progression_owned.append(added)
+	_progression_roots = next
+	health = minf(health, max_health)
+
+func cancel() -> void:
+	_pending = _pending.filter(func(event): return event.has("condition_effect"))
+	busy = 0.0
+	charging = false
+	_clear_charge()
+
+func revive(health_value: float, protection: float = 2.0) -> bool:
+	if health > 0 or health_value <= 0 or not is_finite(health_value) or not is_finite(protection):
+		return false
+	cancel()
+	current_action = ""
+	health = minf(max_health, health_value)
+	invincible = maxf(0.0, protection)
+	_dead_emitted = false
+	_emit_event("revived", {"health": health})
+	return true
+
+func enemy_preferred_range() -> float:
+	for action_name in enemy.get("actions", []):
+		for hit in _action(str(enemy.get("group", "")), str(action_name)).get("hits", []):
+			if bool(hit.get("projectile", false)):
+				return 7.0
+	return 3.2 if enemy.get("rank") == "Boss" else 1.7
+
+func snapshot() -> Dictionary:
+	custom_properties["_emission_sequence"] = _emission_sequence
+	custom_properties["_actor_key"] = actor_key
+	custom_properties["_defensive_timers"] = {"dodge": _dodge_time, "block": _block_time, "anti_heal": _anti_heal_time}
+	custom_properties["_local_action_elapsed"] = action_elapsed
+	custom_properties["_recovery_credit"] = _recovery_credit
+	return {"version": 1, "character_id": character_id, "enemy_id": enemy_id, "difficulty": difficulty, "attack": attack, "defense": defense, "max_health": _base_max_health, "health": health, "armor": armor, "shield": shield, "invincible": invincible, "frozen": frozen, "slow_time": _slow_time, "slow_scale": _slow_scale, "clock": _clock, "busy": busy, "combo": _combo, "combo_expiry": _combo_expiry, "cast_sequence": _cast_sequence, "current_slot": _current_slot, "current_action": current_action, "random_state": _random_state, "energy": energy.duplicate(), "cooldowns": cooldowns.duplicate(), "pending": _pending.duplicate(true), "statuses": statuses.duplicate(true), "external": _external.duplicate(), "progression_roots": _progression_roots.duplicate(), "progression_owned": _progression_owned.duplicate(), "external_numeric_buffs": _external_numeric_buffs.duplicate(), "charging": charging, "charge_released": charge_released, "charge_elapsed": charge_elapsed, "custom_properties": custom_properties.duplicate(true), "diagnostics": diagnostics.duplicate()}
+
+func restore(saved: Dictionary) -> bool:
+	if int(saved.get("version", 0)) != 1 or int(saved.get("character_id", -1)) != character_id or int(saved.get("enemy_id", -1)) != enemy_id:
+		return false
+	for key in ["health", "max_health", "attack", "defense", "clock", "busy", "invincible", "frozen"]:
+		if not is_finite(float(saved.get(key, NAN))):
+			return false
+	if not saved.get("energy") is Array or saved.energy.size() != 5 or not saved.get("cooldowns") is Array or saved.cooldowns.size() != 5 or not saved.get("statuses") is Dictionary or not saved.get("pending") is Array:
+		return false
+	_base_max_health = maxf(1.0, float(saved.max_health))
+	attack = float(saved.attack)
+	defense = float(saved.defense)
+	armor = maxf(0.0, float(saved.get("armor", 0)))
+	shield = maxf(0.0, float(saved.get("shield", 0)))
+	_external = saved.get("external", {}).duplicate()
+	statuses = saved.statuses.duplicate(true)
+	for id in statuses.keys():
+		if not _buff_index.has(id):
+			statuses.erase(id)
+			_report("Saved buff missing " + str(id))
+		else:
+			var count = _buff_index[id].get("triggers", []).size()
+			if statuses[id].get("trigger_cooldowns", []).size() != count or statuses[id].get("trigger_delays", []).size() != count:
+				return false
+	health = clampf(float(saved.health), 0.0, max_health)
+	invincible = maxf(0.0, float(saved.invincible))
+	frozen = maxf(0.0, float(saved.frozen))
+	_slow_time = maxf(0.0, float(saved.get("slow_time", 0)))
+	_slow_scale = maxf(0.0, float(saved.get("slow_scale", 1)))
+	_clock = float(saved.clock)
+	busy = maxf(0.0, float(saved.busy))
+	_combo = int(saved.get("combo", 0))
+	_combo_expiry = float(saved.get("combo_expiry", 0))
+	_cast_sequence = int(saved.get("cast_sequence", 0))
+	_current_slot = int(saved.get("current_slot", 0))
+	current_action = str(saved.get("current_action", ""))
+	_random_state = int(saved.get("random_state", 1)) & 0xffffffff
+	energy = saved.energy.duplicate()
+	cooldowns = saved.cooldowns.duplicate()
+	_pending = saved.pending.duplicate(true)
+	if enemy.is_empty() and _current_slot == 4:
+		_pending = _pending.filter(func(event): return not (_action_event(event) and event.get("command", {}).get("type", "") == "EET_Interrupt"))
+	_progression_roots = saved.get("progression_roots", {}).duplicate()
+	_progression_owned = saved.get("progression_owned", []).duplicate()
+	_external_numeric_buffs = saved.get("external_numeric_buffs", []).duplicate()
+	charging = bool(saved.get("charging", false))
+	charge_released = bool(saved.get("charge_released", false))
+	charge_elapsed = float(saved.get("charge_elapsed", 0))
+	custom_properties = saved.get("custom_properties", {}).duplicate(true)
+	clear_impact_state()
+	action_elapsed = maxf(0, float(custom_properties.get("_local_action_elapsed", _clock - float(custom_properties.get("_feel_action_started", _clock)))))
+	if not custom_properties.has("_action_can_hit"):
+		custom_properties["_action_can_hit"] = bool(_heavy_catalog.get("actions", {}).get(current_action, {}).get("can_hit", true))
+		_tick_attack_collision_gate()
+	var saved_credit = float(custom_properties.get("_recovery_credit", 0))
+	_recovery_credit = saved_credit if is_finite(saved_credit) else 0.0
+	_emission_sequence = int(custom_properties.get("_emission_sequence", 0))
+	actor_key = str(custom_properties.get("_actor_key", actor_key))
+	var timers: Dictionary = custom_properties.get("_defensive_timers", {})
+	_dodge_time = maxf(0.0, float(timers.get("dodge", 0)))
+	_block_time = maxf(0.0, float(timers.get("block", 0)))
+	_anti_heal_time = maxf(0.0, float(timers.get("anti_heal", 0)))
+	diagnostics = saved.get("diagnostics", []).duplicate()
+	_buff_casters.clear()
+	events.clear()
+	_dead_emitted = health <= 0
+	return true
+
+func drain_events() -> Array:
+	var result = events
+	events = []
+	return result
+
+func _start(definition: Dictionary, slot: int) -> void:
+	_cancel_sequence(_cast_sequence, true)
+	_current_slot = slot
+	current_action = str(definition.id)
+	custom_properties["_action_can_hit"] = bool(_heavy_catalog.get("actions", {}).get(current_action, {}).get("can_hit", true))
+	custom_properties["_can_hit_evaluated"] = -1.0
+	custom_properties["_can_hit_windows"] = {}
+	custom_properties["_heavy_graph"] = enemy.is_empty() and (slot == 4 or (slot == 0 and custom_properties.get("AttackModeStr", "normal") == "satk"))
+	if slot == 4 and current_action == "lance_satk":
+		charging = true
+		charge_released = false
+		charge_elapsed = 0.0
+	_cast_sequence += 1
+	action_elapsed = 0.0
+	_recovery_credit = 0.0
+	_compensate_pause = false
+	var speed = maxf(0.01, float(definition.get("speed", 1))) * maxf(0.1, 1.0 + attribute("AttackSpeedRate") / 1000.0)
+	custom_properties["_feel_action_started"] = _clock
+	custom_properties["_feel_action_speed"] = speed
+	custom_properties["_rhythm_enabled"] = enemy.is_empty() and slot != 1 and definition.get("hits", []).any(func(hit): return hit.get("enabled", false) and not preload("res://scripts/presentation/impact_profiles.gd").ranged({"definition": hit}))
+	var last_hit = 0.0
+	for hit in definition.get("hits", []):
+		if bool(hit.get("enabled", false)):
+			last_hit = maxf(last_hit, float(hit.time) / speed)
+	busy = maxf(0.18, minf(float(definition.duration) / speed, maxf(last_hit + 0.18, 0.45)))
+	var heavy_graph = _using_heavy_graph()
+	if heavy_graph:
+		busy = maxf(0.18, float(definition.duration) / speed)
+	if enemy.is_empty() and slot == 0 and not heavy_graph:
+		custom_properties["_feel_next_combo"] = ""
+		var first_window := INF
+		for command in definition.get("events", []):
+			if not command.get("enabled", false) or command.get("type", "") != "EET_Interrupt": continue
+			var target = str(command.get("target", ""))
+			if not fighter.get("combo", []).has(target): continue
+			var raw = JSON.parse_string(str(command.get("raw", "{}")))
+			var conditions: Array = raw.get("Conditions", []) if raw is Dictionary else []
+			if conditions.size() != 1: continue
+			var condition: Dictionary = conditions[0]
+			if condition.get("InterruptType", "") != "EIT_CheckCustomPropertyBool" or condition.get("Property", "") != "InputAttack" or not condition.get("CompareVal", false): continue
+			var start = float(command.get("time", 0)) / speed
+			if start > 0 and start < first_window:
+				first_window = start
+				custom_properties["_feel_next_combo"] = target
+		if first_window < INF: busy = first_window
+	if not enemy.is_empty():
+		busy = 0.0 if current_action.begins_with("idle") else maxf(0.18, float(definition.duration) / speed)
+	_emit_event("action_started", {"action": current_action, "slot": slot, "sequence": _cast_sequence, "duration": busy, "speed": speed})
+	notify_gameplay("action_start", {"slot": slot, "action": current_action})
+	for hit in definition.get("hits", []):
+		if bool(hit.get("enabled", false)):
+			_schedule(hit, _clock + float(hit.time) / speed, current_action, slot, 0.0)
+	for command in definition.get("events", []):
+		if bool(command.get("enabled", false)):
+			if heavy_graph and command.get("type", "") == "EET_Interrupt": continue
+			_pending.append({"at": _clock + float(command.time) / speed, "sequence": _cast_sequence, "action": current_action, "slot": slot, "command": command, "action_timeline": true})
+
+func _tick_heavy_interrupts() -> void:
+	var definition = _action("ActGroup_playerchara", current_action)
+	var interrupts: Array = definition.get("events", []).filter(func(command): return command.get("enabled", false) and command.get("type", "") == "EET_Interrupt")
+	interrupts.sort_custom(func(a, b): return float(a.time) < float(b.time))
+	var speed = maxf(0.01, float(custom_properties.get("_feel_action_speed", 1)))
+	var elapsed = action_elapsed * speed
+	for command in interrupts:
+		var start = float(command.get("time", 0))
+		var duration = float(command.get("duration", 0))
+		if elapsed + 0.000001 < start: continue
+		if duration > 0 and elapsed > start + duration + 0.000001: continue
+		if not _conditions(command.get("conditions", []), bool(command.get("all", true))): continue
+		var raw = JSON.parse_string(str(command.get("raw", "{}")))
+		if not raw is Dictionary or not _interrupt_conditions(raw): continue
+		var target = str(command.get("target", ""))
+		# Keep heavy action branches local; skill, movement and normal input use the input buffer.
+		if "satk" in target or "SmiteDerivative" in target or target == "orb_smite_0jp":
+			var next = _action("ActGroup_playerchara", target)
+			if next.is_empty(): continue
+			if charging and current_action == "lance_satk": _release_charge(target)
+			else: _start(next, 4)
+			return
+		if fighter.get("combo", []).has(target) or target == "sys_checkatk_1":
+			if custom_properties.get("AttackModeStr", "satk") != "satk": continue
+			if target == "sys_checkatk_1": target = str(fighter.combo[0])
+			var next = _action("ActGroup_playerchara", target)
+			if not next.is_empty():
+				_start(next, 0)
+				return
+		if target == "sys_idle" or target.begins_with("idle_"):
+			_cancel_sequence(_cast_sequence, true)
+			busy = 0.0
+			charging = false
+			return
+		if target == "sys_run" or target.begins_with("run_"):
+			_cancel_sequence(_cast_sequence, true)
+			busy = 0.0
+			charging = false
+			_clear_charge()
+			_emit_event("action_cancelled", {"sequence": _cast_sequence})
+			return
+
+func _schedule(hit: Dictionary, at: float, action_name: String, slot: int, offset: float, summon_id: String = "", origin: Dictionary = {}, target_key: String = "") -> void:
+	for index in range(clampi(int(hit.get("count", 1)), 1, 100)):
+		_pending.append({"at": at + index * float(hit.get("interval", 0)), "sequence": _cast_sequence, "action": action_name, "slot": slot, "hit": hit, "offset": offset, "summon_id": summon_id, "origin": origin.duplicate(true), "target_key": target_key, "action_timeline": summon_id.is_empty()})
+
+func _execute(event: Dictionary) -> void:
+	var command: Dictionary = event.command
+	if not _conditions(command.get("conditions", []), bool(command.get("all", true))):
+		return
+	var raw = JSON.parse_string(str(command.get("raw", "{}")))
+	if not raw is Dictionary:
+		raw = {}
+	match str(command.type):
+		"EET_AddBuff":
+			add_buff(str(command.buff), int(command.layers))
+		"EET_AddSummonUnit":
+			_spawn_summon(str(command.summon), float(event.at), str(event.action), int(event.slot), float(command.get("offset", 0)), 0, raw.get("AddSummonUnitDef", {}))
+		"EET_Interrupt":
+			var target = str(command.get("target", ""))
+			if str(event.action).begins_with("lance_satk") and bool(command.get("unconditionalInterrupt", false)) and target.begins_with("lance_satk"):
+				_release_charge(target)
+			elif _current_slot == 4 and character_id == 3 and target.begins_with("axe_satk") and _interrupt_conditions(raw):
+				if target == "axe_satk_loop" and special_resource() <= 0:
+					target = "axe_satk_end"
+				var next = _action("ActGroup_playerchara", target)
+				if not next.is_empty():
+					_cancel_sequence(_cast_sequence)
+					_start(next, 4)
+			elif not enemy.is_empty() and bool(command.get("unconditionalInterrupt", false)) and not target.begins_with("sys_"):
+				var next = _action(str(enemy.group), target)
+				if not next.is_empty():
+					_cancel_sequence(_cast_sequence)
+					_start(next, 0)
+		"EET_SetCustomPropertyInt32":
+			var property = str(raw.get("CustomProperty", raw.get("Property", "")))
+			custom_properties[property] = int(raw.get("Value", raw.get("Val", raw.get("SetValue", 0))))
+		"EET_CanBeHit":
+			pass # Evaluated in action-time order, including active duration windows.
+		"EET_MonsterGeneration":
+			_emit_event("spawn_monster", {"definition": raw})
+		"EET_DelUnit":
+			_emit_event("delete_unit", {"definition": raw})
+		"EET_SendMessage":
+			_emit_event("message", {"definition": raw})
+	_emit_event("command", {"command": command, "action": event.action, "slot": event.slot, "sequence": event.sequence, "speed": maxf(0.01, float(_action("ActGroup_playerchara" if enemy.is_empty() else str(enemy.group), str(event.action)).get("speed", 1))) * maxf(0.1, 1.0 + attribute("AttackSpeedRate") / 1000.0)})
+
+func _emit_hit(event: Dictionary) -> void:
+	var definition: Dictionary = event.hit.duplicate()
+	var damage_data = _damage_data(int(definition.get("damageId", 0)))
+	if not damage_data.is_empty():
+		definition.attribute = str(damage_data.get("DamageAttribType", definition.get("attribute", "None")))
+		definition.element = str(damage_data.get("DamageType", definition.get("element", "None")))
+		definition.actType = str(damage_data.get("DamageActType", definition.get("actType", "Other")))
+		definition.critical = bool(damage_data.get("EnableCriticle", definition.get("critical", false)))
+	if not _conditions(definition.get("conditions", []), bool(definition.get("all", true))):
+		return
+	if not str(definition.get("summon", "")).is_empty():
+		var nested: Dictionary = _summon_index.get(str(definition.summon), {})
+		if nested.is_empty():
+			_report("Missing nested summon " + str(definition.summon))
+		else:
+			_schedule(nested.hit, float(event.at), str(event.action), int(event.slot), float(event.get("offset", 0)), str(definition.summon), event.get("origin", {}), str(event.get("target_key", "")))
+	if int(definition.get("damageId", 0)) <= 0:
+		return
+	if definition.get("attribute") == "Unknown":
+		_report("Missing damage " + str(definition.damageId))
+		return
+	var basis = max_health if definition.get("attribute") == "MaxHp" else effective_attack_power()
+	if not ["FinalAtk", "None", "Atk", "MaxHp", "FinalDef", "CurHp", "LostHpValue", "LastSecTotalBeDamage"].has(definition.get("attribute")):
+		_report("Damage attribute reconstructed as attack: " + str(definition.get("attribute")))
+	var critical_rate = float(fighter.get("critRate", 0)) + attribute("CriticalRate") / 1000.0
+	var critical_roll = _random() if bool(definition.get("critical", false)) and not fighter.is_empty() else 1.0
+	var critical = bool(definition.get("critical", false)) and not fighter.is_empty() and critical_roll < critical_rate
+	var rate_keys = ["NormalAtkDamageRate", "DodgeAtkDamageRate", "SubSkillDamageRate", "MainSkillDamageRate", "SpecialAtkDamageRate"]
+	var value = maxf(0.0, basis * float(definition.get("multiplier", 0)) + float(definition.get("fixedDamage", 0)))
+	if not damage_data.is_empty():
+		value = maxf(0.0, _damage_value(damage_data, effective_attack_power()))
+	var critical_multi = float(fighter.get("critMultiplier", 1.5)) + attribute("CriticalMulti") / 1000.0
+	value *= 1.0 + (attribute(rate_keys[clampi(int(event.slot), 0, 4)]) + attribute("AllElementDamageRate") + attribute(str(definition.get("element", "")) + "DamageRate")) / 1000.0
+	value *= _damage_multiplier(str(definition.get("actType", "")))
+	_emission_sequence += 1
+	_emit_event("hit", {"definition": definition, "action": event.action, "slot": event.slot, "sequence": event.sequence, "emission": _emission_sequence, "damage": value * (critical_multi if critical else 1.0), "uncritical_damage": value, "critical_rate": critical_rate, "critical_multi": critical_multi, "critical_roll": critical_roll, "critical": critical, "forward_offset": float(event.get("offset", 0)), "projectile": bool(definition.get("projectile", false)), "summon_id": event.get("summon_id", ""), "origin": event.get("origin", {}), "target_key": event.get("target_key", ""), "source": self})
+
+func _spawn_summon(id: String, at: float, action_name: String, slot: int, offset: float = 0.0, depth: int = 0, origin: Dictionary = {}, target_key: String = "") -> void:
+	if depth > 8:
+		_report("Summon recursion exceeds 8: " + id)
+		return
+	for entry in statuses.values():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") == "EBT_SummonUnitModify" and definition.get("raw_data", {}).get("SummonUnitIdList", []).has(id):
+			id = str(_settings(definition).get("ModifyTargetSummonUnitToOtherSummonUnitId", id))
+	var summon: Dictionary = _summon_index.get(id, {})
+	if summon.is_empty():
+		_report("Missing summon " + id)
+		return
+	_emit_event("summon", {"id": id, "definition": summon, "lifetime": float(summon.get("lifetime", 0)), "forward_offset": offset, "origin": origin, "target_key": target_key})
+	notify_gameplay("summon", {"id": id})
+	var raw: Dictionary = summon.get("raw_data", {})
+	_apply_raw_buff(raw.get("BuffTrigger_Caster", {}), effective_attack_power(), depth + 1)
+	if int(summon.get("hit", {}).get("damageId", 0)) > 0:
+		var summon_hit: Dictionary = summon.hit
+		if summon.get("type", "") == "ESUT_Funnel":
+			# Funnel emit intervals in the APK are already seconds; the legacy import divided them again.
+			summon_hit = summon_hit.duplicate()
+			summon_hit.interval = float(raw.get("EmitProperty", {}).get("Interval", summon_hit.get("interval", 0)))
+		var interval = maxf(0.05, float(summon.get("interval", 1)))
+		var repeats = clampi(int(ceil(float(summon.get("lifetime", interval)) / interval)), 1, 100)
+		for index in range(repeats):
+			_schedule(summon_hit, at + index * interval, action_name, slot, 0.0 if origin.has("InitPosOffset") else offset, id, origin, target_key)
+	elif str(summon.get("type", "")) == "ESUT_PickupableItem":
+		_emit_event("pickup_spawn", {"id": id, "buff": raw.get("BuffTrigger_Picker", {}), "radius": raw.get("PickUpRange", 2), "lifetime": summon.get("lifetime", 20), "origin": origin, "target_key": target_key})
+	else:
+		_report("Summon behavior requires world adapter: %s %s" % [id, summon.get("type", "")])
+
+func _tick_statuses(delta: float) -> void:
+	for entry in statuses.values().duplicate():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		var source_id = str(definition.get("syncSource", ""))
+		if not source_id.is_empty():
+			var source: Dictionary = statuses.get(source_id, {})
+			var total = float(source.get("time", 0)) + maxi(0, int(source.get("layers", 0)) - 1) * float(_buff_index.get(source_id, {}).get("duration", 0)) if not source.is_empty() else 0.0
+			for id in definition.get("syncTargets", []):
+				if statuses.has(str(id)):
+					statuses[str(id)].time = maxf(0.0, total)
+	var expired: Array = []
+	for id in statuses.keys():
+		if not statuses.has(id):
+			continue
+		var entry: Dictionary = statuses[id]
+		var definition: Dictionary = _buff_index.get(id, {})
+		var active = delta if float(entry.time) < 0 or int(definition.get("expiryLayers", 0)) > 0 else minf(delta, float(entry.time))
+		entry.modifier_cooldown = maxf(0.0, float(entry.modifier_cooldown) - active)
+		entry.raw_cooldown = maxf(0.0, float(entry.get("raw_cooldown", 0)) - active)
+		for index in range(definition.get("triggers", []).size()):
+			if float(entry.trigger_delays[index]) >= 0:
+				entry.trigger_delays[index] = float(entry.trigger_delays[index]) - active
+				if float(entry.trigger_delays[index]) <= 0:
+					entry.trigger_delays[index] = -1.0
+					_fire(entry, index, float(entry.attack), 0, true)
+			entry.trigger_cooldowns[index] = maxf(0.0, float(entry.trigger_cooldowns[index]) - active)
+			var rule: Dictionary = definition.triggers[index]
+			if int(entry.layers) > 0 and not bool(rule.get("onHit", false)) and rule.get("addedBuffs", []).is_empty() and float(entry.trigger_cooldowns[index]) <= 0 and _requirements(rule):
+				_fire(entry, index, float(entry.attack), 0)
+		if definition.get("type") == "EBT_SpecialTriggerRangeDamage" and bool(definition.get("selfOnlyDamage", false)):
+			entry.tick = float(entry.tick) - active
+			while float(entry.tick) <= 0:
+				var value = (float(entry.attack) * float(definition.get("multiplier", 0)) + float(definition.get("fixedDamage", 0))) * int(entry.layers)
+				var previous = health
+				health = maxf(0.0, health - value)
+				var settled = maxf(0.0, previous - health)
+				_emit_event("status_damage", {"id": id, "damage": settled})
+				_emission_sequence += 1
+				var status_impact = {"source_key": actor_key, "receiver_key": actor_key, "id": id, "emission": _emission_sequence, "continuous": true, "resolved_damage": settled, "resolved_absorbed": 0.0, "resolved_accepted": true}
+				if settled > 0:
+					impact_confirmed.emit(status_impact)
+					_emit_event("impact_confirmed", status_impact)
+				entry.tick = float(entry.tick) + maxf(0.05, float(definition.get("interval", 1)))
+		elif definition.get("area") is Dictionary:
+			entry.tick = float(entry.tick) - active
+			while float(entry.tick) <= 0.000001:
+				var area: Dictionary = definition.area
+				var value = maxf(0.0, (float(entry.attack) if area.get("attribute") == "FinalAtk" else 0.0) * float(area.get("multiplier", 0)) + float(area.get("fixedDamage", 0))) * int(entry.layers)
+				_emission_sequence += 1
+				_emit_event("area", {"id": id, "definition": area, "layers": entry.layers, "caster_attack": entry.attack, "damage": value, "emission": _emission_sequence, "source": self, "continuous": float(definition.get("interval", 0)) > 0, "action": current_action, "slot": _current_slot})
+				entry.tick = float(entry.tick) + (float(definition.interval) if float(definition.get("interval", 0)) > 0 else 1.0e20)
+				if not statuses.has(id):
+					break
+		if float(entry.time) >= 0:
+			entry.time = float(entry.time) - delta
+			if int(definition.get("expiryLayers", 0)) > 0 and float(definition.get("duration", 0)) > 0:
+				while float(entry.time) <= 0.000001 and int(entry.layers) > 0:
+					entry.layers = maxi(0, int(entry.layers) - int(definition.expiryLayers))
+					if int(entry.layers) > 0:
+						entry.time = float(entry.time) + float(definition.duration)
+			if float(entry.time) <= 0.000001:
+				expired.append(id)
+	for id in expired:
+		if not statuses.has(id) or float(statuses[id].time) > 0.000001:
+			continue
+		var entry: Dictionary = statuses[id]
+		var definition: Dictionary = _buff_index.get(id, {})
+		statuses.erase(id)
+		if not str(definition.get("disposeBuff", "")).is_empty():
+			add_buff(str(definition.disposeBuff), int(definition.get("disposeLayers", 1)), float(entry.attack))
+	health = minf(health, max_health)
+	notify_gameplay("tick", {"delta": delta})
+
+func _fire(entry: Dictionary, index: int, caster_attack: float, depth: int, delayed: bool = false) -> void:
+	if depth > 16:
+		_report("Resource trigger recursion limit: " + str(entry.id))
+		return
+	var definition: Dictionary = _buff_index.get(entry.id, {})
+	var rule: Dictionary = definition.get("triggers", [])[index]
+	entry.trigger_cooldowns[index] = maxf(0.001, float(rule.get("cooldown", 0)))
+	if float(rule.get("delay", 0)) > 0 and not delayed:
+		if float(entry.trigger_delays[index]) < 0:
+			entry.trigger_delays[index] = float(rule.delay)
+		return
+	var source_layers = buff_layers(str(rule.get("sourceBuff", "")))
+	for old in rule.get("remove", []):
+		statuses.erase(str(old))
+	for addition in rule.get("add", []):
+		var layers = source_layers if not str(rule.get("sourceBuff", "")).is_empty() else int(addition.layers) * (int(entry.layers) if bool(rule.get("multiplySelfLayers", false)) else 1)
+		add_buff(str(addition.id), layers, caster_attack, depth + 1)
+	if int(rule.get("reduceSelf", 0)) > 0:
+		entry.layers = maxi(0, int(entry.layers) - int(rule.reduceSelf))
+		if int(entry.layers) == 0:
+			statuses.erase(str(entry.id))
+
+func _confirm_status_hit(hit: Dictionary) -> void:
+	var hit_def: Dictionary = hit.get("definition", {})
+	for entry in statuses.values().duplicate():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if int(entry.layers) <= 0:
+			continue
+		for index in range(definition.get("triggers", []).size()):
+			var rule: Dictionary = definition.triggers[index]
+			if not bool(rule.get("onHit", false)) or float(entry.trigger_cooldowns[index]) > 0 or not _requirements(rule):
+				continue
+			if not _rule_hit_matches(rule, hit_def):
+				continue
+			_fire(entry, index, effective_attack_power(), 0)
+
+func _target_hit(hit: Dictionary, target: DungeonCombat, caster_attack: float) -> float:
+	var rate = 0.0
+	for entry in statuses.values().duplicate():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		var modifier = definition.get("targetModifier")
+		if not modifier is Dictionary or int(entry.layers) <= 0 or float(entry.modifier_cooldown) > 0:
+			continue
+		if not _rule_hit_matches(modifier, hit.get("definition", {})):
+			continue
+		if not str(modifier.get("ownerBuff", "")).is_empty() and buff_layers(str(modifier.ownerBuff)) < int(modifier.get("ownerLayers", 1)):
+			continue
+		if not str(modifier.get("targetBuff", "")).is_empty() and target.buff_layers(str(modifier.targetBuff)) < int(modifier.get("targetLayers", 1)):
+			continue
+		rate += float(modifier.get("damageRate", 0))
+		entry.modifier_cooldown = float(modifier.get("cooldown", 0))
+		if not str(modifier.get("addTarget", "")).is_empty():
+			target.add_buff(str(modifier.addTarget), int(modifier.get("addLayers", 1)), caster_attack)
+	return 1.0 + rate
+
+func _apply_combat_modifiers(context: Dictionary, target: DungeonCombat, source: DungeonCombat, receiver_side: bool) -> void:
+	var hit: Dictionary = context.hit
+	var hit_def: Dictionary = hit.get("definition", {})
+	for entry in statuses.values().duplicate():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") != "EBT_ModifyCombatResult" or int(entry.layers) <= 0 or float(entry.modifier_cooldown) > 0:
+			continue
+		# These seven definitions already have their exact recovered trigger representation.
+		if not definition.get("triggers", []).is_empty() or float(definition.get("damageRate", 0)) != 0:
+			continue
+		var settings = _settings(definition, source)
+		if settings.is_empty():
+			continue
+		if receiver_side and not bool(settings.get("EnableAttackeeSelfCheck", false)):
+			continue
+		if not receiver_side and not bool(settings.get("EnableAttackerSelfCheck", true)):
+			continue
+		if not _modifier_matches(settings, context, target, source):
+			continue
+		var key = str(hit.get("sequence", 0))
+		match str(settings.get("MaxModifyCounterType", "DamageInstance")):
+			"AttackDef": key += ":" + str(hit_def.get("damageId", 0))
+			"DamageInstance": key += ":" + str(hit.get("emission", 0))
+		if str(entry.get("modifier_key", "")) != key:
+			entry.modifier_key = key
+			entry.modifier_count = 0
+		var limit = int(settings.get("MaxModifyCount", -1))
+		if limit >= 0 and int(entry.get("modifier_count", 0)) >= limit:
+			continue
+		if float(settings.get("TriggerRandom", 100)) < 100 and _random() * 100.0 >= float(settings.get("TriggerRandom", 100)):
+			continue
+		entry.modifier_count = int(entry.get("modifier_count", 0)) + 1
+		entry.modifier_cooldown = maxf(0.0, float(settings.get("ModifyCd", 0)) / 1000.0)
+		var cooldown_property = str(settings.get("ModifyCdPropertyContext", ""))
+		if not cooldown_property.is_empty():
+			if custom_properties.has(cooldown_property):
+				entry.modifier_cooldown = maxf(0.0, float(entry.modifier_cooldown) + float(custom_properties[cooldown_property]) / 1000.0)
+			else:
+				_report("Modifier cooldown context unbound: %s %s" % [entry.id, cooldown_property])
+		var layers = 1
+		var owner_multiplier = str(settings.get("ModifyDamageMultiLayer_AttackerBuffId", ""))
+		var target_multiplier = str(settings.get("ModifyDamageMultiLayer_AttackeeBuffId", ""))
+		if not owner_multiplier.is_empty():
+			layers *= source.buff_layers(owner_multiplier) if source != null else 0
+		if not target_multiplier.is_empty():
+			layers *= target.buff_layers(target_multiplier)
+		if bool(settings.get("EnableDamageCaculateModify", false)):
+			_modifier_value(context, str(settings.get("ModifyDamageCaculateType", "None")), float(settings.get("ModifyDamageCaculateValue", 0)) * layers, target)
+			_modifier_value(context, str(settings.get("ModifyDamageCaculateType2", "None")), float(settings.get("ModifyDamageCaculateValue2", 0)) * layers, target)
+		if bool(settings.get("EnableDamageExtraCaculateModify", false)):
+			var basis_owner = target if bool(settings.get("EnableDamageExtraAttackee", false)) else source
+			var basis = basis_owner.stat_value(str(settings.get("ModifyDamageAddExtraType", "None"))) if basis_owner != null else 0.0
+			var extra = basis * float(settings.get("ModifyDamageAddExtraValue", 0)) / 1000.0 * layers
+			_modifier_value(context, str(settings.get("ModifyDamageAddExtraCaculateType", "None")), extra, target)
+		if bool(settings.get("EnableDamageActModify", false)):
+			context["act_type"] = str(settings.get("ModifyDamageActType", hit_def.get("actType", "")))
+		if bool(settings.get("EnableDamageTypeModify", false)):
+			context["element"] = str(settings.get("ModifyDamageType", hit_def.get("element", "")))
+		if int(settings.get("IsReplaceDamageCanCritiProperty", 0)) != 0:
+			context.can_critical = int(settings.IsReplaceDamageCanCritiProperty) > 0
+		if bool(settings.get("EnableDamageDefReplace", false)):
+			_report("Damage definition replacement needs original definition map: " + str(entry.id))
+		var caster_attack = source.effective_attack_power() if source != null else float(entry.attack)
+		if source != null:
+			source._apply_raw_buff(settings.get("AddBuff_ToAttacker", {}), caster_attack, 0)
+		target._apply_raw_buff(settings.get("AddBuff_ToAttackee", {}), caster_attack, 0, source)
+		var summon: Dictionary = settings.get("AddSummonUnitDef_OnAttackeePos", {})
+		if not str(summon.get("AddSummonUnitId", "")).is_empty():
+			var summoner = source if source != null else self
+			for index in range(clampi(int(summon.get("AddSummonUnitQuantity", 1)), 1, 30)):
+				summoner._spawn_summon(str(summon.AddSummonUnitId), summoner._clock, str(hit.get("action", "")), int(hit.get("slot", 0)), float(summon.get("InitPosOffset", {}).get("z", 0)), 0, summon, target.actor_key)
+		var message: Dictionary = settings.get("OnTriggerSendMsg", {})
+		if not str(message.get("MsgName", "")).is_empty():
+			_emit_event("message", {"definition": message})
+		var effect: Dictionary = settings.get("TriggerShowEffectData", {})
+		if not effect.is_empty():
+			_emit_event("buff_effect", {"id": entry.id, "definition": effect})
+		var reduce = int(settings.get("ModifyCDReduceLayer", 0))
+		if reduce > 0:
+			entry.layers = maxi(0, int(entry.layers) - reduce)
+			if int(entry.layers) == 0:
+				statuses.erase(str(entry.id))
+		if float(settings.get("ModifySuccessDisposeTime", -1)) >= 0:
+			entry.time = float(settings.ModifySuccessDisposeTime) / 1000.0
+
+func _modifier_matches(settings: Dictionary, context: Dictionary, target: DungeonCombat, source: DungeonCombat) -> bool:
+	var hit: Dictionary = context.hit
+	var definition: Dictionary = hit.get("definition", {})
+	if bool(settings.get("EnableCheckDamageDefId", false)):
+		var ids: Array = [int(settings.get("CheckDamageDefId", 0)), int(settings.get("CheckDamageDefId2", 0))]
+		for id in str(settings.get("CheckDamageDefId3", "")).split("|", false):
+			ids.append(int(id))
+		if not ids.has(int(definition.get("damageId", 0))):
+			return false
+	if bool(settings.get("EnableCheckDamageActType", false)):
+		var types: Array = []
+		for index in range(1, 6):
+			types.append(str(settings.get("CheckDamageActType" + str(index), "")))
+		if not types.has(str(definition.get("actType", ""))):
+			return false
+	if bool(settings.get("EnableCheckDamageType", false)) and settings.get("CheckDamageType") != definition.get("element"):
+		return false
+	if bool(settings.get("EnableCheckAttackeeHpRatio", false)) and not _compare(target.health / target.max_health * 1000.0, float(settings.get("CheckAttackeeHpRatio", 0)), str(settings.get("AttackeeHpRatioCompareCondition", "ECT_LessEqual"))):
+		return false
+	if bool(settings.get("EnableCheckMonsterAttackeeType", false)) and target.enemy.get("rank", "") != settings.get("MonsterAttackeeTypeCompareCondition", "Normal"):
+		return false
+	if bool(settings.get("EnableCheckAttackeeSheildValue", false)) and not _compare(target.shield, float(settings.get("CheckSheildValue", 0)), str(settings.get("AttackeeSheildValueCompareCondition", "ECT_Equal"))):
+		return false
+	if bool(settings.get("EnableCheckAttackerBuff", false)):
+		var count = source.buff_layers(str(settings.get("CheckAttackerBuffId", ""))) if source != null else 0
+		var passed = _compare(float(count), float(settings.get("CheckAttackerBuffLayer", 1)), str(settings.get("CheckAttackerBuffLayerCompareCondition", "ECT_GreaterEqual"))) if settings.has("CheckAttackerBuffLayerCompareCondition") else count > 0
+		if passed != bool(settings.get("CheckAttackerBuffHave", true)):
+			return false
+	if bool(settings.get("EnableCheckAttackeeBuff", false)):
+		var count = target.buff_layers(str(settings.get("CheckAttackeeBuffId", "")))
+		var passed = _compare(float(count), float(settings.get("CheckAttackeeBuffLayer", 1)), str(settings.get("CheckAttackeeBuffLayerCompareCondition", "ECT_GreaterEqual"))) if settings.has("CheckAttackeeBuffLayerCompareCondition") else count > 0
+		if passed != bool(settings.get("CheckAttackeeBuffHave", true)):
+			return false
+	if bool(settings.get("EnableCheckAttackeeDistance", false)):
+		if not hit.has("distance"):
+			_report("Hit distance requires world adapter")
+			return false
+		if not _compare(float(hit.distance), float(settings.get("CheckAttackeeDistanceValue", 0)), str(settings.get("CheckAttackeeDistanceCompareType", "ECT_Equal"))):
+			return false
+	if bool(settings.get("EnableCheckAttackerAttribute", false)):
+		if source == null or not _compare(source.stat_value(str(settings.get("AttackerAttributeType", "None"))), float(settings.get("CheckAttackerAttributeValue", 0)), str(settings.get("AttackerAttributeCompareCondition", "ECT_Equal"))):
+			return false
+	if bool(settings.get("EnableCheckAttackeeAttribute", false)) and not _compare(target.stat_value(str(settings.get("AttackeeAttributeType", "None"))), float(settings.get("CheckAttackeeAttributeValue", 0)), str(settings.get("AttackeeAttributeCompareCondition", "ECT_Equal"))):
+		return false
+	return int(settings.get("IsCritical", 0)) != 1 or bool(hit.get("critical", false))
+
+func _modifier_value(context: Dictionary, type: String, value: float, target: DungeonCombat) -> void:
+	match type:
+		"None": pass
+		"DamageRateAdd", "FinalDamageRateAdd", "DamageDefAddRate": context.damage_rate = float(context.damage_rate) + value / 1000.0
+		"DefensePenetration": context.defense_penetration = float(context.defense_penetration) + value / 1000.0
+		"CtriticalRate", "CriticalRate": context.critical_rate = float(context.critical_rate) + value / 1000.0
+		"CriticalMulti": context.critical_multi = float(context.critical_multi) + value / 1000.0
+		"DamageFixAdd", "ExtraDamageFixAdd": context.fixed_add = float(context.fixed_add) + value
+		"FinalDamageFixAdd": context.final_add = float(context.final_add) + value
+		"FinalDamageMaxLimitInAtkeeMaxHP": context.max_damage = minf(float(context.max_damage), target.max_health * value / 1000.0)
+		"FinalDamageMinLimitInAtkeeMaxHP": context.min_damage = maxf(float(context.min_damage), target.max_health * value / 1000.0)
+		_: _report("Unsupported damage calculation: " + type)
+
+func stat_value(name: String) -> float:
+	match name:
+		"None": return 0.0
+		"FinalAtk", "Atk": return effective_attack_power()
+		"FinalDef", "Def": return (defense + attribute("BaseDef") + attribute("DefAddFixed")) * (1.0 + attribute("DefAddRate") / 1000.0)
+		"MaxHp": return max_health
+		"CurHp", "Hp": return health
+		"LostHpValue": return maxf(0.0, max_health - health)
+		"LastSecTotalBeDamage":
+			var total = 0.0
+			for item in custom_properties.get("_recent_damage", []):
+				if float(item.at) >= _clock - 1.0:
+					total += float(item.damage)
+			return total
+		"CurSheild", "Shield", "CurShield": return shield
+		"CurArmor", "Armor": return armor
+		"SkillActive2CurChargeValue": return float(energy[2])
+		"SkillActive1CurChargeValue": return float(energy[3])
+	return attribute(name)
+
+func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
+	if _condition_depth > 16:
+		_report("Condition event recursion exceeds 16")
+		return
+	_condition_depth += 1
+	if kind == "cause_damage":
+		custom_properties["ComboCount"] = int(custom_properties.get("ComboCount", 0)) + 1
+	for entry in statuses.values().duplicate():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") != "EBT_ConditionBuff" or not definition.get("triggers", []).is_empty() or int(entry.layers) <= 0 or float(entry.get("raw_cooldown", 0)) > 0:
+			continue
+		var raw: Dictionary = definition.get("raw_data", {})
+		var conditions: Array = raw.get("Conditions", [])
+		var passed = true
+		if not entry.has("condition_counters"):
+			entry.condition_counters = {}
+		for index in range(conditions.size()):
+			if not _raw_condition(entry, conditions[index], kind, payload, str(index)):
+				passed = false
+		if not passed:
+			continue
+		var settings = _settings(definition, _caster_for(str(entry.id)))
+		if settings.is_empty():
+			continue
+		var cooldown = 0.01
+		for condition in conditions:
+			if condition.get("ConditionType") == "ECT_CheckBuffCD":
+				cooldown = maxf(cooldown, float(condition.get("ColdTime", 0)) / 1000.0)
+			elif condition.get("ConditionType") == "ECT_CheckBuffCauseDamage":
+				cooldown = maxf(cooldown, float(condition.get("CheckSuccessIntervalTime", 0)) / 1000.0)
+		entry.raw_cooldown = cooldown
+		entry.condition_counters = {}
+		if float(raw.get("TriggerRandom", 100)) < 100 and _random() * 100.0 >= float(raw.get("TriggerRandom", 100)):
+			var failed = str(raw.get("FailedTriggerBuffId", ""))
+			if not failed.is_empty():
+				add_buff(failed, 1, float(entry.attack), _condition_depth)
+			continue
+		var effect = {"id": entry.id, "layers": int(entry.layers), "attack": float(entry.attack), "caster_actor": entry.get("caster_actor", character_id if character_id > 0 else enemy_id), "caster_key": entry.get("caster_key", actor_key), "settings": settings.duplicate(true)}
+		var delay = float(raw.get("AddTimeDelay", 0)) / 1000.0
+		if delay > 0:
+			_pending.append({"at": _clock + delay, "sequence": -1, "condition_effect": effect})
+		else:
+			_apply_condition_effect(effect)
+		var reduce = int(raw.get("TriggerSuccessReduceLayerCount", 0))
+		if reduce > 0:
+			entry.layers = maxi(0, int(entry.layers) - reduce)
+			if int(entry.layers) == 0:
+				statuses.erase(str(entry.id))
+	_condition_depth -= 1
+
+func _raw_condition(entry: Dictionary, condition: Dictionary, kind: String, payload: Dictionary, key: String) -> bool:
+	var type = str(condition.get("ConditionType", ""))
+	var counter = float(entry.condition_counters.get(key, 0))
+	match type:
+		"ECT_None", "ECT_CheckBuffCD":
+			return true
+		"ECT_CheckBuffExist":
+			var passed = _compare(float(buff_layers(str(condition.get("BuffId", "")))), float(condition.get("CheckLayerCount", 1)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+			return passed if bool(condition.get("CheckExist", true)) else not passed
+		"ECT_CheckBuffHP":
+			return _compare(health / max_health * 1000.0, float(condition.get("CompareVal", 0)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffArmor":
+			return _compare(armor, float(condition.get("CompareVal", 0)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckHaveSheild":
+			return (shield > 0) == bool(condition.get("CheckHave", true))
+		"ECT_CheckBuffEnemyType":
+			return (enemy.get("rank", "") == condition.get("EnemyType")) == bool(condition.get("MatchEqual", true))
+		"ECT_CheckActionType":
+			var when = str(condition.get("CheckTime", "Start"))
+			if when == "Duration":
+				if kind != "tick" or busy <= 0:
+					return false
+			elif kind != ("action_end" if when == "End" else "action_start"):
+				return false
+			var states: Array = condition.get("ActionStates", [])
+			if states.is_empty():
+				states = [condition.get("ActionState", "NorAtk")]
+				if bool(condition.get("CheckMoreType", false)):
+					states.append(condition.get("ActionState2", ""))
+					states.append(condition.get("ActionState3", ""))
+			var slot = int(payload.get("slot", _current_slot))
+			var action_state = ["NorAtk", "Dodge", "SubSkill", "MainSkill", "SAtk"][clampi(slot, 0, 4)]
+			if bool(condition.get("UseActionTypeCheck", true)) and not states.has(action_state) and not (slot == 1 and states.has("DodgeAtk")):
+				return false
+			if bool(condition.get("UseActionIdCheck", false)) and not condition.get("ActionIds", []).has(payload.get("action", current_action)):
+				return false
+			counter += 1
+			entry.condition_counters[key] = counter
+			return counter >= maxi(1, int(condition.get("ActionCount", 1)))
+		"ECT_CheckBuffChangeLayer":
+			if kind != "buff_add" or payload.get("id") != condition.get("BuffId"):
+				return false
+			counter += absf(float(payload.get("layers", 0)))
+			entry.condition_counters[key] = counter
+			return counter >= int(condition.get("CheckChangeLayerCount", 1))
+		"ECT_CheckBuffAddBuff":
+			if kind != "buff_add" or not condition.get("BuffIdList", []).has(payload.get("id")):
+				return false
+			counter += maxf(0.0, float(payload.get("layers", 0)))
+			entry.condition_counters[key] = counter
+			return counter >= int(condition.get("CheckChangeLayerCount", 1))
+		"ECT_CheckBuffAddSummonUnit":
+			if kind != "summon" or not condition.get("SummonIdList", []).has(payload.get("id")):
+				return false
+			counter += 1
+			entry.condition_counters[key] = counter
+			return counter >= int(condition.get("CheckCount", 1))
+		"ECT_CheckBuffCauseDamage":
+			if kind != "cause_damage" or not _raw_damage_condition(condition, payload):
+				return false
+			counter += float(payload.get("damage", 0)) if bool(condition.get("IsCheckTotalDamage", false)) else 1.0
+			entry.condition_counters[key] = counter
+			return counter >= float(condition.get("CheckSuccessTotalDamage", 0)) if bool(condition.get("IsCheckTotalDamage", false)) else counter >= maxi(1, int(condition.get("CheckSuccessCount", 1)))
+		"ECT_CheckBeInjured":
+			if kind != "injured" or not _raw_attacker_condition(condition, payload.get("attacker")):
+				return false
+			var mode = str(condition.get("CalculateBeDamageType", "SingleDamage"))
+			var amount = float(payload.get("damage", 0))
+			counter = amount if mode == "SingleDamage" else counter + (1.0 if mode == "TotalBeHitCount" else amount)
+			entry.condition_counters[key] = counter
+			var threshold = float(condition.get("CompareVal", 0)) if bool(condition.get("EnableCheckWithFixedValue", true)) else stat_value(str(condition.get("CompareType_Attribute", "MaxHp"))) * float(condition.get("CompareVal_Attribute", 0)) / 1000.0
+			return _compare(counter, threshold, str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffKillMonster":
+			if kind != "kill":
+				return false
+			var ranks: Array = [condition.get("CheckEnemyRateType1", "Normal"), condition.get("CheckEnemyRateType2", "Elite"), condition.get("CheckEnemyRateType3", "Boss")]
+			if not ranks.has(payload.get("rank", "Normal")):
+				return false
+			if bool(condition.get("EnableCheckEnemyHaveBuff", false)):
+				var target = payload.get("target")
+				if not target is DungeonCombat:
+					return false
+				var passed = _compare(float(target.buff_layers(str(condition.get("CheckEnemyBuffId", "")))), float(condition.get("CheckEnemyBuffLayerCount", 1)), str(condition.get("CheckBuffLayerCondition", "ECT_GreaterEqual")))
+				if passed != bool(condition.get("CheckEnemyBuffExist", true)):
+					return false
+			counter += 1
+			entry.condition_counters[key] = counter
+			return _compare(counter, float(condition.get("CompareVal", 1)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffDodgeSuccess":
+			if kind != "dodge" or not _raw_attacker_condition(condition, payload.get("attacker")):
+				return false
+			if bool(condition.get("EnableCheckDodgeActionType", false)) and condition.get("CheckCanBeHurtType", "Dodge") != payload.get("dodge_type", "Dodge"):
+				return false
+			counter += 1
+			entry.condition_counters[key] = counter
+			return counter >= int(condition.get("CheckSuccessCount", 1))
+		"ECT_CheckEnemyAround":
+			if not custom_properties.get("EnemyDistances") is Array:
+				_report("Enemy distance list requires world adapter: " + str(entry.id))
+				return false
+			var count = 0
+			for distance in custom_properties.EnemyDistances:
+				if float(distance) <= float(condition.get("CompareRange", 0)):
+					count += 1
+			return _compare(float(count), float(condition.get("CompareVal", 1)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckPlayerMove":
+			if kind != "move":
+				return false
+			if bool(payload.get("moving", false)) != bool(condition.get("CheckMove", true)):
+				entry.condition_counters[key] = 0.0
+				return false
+			counter += float(payload.get("distance", 0)) if bool(condition.get("CheckMoveDistance", false)) else float(payload.get("delta", 0)) * 1000.0
+			entry.condition_counters[key] = counter
+			return _compare(counter, float(condition.get("mCompareDistance", 0)) if bool(condition.get("CheckMoveDistance", false)) else float(condition.get("CompareVal", 0)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffRoleUnitAttribute":
+			return _compare(stat_value(str(condition.get("AttributeType", "None"))), float(condition.get("CompareVal", 0)) + stat_value(str(condition.get("CompareTargetAttributeType", "None"))) * float(condition.get("CompareTargetAttributeRateVal", 0)) / 1000.0, str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffCombos":
+			return _compare(float(custom_properties.get("ComboCount", 0)), float(condition.get("CompareVal", 0)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffRogueAttribute":
+			if not custom_properties.get("RogueAttributes") is Dictionary:
+				_report("Rogue attributes require system adapter: " + str(entry.id))
+				return false
+			return _compare(float(custom_properties.RogueAttributes.get(str(condition.get("AttributeType", "")), 0)), float(condition.get("CompareVal", 0)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+		"ECT_CheckBuffReceiveMsg":
+			if kind != "message":
+				return false
+			if bool(condition.get("EnableCustomMsgCheck", false)):
+				return payload.get("name", "") == condition.get("CustomMsgName", "")
+			return payload.get("event_type", "") == condition.get("RogueTrigger", {}).get("RogueEventTriggerData", {}).get("EventType", "")
+		"ECT_CheckBuffBePushCollision":
+			return kind == "push_collision"
+		"ECT_CheckBuffCauseHeal", "ECT_CheckBeHeal":
+			return kind == "heal" and _compare(float(payload.get("amount", 0)), float(condition.get("CompareVal", 0)), str(condition.get("CompareType", "ECT_GreaterEqual")))
+	_report("Unsupported raw condition: %s %s" % [entry.id, type])
+	return false
+
+func _raw_damage_condition(condition: Dictionary, payload: Dictionary) -> bool:
+	var definition: Dictionary = payload.get("definition", {})
+	if bool(condition.get("CheckDamageActType", false)):
+		var types: Array = []
+		for index in range(1, 6):
+			types.append(condition.get("DamageActType" + str(index), ""))
+		if not types.has(definition.get("actType", "")):
+			return false
+	if bool(condition.get("CheckDamageType", false)) and condition.get("DamageType") != definition.get("element"):
+		return false
+	if bool(condition.get("CheckDamageDefId", false)) and not str(condition.get("DamageDefId", "")).split("|", false).has(str(int(definition.get("damageId", 0)))):
+		return false
+	return int(condition.get("IsCritical", 0)) != 1 or bool(payload.get("critical", false))
+
+func _raw_attacker_condition(condition: Dictionary, attacker: Variant) -> bool:
+	if not bool(condition.get("CheckDamageAttackerType", false)):
+		return true
+	if not attacker is DungeonCombat:
+		return false
+	var is_match = (not attacker.enemy.is_empty()) if condition.get("DamageAttackerType") == "EUT_Monster" else not attacker.fighter.is_empty()
+	return is_match == bool(condition.get("CheckIsOrNot", true))
+
+func _apply_condition_effect(effect: Dictionary) -> void:
+	var definition: Dictionary = _buff_index.get(effect.id, {})
+	var settings: Dictionary = effect.settings
+	var recipient: DungeonCombat = self
+	if definition.get("raw_data", {}).get("EBuffAddTargetType") == "Caster":
+		var caster = _caster_for(str(effect.id))
+		if caster != null:
+			recipient = caster
+		elif str(effect.get("caster_key", actor_key)) != actor_key:
+			_report("Transferred condition caster requires world binding: " + str(effect.id))
+			return
+	var layers = int(settings.get("BuffAddLayer", 1))
+	if not str(settings.get("BuffScoureId", "")).is_empty():
+		layers = buff_layers(str(settings.BuffScoureId))
+	elif bool(settings.get("EnableAddBuffLayerMultiCBuffCurLayer", false)):
+		layers *= int(effect.layers)
+	for id in settings.get("DelBuffIDList", []):
+		recipient.remove_buff(str(id))
+	for id in settings.get("AddBuffIDList", []):
+		if float(settings.get("BuffAddRandom", 100)) >= 100 or _random() * 100.0 < float(settings.get("BuffAddRandom", 100)):
+			recipient.add_buff(str(id), layers, float(effect.attack), _condition_depth)
+
+func _rule_hit_matches(rule: Dictionary, hit_def: Dictionary) -> bool:
+	if not rule.get("damageIds", []).is_empty() and not rule.damageIds.has(hit_def.get("damageId", 0)):
+		return false
+	if not rule.get("actTypes", []).is_empty() and not rule.actTypes.has(hit_def.get("actType", "")):
+		return false
+	if not rule.get("elements", []).is_empty() and not rule.elements.has(hit_def.get("element", "")):
+		return false
+	return true
+
+func _damage_multiplier(act_type: String) -> float:
+	var rate = 0.0
+	for entry in statuses.values():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("damageActType") == act_type and buff_layers(str(definition.get("damageRequiredBuff", ""))) > 0:
+			rate += float(definition.get("damageRate", 0))
+	return 1.0 + rate
+
+func _conditions(conditions: Array, all_required: bool) -> bool:
+	if conditions.is_empty():
+		return true
+	var any = false
+	for condition in conditions:
+		var passed = _condition(condition)
+		if all_required and not passed:
+			return false
+		any = any or passed
+	return all_required or any
+
+func _condition(condition: Dictionary) -> bool:
+	var type = str(condition.get("type", ""))
+	var raw = JSON.parse_string(str(condition.get("raw", "{}")))
+	if not raw is Dictionary:
+		raw = {}
+	if type in ["EECT_CheckBuffExist", "ECT_CheckBuffExist"] or type.is_empty():
+		var result = _compare(float(buff_layers(str(condition.get("buff", "")))), float(condition.get("layers", 1)), str(condition.get("compare", "ECT_GreaterEqual")))
+		return result if bool(condition.get("exists", true)) else not result
+	if type == "EECT_CheckHP":
+		return _compare(health / max_health * 1000.0, float(condition.get("value", raw.get("CompareVal", 0))), str(condition.get("compare", "ECT_LessEqual")))
+	var property = str(raw.get("CustomProperty", ""))
+	if property.is_empty():
+		property = str(condition.get("property", raw.get("Property", "")))
+	var current = property_value(property)
+	if property == "AttackModeStr":
+		current = custom_properties.get("AttackModeStr", "satk" if _current_slot == 4 else "normal")
+	if type == "EECT_CheckCustomPropertyBool":
+		if current == null:
+			_report("Unbound bool property: " + property)
+			return false
+		return bool(current) == (str(condition.get("value", str(raw.get("CompareVal", false)))).to_lower() == "true")
+	if type == "EECT_CheckCustomPropertyString":
+		return str(current) == str(condition.get("value", raw.get("CompareVal", "")))
+	if type == "EECT_CheckCustomPropertyFloat" or type == "EECT_CheckCustomPropertyInt":
+		if current == null:
+			_report("Unbound numeric property: " + property)
+			return false
+		return float(current) >= float(raw.get("MinVal", 0)) and float(current) <= float(raw.get("MaxVal", 0))
+	if type == "EECT_CheckSkillCanUse":
+		return not fighter.is_empty() and float(cooldowns[2]) <= 0 and float(energy[2]) >= float(fighter.skills[2].sp)
+	_report("Unsupported condition " + type + ": " + str(condition.get("raw", "")))
+	return false
+
+func _requirements(rule: Dictionary) -> bool:
+	if not str(rule.get("sourceState", "")).is_empty() and not statuses.has(str(rule.sourceState)):
+		return false
+	return _conditions(rule.get("requirements", []), true)
+
+func _interrupt_conditions(raw: Dictionary) -> bool:
+	var conditions: Array = raw.get("Conditions", [])
+	if conditions.is_empty():
+		return true
+	var any = false
+	for condition in conditions:
+		var type = str(condition.get("InterruptType", ""))
+		var passed = false
+		if type == "EIT_CheckCustomPropertyBool":
+			passed = bool(custom_properties.get(str(condition.get("Property", "")), false)) == bool(condition.get("CompareVal", false))
+		elif type == "EIT_CheckCustomPropertyString":
+			var property = str(condition.get("Property", ""))
+			var value = custom_properties.get(property, "satk" if _current_slot == 4 else "normal") if property == "AttackModeStr" else property_value(property)
+			passed = str(value) == str(condition.get("CompareVal", ""))
+		elif type == "EIT_CheckAttackMode":
+			var mode = str(custom_properties.get("AttackModeStr", "satk" if _current_slot == 4 else "normal"))
+			passed = mode == ("satk" if condition.get("ModeType") == "Special" else "normal")
+		elif type == "EIT_CheckDead":
+			passed = health <= 0
+		if bool(raw.get("CheckAllCondition", true)) and not passed:
+			return false
+		any = any or passed
+	return bool(raw.get("CheckAllCondition", true)) or any
+
+func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack: float, depth: int) -> void:
+	var type = str(definition.get("type", ""))
+	var raw: Dictionary = definition.get("raw_data", {})
+	var caster = _caster_for(str(entry.id))
+	var settings = _settings(definition, caster)
+	match type:
+		"EBT_SpecialBuffArmor":
+			armor += maxf(0.0, max_health * float(settings.get("MaxHpPercentChange", 0)) / 1000.0 + float(settings.get("FixValueChange", 0))) * int(entry.layers)
+		"EBT_SpecialSheild":
+			var basis = max_health if settings.get("Attr") == "MaxHp" else caster_attack
+			shield += maxf(0.0, float(settings.get("AddValue", 0)) + basis * float(settings.get("MulValue", 0)) / 1000.0) * int(entry.layers)
+		"EBT_SpecialBuffChargeSkillSp":
+			var slot = 2 if raw.get("AttackType") == "SubSkill" else 3
+			if not fighter.is_empty():
+				var maximum = float(fighter.skills[slot].maxSp)
+				energy[slot] = minf(maximum, float(energy[slot]) + float(settings.get("ChargeCount", 0)) / 1000.0 + maximum * float(settings.get("ChargePercent", 0)) / 1000.0)
+		"EBT_SpecialRandomBuffTrigger":
+			var rows: Array = raw.get("RandomDataList", [])
+			var total = 0.0
+			for row in rows:
+				total += float(row.get("RandomWeight", 0))
+			var value = _random() * total
+			for row in rows:
+				value -= float(row.get("RandomWeight", 0))
+				if value <= 0:
+					_apply_raw_buff(row.get("AddBuffData", {}), caster_attack, depth + 1)
+					break
+		"EBT_SpecialAddSummonUnit":
+			var summon: Dictionary = settings.get("AddSummonUnitDef", {}).duplicate(true)
+			var summoner: DungeonCombat = self
+			var target_key := ""
+			# Spirit hit buffs live on the victim, but use the player's tier and attacks.
+			if str(raw.get("LevelSourceType", "")) == "BuffExist_Caster" and caster != null:
+				summoner = caster
+				target_key = actor_key
+				if str(summon.get("OriginType", "")) == "NoModify": summon["OriginType"] = "targetPosAndSelfDir"
+			for index in range(clampi(int(summon.get("AddSummonUnitQuantity", 1)), 1, 30)):
+				summoner._spawn_summon(str(summon.get("AddSummonUnitId", "")), summoner._clock, summoner.current_action, summoner._current_slot, float(summon.get("InitPosOffset", {}).get("z", 0)), depth + 1, summon, target_key)
+		"EBT_PlayEffect":
+			_emit_event("buff_effect", {"id": entry.id, "definition": raw})
+		"EBT_SpecialSendMsg":
+			_emit_event("message", {"name": raw.get("MsgName", ""), "argument": raw.get("MsgArg1", "")})
+			notify_gameplay("message", {"name": raw.get("MsgName", ""), "argument": raw.get("MsgArg1", "")})
+		"EBT_EditorPropertyContext":
+			_emit_event("property_context", {"id": entry.id, "definition": settings})
+		"EBT_SpecialBuffGenerationMonster":
+			_emit_event("spawn_monster", {"enemy_id": int(settings.get("MonsterId", 0)), "spawn_points": settings.get("SpawnPoints", []), "definition": settings})
+		"EBT_SpecialRevive":
+			if health <= 0:
+				revive(max_health)
+		"EBT_SBuffChangeSpecAttributeToOther":
+			if settings.get("SourceType") == "Hp" and settings.get("TargetType") == "Shield":
+				var available = maxf(0.0, health - float(settings.get("ThresholdFixed", 0)) - max_health * float(settings.get("ThresholdPercent", 0)) / 1000.0)
+				var converted = minf(available, health * float(settings.get("ThresholdCurrentPercent", 1000)) / 1000.0)
+				health -= converted
+				shield += converted * float(settings.get("TargetGain", 1)) / maxf(0.001, float(settings.get("SourceCost", 1)))
+			else:
+				_report("Resource conversion needs system adapter: " + str(entry.id))
+		"EBT_SpecialAddRogueAttribute", "EBT_ModifyAttackDef":
+			_report("Dynamic rule needs adapter: %s %s" % [entry.id, type])
+
+func _apply_health_locks(previous: float) -> void:
+	for entry in statuses.values():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") != "EBT_SpecialBuffLockHp":
+			continue
+		var settings = _settings(definition)
+		var minimum = max_health * float(settings.get("MinPrecent", 0)) / 1000.0
+		if health < minimum and previous >= minimum and int(entry.get("lock_count", 0)) < int(settings.get("MaxLockCount", 1)):
+			health = minimum
+			entry.lock_count = int(entry.get("lock_count", 0)) + 1
+			_apply_raw_buff(settings.get("ActiveTriggerBuff", {}), effective_attack_power(), 0)
+
+func _apply_raw_buff(raw: Dictionary, caster_attack: float, depth: int, caster: DungeonCombat = null) -> void:
+	var id = str(raw.get("BuffTriggerId", ""))
+	if not id.is_empty():
+		if caster != null and caster != self:
+			_buff_casters[id] = weakref(caster)
+		add_buff(id, int(raw.get("BuffAddLayer", 1)), caster_attack, depth)
+
+func _caster_for(id: String) -> DungeonCombat:
+	var reference = _buff_casters.get(id)
+	return reference.get_ref() if reference is WeakRef else null
+
+func bind_buff_caster(id: String, caster: DungeonCombat) -> void:
+	if caster != null and caster != self:
+		_buff_casters[id] = weakref(caster)
+
+func rebind_buff_casters(actors: Dictionary) -> Array:
+	var unresolved: Array = []
+	var records: Array = statuses.values().duplicate()
+	for event in _pending:
+		if event.has("condition_effect"):
+			records.append(event.condition_effect)
+	for entry in records:
+		var key = str(entry.get("caster_key", actor_key))
+		if key == actor_key:
+			continue
+		var caster = actors.get(key)
+		if caster is DungeonCombat:
+			bind_buff_caster(str(entry.id), caster)
+		elif not unresolved.has(key):
+			unresolved.append(key)
+	return unresolved
+
+func spawn_summon(id: String, origin: Dictionary = {}, target_key: String = "") -> bool:
+	if not _summon_index.has(id):
+		_report("Missing summon " + id)
+		return false
+	_spawn_summon(id, _clock, current_action, _current_slot, float(origin.get("InitPosOffset", {}).get("z", 0)), 0, origin, target_key)
+	return true
+
+func property_value(name: String) -> Variant:
+	var value = custom_properties.get(name)
+	for entry in statuses.values():
+		var definition: Dictionary = _buff_index.get(entry.id, {})
+		if definition.get("type") != "EBT_EditorPropertyContext":
+			continue
+		var settings = _settings(definition, _caster_for(str(entry.id)))
+		for suffix in ["", "2", "3"]:
+			if settings.get("Name" + suffix, "") == name:
+				value = (float(value) if value != null else 0.0) + float(settings.get("Value" + suffix, 0)) * int(entry.layers)
+	return value
+
+func _damage_data(id: int) -> Dictionary:
+	var rows: Array = catalog.get("damage_definitions", {}).get(str(id), [])
+	var fallback: Dictionary = {}
+	for row in rows:
+		if int(row.get("Level", 1)) == 1:
+			fallback = row
+		elif buff_layers(str(int(row.get("Level", 0)))) > 0:
+			return row
+	return fallback if not fallback.is_empty() else rows[0] if not rows.is_empty() else {}
+
+func _damage_value(definition: Dictionary, caster_attack: float) -> float:
+	var basis = caster_attack if definition.get("DamageAttribType") == "FinalAtk" else stat_value(str(definition.get("DamageAttribType", "None")))
+	var second = caster_attack if definition.get("DamageAttribType2") == "FinalAtk" else stat_value(str(definition.get("DamageAttribType2", "None")))
+	return basis * float(definition.get("DamageMulValue", 0)) / 1000.0 + second * float(definition.get("DamageMulValue2", 0)) / 1000.0 + float(definition.get("DamageFixValue", 0))
+
+func _settings(definition: Dictionary, source: DungeonCombat = null) -> Dictionary:
+	var settings: Array = definition.get("raw_data", {}).get("BuffSettingDataList", [])
+	var mode = str(definition.get("raw_data", {}).get("LevelSourceType", "Single"))
+	if mode == "BuffExist" or mode == "BuffExist_Caster":
+		var owner = source if mode == "BuffExist_Caster" and source != null else self
+		var fallback: Dictionary = {}
+		for row in settings:
+			if int(row.get("Level", 0)) == 1:
+				fallback = row
+			elif owner.buff_layers(str(int(row.get("Level", 0)))) > 0:
+				return row
+		return fallback
+	if mode == "RoleUnitType_1P2M":
+		for row in settings:
+			if int(row.get("Level", 0)) == (1 if not fighter.is_empty() else 2):
+				return row
+	return settings[0] if not settings.is_empty() and settings[0] is Dictionary else {}
+
+func _collect_initial(id: String, result: Dictionary) -> void:
+	if result.has(id):
+		return
+	result[id] = true
+	for child in _buff_index.get(id, {}).get("initial", []):
+		_collect_initial(str(child), result)
+
+func _clear_charge() -> void:
+	for id in ["700004", "700005", "700001", "700002", "700003"]:
+		statuses.erase(id)
+
+func _release_charge(action_name: String) -> void:
+	var next = _action("ActGroup_playerchara", action_name)
+	if next.is_empty():
+		_report("Missing charge release " + action_name)
+		return
+	charging = false
+	statuses.erase("700004")
+	statuses.erase("700005")
+	_start(next, 4)
+
+func _cancel_sequence(sequence: int, keep_spawned := true) -> void:
+	_pending = _pending.filter(func(event): return int(event.sequence) != sequence or (keep_spawned and not bool(event.get("action_timeline", true))))
+
+func _action(group: String, id: String) -> Dictionary:
+	return _action_index.get(group + "/" + id, {})
+
+func _load_catalog(value: Variant) -> bool:
+	if _heavy_catalog.is_empty():
+		var parsed_heavy = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/heavy_attacks.json"))
+		if parsed_heavy is Dictionary: _heavy_catalog = parsed_heavy
+	if value is Dictionary and value.has("actions"):
+		catalog = value
+		_action_index = {}
+		_buff_index = {}
+		_summon_index = {}
+		for item in catalog.get("actions", []):
+			_action_index[str(item.key)] = item
+		for item in catalog.get("buffs", []):
+			_buff_index[str(item.id)] = _assemble_heavy_buff(item)
+		for item in catalog.get("summons", []):
+			_summon_index[str(item.id)] = item
+		return true
+	if _shared_catalog.is_empty():
+		if not FileAccess.file_exists(DATA_PATH):
+			return false
+		var parsed = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
+		if not parsed is Dictionary:
+			return false
+		_shared_catalog = parsed
+		for item in parsed.get("actions", []):
+			_shared_actions[str(item.key)] = item
+		for item in parsed.get("buffs", []):
+			_shared_buffs[str(item.id)] = _assemble_heavy_buff(item)
+		for item in parsed.get("summons", []):
+			_shared_summons[str(item.id)] = item
+	catalog = _shared_catalog
+	_action_index = _shared_actions
+	_buff_index = _shared_buffs
+	_summon_index = _shared_summons
+	return not catalog.is_empty()
+
+func _assemble_heavy_buff(definition: Dictionary) -> Dictionary:
+	var assembly: Dictionary = _heavy_catalog.get("buffs", {}).get(str(definition.id), {})
+	if assembly.is_empty(): return definition
+	var result = definition.duplicate()
+	result.merge(assembly, true)
+	return result
+
+func _reset() -> void:
+	clear_impact_state()
+	action_elapsed = 0.0
+	action_step = -1.0
+	fighter = {}
+	enemy = {}
+	character_id = 0
+	enemy_id = 0
+	actor_key = ""
+	energy = [0.0, 0.0, 0.0, 0.0, 0.0]
+	cooldowns = [0.0, 0.0, 0.0, 0.0, 0.0]
+	statuses = {}
+	diagnostics = []
+	events = []
+	_pending = []
+	_external = {}
+	_progression_roots = {}
+	_progression_owned = []
+	_external_numeric_buffs = []
+	_clock = 0.0
+	busy = 0.0
+	invincible = 0.0
+	frozen = 0.0
+	_slow_time = 0.0
+	_slow_scale = 1.0
+	_combo = 0
+	_combo_expiry = 0.0
+	_cast_sequence = 0
+	_current_slot = 0
+	charging = false
+	charge_released = false
+	charge_elapsed = 0.0
+	current_action = ""
+	armor = 0.0
+	shield = 0.0
+	_dead_emitted = false
+	_emission_sequence = 0
+	_condition_depth = 0
+	_buff_casters = {}
+	_dodge_time = 0.0
+	_block_time = 0.0
+	_anti_heal_time = 0.0
+	_attribute_stack = {}
+	custom_properties = {"InputMove": false, "InputAttack": false, "InputAttack_LongPress": false, "InputSkill": false}
+
+func _emit_event(type: String, content: Dictionary = {}) -> void:
+	content["type"] = type
+	content["kind"] = type
+	content["actor"] = character_id if character_id > 0 else enemy_id
+	content["actor_key"] = actor_key
+	content["clock"] = _clock
+	events.append(content)
+
+func _emit_death() -> void:
+	if not _dead_emitted:
+		_dead_emitted = true
+		_emit_event("died")
+
+func _report(message: String) -> void:
+	if not diagnostics.has(message):
+		diagnostics.append(message)
+		_emit_event("diagnostic", {"message": message})
+
+func _random() -> float:
+	_random_state = (_random_state * 1664525 + 1013904223) & 0xffffffff
+	return float(_random_state) / 4294967295.0
+
+func _compare(a: float, b: float, comparison: String) -> bool:
+	match comparison:
+		"ECT_Equal": return is_equal_approx(a, b)
+		"ECT_Less": return a < b
+		"ECT_Greater": return a > b
+		"ECT_LessEqual": return a <= b
+		_: return a >= b
+
+func _event_before(a: Dictionary, b: Dictionary) -> bool:
+	return float(a.at) < float(b.at)
+
+func _result(success: bool, message: String, id: int = 0) -> Dictionary:
+	return {"success": success, "message": message, "id": id}

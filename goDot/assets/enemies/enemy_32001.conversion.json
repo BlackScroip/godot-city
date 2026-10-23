@@ -1,0 +1,119 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_19.anim": "7ce9e2c6e9d1eeabb069eaf75ca79ef128d9872cf0b432149e94fdf999520058",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_21.anim": "c2a8a4ff01ed10641dd56f00bdbf4ceced64ce0fe6d66d64819e90e0e324595c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_29.anim": "e4da3aa78bb3065480cc68eeff7f90a5f2781313b2d9d7c7c50f2db022397bea",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_21.anim": "52c6e919d6b0acc717e2c9e01190ba9539c1145f0e710cbe48dac473a467417a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_10.anim": "2e01a4c7fa2121fbb1695ed9cd9b928f69a66efcbe6aa9c90e5d40d58ad06650",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_10160_body.png": "253d7cf24d1cbcdb4471a23f480dadab936d57322c509423f14f6fa7c048ea84",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_tiankongfeilong_low.prefab": "c0a5a45749a5f4ad0a2729011d80c56243a9aad86cddaa23286598cb41d95246",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_1.anim": "62355f51b5e8a9d4983d86a3410262199323844c7416499caa3de6eb4a34d679",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_7.anim": "6b5a7089d000014cc75438361a27029bfafbd15e2155fa40ae424d294c6d63fb",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body_low_10.asset": "63b2d452deb1a19071337c0389433457cfa5a1a89767897c2623035755ebeace",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_20.anim": "cb316a29723e24a17de27ac27704b2b40baadce9d84c70d399191bc3934ede48",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_tiankongfeilong_body.mat": "94a4853a975d5fc8829a3abaf115d977e5b3f940eccae5775baba24e61ec9fe9"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_32001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 261,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack2",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "attack2 "
+      },
+      {
+        "name": "attack3",
+        "duration": 6.0333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "attack3"
+      },
+      {
+        "name": "damage1",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "damage1"
+      },
+      {
+        "name": "damage2",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack1",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "attack1"
+      },
+      {
+        "name": "moveforward",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 261,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "behit",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 264,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -2.673416992417163,
+        0.06627269637241238,
+        -0.7193705147698128
+      ],
+      "max": [
+        2.6731279409019284,
+        2.988607949536861,
+        1.837672900046724
+      ],
+      "size": [
+        5.346544933319091,
+        2.922335253164449,
+        2.557043414816537
+      ]
+    },
+    "meshes": 1,
+    "nodes": 129,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 3131424,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_tiankongfeilong_low.prefab",
+    "source_sha256": "c0a5a45749a5f4ad0a2729011d80c56243a9aad86cddaa23286598cb41d95246",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack1"
+    }
+  }
+}

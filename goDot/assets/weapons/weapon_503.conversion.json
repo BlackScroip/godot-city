@@ -1,0 +1,44 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Material/mat_fx_24092702_50002_flow.mat": "441ee27ee19c33398f53a5aabb9e801b1c43b5c2d1ab0c94153382d314ec8972",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_50002_bow.mat": "9437804026c0cd14fc90cddd0fe188f65512487c2eff05827190e7aa99571371",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_weapon_50003.asset": "ab93b1753b3a8c44f37635650eeab098c229df3631cc73355545ba5d75f64adf",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_50002_low.prefab": "1b7923b2b4f177f2e7c2ee9d6d4bb108a24d31849d9f06df37240c000d93e78a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Texture/tex_fx_trail_46.png": "d779edcf590296f072ab058c35b60bcf800d302aaa552b0824fa64e26125a975",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/FX/fbx_fx_other_3.asset": "2fcd2385d08682556e20ea45354ec437f692f9be975ab19c085c76b607e47a08",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_50002_bow.png": "dd3a8d5ebe21da5a4304b84ac5414e67df0f340e1592cf5e6d5c4beb3a0cb06d"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_503.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.4010258001484848,
+        -0.041937839705497026,
+        -1.3650295290739938
+      ],
+      "max": [
+        0.8154217392957792,
+        0.041937740752473474,
+        1.3650295586396457
+      ],
+      "size": [
+        1.216447539444264,
+        0.0838755804579705,
+        2.7300590877136397
+      ]
+    },
+    "meshes": 2,
+    "nodes": 9,
+    "skins": 0,
+    "unsupported": {
+      "198": 4,
+      "199": 4
+    },
+    "bytes": 81048,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_50002_low.prefab",
+    "source_sha256": "1b7923b2b4f177f2e7c2ee9d6d4bb108a24d31849d9f06df37240c000d93e78a",
+    "default_animations": {}
+  }
+}

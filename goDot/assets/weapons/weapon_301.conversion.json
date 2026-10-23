@@ -1,0 +1,38 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_30000_axe.mat": "1e651f51904b1d2692ecc2b9c56afd7e2d147a02eeec0f70ae91c7158297e3a1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_30000_low.prefab": "a92d96d0fe029bba8622ab32ad58e5563ba92eb8ebb8379b701e6df272a29ab2",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_30000_axe.png": "3bb78145d3a98abb8445660846fec485736d0364db7da3905f7efb341c22c7ca",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_weapon_30000_0.asset": "f0ee4437146a22b0019b026370ddacdf4c503196d21ed13fc4a4bef825df7ef3"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_301.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.6330211162567139,
+        -0.08127645403146744,
+        -0.6694134724256583
+      ],
+      "max": [
+        0.3003650903701782,
+        0.08228421211242676,
+        1.2606024312973023
+      ],
+      "size": [
+        0.9333862066268921,
+        0.1635606661438942,
+        1.9300159037229605
+      ]
+    },
+    "meshes": 1,
+    "nodes": 3,
+    "skins": 0,
+    "unsupported": {},
+    "bytes": 28088,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_30000_low.prefab",
+    "source_sha256": "a92d96d0fe029bba8622ab32ad58e5563ba92eb8ebb8379b701e6df272a29ab2",
+    "default_animations": {}
+  }
+}

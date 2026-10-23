@@ -1,0 +1,41 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_10002_low.prefab": "26ecb305706fdb19cc61c61510247633ba05a9791ef6cf50060c025c430fdbfa",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_10002_sword.png": "cd70f36814f69b5645c3868e37d0612e17fd4f710a52c261f69e8e63c0b4e09c",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_weapon_10002_0.asset": "9138616df7a32d830fe15413cf1aae940f37025e9f687ab713f260b8af60dafc",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_10002_sword.mat": "2c78fcd1aedeb833e7bfd05f5d63889a18291cc24ea83f679bd5cf2b3ccd94da"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_103.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.22825307678431273,
+        -0.026174602680839598,
+        -0.1816536648198961
+      ],
+      "max": [
+        0.22752647288143635,
+        0.026693599647842348,
+        1.0974340698159724
+      ],
+      "size": [
+        0.4557795496657491,
+        0.052868202328681946,
+        1.2790877346358684
+      ]
+    },
+    "meshes": 1,
+    "nodes": 13,
+    "skins": 0,
+    "unsupported": {
+      "198": 10,
+      "199": 10
+    },
+    "bytes": 42088,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_10002_low.prefab",
+    "source_sha256": "26ecb305706fdb19cc61c61510247633ba05a9791ef6cf50060c025c430fdbfa",
+    "default_animations": {}
+  }
+}

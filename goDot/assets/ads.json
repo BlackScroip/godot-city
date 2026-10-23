@@ -1,0 +1,19 @@
+{
+  "provider": "topon",
+  "android": {
+    "package_name": "com.teamelo.dungeonchasers.godot",
+    "app_id": "h6adb09c6cffb4",
+    "app_key": "a2cc731deef23b38fb5b386537bd77299",
+    "rewarded_placement_id": "n6adb0bfb1235a",
+    "admob_app_id": "ca-app-pub-8202400143123367~2924302885",
+    "admob_rewarded_id": "ca-app-pub-8202400143123367/1700307390"
+  },
+  "ios": {
+    "package_name": "com.teamelo.dungeonchasers.godot",
+    "app_id": "h6adb0660a7723",
+    "app_key": "a3592c2d22c4e437a84a5ca23e623b7c6",
+    "rewarded_placement_id": "n6adb07f3aa701",
+    "admob_app_id": "ca-app-pub-8202400143123367~2836672976",
+    "admob_rewarded_id": "ca-app-pub-8202400143123367/9948876238"
+  }
+}

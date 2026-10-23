@@ -1,0 +1,44 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Texture/tex_fx_other_2.png": "5ca5f3d10747efa3cd040f3549e2c15c5b495a87928715d26f57608d80708df6",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/FX/fbx_fx_helixplane_17.asset": "b8b47ce2f7ed787d96660449edc71a959ab8358c6c2073c2531196269de299a3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_70004.prefab": "ab5da9ec75ba8da2ba315b364a5a10c974325d71ffde20e309f8690626c47db0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Material/mat_fx_26080101_waterflow.mat": "89762d88be01261904b20f45faeded38b9ddc644517f3fdd69284d5403f41efa",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_70004_lance.png": "4516a8731db7df1fab617fa1482ee1fd1c8d4f5543b05d94ff8e517ec7607c9a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_70004_lance.mat": "38fa0c89446337ada58a239ac44f4e610cb7838c87c542e3404b0f5420b990ed",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_wuqi_qiang5.asset": "6bada728e688e730204cbc4c18dc104c668f40c12d26c568ee8a1a215d75f4ad"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_705.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.41218578388101135,
+        -0.5383731613218429,
+        -0.33360417030157763
+      ],
+      "max": [
+        0.3696717105249794,
+        1.7473720114840656,
+        0.44805944335097614
+      ],
+      "size": [
+        0.7818574944059907,
+        2.2857451728059086,
+        0.7816636136525538
+      ]
+    },
+    "meshes": 2,
+    "nodes": 12,
+    "skins": 0,
+    "unsupported": {
+      "198": 6,
+      "199": 6
+    },
+    "bytes": 155180,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_70004.prefab",
+    "source_sha256": "ab5da9ec75ba8da2ba315b364a5a10c974325d71ffde20e309f8690626c47db0",
+    "default_animations": {}
+  }
+}

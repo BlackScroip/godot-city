@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpcnhq7a7c48h"
+path="res://.godot/imported/mesh_62fc96dc2c7c52e41ea3.obj-e1de2e649200e7e6955c5a8d47590f0d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_62fc96dc2c7c52e41ea3.obj-e1de2e649200e7e6955c5a8d47590f0d.mesh"]
+
+source_file="res://assets/environment_effects/mesh_62fc96dc2c7c52e41ea3.obj"
+dest_files=["res://.godot/imported/mesh_62fc96dc2c7c52e41ea3.obj-e1de2e649200e7e6955c5a8d47590f0d.mesh", "res://.godot/imported/mesh_62fc96dc2c7c52e41ea3.obj-e1de2e649200e7e6955c5a8d47590f0d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

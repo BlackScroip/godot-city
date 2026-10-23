@@ -1,0 +1,41 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_50004_bow.png": "7a9007685f4d666c40cfc0b58f75679de562dc1aba368e1cc3e82da268606158",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_weapon_50004_1.asset": "542399edfd7035877731cf4b11f7fe23be8b4a79d0a181bc8f91a9d090554ba9",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_50004_bow.mat": "db012ac31f4e34d7f9edd647678092e6d2677b136304b640aeb80fda1bebf42a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_50004_low.prefab": "0b1c107522de540f91560a671aeb036f65c4edfebba6b40f62ae47f71cac09fd"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_505.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.3706864784657955,
+        -0.06039335421519354,
+        -1.0086948797106743
+      ],
+      "max": [
+        0.3195250262320042,
+        0.06039365543983877,
+        1.0086946561932564
+      ],
+      "size": [
+        0.6902115046977997,
+        0.1207870096550323,
+        2.0173895359039307
+      ]
+    },
+    "meshes": 1,
+    "nodes": 10,
+    "skins": 0,
+    "unsupported": {
+      "198": 7,
+      "199": 7
+    },
+    "bytes": 107588,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_50004_low.prefab",
+    "source_sha256": "0b1c107522de540f91560a671aeb036f65c4edfebba6b40f62ae47f71cac09fd",
+    "default_animations": {}
+  }
+}

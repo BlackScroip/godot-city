@@ -1,0 +1,132 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Material/mat_fx_24081501_idle_soil.mat": "587e5087c439ab1d98bf7f20f33d9ded3aa87533ad4b15cd4bf5fc8e8d7462a4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_Loop.anim": "940645125140eafcb05637c6b9e81ce525b2f2b7887e113ce6d9cdecda60f0bb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_0.anim": "945b60f381143496e4c889556cf2a0e439b15a6f5246d53249bcda0a0f923dbc",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_Start.anim": "c4ccb3f233157fa06165bb0e87fdd9a1d238e6b1dab5f6afdcefb0b64997596e",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_juedishu.asset": "b7b6142597eab02643f57ccbb69c92333e43baebe0bf829b04d73a2de86d957d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/FX/Texture/tex_fx_stonesurface_1.png": "5193a46a63bf9d5d860e508b73bc10c1056488e8955612a56d4634ba4e5fcda0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_24.anim": "c3f52eaaae3bf0248d4bf597d662f67c72dd0605812e8224f8e947fe894db5cb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_9.anim": "7899576f16a79e62cc28273a20eb721bb1fb191f1d4f6af4e53ae76f6af1ac31",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_juedishu_body.mat": "b34e9e79f02694884a1fc892cc800c38bf85263bd63fe07d082bffc71bc6ff2e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_26.anim": "ebfbd8b53e0e7760e6f1d24605f7f5d8e3b40c0944372f12634042bf22f5a3c3",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/FX/fbx_fx_wave_1.asset": "1e2db0217b4be650bb64a630d3e7db3d88287af336bed8cb12c6bb484eb1ab71",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_End.anim": "8947ee8da74ac2db6f11f4cc21855fd2cce5f34d050ef0655d4945f1d43e81b7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_19.anim": "c4410a93d25f373fc06a887baced64a168d76ed7f1ecd942c8e2cb8ca9ea1208",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_juedishu_low.prefab": "3f87161142016c6cb122e70cbd7c26b87593b57f8a6e09631a5a3fa4e6934389",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack_5.anim": "1cdc028c218163f329d64aba5785c760159791e4067a837e3b090bf5e39b7043",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_juedishu_body.png": "22db21c3bf4db195b0cb91ad1d1752f93e407f65d00334235287a009d63be62a"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_41004.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 136,
+        "source_name": "idle"
+      },
+      {
+        "name": "attack",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "damage"
+      },
+      {
+        "name": "damage2",
+        "duration": 5.5333333,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 1.8666667,
+        "loop": false,
+        "tracks": 141,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack2",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 18,
+        "source_name": "attack2"
+      },
+      {
+        "name": "moveforward_start",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "moveforward_start"
+      },
+      {
+        "name": "moveforward_loop_clip",
+        "duration": 1.2,
+        "loop": true,
+        "tracks": 144,
+        "source_name": "moveforward_loop"
+      },
+      {
+        "name": "moveforward_end",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 141,
+        "source_name": "moveforward_end"
+      },
+      {
+        "name": "behit",
+        "duration": 1.3666667,
+        "loop": false,
+        "tracks": 144,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.2729417562481824,
+        -0.09374999073015379,
+        -0.8995824473553977
+      ],
+      "max": [
+        1.271968853473955,
+        1.5344174912092168,
+        0.8995822644102975
+      ],
+      "size": [
+        2.5449106097221375,
+        1.6281674819393706,
+        1.7991647117656953
+      ]
+    },
+    "meshes": 2,
+    "nodes": 81,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "198": 1,
+      "199": 1,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 174
+    },
+    "bytes": 1624392,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_juedishu_low.prefab",
+    "source_sha256": "3f87161142016c6cb122e70cbd7c26b87593b57f8a6e09631a5a3fa4e6934389",
+    "default_animations": {
+      "idle": "idle",
+      "attack": "attack"
+    }
+  }
+}

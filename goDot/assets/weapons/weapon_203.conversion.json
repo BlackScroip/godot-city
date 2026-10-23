@@ -1,0 +1,41 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Recovered/_00001_Media/Models/Weapon/mesh_weapon_20002_0.asset": "4d287d34d084981590a1b08a5762654d4702774e8ed54e0c9dbff6084d6db2b8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_20002_low.prefab": "fecb142d6c49d5dd1396df9c52cc6bf00e793f6eb5296755ede19a6787154020",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Texture/tex_weapon_20002_sickle.png": "006f11b3059368df9554cd53937208ec3769d37142a2cafcfc4e46dc299d6aa8",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Weapon/Material/mat_weapon_20002_sickle.mat": "9675fa969d5aaa1f40c936dfd6d92711f32cd94c3b6258f393bb0529077056eb"
+  },
+  "result": {
+    "path": "res://assets/weapons/weapon_203.glb",
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.9852366521954536,
+        -0.07070605643093586,
+        -0.4915237292015372
+      ],
+      "max": [
+        0.319651304744184,
+        0.07036291644908488,
+        1.4003294040560723
+      ],
+      "size": [
+        1.3048879569396377,
+        0.14106897288002074,
+        1.8918531332576096
+      ]
+    },
+    "meshes": 1,
+    "nodes": 17,
+    "skins": 0,
+    "unsupported": {
+      "198": 14,
+      "199": 14
+    },
+    "bytes": 106092,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Weapon/weapon_20002_low.prefab",
+    "source_sha256": "fecb142d6c49d5dd1396df9c52cc6bf00e793f6eb5296755ede19a6787154020",
+    "default_animations": {}
+  }
+}

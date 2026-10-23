@@ -1,0 +1,27 @@
+**/Library/
+**/Temp/
+**/Obj/
+**/Logs/
+**/UserSettings/
+**/MemoryCaptures/
+**/.DS_Store
+**/__pycache__/
+**/Tests~/bin/
+**/Tests~/obj/
+Recovery/AssetAnalysis/venv/
+
+# Local files and credentials
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+
+# Packaged applications and debug output
+*.apk
+*.aab
+*.ipa
+*.dSYM/
+*.log

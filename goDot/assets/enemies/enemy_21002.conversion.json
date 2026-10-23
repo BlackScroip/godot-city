@@ -1,0 +1,111 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2.anim": "f5b56f4ef45248922ba417b9c71e2c9b0cf1577ed58fb1d9df8a74b74af487a5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_17.anim": "1aaf4cfb2eac7da262a96984f72a5bd99fb287bfc1f0fe8848907f4f09f350b3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_xiyiren_gongshou_low.prefab": "ce55082f6ea498522733c7d50e7f91eda9a38c903bc7f041bf87cd448a62e36c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_39.anim": "efb40ac29581fd2f06f50b1b3b0e7116034bada44d7b19aef57da9da36847fd1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_xiyi_gong_body.mat": "11a2fbe4bbea812f7a753dfad995b54294e50abcee71d17e201e0a5c0611bf35",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_xiyi_gong_body.png": "2730e5de11fe61f43f20459c5357d1ac83423a865d51d52cbfc99453bc179809",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_17.anim": "316dcd19d168b0166dbf32f2933dc3711e357df165d7f9f2cfc082fb718fc0f4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_3.anim": "b20a87cded7cd3eed2ec8779ea4fc9834d0ea09639bdc5c6d82a8a5aaf20bd8c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack_4.anim": "f17e617f6d437b675dd50bcd22247bc99be9d73188b59899ac285911336d76d2",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body_low_4.asset": "2a34ae5526520ec85e1f9d0b19ce30ec3843a5a7741a26c1ff92831e912455e5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_18.anim": "a344c8bea80f6ed62bf3fd14cfa956d0f486e26ca8fc7a7a0b16b5f13feaea5e"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_21002.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 183,
+        "source_name": "idle"
+      },
+      {
+        "name": "damage",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 184,
+        "source_name": "damage"
+      },
+      {
+        "name": "damage2",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 184,
+        "source_name": "damage2"
+      },
+      {
+        "name": "dead",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 186,
+        "source_name": "dead"
+      },
+      {
+        "name": "attack",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 183,
+        "source_name": "attack"
+      },
+      {
+        "name": "moveback",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 183,
+        "source_name": "moveback"
+      },
+      {
+        "name": "moveforward",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 183,
+        "source_name": "moveforward"
+      },
+      {
+        "name": "behit",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 184,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.855231083780527,
+        0.003623396320601882,
+        -1.9622769047022923
+      ],
+      "max": [
+        1.5597994688160717,
+        1.9965595205875768,
+        0.4713082009162395
+      ],
+      "size": [
+        3.4150305525965985,
+        1.992936124266975,
+        2.4335851056185316
+      ]
+    },
+    "meshes": 1,
+    "nodes": 100,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 1917340,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_xiyiren_gongshou_low.prefab",
+    "source_sha256": "ce55082f6ea498522733c7d50e7f91eda9a38c903bc7f041bf87cd448a62e36c",
+    "default_animations": {
+      "idle": "idle",
+      "run": "moveforward",
+      "attack": "attack"
+    }
+  }
+}

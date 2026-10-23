@@ -1,0 +1,19 @@
+plugins { id 'com.android.library' version '8.13.1' }
+android {
+    namespace 'com.teamelo.dungeonchasers.ads'
+    compileSdk 36
+    defaultConfig { minSdk 24 }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+dependencies {
+    def godotLibrary = file(project.findProperty('godotLibrary') ?: '../../android/build/libs/debug/godot-lib.template_debug.aar')
+    if (!godotLibrary.exists()) throw new GradleException('Install the pinned Godot Android template or pass -PgodotLibrary=/path/to/godot-lib.aar')
+    compileOnly files(godotLibrary)
+    implementation 'com.anythink.sdk:core-tpn:6.6.41'
+    implementation 'com.anythink.sdk:adapter-tpn-admob:25.4.0.1.1'
+    implementation 'com.google.android.gms:play-services-ads:25.4.0'
+    implementation 'com.google.android.ump:user-messaging-platform:4.0.0'
+}

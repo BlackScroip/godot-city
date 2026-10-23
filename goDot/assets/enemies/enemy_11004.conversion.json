@@ -1,0 +1,112 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack1_16.anim": "256bb19668a19ddadb7800268d79fd73ce3bb2c671f81357b7f789e9aee50ed2",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_moguguai.asset": "31224fad5c54e90f163eec6343d48c425de7f5b1b0cf09aff44655a0a13b1f3e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_moguguai_low.prefab": "a791b40a85db52684ba92ed0764bb67b016aa76186abb2b04b83ff0ee689ebe3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit_0.anim": "d71ba71b1306e1a4576b4adab0a510547a9e8599238c97cfc35d4b813d8c0642",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_25.anim": "a11e7772668a6db0dd09cd1204590a25f3f7d81775d837e30fbcec6e36f99da7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack2_18.anim": "df3f9ccdc901b8eb628ea464976c395d9957456db5b4b23ca39e60525fa23ef1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_10013_body.png": "627a0e095601438b0dbc6df1f0a6b3e6fb05a63a7a73a7db7bd04cd1bdd09d72",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_14.anim": "0426c99541377d869931a81b7fbd6a6912989efb7592171d8ba5eaced8e36cc3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_mogu_body.mat": "788e107f85e8fdd186509a5a9ba918bbd38625506b068c4907fc706cd806938e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/move.anim": "87f919e892030f13326177d17bb461852a7626569c7ad647e99422f2a065f7e7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_16.anim": "e6160287ca386cdd31098ec93f61d6f1d5eafc3e3f0a9dc8b0ecd09c5082de12"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_11004.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.3333334,
+        "loop": true,
+        "tracks": 36,
+        "source_name": "idle"
+      },
+      {
+        "name": "move",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "move"
+      },
+      {
+        "name": "attack",
+        "duration": 2.1333334,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 0.76666665,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 39,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 2.2666667,
+        "loop": false,
+        "tracks": 37,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack2",
+        "duration": 4.133333,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "attack2"
+      },
+      {
+        "name": "behit",
+        "duration": 0.76666665,
+        "loop": false,
+        "tracks": 36,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.5859489440917969,
+        0.016899197335968653,
+        -0.613107894688259
+      ],
+      "max": [
+        0.5857099294662476,
+        1.0757436527158002,
+        0.49569731084672347
+      ],
+      "size": [
+        1.1716588735580444,
+        1.0588444553798315,
+        1.1088052055349824
+      ]
+    },
+    "meshes": 1,
+    "nodes": 26,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 12
+    },
+    "bytes": 306468,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_moguguai_low.prefab",
+    "source_sha256": "a791b40a85db52684ba92ed0764bb67b016aa76186abb2b04b83ff0ee689ebe3",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move",
+      "attack": "attack"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.godot/
+builds/
+tools/vendor/
+*.tmp
+*.bak
+native/android/.gradle/
+native/android/build/
+android/build/
+
+# Downloaded export templates and local signing configuration
+/.local/
+.godot-export-credentials
+local.properties
+
+# Generated test captures and build reports
+/reports/
+
+# Native build outputs
+/addons/dungeon_ads/bin/
+native/ios/Pods/
+xcuserdata/
+*.xcuserstate

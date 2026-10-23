@@ -1,0 +1,128 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_kuangyamolang_body.png": "35addff921e88d7e478b92fead7dd974695d2532cb158d27d9096295792ee181",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/run_4.anim": "4ea27a6dc65df30df7dabed34ef36ff32dcfa16eb380cefcde8fcdca237596f0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack1_12.anim": "1bcdb4d5e7bec496593cb3d5c181bc3d0c63ab829760ed8d49fa0892206a2eec",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_21.anim": "3232344de30b75755b328051d7fd3b2cdce14a8298cc1a13f75a82737b359696",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_kuangyamolang_body.mat": "0e4f902cebe4e64371429c2f45e55140a8c70d9b03fc1ead52da5fa663d70443",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack2_19.anim": "6e6d2309208f155abec43a4bc1e3e45cddf4e4a0d28ad81b36d0176b8045a5af",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/jumpback.anim": "c271353842d391319db76d7fc9a08d50cdded594b610a23493fa3a6b259a6f2c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_10.anim": "4fdb39f7450e0e222437b504f2379918a2d11d5d7d1a4f8dc534c1e9bbdab6bf",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_kuangyamolang_low.prefab": "51b27f0c4ec4a2b5e449483c2780034308f3fde523cbd6d1767c530f1763ce33",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_27.anim": "d6cec134e125ad53310f418dc82662585a65dd60465241abc6a1300820cd3b6d",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_kuangyamolang.asset": "c5eb247d7c1e25bc66d9b0067dc1fe03f02db4a2e645f0eadd9baa7e390eb8ee",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/outflank.anim": "d522ba6ad13a2a529e268e1d3129311cefbe92b7c2bbeb86e7fd2dec2448d418",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/die_2.anim": "cb92b79aa1a69bd1ed39888f38bf07b1b3f5440a930a5df7ae32339050825888"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_11001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 105,
+        "source_name": "idle"
+      },
+      {
+        "name": "move",
+        "duration": 0.56666666,
+        "loop": true,
+        "tracks": 94,
+        "source_name": "move"
+      },
+      {
+        "name": "attack",
+        "duration": 2.7333333,
+        "loop": false,
+        "tracks": 112,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 99,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 100,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 103,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack2",
+        "duration": 2.7666667,
+        "loop": false,
+        "tracks": 95,
+        "source_name": "attack2"
+      },
+      {
+        "name": "detour",
+        "duration": 4.4333334,
+        "loop": true,
+        "tracks": 48,
+        "source_name": "detour"
+      },
+      {
+        "name": "runaway",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 95,
+        "source_name": "runaway"
+      },
+      {
+        "name": "behit",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 99,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -0.7394616603851318,
+        -0.007009197405458058,
+        -1.6803007699929429
+      ],
+      "max": [
+        0.7402704358100891,
+        1.63878528304126,
+        1.3532984980597762
+      ],
+      "size": [
+        1.479732096195221,
+        1.645794480446718,
+        3.0335992680527193
+      ]
+    },
+    "meshes": 1,
+    "nodes": 57,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 5,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 46
+    },
+    "bytes": 1033268,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_kuangyamolang_low.prefab",
+    "source_sha256": "51b27f0c4ec4a2b5e449483c2780034308f3fde523cbd6d1767c530f1763ce33",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move",
+      "attack": "attack"
+    }
+  }
+}

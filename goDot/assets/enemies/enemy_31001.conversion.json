@@ -1,0 +1,103 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_14.anim": "03f2db73043995921fe9dded72b932eb1bfd0df10ced30a2c40e2e7a1f631d3f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack_10.anim": "5af4715df956cd2a86c9f600137b585b2dbc118c84fe1adcfd5034a5697f27d1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward.anim": "34273fdc4129493370bce02e4863cac6e4b222812a9c3fe7ce47d46966c68edf",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_21.anim": "e931e129b251bd573b41af4ddd568e3601a2ee4a7d698e3001d5c7458094653d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_20.anim": "ced68c1f351bedcdf3c7980ffacea4d5a1fdb42a9ced444d0ecff0e176c02995",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_gujiagui_body.mat": "eb449a926ac080556d7123d6171f94a62d379e18b94872aa35e11de4245ae892",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_36.anim": "f3a81e9e6f92d0fa42bacee50b9da1ba65f8320fee839fccfb15b7631adaad63",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_gujiagui_body.png": "2f2d4e15402c12bf62e626029c1e3cb22e2855d6c5a9277652246899901c97a1",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_gujianggui.asset": "96dafb2cce255ab8c64b124d9a6a661f559178ac6966f7a956491adda045b4af",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_gujiagui_low.prefab": "bede5b685493f74104060e2fbad8be51d1310a4c95aa42ed267082d062a0f3c2"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_31001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 75,
+        "source_name": "idle"
+      },
+      {
+        "name": "move",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 76,
+        "source_name": "move"
+      },
+      {
+        "name": "attack",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 69,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 77,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 75,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 77,
+        "source_name": "damage2"
+      },
+      {
+        "name": "behit",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 77,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -2.0235557973384823,
+        -0.25516945129847846,
+        -1.4261791931953411
+      ],
+      "max": [
+        2.023548918962482,
+        0.6784736785819182,
+        1.232329656361073
+      ],
+      "size": [
+        4.047104716300964,
+        0.9336431298803967,
+        2.658508849556414
+      ]
+    },
+    "meshes": 1,
+    "nodes": 40,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 718668,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_gujiagui_low.prefab",
+    "source_sha256": "bede5b685493f74104060e2fbad8be51d1310a4c95aa42ed267082d062a0f3c2",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move",
+      "attack": "attack"
+    }
+  }
+}

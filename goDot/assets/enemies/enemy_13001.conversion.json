@@ -1,0 +1,203 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_33.anim": "c194fff236e5827971842d21ec478c7c38821928757896f873bedea4b62ec942",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dead_8.anim": "11a9e54795f72de23d8a5bb36bdd7dcfa103b71c919005b48a602f13b4fe604b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_Part1.anim": "ae248b8c2673eed217595153426dc083ac4543a61ebf388c293c678d43a0f91e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/MonsterSupport/Senlinlangwang_Stage2.anim": "493b3adbf8de3919014df63f5b706bafe049a84b92379e0079f6473f42f3722c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit2_5.anim": "281fbac306029d0296b8b9dc0611a0c33d59d8c4a80e8723c7439dadb8fc92de",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_Part2.anim": "7660455d6324408d264d81f0547f49749e88c94d9e5e647ccf31c39c8e51f529",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_senlinlangwang.prefab": "18f3782730c9045e60aa2f4cd5e8c3ba4fda9ab9b8fa52e75627f09534a6861e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveforward_15.anim": "ffb0933a4b50418ba53f2711e68ec4d47c7f1a22123cdd60bb867f02a4559895",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveleft_4.anim": "32a6d7ff67fcec96f598f1d77c6e94fbb584d3dfd5db30fbaf2c86c3a2095253",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Behit1_25.anim": "7b2bad0fff01736948d36548c3eb00b44f0c51ee4cc5809ca21b7d7a2f74b670",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_Part3.anim": "87a8e8c5f6388d651e016a81994495db2b95247eda292781aa689dbabc9227d7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/BossPose_1.anim": "858d98c382eaa96f088c7d530d3e9c633234067e48dc655c56e75298d83aa56a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_senlinlangwang_body.mat": "719dc430b5bb34825a4f7974d1b794997fee85655931d1a68399291f34eb08e7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveback_0.anim": "2d1d17ce8f38d0d0380560cceb0d052b86da977d9addb482d1f0109fa28f11f5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Roar_0.anim": "6a8fa9acf9d7e6a1a054c3343eb1aa2da28b394e4e4cdceb6706c0802ebf0c69",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_Part1.anim": "607fdd435f4ba1f6bfc88568c5bf44868e4c9fe8090e4c77a036c7b915c8daea",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_senlinlangwang_body.png": "5fe35ce6afaac8502d4b0ff93bc7223db6d3f9fa149b49d68c7a0094d4e24629",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3.anim": "624e74125c11483b7ad27f9a79c04085ce26c6f54864302960296ab9cec0492a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/MonsterSupport/Senlinlangwang_Stage1.anim": "7769eb3e1363bb198ca36546861290106b80ef1afa447779d7a5a633114569a1",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_11.anim": "3b77bb0859a015cd26f09ffa23eae63048400bb3d2f2fcbfddbe42dbe42c8795",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Moveright_3.anim": "bccab1854e5cb498b40eca57e0376da26f9bd7232243556831cdf4e0e86933fe",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/meshsimplify_monster_senlinlangwang.asset": "453b224b57d9ebbd816b2edcb2d77a64c3b1c510377e52f74d38dd67e2c78aa0",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_3.anim": "2622a3f0cac0d77b548f137e135a79f2936b5d71a06ca02ee90a976a83ad1e4c"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_13001.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 249,
+        "source_name": "idle"
+      },
+      {
+        "name": "move_forward",
+        "duration": 1.0333333,
+        "loop": true,
+        "tracks": 246,
+        "source_name": "move_forward"
+      },
+      {
+        "name": "attack",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.1,
+        "loop": false,
+        "tracks": 102,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 249,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 3.7666667,
+        "loop": false,
+        "tracks": 102,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "attack2"
+      },
+      {
+        "name": "move_back",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "move_back"
+      },
+      {
+        "name": "move_left",
+        "duration": 1.5333333,
+        "loop": true,
+        "tracks": 246,
+        "source_name": "move_left"
+      },
+      {
+        "name": "move_right",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "move_right"
+      },
+      {
+        "name": "attack3",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 248,
+        "source_name": "attack3"
+      },
+      {
+        "name": "attack4_part1",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 279,
+        "source_name": "attack4_part1"
+      },
+      {
+        "name": "attack4_part2",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "attack4_part2"
+      },
+      {
+        "name": "attack4_part3",
+        "duration": 0.53333336,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "attack4_part3"
+      },
+      {
+        "name": "bosspose",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "bosspose"
+      },
+      {
+        "name": "roar",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "roar"
+      },
+      {
+        "name": "monstersupport_stage1",
+        "duration": 3.0000002,
+        "loop": false,
+        "tracks": 274,
+        "source_name": "monstersupport_stage1"
+      },
+      {
+        "name": "monstersupport_stage2",
+        "duration": 5.0000005,
+        "loop": false,
+        "tracks": 274,
+        "source_name": "monstersupport_stage2"
+      },
+      {
+        "name": "attack1_part1",
+        "duration": 2.3666666,
+        "loop": false,
+        "tracks": 246,
+        "source_name": "attack1_part1"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.1500630527734763,
+        -0.008592938143294036,
+        -3.0235757485195
+      ],
+      "max": [
+        1.150506385602057,
+        2.913394990665288,
+        1.485011945794607
+      ],
+      "size": [
+        2.3005694383755335,
+        2.9219879288085817,
+        4.508587694314107
+      ]
+    },
+    "meshes": 1,
+    "nodes": 142,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "198": 5,
+      "199": 5,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 800
+    },
+    "bytes": 6467960,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_senlinlangwang.prefab",
+    "source_sha256": "18f3782730c9045e60aa2f4cd5e8c3ba4fda9ab9b8fa52e75627f09534a6861e",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move_forward",
+      "attack": "attack"
+    }
+  }
+}

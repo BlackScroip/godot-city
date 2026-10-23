@@ -1,0 +1,212 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/EscapingInto.anim": "957dc45227201e869b493de45090912fca20bdaa4e10aa33b73eaf9ecfc71989",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/EscapingOut.anim": "4b59c0a53a25b31da25fe5464d74ca8c6e0a910aa217b90f99cc7e6809a66fea",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_fast.anim": "5ce3bb0f23b2c2afd58eb3dcdf9a3fd8ae78dae6872c7ef15dad0f4a00bb8bff",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/MoveBack_14.anim": "38b7b26fc05e567142c5abd696e963e73c3037cc117ca563f2290b5ec6d2053b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Die.anim": "db835b7feda0431aa2a4ec320ad8cc7ebd9fe71eeba2376a03dbac8f4b5e01cb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack2_15.anim": "4d5200183c2a99c776eb4f9a00c445521d6f318f1bfdd6525359aafd60fe13d2",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_CB.asset": "5208d9b1b9fb729009be7ebc29f14d75c5e2c250fadffa903845838d2c31acef",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Idle_7.anim": "ad0c8ff340a92a14d0e6491d2f216214249db34e7d8aa145ff6abd3a6cf527a5",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_fast.anim": "98795489843089305a3ff9fe536ac0d2234fa650696d62bc738688134665efe4",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/MoveLeft_1.anim": "62c6aacd1b54c9194a392aa3c1dbf3d8dda5313b315ba40ea507a8ab9ea465fc",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack3_9.anim": "d81d1edb79cb2e9de9e3c3474f64db8efcf242f55d53ba723a5fb2d0e20c7f36",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_fast.anim": "e7dad6635ffd0c9276aa13d71eb3e7f080827cac7e5230bae0951b119bf3d413",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_body.asset": "2883c321285aaa8fe3e4118dccee102c9edb2bee777a51ec1d3881aab9d36a6d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_sishen_body.mat": "4dc59f3b6f4064c9fac40572e3f42412d02abdab37b53fe35e06f5f19fd55c0f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_sishen.prefab": "4598f5aa1b753c2c4bd938dbcd705158bc7453003132ca2ebd3bcdbb06a3f49c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack1_17.anim": "6f585e09f974510231acc18df3a2c1cef9448784f39de3e68aa7f59d6efcadc7",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Appear_3.anim": "377397642b6bfb490739737ad366c1593c56859de6f464e3b6d862846658445b",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/MoveRight_4.anim": "6e3cbde9db45c5db92417a3b3ce752a9e3b5db521630f5de121a901c26f92c6c",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack5_2.anim": "60ed2db611de3190527e07350229da9aa0e63b27ce77dc0b55825cea92db373e",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/Tex_monster_Sishen_body.png": "0550c850521a262e9354e13871a7c1c991fdfa8f8d4b87e0244e1d24b90d6ef6",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/MoveFront.anim": "663a2f358d5422c78d67340816b2c5e6998d68cdee87a9c07446358f7ec8d30f",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_4.anim": "c799c93d28f6d7885bdfe821980710845c52bc437a75745b3d83f13676a76afe",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Dash.anim": "d59200282c7445674a8896d3e3414460261c221863b2d9ae16804bdb1db9b433",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack5_end.anim": "c5ff3c4e5fbec29ed3dc17cf31ea0b0fa1a00d875947fcab35843aef07fcd729",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/Attack4_end.anim": "e0e7dca9ddaa040fbdab3a3dfe058b6a536b6c4bf7d7d8b8bea6999850589921",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/mesh_LD.asset": "c3951ac187fe6b717543e4d6facb29d3a200213ad44ecde4aacffc2bbe2a240a"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_52003.glb",
+    "animations": [
+      {
+        "name": "appear",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 439,
+        "source_name": "appear"
+      },
+      {
+        "name": "attack1",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 429,
+        "source_name": "attack1"
+      },
+      {
+        "name": "attack2",
+        "duration": 3.5333333,
+        "loop": false,
+        "tracks": 429,
+        "source_name": "attack2"
+      },
+      {
+        "name": "attack3",
+        "duration": 4.0333333,
+        "loop": false,
+        "tracks": 439,
+        "source_name": "attack3"
+      },
+      {
+        "name": "attack4",
+        "duration": 2.4,
+        "loop": false,
+        "tracks": 469,
+        "source_name": "attack4"
+      },
+      {
+        "name": "attack5",
+        "duration": 1.8,
+        "loop": false,
+        "tracks": 429,
+        "source_name": "attack5"
+      },
+      {
+        "name": "escapinginto",
+        "duration": 2.0333333,
+        "loop": false,
+        "tracks": 443,
+        "source_name": "escapinginto"
+      },
+      {
+        "name": "escapingout",
+        "duration": 1.5333333,
+        "loop": false,
+        "tracks": 453,
+        "source_name": "escapingout"
+      },
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 413,
+        "source_name": "idle"
+      },
+      {
+        "name": "moveback",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 529,
+        "source_name": "moveback"
+      },
+      {
+        "name": "movefront",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 519,
+        "source_name": "movefront"
+      },
+      {
+        "name": "moveleft",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 529,
+        "source_name": "moveleft"
+      },
+      {
+        "name": "moveright",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 529,
+        "source_name": "moveright"
+      },
+      {
+        "name": "dash",
+        "duration": 2.5333333,
+        "loop": false,
+        "tracks": 456,
+        "source_name": "dash"
+      },
+      {
+        "name": "die",
+        "duration": 1.0333333,
+        "loop": false,
+        "tracks": 489,
+        "source_name": "die"
+      },
+      {
+        "name": "attack5end",
+        "duration": 1.2666667,
+        "loop": false,
+        "tracks": 429,
+        "source_name": "attack5end"
+      },
+      {
+        "name": "attack1_fast",
+        "duration": 2.4666667,
+        "loop": false,
+        "tracks": 429,
+        "source_name": "attack1_fast"
+      },
+      {
+        "name": "attack2_fast",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 429,
+        "source_name": "attack2_fast"
+      },
+      {
+        "name": "attack3_fast",
+        "duration": 3.3,
+        "loop": false,
+        "tracks": 439,
+        "source_name": "attack3_fast"
+      },
+      {
+        "name": "attack4end",
+        "duration": 1.1666666,
+        "loop": false,
+        "tracks": 453,
+        "source_name": "attack4end"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -4.493726239916682,
+        0.004172954754689526,
+        -2.4701438525840755
+      ],
+      "max": [
+        2.0668083289459345,
+        2.9710077748049017,
+        0.6520181051049423
+      ],
+      "size": [
+        6.560534568862616,
+        2.966834820050212,
+        3.122161957689018
+      ]
+    },
+    "meshes": 3,
+    "nodes": 220,
+    "skins": 3,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "198": 8,
+      "199": 8,
+      "212": 2,
+      "195": 1,
+      "animation_unbound_path": 1
+    },
+    "bytes": 11757120,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/myenemy_sishen.prefab",
+    "source_sha256": "4598f5aa1b753c2c4bd938dbcd705158bc7453003132ca2ebd3bcdbb06a3f49c",
+    "default_animations": {
+      "idle": "idle",
+      "attack": "attack1"
+    }
+  }
+}

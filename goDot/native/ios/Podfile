@@ -1,0 +1,9 @@
+source 'https://cdn.cocoapods.org/'
+platform :ios, '16.0'
+project 'DungeonChasers.xcodeproj'
+target 'DungeonChasers' do
+  use_frameworks!
+  pod 'TPNiOS', '6.4.93'
+  pod 'TPNAdmobSDKAdapter', '6.4.93.1'
+  pod 'GoogleUserMessagingPlatform', '3.1.0'
+end

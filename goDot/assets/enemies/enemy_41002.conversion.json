@@ -1,0 +1,119 @@
+{
+  "version": "unity-glb-13",
+  "dependencies": {
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit2_3.anim": "3532693aaa3116567ce2d3fd39885cc7f17c6250651f6013bd8df61c54fccb7d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/runback_0.anim": "f9b6ef3098bf742f78e0260727631a47e8883851dd7cfca9ed5662263c726e92",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/idle_3.anim": "118516c22acf8ee69ba68585dd2e1a406001a680d8fc5af9472040412a9c5f2d",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/behit1_7.anim": "6f8861a2da6db2b583dacc7a9e9a1ce30d279b6fa6b4d237fcaa79818edceeeb",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack1_1.anim": "b181b5e51896b2f4b5a3612b946c5629ecc3ae49c341841d4fd371c041defce3",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_dubaofeng_low.prefab": "b8c988024008aa5c49e06473a96f6437c340f239a7044e5b666fe15c7f7fae99",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Texture/tex_monster_dubaofeng_body.png": "8d5522ac07324569a8c19a36c4b7cc0a0646fd1ccc6863500af797982232f57f",
+    "/Users/hanyu/U3D/City/OfflineUnity/Assets/Combat/Runtime/Recovered/_00001_Media/Models/Monster/Sphere002.asset": "a90ed9106de999fd7449115e725b5b8ec4086d21d9416a18f297022282815d99",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/run_1.anim": "196d1acacbc2376b7f3108fa6baed62792f74eb6423b2ac79feadc37ade7551a",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/attack2_22.anim": "74bfc76d7a4dad8e75be6d9dab6e7f5b16d2373269ef49cd8f46abd8708d0976",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Material/mat_monster_dubaofeng_body.mat": "f3c227c21f164a3f080832406d4c4861412e94387237a9ab13fc0239c31d1986",
+    "/Users/hanyu/U3D/City/RecoveredUnity/ExportedProject/Assets/_00001_Media/Models/Monster/Animation/dead_30.anim": "b263126f71df2907da454eda3fb80c49e8ce0183b57493e4518ac14f8f38c71c"
+  },
+  "result": {
+    "path": "res://assets/enemies/enemy_41002.glb",
+    "animations": [
+      {
+        "name": "idle",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 48,
+        "source_name": "idle"
+      },
+      {
+        "name": "move_forward",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 48,
+        "source_name": "move_forward"
+      },
+      {
+        "name": "attack",
+        "duration": 2.2333333,
+        "loop": false,
+        "tracks": 48,
+        "source_name": "attack"
+      },
+      {
+        "name": "damage",
+        "duration": 1.7,
+        "loop": false,
+        "tracks": 48,
+        "source_name": "damage"
+      },
+      {
+        "name": "die",
+        "duration": 1.3,
+        "loop": false,
+        "tracks": 51,
+        "source_name": "die"
+      },
+      {
+        "name": "damage2",
+        "duration": 1.7,
+        "loop": false,
+        "tracks": 49,
+        "source_name": "damage2"
+      },
+      {
+        "name": "attack2",
+        "duration": 3.0333333,
+        "loop": false,
+        "tracks": 48,
+        "source_name": "attack2"
+      },
+      {
+        "name": "move_back",
+        "duration": 2.0333333,
+        "loop": true,
+        "tracks": 48,
+        "source_name": "move_back"
+      },
+      {
+        "name": "behit",
+        "duration": 1.7,
+        "loop": false,
+        "tracks": 48,
+        "source_name": "behit"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.0278652280914784,
+        -0.8540882287659173,
+        -0.23391561265187708
+      ],
+      "max": [
+        1.026951319992602,
+        0.7816938560440845,
+        0.376075585748872
+      ],
+      "size": [
+        2.05481654808408,
+        1.6357820848100018,
+        0.6099911984007491
+      ]
+    },
+    "meshes": 1,
+    "nodes": 30,
+    "skins": 1,
+    "unsupported": {
+      "143": 1,
+      "114": 4,
+      "212": 2,
+      "195": 1
+    },
+    "bytes": 548244,
+    "source": "RecoveredUnity/ExportedProject/Assets/_00002_Resource/Prefabs/BattleSys/Role/Monster/monster_dubaofeng_low.prefab",
+    "source_sha256": "b8c988024008aa5c49e06473a96f6437c340f239a7044e5b666fe15c7f7fae99",
+    "default_animations": {
+      "idle": "idle",
+      "run": "move_forward",
+      "attack": "attack"
+    }
+  }
+}
