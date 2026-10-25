@@ -67,6 +67,7 @@ func _run() -> void:
 	forward = forward.normalized()
 	world.spawn_wave([{"enemy_id": 11005, "position": player.position - forward * 2.0}], 0, 123)
 	var enemy: DungeonActor = world.actors.back()
+	enemy.combat.add_buff("26012001", 1)
 	enemy.face_direction(forward)
 	enemy.visual.rotation.y = atan2(forward.x, forward.z)
 	var action: Dictionary = enemy.combat._action(str(enemy.combat.enemy.group), "attack")

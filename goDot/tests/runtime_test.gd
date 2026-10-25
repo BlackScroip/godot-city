@@ -49,17 +49,17 @@ func _run() -> void:
 		await process_frame
 	scene.hud.close_page()
 	scene._primary()
-	check(scene.profile.data.run.active and scene.campaign.state.phase == "route", "Camp starts seeded adventure")
-	var choices = scene.campaign.choices()
-	check(not choices.is_empty(), "Adventure has route choices")
-	if not choices.is_empty():
-		scene._enter_node(int(choices[0].node_id))
+	var started = Time.get_ticks_msec()
+	while scene._transitioning and Time.get_ticks_msec() - started < 20000: await process_frame
+	check(scene.profile.data.run.active and scene.campaign.state.phase == "room", "Camp automatically enters the seeded first room")
+	check(not scene._transitioning, "First room loading finishes")
+	if scene.campaign.state.phase == "room":
 		check(scene.campaign.state.phase == "room", "Route enters original room")
 		check(scene.world.collision_report.missing_mesh.is_empty(), "Room mesh colliders resolve")
 		if not scene.campaign.current_room().get("combat", false):
 			scene._finish_noncombat()
 			check(scene.campaign.state.phase == "reward", "Noncombat room settles")
-			check(scene._save(), "Run snapshot saves")
+			check(scene._save(true), "Run snapshot saves")
 			scene._action("next", 0, 0)
 			if scene.campaign.state.phase == "reward": scene._action("leave_unclaimed", 0, 0)
 			check(scene.campaign.state.phase in ["route", "won"], "Rewards advance adventure")
@@ -79,7 +79,7 @@ func _run() -> void:
 
 func _test_touch(scene: Node) -> void:
 	var joystick = scene.hud.joystick
-	var key = scene.hud.skill_buttons[4]
+	var key = scene.hud.skill_by_slot[0]
 	var down = InputEventScreenTouch.new()
 	down.index = 3
 	down.pressed = true

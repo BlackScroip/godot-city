@@ -23,6 +23,7 @@ const MATERIAL_MASKS = {
 	"mat_fx_26072501_accumulation1_qiliu.mat": {"texture": "res://assets/combat_presentation/36fb0793880a59c4c2e5.png", "power": 1.05}
 }
 const SOFT_BOUNDARY_MATERIALS = {
+	"mat_fx_25011001_slash_fog.mat": Vector2(0.18, 0.24),
 	"mat_fx_23090801_smoke.mat": Vector2(0.12, 0.16),
 	"mat_fx_23090801_launch_sidsmoke.mat": Vector2(0.12, 0.16),
 	"mat_fx_26072501_accumulation1_qiliu.mat": Vector2(0.12, 0.16),
@@ -43,6 +44,11 @@ static func scalar(value: Variant, fallback := 0.0) -> float:
 static func lower_scalar(value: Variant, fallback := 0.0) -> float:
 	if value is Dictionary and int(value.get("minMaxState", 0)) in [2, 3]: return float(value.get("minScalar", value.get("scalar", fallback)))
 	return scalar(value, fallback)
+
+static func scalar_range(value: Variant, fallback := 0.0) -> Vector2:
+	var first := lower_scalar(value, fallback)
+	var second := scalar(value, fallback)
+	return Vector2(minf(first, second), maxf(first, second))
 
 static func rgba(value: Dictionary, fallback := Color.WHITE) -> Color:
 	return Color(float(value.get("r", fallback.r)), float(value.get("g", fallback.g)), float(value.get("b", fallback.b)), float(value.get("a", fallback.a)))
@@ -69,6 +75,16 @@ static func constant_curve(value: float) -> Curve:
 static func value_curve(value: Dictionary, fallback := 0.0) -> Curve:
 	var result = curve(value)
 	return result if result else constant_curve(scalar(value, fallback))
+
+static func custom_stream(module: Dictionary, index: int) -> ImageTexture:
+	var curves: Array[Curve] = []
+	for component in 4:
+		curves.append(value_curve(module.get("vector%d_%d" % [index, component], {})))
+	var image := Image.create(CURVE_SAMPLES + 1, 1, false, Image.FORMAT_RGBAF)
+	for sample_index in CURVE_SAMPLES + 1:
+		var phase := float(sample_index) / CURVE_SAMPLES
+		image.set_pixel(sample_index, 0, Color(curves[0].sample(phase), curves[1].sample(phase), curves[2].sample(phase), curves[3].sample(phase)))
+	return ImageTexture.create_from_image(image)
 
 static func _integrated_motion(module: Dictionary, duration: float) -> CurveXYZTexture:
 	var texture = CurveXYZTexture.new()
@@ -118,6 +134,7 @@ static func gradient(value: Dictionary) -> Gradient:
 	var count = int(raw.get("m_NumColorKeys", 0))
 	if count <= 0: return null
 	var result = Gradient.new()
+	if int(raw.get("m_Mode", 0)) == 1: result.interpolation_mode = Gradient.GRADIENT_INTERPOLATE_CONSTANT
 	var offsets = PackedFloat32Array()
 	var colors = PackedColorArray()
 	for i in count:
@@ -194,8 +211,9 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		var particle = CPUParticles3D.new()
 		particle.emitting = false
 		particle.one_shot = not bool(layer.get("looping", false))
-		particle.lifetime = clampf(scalar(initial.get("startLifetime", {}), 0.3), 0.02, 8)
-		particle.lifetime_randomness = clampf(1.0 - lower_scalar(initial.get("startLifetime", {}), particle.lifetime) / particle.lifetime, 0, 1)
+		var lifetime_range := scalar_range(initial.get("startLifetime", {}), 0.3)
+		particle.lifetime = clampf(lifetime_range.y, 0.02, 8)
+		particle.lifetime_randomness = clampf(1.0 - lifetime_range.x / particle.lifetime, 0, 1)
 		var count := 0.0
 		for burst in emission.get("m_Bursts", []): count += scalar(burst.get("countCurve", {}), 1)
 		var rate = scalar(emission.get("rateOverTime", {}))
@@ -207,15 +225,17 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		particle.direction = Vector3(0, 0, 1)
 		var shape: Dictionary = layer.get("shape", {})
 		particle.spread = float(shape.get("angle", 0))
-		var speed = scalar(initial.get("startSpeed", {}))
-		particle.initial_velocity_min = lower_scalar(initial.get("startSpeed", {}), speed)
-		particle.initial_velocity_max = speed
+		var speed_range := scalar_range(initial.get("startSpeed", {}))
+		particle.initial_velocity_min = speed_range.x
+		particle.initial_velocity_max = speed_range.y
 		particle.gravity = Vector3(0, -9.81, 0) * scalar(initial.get("gravityModifier", {}))
-		var size_value = maxf(0.001, scalar(initial.get("startSize", {}), 1))
-		particle.scale_amount_min = maxf(0.001, lower_scalar(initial.get("startSize", {}), size_value))
+		var size_range := scalar_range(initial.get("startSize", {}), 1)
+		var size_value = maxf(0.001, size_range.y)
+		particle.scale_amount_min = maxf(0.001, size_range.x)
 		particle.scale_amount_max = size_value
-		particle.angle_min = rad_to_deg(lower_scalar(initial.get("startRotation", {})))
-		particle.angle_max = rad_to_deg(scalar(initial.get("startRotation", {})))
+		var angle_range := scalar_range(initial.get("startRotation", {}))
+		particle.angle_min = rad_to_deg(angle_range.x)
+		particle.angle_max = rad_to_deg(angle_range.y)
 		if shape.get("enabled", false):
 			var radius_data: Variant = shape.get("radius", {})
 			var radius = float(radius_data.get("value", 0.1)) if radius_data is Dictionary else float(radius_data)
@@ -262,6 +282,9 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			var start_ramp = Gradient.new()
 			start_ramp.colors = PackedColorArray([rgba(start_color.get("minColor", {})), rgba(start_color.get("maxColor", {}))])
 			particle.color_initial_ramp = start_ramp
+		elif int(start_color.get("minMaxState", 0)) == 4:
+			particle.color = Color.WHITE
+			particle.color_initial_ramp = gradient(start_color)
 		var modules: Dictionary = layer.get("modules", {})
 		var size_module: Dictionary = modules.get("SizeModule", {})
 		if bool(initial.get("size3D", false)) or bool(size_module.get("separateAxes", false)):
@@ -285,6 +308,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		material.vertex_color_use_as_albedo = true
 		material.cull_mode = BaseMaterial3D.CULL_DISABLED
 		var materials: Array = layer.get("materials", [])
+		var ground_fade: bool = not materials.is_empty() and str(materials[0].get("source", "")).get_file() == "mat_fx_25011001_slash_fog.mat"
 		if not materials.is_empty():
 			var source: Dictionary = materials[0]
 			material.albedo_texture = textures.get(str(source.get("texture", "")))
@@ -351,6 +375,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 				recovered.set_shader_parameter("mask_power", float(opacity_mask.get("power", 1)))
 			# The original custom-stream erosion is unavailable on these recovered smoke meshes.
 			recovered.set_shader_parameter("edge_feather", SOFT_BOUNDARY_MATERIALS.get(str(source.get("source", "")).get_file(), Vector2.ZERO))
+			recovered.set_shader_parameter("ground_feather", 0.5 if ground_fade else 0.0)
 			# Original erosion controllers are unavailable; keep broad slash meshes translucent.
 			recovered.set_shader_parameter("reconstructed_ribbon", _uses_reconstructed_ribbon(layer, source))
 			recovered.set_shader_parameter("reconstructed_water_shell", _uses_reconstructed_water_shell(layer, source))
@@ -376,6 +401,13 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 				recovered.set_shader_parameter("motion_curve", _integrated_motion(velocity_module, particle.lifetime))
 				recovered.set_shader_parameter("use_motion_curve", true)
 				recovered.set_shader_parameter("world_motion", bool(velocity_module.get("inWorldSpace", false)))
+			preload("res://scripts/presentation/recovered_effect_material.gd").apply_source(recovered, source, textures)
+			if modules.has("CustomDataModule"):
+				var custom: Dictionary = modules.CustomDataModule
+				for stream_index in 2:
+					if int(custom.get("mode%d" % stream_index, 0)) != 1: continue
+					recovered.set_shader_parameter("custom_stream%d" % stream_index, custom_stream(custom, stream_index))
+					recovered.set_shader_parameter("use_custom_stream%d" % stream_index, true)
 			particle.material_override = recovered
 		particle.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		particle.extra_cull_margin = 8
@@ -399,12 +431,12 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 					particle_count += instance.amount
 					instance.explosiveness = 1.0
 					var at = delay + float(burst.get("time", 0)) + cycle * float(burst.get("repeatInterval", 0))
-					emitters.append({"node": instance, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": false, "duration": duration / speed_scale})
+					emitters.append({"node": instance, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": false, "duration": duration / speed_scale, "ground_fade": ground_fade})
 					lifetime = maxf(lifetime, (at + instance.lifetime) / speed_scale)
 		else:
 			particle.one_shot = false
 			particle_count += particle.amount
-			emitters.append({"node": particle, "delay": delay / speed_scale, "started": false, "speed": speed_scale, "loop": bool(layer.get("looping", false)), "duration": duration / speed_scale})
+			emitters.append({"node": particle, "delay": delay / speed_scale, "started": false, "speed": speed_scale, "loop": bool(layer.get("looping", false)), "duration": duration / speed_scale, "ground_fade": ground_fade})
 		lifetime = maxf(lifetime, (delay + (duration if rate > 0 else 0.0) + particle.lifetime) / speed_scale)
 
 func set_visual_gain(value: float, crimson := false) -> void:
@@ -422,7 +454,7 @@ func instantiate_effect() -> Node3D:
 	for child in get_children(): instance.add_child(child.duplicate(0))
 	for emitter in emitters:
 		var entry = emitter.duplicate()
-		var particle: CPUParticles3D = instance.get_node(get_path_to(emitter.node))
+		var particle: CPUParticles3D = instance.get_child(emitter.node.get_parent().get_index()).get_child(emitter.node.get_index())
 		particle.material_override = emitter.node.material_override.duplicate()
 		entry.node = particle
 		instance.emitters.append(entry)
@@ -447,6 +479,8 @@ func advance(delta: float, paused: bool, playback_rate := 1.0) -> void:
 			emitter.node.speed_scale = speed
 			emitter.last_speed = speed
 		if not paused and emitter.node.material_override is ShaderMaterial:
+			emitter.node.material_override.set_shader_parameter("clock", age)
+			if emitter.get("ground_fade", false): emitter.node.material_override.set_shader_parameter("ground_level", global_position.y - 0.08)
 			var basis_value: Basis = emitter.node.global_basis
 			if not emitter.has("last_basis") or not basis_value.is_equal_approx(emitter.last_basis):
 				emitter.node.material_override.set_shader_parameter("emitter_basis", basis_value)

@@ -18,7 +18,7 @@ func update_target(world: Node3D, blocked: bool) -> void:
 	var best := INF
 	for item in world.interactions._items.values():
 		var kind := str(item.marker.get("Type", ""))
-		if kind not in ["EEUT_AbilityItemTreasureBox", "EEUT_StageChangeDoor", "EEUT_Protal"]: continue
+		if kind not in ["EEUT_AbilityItemTreasureBox", "EEUT_StageChangeDoor", "EEUT_Protal", "EEUT_ProtectTarget"]: continue
 		if not item.state.enabled or item.state.broken or item.state.opened or item.state.used: continue
 		if not is_instance_valid(item.visual) or not item.visual.is_visible_in_tree(): continue
 		var distance: float = world.player.global_position.distance_to(world.environment_root.to_global(item.position))

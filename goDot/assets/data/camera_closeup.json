@@ -1,0 +1,1015 @@
+{
+  "schema": 1,
+  "bundles": [
+    {
+      "member": "assets/yoo/DefaultPackage/399edb059baefdcd60185074221d584e.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_bingjingguai.bundle",
+      "sha256": "a0af7afc3f80bf3497773164da34244f272b56f3216b2232c3069f982ed04696"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/e8ea41bde5da7c4cb539585e49d193a0.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_chimera.bundle",
+      "sha256": "d28a1520c00b7e6dc8ce13be40a555af7f37b1c74ac2634aa1bf1dca6a44fe12"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/01429b8033a13ff4842a49234846693c.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_cityscarecrow.bundle",
+      "sha256": "be91a4f6548956f3117c85bac68679893aae866b6d7fa3a78d4746952ee3ee49"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/b59ddcd7b9827b6ef67fcfd19b254dd0.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_dubaofeng.bundle",
+      "sha256": "ee63140d641c941286afdf8fd4e8a5cd3b9030e1af42a037444ccedbee91f46b"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ca4c10ab6382a6cd204fafa330066c42.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_feimolong.bundle",
+      "sha256": "9d71e8f66ca87104aa970aa78c38ece192496727dc7faa9a41a05c5b533ef242"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/166d3093dbe7a34ca4fa23ce8808acfa.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_feishe.bundle",
+      "sha256": "92c225a640f98c32ebf5ce75b4feb891ca1e8eee8cd6b49640101684dd32f81a"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/9e80c2bdf10798d74d8d81a97e0859b8.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_gelifenniaoshou.bundle",
+      "sha256": "86d17ae9603cc836f337ecd4a4b56c45f2f109f29bc2d46a71da43a05e12c04c"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/101c5558d0ce79434d32fed510032641.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_genjing.bundle",
+      "sha256": "955092a5684e7ce70d5458db54c6621fec4b1b52fa112567195b31d88d066012"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/c75e1b5cd2e4b25f358a69561fd8884b.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_gujiagui.bundle",
+      "sha256": "57e2a5bb888619a139480486bad3cf1894dd063d6ac24f8b14dd02d2f905305b"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/f3e072142e58c23b45147380be971997.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_haixianghuwei.bundle",
+      "sha256": "26ee240cd622dbd76346fac665b9087938f1fe3881e893e7e1d70beb5ea36ba5"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/064067d3313182c2f8fe2931eb892dac.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_haixiangtoumaoshou.bundle",
+      "sha256": "a5ff08d9142b4452a799d87ac3736196863f198efeb6bdd657afb0555a0fe96b"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/9d4b737d3a67958116d6668c4968f832.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_jiaolu.bundle",
+      "sha256": "53185a2185a980dbfd420f6b4fa17f34c99ca1248fc280d0c37c2075ff405fbe"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/d04db7ef12176a533803c0f2815b1b3d.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_jingshijiachong.bundle",
+      "sha256": "bd559fb0ad9dd54b6610d330e93235a1931e71cd8a4a71d3103a61febc6acffe"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ad8b043611b0f85905d4d39510dd2559.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_jingshimoxie.bundle",
+      "sha256": "037f9b268a6ef54f5092bd85c6c33d83d12461208f7b117b06d110579d62df3c"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/c6c54e5f645a2664a7309d7502d87369.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_juchifeiyao.bundle",
+      "sha256": "6e4ac205aa6a107b6592a83f7053b42df856c35fdd6e9e1ced3f0183d40f255d"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/0ee6920a7b3e573771d99d6910e58901.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_juedishu.bundle",
+      "sha256": "12cbe6db404f2cc0c70222e75004a64dc7acc6bca31e87af1ca0dfcb517c2cb9"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/50e50c97015c76cfbe8736b0a778fa2a.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_jumo.bundle",
+      "sha256": "b99d9af0aa22250e9f5c63c9085589fc387cc35baa1753a6a33581948578a540"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/cb94378ac5ce3e3620ab3918b0797e77.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_jushimoxiang.bundle",
+      "sha256": "9cd0fc8b297b791b694603128ca9ded28c1c644c206f71b2b62fc78eec2c2602"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/b4b1f4a1c57f40e3213575d795280be5.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_kuangyamolang.bundle",
+      "sha256": "0dec0a98891ee5c1f11d28b10feb2290a0b058090d2291ad93a8eecccb0ed0db"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/776198bc6038877850909533a0855161.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_liushaguai.bundle",
+      "sha256": "86aff6a2d941d2fe0decb6533ddae883ab0a9854e7ff371417c2e86c3a051561"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/01df9bbe5dac561fea053bf589bbc84f.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_mofu.bundle",
+      "sha256": "2370ecd540ab1f80b6315c6d2b11c141d9179eee8f9a0d4d2f23da1eb23bd4b5"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/82887e6708ea157bdea34929e0fcaaee.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_moguguai.bundle",
+      "sha256": "dddc4c0ccf3adc6d496701aa8f0630543ce4faff00226307ee48955c3d418abc"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ccb33a09dc6608401338862e3848b7ab.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_mojiehua.bundle",
+      "sha256": "4bfcb3062b8d126ffdcbede7de5d1323be51ddfdb8415de31fad090ba6e4ee45"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/7b403aea2bec58440636b8b60ccdbc08.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_mozhaowa.bundle",
+      "sha256": "5233ffd8638ef94fb0d9477bee4da7c22ce30bf7a2c2bac26740c000dcf46866"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/66fe9d208eec2bcb93e790802c16e030.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_padijuchong.bundle",
+      "sha256": "b24038cf430fbc6be8f6e4dc379026d08e03afb039e09f1863db992f1dc20c4c"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/4445db9ca8e75add44959d9427e0e840.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_playerchara.bundle",
+      "sha256": "a043ab241574370b86767df5f03598cb34d40c8304029fbe1a2071ca737ccc1d"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ed53557171f12eb66a243affb230df2a.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_senlinlangwang.bundle",
+      "sha256": "f2d968b698a21c08633b0fdc2163bb742548576f5165c53ce282cc98b29f2581"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/0aec92bcbf154a294f6dea2a10690c4c.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_senlinyaohua.bundle",
+      "sha256": "61506d78ce706aef3140f6e4f88b6a6e75a85edc4499b19a7112e83b9f84f194"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/8899aef1b2c160c2b8138e5257e4b417.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_shayu.bundle",
+      "sha256": "5f66cf14af9533d4a877a374aec6932743d4ef8e8a0eb06770510bbc72d22e95"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/595acb32715e0cdf9f86367243173e9b.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_shilaimu.bundle",
+      "sha256": "1866f269f1af0593431d20f718228bbd8f33c44512f4346f5d7774ef4c9d4739"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/254ad58a46607241259705abf2cab290.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_shuixiyi.bundle",
+      "sha256": "9303ab35464ee37936c19d1e61d3b539563f725e660a86fffc22f8472de86831"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/d7adf34b913a1932af129f2d0597d50b.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_sishen.bundle",
+      "sha256": "2bf7227bf25a17f4c4b00c66dc1d4368b96a213227f7573e2836d3f64a8a63c6"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/68d330d3deab42927e24ef20c26bf0d2.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_tiankongfeilong.bundle",
+      "sha256": "5ff792a82fa5981d2da224211d0fc5bc82c641a7da1753a33d126bad622b05a3"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/1906db454a23bc960f5cbc192ef047ae.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_tubolong.bundle",
+      "sha256": "201f525705814df7ae2236a34be164b5374162c2fab318987233605c121ccd9f"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ab5b8f3339e8385c6b800d91a61d99fd.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_wolf.bundle",
+      "sha256": "b27cc48ef5271a051c8ac3254dce5fb6112f90b9cbd71f30476a2d3fa8ec1599"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/8c97cf900962f1350b1bc8f2eb38757c.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_xianrenzhang.bundle",
+      "sha256": "5b9289ec70a7ff5fe9ceba387cbd5d11d6808fb6af7d3f8b9ec426f143e56231"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/6b3f8f12dfbfe64f3e3bee6e7b7762fe.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_xiaoshanzhu.bundle",
+      "sha256": "6ce2d093409a05b5bf41e316ae873e8dc1ed194d40cb73f0379716e34635c5bc"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/031d2202828a5b902d3b5e9f5b7448b1.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_xiaoxueguai.bundle",
+      "sha256": "c78daa80f5e60b01650ebfc66dc46484aaa13a11f82a61c4f099d6a6f758c1b3"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/4b08bcce870fffb91aeab99ef544fee6.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_xiyiren.bundle",
+      "sha256": "f4d85e615b7e01d017306d2415121b406e87aced99b801e87dcd20653a96cca7"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/96dbf42d51915de835a2abdf6b45fc64.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_xiyiren_gongshou.bundle",
+      "sha256": "b76b0e1fa2672cf7a55ac618a0c20c2e7b5b6a4171d4c879c1f9716d1b29e743"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ffc56915a8480c119167aac94bef9bb9.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_youlingfashi.bundle",
+      "sha256": "70d80137a90754cb8f597b316f9874184a584eb8692e28f228a1e5d08cf777bf"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/eb297bd0bc6a606e101f252d58ae0ef7.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_zhadanchuanshanjia.bundle",
+      "sha256": "18febf1d8529f48b662fb134cdcf9c0a2076f979e29e0d64af3132bcdc95263d"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/d75e1111048c1b858e9cb2ec858a3548.bundle",
+      "name": "assets_[00002]resource_actionenginecfg_action_actgroup_zhangyu.bundle",
+      "sha256": "878ed44aa3eb117ffec65f4076070641fe6eea60372d4679c03f8469cee0f156"
+    }
+  ],
+  "action_count": 810,
+  "windows": [],
+  "fade_windows": [
+    {
+      "asset": "ActGroup_playerchara_[sys_dead]",
+      "action": "sys_dead",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 2000,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -4.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-7888877239175080382"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_633101]",
+      "action": "mpskill_633101",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-7875551006351247087"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_653101]",
+      "action": "mpskill_653101",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-7153255879957784740"
+    },
+    {
+      "asset": "ActGroup_playerchara_[orb_satk_loop_1]",
+      "action": "orb_satk_loop_1",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 2000,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-6778645054408857212"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_axe_sanlianzhan]",
+      "action": "skill_axe_sanlianzhan",
+      "total_ms": 2500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 250,
+        "Duration": 1310,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -1.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-6752873627174266100"
+    },
+    {
+      "asset": "ActGroup_playerchara_[bow_fullsatk]",
+      "action": "bow_fullsatk",
+      "total_ms": 2350,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 500,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-6628519745275194539"
+    },
+    {
+      "asset": "ActGroup_playerchara_[orb_satk_start]",
+      "action": "orb_satk_start",
+      "total_ms": 830,
+      "event": {
+        "Description": "\u5f3a\u5316\u91cd\u51fb\u6f14\u51fa",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 833,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": [
+          {
+            "ConditionType": "EECT_CheckBuffExist",
+            "BuffId": "600100",
+            "IsExist": true,
+            "CompareType": "ECT_GreaterEqual",
+            "CheckLayerCount": 20
+          }
+        ]
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-6256759399507415899"
+    },
+    {
+      "asset": "ActGroup_playerchara_[sword_satk_normal]",
+      "action": "sword_satk_normal",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 333,
+        "Duration": 500,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -0.5
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-5473666677642048322"
+    },
+    {
+      "asset": "ActGroup_playerchara_[sword_satk_upgrade]",
+      "action": "sword_satk_upgrade",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 333,
+        "Duration": 500,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-5398118993979068074"
+    },
+    {
+      "asset": "ActGroup_playerchara_[sickle_atk_Derivative]",
+      "action": "sickle_atk_Derivative",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 500,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -1.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-5381127696079330717"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_lance_weapon1]",
+      "action": "skill_lance_weapon1",
+      "total_ms": 2500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 33,
+        "Duration": 1384,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -4.0
+        },
+        "Enabled": false,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-5365061279608019658"
+    },
+    {
+      "asset": "ActGroup_playerchara_[sword_satk_normal_attack]",
+      "action": "sword_satk_normal_attack",
+      "total_ms": 1667,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -0.5
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-5197008243541588517"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_653001]",
+      "action": "mpskill_653001",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-4978654853622457968"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_623101]",
+      "action": "mpskill_623101",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-4913482315227339395"
+    },
+    {
+      "asset": "ActGroup_playerchara_[orb_attack_derivative]",
+      "action": "orb_attack_derivative",
+      "total_ms": 1500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 200,
+        "Duration": 850,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -1.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-4630633666410211842"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_643001]",
+      "action": "mpskill_643001",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-3696123499892305203"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_lance_main]",
+      "action": "skill_lance_main",
+      "total_ms": 4000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 2167,
+        "Duration": 750,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-2249374860058762830"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_613101]",
+      "action": "mpskill_613101",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-1708270726164534313"
+    },
+    {
+      "asset": "ActGroup_playerchara_[axe_liedichongjibo_derivative]",
+      "action": "axe_liedichongjibo_derivative",
+      "total_ms": 3000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 717,
+        "Duration": 500,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-408225795860603530"
+    },
+    {
+      "asset": "ActGroup_playerchara_[axe_liedichongjibo_derivative]",
+      "action": "axe_liedichongjibo_derivative",
+      "total_ms": 3000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1014,
+        "TriggerTime": 0,
+        "Duration": 667,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -1.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:-408225795860603530"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_dodgeTimeStop_sickle]",
+      "action": "skill_dodgeTimeStop_sickle",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 350,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -1.5
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:564254165872047269"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_653301]",
+      "action": "mpskill_653301",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:955884409154054952"
+    },
+    {
+      "asset": "ActGroup_playerchara_[bow_guanchuanjian_derivative]",
+      "action": "bow_guanchuanjian_derivative",
+      "total_ms": 1500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 710,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:2588259749912262802"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_sword_badaozhan]",
+      "action": "skill_sword_badaozhan",
+      "total_ms": 2170,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 800,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:3306552052081163264"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_623001]",
+      "action": "mpskill_623001",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:3413566363635593803"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_sickle_hunduan]",
+      "action": "skill_sickle_hunduan",
+      "total_ms": 3500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 2333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.5
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:3952772194448908235"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_blade_main]",
+      "action": "skill_blade_main",
+      "total_ms": 3500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 1117,
+        "Duration": 517,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -4.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:4485428892362232513"
+    },
+    {
+      "asset": "ActGroup_playerchara_[revival]",
+      "action": "revival",
+      "total_ms": 2500,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 1500,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:5118678998302800601"
+    },
+    {
+      "asset": "ActGroup_playerchara_[axe_satk_loop]",
+      "action": "axe_satk_loop",
+      "total_ms": 433,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 433,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -1.5
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:5760516053010182632"
+    },
+    {
+      "asset": "ActGroup_playerchara_[lance_satk_special]",
+      "action": "lance_satk_special",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 667,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:6590213713092300109"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_643101]",
+      "action": "mpskill_643101",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:6959984243786482955"
+    },
+    {
+      "asset": "ActGroup_playerchara_[skill_bow_jianyu]",
+      "action": "skill_bow_jianyu",
+      "total_ms": 2000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 983,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:7171435229225954213"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_653201]",
+      "action": "mpskill_653201",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:7237381593655550937"
+    },
+    {
+      "asset": "ActGroup_playerchara_[bow_fullsatk_weapon4_combine]",
+      "action": "bow_fullsatk_weapon4_combine",
+      "total_ms": 2340,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 1150,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -2.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": true,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:7260494708042780757"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_613001]",
+      "action": "mpskill_613001",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:8436942138213962178"
+    },
+    {
+      "asset": "ActGroup_playerchara_[mpskill_633001]",
+      "action": "mpskill_633001",
+      "total_ms": 1000,
+      "event": {
+        "Description": "",
+        "TrackName": "CameraFade",
+        "TrackIndex": 1000,
+        "TriggerTime": 0,
+        "Duration": 333,
+        "EventType": "EET_CameraFade",
+        "EventData": {
+          "TargetFade": -3.0
+        },
+        "Enabled": true,
+        "CheckAllCondition": false,
+        "Conditions": []
+      },
+      "source": "CAB-bc0a3f8f934af215fd0c49a968f8f29d:9177826543332564024"
+    }
+  ],
+  "camera_events": {
+    "EET_CameraEffect": 120,
+    "EET_CameraShake": 38,
+    "EET_CameraFade": 36
+  },
+  "controllers": [
+    {
+      "source": "CAB-6b3cacf1a72e5b601b42291a38619cc4:107",
+      "fields": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 14
+        },
+        "m_Enabled": 1,
+        "m_Script": {
+          "m_FileID": 1,
+          "m_PathID": 25
+        },
+        "m_Name": "",
+        "LookAtTF": {
+          "m_FileID": 0,
+          "m_PathID": 0
+        },
+        "FollowTF": {
+          "m_FileID": 0,
+          "m_PathID": 0
+        }
+      }
+    },
+    {
+      "source": "CAB-6b3cacf1a72e5b601b42291a38619cc4:115",
+      "fields": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 17
+        },
+        "m_Enabled": 1,
+        "m_Script": {
+          "m_FileID": 1,
+          "m_PathID": 20
+        },
+        "m_Name": "",
+        "MinDistance": 8.0,
+        "MaxDistance": 15.0,
+        "ZoomSpeed": 0.10000000149011612,
+        "SmoothRotateSpeed": 0.10000000149011612,
+        "AllowHorizontalRotate": 0,
+        "HRotateSpeed": 1.0,
+        "AllowVerticalRotate": 0,
+        "VSpeed": 1.0,
+        "VAngleMinLimit": 35.0,
+        "VAngleMaxLimit": 65.0,
+        "SmoothFollowSpeed": 0.07999999821186066,
+        "TargetHorizontalRotate": -45.0,
+        "TargetVerticalRotate": 45.0,
+        "TargetDistance": 13.0,
+        "TargetTransform": {
+          "m_FileID": 0,
+          "m_PathID": 0
+        }
+      }
+    }
+  ]
+}

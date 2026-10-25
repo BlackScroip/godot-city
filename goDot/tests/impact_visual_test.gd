@@ -149,13 +149,17 @@ func _shot(shot: Dictionary) -> void:
 			combat.request_attack(4, false)
 			released = true
 		for actor in world.actors:
+			actor.desired_velocity = Vector3.ZERO
+			if actor.is_player:
+				for move in shot.get("moves", []):
+					if frame >= int(move.start) and frame < int(move.end): actor.desired_velocity = move.direction * actor.combat.move_speed
+			actor.combat.custom_properties.InputMove = actor.desired_velocity.length_squared() > 0.01
 			actor.combat.custom_properties["EnemyDistances"] = [actor.position.distance_to(player.position)]
 			actor.combat.tick(1.0 / HZ)
 			for event in actor.combat.drain_events():
 				if actor.is_player and event.type == "action_started": action_trace.append(event.action)
 				world._consume(actor, event)
 		for actor in world.actors:
-			actor.desired_velocity = Vector3.ZERO
 			actor._physics_process(1.0 / HZ)
 		world._tick_projectiles(1.0 / HZ)
 		world._tick_summons(1.0 / HZ)
@@ -178,5 +182,5 @@ func _shot(shot: Dictionary) -> void:
 		damage += actor.combat.max_health - actor.combat.health
 		positions.append({"id": actor.actor_id, "position": {"x": actor.position.x, "y": actor.position.y, "z": actor.position.z}})
 	var hits: int = world.presentation.impacts - start_impacts
-	if hits == 0: failures.append("No contacts in " + str(shot.name))
+	if hits == 0 and shot.get("require_contact", true): failures.append("No contacts in " + str(shot.name))
 	rows.append({"name": shot.name, "character": shot.character, "slot": shot.slot, "enemy": shot.enemy, "frames": frames, "actions": action_trace, "damage": damage, "impacts": hits, "effects": world.presentation.spawned - start_effects, "peak_effects": max_effects, "contact_frames": contacts_at, "target_end_positions": positions, "player_end_position": str(player.position)})

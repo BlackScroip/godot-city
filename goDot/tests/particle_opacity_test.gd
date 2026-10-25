@@ -2,6 +2,7 @@ extends SceneTree
 
 const Effect = preload("res://scripts/presentation/authored_effect.gd")
 const CASES = [
+	{"effect": "25011002_fx_enemy_sishen_attck2_slash", "layer": "25011001_slash_fog", "soft_boundary": true, "ground_fade": true, "edges": [Vector2(0.01, 0.5), Vector2(0.99, 0.5), Vector2(0.5, 0.01), Vector2(0.5, 0.99)]},
 	{"effect": "240821_fx_satk_wand_test", "layer": "23082401_blast_blast3", "edges": [Vector2(0.5, 0.01), Vector2(0.5, 0.99), Vector2(0.99, 0.5)]},
 	{"effect": "24091101_fx_orb_satk_launch", "layer": "24091101_launch_diffusion", "edges": [Vector2(0.5, 0.01), Vector2(0.5, 0.99), Vector2(0.99, 0.5)]},
 	{"effect": "24091101_fx_orb_satk_launch", "layer": "24091101_launch_flash", "edges": [Vector2(0.01, 0.01), Vector2(0.99, 0.99)]},
@@ -75,6 +76,7 @@ func run() -> void:
 			check(selected.get_shader_parameter("use_opacity_mask") == true, "%s restores its original MASK_ON binding" % test.layer)
 			check(selected.get_shader_parameter("opacity_mask") is Texture2D, "%s resolves its original mask texture" % test.layer)
 		selected.set_shader_parameter("billboard", false)
+		if test.get("ground_fade", false): check(selected.get_shader_parameter("ground_feather") == 0.5, "Monster fog enables its isolated reconstructed ground fade")
 		selected.set_shader_parameter("vertical_billboard", false)
 		selected.set_shader_parameter("stretched_billboard", false)
 		selected.set_shader_parameter("use_motion_curve", false)
@@ -91,6 +93,7 @@ func run() -> void:
 		for y in range(0, 256, 4):
 			for x in range(0, 256, 4): maximum = maxf(maximum, image.get_pixel(x, y).a)
 		check(maximum > 0.05, "%s preserves a visible source silhouette" % test.layer)
+		if test.get("ground_fade", false): check(image.get_pixel(128, 128).a < 0.04, "Monster fog becomes transparent at its ground intersection while upper pixels remain visible")
 		for uv in test.edges:
 			var alpha = image.get_pixel(clampi(int(uv.x * 256), 0, 255), clampi(int(uv.y * 256), 0, 255)).a
 			check(alpha < 0.04, "%s source transparent boundary remains transparent at %s (%.3f)" % [test.layer, uv, alpha])

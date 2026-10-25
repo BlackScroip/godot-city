@@ -28,7 +28,51 @@ var radius := 0.13
 var owner_offset := Vector3.ZERO
 var diagnostics: Array[String] = []
 
-func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vector3) -> void:
+func reset() -> void:
+	position = Vector3.ZERO
+	previous = Vector3.ZERO
+	direction = Vector3.FORWARD
+	origin = Vector3.ZERO
+	destination = Vector3.ZERO
+	owner_offset = Vector3.ZERO
+	speed = 0.0
+	age = 0.0
+	distance = 0.0
+	lifetime = 1.0
+	max_distance = INF
+	motion_type = "EMAT_Line"
+	entity = {}
+	motion = {}
+	hit = {}
+	hits = {}
+	last_hit_times = {}
+	hit_interval = 0.0
+	hit_limit = 999999
+	passed = 0
+	finished = false
+	source_key = ""
+	target_key = ""
+	source_player = true
+	radius = 0.13
+	diagnostics.clear()
+
+static func emission_facing(raw: Dictionary, index: int, facing: Vector3, toward: Vector3) -> Vector3:
+	if str(raw.get("EmitType", "")) != "EET_ARC": return facing
+	var emit: Dictionary = raw.get("EmitProperty", {})
+	var mode = str(emit.get("EmitType", "EAE_Sector_RelativeSelfDir"))
+	var count = maxi(1, int(emit.get("Num", 1)))
+	var circle = mode.begins_with("EAE_Circle")
+	var step = int(360.0 / count) if circle else int(emit.get("IntervalDegree", 0))
+	var start = 0 if circle else int(float((1 - count) * step) / 2.0)
+	var direction = facing
+	if mode == "EAE_Sector_DirToTarget":
+		toward.y = 0
+		if toward.length_squared() > 0.00001: direction = toward.normalized()
+	var offset = float(emit.get("DegreeOffet", 0)) if mode == "EAE_Circle_DirToTarget" else 0.0
+	return direction.rotated(Vector3.UP, deg_to_rad(start + index * step + offset))
+
+func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vector3, owner_facing: Vector3 = Vector3.INF) -> void:
+	reset()
 	hit = event.duplicate(true)
 	hit.erase("source")
 	var definition: Dictionary = hit.get("definition", {})
@@ -41,10 +85,15 @@ func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vecto
 	motion_type = str(raw.get("MotionAnimatorType", "EMAT_Line"))
 	direction = facing.normalized() if facing.length_squared() > 0.001 else Vector3.FORWARD
 	var emit: Dictionary = raw.get("EmitProperty", {})
-	direction = direction.rotated(Vector3.UP, deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0))))
-	position = point + orient(DungeonWorld.vector(emit.get("EmitOffset", {})), direction)
+	if raw.get("EmitType", "") == "EET_ARC":
+		var basis = owner_facing if owner_facing.is_finite() else facing
+		owner_offset = orient(DungeonWorld.vector(emit.get("PosOffset", {})), basis) + basis * float(emit.get("RadiusOffset", 0))
+	else:
+		owner_offset = orient(DungeonWorld.vector(emit.get("EmitOffset", {})), direction)
+		direction = direction.rotated(Vector3.UP, deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0))))
+		owner_offset += orient(DungeonWorld.vector(emit.get("AfterRotateEmitOffset", {})), direction)
+	position = point + owner_offset
 	origin = position
-	owner_offset = orient(DungeonWorld.vector(emit.get("EmitOffset", {})), direction)
 	previous = position
 	speed = float(motion.get("Speed", definition.get("speed", 12)))
 	lifetime = maxf(0.01, float(motion.get("MaxLifetime", motion.get("LifeTime", motion.get("LastTime", definition.get("lifetime", 3))))))
@@ -73,6 +122,7 @@ func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vecto
 
 func advance(delta: float, owner_position: Vector3, owner_facing: Vector3, target: Vector3 = Vector3.INF) -> void:
 	if finished: return
+	delta = minf(maxf(0, delta), maxf(0, lifetime - age))
 	previous = position
 	age += delta
 	match motion_type:
@@ -97,7 +147,11 @@ func advance(delta: float, owner_position: Vector3, owner_facing: Vector3, targe
 			var progress = minf(1, age / lifetime)
 			var height = float(motion.get("YDis", origin.distance_to(destination) * float(motion.get("CurveHeightCoeff", 0.3))))
 			position = origin.lerp(destination, progress) + Vector3.UP * 4 * height * progress * (1 - progress)
-	distance += previous.distance_to(position)
+	var travelled := previous.distance_to(position)
+	if travelled > 0 and distance + travelled > max_distance:
+		travelled = maxf(0, max_distance - distance)
+		position = previous.move_toward(position, travelled)
+	distance += travelled
 	if age >= lifetime or distance >= max_distance: finished = true
 
 func can_hit(key: String) -> bool:
@@ -116,7 +170,10 @@ func intersects(center: Vector3) -> bool:
 	var closest = Geometry3D.get_closest_point_to_segment(center, from, to)
 	var size = DungeonWorld.vector(entity.get("ModelBoxColliderSize", {}))
 	if str(entity.get("ColliderType", "Cube")) == "Sphere" or size.length_squared() < 0.001:
-		return closest.distance_to(center) <= radius + 0.35
+		# Use the same standing hurt volume as box attacks, including upper-body
+		# contacts. A point at waist height made authored high shots miss entirely.
+		var contacts = Geometry3D.get_closest_points_between_segments(from, to, center - Vector3.UP * 0.75, center + Vector3.UP * 0.75)
+		return contacts[0].distance_squared_to(contacts[1]) <= (radius + 0.35) * (radius + 0.35)
 	var difference = center - closest
 	return absf(difference.y) <= size.y * 0.5 + 0.75 and absf(difference.dot(direction)) <= size.z * 0.5 + 0.35 and absf(difference.dot(Vector3(direction.z, 0, -direction.x))) <= size.x * 0.5 + 0.35
 
@@ -132,6 +189,7 @@ func snapshot() -> Dictionary:
 	return {"position": _array(position), "previous": _array(previous), "direction": _array(direction), "origin": _array(origin), "destination": _array(destination), "owner_offset": _array(owner_offset), "speed": speed, "age": age, "distance": distance, "lifetime": lifetime, "max_distance": max_distance if is_finite(max_distance) else -1, "motion_type": motion_type, "entity": entity.duplicate(true), "motion": motion.duplicate(true), "hit": hit.duplicate(true), "hits": hits.duplicate(), "last_hit_times": last_hit_times.duplicate(), "passed": passed, "source_key": source_key, "target_key": target_key, "source_player": source_player, "radius": radius}
 
 func restore(data: Dictionary) -> void:
+	reset()
 	for field in ["position", "previous", "direction", "origin", "destination", "owner_offset"]: set(field, DungeonWorld.vector(data.get(field, [])))
 	for field in ["speed", "age", "distance", "lifetime", "radius"]: set(field, float(data.get(field, get(field))))
 	max_distance = float(data.get("max_distance", -1))

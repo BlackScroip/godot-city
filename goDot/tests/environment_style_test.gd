@@ -11,7 +11,6 @@ func _initialize() -> void:
 func _run() -> void:
 	canvas = SubViewport.new()
 	canvas.size = Vector2i(1600, 900)
-	canvas.mesh_lod_threshold = 0.0
 	canvas.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(canvas)
 	var display = TextureRect.new()
@@ -27,8 +26,6 @@ func _run() -> void:
 	for mesh in game.world.environment_root.find_children("*", "MeshInstance3D", true, false):
 		for surface in mesh.mesh.get_surface_count():
 			var material = mesh.get_active_material(surface)
-			if "grass_tree_stump" in material.resource_name.to_lower():
-				print("GRASS_MATERIAL ", mesh.name, " alpha=", material.transparency, " cutoff=", material.alpha_scissor_threshold, " tint=", material.albedo_color, " texture=", material.albedo_texture.resource_path, " uv=", material.uv1_scale, " ", material.uv1_offset)
 			if material and (material.resource_name.begins_with("UnityPaint/") or material.resource_name.begins_with("UnityTerrain/")):
 				var kind = DungeonWorldStyle._surface_kind(material.resource_name)
 				counts[kind] = int(counts.get(kind, 0)) + 1
@@ -49,11 +46,15 @@ func _run() -> void:
 	game.world.player.position = Vector3(27.0, 0.1, 80.0)
 	for i in 40: await process_frame
 	await capture("waterfall")
+	await verify_water_motion()
 	canvas.size = Vector2i(1200, 900)
 	for i in 10: await process_frame
 	await capture("waterfall-4x3")
 	canvas.size = Vector2i(1600, 900)
-	game._smoke_begin()
+	var combat = game.world.player.combat
+	var character_id = game.world.player.actor_id
+	game.world.load_environment(1010101)
+	game.world.create_player(combat, character_id)
 	for i in 50: await process_frame
 	await capture("forest-battle")
 	var report = {"passed": failures.is_empty(), "failures": failures, "materials": counts, "captures": captures}
@@ -70,3 +71,30 @@ func capture(label: String) -> void:
 	var path = "res://reports/environment-" + label + ".png"
 	picture.save_png(path)
 	captures.append(path)
+
+func verify_water_motion() -> void:
+	var scene = game.world.environment_root
+	var materials: Array = scene.get_meta("water_materials", [])
+	if materials.is_empty():
+		failures.append("No animated water materials")
+		return
+	game.process_mode = Node.PROCESS_MODE_DISABLED
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var before = canvas.get_texture().get_image()
+	var elapsed = float(materials[0].get_shader_parameter("elapsed"))
+	preload("res://scripts/presentation/recovered_environment.gd").advance_water(scene, 1.5)
+	if float(materials[0].get_shader_parameter("elapsed")) <= elapsed:
+		failures.append("Water shader clock did not advance")
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var after = canvas.get_texture().get_image()
+	var changed := 0
+	for y in range(0, before.get_height(), 4):
+		for x in range(0, before.get_width(), 4):
+			var a = before.get_pixel(x, y)
+			var b = after.get_pixel(x, y)
+			if absf(a.r - b.r) + absf(a.g - b.g) + absf(a.b - b.b) > 0.03: changed += 1
+	if changed < 100: failures.append("Water motion not visible in rendered pixels")
+	print("WATER MOTION changed samples=", changed)
+	game.process_mode = Node.PROCESS_MODE_INHERIT

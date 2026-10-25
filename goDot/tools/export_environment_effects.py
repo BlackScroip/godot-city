@@ -110,17 +110,24 @@ def main():
         colors = properties(saved.get("m_Colors"))
         maps = []
         for name, value in properties(saved.get("m_TexEnvs")).items():
-            resource = texture(resolve(obj, value.get("m_Texture")))
-            if resource: maps.append({"property": name, "texture": resource, "scale": value.get("m_Scale", {}), "offset": value.get("m_Offset", {})})
-        primary = next((t for t in maps if t["property"] in ("_MainTex", "_BaseMap", "_BaseColorMap", "_ShapeTexture")), maps[0] if maps else {})
+            texture_obj = resolve(obj, value.get("m_Texture"))
+            resource = texture(texture_obj)
+            if resource:
+                settings = tree(texture_obj).get("m_TextureSettings", {})
+                maps.append({"property": name, "texture": resource, "scale": value.get("m_Scale", {}), "offset": value.get("m_Offset", {}),
+                             "wrap": {"x": settings.get("m_WrapU", 0), "y": settings.get("m_WrapV", 0)}})
+        primary = next((t for name in ("_MainTex", "_BaseMap", "_BaseColorMap", "_ShapeTexture") for t in maps if t["property"] == name), {})
         shader_obj = resolve(obj, data.get("m_Shader"))
         shader = tree(shader_obj)
-        shader_name = shader.get("m_Name", shader.get("m_ParsedForm", {}).get("m_Name", ""))
+        # Shipped shaders have an empty legacy m_Name; the compiled parsed form
+        # carries the actual identity used for the existing AllIn1 alpha model.
+        shader_name = shader.get("m_Name") or shader.get("m_ParsedForm", {}).get("m_Name", "")
         src = floats.get("_SrcBlend", floats.get("_SrcMode"))
         dst = floats.get("_DstBlend", floats.get("_DstMode"))
         blend = "add" if dst == 1 and src in (1, 5) else "alpha" if dst == 10 and src in (1, 5) else "unknown"
         white = {"r": 1, "g": 1, "b": 1, "a": 1}
         result = {"source": ident, "name": data.get("m_Name", ""), "texture": primary.get("texture", ""),
+                  "keywords": data.get("m_ValidKeywords", []) or str(data.get("m_ShaderKeywords", "")).split(),
                   "texture_scale": primary.get("scale", {}), "texture_offset": primary.get("offset", {}),
                   "color": colors.get("_TintColor", colors.get("_Color", colors.get("_BaseColor", white))),
                   "shape_color": colors.get("_ShapeColor", colors.get("_Color", white)),
@@ -208,7 +215,7 @@ def main():
                     "renderer": {"enabled": bool(renderer) and bool(renderer.get("m_Enabled", 1)), "has_renderer": bool(renderer),
                     "material_slot_count": len(renderer.get("m_Materials", [])), "render_mode": renderer.get("m_RenderMode", 0),
                     "length_scale": renderer.get("m_LengthScale", 1), "velocity_scale": renderer.get("m_VelocityScale", 0), "alignment": renderer.get("m_RenderAlignment", 0)},
-                    "materials": [{k: v for k, v in m.items() if k not in ("textures", "source_floats", "source_colors")} for m in mats],
+                    "materials": mats,
                     "mesh": mesh_resource, "unsupported": unresolved})
             for kind in by_type:
                 if kind in ("MonoBehaviour", "Animator", "Animation", "TrailRenderer", "MeshRenderer", "SkinnedMeshRenderer"): unsupported.add(kind)

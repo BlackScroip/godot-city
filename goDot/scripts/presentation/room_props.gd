@@ -3,6 +3,7 @@ extends Node3D
 var world: Node3D
 var props: Array[Dictionary] = []
 var clock := 0.0
+var door_materials = preload("res://scripts/presentation/door_materials.gd").new()
 
 # Box_Effect children in the APK's EnvUnit_TreasureBox_* subprefabs.
 const CHEST_EFFECTS := {
@@ -14,6 +15,7 @@ const CHEST_EFFECTS := {
 
 func configure(source: Node3D) -> void:
 	world = source
+	door_materials.configure(world.environment_root)
 	for item in world.interactions._items.values():
 		var kind := str(item.marker.get("Type", ""))
 		if kind not in ["EEUT_AbilityItemTreasureBox", "EEUT_StageChangeDoor", "EEUT_Protal"]: continue
@@ -41,6 +43,27 @@ func configure(source: Node3D) -> void:
 			DungeonWorldStyle.effect(anchor, Vector3.ZERO, Color(0.12, 0.42, 1, 0.48), 2.6, -1)
 		else:
 			_portal(anchor, item.visual.find_children("*", "MeshInstance3D", true, false).is_empty(), entry)
+			entry["door_details"] = []
+			for child in item.visual.find_children("*", "Node3D", true, false):
+				for prefix in ["Box_DoorEffect", "Box_StageInfo", "Sprite_StageType", "Text_StageName"]:
+					if str(child.name).begins_with(prefix):
+						entry.door_details.append(child)
+						break
+			if kind == "EEUT_StageChangeDoor" and not entry.door_details.any(func(child): return str(child.name).begins_with("Box_DoorEffect")):
+				# Missing exported effect socket: place the APK's exit prefab at the door root.
+				# This source-art reconstruction does not claim the original runtime binding.
+				var exit_effect := Node3D.new()
+				exit_effect.name = "24040202_fx_env_protal_exit"
+				anchor.add_child(exit_effect)
+				entry["effect_address"] = "24040202_fx_env_protal_exit"
+				entry["effect_anchor"] = exit_effect
+				var surface := ShaderMaterial.new()
+				surface.shader = preload("res://scripts/presentation/door_exit_surface.gdshader")
+				surface.set_shader_parameter("wave_texture", load("res://assets/environment_effects/texture_cb924483d88815c6cdf5.png"))
+				var opening := QuadMesh.new()
+				opening.size = Vector2(2.4, 3.4)
+				_mesh(anchor, opening, surface, Vector3(0, 1.7, 0.06)).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				entry["exit_surface"] = surface
 		props.append(entry)
 
 func _material(color: Color, glow := 0.0, metallic := 0.0) -> StandardMaterial3D:
@@ -94,6 +117,8 @@ func _chest(anchor: Node3D, entry: Dictionary) -> void:
 	entry["glow"] = glow
 
 func _portal(anchor: Node3D, missing: bool, entry: Dictionary) -> void:
+	# Recovered stone portals retain their source silhouette without generic rings.
+	if not missing: return
 	var cyan = _material(Color("57cfff"), 0.75)
 	var violet = _material(Color("ae8aef"), 0.8)
 	if missing:
@@ -112,9 +137,14 @@ func _portal(anchor: Node3D, missing: bool, entry: Dictionary) -> void:
 func _process(delta: float) -> void:
 	if not is_instance_valid(world) or world.paused or world._background: return
 	clock += delta
+	door_materials.tick(clock)
 	for entry in props:
 		var state: Dictionary = entry.item.state
 		entry.anchor.visible = state.enabled and not state.broken
+		if entry.has("exit_surface"): entry.exit_surface.set_shader_parameter("clock", clock)
+		for detail in entry.get("door_details", []):
+			detail.visible = state.enabled and not state.broken
+			detail.set_meta("unityActive", detail.visible)
 		if entry.has("effect_anchor"):
 			entry.effect_anchor.visible = not state.opened
 			if not entry.has("effect_binding") and not entry.effect_address.is_empty():

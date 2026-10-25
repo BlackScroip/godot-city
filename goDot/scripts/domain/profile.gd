@@ -13,6 +13,7 @@ func _init() -> void:
 		"discovered_loot": [], "active_awakenings": [], "equipped_tokens": [],
 		"equipped_amplifiers": [], "work": [], "selected_meal": 0, "meal_rank": 0,
 		"selected_character": 1, "selected_weapon": 101,
+		"auto_attack_mode": "normal",
 		"run": new_run(), "options": {"volume": 0.7, "fps": 60}
 	}
 
@@ -26,22 +27,62 @@ static func new_run(seed_value: int = 0, character: int = 1, health_value: float
 	}
 
 func validate() -> bool:
-	if int(data.get("version", 0)) != 1 or not data.get("run") is Dictionary:
+	if not _number(data.get("version")) or data.version != 1 or not data.get("run") is Dictionary:
 		return false
 	for key in ["materials", "stats", "talents", "character_levels", "partners", "work_levels", "buildings", "recipes"]:
 		if not data.get(key) is Dictionary:
 			return false
 		for amount in data[key].values():
-			if not (amount is int or amount is float) or amount < 0:
+			if not _number(amount) or amount < 0:
 				return false
 	for key in ["claimed_tasks", "claimed_achievements", "discovered_loot", "work", "equipped_partners", "active_awakenings", "equipped_tokens", "equipped_amplifiers"]:
 		if not data.get(key) is Array:
 			return false
+	for key in ["claimed_tasks", "claimed_achievements", "discovered_loot", "equipped_partners", "active_awakenings", "equipped_tokens", "equipped_amplifiers"]:
+		if not _ids(data[key]): return false
+	for job in data.work:
+		if not job is Dictionary: return false
 	var run = data.run
-	for key in new_run():
+	var defaults = new_run()
+	for key in defaults:
 		if not run.has(key):
 			return false
+		if defaults[key] is int or defaults[key] is float:
+			if not _number(run[key]): return false
+		elif typeof(run[key]) != typeof(defaults[key]):
+			return false
+	for key in ["inventory", "talents", "materials"]:
+		for amount in run[key].values():
+			if not _number(amount) or amount < 0: return false
+	if not _ids(run.completed_nodes): return false
+	for key in ["events", "shops", "node_entry_buffs"]:
+		for entry in run[key]:
+			if not entry is Dictionary: return false
+	for reward in run.rewards:
+		if not reward is Dictionary or not reward.get("key") is String or not reward.get("choices") is Array: return false
+		if not _ids(reward.choices): return false
+	if run.armor < 0 or run.difficulty < 0 or run.difficulty > 10: return false
+	if run.has("outcome"):
+		if not run.outcome is Dictionary: return false
+		var outcome: Dictionary = run.outcome
+		if not outcome.is_empty():
+			if run.active or not outcome.get("victory") is bool or outcome.get("stage") not in ["share", "summary", "rewards"]: return false
+			for key in ["character_id", "region", "rooms", "revivals"]:
+				if not _number(outcome.get(key)) or outcome[key] < 0: return false
+			if not outcome.get("materials") is Dictionary: return false
+			for amount in outcome.materials.values():
+				if not _number(amount) or amount < 0: return false
+			for key in ["experience", "effective_experience", "vouchers"]:
+				if outcome.has(key) and (not _number(outcome[key]) or outcome[key] < 0): return false
 	return run.health >= 0 and run.max_health >= run.health and int(run.random_step) >= 0
+
+static func _number(value: Variant) -> bool:
+	return (value is int or value is float) and is_finite(float(value))
+
+static func _ids(values: Array) -> bool:
+	for value in values:
+		if not _number(value) or value < 0 or float(value) != floor(float(value)): return false
+	return true
 
 func restore(snapshot: Dictionary) -> bool:
 	var previous = data
@@ -50,7 +91,12 @@ func restore(snapshot: Dictionary) -> bool:
 		data = previous
 		return false
 	normalize_ids()
+	data["auto_attack_mode"] = attack_mode(data)
 	return true
+
+static func attack_mode(value: Dictionary) -> String:
+	var mode = value.get("auto_attack_mode", "normal" if value.get("auto_attack", true) else "off")
+	return str(mode) if mode in ["normal", "heavy", "off"] else "normal"
 
 func normalize_ids() -> void:
 	for key in ["claimed_tasks", "claimed_achievements", "discovered_loot", "equipped_partners", "active_awakenings", "equipped_tokens", "equipped_amplifiers"]:

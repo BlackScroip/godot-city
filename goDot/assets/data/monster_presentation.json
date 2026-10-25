@@ -1,0 +1,5679 @@
+{
+  "schema": 1,
+  "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+  "manifest_sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71",
+  "bundles": {
+    "5514": {
+      "member": "assets/yoo/DefaultPackage/438e086a98cb13c0652a7858736c3b6a.bundle",
+      "sha256": "f40d9ad4defbec88dabcdbaa0cd4d004b1295af618299308848230d847dccec4"
+    },
+    "4316": {
+      "member": "assets/yoo/DefaultPackage/795adee06db4c6b851e3588881ecad15.bundle",
+      "sha256": "618bda6cc88c61471ffc5805796ea56d51bc1331ede58ccce8dfbee10b089553"
+    },
+    "4281": {
+      "member": "assets/yoo/DefaultPackage/c5bca098d8b0e48fc216047846e4fc6a.bundle",
+      "sha256": "41502dfc65479221e4767a81e98f3f74fe8d5097665af86733a13c47be31bbb1"
+    },
+    "4322": {
+      "member": "assets/yoo/DefaultPackage/df75603745ca480032a3e166ba6bcb57.bundle",
+      "sha256": "6fecb2f948463a31a8e767523233426e1eabd697b8c5696e8a0f3f9bb83cd510"
+    },
+    "4320": {
+      "member": "assets/yoo/DefaultPackage/cc600789bd3c33f0640b8741a2fed188.bundle",
+      "sha256": "81ee5f005338f3bd0a47c489df33b2230a7177e20e65f9fbf605b35b4c24efc4"
+    },
+    "4293": {
+      "member": "assets/yoo/DefaultPackage/b9fc5f04a73422e27161fa2d26f54166.bundle",
+      "sha256": "d0c051643a3e3a848cbb7e9d260e07d8a973d4ed9c07dc940c4f13f1cdef46b1"
+    },
+    "4291": {
+      "member": "assets/yoo/DefaultPackage/24832a2f2639d011802891564ef1bad5.bundle",
+      "sha256": "813b1ff404a7b6d78560f281eaffc42a122640490e445548c2c044f21795e794"
+    },
+    "4276": {
+      "member": "assets/yoo/DefaultPackage/2a11973928fd5dc9d927d8fc8fc366cb.bundle",
+      "sha256": "f6902fe25c796045ac33fc8268afa6264e3e56f26b77bc1397fc0727235301f4"
+    },
+    "4286": {
+      "member": "assets/yoo/DefaultPackage/1bafe79175bc333ba627f05792d12a62.bundle",
+      "sha256": "8c50d9ef564bdfa63731416660546fb4c493c80619f8c1c129e17dbae1e4aa46"
+    },
+    "4284": {
+      "member": "assets/yoo/DefaultPackage/be34b43adc246c73c9b86c58fc3e455b.bundle",
+      "sha256": "494404869e169ce81cb90a378ba28e6921c79538d5467db9b8599a68a03cb88b"
+    },
+    "4341": {
+      "member": "assets/yoo/DefaultPackage/e4d4cc0e4f8f20a7eebb93f22d4e0a3e.bundle",
+      "sha256": "b56ee19afe80374a32bb139212502fbbcc7f94ec1073ee5e58e4af9877fd0e39"
+    },
+    "4339": {
+      "member": "assets/yoo/DefaultPackage/9e89b1238214d909d02e4cf428764bce.bundle",
+      "sha256": "08d723b40d891a0d06e8f92a998baba2d529a5b12a40b0c12e183c9b99d4ccb9"
+    },
+    "4299": {
+      "member": "assets/yoo/DefaultPackage/4f271ec1eb1aa1448fec1ca8cf5a0245.bundle",
+      "sha256": "e451b176f1c4815b8b9e75343989c7c46324549d529158ec5e144210e2a67518"
+    },
+    "4335": {
+      "member": "assets/yoo/DefaultPackage/d437260f29de1e309ea17e66daeb8943.bundle",
+      "sha256": "26524f74ad4ece35da61cfdb921d1efbc34076bcaa830555adf6ba07453871f8"
+    },
+    "4331": {
+      "member": "assets/yoo/DefaultPackage/48720dbf97bfe5b4542cc1d0b9f4bbee.bundle",
+      "sha256": "bed1bf2727515a74fc83087c0a95e7bf41d073cf414f2dcf2d2c85da7e566f7d"
+    },
+    "4324": {
+      "member": "assets/yoo/DefaultPackage/7cc3b1ef78b83d85db2fa7bf98ddf24c.bundle",
+      "sha256": "73d9b202ff51c722999ff83a7e127745ce5556d060e5a556cf9198d1b3100266"
+    },
+    "4318": {
+      "member": "assets/yoo/DefaultPackage/c7f42355280b69f8110ce75bb4fbfbae.bundle",
+      "sha256": "8a2aa4326154720f7e9d2d61961321a414ed1b4ccf36b52707c37bb89ce13e30"
+    },
+    "4277": {
+      "member": "assets/yoo/DefaultPackage/5d80bfb9032377374356e35f483b518e.bundle",
+      "sha256": "e841a3a1b99f112a0b2b31051cf9ca1ef0c52885ecfc449530676f1baaa047fa"
+    },
+    "4301": {
+      "member": "assets/yoo/DefaultPackage/299e9095e83ad278a44370b80d3f2f26.bundle",
+      "sha256": "e3f39dc05b012f1c6994d3abb8d486f57427088b6927a44a5a0b09c5d26f570e"
+    },
+    "4337": {
+      "member": "assets/yoo/DefaultPackage/04be995d77de38134180d8c741322b89.bundle",
+      "sha256": "82d03a4193f1bd97316567e34d9059bbaf579fd4ef1007e0b209a3fab3b097f5"
+    },
+    "4303": {
+      "member": "assets/yoo/DefaultPackage/fa191ea642ac46f5b64526bbda1043e3.bundle",
+      "sha256": "038c2f2447c7b8ba8a8ebe3cfdfec138e3e7908613a9fd869d3f21c1d07b7bcf"
+    },
+    "4305": {
+      "member": "assets/yoo/DefaultPackage/635e19f1498c4a0b10686b612c4830fe.bundle",
+      "sha256": "fc2b3c78cd19e6dfbad3c9a47f376b3a5fca5fa72a0b7f63c2b27f68a80131e9"
+    },
+    "4295": {
+      "member": "assets/yoo/DefaultPackage/78eade54c2b23d0897f4076fc4fb99df.bundle",
+      "sha256": "3572f9995a08d57853e0ff0946a221107362231cbc0543f731d83f2c175ba4ee"
+    },
+    "4329": {
+      "member": "assets/yoo/DefaultPackage/7acc5523027bf0c63589256359fd7d49.bundle",
+      "sha256": "c506f3a728a120f48fcef2352d62ea618a2bcd8fababa28bdc1c2232190da928"
+    },
+    "4311": {
+      "member": "assets/yoo/DefaultPackage/197d2831b2bdd94f624eb5abedaf6f29.bundle",
+      "sha256": "9ff37d6a37af81f5f022edef7fbc48fd9a1bebb8cc1351aeaea2119deb88c6bc"
+    },
+    "4307": {
+      "member": "assets/yoo/DefaultPackage/621a0a2d6a326d83232c30598205ee3c.bundle",
+      "sha256": "4689d65bf7c1e8087e0d0d72e7f1315482f0579dac8e0d90757096defd13c436"
+    },
+    "4309": {
+      "member": "assets/yoo/DefaultPackage/0969388aba3031ab460fb91b773ba76a.bundle",
+      "sha256": "767d787e08e65e33cefabae579bcacfb1f115971b479b70e2a656ab13e96780d"
+    },
+    "4274": {
+      "member": "assets/yoo/DefaultPackage/a40ab89c4954ab35c40d5621355f76cc.bundle",
+      "sha256": "ffb3458d642feb14ad9e928862dc042af023a29113847b123f92a8fd7e21761f"
+    },
+    "4343": {
+      "member": "assets/yoo/DefaultPackage/479c1d2de59a8f8585723dcadd64e645.bundle",
+      "sha256": "02ad9c01459a7d590a55dd968c7529cbed6cbddcf615e46444f426cc4342a281"
+    },
+    "4313": {
+      "member": "assets/yoo/DefaultPackage/f67bae8681afeccfd408a493af660b30.bundle",
+      "sha256": "0ea98cb7defa68d98f2cb8bdaed51bbaa90a3b0f00b19643555cc66c9e90c654"
+    },
+    "4345": {
+      "member": "assets/yoo/DefaultPackage/67731bba123192504941cc581745f120.bundle",
+      "sha256": "cc2e5e9ed4494965aff65c7bec7bc26bf7bfb906dfaed7bd0e8abd91924cb5c5"
+    },
+    "4279": {
+      "member": "assets/yoo/DefaultPackage/ad133acd2efcbf245564398d3552d726.bundle",
+      "sha256": "3f7f2ead9d1c9f729b10e99c9d6f49ef772c38c33e003eaebfed349d5b471f42"
+    },
+    "4314": {
+      "member": "assets/yoo/DefaultPackage/f3d258b1153f77fa81aa206616a1b135.bundle",
+      "sha256": "2dc795d327e7e8fdf53cf4c0d721ce4dadd5188124fdb34ac6fcfc076f5b5ccf"
+    },
+    "4296": {
+      "member": "assets/yoo/DefaultPackage/9b1f4fa5e6de9b29f7dc8cef1e456db8.bundle",
+      "sha256": "8c24d5762642103796db41382dfb5b00f941cd9928a109c9d58a68c9bb5fd383"
+    },
+    "4326": {
+      "member": "assets/yoo/DefaultPackage/bda5b4f53255810ff4dca095f3acc48d.bundle",
+      "sha256": "bb7e8230d600b16fe1b8a019a039cc1022cab10f6866644e2bbdfa7fa4dcc98d"
+    },
+    "4327": {
+      "member": "assets/yoo/DefaultPackage/165ed5fcfc12954cb9e65137d8e705b6.bundle",
+      "sha256": "497371cd1ef283ba9645a4708bf0499bebd0d020cf7870610fbf3c3dfe34ce44"
+    },
+    "4297": {
+      "member": "assets/yoo/DefaultPackage/5a208e992bc862c818adba86917b252e.bundle",
+      "sha256": "79a1fe9e3c8cfafcb6c5b373902fc6f87c8133c804e5ddd3a4d435677a4823f0"
+    },
+    "4289": {
+      "member": "assets/yoo/DefaultPackage/0e8c1def42711321f8f5da937d52f04c.bundle",
+      "sha256": "fdc153964f74b7c41d3139edfab1e52d0ea6eb9d105c4da8076e40127b8ad472"
+    },
+    "4287": {
+      "member": "assets/yoo/DefaultPackage/f6399505983260e864bee347c4c7a892.bundle",
+      "sha256": "9a5516bc680172c38b99b7d1892ac0bd47304ec12b71d134979bb951c0b8652c"
+    },
+    "4288": {
+      "member": "assets/yoo/DefaultPackage/cd5decd6f6f32be92d91705b29efc9ac.bundle",
+      "sha256": "eeccb47331bfe35cb9afae43ee6cf1e81f449af27f7859f699256e8501670548"
+    }
+  },
+  "enemies": {
+    "11001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_kuangyamolang_low.prefab",
+      "prefab_bundle": 4316,
+      "controller": "animator_monster_kuangyamolang",
+      "controller_path_id": "5804393054610961043",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 0.699999988079071,
+          "loop": true,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "detour": {
+          "source_name": "Detour",
+          "animation": "detour",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1014995410,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runaway": {
+          "source_name": "RunAway",
+          "animation": "runaway",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2620687305,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "11002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_mofu_low.prefab",
+      "prefab_bundle": 4281,
+      "controller": "animator_monster_mofu",
+      "controller_path_id": "-3195672701396399933",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_left": {
+          "source_name": "Move_Left",
+          "animation": "move_left",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2873374122,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_right": {
+          "source_name": "Move_Right",
+          "animation": "move_right",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3245471066,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "11003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_mozhaowa_low.prefab",
+      "prefab_bundle": 4322,
+      "controller": "animator_monster_mozhaowa",
+      "controller_path_id": "-4697308360600194743",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "11004": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_moguguai_low.prefab",
+      "prefab_bundle": 4320,
+      "controller": "animator_monster_moguguai",
+      "controller_path_id": "8149997012116869684",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.2000000476837158,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.2999999523162842,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "11005": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_xiaoshanzhu_low.prefab",
+      "prefab_bundle": 4293,
+      "controller": "animator_monster_xiaoshanzhu",
+      "controller_path_id": "7977716737188699178",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "12001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_shuixiyi_low.prefab",
+      "prefab_bundle": 4291,
+      "controller": "animator_monster_shuixiyi",
+      "controller_path_id": "7491525910585214390",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_left": {
+          "source_name": "Move_Left",
+          "animation": "move_left",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2873374122,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_right": {
+          "source_name": "Move_Right",
+          "animation": "move_right",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3245471066,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "blend tree": {
+          "source_name": "Blend Tree",
+          "animation": "",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3554257849,
+          "clip_indices": [
+            4294967295
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "12002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_duyanjvren_low.prefab",
+      "prefab_bundle": 4276,
+      "controller": "animator_monster_duyanjvren",
+      "controller_path_id": "2833998577898178248",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "12003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_senlinyaohua_low.prefab",
+      "prefab_bundle": 4286,
+      "controller": "animator_monster_senlinyaohua",
+      "controller_path_id": "6678509989073475135",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_left": {
+          "source_name": "Move_Left",
+          "animation": "move_left",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2873374122,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_right": {
+          "source_name": "Move_Right",
+          "animation": "move_right",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3245471066,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "movetree": {
+          "source_name": "MoveTree",
+          "animation": "",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 4204764508,
+          "clip_indices": [
+            4294967295,
+            0,
+            7,
+            8,
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_emit": {
+          "source_name": "Attack1_emit",
+          "animation": "attack1_emit",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2168526203,
+          "clip_indices": [
+            15
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_aiming": {
+          "source_name": "Attack1_aiming",
+          "animation": "attack1_aiming",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1038755352,
+          "clip_indices": [
+            16
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "13001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_senlinlangwang.prefab",
+      "prefab_bundle": 4284,
+      "controller": "animator_monster_senlinlangwang",
+      "controller_path_id": "-4766841950931004660",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_left": {
+          "source_name": "Move_Left",
+          "animation": "move_left",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2873374122,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_right": {
+          "source_name": "Move_Right",
+          "animation": "move_right",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3245471066,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "movetree": {
+          "source_name": "MoveTree",
+          "animation": "",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 4204764508,
+          "clip_indices": [
+            4294967295
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_part1": {
+          "source_name": "Attack4_Part1",
+          "animation": "attack4_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 634842478,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_part2": {
+          "source_name": "Attack4_Part2",
+          "animation": "attack4_part2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3168779476,
+          "clip_indices": [
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_part3": {
+          "source_name": "Attack4_Part3",
+          "animation": "attack4_part3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3419966530,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "bosspose": {
+          "source_name": "BossPose",
+          "animation": "bosspose",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 467037890,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        },
+        "roar": {
+          "source_name": "Roar",
+          "animation": "roar",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3898180748,
+          "clip_indices": [
+            15
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage1": {
+          "source_name": "MonsterSupport_Stage1",
+          "animation": "monstersupport_stage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3742416683,
+          "clip_indices": [
+            16
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage2": {
+          "source_name": "MonsterSupport_Stage2",
+          "animation": "monstersupport_stage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1176104593,
+          "clip_indices": [
+            17
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_part1": {
+          "source_name": "Attack1_Part1",
+          "animation": "attack1_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2012136137,
+          "clip_indices": [
+            18
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "21001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_xiyiren_zhanshi_low.prefab",
+      "prefab_bundle": 4341,
+      "controller": "animator_monster_xiyiren_zhanshi",
+      "controller_path_id": "-4752530208041468292",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage1": {
+          "source_name": "Damage1",
+          "animation": "damage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3886157960,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "21002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_xiyiren_gongshou_low.prefab",
+      "prefab_bundle": 4339,
+      "controller": "animator_monster_xiyiren_gongshou",
+      "controller_path_id": "-7333245116429782988",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "21003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_feishe_low.prefab",
+      "prefab_bundle": 4299,
+      "controller": "animator_monster_feishe",
+      "controller_path_id": "7359660005621717983",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runaway": {
+          "source_name": "RunAway",
+          "animation": "runaway",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2620687305,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "21004": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_xianrenzhang_low.prefab",
+      "prefab_bundle": 4335,
+      "controller": "animator_monster_xianrenzhang",
+      "controller_path_id": "-6830649960588926536",
+      "states": {
+        "idle": {
+          "source_name": "idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 4116442951,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3294237558,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1156809592,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "jump": {
+          "source_name": "jump",
+          "animation": "jump",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2395757636,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "21005": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_tubolong_low.prefab",
+      "prefab_bundle": 4331,
+      "controller": "animator_monster_tubolong",
+      "controller_path_id": "2699752776229122559",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "22001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_padijuchong low.prefab",
+      "prefab_bundle": 4324,
+      "controller": "animator_monster_padijuchong",
+      "controller_path_id": "8838563043399671154",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_start": {
+          "source_name": "Attack3_Start",
+          "animation": "attack3_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2392457517,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_loop": {
+          "source_name": "Attack3_Loop",
+          "animation": "attack3_loop_clip",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1124131637,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_end": {
+          "source_name": "Attack3_End",
+          "animation": "attack3_end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3883465848,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_start": {
+          "source_name": "Attack1_Start",
+          "animation": "attack1_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 419762180,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_end": {
+          "source_name": "Attack1_End",
+          "animation": "attack1_end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2646126360,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_loop": {
+          "source_name": "Attack1_Loop",
+          "animation": "attack1_loop_clip",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 248005182,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "22002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_liushaguai_low.prefab",
+      "prefab_bundle": 4318,
+      "controller": "animator_monster_liushaguai",
+      "controller_path_id": "8324942435905662134",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "23001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_gelifenniaoshou.prefab",
+      "prefab_bundle": 4277,
+      "controller": "animator_monster_gelifenniaoshou",
+      "controller_path_id": "-7307506481658248644",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle_air": {
+          "source_name": "Idle_Air",
+          "animation": "idle_air",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 14020770,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 2469555282
+        },
+        "move_forward_air": {
+          "source_name": "Move_Forward_Air",
+          "animation": "move_forward_air",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2024569845,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back_air": {
+          "source_name": "Move_Back_Air",
+          "animation": "move_back_air",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1335455323,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_air": {
+          "source_name": "Attack4_Air",
+          "animation": "attack4_air",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3921980194,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5_air": {
+          "source_name": "Attack5_Air",
+          "animation": "attack5_air",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3567551122,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack6_air": {
+          "source_name": "Attack6_Air",
+          "animation": "attack6_air",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2466576450,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead1": {
+          "source_name": "Dead1",
+          "animation": "dead1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4223618729,
+          "clip_indices": [
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead2_air": {
+          "source_name": "Dead2_Air",
+          "animation": "dead2_air",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2377380503,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage1": {
+          "source_name": "MonsterSupport_Stage1",
+          "animation": "monstersupport_stage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3742416683,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage2": {
+          "source_name": "MonsterSupport_Stage2",
+          "animation": "monstersupport_stage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1176104593,
+          "clip_indices": [
+            15
+          ],
+          "speed_parameter_hash": 0
+        },
+        "bosspose": {
+          "source_name": "BossPose",
+          "animation": "bosspose",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 467037890,
+          "clip_indices": [
+            16
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward_air fast": {
+          "source_name": "Move_Forward_Air fast",
+          "animation": "move_forward_air_fast",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 145744267,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 2469555282
+        },
+        "attack2_part1": {
+          "source_name": "Attack2_Part1",
+          "animation": "attack2_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1174853716,
+          "clip_indices": [
+            18
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_dash": {
+          "source_name": "Attack2_Dash",
+          "animation": "attack2_dash",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2993549438,
+          "clip_indices": [
+            19
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1 (1)": {
+          "source_name": "Attack1 (1)",
+          "animation": "attack1_1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3685038871,
+          "clip_indices": [
+            20
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1 (2)": {
+          "source_name": "Attack1 (2)",
+          "animation": "attack1_2",
+          "speed": 0.5,
+          "loop": false,
+          "path_hash": 4035471572,
+          "clip_indices": [
+            21
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1 (3)": {
+          "source_name": "Attack1 (3)",
+          "animation": "attack1_3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3918748053,
+          "clip_indices": [
+            22
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1 (4)": {
+          "source_name": "Attack1 (4)",
+          "animation": "attack1_4",
+          "speed": 0.6665999889373779,
+          "loop": false,
+          "path_hash": 2798833490,
+          "clip_indices": [
+            23
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1 (5)": {
+          "source_name": "Attack1 (5)",
+          "animation": "attack1_5",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3217686035,
+          "clip_indices": [
+            24
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_charge": {
+          "source_name": "Attack2_Charge",
+          "animation": "attack2_charge",
+          "speed": 0.5,
+          "loop": false,
+          "path_hash": 2701690170,
+          "clip_indices": [
+            25
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_attack": {
+          "source_name": "Attack2_attack",
+          "animation": "attack2_attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3020884227,
+          "clip_indices": [
+            26
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            27
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "31001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_gujiagui_low.prefab",
+      "prefab_bundle": 4301,
+      "controller": "animator_monster_gujiagui",
+      "controller_path_id": "1484892741279624012",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "31002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_xiaoxueguai_low.prefab",
+      "prefab_bundle": 4337,
+      "controller": "animator_monster_xiaoxueguai",
+      "controller_path_id": "-2555487364150351807",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "31003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_haixianghuwei_low.prefab",
+      "prefab_bundle": 4303,
+      "controller": "animator_monster_haixianghuwei",
+      "controller_path_id": "-738355933211167230",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "31004": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_haixiangtoumaoshou_low.prefab",
+      "prefab_bundle": 4305,
+      "controller": "animator_monster_haixiangtoumaoshou",
+      "controller_path_id": "-3064386630663956509",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward 1": {
+          "source_name": "Moveforward 1",
+          "animation": "moveforward_1",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2299111076,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "31005": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_bingjingguai_low.prefab",
+      "prefab_bundle": 4295,
+      "controller": "animator_monster_bingjingguai",
+      "controller_path_id": "3662334495581788435",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3294237558,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "32001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_tiankongfeilong_low.prefab",
+      "prefab_bundle": 4329,
+      "controller": "animator_monster_tiankongfeilong",
+      "controller_path_id": "8383126927153340890",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2 ": {
+          "source_name": "Attack2 ",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4259733895,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage1": {
+          "source_name": "Damage1",
+          "animation": "damage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3886157960,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "32002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_juchifeiyao_low.prefab",
+      "prefab_bundle": 4311,
+      "controller": "animator_monster_juchifeiyao",
+      "controller_path_id": "2400891224138994041",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "33001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_jiaolu.prefab",
+      "prefab_bundle": 4307,
+      "controller": "animator_monster_jiaolu",
+      "controller_path_id": "-8631060105586814962",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "jump": {
+          "source_name": "Jump",
+          "animation": "jump",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 788460410,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "roar": {
+          "source_name": "Roar",
+          "animation": "roar",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3898180748,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_start": {
+          "source_name": "Attack3_Start",
+          "animation": "attack3_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2392457517,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_dash": {
+          "source_name": "Attack3_Dash",
+          "animation": "attack3_dash",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2033263579,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_end": {
+          "source_name": "Attack3_End",
+          "animation": "attack3_end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3883465848,
+          "clip_indices": [
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3 roar": {
+          "source_name": "Attack3 Roar",
+          "animation": "attack3_roar",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4173985829,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5_start": {
+          "source_name": "Attack5_Start",
+          "animation": "attack5_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3981063191,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5_loop": {
+          "source_name": "Attack5_Loop",
+          "animation": "attack5_loop_clip",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2505637928,
+          "clip_indices": [
+            15
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5 _end": {
+          "source_name": "Attack5 _End",
+          "animation": "attack5__end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2590812493,
+          "clip_indices": [
+            16
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack6_start": {
+          "source_name": "Attack6_Start",
+          "animation": "attack6_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3701616266,
+          "clip_indices": [
+            17
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack6_loop": {
+          "source_name": "Attack6_Loop",
+          "animation": "attack6_loop_clip",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 332231302,
+          "clip_indices": [
+            18
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack6_end": {
+          "source_name": "Attack6_End",
+          "animation": "attack6_end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 798520072,
+          "clip_indices": [
+            19
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": -1.0,
+          "loop": true,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage1": {
+          "source_name": "MonsterSupport_Stage1",
+          "animation": "monstersupport_stage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3742416683,
+          "clip_indices": [
+            21
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage2": {
+          "source_name": "MonsterSupport_Stage2",
+          "animation": "monstersupport_stage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1176104593,
+          "clip_indices": [
+            22
+          ],
+          "speed_parameter_hash": 0
+        },
+        "bosspose": {
+          "source_name": "BossPose",
+          "animation": "bosspose",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 467037890,
+          "clip_indices": [
+            23
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2-1": {
+          "source_name": "Attack2-1",
+          "animation": "attack2_1",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 1163092248,
+          "clip_indices": [
+            24
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2-2": {
+          "source_name": "Attack2-2",
+          "animation": "attack2_2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3696898210,
+          "clip_indices": [
+            25
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2-3": {
+          "source_name": "Attack2-3",
+          "animation": "attack2_3",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 2874998836,
+          "clip_indices": [
+            26
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "41001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_jingshijiachong_low.prefab",
+      "prefab_bundle": 4309,
+      "controller": "animator_monster_jingshijiachong",
+      "controller_path_id": "-6157680631801666577",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "41002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_dubaofeng_low.prefab",
+      "prefab_bundle": 4274,
+      "controller": "animator_monster_dubaofeng",
+      "controller_path_id": "-4852160806166350469",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "41003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_youlingfashi_low.prefab",
+      "prefab_bundle": 4343,
+      "controller": "animator_monster_youlingfashi",
+      "controller_path_id": "7546162247414768349",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runaway": {
+          "source_name": "RunAway",
+          "animation": "runaway",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2620687305,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "41004": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_juedishu_low.prefab",
+      "prefab_bundle": 4313,
+      "controller": "animator_monster_juedishu",
+      "controller_path_id": "-7685600875087727120",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward_start": {
+          "source_name": "Moveforward_Start",
+          "animation": "moveforward_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2242991077,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward_loop": {
+          "source_name": "Moveforward_Loop",
+          "animation": "moveforward_loop_clip",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3012365050,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward_end": {
+          "source_name": "Moveforward_End",
+          "animation": "moveforward_end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1694660584,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "42001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_zhadanchuanshanjia_low.prefab",
+      "prefab_bundle": 4345,
+      "controller": "animator_monster_zhadanchuanshanjia",
+      "controller_path_id": "-5328293404069127222",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage1": {
+          "source_name": "Damage1",
+          "animation": "damage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3886157960,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "turnleft": {
+          "source_name": "Turnleft",
+          "animation": "turnleft",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3689877841,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "turnright": {
+          "source_name": "Turnright",
+          "animation": "turnright",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3949884906,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": -1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "42002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_jingshimoxie_low.prefab",
+      "prefab_bundle": 4279,
+      "controller": "animator_monster_jingshimoxie",
+      "controller_path_id": "-2721773263823631845",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_forward": {
+          "source_name": "Move_Forward",
+          "animation": "move_forward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1691597718,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack": {
+          "source_name": "Attack",
+          "animation": "attack",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1130333774,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_back": {
+          "source_name": "Move_Back",
+          "animation": "move_back",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3169653749,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_left": {
+          "source_name": "Move_Left",
+          "animation": "move_left",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2873374122,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_right": {
+          "source_name": "Move_Right",
+          "animation": "move_right",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3245471066,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "movetree": {
+          "source_name": "MoveTree",
+          "animation": "",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 4204764508,
+          "clip_indices": [
+            4294967295,
+            0,
+            7,
+            8,
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            16
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "43001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_jushimoxiang.prefab",
+      "prefab_bundle": 4314,
+      "controller": "animator_monster_jushimoxiang",
+      "controller_path_id": "6423144205800352378",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage2": {
+          "source_name": "Damage2",
+          "animation": "damage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2125152562,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "appear": {
+          "source_name": "Appear",
+          "animation": "appear",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 1760154951,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5": {
+          "source_name": "Attack5",
+          "animation": "attack5",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 362158271,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "damage": {
+          "source_name": "Damage",
+          "animation": "damage",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 358088473,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "bosspose": {
+          "source_name": "BossPose",
+          "animation": "bosspose",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 467037890,
+          "clip_indices": [
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage1": {
+          "source_name": "MonsterSupport_Stage1",
+          "animation": "monstersupport_stage1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3742416683,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "monstersupport_stage2": {
+          "source_name": "MonsterSupport_Stage2",
+          "animation": "monstersupport_stage2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1176104593,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_part1": {
+          "source_name": "Attack3_Part1",
+          "animation": "attack3_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3765556192,
+          "clip_indices": [
+            15
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_part2": {
+          "source_name": "Attack3_Part2",
+          "animation": "attack3_part2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2037940826,
+          "clip_indices": [
+            16
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_part3": {
+          "source_name": "Attack3_Part3",
+          "animation": "attack3_part3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 243249868,
+          "clip_indices": [
+            17
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_part4": {
+          "source_name": "Attack3_Part4",
+          "animation": "attack3_part4",
+          "speed": 0.6000000238418579,
+          "loop": false,
+          "path_hash": 2417698671,
+          "clip_indices": [
+            18
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_part1": {
+          "source_name": "Attack2_Part1",
+          "animation": "attack2_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1174853716,
+          "clip_indices": [
+            19
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_part2": {
+          "source_name": "Attack2_Part2",
+          "animation": "attack2_part2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3742337518,
+          "clip_indices": [
+            20
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_part1": {
+          "source_name": "Attack4_Part1",
+          "animation": "attack4_part1",
+          "speed": 2.0,
+          "loop": false,
+          "path_hash": 634842478,
+          "clip_indices": [
+            21
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_part2": {
+          "source_name": "Attack4_Part2",
+          "animation": "attack4_part2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3168779476,
+          "clip_indices": [
+            22
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dizziness": {
+          "source_name": "Dizziness",
+          "animation": "dizziness",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2032339304,
+          "clip_indices": [
+            23
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dizziness_p1": {
+          "source_name": "Dizziness_p1",
+          "animation": "dizziness_p1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3542194569,
+          "clip_indices": [
+            24
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dizziness_p2": {
+          "source_name": "Dizziness_p2",
+          "animation": "dizziness_p2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1244186675,
+          "clip_indices": [
+            25
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dizziness_p3": {
+          "source_name": "Dizziness_p3",
+          "animation": "dizziness_p3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1026554021,
+          "clip_indices": [
+            26
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit": {
+          "source_name": "BeHit",
+          "animation": "behit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3994542508,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "52001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_chimera.prefab",
+      "prefab_bundle": 4296,
+      "controller": "animator_monster_chimera",
+      "controller_path_id": "8708092513360483996",
+      "states": {
+        "roar": {
+          "source_name": "Roar",
+          "animation": "roar",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3898180748,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5": {
+          "source_name": "Attack5",
+          "animation": "attack5",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 362158271,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "skill": {
+          "source_name": "Skill",
+          "animation": "skill",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 447775985,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runtobornpoint": {
+          "source_name": "RunToBornPoint",
+          "animation": "runtobornpoint",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3972368448,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "52002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_shayu.prefab",
+      "prefab_bundle": 4326,
+      "controller": "animator_monster_shayu",
+      "controller_path_id": "-4651161980356332628",
+      "states": {
+        "dive_loop": {
+          "source_name": "dive_loop",
+          "animation": "dive_loop_clip",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 947084653,
+          "clip_indices": [
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle2_down": {
+          "source_name": "idle2_Down",
+          "animation": "idle2_down",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3361795140,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "move",
+          "animation": "move",
+          "speed": 0.6000000238418579,
+          "loop": true,
+          "path_hash": 3326176554,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "shangyao": {
+          "source_name": "Shangyao",
+          "animation": "shangyao",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1433933645,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "tiaoza": {
+          "source_name": "Tiaoza",
+          "animation": "tiaoza",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2662894836,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dive_to_idle": {
+          "source_name": "dive_to_idle",
+          "animation": "dive_to_idle",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 437789308,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dive_to_move": {
+          "source_name": "dive_to_move",
+          "animation": "dive_to_move",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 688037905,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle_to_dive": {
+          "source_name": "idle_to_dive",
+          "animation": "idle_to_dive",
+          "speed": 0.6660000085830688,
+          "loop": false,
+          "path_hash": 892391137,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move_to_dive": {
+          "source_name": "move_to_dive",
+          "animation": "move_to_dive",
+          "speed": 0.6660000085830688,
+          "loop": false,
+          "path_hash": 630940667,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "tushuidan1": {
+          "source_name": "Tushuidan1",
+          "animation": "tushuidan1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3705594114,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "tushuidan2": {
+          "source_name": "Tushuidan2",
+          "animation": "tushuidan2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1171763384,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2682992046,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle1_up": {
+          "source_name": "idle1_Up",
+          "animation": "idle1_up",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2837415021,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit1": {
+          "source_name": "Behit1",
+          "animation": "behit1",
+          "speed": 0.5,
+          "loop": false,
+          "path_hash": 44748593,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit2": {
+          "source_name": "Behit2",
+          "animation": "behit2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2611191435,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "52003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_sishen.prefab",
+      "prefab_bundle": 4327,
+      "controller": "animator_monster_sishen",
+      "controller_path_id": "8760182522190914407",
+      "states": {
+        "appear": {
+          "source_name": "Appear",
+          "animation": "appear",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1760154951,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1": {
+          "source_name": "Attack1",
+          "animation": "attack1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 318495910,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5": {
+          "source_name": "Attack5",
+          "animation": "attack5",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 362158271,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "escapinginto": {
+          "source_name": "EscapingInto",
+          "animation": "escapinginto",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4203201725,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "escapingout": {
+          "source_name": "EscapingOut",
+          "animation": "escapingout",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 707271039,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "MoveBack",
+          "animation": "moveback",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 544146103,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "movefront": {
+          "source_name": "MoveFront",
+          "animation": "movefront",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 319701013,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveleft": {
+          "source_name": "MoveLeft",
+          "animation": "moveleft",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 935732456,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveright": {
+          "source_name": "MoveRight",
+          "animation": "moveright",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1497323511,
+          "clip_indices": [
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dash": {
+          "source_name": "Dash",
+          "animation": "dash",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 304293996,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "die": {
+          "source_name": "Die",
+          "animation": "die",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2812703566,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        },
+        "blendmove": {
+          "source_name": "BlendMove",
+          "animation": "",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 2234241679,
+          "clip_indices": [
+            4294967295,
+            10,
+            9,
+            11,
+            12
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5end": {
+          "source_name": "Attack5End",
+          "animation": "attack5end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1841586753,
+          "clip_indices": [
+            19
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_fast": {
+          "source_name": "Attack1_fast",
+          "animation": "attack1_fast",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 717469994,
+          "clip_indices": [
+            20
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_fast": {
+          "source_name": "Attack2_fast",
+          "animation": "attack2_fast",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2891434884,
+          "clip_indices": [
+            21
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_fast": {
+          "source_name": "Attack3_fast",
+          "animation": "attack3_fast",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1728780321,
+          "clip_indices": [
+            22
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4end": {
+          "source_name": "Attack4End",
+          "animation": "attack4end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3581412644,
+          "clip_indices": [
+            23
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "53001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_feimolong.prefab",
+      "prefab_bundle": 4297,
+      "controller": "animator_monster_feimolong",
+      "controller_path_id": "7465937857506194653",
+      "states": {
+        "appear": {
+          "source_name": "Appear",
+          "animation": "appear",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1760154951,
+          "clip_indices": [
+            10
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4": {
+          "source_name": "Attack4",
+          "animation": "attack4",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1653680169,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.5,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack5": {
+          "source_name": "Attack5",
+          "animation": "attack5",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 362158271,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack7": {
+          "source_name": "Attack7",
+          "animation": "attack7",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4221073811,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_double hit": {
+          "source_name": "Attack1_Double hit",
+          "animation": "attack1_double_hit",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 827236405,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack1_single": {
+          "source_name": "Attack1_Single",
+          "animation": "attack1_single",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2957705716,
+          "clip_indices": [
+            6
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2": {
+          "source_name": "Attack2",
+          "animation": "attack2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2347928860,
+          "clip_indices": [
+            7
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward": {
+          "source_name": "Moveforward",
+          "animation": "moveforward",
+          "speed": 1.5,
+          "loop": true,
+          "path_hash": 2283739684,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveback": {
+          "source_name": "Moveback",
+          "animation": "moveback",
+          "speed": 1.5,
+          "loop": true,
+          "path_hash": 2153622921,
+          "clip_indices": [
+            9
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3": {
+          "source_name": "Attack3",
+          "animation": "attack3",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 4243963274,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "roar": {
+          "source_name": "roar",
+          "animation": "roar",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1214983090,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "roarloop": {
+          "source_name": "roarloop",
+          "animation": "roarloop",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3694283056,
+          "clip_indices": [
+            11
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack7loop": {
+          "source_name": "Attack7loop",
+          "animation": "attack7loop",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 3330092029,
+          "clip_indices": [
+            13
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack7 start": {
+          "source_name": "Attack7 start",
+          "animation": "attack7_start",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1096856878,
+          "clip_indices": [
+            14
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack7 end": {
+          "source_name": "Attack7 end",
+          "animation": "attack7_end",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 434744466,
+          "clip_indices": [
+            15
+          ],
+          "speed_parameter_hash": 0
+        },
+        "moveforward fast": {
+          "source_name": "Moveforward fast",
+          "animation": "moveforward_fast",
+          "speed": 1.5,
+          "loop": true,
+          "path_hash": 3959719664,
+          "clip_indices": [
+            8
+          ],
+          "speed_parameter_hash": 0
+        },
+        "skill": {
+          "source_name": "Skill",
+          "animation": "skill",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 447775985,
+          "clip_indices": [
+            17
+          ],
+          "speed_parameter_hash": 0
+        },
+        "skill 0": {
+          "source_name": "Skill 0",
+          "animation": "skill_0",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 368479108,
+          "clip_indices": [
+            17
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            19
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack7 turnaround": {
+          "source_name": "Attack7 turnaround",
+          "animation": "attack7_turnaround",
+          "speed": 0.699999988079071,
+          "loop": false,
+          "path_hash": 3304074493,
+          "clip_indices": [
+            20
+          ],
+          "speed_parameter_hash": 0
+        },
+        "return": {
+          "source_name": "Return",
+          "animation": "return",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2734789754,
+          "clip_indices": [
+            21
+          ],
+          "speed_parameter_hash": 0
+        },
+        "return_fly": {
+          "source_name": "Return_fly",
+          "animation": "return_fly",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3065842062,
+          "clip_indices": [
+            22
+          ],
+          "speed_parameter_hash": 0
+        },
+        "return_fall": {
+          "source_name": "Return_fall",
+          "animation": "return_fall",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2749211799,
+          "clip_indices": [
+            23
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_part1": {
+          "source_name": "Attack2_Part1",
+          "animation": "attack2_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1174853716,
+          "clip_indices": [
+            24
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack2_part2": {
+          "source_name": "Attack2_Part2",
+          "animation": "attack2_part2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3742337518,
+          "clip_indices": [
+            25
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_part1": {
+          "source_name": "Attack3_Part1",
+          "animation": "attack3_part1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 3765556192,
+          "clip_indices": [
+            26
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack3_part2": {
+          "source_name": "Attack3_Part2",
+          "animation": "attack3_part2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2037940826,
+          "clip_indices": [
+            27
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_1-1": {
+          "source_name": "Attack4_1-1",
+          "animation": "attack4_1_1",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 3337967961,
+          "clip_indices": [
+            28
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_2-3": {
+          "source_name": "Attack4_2-3",
+          "animation": "attack4_2_3",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 717063724,
+          "clip_indices": [
+            29
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_2-1": {
+          "source_name": "Attack4_2-1",
+          "animation": "attack4_2_1",
+          "speed": 1.25,
+          "loop": false,
+          "path_hash": 3300124416,
+          "clip_indices": [
+            30
+          ],
+          "speed_parameter_hash": 0
+        },
+        "attack4_2-2": {
+          "source_name": "Attack4_2-2",
+          "animation": "attack4_2_2",
+          "speed": 1.5,
+          "loop": false,
+          "path_hash": 1572517562,
+          "clip_indices": [
+            31
+          ],
+          "speed_parameter_hash": 0
+        },
+        "roar_short": {
+          "source_name": "roar_short",
+          "animation": "roar_short",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1991081007,
+          "clip_indices": [
+            32
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "90001": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_shilaimuGold.prefab",
+      "prefab_bundle": 4289,
+      "controller": "animator_monster_shilaimu",
+      "controller_path_id": "-7444701806327897214",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit1": {
+          "source_name": "BeHit1",
+          "animation": "behit1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1548883861,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit2": {
+          "source_name": "BeHit2",
+          "animation": "behit2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 999371189,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 0.5,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runaway": {
+          "source_name": "RunAway",
+          "animation": "runaway",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2620687305,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "90002": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_shilaimuBlue.prefab",
+      "prefab_bundle": 4287,
+      "controller": "animator_monster_shilaimu",
+      "controller_path_id": "-7444701806327897214",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit1": {
+          "source_name": "BeHit1",
+          "animation": "behit1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1548883861,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit2": {
+          "source_name": "BeHit2",
+          "animation": "behit2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 999371189,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 0.5,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runaway": {
+          "source_name": "RunAway",
+          "animation": "runaway",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2620687305,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    },
+    "90003": {
+      "prefab": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_shilaimuDiamond.prefab",
+      "prefab_bundle": 4288,
+      "controller": "animator_monster_shilaimu",
+      "controller_path_id": "-7444701806327897214",
+      "states": {
+        "idle": {
+          "source_name": "Idle",
+          "animation": "idle",
+          "speed": 1.0,
+          "loop": true,
+          "path_hash": 1432961145,
+          "clip_indices": [
+            0
+          ],
+          "speed_parameter_hash": 0
+        },
+        "move": {
+          "source_name": "Move",
+          "animation": "move",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1718862356,
+          "clip_indices": [
+            1
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit1": {
+          "source_name": "BeHit1",
+          "animation": "behit1",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 1548883861,
+          "clip_indices": [
+            2
+          ],
+          "speed_parameter_hash": 0
+        },
+        "behit2": {
+          "source_name": "BeHit2",
+          "animation": "behit2",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 999371189,
+          "clip_indices": [
+            3
+          ],
+          "speed_parameter_hash": 0
+        },
+        "dead": {
+          "source_name": "Dead",
+          "animation": "dead",
+          "speed": 0.5,
+          "loop": false,
+          "path_hash": 1684585544,
+          "clip_indices": [
+            4
+          ],
+          "speed_parameter_hash": 0
+        },
+        "runaway": {
+          "source_name": "RunAway",
+          "animation": "runaway",
+          "speed": 1.0,
+          "loop": false,
+          "path_hash": 2620687305,
+          "clip_indices": [
+            5
+          ],
+          "speed_parameter_hash": 0
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Serialized AnimatorController state speed/loop values, linked from each exact prefab Animator reference; static evidence only.",
+    "Speed parameter hashes are retained; live parameter values and AnimationController runtime transitions were not observed.",
+    "Missing action names, including Griffin Attack2_Part2, are not guessed or added as source aliases."
+  ]
+}

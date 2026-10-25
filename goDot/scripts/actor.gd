@@ -31,6 +31,19 @@ var action_speed := 1.0
 var flash_material: StandardMaterial3D
 var flash_meshes: Array[MeshInstance3D] = []
 var action_motion: Array[Dictionary] = []
+const ACTION_MOTION = preload("res://scripts/action_motion.gd")
+var action_timeline_duration := 0.0
+var action_cursor := 0.0
+var action_target: DungeonActor
+var action_target_resolver: Callable
+var _motion_ignores_targets := false
+var _motion_ignores_world := false
+var born_position := Vector3.ZERO
+var born_facing := Vector3.BACK
+var field_center := Vector3.ZERO
+var animation_state_speed := 1.0
+var animation_states: Dictionary = {}
+static var _monster_animation_data: Dictionary = {}
 var direction_indicator: DungeonPlayerIndicator
 var knockback_elapsed := -1.0
 var knockback_distance := 0.0
@@ -39,6 +52,40 @@ var knockback_direction := Vector3.ZERO
 var _telegraph_sequence := -1
 var _telegraph_turn_speed := 0.0
 var impact_bounds := AABB(Vector3(-0.35, 0, -0.35), Vector3(0.7, 1.5, 0.7))
+
+func begin_death() -> void:
+	clear_impact_state()
+	end_action_motion()
+	clear_telegraph_aim()
+	dead = true
+	desired_velocity = Vector3.ZERO
+	locomotion = Vector3.ZERO
+	velocity = Vector3.ZERO
+	dodge_elapsed = -1.0
+	collision_layer = 0
+	collision_mask = 1
+	if health_bar: health_bar.hide()
+	if is_player or combat == null or not combat.begin_enemy_death(): play_animation("death", true)
+
+func advance_death(delta: float) -> void:
+	if not dead or is_player or suspended or combat == null: return
+	combat.tick_enemy_death(delta)
+	if combat.custom_properties.get("_enemy_visual_hidden", false) and visual: visual.hide()
+	if death_finished():
+		hide()
+		collision_mask = 0
+
+func death_finished() -> bool:
+	return dead and not is_player and combat != null and bool(combat.custom_properties.get("_enemy_deleted", false))
+
+func apply_delete_event(definition: Dictionary) -> void:
+	if bool(definition.get("Delete", true)):
+		dead = true
+		hide()
+		collision_layer = 0
+		collision_mask = 0
+	elif visual:
+		visual.hide()
 
 func flash_hit() -> void:
 	hit_flash(0.09)
@@ -65,16 +112,22 @@ func _ready() -> void:
 		direction_indicator.name = "DirectionIndicator"
 		add_child(direction_indicator)
 
-func set_visual(path: String, metadata: Dictionary = {}) -> void:
+func set_visual(path: String, metadata: Dictionary = {}, prepared_scene: PackedScene = null) -> void:
 	animation = null
 	animations.clear()
 	animation_aliases.clear()
+	animation_states.clear()
+	animation_state_speed = 1.0
+	if not is_player:
+		if _monster_animation_data.is_empty():
+			_monster_animation_data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/monster_presentation.json"))
+		animation_states = _monster_animation_data.get("enemies", {}).get(str(actor_id), {}).get("states", {})
 	visual_loaded = false
 	if is_instance_valid(visual):
 		visual.queue_free()
 	visual = null
 	if not path.is_empty() and ResourceLoader.exists(path):
-		var scene = load(path)
+		var scene = prepared_scene if prepared_scene else load(path)
 		if scene is PackedScene:
 			visual = scene.instantiate()
 			visual_loaded = true
@@ -99,6 +152,7 @@ func set_visual(path: String, metadata: Dictionary = {}) -> void:
 		var bounds: AABB = (global_transform.affine_inverse() * mesh.global_transform) * mesh.get_aabb()
 		impact_bounds = impact_bounds.merge(bounds) if bounds_found else bounds
 		bounds_found = true
+	_repair_skinned_impact_bounds()
 	flash_material = StandardMaterial3D.new()
 	flash_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	flash_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -118,6 +172,22 @@ func set_visual(path: String, metadata: Dictionary = {}) -> void:
 			var alias = str(clip.get("source_name", "")).replace("@", "_").to_lower()
 			if not animation_aliases.has(alias): animation_aliases[alias] = str(clip.name)
 		play_animation("idle")
+
+func _repair_skinned_impact_bounds() -> void:
+	if impact_bounds.size[impact_bounds.size.max_axis_index()] <= 20.0: return
+	var bone_bounds := AABB()
+	var found := false
+	for skeleton in visual.find_children("*", "Skeleton3D", true, false):
+		var local_transform: Transform3D = global_transform.affine_inverse() * skeleton.global_transform
+		for index in skeleton.get_bone_count():
+			var point: Vector3 = local_transform * skeleton.get_bone_global_pose(index).origin
+			bone_bounds = bone_bounds.expand(point) if found else AABB(point, Vector3.ZERO)
+			found = true
+	if not found: return
+	var bone_extent = bone_bounds.size[bone_bounds.size.max_axis_index()]
+	# Some recovered skins expose unscaled bind-space mesh bounds.
+	if bone_extent > 0.1 and impact_bounds.size[impact_bounds.size.max_axis_index()] > bone_extent * 8.0:
+		impact_bounds = bone_bounds.grow(0.2)
 
 func impact_anchor(contact := Vector3.INF) -> Vector3:
 	var center = impact_bounds.get_center()
@@ -198,9 +268,14 @@ func _find_animation(node: Node) -> void:
 func play_animation(kind: String, restart := false) -> void:
 	if not animation:
 		return
+	var state: Dictionary = animation_states.get(kind.to_lower(), {})
+	animation_state_speed = float(state.get("speed", 1))
+	if not state.is_empty() and animation.has_animation(str(state.get("animation", ""))):
+		kind = str(state.animation)
+		animation.get_animation(kind).loop_mode = Animation.LOOP_LINEAR if state.get("loop", false) else Animation.LOOP_NONE
 	kind = str(animation_aliases.get(kind.to_lower(), kind))
 	if animation.has_animation(kind):
-		if restart or animation.current_animation != kind or not animation.is_playing(): animation.play(kind, 0.05)
+		if restart or animation.current_animation != kind or not animation.is_playing(): animation.play(kind, 0.05, 1.0, animation_state_speed < 0)
 		return
 	var candidates: Array[String] = []
 	match kind:
@@ -215,7 +290,7 @@ func play_animation(kind: String, restart := false) -> void:
 		for name in animations:
 			if token.to_lower() in name.to_lower():
 				if restart or animation.current_animation != name or not animation.is_playing():
-					animation.play(name, 0.12)
+					animation.play(name, 0.12, 1.0, animation_state_speed < 0)
 				return
 
 func face_direction(direction: Vector3) -> void:
@@ -250,12 +325,111 @@ func aim_enemy(direction: Vector3, delta: float) -> void:
 
 func start_dodge(direction: Vector3) -> void:
 	clear_impact_state()
-	action_motion.clear()
+	end_action_motion()
 	dodge_vector = direction.normalized()
 	face_direction(dodge_vector)
 	dodge_elapsed = 0.0
 	impulse = Vector3.ZERO
 	locomotion = Vector3.ZERO
+
+func begin_action(event: Dictionary) -> void:
+	end_action_motion()
+	action_time = float(event.get("duration", 0.5))
+	action_speed = float(event.get("speed", 1.0))
+	action_timeline_duration = float(event.get("timeline_duration", action_time * action_speed))
+	action_cursor = 0.0
+	locomotion = Vector3.ZERO
+
+func end_action_motion() -> void:
+	action_motion.clear()
+	action_timeline_duration = 0.0
+	action_cursor = 0.0
+	action_target = null
+	_set_motion_collision(false)
+
+func add_action_motion(command: Dictionary, raw: Dictionary) -> void:
+	if float(command.get("duration", 0.0)) <= 0.0: return
+	var motion = {"type": str(command.type), "start": float(command.get("time", 0.0)), "duration": float(command.duration), "raw": raw}
+	if command.type == "EET_MoveToPoint":
+		var goal = born_position
+		if str(raw.get("MoveDirType", "")) == "EMDT_ToCurrentTargetPos":
+			goal = action_target.position if is_instance_valid(action_target) and not action_target.dead else position
+			var toward = goal - position
+			toward.y = 0
+			goal = position + toward.limit_length(maxf(0, float(raw.get("MaxMoveDistance", 0))))
+		var offset: Dictionary = raw.get("PosOffset", {})
+		goal += Vector3(float(offset.get("x", 0)), 0, float(offset.get("z", 0)))
+		goal.y = position.y
+		motion["goal"] = [goal.x, goal.y, goal.z]
+		motion["distance"] = position.distance_to(goal)
+	action_motion.append(motion)
+
+func _set_motion_collision(ignore_targets: bool, ignore_world := false) -> void:
+	ignore_targets = ignore_targets or dead
+	if _motion_ignores_world != ignore_world:
+		_motion_ignores_world = ignore_world
+		set_collision_mask_value(1, not ignore_world)
+	if _motion_ignores_targets == ignore_targets: return
+	_motion_ignores_targets = ignore_targets
+	set_collision_mask_value(3 if is_player else 2, not ignore_targets)
+
+func _action_displacement() -> Vector3:
+	var now = minf(action_timeline_duration, maxf(action_cursor, combat.action_elapsed * action_speed))
+	var displacement := Vector3.ZERO
+	var ignores_targets := false
+	var ignores_world := false
+	for motion in action_motion:
+		if motion.type == "EET_Navigation" and now > float(motion.start) and action_cursor < float(motion.start) + float(motion.duration):
+			ACTION_MOTION.turn(self, desired_velocity, false, 1, 0)
+	for index in range(action_motion.size() - 1, -1, -1):
+		var motion = action_motion[index]
+		var first = maxf(action_cursor, float(motion.start)) - float(motion.start)
+		var last = minf(now, float(motion.start) + float(motion.duration)) - float(motion.start)
+		var raw: Dictionary = motion.raw
+		if last > first:
+			var elapsed = (last - first) / maxf(0.01, action_speed)
+			match str(motion.type):
+				"EET_FindTarget":
+					if not raw.get("OnlyEnterFindTarget", true) and action_target_resolver.is_valid(): action_target = action_target_resolver.call(raw)
+					ACTION_MOTION.aim(self, raw, elapsed)
+				"EET_Move":
+					var direction = ACTION_MOTION.direction(raw, self)
+					if not is_player and combat.custom_properties.get("_navigation_steer", false) and combat.current_action in ["run", "forward", "move"] and str(raw.get("MoveDirType", "")) == "EMDT_FrontFace" and desired_velocity.length_squared() > 0.01:
+						direction = desired_velocity.normalized()
+						ACTION_MOTION.turn(self, direction, false, 1, elapsed)
+					displacement += direction * ACTION_MOTION.distance(raw, float(motion.duration), first, last, combat)
+					ignores_targets = ignores_targets or bool(raw.get("IsIgnoreTargetCollider", false))
+					var aim := Vector3.ZERO
+					match str(raw.get("RotateType", "EMRT_Keep")):
+						"EMRT_FaceToMoveDir": aim = direction
+						"EMRT_FaceToInputDir": aim = desired_velocity
+						"EMRT_FaceToTargetDir":
+							if is_instance_valid(action_target) and not action_target.dead: aim = action_target.position - position
+					ACTION_MOTION.turn(self, aim, bool(raw.get("IsSmoothRotate", false)), float(raw.get("RotateSpeedScale", 1.0)), elapsed)
+				"EET_MoveToPoint":
+					var goal: Array = motion.get("goal", [position.x, position.y, position.z])
+					var toward = Vector3(float(goal[0]), position.y, float(goal[2])) - position - displacement
+					var travel = float(motion.get("distance", 0)) * (last - first) / float(motion.duration)
+					displacement += toward.normalized() * minf(toward.length(), maxf(0, travel))
+					ignores_targets = ignores_targets or ACTION_MOTION.source_bool(raw.get("EnableMoveIgnoreEnemyCollistion", false))
+					ignores_world = ignores_world or ACTION_MOTION.source_bool(raw.get("EnableMoveIgnoreAllCollistion", false))
+					var aim = toward
+					match str(raw.get("RotateType", "EMRT_Keep")):
+						"EMRT_Keep": aim = Vector3.ZERO
+						"EMRT_FaceBackToMoveDir": aim = -toward
+						"EMRT_AlignToInitPosDir": aim = born_facing
+					ACTION_MOTION.turn(self, aim, false, 1, elapsed)
+				"EET_TargetDisCompensation":
+					if is_instance_valid(action_target) and not action_target.dead:
+						var to_target = action_target.position - position - displacement
+						to_target.y = 0
+						var gap = maxf(0.0, to_target.length() - 0.7)
+						var travel = float(raw.get("CompensationDis", 0)) * (ACTION_MOTION.curve_integral("EMST_GraduallyStop", last / float(motion.duration)) - ACTION_MOTION.curve_integral("EMST_GraduallyStop", first / float(motion.duration)))
+						displacement += to_target.normalized() * minf(gap, maxf(0.0, travel))
+		if now >= float(motion.start) + float(motion.duration) - 0.000001: action_motion.remove_at(index)
+	action_cursor = now
+	_set_motion_collision(ignores_targets, ignores_world)
+	return displacement
 
 func clear_impact_state() -> void:
 	knockback_elapsed = -1.0
@@ -302,27 +476,25 @@ func _physics_process(delta: float) -> void:
 	var step = combat.action_step if combat and combat.action_step >= 0 else delta
 	var paused_pose = combat != null and combat.impact_pause > 0
 	var staggered = combat != null and combat.stagger_remaining > 0
-	action_time = float(combat.busy) if combat else maxf(0, action_time - step)
+	var timeline_active = combat != null and action_cursor < action_timeline_duration - 0.000001
+	action_time = maxf(float(combat.busy), (action_timeline_duration - action_cursor) / maxf(0.01, action_speed)) if combat else maxf(0, action_time - step)
 	if animation:
 		animation.speed_scale = 1.0
-		animation.advance(step * (action_speed if action_time > 0 else 1.0))
-	if dead:
+		var animation_step = maxf(0.0, minf(action_timeline_duration, combat.action_elapsed * action_speed) - action_cursor) if timeline_active else step * (action_speed if action_time > 0 else 1.0)
+		animation.advance(animation_step * animation_state_speed)
+	if dead and (is_player or combat == null or not combat.custom_properties.get("_enemy_death_started", false)):
 		return
 	var response = FEEL.braking if desired_velocity.length_squared() < locomotion.length_squared() else FEEL.acceleration
 	if locomotion.dot(desired_velocity) < 0: response = FEEL.reverse_acceleration
-	locomotion = locomotion.move_toward(desired_velocity, response * delta)
+	locomotion = Vector3.ZERO if timeline_active else locomotion.move_toward(desired_velocity, response * delta)
 	var horizontal = locomotion + impulse
-	if not action_motion.is_empty():
-		horizontal = impulse
-		for i in range(action_motion.size() - 1, -1, -1):
-			var motion = action_motion[i]
-			if motion.get("input_motion", false):
-				var strength = clampf(desired_velocity.length() / maxf(0.01, combat.move_speed), 0, 1) if motion.get("scale_input", false) else 1.0
-				motion.velocity = desired_velocity.normalized() * float(motion.speed) * strength
-			horizontal += motion.velocity * minf(step, float(motion.remaining)) / maxf(delta, 0.00001)
-			motion.remaining -= step
-			if motion.remaining <= 0: action_motion.remove_at(i)
-	if paused_pose or staggered: horizontal = Vector3.ZERO
+	if timeline_active:
+		var displacement = _action_displacement()
+		horizontal = impulse + displacement / maxf(delta, 0.00001)
+	else:
+		_set_motion_collision(false)
+	# A pause confirmed after combat.tick applies to the next local clock step.
+	if (paused_pose or staggered) and step <= 0.000001: horizontal = Vector3.ZERO
 	if knockback_elapsed >= 0 and not paused_pose:
 		var before = knockback_progress(knockback_elapsed / knockback_duration)
 		knockback_elapsed += delta
@@ -339,7 +511,8 @@ func _physics_process(delta: float) -> void:
 	velocity.z = horizontal.z
 	impulse = impulse.move_toward(Vector3.ZERO, delta * 24)
 	velocity.y = maxf(-25, velocity.y - 24 * delta)
-	if is_on_floor():
+	# Source collisionless point moves stay on their starting plane.
+	if is_on_floor() or _motion_ignores_world:
 		velocity.y = 0
 	move_and_slide()
 	if knockback_elapsed >= 0:
@@ -347,7 +520,7 @@ func _physics_process(delta: float) -> void:
 			if get_slide_collision(index).get_normal().dot(knockback_direction) < -0.25:
 				knockback_elapsed = -1.0
 				break
-	if action_time <= 0 and not paused_pose and not staggered:
+	if not dead and action_time <= 0 and not paused_pose and not staggered:
 		if desired_velocity.length_squared() > 0.2:
 			face_direction(desired_velocity)
 			play_animation("run")

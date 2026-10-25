@@ -1,7 +1,6 @@
 extends Node3D
 
 const PARTICLE_SHADER = preload("res://scripts/presentation/recovered_particle.gdshader")
-const CIRCLE_SHADER = preload("res://scripts/presentation/camp_circle.gdshader")
 const TEXTURES = {
 	"fire": "res://assets/combat_presentation/39315fe1084bc454dc32.png",
 	"smoke": "res://assets/combat_presentation/13d0a7bd7a7ea64ff611.png",
@@ -18,6 +17,9 @@ var _world: Node3D
 var _low_quality := false
 var _materials: Dictionary = {}
 var _refresh := 0.0
+var portal_surface_count := 0
+var _portal_materials: Dictionary = {}
+var _portal_textures: Dictionary = {}
 
 func configure(world: Node3D) -> void:
 	_world = world
@@ -136,61 +138,25 @@ func _campfire(source: Node3D) -> void:
 	_light(anchor, Color(1, 0.38, 0.08), 4.5 * scale_value, 1.6)
 
 func _portal(source: Node3D) -> void:
+	# EnvironmentEffects renders the APK prefab at this source transform.
+	# Keep camp inventory bookkeeping without overriding surrounding scenery.
+	_anchor(source, "portal")
+	if _portal_materials.is_empty():
+		var parsed = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment_effects/camp_portal_materials.json"))
+		if parsed is Dictionary: _portal_materials = parsed.get("materials", {})
 	for mesh in source.get_parent().find_children("*", "MeshInstance3D", true, false):
+		if mesh.mesh == null: continue
 		for surface in mesh.mesh.get_surface_count():
-			var original = mesh.get_active_material(surface)
-			if not original is StandardMaterial3D: continue
-			var material = ShaderMaterial.new()
-			material.shader = preload("res://scripts/presentation/camp_portal_surface.gdshader")
-			material.set_shader_parameter("main_texture", original.albedo_texture)
-			material.set_shader_parameter("uv_scale", Vector2(original.uv1_scale.x, original.uv1_scale.y))
-			material.set_shader_parameter("uv_offset", Vector2(original.uv1_offset.x, original.uv1_offset.y))
-			material.set_shader_parameter("flow", "glow" in str(mesh.name).to_lower())
+			var original: Material = mesh.get_active_material(surface)
+			if original == null or not _portal_materials.has(original.resource_name): continue
+			var material_path := "res://scripts/presentation/recovered_effect_material.gd"
+			if not ResourceLoader.exists(material_path): continue
+			var material: ShaderMaterial = load(material_path).create(_portal_materials[original.resource_name], _portal_textures)
+			material.resource_name = original.resource_name
 			mesh.set_surface_override_material(surface, material)
 			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			circles.append(material)
-	var anchor = _anchor(source, "portal")
-	anchor.position.y += 0.10
-	var material = ShaderMaterial.new()
-	material.shader = CIRCLE_SHADER
-	material.set_shader_parameter("runes", load(TEXTURES.runes))
-	circles.append(material)
-	var floor_mesh = PlaneMesh.new()
-	floor_mesh.size = Vector2(4.6, 4.6)
-	_mesh(anchor, "RunicCircle", floor_mesh, material)
-	var spiral = material.duplicate()
-	spiral.set_shader_parameter("ribbon", true)
-	spiral.set_shader_parameter("tint", Color(0.08, 0.75, 1, 0.65))
-	circles.append(spiral)
-	var cylinder = CylinderMesh.new()
-	cylinder.top_radius = 1.5
-	cylinder.bottom_radius = 1.9
-	cylinder.height = 1.65
-	cylinder.radial_segments = 40
-	cylinder.cap_top = false
-	cylinder.cap_bottom = false
-	var flow = _mesh(anchor, "SpiralFlow", cylinder, spiral)
-	flow.position.y = 0.825
-	var motes = _particles(anchor, "AscendingMotes", 26, 2.5, _material("glow", Color(0.08, 0.65, 1, 0.7)), Vector2(0.04, 0.25))
-	motes.emission_shape = CPUParticles3D.EMISSION_SHAPE_RING
-	motes.emission_ring_axis = Vector3.UP
-	motes.emission_ring_radius = 1.9
-	motes.emission_ring_inner_radius = 1.3
-	motes.emission_ring_height = 0.06
-	motes.spread = 3
-	motes.initial_velocity_min = 0.4
-	motes.initial_velocity_max = 1.2
-	motes.color_ramp = _ramp([Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.65), Color(1, 1, 1, 0)])
-	_light(anchor, Color(0.05, 0.55, 1), 5.0, 1.1)
-
-func _mesh(parent: Node3D, kind: String, geometry: Mesh, material: Material) -> MeshInstance3D:
-	var instance = MeshInstance3D.new()
-	instance.name = kind
-	instance.mesh = geometry
-	instance.material_override = material
-	instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	parent.add_child(instance)
-	return instance
+			portal_surface_count += 1
 
 func _light(parent: Node3D, color: Color, radius: float, energy: float) -> void:
 	var light = OmniLight3D.new()

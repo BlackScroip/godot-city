@@ -2,12 +2,12 @@
   "EnvMaincity_Detail_[Union_Fabric]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -17,12 +17,12 @@
   "EnvDesert_Detail_[Ruins]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -35,9 +35,9 @@
       0.9716981053352356,
       0.9254323840141296,
       0.7837753295898438,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -47,12 +47,12 @@
   "EnvSeal_Detail_[Filthy]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -62,12 +62,12 @@
   "EnvForest_Detail_[Rock]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -77,12 +77,12 @@
   "EnvDesert_Cliff_[All]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.9884792566299438,
       0.9764150977134705,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -92,12 +92,12 @@
   "EnvSeal_Detail_[GroundTexture]_[1_2_3_4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -107,12 +107,12 @@
   "EnvSeal_Detail_[Plane]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -122,12 +122,12 @@
   "EnvMaincity_Detail_[MysticRunes]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -137,12 +137,12 @@
   "EnvSnow_Detail_[Brickwall]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -152,12 +152,12 @@
   "EnvForest_Detail_[Marsh]_[Plane]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -167,12 +167,12 @@
   "EnvSnow_Detail_[Dead_Tree]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -182,12 +182,12 @@
   "EnvCampsite_Detail_[Weapon]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -200,9 +200,9 @@
       0.8588235974311829,
       0.6823529601097107,
       0.6274510025978088,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -212,12 +212,12 @@
   "EnvCampsite_Detail_[Stump]_3": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.843317985534668,
       0.6451612710952759,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -227,12 +227,12 @@
   "EnvDetail_[Mushroom]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -242,12 +242,12 @@
   "EnvDesert_Detail_[Plane]_[Bot]": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -257,12 +257,12 @@
   "EnvCampsite_Detail_[Box]_4": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -275,9 +275,9 @@
       0.6320754289627075,
       0.6320754289627075,
       0.6320754289627075,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -287,12 +287,12 @@
   "EnvDetails_[WaterLily]_[StoneRoad_1_2_3]_[WildFlowers]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -302,12 +302,12 @@
   "EnvCampsite_Detail_[Stone]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -317,12 +317,12 @@
   "EnvDesert_Detail_[Tree]_[Leaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -335,9 +335,9 @@
       0.4126906394958496,
       0.6415094137191772,
       0.24510502815246582,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -347,12 +347,12 @@
   "EnvDetail_[Grass]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.9843137264251709,
       0.7215686440467834,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -362,12 +362,12 @@
   "EnvFloatingIsland_Detail_[Grass_Tree_Stump]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -380,9 +380,9 @@
       0.8464717268943787,
       0.8584905862808228,
       0.8576893210411072,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -392,12 +392,12 @@
   "EnvCampsite_Detail_[Tent]_[White]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -407,27 +407,27 @@
   "EnvDetail_[Grass]_[Autum]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvCampsite_Detail_[Readingstand]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -437,12 +437,12 @@
   "EnvCampsite_Detail_[Tent]_[White]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -452,14 +452,14 @@
   "EnvCampsite_Detail_[Anvil]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
-    "cutoff": 0,
+    "cutoff": 0.0,
     "transparent": false,
     "vertex_lit": true,
     "shadows": true
@@ -467,12 +467,12 @@
   "EnvDesert_Whole_[All]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -482,12 +482,12 @@
   "EnvForest_[Plane]_[TOP]": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -502,7 +502,7 @@
       0.4811320900917053,
       0.8509804010391235
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -512,12 +512,12 @@
   "EnvDetai_[Vine]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -528,26 +528,26 @@
     "shader": "OmniShade/Standard URP",
     "color": [
       0.39150941371917725,
-      1,
+      1.0,
       0.4392341673374176,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": false
   },
   "EnvDesert_Detail_[Rock]_[03]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -557,12 +557,12 @@
   "EnvSeal_Detail_[CrystalDark]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -572,12 +572,12 @@
   "EnvCampsite_Detail_[Pickaxe]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -587,12 +587,12 @@
   "EnvMine_Cliff_[All]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -602,12 +602,12 @@
   "EnvMining_Detail_[Rock]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -617,12 +617,12 @@
   "EnvDesert_Detail_[Rock]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -632,12 +632,12 @@
   "EnvCampsite_Detail_[Treetrunk]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -647,12 +647,12 @@
   "EnvSnow_Detail_[Rock]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -662,12 +662,12 @@
   "EnvCampsite_Detail_[Tree]_9": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -677,12 +677,12 @@
   "EnvSnow_Detail_[Tree]_[5_10]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -692,12 +692,12 @@
   "EnvCampsite_Detail_[Weapon]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -707,12 +707,12 @@
   "EnvDesert_Detail_[Bones]_[04]_[05]_[06]_[07]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -722,12 +722,12 @@
   "EnvSnow_Detail_[Rock]_[B]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -737,27 +737,27 @@
   "EnvFloatingIsland_Detail_[grass_1_2_3]_[Flower_1_White]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvCampsite_Detail_[Brickwall]_[1_2_3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -767,12 +767,12 @@
   "EnvForest_Cliff_All": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -792,19 +792,19 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "EnvSeal_Detail_[StonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
-    "cutoff": 0,
+    "cutoff": 0.0,
     "transparent": false,
     "vertex_lit": true,
     "shadows": true
@@ -812,12 +812,12 @@
   "EnvSeal_Detail_[Filthy]_[Surface]_[Plane]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -827,27 +827,27 @@
   "EnvDesert_Detail_[Bush]_[11]_[Main]_[Autum]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.7568628191947937,
       0.5254902243614197,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvCampsite_Detail_[Treetrunk]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -857,12 +857,12 @@
   "EnvMaincity_Detail_[Bulleting]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -872,12 +872,12 @@
   "EnvDesert_Detail_[Cactus]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -887,12 +887,12 @@
   "EnvDesert_Detail_[GroundPlane]_[1_2_3_4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -902,12 +902,12 @@
   "EnvCampsite_Detail_[Batten_Box_Notice board]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.8537735939025879,
       0.8914716243743896,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -917,12 +917,12 @@
   "EnvDetail_[Tree]_[07] 8": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.9589622616767883,
       0.5896226167678833,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -932,12 +932,12 @@
   "EnvMaincity_Detail_[Scarecrow]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -950,9 +950,9 @@
       0.849056601524353,
       0.8154195547103882,
       0.7489320039749146,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -962,12 +962,12 @@
   "EnvMaincity_Detail_[Furnance]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -977,12 +977,12 @@
   "EnvMaincity_Detail_[BigStoneCircle]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -992,12 +992,12 @@
   "EnvSeal_Detail_[Crystal]_jushimoxiang": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1010,9 +1010,9 @@
       0.9245283007621765,
       0.9245283007621765,
       0.9245283007621765,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1022,12 +1022,12 @@
   "EnvDesert_Detail_[Rock]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1038,11 +1038,11 @@
     "shader": "OmniShade/Standard URP",
     "color": [
       0.9785513281822205,
-      1,
+      1.0,
       0.551886796951294,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1052,12 +1052,12 @@
   "EnvSnow_Detail_[Slippery_Snow]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1067,12 +1067,12 @@
   "EnvCampsite_Detail_[Dartboard]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5450000166893005,
     "transparent": false,
@@ -1082,12 +1082,12 @@
   "EnvCampsite_Detail_[Fence]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1097,12 +1097,12 @@
   "EnvUnit_Destoryable_Jar_Mine": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1112,12 +1112,12 @@
   "EnvDetail_[Deadwood]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1127,12 +1127,12 @@
   "EnvUnit_Destoryable_Jar_Desert": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1142,12 +1142,12 @@
   "EnvUnit_Destoryable_Jar_Snow": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1157,12 +1157,12 @@
   "EnvSeal_Detail_[Crystal]_[ExtremeDanger]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1172,12 +1172,12 @@
   "EnvCampsite_Detail_[Stone]_[A]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1187,12 +1187,12 @@
   "EnvMaincity_Detail_[Grass]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1205,11 +1205,11 @@
       0.7547169923782349,
       0.6103146076202393,
       0.46635815501213074,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
-    "cutoff": 0,
+    "cutoff": 0.0,
     "transparent": false,
     "vertex_lit": true,
     "shadows": true
@@ -1217,12 +1217,12 @@
   "EnvDesert_Detail_[Rock]_[05]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1232,12 +1232,12 @@
   "EnvCampsite_Detail_[Table]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1247,12 +1247,12 @@
   "EnvCampsite_Detail_[Tent]_[White]_[3]_[BaseColor]_[Snow]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1262,12 +1262,12 @@
   "EnvSeal_Detail_[RoundStoneFloating]_[1]_[2]_[3]_[ExtremeDanger]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1277,12 +1277,12 @@
   "EnvCampsite_Detail_[Sack]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1292,12 +1292,12 @@
   "EnvCampsite_Detail_[Stone]_[C]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1310,9 +1310,9 @@
       0.9339622855186462,
       0.9211030602455139,
       0.8150142431259155,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1322,12 +1322,12 @@
   "EnvMine_Whole_[All]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1337,12 +1337,12 @@
   "EnvMaincity_Detail_[Bottle]_[4]_[Stone_Plate]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1352,12 +1352,12 @@
   "EnvDesert_Detail_[Ruins]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1367,27 +1367,27 @@
   "Env_ColliderItem_Sphere": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.4103773832321167,
       0.4103773832321167,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": false
   },
   "EnvSnow_Detail_[FishBones]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1397,12 +1397,12 @@
   "EnvDesert_Detail_[Tree]_[7]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1415,9 +1415,9 @@
       0.7641509771347046,
       0.7641509771347046,
       0.7641509771347046,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1427,12 +1427,12 @@
   "EnvCampsite_Detail_[Box]_3": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1442,12 +1442,12 @@
   "EnvDesert_Detail_[Cactus]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1457,12 +1457,12 @@
   "EnvCampsite_Detail_[Tent]_[Green]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -1472,12 +1472,12 @@
   "EnvMine_Detail_[Rock]_[Crack]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1487,12 +1487,12 @@
   "EnvMining_Detail_[StonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1502,12 +1502,12 @@
   "EnvCampsite_Detail_[Campfire_Stump]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1517,12 +1517,12 @@
   "EnvMaincity_Detail_[Food]_[Bowl]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1532,12 +1532,12 @@
   "EnvMaincity_Detail_[UnionBar]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1547,12 +1547,12 @@
   "EnvFloatingIsland_Cliff_All": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1562,12 +1562,12 @@
   "EnvDetail_[Tree_Root]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1582,7 +1582,7 @@
       0.8113207817077637,
       0.8901960849761963
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1592,12 +1592,12 @@
   "EnvDetail_[WolfFootPrints]_[BaseColor]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1610,9 +1610,9 @@
       0.9528301954269409,
       0.7058728337287903,
       0.507876455783844,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1622,12 +1622,12 @@
   "EnvCampsite_Detail_[Tent]_[Blue]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -1640,9 +1640,9 @@
       0.8078431487083435,
       0.8469403982162476,
       0.9058823585510254,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -1652,12 +1652,12 @@
   "EnvDesert_Detail_[Rock]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1667,27 +1667,27 @@
   "EnvForest_Detail_[grass_1_2_3]_[Flower_1]_[Autum]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvUnit_Destoryable_Jar_Seal": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1700,9 +1700,9 @@
       0.6320754289627075,
       0.6320754289627075,
       0.6320754289627075,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1715,9 +1715,9 @@
       0.42500001192092896,
       0.2656250298023224,
       0.13660715520381927,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1727,27 +1727,27 @@
   "Env_ColliderItem_Wall": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.4103773832321167,
       0.4103773832321167,
       0.3176470696926117
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": false
   },
   "EnvCampsite_Detail_[TreeLeaves]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1757,27 +1757,27 @@
   "EnvForest_Detail_[Grass]_[4_5_6]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvFloatingIsland_Detail_[StoneCircle]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1790,9 +1790,9 @@
       0.8464717268943787,
       0.8584905862808228,
       0.8576893210411072,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1802,12 +1802,12 @@
   "EnvCampsite_Detail_[Tree]_[5]_[Leaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1817,12 +1817,12 @@
   "EnvMining_Detail_[Crystal]_[4] 1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1832,27 +1832,27 @@
   "EnvFloatingIsland_Detail_[Grass]_[7_8]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvFloatingIsland_Detail_[BrokenBridge]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1862,12 +1862,12 @@
   "EnvCampsite_Detail_[Awnings_Bunting]_[Green]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.7829999923706055,
     "transparent": false,
@@ -1877,12 +1877,12 @@
   "EnvCampsite_Detail_[Tent]_[Blue]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -1892,12 +1892,12 @@
   "EnvCampsite_Detail_[Box]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1907,12 +1907,12 @@
   "EnvMining_Detail_[WoodFrame]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1922,12 +1922,12 @@
   "EnvCampsite_Detail_[Candle]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -1937,12 +1937,12 @@
   "EnvCampsite_Detail_[MessageBoard]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5450000166893005,
     "transparent": false,
@@ -1955,24 +1955,24 @@
       0.8301886916160583,
       0.653969407081604,
       0.653969407081604,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvCampsite_Detail_[TreeLeaves]_6": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -1982,12 +1982,12 @@
   "EnvCampsite_Detail_[Treetrunk]_7": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.9352322220802307,
       0.7594339847564697,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2000,9 +2000,9 @@
       0.9105620384216309,
       0.9150943160057068,
       0.884878933429718,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2015,9 +2015,9 @@
       0.7264150977134705,
       0.7264150977134705,
       0.7264150977134705,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2030,9 +2030,9 @@
       0.9803922176361084,
       0.7803922295570374,
       0.7803922295570374,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2042,12 +2042,12 @@
   "EnvSeal_Detail_[DeathStonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2060,24 +2060,24 @@
       0.26572924852371216,
       0.46226418018341064,
       0.0937611311674118,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvSeal_Detail_[StonePillar]_[1]_[2]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2087,12 +2087,12 @@
   "EnvCampsite_Detail_[Frame_Lantern]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2102,27 +2102,27 @@
   "EnvDesert_Detail_[RockPlane]_[1_2_3_4_5]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvDesert_Detail_[Cactus]_[4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2135,24 +2135,24 @@
       0.46226418018341064,
       0.2686387896537781,
       0.11120504885911942,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvCampsite_Detail_[Table_Wood]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2162,27 +2162,27 @@
   "EnvSeal_WaterFall": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "EnvSeal_Detail_[RoundStone]_[1]_[2]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2192,12 +2192,12 @@
   "EnvSnow_Cliff_[Variant]_[Straight]_[1x2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2207,27 +2207,27 @@
   "EnvForest_Detail_[Grass]_[4_5_6]_[Autum]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvDesert_Detail_[Brickwall]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2237,12 +2237,12 @@
   "EnvMining_Detail_[StonePans]_[BossDetail]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2252,12 +2252,12 @@
   "EnvCampsite_Detail_[Billboard]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.8537735939025879,
       0.8914716243743896,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2267,12 +2267,12 @@
   "EnvFloatingIsland_Detail_[Stone]_[All]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.9947847723960876,
       0.8632075786590576,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2282,12 +2282,12 @@
   "EnvDesert_Detail_[Rock]_[06]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2297,12 +2297,12 @@
   "EnvSnow_Detail_[Tree]_[1_2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2312,12 +2312,12 @@
   "EnvSeal_Detail_[Stele]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2327,12 +2327,12 @@
   "EnvCampsite_Detail_[WeaponRack]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5450000166893005,
     "transparent": false,
@@ -2342,12 +2342,12 @@
   "EnvDesert_Detail_[Rock]_[04]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2357,12 +2357,12 @@
   "EnvSnow_Detail_[SnowDrift]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2372,12 +2372,12 @@
   "EnvSnow_Detail_[Ruins]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2387,12 +2387,12 @@
   "EnvMaincity_Detail_[Flower_4_5]_[grass_2_3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      0,
+      0.0,
       0.5390429496765137,
-      1,
-      1
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2402,12 +2402,12 @@
   "EnvMaincity_Detail_[3Logs]_[Hammer]_[Axe]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2417,12 +2417,12 @@
   "EnvSeal_Detail_[Flower_4_5_6_7]_[grass_2_3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2435,24 +2435,24 @@
       0.15294118225574493,
       0.1725490242242813,
       0.27450981736183167,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvDesert_Detail_[Rock]_[4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2462,12 +2462,12 @@
   "EnvUnit_[Destructible]_[Forest]_[Mushroom]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2480,9 +2480,9 @@
       0.849056601524353,
       0.849056601524353,
       0.849056601524353,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -2492,15 +2492,15 @@
   "EnvForest_Detail_[Grass]_[7_8]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.7877358198165894,
       0.7877358198165894,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
@@ -2508,11 +2508,11 @@
     "shader": "OmniShade/Standard URP",
     "color": [
       0.7311320900917053,
-      1,
+      1.0,
       0.7831710577011108,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2522,12 +2522,12 @@
   "EnvCampsite_Detail_[Treetrunk]_6": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.8156446814537048,
       0.6839622259140015,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2540,9 +2540,9 @@
       0.2632501721382141,
       0.35849058628082275,
       0.18770025670528412,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2552,12 +2552,12 @@
   "EnvCampsite_Detail_[Weapon]_3": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2567,27 +2567,27 @@
   "EnvFloatingIsland_Detail_[Grass]_[4_5_6]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvFloatingIsland_Detail_Cliff_[1_2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2597,12 +2597,12 @@
   "EnvMaincity_Detail_[RoundTable]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2612,12 +2612,12 @@
   "EnvSeal_Detail_[Grass]_[Flower]_[1_2_3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2630,9 +2630,9 @@
       0.9150943160057068,
       0.9150943160057068,
       0.9150943160057068,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2645,9 +2645,9 @@
       0.949999988079071,
       0.949999988079071,
       0.949999988079071,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2657,12 +2657,12 @@
   "EnvSnow_Detail_[Grass]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2672,12 +2672,12 @@
   "EnvSeal_Detail_[StonePillar]_[1]_[2]_[3]_[ExtremeDanger]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2687,12 +2687,12 @@
   "EnvMaincity_Detail_[Placard]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2702,12 +2702,12 @@
   "EnvDesert_Detail_[Tree]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2717,12 +2717,12 @@
   "EnvSnow_Detail_[Tree]_[3_4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2732,12 +2732,12 @@
   "EnvMaincity_Detail_[Bulleting]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2747,27 +2747,27 @@
   "EnvFloatingIsland_Detail_[grass_1_2_3]_[Flower_1_Pink]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvUnit_[Destructible]_[Mine]_[Light]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2777,12 +2777,12 @@
   "EnvDesert_Detail_[Tree]_[2_3_4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2795,9 +2795,9 @@
       0.4941176474094391,
       0.4941176474094391,
       0.4941176474094391,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2807,27 +2807,27 @@
   "EnvDetails_River": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "EnvMining_Detail_[Boxes]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2837,12 +2837,12 @@
   "EnvSnow_Detail_[Tree]_[12]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2852,12 +2852,12 @@
   "EnvCampsite_Detail_[Tree]_5": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2867,12 +2867,12 @@
   "EnvDetail_[Rock]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2882,12 +2882,12 @@
   "EnvDesert_Detail_[Rock]_[02]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2897,12 +2897,12 @@
   "EnvCampsite_Detail_[Awnings_Knot]_6": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": true,
     "cutoff": 0.7829999923706055,
     "transparent": false,
@@ -2912,12 +2912,12 @@
   "EnvSnow_Detail_[Wood_Log]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2927,12 +2927,12 @@
   "EnvUnit_Destoryable_Jar_Forest": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2942,12 +2942,12 @@
   "EnvDesert_Detail_[Rock]_[6]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2957,12 +2957,12 @@
   "EnvSnow_Detail_[Slippery_Ice]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -2972,12 +2972,12 @@
   "EnvMining_Detail_[Crystal]_[4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -2987,12 +2987,12 @@
   "EnvSnow_Detail_[Rock]_[A]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3005,39 +3005,39 @@
       0.15294118225574493,
       0.17349731922149658,
       0.27450981736183167,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvForest_Detail_[grass_1_2_3]_[Flower_1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvMine_Wall_[All]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3047,12 +3047,12 @@
   "EnvDesert_Detail_[Rock]_[5] Variant": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3062,12 +3062,12 @@
   "EnvMining_Detail_[Crystal]_[Cracks]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3077,12 +3077,12 @@
   "EnvCampsite_Detail_[Goldpile]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3092,12 +3092,12 @@
   "EnvDesert_Detail_[Rock]_[08]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3107,12 +3107,12 @@
   "EnvSnow_Plane_[Top]": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3122,12 +3122,12 @@
   "EnvSnow_Detail_[StonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3137,12 +3137,12 @@
   "EnvSeal_Cliff_[Base]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3152,12 +3152,12 @@
   "EnvFloatingIsland_Detail_[Batten_Box_Notice board]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3167,12 +3167,12 @@
   "EnvCampsite_Detail_[Cart]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3182,12 +3182,12 @@
   "EnvDetail_[Tree]_[07] 9_[Autum]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.960784375667572,
       0.6470588445663452,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3197,12 +3197,12 @@
   "EnvCampsite_Detail_[Wagon]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3212,12 +3212,12 @@
   "EnvCampsite_Detail_[Flag]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3227,12 +3227,12 @@
   "EnvSeal_Detail_[Crystal]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3242,12 +3242,12 @@
   "EnvCampsite_Detail_[Brazier]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3257,12 +3257,12 @@
   "EnvMining_Detail_[LightColor]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3272,12 +3272,12 @@
   "EnvCampsite_Detail_[Book]_[B]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3287,12 +3287,12 @@
   "EnvFloatingIsland_Detail_[LotusLeaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3302,12 +3302,12 @@
   "EnvSeal_Detail_[Rock]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3317,12 +3317,12 @@
   "EnvSnow_Detail_[Rock]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3332,12 +3332,12 @@
   "EnvSeal_Detail_[RoundStoneFloating]_[1]_[2]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3347,12 +3347,12 @@
   "EnvMining_Detail_[Pickaxe]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3362,12 +3362,12 @@
   "EnvDesert_Detail_[Cactus]_Large]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3380,9 +3380,9 @@
       0.2770113945007324,
       0.7075471878051758,
       0.32447364926338196,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3392,12 +3392,12 @@
   "EnvSnow_Detail_[TreeLeaves]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -3410,9 +3410,9 @@
       0.7358490228652954,
       0.6220836639404297,
       0.5727126598358154,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3422,12 +3422,12 @@
   "EnvDesert_Detail_[Tree]_[5]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3437,12 +3437,12 @@
   "EnvMine_Detail_[Rock]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3452,12 +3452,12 @@
   "EnvSnow_Cliff_[Top]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3467,12 +3467,12 @@
   "EnvSnow_Cliff_[Variant]_[All]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3482,12 +3482,12 @@
   "EnvSnow_Detail_[12]_[Leaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3500,9 +3500,9 @@
       0.2632501721382141,
       0.35849058628082275,
       0.18770025670528412,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3512,27 +3512,27 @@
   "EnvMine_Detail_[Cracks]_[ExtremeDanger]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      0,
-      0,
-      0,
-      1
+      0.0,
+      0.0,
+      0.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvDesert_Detail_[Palmtree]_[2_3_4]_[Leaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3542,15 +3542,15 @@
   "EnvMine_Detail_[Cracks]_[ExtremeDanger]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      0,
-      0,
-      0,
-      1
+      0.0,
+      0.0,
+      0.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
@@ -3560,9 +3560,9 @@
       0.9454300999641418,
       0.8823529481887817,
       0.9921568632125854,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3572,12 +3572,12 @@
   "EnvCampsite_Detail_[Stele]_[1-9]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3587,12 +3587,12 @@
   "EnvSnow_Detail_[Ruins]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3602,12 +3602,12 @@
   "EnvCampsite_Detail_[Tree_Stump]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.9561295509338379,
       0.9198113083839417,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3617,12 +3617,12 @@
   "EnvCampsite_Detail_[WildGrass]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3632,14 +3632,14 @@
   "EnvCampsite_Detail_[Hat]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
-    "cutoff": 1,
+    "cutoff": 1.0,
     "transparent": false,
     "vertex_lit": true,
     "shadows": true
@@ -3647,12 +3647,12 @@
   "EnvCampsite_Detail_[Chest_Bookcase]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3662,12 +3662,12 @@
   "EnvDesert_Detail_[Rock]_[10_11_12]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3677,12 +3677,12 @@
   "EnvCampsite_Detail_[Rug]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3692,12 +3692,12 @@
   "EnvDesert_Detail_[Rock]_[7_8_9]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3707,12 +3707,12 @@
   "EnvSnow_Detail_[Rock]_[5]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3722,12 +3722,12 @@
   "EnvMaincity_Detail_[Grass]_[Flower]_[1_2_3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3737,12 +3737,12 @@
   "EnvCampsite_Detail_[TreeLeaves]_3": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3752,12 +3752,12 @@
   "EnvCampsite_Detail_[Awnings_Bunting]_[Blue]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.7310000061988831,
     "transparent": false,
@@ -3767,12 +3767,12 @@
   "EnvDetail_[vine]_[Root]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3782,12 +3782,12 @@
   "EnvCampsite_Detail_[Cask]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3797,12 +3797,12 @@
   "EnvMaincity_Detail_[Bottle]_[Cup]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3812,12 +3812,12 @@
   "EnvCampsite_Detail_[Cart]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3827,12 +3827,12 @@
   "EnvUnit_[Destructible]_[Forest]_[Rock]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3842,12 +3842,12 @@
   "EnvSnow_Detail_[Tree]_[11]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3857,12 +3857,12 @@
   "EnvForest_Detail_[StonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3872,14 +3872,14 @@
   "EnvCampsite_Detail_[Fence]_4": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
-    "cutoff": 0,
+    "cutoff": 0.0,
     "transparent": false,
     "vertex_lit": true,
     "shadows": true
@@ -3887,12 +3887,12 @@
   "EnvSnow_Detail_[Tree]_[13]_[Leaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3905,9 +3905,9 @@
       0.9811320900917053,
       0.692816972732544,
       0.6710573434829712,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3917,12 +3917,12 @@
   "EnvDesert_Detail_[Palmtree]_[2_3_4]_[TreeTrunk]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3932,12 +3932,12 @@
   "EnvSnow_Detail_[Rock]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3947,12 +3947,12 @@
   "EnvDetail_[Cloud]_FakeShadow": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -3962,12 +3962,12 @@
   "EnvDetail_[Brank]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -3980,24 +3980,24 @@
       0.43396228551864624,
       0.36515140533447266,
       0.1330544799566269,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvMaincity_Detail_[Pot]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4007,12 +4007,12 @@
   "EnvDetail_[Mushroom]_[01]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4025,9 +4025,9 @@
       0.849056601524353,
       0.849056601524353,
       0.849056601524353,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -4037,12 +4037,12 @@
   "EnvMining_Detail_[Tracks]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4052,12 +4052,12 @@
   "EnvSeal_Cliff_[Base]_[ExtremeDanger]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4067,12 +4067,12 @@
   "EnvSnow_Detail_[BossDetail]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4082,12 +4082,12 @@
   "EnvSnow_Detail_[TreeTrunk]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4097,12 +4097,12 @@
   "EnvDesert_Detail_[Palmtree]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4112,12 +4112,12 @@
   "EnvMaincity_Detail_[Table]_[1]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4127,12 +4127,12 @@
   "EnvCampsite_Detail_[Bridge]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4142,12 +4142,12 @@
   "EnvFloatingIsland_Detail_Cliff_[3_4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4157,12 +4157,12 @@
   "EnvForest_Detail_[Water]_[Plane]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4172,12 +4172,12 @@
   "EnvCampsite_Detail_[Book]_[A]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4190,9 +4190,9 @@
       0.5943396091461182,
       0.5943396091461182,
       0.5943396091461182,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4202,27 +4202,27 @@
   "EnvDetails_WaterFall": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "EnvCampsite_Detail_[Fence]_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4235,24 +4235,24 @@
       0.24528300762176514,
       0.07459216564893723,
       0.047436803579330444,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvSnow_Detail_[Rock]_[4]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4262,12 +4262,12 @@
   "EnvMaincity_Detail_[Draft]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4280,9 +4280,9 @@
       0.7375333309173584,
       0.8085566759109497,
       0.8666666746139526,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4292,12 +4292,12 @@
   "EnvSeal_Detail_[EnchantedStones]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4307,12 +4307,12 @@
   "EnvSnow_Detail_[CrystalPack]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4322,12 +4322,12 @@
   "EnvDesert_Detail_[Tree]_[6]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4337,12 +4337,12 @@
   "EnvSnow_Detail_[Tree]_[13]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4352,12 +4352,12 @@
   "EnvDetail_[Tree]_[07]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4370,9 +4370,9 @@
       0.7735849022865295,
       0.7499830722808838,
       0.44152721762657166,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4382,12 +4382,12 @@
   "Env_Desert_Detail_[Bones]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
+      1.0,
       0.7794104814529419,
       0.6745283007621765,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4397,12 +4397,12 @@
   "EnvCampsite_Detail_[Ember]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4412,12 +4412,12 @@
   "EnvForest_Detail_[Ravine]_[All]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4427,12 +4427,12 @@
   "EnvSeal_Detail_[RockFloating]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4442,12 +4442,12 @@
   "EnvCampsite_Detail_[TargetFrame_Weapon]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4457,12 +4457,12 @@
   "EnvDesert_Detail_[Rock]_[5]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4472,12 +4472,12 @@
   "EnvDetail_[CommonOriginModel]_FakeShadow": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4490,24 +4490,24 @@
       0.023673895746469498,
       0.2641509175300598,
       0.03263574466109276,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvSnow_Detail_[Flowers]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4517,12 +4517,12 @@
   "EnvSeal_Detail_[GrassPlane]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4532,12 +4532,12 @@
   "EnvCampsite_Detail_[Tent]_[Green]_[2]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6000000238418579,
     "transparent": false,
@@ -4549,10 +4549,10 @@
     "color": [
       0.800000011920929,
       0.8599727749824524,
-      1,
-      1
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4562,12 +4562,12 @@
   "EnvMaincity_Detail_[Bulleting]_[1]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4577,17 +4577,17 @@
   "EnvSeal_River": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "EnvCampsite_Detail_[Tree]_4": {
     "shader": "OmniShade/Standard URP",
@@ -4595,9 +4595,9 @@
       0.9921568632125854,
       0.9127883911132812,
       0.800000011920929,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4607,12 +4607,12 @@
   "EnvSeal_Detail_[GrassPlane]_[2_3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4632,17 +4632,17 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "EnvDetail_[Tree]_[07] 10": {
     "shader": "OmniShade/Standard URP",
     "color": [
       0.9585443139076233,
-      1,
+      1.0,
       0.800000011920929,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4655,9 +4655,9 @@
       0.7529412508010864,
       0.6705882549285889,
       0.4941176772117615,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4667,14 +4667,14 @@
   "EnvCampsite_Detail_[Fence]_3_2": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
-    "cutoff": 0,
+    "cutoff": 0.0,
     "transparent": false,
     "vertex_lit": true,
     "shadows": true
@@ -4685,9 +4685,9 @@
       0.650943398475647,
       0.650943398475647,
       0.650943398475647,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4697,12 +4697,12 @@
   "EnvDetail_[Tree]_[07] 12": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4715,9 +4715,9 @@
       0.5,
       0.46296098828315735,
       0.05896225571632385,
-      1
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4727,12 +4727,12 @@
   "EnvSnow_Detail_[Tree]_[11]_[Leaves]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 0,
+    "cull": 0.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4745,9 +4745,9 @@
       0.9900000095367432,
       0.9741600155830383,
       0.918720006942749,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4757,12 +4757,12 @@
   "EnvSnow_Clif_[Mid]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4772,12 +4772,12 @@
   "EnvMine_Plane_[Bot]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      0,
-      0,
-      0,
-      1
+      0.0,
+      0.0,
+      0.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4787,12 +4787,12 @@
   "EnvCampsite_Detail_[Weapon]_4": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4805,24 +4805,24 @@
       0.9529412388801575,
       0.7411764860153198,
       0.7411764860153198,
-      1
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvForest_Detail_[Ravine]_[Water]_[All]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4832,27 +4832,27 @@
   "EnvDesert_Detail_[StonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
-    "transparent": false,
+    "transparent": true,
     "vertex_lit": true,
     "shadows": true
   },
   "EnvMining_Detail_[MineCart]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4862,12 +4862,12 @@
   "EnvCampsite_Detail_[Box]_1": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4877,12 +4877,12 @@
   "EnvCampsite_Detail_[Awnings_Bunting]_[White]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.6610000133514404,
     "transparent": false,
@@ -4892,12 +4892,12 @@
   "EnvMining_Detail_[Crystal]_[Cracks]_[3]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4907,12 +4907,12 @@
   "EnvSeal_Detail_[ChimeraStonePans]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": true,
     "cutoff": 0.5,
     "transparent": false,
@@ -4922,12 +4922,12 @@
   "EnvDesert_Detail_[Rock]_[07]": {
     "shader": "OmniShade/Standard URP",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4942,7 +4942,7 @@
       0.48235297203063965,
       0.8509804010391235
     ],
-    "cull": 2,
+    "cull": 2.0,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
@@ -4962,7 +4962,7 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "Grass": {
     "shader": "unknown",
@@ -4977,7 +4977,7 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "Splatmap": {
     "shader": "unknown",
@@ -4992,7 +4992,7 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "Simple_Water": {
     "shader": "unknown",
@@ -5007,7 +5007,7 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "CustomDecal_NoLit": {
     "shader": "unknown",
@@ -5022,22 +5022,22 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "mat_CustomUIParticleFX": {
     "shader": "unknown",
     "color": [
-      1,
-      1,
-      1,
-      1
+      1.0,
+      1.0,
+      1.0,
+      1.0
     ],
     "cull": 2,
     "cutout": false,
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   },
   "PhysicalMaterial3DsMax": {
     "shader": "unknown",
@@ -5052,6 +5052,6 @@
     "cutoff": 0.5,
     "transparent": false,
     "vertex_lit": false,
-    "shadows": false
+    "shadows": true
   }
 }

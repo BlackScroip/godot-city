@@ -2,16 +2,14 @@ class_name DungeonWorldStyle
 extends RefCounted
 
 const PROFILES = {
-	0: [Color("142b32"), Color("87b9d4"), Color("879eff"), 0.38, 0.52],
-	1: [Color("203b40"), Color("87b9c8"), Color("91a9e4"), 0.38, 0.52],
+	0: [Color("142b32"), Color("527fba"), Color("6479d9"), 0.38, 0.52],
+	1: [Color("203b40"), Color("527fba"), Color("6479d9"), 0.38, 0.52],
 	2: [Color("786953"), Color("c3c3ab"), Color("ffe2b1"), 0.45, 0.55],
 	3: [Color("424a60"), Color("b4bad5"), Color("c8dcff"), 0.50, 0.55],
 	4: [Color("554953"), Color("c6b8cb"), Color("e4bad5"), 0.45, 0.55],
 	5: [Color("384b53"), Color("a2c6cb"), Color("acdaed"), 0.55, 0.55]
 }
 static var _materials: Dictionary = {}
-const FOREST_SHADER = preload("res://scripts/presentation/forest_surface.gdshader")
-const FOREST_ATLAS = "res://assets/art_generated/environment/forest-atlas-v2.png"
 
 static func environment(world: Node3D, region: int, camp: bool) -> void:
 	DungeonStyle.apply_options(world)
@@ -105,22 +103,6 @@ static func _surface_kind(resource_name: String) -> int:
 	if "grass" in name: return 5
 	if "cliff" in name or "[rock]" in name or "[stone]" in name: return 2
 	return -1
-
-static func _forest_material(source: StandardMaterial3D, kind: int) -> ShaderMaterial:
-	var material = ShaderMaterial.new()
-	material.resource_name = "ForestPaint/" + source.resource_name
-	material.shader = FOREST_SHADER
-	material.set_shader_parameter("forest_atlas", load(FOREST_ATLAS))
-	material.set_shader_parameter("grass_texture", load("res://assets/art_generated/environment/grass-v2.png"))
-	material.set_shader_parameter("original_texture", source.albedo_texture)
-	material.set_shader_parameter("original_tint", source.albedo_color)
-	material.set_shader_parameter("original_uv_scale", source.uv1_scale)
-	material.set_shader_parameter("original_uv_offset", source.uv1_offset)
-	material.set_shader_parameter("surface_kind", kind)
-	material.set_shader_parameter("use_alpha", source.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED)
-	material.set_shader_parameter("alpha_cutoff", maxf(0.3, source.alpha_scissor_threshold))
-	material.set_shader_parameter("tile_scale", 0.24 if kind == 0 else 0.18 if kind == 2 else 0.25 if kind in [3, 4] else 0.40)
-	return material
 
 static func effect(parent: Node3D, point: Vector3, tint: Color, radius: float, life: float) -> void:
 	var texture = DungeonStyle.texture("res://assets/art_generated/rune-v1.png")

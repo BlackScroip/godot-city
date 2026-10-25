@@ -54,6 +54,26 @@ func _run() -> void:
 	profile.data.run.active = true
 	followers.sync_from_run(systems, player)
 	check(followers.entries.is_empty(), "New run cannot retain old companions")
+	var all_loot: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/LootData.json"))
+	var spirit_count := 0
+	for row in all_loot:
+		if row.get("loot_type", "") not in ["随从", "高级随从"]: continue
+		spirit_count += 1
+		profile.data.run.inventory = {str(row.id): 1}
+		followers.sync_from_run(systems, player)
+		var entry: Dictionary = followers.entries[int(row.id)]
+		var initial: Vector3 = entry.visual.position
+		followers.advance(0.05, player)
+		check(entry.visual.texture != null and entry.visual.position != initial, "Every spirit animates with its own art: %s" % row.id)
+		var paused: Vector3 = entry.visual.position
+		followers.advance(0.0, player)
+		check(entry.visual.position == paused, "Zero step freezes spirit: %s" % row.id)
+		player.facing = -entry.direction
+		followers.advance(0.05, player)
+		check((entry.direction as Vector3).is_normalized(), "Opposite facing keeps continuous unit direction: %s" % row.id)
+		followers.advance(20.0, player)
+		check(entry.visual.position.is_finite(), "Resume remains finite: %s" % row.id)
+	check(spirit_count > 10, "All normal and upgraded spirit entries covered")
 	player.free()
 	followers.queue_free()
 	print(JSON.stringify({"checks": checks, "failures": failures}))

@@ -48,19 +48,20 @@ func _run() -> void:
 	game.profile.data.run.inventory["20103"] = 1
 	drops.clear()
 	var outcomes: Dictionary = {}
+	var low_pool: Array = game.systems._pool_candidates(int(game.catalog.config.LowRareAbilityItemLootPoolId)).map(func(entry): return int(entry.id))
 	for index in 12:
 		game._drop_treasure(point)
+		check(drops.entries.any(func(entry): return not entry.material and low_pool.has(int(entry.id))), "Normal chest supplies an APK low-pool item")
 		for entry in drops.entries:
 			check(entry.visual.texture != null, "Every drop has an image")
 			if entry.material: outcomes["%d:%d" % [entry.id, entry.amount]] = true
-			else: check(int(entry.id) == 13102, "Normal chest drops the APK configured refined talent scroll")
 		drops.clear()
 	check(outcomes.size() > 2, "Seeded treasure resource quantities vary")
 	game._drop_treasure(point, "Luxury")
-	check(drops.entries.any(func(entry): return int(entry.id) == 13102 and not entry.material), "Luxury chest guarantees the configured refined talent scroll")
+	check(drops.entries.any(func(entry): return int(entry.id) == int(game.catalog.config.AbilityItem_SelectLootItem_High) and not entry.material), "Luxury chest supplies the APK high-quality relic bag")
 	drops.clear()
 	game._drop_treasure(point, "Curse")
-	check(drops.entries.any(func(entry): return int(entry.id) == 13103 and not entry.material), "Curse chest guarantees a legendary talent scroll")
+	check(drops.entries.any(func(entry): return int(entry.id) == int(game.catalog.config.AbilityItem_SelectLootItem_High) and not entry.material), "Curse chest retains its high-quality relic bag")
 	drops.clear()
 	game._drop_treasure(point, "Curse_Final")
 	check(not drops.entries.any(func(entry): return not entry.material), "Final curse chest does not enter the normal talent scroll branch")

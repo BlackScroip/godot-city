@@ -16,10 +16,21 @@ var active_page := ""
 var autosave_time := 0.0
 var audio: AudioStreamPlayer
 var _save_queued := false
+var _save_delay := 0.0
+var last_snapshot_ms := 0.0
+var _save_warning := ""
 var _loading := false
 var _transitioning := false
 var _exit_after_reward := false
+var _death_pending := false
+var _death_remaining := 0.0
+var _death_camera_elapsed := 0.0
+var _death_will_revive := false
+var _revival_stage := 0
 var room_loading: CanvasLayer
+var boss_intro: CanvasLayer
+var battle_tally = preload("res://scripts/domain/battle_tally.gd").new()
+var _introduced_bosses: Dictionary = {}
 var _smoke := false
 var _smoke_clock := 0.0
 var _capture_path := ""
@@ -31,10 +42,16 @@ var _peak_process := 0.0
 var _peak_physics := 0.0
 var ads = preload("res://scripts/ads_service.gd").new()
 var ad_rewards: RefCounted
-const DEFAULT_KEYS = {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT], "move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN], "skill": [KEY_SPACE], "dodge": [KEY_SHIFT], "burst": [KEY_Q], "heavy": [KEY_R], "pause_game": [KEY_ESCAPE], "interact": [KEY_E]}
+const DEFAULT_KEYS = {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT], "move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN], "skill": [KEY_SPACE], "dodge": [KEY_SHIFT], "burst": [KEY_Q], "heavy": [KEY_R], "pause_game": [KEY_ESCAPE], "interact": [KEY_E], "map": [KEY_M]}
 
 func _ready() -> void:
 	var arguments = OS.get_cmdline_user_args()
+	if "--combat-stress" in arguments or OS.has_feature("combat_stress"):
+		set_process(false)
+		set_process_input(false)
+		set_process_unhandled_input(false)
+		add_child(preload("res://scenes/combat_stress.tscn").instantiate())
+		return
 	_smoke = "--smoke" in arguments
 	var output_index = arguments.find("--smoke-output")
 	if output_index >= 0 and output_index + 1 < arguments.size(): _smoke_output = arguments[output_index + 1]
@@ -68,7 +85,17 @@ func _ready() -> void:
 	add_child(hud)
 	room_loading = preload("res://scripts/presentation/room_loading.gd").new()
 	add_child(room_loading)
+	boss_intro = preload("res://scripts/presentation/boss_intro.gd").new()
+	add_child(boss_intro)
+	boss_intro.finished.connect(func(): world.paused = hud.modal_open or _transitioning or _flow_locked())
+	world.impact_confirmed.connect(func(impact: Dictionary):
+		if is_instance_valid(world.player): battle_tally.record(impact, str(world.player.combat.actor_key)))
 	world.hud = hud
+	world.ground_loot.configure_altar_pointer(hud)
+	world.ground_loot.altar_requested.connect(func(key: String, marker_id: String):
+		if _transitioning or _flow_locked() or world._background or hud.modal_open: return
+		if marker_id.is_empty(): _request_spirit_altar({"key": key})
+		else: world.interactions.interact(marker_id))
 	menus = DungeonMenus.new(self)
 	ad_rewards = preload("res://scripts/domain/ad_rewards.gd").new(systems)
 	add_child(ads)
@@ -80,23 +107,21 @@ func _ready() -> void:
 	world.enemy_defeated.connect(_enemy_defeated)
 	world.player_defeated.connect(_player_defeated)
 	world.wave_cleared.connect(_wave_cleared)
+	world.room_rewards_ready.connect(_finish_room)
+	world.room_exit_ready.connect(func(): _save())
 	world.environment_action.connect(_environment_action)
 	world.world_message.connect(func(message, context):
 		if message == "camp_page":
 			if context.page == "primary": _primary()
 			else: menus.open(str(context.page))
+		elif message == "room_action": _room_action()
 		else: hud.toast(message))
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -15
 	add_child(audio)
 	_apply_settings()
-	if profile.data.run.active and not profile.data.run.route.is_empty() and campaign.restore(profile.data.run.route):
-		if campaign.state.phase in ["room", "reward"]: _load_room(true)
-		else:
-			_camp()
-			_route()
-	else: _camp()
-	if not profile.data.get("dialogue_state", {}).is_empty(): _show_dialogue()
+	_restore_flow()
+	if not _flow_locked() and not profile.data.get("dialogue_state", {}).is_empty(): _show_dialogue()
 	if not save_store.warning.is_empty(): hud.toast(save_store.warning)
 	if _smoke: _smoke_begin.call_deferred()
 
@@ -111,7 +136,9 @@ func _configure_input() -> void:
 			InputMap.action_add_event(key, event)
 
 func _apply_settings() -> void:
-	world.auto_attack_enabled = bool(profile.data.get("auto_attack", true))
+	var mode = DungeonProfile.attack_mode(profile.data)
+	world.set_attack_mode(mode)
+	hud.set_attack_mode(mode)
 	world.camera_shake_enabled = bool(profile.data.get("camera_shake", true))
 	world.low_effects = bool(profile.data.get("low_effects", false))
 	world.presentation.audio_enabled = bool(profile.data.get("audio_enabled", true))
@@ -131,7 +158,11 @@ func _input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _transitioning: return
+	if _transitioning or _flow_locked() or (boss_intro and boss_intro.active): return
+	if event.is_action_pressed("map"):
+		_toggle_map()
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed("pause_game"):
 		if ads.busy():
 			ads.cancel()
@@ -139,7 +170,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		if hud.modal_open:
 			_exit_after_reward = false
-			hud.close_page()
+			_close_page()
 		else: menus.open("settings")
 		get_viewport().set_input_as_handled()
 		return
@@ -155,7 +186,7 @@ func _interact() -> void:
 	if not world.ground_loot.nearest(world.player.position).is_empty():
 		var entry = world.ground_loot.nearest(world.player.position)
 		if entry.has("altar"):
-			_rewards(str(entry.altar))
+			_request_spirit_altar({"key": str(entry.altar)})
 			return
 		var magic_before = systems.material(102)
 		var rewards_before = profile.data.run.rewards.size()
@@ -174,7 +205,19 @@ func _interact() -> void:
 
 func _process(delta: float) -> void:
 	if not world or not world.player: return
-	world.paused = hud.modal_open or _transitioning
+	save_store.poll()
+	if save_store.last_failed and save_store.warning != _save_warning:
+		_save_warning = save_store.warning
+		hud.toast(_save_warning)
+	elif not save_store.last_failed: _save_warning = ""
+	if _save_queued:
+		_save_delay += delta
+		if _save_delay >= 0.25 and not save_store.is_saving(): _capture_save()
+	_tick_death(delta)
+	world.paused = hud.modal_open or _transitioning or _flow_locked() or boss_intro.active
+	_update_battle_presentation(delta)
+	world.ground_loot.update_altar_pointer(world.camera, world.player.global_position, profile.data.run.active and not world.paused and not world._background)
+	hud.set_adventure_mode(profile.data.run.active)
 	var combat = world.player.combat
 	if profile.data.run.active:
 		profile.data.run.health = maxf(0, combat.health)
@@ -211,7 +254,7 @@ func _process(delta: float) -> void:
 	hud.readiness_suspended = world.paused or world._background or hud.modal_open
 	hud.low_effects = world.low_effects
 	hud.update_combat(combat, not profile.data.run.active)
-	for slot in hud.skill_buttons.size(): hud.skill_buttons[slot].queued = int(world.intent.pending.get("slot", -1)) == slot
+	hud.update_intent(world.intent)
 	if _smoke:
 		_peak_process = maxf(_peak_process, Performance.get_monitor(Performance.TIME_PROCESS))
 		_peak_physics = maxf(_peak_physics, Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS))
@@ -227,21 +270,32 @@ func _new_combat() -> RefCounted:
 	return combat
 
 func _camp() -> void:
+	if boss_intro: boss_intro.finish()
+	battle_tally.reset()
+	_introduced_bosses.clear()
 	_loading = true
 	world.load_environment(10000, true)
 	world.create_player(_new_combat(), selected_character)
+	if profile.data.run.active:
+		world.player.combat.health = minf(world.player.combat.max_health, float(profile.data.run.health))
+		world.player.combat.armor = float(profile.data.run.armor)
 	_equip_visual()
 	hud.close_page()
+	hud.set_adventure_mode(profile.data.run.active)
 	active_page = ""
 	_loading = false
 	_play_music("maincity")
 
 func _action(kind: String, id: Variant, extra: Variant) -> void:
-	if _transitioning: return
+	if _transitioning or boss_intro.active: return
+	if _flow_locked():
+		if kind == "result_next": _result_next()
+		elif kind == "result_camp": _result_camp()
+		return
 	if kind == "close_page":
 		_exit_after_reward = false
 		if ads.busy(): ads.cancel()
-		else: hud.close_page()
+		else: _close_page()
 		return
 	if kind == "cancel_ad":
 		ads.cancel()
@@ -297,6 +351,7 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		menus.open(menus.current_page, menus.current_id)
 		return
 	match kind:
+		"map": _toggle_map()
 		"talk_next": _next_dialogue()
 		"camp", "achievements", "inventory", "settings": menus.open(kind)
 		"primary": _primary()
@@ -348,7 +403,10 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			var result = systems.choose_loot_reward(str(extra), int(id))
 			hud.toast(str(result.get("message", "")))
 			_apply_growth()
-			if result.success and str(extra).begins_with("altar:"):
+			if result.success and str(extra) == "old_day:" + _room_key:
+				_finish_noncombat()
+			elif result.success and str(extra).begins_with("altar:"):
+				profile.data.run.counters["SelectLootRemainCount_Sprites"] = maxi(0, int(profile.data.run.counters.get("SelectLootRemainCount_Sprites", 0)) - 1)
 				world.ground_loot.remove_altar(str(extra))
 				hud.close_page()
 				_save()
@@ -368,25 +426,14 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"refresh_talent":
 			hud.toast(str(systems.refresh_character_talent_reward(str(id)).message))
 			_talent_rewards()
-		"revive":
-			var result = systems.revive()
-			if result.get("success", false):
-				world.player.dead = false
-				world.player.collision_layer = 2
-				_apply_growth()
-				world.player.combat.health = float(profile.data.run.health)
-				world.player.invulnerability = 2
-				hud.close_page()
-			else: hud.toast(str(result.get("message", "")))
 		"retreat":
 			if profile.data.run.active:
-				world.ground_loot.settle_automatic(systems)
-				systems.end_run(false)
-				campaign.fail()
-			_camp()
-			_save()
+				hud.show_page("结束本次冒险？", [menus.item("返回营地后，本次冒险将结束", "", [menus.command("继续冒险", "close_page"), menus.command("结束冒险", "confirm_retreat")])])
+			else: _close_page()
+		"confirm_retreat":
+			if profile.data.run.active: _finish_run(false, "retreat")
 		"save":
-			hud.toast("进度已保存" if _save() else save_store.warning)
+			hud.toast("进度已保存" if _save(true) else save_store.warning)
 		"toggle_audio":
 			profile.data["audio_enabled"] = not profile.data.get("audio_enabled", true)
 			audio.stream_paused = not profile.data.audio_enabled
@@ -397,9 +444,13 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, profile.data.volume)))
 			_save()
 		"auto_attack":
-			profile.data["auto_attack"] = bool(id)
-			world.auto_attack_enabled = bool(id)
+			_action("auto_attack_mode", "normal" if bool(id) else "off", 0)
+		"auto_attack_mode":
+			profile.data["auto_attack_mode"] = str(id) if str(id) in ["normal", "heavy", "off"] else "normal"
+			world.set_attack_mode(profile.data.auto_attack_mode)
+			hud.set_attack_mode(profile.data.auto_attack_mode)
 			_save()
+			if menus.current_page == "settings" and hud.modal_open: menus.open("settings")
 		"camera_shake", "low_effects":
 			profile.data[kind] = bool(id)
 			_apply_settings()
@@ -413,20 +464,25 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			_save()
 			menus.open("settings")
 		"quit":
-			_save()
+			_save(true)
 			get_tree().quit()
 
 func _primary() -> void:
+	if _flow_locked(): return
 	if not profile.data.run.active:
 		_exit_after_reward = false
 		var seed_value = 12345 if _smoke else int(Time.get_unix_time_from_system()) & 0x7fffffff
 		var combat = _new_combat()
+		var generated = campaign.generate(seed_value, difficulty)
+		if not generated.success:
+			hud.toast("无法生成冒险路线")
+			return
 		var result = systems.begin_run(seed_value, selected_character, combat.max_health, difficulty)
 		if not result.get("success", false):
 			hud.toast(str(result.get("message", "")))
 			return
-		campaign.generate(seed_value, difficulty)
-		_route()
+		var first = campaign.choices()
+		if not first.is_empty(): _select_node(int(first[0].node_id))
 		_save()
 	elif world.player.dead: _player_defeated()
 	elif campaign.state.phase == "route": _route()
@@ -434,14 +490,15 @@ func _primary() -> void:
 	elif campaign.room_ready(): _finish_room()
 	elif not campaign.current_room().get("combat", false): _room_action()
 
-func _route() -> void:
+func _route(preview := false) -> void:
+	if not profile.data.run.active or _flow_locked() or campaign.state.is_empty(): return
 	var choices = campaign.choices()
-	if choices.is_empty(): return
+	if choices.is_empty() and not preview: return
 	var shift: Dictionary = systems.route_shift_quote()
-	if bool(profile.data.get("auto_route", false)) and choices.size() == 1 and (campaign.vertical_choices().is_empty() or not shift.success):
+	if not preview and bool(profile.data.get("auto_route", false)) and choices.size() == 1 and (campaign.vertical_choices().is_empty() or not shift.success):
 		_select_node(int(choices[0].node_id))
 		return
-	var map: Array = campaign.route_map(true)
+	var map: Array = campaign.route_map(false)
 	var rows: Array = []
 	for column in campaign.state.get("layers", []).size():
 		var layer: Dictionary = campaign.state.layers[column]
@@ -449,7 +506,7 @@ func _route() -> void:
 			if int(room.layer_index) != column: continue
 			var node_id = int(room.node_id)
 			var identity = column * 100000000 + int(node_id)
-			var active = bool(room.available) or (bool(room.vertical) and bool(shift.success))
+			var active = not preview and (bool(room.available) or (bool(room.vertical) and bool(shift.success)))
 			var row = menus.item(str(room.get("Name", "")), "区域 %d" % int(room.Region), [menus.command("进入" if active else "已通过" if layer.complete else "未到达", "enter_node", int(node_id), 0, not active)])
 			row.merge(room)
 			row["available"] = active
@@ -459,10 +516,11 @@ func _route() -> void:
 			row["icon"] = "menu_store" if room.Flow == "Shop" else "interaction_quest" if room.Flow in ["Event", "Curse"] else "menu_portal" if room.Flow == "Entrance" else "skill_attack"
 			rows.append(row)
 	var character = catalog.find("CharData", selected_character)
-	hud.show_page("选择路线", rows, "route", {"first_layer": 0, "current_layer": int(campaign.state.layer_index), "portrait": character.get("square_icon_name", ""), "character": menus.name_of(character), "magic": systems.material(102), "search": shift.remaining, "search_max": shift.maximum, "shift_available": shift.success, "automatic": profile.data.get("auto_route", false)})
+	hud.show_page("区域路线" if preview else "选择路线", rows, "route", {"preview": preview, "first_layer": int(map[0].layer_index) if not map.is_empty() else 0, "current_layer": int(campaign.state.layer_index), "portrait": character.get("square_icon_name", ""), "character": menus.name_of(character), "magic": systems.material(102), "search": shift.remaining, "search_max": shift.maximum, "shift_available": not preview and shift.success, "automatic": profile.data.get("auto_route", false)})
+	world.paused = true
 
 func _select_node(id: int) -> void:
-	if _transitioning or campaign.state.get("phase", "") != "route": return
+	if _transitioning or _flow_locked() or campaign.state.get("phase", "") != "route": return
 	var destination: Dictionary = {}
 	for choice in campaign.choices() + campaign.vertical_choices():
 		if int(choice.node_id) == id: destination = choice
@@ -498,8 +556,13 @@ func _select_node(id: int) -> void:
 			hud.toast("关卡加载失败，请重试")
 			return
 	room_loading.set_progress(0.85)
-	await get_tree().create_timer(0.3).timeout
+	world.release_environment()
+	await get_tree().process_frame
 	_enter_node(id)
+	while world.presentation.has_pending_preparation():
+		world.presentation.prepare_step()
+		room_loading.set_progress(0.95)
+		await get_tree().process_frame
 	room_loading.set_progress(1.0)
 	await get_tree().process_frame
 	room_loading.finish()
@@ -522,10 +585,16 @@ func _enter_node(id: int) -> void:
 	_save()
 
 func _load_room(resume := false) -> void:
+	boss_intro.finish()
+	battle_tally.reset()
+	_introduced_bosses.clear()
 	_loading = true
 	var room: Dictionary = campaign.current_room()
 	_room_key = "%d:%d:%d" % [int(profile.data.run.seed), int(campaign.state.layer_index), int(room.node_id)]
 	world.load_environment(int(room.get("environment_id", room.stage_id)))
+	world.room_fight_type = str(room.get("FightType", "Regular"))
+	world.room_spawn_points = room.get("SpawnPoints", []).duplicate(true)
+	world.enemy_stage_layer = clampi(int(room.get("region", room.get("Region", 1))), 1, 5)
 	var combat = _new_combat()
 	var previous_hp = float(profile.data.run.health)
 	if resume and not profile.data.run.battle.is_empty(): combat.restore(profile.data.run.battle.get("player", {}))
@@ -535,7 +604,11 @@ func _load_room(resume := false) -> void:
 	if resume and profile.data.run.battle.has("position"): actor.position = DungeonWorld.vector(profile.data.run.battle.position)
 	profile.data.run.current_node = int(room.node_id)
 	profile.data.run.region = int(room.region)
+	if not resume:
+		profile.data.run.counters["run:total_depth"] = int(profile.data.run.counters.get("run:total_depth", campaign.state.get("visited", []).size())) + 1
 	hud.close_page()
+	hud.set_adventure_mode(true)
+	if resume: actor.invulnerability = maxf(0, float(profile.data.run.battle.get("invulnerability", 0)))
 	if room.get("combat", false) and campaign.state.phase == "room":
 		if resume and profile.data.run.battle.has("enemies"):
 			for saved_enemy in profile.data.run.battle.enemies:
@@ -544,35 +617,87 @@ func _load_room(resume := false) -> void:
 				enemy.combat.restore(saved_enemy.combat)
 				if enemy.combat.health <= 0: enemy.dead = true
 			world.fighting = true
+			world.room_stage = "fighting"
 			world._wave_reported = false
 			world.elapsed = float(profile.data.run.battle.get("elapsed", 0))
 			world.received_hits = int(profile.data.run.battle.get("received_hits", 0))
+			for unit in world.actors:
+				if not unit.is_player: _introduced_bosses[str(unit.combat.actor_key)] = true
 			var bindings: Dictionary = {}
 			for unit in world.actors: bindings[str(unit.combat.actor_key)] = unit.combat
 			for unit in world.actors:
 				for key in unit.combat.rebind_buff_casters(bindings): world._diagnostic("Unresolved saved caster: " + str(key))
-		else: world.spawn_wave(room.enemies, difficulty, int(profile.data.run.seed))
-	else: hud.toast("%s" % str(room.name))
+		else: world.arm_room_encounter(room.enemies, difficulty, int(profile.data.run.seed), int(campaign.state.wave_count) == 1)
+	else:
+		world.prepare_noncombat_gate(str(room.flow), campaign.state.phase == "reward")
+		hud.toast("%s" % str(room.name))
 	if resume:
+		battle_tally.restore(profile.data.run.battle.get("tally", {}))
 		world.restore_transients(profile.data.run.battle.get("transients", {}))
 		if profile.data.run.battle.has("environment"): world.interactions.restore(profile.data.run.battle.environment)
 		world.elapsed = float(profile.data.run.battle.get("elapsed", 0))
 		world.received_hits = int(profile.data.run.battle.get("received_hits", 0))
+	world.ground_loot.sync_source_altars(world.interactions, _room_key)
 	world.interactions.set_exit_enabled(campaign.state.phase == "reward" or not room.get("combat", false))
 	world.interactions.set_completion_chests_enabled(campaign.state.phase == "reward" or not room.get("combat", false))
+	world.sync_room_gates()
 	if not resume and systems.has_method("record_node_entry_effects"):
 		systems.record_node_entry_resources(_room_key, str(room.node_type))
 		systems.record_node_entry_effects(_room_key, str(room.node_type))
 		combat.notify_gameplay("message", {"event_type": "EnterNode", "room_key": _room_key})
 	_apply_growth()
+	if room.get("combat", false):
+		var enemy_ids: Array = []
+		for wave in range(int(campaign.state.waves_cleared) + 1, int(campaign.state.wave_count) + 1):
+			for spawn in campaign.wave_spawns(wave):
+				var enemy_id = int(spawn.get("enemy_id", spawn.get("EnemyId", 0)))
+				if not enemy_ids.has(enemy_id): enemy_ids.append(enemy_id)
+		world.prepare_enemy_media(enemy_ids)
 	_loading = false
 	_play_music("forest" if int(room.region) == 1 else "battle")
+	if combat.health <= 0:
+		actor.dead = true
+		actor.collision_layer = 0
+		actor.play_animation("death")
+		_player_defeated()
+	if room.get("combat", false) and campaign.state.phase == "room" and not actor.dead and not _transitioning:
+		_prepare_loaded_combat(str(room.name))
+
+func _prepare_loaded_combat(title: String) -> void:
+	_transitioning = true
+	world.paused = true
+	room_loading.begin(title)
+	while world.presentation.has_pending_preparation():
+		world.presentation.prepare_step()
+		await get_tree().process_frame
+	await world.prepare_feedback_rendering()
+	room_loading.finish()
+	_transitioning = false
+	world.paused = hud.modal_open
 
 func _skill(slot: int, pressed: bool) -> void:
-	if hud.modal_open: return
+	if hud.modal_open or _transitioning or boss_intro.active: return
 	var result = world.use_skill(slot, pressed)
 	if slot > 1 and pressed and not result.get("success", false):
 		hud.toast(str(result.get("message", "能量不足或冷却中")))
+
+func _update_battle_presentation(delta: float) -> void:
+	var target: DungeonActor
+	for actor in world.actors:
+		if is_instance_valid(actor) and not actor.dead and actor.combat.enemy.get("rank", "") == "Boss":
+			target = actor
+			break
+	var name_text := ""
+	if target:
+		name_text = menus.name_of(catalog.find("EnemyData", target.actor_id))
+		var key := str(target.combat.actor_key)
+		if profile.data.run.active and not world.paused and not _introduced_bosses.has(key):
+			_introduced_bosses[key] = true
+			boss_intro.begin(world, target, name_text)
+	battle_tally.advance(delta, world.fighting and not world.paused and not world._background)
+	hud.battle_readout.visible = profile.data.run.active and not hud.modal_open and not _transitioning and not boss_intro.active and not _flow_locked()
+	hud.battle_readout.update_values(battle_tally, target, name_text)
+	hud.battle_readout.update_enemies(world.actors, world.camera, delta if not world.paused else 0.0)
 
 func _enemy_defeated(enemy_id: int) -> void:
 	systems.record_kill(enemy_id, 0)
@@ -581,29 +706,33 @@ func _enemy_defeated(enemy_id: int) -> void:
 	_save()
 
 func _wave_cleared() -> void:
+	if _flow_locked() or not profile.data.run.active: return
 	campaign.clear_wave()
-	if campaign.room_ready(): _finish_room()
+	if campaign.room_ready(): world.begin_room_clear()
 	else:
-		world.spawn_wave(campaign.wave_spawns(int(campaign.state.waves_cleared) + 1), difficulty, int(profile.data.run.seed))
+		world.start_wave(campaign.wave_spawns(int(campaign.state.waves_cleared) + 1), difficulty, int(profile.data.run.seed), float(catalog.config.get("DefaultEnemySpawnDelay", 1.0)), int(campaign.state.waves_cleared) + 1 == int(campaign.state.wave_count))
 		hud.toast("下一波敌人出现")
 	_save()
 
 func _finish_room() -> void:
 	if campaign.state.phase != "room": return
 	var room = campaign.current_room()
+	if room.get("combat", false) and world.room_stage in ["entry", "protection", "fighting", "clearing"]: return
 	var result = campaign.complete_room(world.elapsed, world.received_hits, 100)
 	if not result.get("success", false): return
 	world.fighting = false
-	world.interactions.set_exit_enabled(true)
+	if not room.get("combat", false):
+		world.room_stage = "open"
+		world.sync_room_gates()
+	world.interactions.set_exit_enabled(world.room_stage != "rewards")
 	world.interactions.set_completion_chests_enabled(true)
 	if str(room.flow) == "Treasure" and not profile.data.run.counters.get("world_treasure:" + _room_key, false): _drop_treasure(world.player.position + Vector3(1.5, 0, 0))
 	systems.complete_node(_room_key, int(room.node_id), int(room.region), str(room.flow) == "Boss", str(room.node_type))
 	systems.claim_node_materials(_room_key, int(room.region), str(room.flow) == "Boss")
 	var altar_chance = int(catalog.config.get("IncrementRandomAppearChanceDic", {}).get("SpritesAltar", 350))
-	if "SpritesAltar" in str(room.get("IncrementOptions", "")) and systems.next_random(1000) < altar_chance:
+	if world.ground_loot.source_altars.is_empty() and "SpritesAltar" in str(room.get("IncrementOptions", "")) and systems.next_random(1000) < altar_chance:
 		var key = "altar:" + _room_key
-		if not systems.create_loot_reward(int(catalog.config.AbilityItemLootPoolId_Sprites), key, 3).is_empty():
-			world.ground_loot.spawn_altar(world.player.position + Vector3(-2.0, 0, 0), key)
+		world.ground_loot.spawn_altar(world.player.position + Vector3(-2.0, 0, 0), key)
 	_save()
 	hud.close_page()
 	hud.toast("房间已完成，可拾取战利品后继续前进")
@@ -614,6 +743,7 @@ func _finish_noncombat() -> void:
 
 func _leave_room(confirmed := false) -> void:
 	if _transitioning or not profile.data.run.active or world.player.dead: return
+	if world.room_stage in ["entry", "protection", "fighting", "clearing", "rewards", "opening", "event_locked"]: return
 	if campaign.state.get("phase", "") != "reward": return
 	_exit_after_reward = true
 	if not systems.pending_character_talent_reward().is_empty():
@@ -643,9 +773,7 @@ func _leave_room(confirmed := false) -> void:
 		if is_instance_valid(unit.get("visual")): unit.visual.queue_free()
 	world.summon_units.clear()
 	if campaign.state.phase == "won":
-		systems.end_run(true)
-		_camp()
-		hud.toast("冒险胜利！")
+		_finish_run(true)
 	else:
 		var choices = campaign.choices()
 		if chapter_end and not choices.is_empty() and int(choices[0].get("region", 0)) > previous_region:
@@ -705,7 +833,13 @@ func _room_action() -> void:
 	var room: Dictionary = campaign.current_room()
 	var flow = str(room.get("flow", "Entrance"))
 	var rows: Array = []
-	if flow in ["Event", "Curse"] and systems.has_method("event_for_node"):
+	if flow == "Curse" and campaign.state.phase == "room":
+		var key = "old_day:" + _room_key
+		systems.create_loot_reward(int(catalog.config.get("AbilityItemLootPoolId_OldDay", 0)), key, 3)
+		_rewards(key)
+		_save()
+		return
+	if flow == "Event" and systems.has_method("event_for_node"):
 		var view = systems.event_for_node(int(room.node_id), int(profile.data.run.seed), _room_key)
 		if view is Dictionary:
 			rows.append(menus.item(str(view.get("name", room.name)), menus.clean(view.get("story", ""))))
@@ -728,8 +862,155 @@ func _room_action() -> void:
 	hud.show_page(str(room.name), rows, "shop" if flow == "Shop" else "list")
 
 func _player_defeated() -> void:
+	if not profile.data.run.active or _flow_locked(): return
+	_exit_after_reward = false
+	_death_pending = true
+	_death_will_revive = systems.revival_count() > 0
+	_revival_stage = 0
+	_death_remaining = 1.5 if _death_will_revive else 2.0
+	_death_camera_elapsed = 0.0
+	world.begin_outcome_camera("sys_dead")
+	world.paused = true
+	world.player.suspended = true
+	profile.data.run.health = 0.0
 	_save()
-	hud.show_page("冒险者倒下了", [menus.item("复苏", "", [menus.command("使用复苏宝石", "revive")]), menus.item("返回营地", "", [menus.command("结束本次冒险", "retreat")])])
+	hud.show_page("正在复苏" if _death_will_revive else "冒险者倒下了", [], "outcome", {"title": "正在复苏" if _death_will_revive else "冒险者倒下了", "subtitle": "复苏宝石 × %d" % systems.revival_count() if _death_will_revive else "本次冒险结束", "portrait": catalog.find("CharData", selected_character).get("square_icon_name", ""), "pending": true})
+
+func _flow_locked() -> bool:
+	return _death_pending or not profile.data.run.get("outcome", {}).is_empty()
+
+func _tick_death(delta: float) -> void:
+	if not _death_pending or _transitioning or world._background: return
+	# Keep the death pose moving while combat and player input remain suspended.
+	if world.player.animation: world.player.animation.advance(delta)
+	_death_camera_elapsed += delta
+	world.tick_outcome_camera(_death_camera_elapsed, delta)
+	_death_remaining -= delta
+	if _death_remaining > 0: return
+	if _death_will_revive:
+		if _revival_stage == 0:
+			_revival_stage = 1
+			_death_remaining = 1.01
+			hud.toast("复苏宝石 -1")
+			return
+		if _revival_stage == 2:
+			_death_pending = false
+			world.end_outcome_camera()
+			hud.close_page()
+			world.paused = false
+			_save()
+			return
+		var result = systems.revive()
+		if result.success:
+			world.player.dead = false
+			world.player.collision_layer = 2
+			world.player.velocity = Vector3.ZERO
+			world.player.clear_impact_state()
+			world.player.end_action_motion()
+			world.player.action_time = 0.0
+			_apply_growth()
+			world.player.invulnerability = systems.revival_protection_seconds()
+			world.player.combat.health = 0.0
+			world.player.combat.revive(float(profile.data.run.health), world.player.invulnerability)
+			world.player.play_animation("idle", true)
+			_revival_stage = 2
+			_death_remaining = 1.5
+			_death_camera_elapsed = 0.0
+			world.begin_outcome_camera("revival")
+			_save()
+			return
+	_death_pending = false
+	world.end_outcome_camera()
+	_finish_run(false)
+
+func _finish_run(victory: bool, reason := "battle") -> void:
+	if not profile.data.run.active or not profile.data.run.get("outcome", {}).is_empty(): return
+	_death_pending = false
+	_exit_after_reward = false
+	world.paused = true
+	_loading = true
+	world.ground_loot.settle_automatic(systems)
+	var run: Dictionary = profile.data.run
+	var total_depth = int(run.counters.get("run:total_depth", campaign.state.get("visited", []).size() + (1 if campaign.state.get("phase", "") == "room" else 0)))
+	run["outcome"] = {"victory": victory, "reason": reason, "stage": "share" if victory else "summary", "character_id": selected_character, "region": int(run.region), "rooms": run.completed_occurrences.size(), "revivals": int(run.counters.get("revivals:used", 0)), "materials": run.materials.duplicate(true), "experience_claimed": false}
+	run.outcome.merge(systems.settlement_experience(total_depth, int(run.region), int(run.counters.get("run:kills", 0))))
+	if not victory: campaign.fail()
+	run.route = campaign.snapshot()
+	systems.end_run(victory)
+	profile.data["dialogue_state"] = {}
+	_loading = false
+	_save(true)
+	_show_result()
+
+func _show_result() -> void:
+	var result: Dictionary = profile.data.run.get("outcome", {})
+	if result.is_empty(): return
+	var rewards = result.get("stage", "summary") == "rewards"
+	var share = result.get("stage", "summary") == "share"
+	var character: Dictionary = catalog.find("CharData", int(result.character_id))
+	var details = "抵达区域 %d     完成房间 %d\n复苏次数 %d" % [int(result.region), int(result.rooms), int(result.revivals)]
+	if not rewards:
+		var lines: PackedStringArray = []
+		for key in result.materials:
+			if int(key) != 102 and int(result.materials[key]) > 0: lines.append("%s × %d" % [systems.material_name(int(key)), int(result.materials[key])])
+		if not lines.is_empty(): details += "\n\n此次冒险获得\n" + "    ".join(lines)
+	else:
+		details = "冒险经验  %d\n经验值转化冒险凭证\n%s × %d" % [int(result.get("effective_experience", 0)), systems.material_name(501), int(result.get("vouchers", 0))]
+	hud.show_page("冒险结算", [], "outcome", {"title": "冒险凭证" if rewards else "冒险胜利" if result.victory else "冒险结束", "subtitle": menus.name_of(character), "details": details, "portrait": character.get("square_icon_name", ""), "victory": result.victory, "button": "返回营地" if rewards else "继续" if share else "下一步", "action": "result_camp" if rewards else "result_next"})
+	world.paused = true
+
+func _result_next() -> void:
+	var result: Dictionary = profile.data.run.get("outcome", {})
+	if result.is_empty(): return
+	if result.get("stage", "summary") == "share": result.stage = "summary"
+	elif result.get("stage", "summary") == "summary":
+		_loading = true
+		systems.claim_settlement_experience()
+		_loading = false
+		result.stage = "rewards"
+	else: return
+	_save(true)
+	_show_result()
+
+func _result_camp() -> void:
+	var result: Dictionary = profile.data.run.get("outcome", {})
+	if result.is_empty() or result.get("stage", "summary") != "rewards": return
+	profile.data.run.erase("outcome")
+	_camp()
+	world.paused = false
+	_save(true)
+
+func _toggle_map() -> void:
+	if not profile.data.run.active or _transitioning or _flow_locked(): return
+	if hud.modal_open:
+		if hud.page._layout == "route": _close_page()
+		return
+	_route(campaign.state.get("phase", "") != "route")
+
+func _close_page() -> void:
+	if _flow_locked(): return
+	hud.close_page()
+	world.paused = false
+
+func _restore_flow() -> void:
+	if not profile.data.run.get("outcome", {}).is_empty():
+		_camp()
+		_show_result()
+		return
+	if not profile.data.run.active:
+		_camp()
+		return
+	if profile.data.run.route.is_empty() or not campaign.restore(profile.data.run.route) or campaign.state.get("phase", "") not in ["room", "reward", "route"]:
+		profile.data.run.active = false
+		_camp()
+		hud.toast("冒险路线无法恢复，已返回营地")
+		_save()
+		return
+	if campaign.state.phase in ["room", "reward"]:
+		_load_room(true)
+	else:
+		_camp()
+		_route()
 
 func _start_dialogue(function_id: int) -> void:
 	var status = systems.npc_function_status(function_id)
@@ -811,13 +1092,27 @@ func _on_changed() -> void:
 	if not _loading: _apply_growth()
 	if _save_queued or _loading: return
 	_save_queued = true
-	_deferred_save.call_deferred()
 
 func _deferred_save() -> void:
-	_save_queued = false
 	_save()
 
-func _save() -> bool:
+func _save(immediate := false) -> bool:
+	if not profile: return false
+	_save_queued = true
+	if immediate:
+		_capture_save()
+		return save_store.flush()
+	return true
+
+func _capture_save() -> void:
+	var before := Time.get_ticks_usec()
+	_save_queued = false
+	_save_delay = 0.0
+	_build_save_snapshot()
+	save_store.request_save(profile.data)
+	last_snapshot_ms = (Time.get_ticks_usec() - before) / 1000.0
+
+func _build_save_snapshot() -> bool:
 	if not profile: return false
 	profile.data.selected_character = selected_character
 	profile.data.selected_weapon = selected_weapon
@@ -828,16 +1123,23 @@ func _save() -> bool:
 			var actor = world.player
 			profile.data.run.health = maxf(0, actor.combat.health)
 			profile.data.run.max_health = actor.combat.max_health
+			profile.data.run.armor = actor.combat.armor
+			if campaign.state.get("phase", "") == "route": return true
 			var enemies: Array = []
 			for enemy in world.actors:
 				if is_instance_valid(enemy) and not enemy.is_player and not enemy.dead:
 					enemies.append({"id": enemy.actor_id, "position": [enemy.position.x, enemy.position.y, enemy.position.z], "combat": enemy.combat.snapshot()})
-			profile.data.run.battle = {"player": actor.combat.snapshot(), "position": [actor.position.x, actor.position.y, actor.position.z], "enemies": enemies, "elapsed": world.elapsed, "received_hits": world.received_hits, "transients": world.transient_snapshot(), "environment": world.interactions.snapshot() if world.interactions else {}}
-	return save_store.save(profile.data)
+			profile.data.run.battle = {"player": actor.combat.snapshot(), "invulnerability": actor.invulnerability, "position": [actor.position.x, actor.position.y, actor.position.z], "enemies": enemies, "elapsed": world.elapsed, "received_hits": world.received_hits, "transients": world.transient_snapshot(), "environment": world.interactions.snapshot() if world.interactions else {}}
+			profile.data.run.battle["tally"] = battle_tally.snapshot()
+	return true
 
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_CLOSE_REQUEST]:
-		_save()
+		_save(true)
+
+func _exit_tree() -> void:
+	if profile and is_instance_valid(world) and is_instance_valid(world.player): _save(true)
+	else: save_store.flush()
 
 func _play_music(token: String) -> void:
 	if not audio or not profile.data.get("audio_enabled", true): return
@@ -855,16 +1157,22 @@ func _environment_action(kind: String, context: Dictionary) -> void:
 		"auto_loot": _save()
 		"npc": menus.open("npc", int(context.get("npc_id", 0)))
 		"transition":
-			if world.fighting: hud.toast("击败敌人后开放通道")
+			if world.room_stage in ["entry", "protection", "fighting", "clearing", "rewards", "opening", "event_locked"] or world.fighting: hud.toast("通道尚未开放")
 			elif not profile.data.run.active: _primary()
 			elif campaign.state.phase == "route": _route()
 			elif campaign.state.phase == "reward": _leave_room()
 			elif not campaign.current_room().get("combat", false):
-				if str(campaign.current_room().get("flow", "")) in ["Entrance", "Shop", "Treasure"]:
+				if str(campaign.current_room().get("flow", "")) in ["Entrance", "Shop", "Treasure", "Rest", "Event"]:
 					_finish_noncombat()
 					_leave_room()
 				else: _room_action()
 		"reward":
+			if context.get("sprites_altar", false):
+				_request_spirit_altar(context)
+				return
+			if context.get("destroyable_reward", false):
+				_claim_destroyable(context)
+				return
 			var ids: Array = context.get("drop_item_ids", [])
 			var counts: Array = context.get("drop_item_counts", [])
 			var point: Vector3 = context.get("position", world.player.position)
@@ -877,21 +1185,52 @@ func _environment_action(kind: String, context: Dictionary) -> void:
 					_drop_treasure(point, str(context.get("data", {}).get("TreasureType", "Normal")), int(context.get("data", {}).get("TreasureId", 1)))
 			_save()
 
+func _request_spirit_altar(context: Dictionary) -> void:
+	if not profile.data.run.active: return
+	var marker_id := str(context.get("marker_id", ""))
+	var key := str(context.get("key", "altar:" + _room_key + ":" + marker_id))
+	var created_key := "altar-created:" + key
+	var choices: Array = []
+	for reward in profile.data.run.rewards:
+		if str(reward.key) == key: choices = reward.choices
+	if choices.is_empty() and profile.data.run.counters.get(created_key, false): return
+	if choices.is_empty():
+		var count := maxi(1, 3 + int(systems.attributes().get("BlessingPlusSelectExtraCount", 0)))
+		choices = systems.create_loot_reward(int(catalog.config.get("AbilityItemLootPoolId_Sprites", 30301)), key, count)
+		if choices.is_empty(): choices = systems.create_loot_reward(int(catalog.config.get("AbilityItemLootGuaranteedPoolId_Sprites", 20112)), key, count)
+		if choices.is_empty(): return
+		profile.data.run.counters[created_key] = true
+		profile.data.run.counters["SelectLootRemainCount_Sprites"] = int(profile.data.run.counters.get("SelectLootRemainCount_Sprites", 0)) + 1
+	if not marker_id.is_empty(): world.interactions.set_altar_consumed(marker_id)
+	else: world.ground_loot.remove_altar(key)
+	_save()
+	_rewards(key)
+
+func _claim_destroyable(context: Dictionary) -> void:
+	if not profile.data.run.active: return
+	var key := "destroyable:" + _room_key + ":" + str(context.get("marker_id", ""))
+	if profile.data.run.counters.get(key, false): return
+	profile.data.run.counters[key] = true
+	var drops: Array = preload("res://scripts/domain/breakable_rewards.gd").new(systems).destroyable(str(context.get("config_id", "")), systems.attributes())
+	var point := DungeonWorld.vector(context.get("position", world.player.position))
+	for index in drops.size():
+		var drop: Dictionary = drops[index]
+		if drop.has("counter"):
+			var counter := str(drop.counter)
+			profile.data.run.counters[counter] = int(profile.data.run.counters.get(counter, 0)) + int(drop.amount)
+		elif drop.get("direct", false):
+			systems.grant_material(int(drop.id), int(drop.amount))
+			world.show_material_gain(point, int(drop.id), int(drop.amount))
+		else:
+			world.ground_loot.spawn(int(drop.id), point + Vector3(index * 0.35, 0, 0), int(drop.amount), bool(drop.material))
+	_save()
+
 func _drop_treasure(point: Vector3, quality := "Normal", treasure_id := 1) -> void:
-	if quality not in ["Normal", "Unusual", "Luxury", "Curse", "Curse_Final"]: quality = "Normal"
-	var chance = int(catalog.config.get(quality + "TreasureBoxDropSelectCharaItemChance", 0))
-	var scroll_allowed = treasure_id == 1 and int(campaign.current_room().get("FirstOrFinal", 0)) != 1
-	if scroll_allowed and systems.next_random(1000) < chance:
-		var scroll = int(catalog.config.get("AbilityItem_CharaTalentItem_Super" if quality == "Curse" else "AbilityItem_CharaTalentItem_Normal", 13103 if quality == "Curse" else 13102))
-		world.ground_loot.spawn(scroll, point + Vector3(1.1, 0, 0))
-	var rewards: Dictionary = catalog.config.get("TreasureBoxResDropData_" + quality, {})
-	for field in ["GoldData", "MagicPointData", "MineralData"]:
-		var reward: Dictionary = rewards.get(field, {})
-		if systems.next_random(1000) >= int(reward.get("DropChance", 0)): continue
-		var base = int(reward.get("DropBase", 0))
-		var spread = int(reward.get("DropRandomFactor", 0))
-		var amount = maxi(1, roundi(base * (1.0 + (systems.next_random(spread * 2 + 1) - spread) / 1000.0)))
-		world.ground_loot.spawn(int(reward.DropMaterialType), point + Vector3(-0.7, 0, 0.7 * rewards.keys().find(field)), amount, true)
+	var drops = systems.treasure_drops(quality, treasure_id, int(campaign.current_room().get("FirstOrFinal", 0)) == 1)
+	for index in drops.size():
+		var drop: Dictionary = drops[index]
+		var angle: float = index * TAU / maxi(1, drops.size())
+		world.ground_loot.spawn(int(drop.id), point + Vector3(cos(angle), 0, sin(angle)) * 0.9, int(drop.amount), bool(drop.material))
 
 func _smoke_begin() -> void:
 	hud.close_page()
@@ -912,7 +1251,7 @@ func _smoke_begin() -> void:
 
 func _smoke_end() -> void:
 	_smoke = false
-	_save()
+	_save(true)
 	var report = {"engine": Engine.get_version_info(), "frames": Engine.get_frames_drawn(), "character": selected_character, "actors": world.actors.size(), "enemy_count": world._enemy_count(), "defeated": world.defeated_count, "health": world.player.combat.health, "room": campaign.current_room().get("node_id", 0), "display": DisplayServer.get_name(), "visual_loaded": world.player.visual_loaded, "weapon_loaded": is_instance_valid(world.player.weapon), "position": [world.player.position.x, world.player.position.y, world.player.position.z], "collisions": world.collision_report, "save_exists": FileAccess.file_exists(save_store.path), "diagnostics": world.diagnostics}
 	report["wall_seconds"] = (Time.get_ticks_usec() - _wall_start) / 1000000.0
 	report["peak_process_ms"] = _peak_process * 1000

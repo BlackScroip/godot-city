@@ -19,12 +19,22 @@ func _initialize() -> void:
 	for source in [["door", "EEUT_Door", {"DoorId": 1, "InitActive": true}],
 		["controller", "EEUT_DoorController", {"ControllDoorId": 1, "CanRepeatDeactive": false}],
 		["chest", "EEUT_AbilityItemTreasureBox", {"TreasureId": 2, "TreasureType": "Unusual"}],
+		["portal", "EEUT_Protal", {"InitActive": false}],
 		["jar", "EEUT_DestoryableItem", {}], ["trap", "EEUT_TriggerTrap", {}],
 		["npc", "EEUT_NPC", {"NpcId": "1300"}], ["unknown", "EEUT_Special_Trader", {}],
 		["trigger", "EEUT_PlayerTrigger", {"TriggerId": 2, "IsInitStateActive": false, "ActivedSwitchFalse": true, "TriggerFuncMsg_Name": "test_message"}]]:
 		var node := Node3D.new()
 		node.name = source[0]
 		root.add_child(node)
+		if source[0] == "controller":
+			for address in ["24040301_fx_env_switch_on", "24040301_fx_env_switch_off"]:
+				var effect := Node3D.new()
+				effect.name = address + "_u123"
+				effect.set_meta("unityActive", address.ends_with("off"))
+				node.add_child(effect)
+		if source[0] == "portal":
+			node.visible = false
+			node.set_meta("unityActive", false)
 		markers.append({"SceneName": "Test", "SourceGameObjectId": source[0], "Type": source[1], "Path": [source[0]], "DataJson": JSON.stringify(source[2]), "exported_node_name": source[0], "world_position": [0, 0, 0], "InitiallyActive": false})
 	var body := StaticBody3D.new()
 	body.name = "Collider_door"
@@ -50,7 +60,15 @@ func _initialize() -> void:
 	_check(interactions.nearest_interaction(Vector3.ZERO, -1).is_empty(), "Invalid proximity rejected")
 	_check(interactions.state_for("chest").enabled, "Generic InitiallyActive false does not disable chest")
 	_check(not interactions.state_for("trigger").enabled, "Explicit player trigger state respected")
+	var switch_on := root.get_node("controller/24040301_fx_env_switch_on_u123")
+	var switch_off := root.get_node("controller/24040301_fx_env_switch_off_u123")
+	_check(not switch_on.visible and switch_off.visible, "Switch source initial inactive and active particle roots respected")
+	interactions.set_exit_enabled(true)
+	_check(root.get_node("portal").visible and root.get_node("portal").get_meta("unityActive"), "Unlocking portal updates original inactive particle ancestry")
+	interactions.set_exit_enabled(false)
+	_check(not root.get_node("portal").visible and not root.get_node("portal").get_meta("unityActive"), "Relocking portal hides original particle ancestry")
 	_check(interactions.interact("controller").success and body.collision_layer == 0 and not root.get_node("door").visible, "Controller opens matching door and collision")
+	_check(switch_on.visible and switch_on.get_meta("unityActive") and not switch_off.visible and not switch_off.get_meta("unityActive"), "Used switch activates source on particles and disables off particles")
 	_check(not interactions.interact("controller").success, "One-use controller rejects duplicate")
 	_check(interactions.interact("chest").success and rewards.size() == 1, "Chest requests exactly one original treasure reward")
 	_check(not interactions.interact("chest").success and rewards.size() == 1, "Chest duplicate blocked")
@@ -129,15 +147,19 @@ func _test_close_area_proximity() -> void:
 	var marker := {"SceneName": "Test", "SourceGameObjectId": "barrier", "Type": "EEUT_CloseArea",
 		"Path": ["barrier"], "DataJson": "{\"TriggerId\": 1}", "exported_node_name": "barrier", "world_position": [10, 0, 20]}
 	var collider := _box("barrier", "")
-	# A rotated, scaled barrier must open near either end, not only at its origin.
+	# A rotated, scaled battle barrier stays sealed at either edge until completion.
 	collider.world_matrix = [0, 0, 1, 10, 0, 1, 0, 0, -8, 0, 0, 20, 0, 0, 0, 1]
 	var interactions := Interactions.new()
 	interactions.setup(environment, [marker], {"rules": {"Bindings": [], "Definitions": []}, "colliders": [collider]})
+	_check(not visual.visible and body.collision_layer == 0, "Battle boundaries start inactive before entry")
+	interactions.set_battle_boundaries_active(true)
 	var closed: Dictionary = JSON.parse_string(JSON.stringify(interactions.snapshot()))
 	interactions.tick(0.02, Vector3(14.1, 0, 27.5))
 	_check(interactions.state_for("barrier").enabled and visual.visible and body.collision_layer == 5, "Distant close area stays visible and solid")
 	interactions.tick(0.02, Vector3(13.9, 0, 27.5), [{"id": "enemy", "position": Vector3(10, 0, 20), "camp": 1}])
-	_check(not interactions.state_for("barrier").enabled and not visual.visible, "Approaching the far edge clears a wide rotated barrier")
+	_check(interactions.state_for("barrier").enabled and visual.visible and body.collision_layer == 5, "Player proximity cannot remove a sealed battle barrier")
+	interactions.set_battle_boundaries_active(false)
+	_check(not interactions.state_for("barrier").enabled and not visual.visible, "Source completion explicitly opens the battle barrier")
 	_check(body.collision_layer == 0 and body.collision_mask == 0, "Clearing a close area removes both collision layer and mask")
 	interactions.tick(0.02, Vector3(100, 0, 100))
 	_check(not visual.visible and body.collision_layer == 0, "Cleared barrier stays open after walking away")

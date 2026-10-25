@@ -1,6 +1,17 @@
 extends Node3D
 
+signal altar_requested(key: String, marker_id: String)
+
+const ALTAR_BUTTON_KEY := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
+const ALTAR_EGG_NAME := "sprite_abilityitemicon_14104"
+const ALTAR_EGG_TEXTURE := "res://assets/environment_effects/spirit_altar_egg.png"
+
 var entries: Array[Dictionary] = []
+var source_altars: Array[Dictionary] = []
+var _pointer_hud: DungeonHud
+var _pointer_host: Control
+var _pointer_allowed := false
+var _pointer_player := Vector3.ZERO
 
 func is_automatic(entry: Dictionary) -> bool:
 	return bool(entry.get("material", false)) and int(entry.id) == 101
@@ -44,8 +55,14 @@ func nearest(point: Vector3) -> Dictionary:
 	return result
 
 func spawn_altar(point: Vector3, key: String) -> void:
+	for entry in entries:
+		if str(entry.get("altar", "")) == key: return
 	spawn(20250, point)
 	entries.back()["altar"] = key
+	var egg := DungeonStyle.texture(ALTAR_EGG_TEXTURE)
+	if egg:
+		entries.back().visual.texture = egg
+		entries.back().visual.pixel_size = 0.56 / maxf(1.0, egg.get_width())
 	entries.back().visual.scale = Vector3.ONE * 2
 	var anchor := Node3D.new()
 	anchor.name = "SpiritAltarEffect"
@@ -53,6 +70,140 @@ func spawn_altar(point: Vector3, key: String) -> void:
 	anchor.position = point
 	entries.back()["effect_anchor"] = anchor
 	_bind_altar_effect(entries.back())
+	_add_altar_pointer(entries.back())
+
+func configure_altar_pointer(hud: DungeonHud) -> void:
+	if _pointer_hud == hud and is_instance_valid(_pointer_host): return
+	_clear_source_altars()
+	for entry in entries: _release_altar_pointer(entry)
+	if is_instance_valid(_pointer_host): _pointer_host.queue_free()
+	_pointer_hud = hud
+	if not is_instance_valid(hud) or not is_instance_valid(hud.root): return
+	_pointer_host = Control.new()
+	_pointer_host.name = "WorldSpiritEggTargets"
+	_pointer_host.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_pointer_host.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	hud.root.add_child(_pointer_host)
+	hud.root.move_child(_pointer_host, 0)
+	for entry in entries:
+		if entry.has("altar"): _add_altar_pointer(entry)
+
+func sync_source_altars(interactions: RefCounted, room_key: String) -> void:
+	_clear_source_altars()
+	if interactions == null: return
+	for item in interactions._items.values():
+		if str(item.data.get("UIBtnName", "")) != ALTAR_BUTTON_KEY: continue
+		if not is_instance_valid(item.visual): continue
+		var egg: Node3D
+		for node in item.visual.find_children(ALTAR_EGG_NAME + "*", "Node3D", true, false):
+			egg = node
+			break
+		if egg == null:
+			egg = Node3D.new()
+			egg.name = ALTAR_EGG_NAME + "_Recovered"
+			item.visual.add_child(egg)
+			egg.position = Vector3(-0.007, 1.25, -0.014)
+			egg.scale = Vector3.ONE * 0.3
+			item.altar_eggs.append({"node": egg, "visible": true})
+			egg.visible = not bool(item.state.get("used", false))
+		_restore_altar_renderer(egg)
+		var entry := {"altar": "altar:" + room_key + ":" + str(item.id), "marker_id": str(item.id),
+			"source_item": item, "visual": egg, "position": item.visual.global_position,
+			"source_transform": item.visual.global_transform, "pending": false}
+		source_altars.append(entry)
+		_add_altar_pointer(entry)
+
+func _restore_altar_renderer(egg: Node3D) -> void:
+	if egg is GeometryInstance3D or not egg.find_children("*", "GeometryInstance3D", true, false).is_empty(): return
+	var texture := DungeonStyle.texture(ALTAR_EGG_TEXTURE)
+	if texture == null: return
+	# Unity's planar sprite has zero Z scale; Godot needs a nonsingular billboard basis.
+	if is_zero_approx(egg.basis.determinant()):
+		var planar := egg.basis
+		planar.z = planar.x.cross(planar.y).normalized() * maxf(planar.x.length(), planar.y.length())
+		egg.basis = planar
+	var sprite := Sprite3D.new()
+	sprite.name = "SourceAltarPickup"
+	sprite.texture = texture
+	sprite.pixel_size = 0.01
+	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	sprite.shaded = false
+	sprite.render_priority = 5
+	egg.add_child(sprite)
+
+func _source_altar_available(entry: Dictionary) -> bool:
+	if not source_altars.has(entry): return false
+	var item: Dictionary = entry.get("source_item", {})
+	return not item.is_empty() and bool(item.state.get("enabled", false)) and not bool(item.state.get("used", false)) and not bool(item.state.get("broken", false))
+
+func altar_reachable(entry: Dictionary, point: Vector3) -> bool:
+	if entry.has("source_item"):
+		if not _source_altar_available(entry): return false
+		# APK Box_TiggerEnter is 3 x 1 x 2.5. Include the player capsule radius.
+		var local: Vector3 = (entry.source_transform as Transform3D).affine_inverse() * (point + Vector3.UP * 0.5) - Vector3.UP * 0.5
+		return absf(local.x) <= 1.85 and absf(local.y) <= 0.85 and absf(local.z) <= 1.6
+	return entries.has(entry) and point.distance_to(entry.position) < 2.4
+
+func update_altar_pointer(camera: Camera3D, player_point: Vector3, enabled: bool) -> void:
+	_pointer_player = player_point
+	_pointer_allowed = enabled and is_instance_valid(camera) and is_instance_valid(_pointer_hud) and not _pointer_hud.modal_open
+	for entry in entries + source_altars:
+		if not entry.has("altar"): continue
+		_add_altar_pointer(entry)
+		var button: Button = entry.get("pointer")
+		if not is_instance_valid(button): continue
+		var active: bool = _pointer_allowed and altar_reachable(entry, player_point) and is_instance_valid(entry.visual) and entry.visual.is_visible_in_tree()
+		if _pointer_allowed: entry["pending"] = false
+		if not active:
+			button.hide()
+			continue
+		var center: Vector3 = entry.visual.global_position
+		if entry.has("source_item") and entry.visual == entry.source_item.visual: center += Vector3.UP * 1.0
+		if camera.is_position_behind(center):
+			button.hide()
+			continue
+		var screen := camera.unproject_position(center)
+		var side := clampf(camera.unproject_position(center + camera.global_basis.x * 0.65).distance_to(screen) * 2.0, 44.0, 100.0)
+		button.size = Vector2.ONE * side
+		button.position = screen - button.size * 0.5
+		button.visible = Rect2(Vector2.ZERO, camera.get_viewport().get_visible_rect().size).intersects(button.get_rect())
+
+func request_altar(entry: Dictionary) -> bool:
+	if not _pointer_allowed or not is_instance_valid(_pointer_hud) or _pointer_hud.modal_open: return false
+	if bool(entry.get("pending", false)) or not altar_reachable(entry, _pointer_player): return false
+	entry["pending"] = true
+	altar_requested.emit(str(entry.altar), str(entry.get("marker_id", "")))
+	return true
+
+func _add_altar_pointer(entry: Dictionary) -> void:
+	if not entry.has("altar") or not is_instance_valid(_pointer_host) or is_instance_valid(entry.get("pointer")): return
+	var button := Button.new()
+	button.name = "SpiritEggTarget"
+	button.tooltip_text = "获取精灵"
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	button.focus_mode = Control.FOCUS_NONE
+	for state in ["normal", "hover", "pressed", "focus", "disabled"]: button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+	button.hide()
+	_pointer_host.add_child(button)
+	button.pressed.connect(func(): request_altar(entry))
+	entry["pointer"] = button
+	if is_instance_valid(_pointer_hud.joystick): _pointer_hud.joystick.excluded_controls.append(button)
+
+func _release_altar_pointer(entry: Dictionary) -> void:
+	var button = entry.get("pointer")
+	if not is_instance_valid(button): return
+	if is_instance_valid(_pointer_hud) and is_instance_valid(_pointer_hud.joystick): _pointer_hud.joystick.excluded_controls.erase(button)
+	button.queue_free()
+	entry.erase("pointer")
+
+func _clear_source_altars() -> void:
+	for entry in source_altars: _release_altar_pointer(entry)
+	source_altars.clear()
+
+func _exit_tree() -> void:
+	_clear_source_altars()
+	for entry in entries: _release_altar_pointer(entry)
+	if is_instance_valid(_pointer_host): _pointer_host.queue_free()
 
 func _bind_altar_effect(entry: Dictionary) -> void:
 	if entry.has("effect_binding"): return
@@ -89,10 +240,13 @@ func pickup(point: Vector3, systems: RefCounted) -> Dictionary:
 	return result
 
 func clear() -> void:
+	_pointer_allowed = false
 	for entry in entries: _release_visual(entry)
 	entries.clear()
+	_clear_source_altars()
 
 func _release_visual(entry: Dictionary) -> void:
+	_release_altar_pointer(entry)
 	entry.visual.queue_free()
 	for echo in entry.get("trail", []): echo.queue_free()
 	if is_instance_valid(entry.get("effect_controller")):

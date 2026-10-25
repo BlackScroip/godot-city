@@ -14,6 +14,7 @@ var footer: HBoxContainer
 var nodes: Array[DungeonRouteNode] = []
 var origin: DungeonRouteNode
 var selected_id := 0
+var selected_index := -1
 var edges: Array = []
 var column_width := 310.0
 var node_size := Vector2(180, 88)
@@ -50,7 +51,7 @@ void fragment() {
 		back.draw_polyline(points, Color("907947"), 2, true))
 	back.pressed.connect(func(): back_requested.emit())
 	header.add_child(back)
-	var title = DungeonStyle.label("选择路线", 30)
+	var title = DungeonStyle.label("区域路线" if context.get("preview", false) else "选择路线", 30)
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	header.add_child(title)
 	var spacer = Control.new()
@@ -73,19 +74,29 @@ void fragment() {
 	origin.portrait = DungeonStyle.texture(str(context.get("portrait", "sprite_cardicon_square_jiannan")))
 	origin.room = {"name": str(context.get("character", ""))}
 	origin.disabled = true
-	origin.visible = int(context.get("current_layer", 0)) == 0
+	origin.visible = int(context.get("current_layer", 0)) == int(context.get("first_layer", 0)) and not context.get("preview", false)
 	graph.add_child(origin)
 	for row in rows:
 		var key = DungeonRouteNode.new()
 		key.room = row
-		key.available = bool(row.get("available", false))
+		key.available = bool(row.get("available", false)) and not context.get("preview", false)
 		key.visited = bool(row.get("visited", false))
 		if row.get("is_anchor", false):
 			key.portrait = origin.portrait
 		key.disabled = not key.available
-		key.pressed.connect(func(): _select(int(row.node_id)))
+		key.pressed.connect(func(): _select(int(row.node_id), int(row.layer_index)))
 		key.focus_entered.connect(func(): scroll.ensure_control_visible(key))
 		graph.add_child(key)
+		if row.get("current", false):
+			key.tooltip_text = str(row.get("name", "")) + "（当前位置）"
+			var marker = DungeonStyle.label("当前位置", 14)
+			marker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			marker.add_theme_color_override("font_color", Color("f2d790"))
+			key.add_child(marker)
+			marker.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+			marker.offset_top = 2
+			marker.offset_bottom = 22
 		nodes.append(key)
 	footer = HBoxContainer.new()
 	footer.add_theme_constant_override("separation", 24)
@@ -116,6 +127,8 @@ void fragment() {
 	var trailing = Control.new()
 	trailing.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(trailing)
+	confirm.visible = not context.get("preview", false)
+	automatic.visible = not context.get("preview", false)
 	resized.connect(_layout)
 	_layout.call_deferred()
 	for row in rows:
@@ -155,8 +168,8 @@ func _layout() -> void:
 	scroll.position = Vector2(24, 112)
 	scroll.size = Vector2(maxf(0, size.x - 48), maxf(160, size.y - 220))
 	var height = maxf(160, scroll.size.y - 20)
-	var card_height = clampf(height * 0.2, 40, 128)
-	node_size = Vector2(card_height * 2.12, card_height)
+	var card_height = clampf(height * 0.29, 48, 170)
+	node_size = Vector2(maxf(100, card_height * 1.15), card_height)
 	column_width = node_size.x + clampf(size.x * 0.1, 90, 220)
 	var first_column = int(context.get("first_layer", 0))
 	var last_column = first_column
@@ -188,7 +201,8 @@ func _layout() -> void:
 
 func _scroll_to_current() -> void:
 	for index in rows.size():
-		if rows[index].get("available", false) and int(rows[index].layer_index) == int(context.get("current_layer", 0)):
+		var target = rows[index].get("is_anchor", false) if context.get("preview", false) else rows[index].get("available", false)
+		if target and int(rows[index].layer_index) == int(context.get("current_layer", 0)):
 			scroll.scroll_horizontal = maxi(0, int(nodes[index].position.x - column_width - 36))
 			return
 
@@ -207,8 +221,8 @@ func _draw_paths() -> void:
 			_vertical_arrow(middle + Vector2(-12, -length * 0.5), middle + Vector2(-12, length * 0.5), color)
 			_vertical_arrow(middle + Vector2(12, length * 0.5), middle + Vector2(12, -length * 0.5), color)
 		else:
-			var start = source.position + Vector2(source.size.x + 12, source.size.y * 0.5)
-			var end = target.position + Vector2(-15, target.size.y * 0.5)
+			var start = source.position + Vector2(source.size.x + 3, (source.size.y - 24) * 0.5)
+			var end = target.position + Vector2(-6, (target.size.y - 24) * 0.5)
 			var lit = source.portrait != null
 			var color = Color("a77a4f")
 			graph.draw_circle(start, 5, color)
@@ -224,22 +238,32 @@ func _vertical_arrow(start: Vector2, end: Vector2, color: Color) -> void:
 func _arrow(start: Vector2, end: Vector2, color: Color, lit: bool) -> void:
 	var direction = (end - start).normalized()
 	var side = direction.orthogonal()
-	if lit: graph.draw_line(start, end - direction * 10, Color("f2d790"), 9, true)
-	graph.draw_line(start, end - direction * 10, color, 5, true)
+	if absf(end.y - start.y) > 8:
+		var length = start.distance_to(end) - 18
+		for step in range(0, int(length), 18):
+			graph.draw_circle(start + direction * step, 3.5, Color("f2d790") if lit else color)
+	else:
+		if lit: graph.draw_line(start, end - direction * 10, Color("f2d790"), 8, true)
+		graph.draw_line(start, end - direction * 10, color, 4, true)
 	var head = PackedVector2Array([end, end - direction * 21 + side * 9, end - direction * 16, end - direction * 21 - side * 9])
 	graph.draw_colored_polygon(head, color)
 	if lit: graph.draw_polyline(PackedVector2Array([head[1], head[0], head[3]]), Color("f2d790"), 2, true)
 
-func _select(id: int) -> void:
+func _select(id: int, layer := -1) -> void:
+	if context.get("preview", false): return
 	for index in rows.size():
-		if int(rows[index].node_id) == id and rows[index].get("available", false): selected_id = id
-	for key in nodes:
-		key.chosen = key.available and int(key.room.node_id) == selected_id
+		if int(rows[index].node_id) == id and rows[index].get("available", false) and (layer < 0 or int(rows[index].layer_index) == layer):
+			selected_id = id
+			selected_index = index
+			break
+	for index in nodes.size():
+		var key = nodes[index]
+		key.chosen = key.available and index == selected_index
 		key.queue_redraw()
 		if key.chosen: confirm.text = "换路 · %d" % int(key.room.get("shift_cost", 1)) if key.room.get("vertical", false) else "选择"
 	confirm.disabled = selected_id == 0
 
 func _confirm() -> void:
-	if selected_id == 0: return
+	if selected_id == 0 or context.get("preview", false): return
 	confirm.disabled = true
 	command.emit("enter_node", selected_id, 0)

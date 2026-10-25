@@ -11,6 +11,8 @@ var detail: VBoxContainer
 var selections: Array[Button] = []
 var selected := 0
 var use_model := false
+var category_tabs: VBoxContainer
+var showcase_description: Control
 var altar_parts: Array[Dictionary] = []
 var altar_cards: HBoxContainer
 var altar_toolbar: HBoxContainer
@@ -30,7 +32,12 @@ func configure(host: DungeonMenuPage, data: Array, layout: String) -> void:
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation", 28)
 	match mode:
-		"altar", "talent": _altar()
+		"altar": _altar()
+		"talent":
+			var talent_selection = preload("res://scripts/presentation/talent_selection.gd").new()
+			add_child(talent_selection)
+			talent_selection.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+			talent_selection.configure(owner_page, rows)
 		"inventory": _inventory()
 		"character", "weapon": _showcase()
 		"settings": _settings()
@@ -101,7 +108,7 @@ func _altar() -> void:
 	_adapt_altar.call_deferred()
 
 func _adapt_altar() -> void:
-	if not is_instance_valid(owner_page) or altar_parts.is_empty(): return
+	if not is_inside_tree() or not is_instance_valid(owner_page) or altar_parts.is_empty(): return
 	var compact := get_viewport_rect().size.y < 600.0
 	var page_style = DungeonStyle.panel().duplicate()
 	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]: page_style.set_content_margin(side, 12 if compact else 62)
@@ -143,21 +150,13 @@ func _altar_button_spacing(button: Button, compact: bool) -> void:
 		button.add_theme_stylebox_override(state, style)
 
 func _fit_altar_page() -> void:
-	if not is_instance_valid(owner_page): return
+	if not is_inside_tree() or not is_instance_valid(owner_page): return
 	owner_page.size = get_viewport_rect().size
 
 func _inventory() -> void:
-	var tabs = VBoxContainer.new()
-	tabs.custom_minimum_size.x = 135
-	add_child(tabs)
-	for entry in [["角色", "characters"], ["武器", "weapons"], ["背包", "inventory"], ["遗物图鉴", "archive"]]:
-		var key = _command_button({"text": entry[0], "action": "page:" + entry[1]})
-		key.custom_minimum_size.y = 65
-		if entry[1] == "inventory": key.modulate = DungeonStyle.GOLD
-		tabs.add_child(key)
-	tabs.add_child(_command_button({"text": "角色天赋", "action": "page:character_talents"}))
+	_category_navigation(str(owner_page.page_context.get("page", "inventory")))
 	var items = _scroll(self)
-	items.add_child(DungeonStyle.label("持有遗物", 26))
+	items.add_child(DungeonStyle.label("持有材料" if owner_page.page_context.get("page") == "storage" else "持有遗物", 26))
 	var grid = GridContainer.new()
 	grid.columns = 4
 	grid.add_theme_constant_override("h_separation", 10)
@@ -206,21 +205,69 @@ func _scroll(parent: Control, width := 0.0, expand := true) -> VBoxContainer:
 	return stack
 
 func _showcase() -> void:
-	rail = _scroll(self, 94, false)
+	_category_navigation("characters" if mode == "character" else "weapons")
 	showcase = VBoxContainer.new()
 	showcase.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	add_child(showcase)
-	detail = _scroll(self, 300, false)
+	detail = _scroll(self, 250, false)
 	detail.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	detail.get_parent().size_flags_stretch_ratio = 0.6
+	var roster = HFlowContainer.new()
+	roster.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	category_tabs.add_child(roster)
 	for i in rows.size():
-		var key = _select_button(rows[i], Vector2(84, 84))
+		var key = _select_button(rows[i], Vector2(54, 54))
+		key.add_theme_constant_override("icon_max_width", 42)
 		key.text = ""
 		key.tooltip_text = str(rows[i].get("title", ""))
 		key.pressed.connect(func(): _select_showcase(i))
-		rail.add_child(key)
+		roster.add_child(key)
 		selections.append(key)
-	if not rows.is_empty(): _select_showcase(0)
+		if rows[i].get("active_character", false): selected = i
+	roster.visible = rows.size() > 1
+	if not rows.is_empty(): _select_showcase(selected)
+	resized.connect(_adapt_showcase)
+	_adapt_showcase.call_deferred()
+
+func _category_navigation(active: String) -> void:
+	category_tabs = _scroll(self, 130, false)
+	category_tabs.get_parent().custom_minimum_size.x = 130
+	for entry in [["角色", "characters", "menu_character"], ["武器", "weapons", "interaction_weapon"], ["背包", "inventory", "menu_store"], ["仓库", "storage", "menu_store"]]:
+		var key = _command_button({"text": entry[0], "action": "page:" + entry[1]})
+		key.icon = DungeonStyle.texture(entry[2])
+		key.expand_icon = true
+		key.add_theme_constant_override("icon_max_width", 34)
+		key.custom_minimum_size = Vector2(130, 64)
+		var normal = DungeonStyle.box(Color(0.8, 0.58, 0.19, 0.3) if entry[1] == active else Color.TRANSPARENT)
+		normal.set_border_width_all(0)
+		key.add_theme_stylebox_override("normal", normal)
+		key.add_theme_color_override("font_color", DungeonStyle.GOLD if entry[1] == active else Color("ded9ca"))
+		category_tabs.add_child(key)
+
+func _adapt_showcase() -> void:
+	if not is_inside_tree() or not is_instance_valid(owner_page): return
+	var compact = get_viewport_rect().size.y < 600
+	add_theme_constant_override("separation", 12 if compact else 28)
+	var style = owner_page.get_theme_stylebox("panel").duplicate()
+	style.set_content_margin_all(12 if compact else 28)
+	owner_page.add_theme_stylebox_override("panel", style)
+	category_tabs.add_theme_constant_override("separation", 4 if compact else 14)
+	for key in category_tabs.get_children():
+		if key is Button:
+			key.custom_minimum_size.y = 46 if compact else 72
+	detail.add_theme_constant_override("separation", 6 if compact else 14)
+	if is_instance_valid(showcase_description):
+		detail.move_child(showcase_description, detail.get_child_count() - 1 if compact else 2 if mode == "character" else 1)
+	for child in detail.get_children():
+		if child is Label: child.add_theme_font_size_override("font_size", 20 if compact else 26)
+		if child is Button:
+			child.custom_minimum_size.y = 34 if compact else 44
+			child.add_theme_font_size_override("font_size", 17 if compact else 19)
+			_altar_button_spacing(child, compact)
+		if child is HBoxContainer:
+			for label in child.get_children():
+				if label is Label: label.add_theme_font_size_override("font_size", 17 if compact else 22)
+				if label is TextureRect: label.custom_minimum_size = Vector2(40, 40) if compact else Vector2(64, 64)
 
 func _select_showcase(index: int) -> void:
 	selected = index
@@ -230,30 +277,38 @@ func _select_showcase(index: int) -> void:
 	var row: Dictionary = rows[index]
 	var artwork = DungeonStyle.texture(str(row.get("artwork", ""))) if mode == "character" else null
 	if artwork and not use_model and mode == "character":
-		var image = DungeonStyle.picture(str(row.artwork), Vector2(220, 260))
+		var image = DungeonStyle.picture(str(row.artwork), Vector2(160, 120))
 		image.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		showcase.add_child(image)
 	else:
 		var model = DungeonModelPreview.new()
 		model.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		showcase.add_child(model)
+		model.custom_minimum_size = Vector2(160, 120)
 		model.show_model(str(row.get("model", "")))
 	var commands = HBoxContainer.new()
 	commands.alignment = BoxContainer.ALIGNMENT_CENTER
 	showcase.add_child(commands)
 	for entry in row.get("buttons", []):
-		if str(entry.action) in ["select_character", "equip_weapon"]: commands.add_child(_command_button(entry, true))
+		if str(entry.action) in ["select_character", "equip_weapon"] and not row.get("in_run", false): commands.add_child(_command_button(entry, true))
 	if mode == "character":
 		var toggle = Button.new()
 		toggle.text = "2D" if use_model else "3D"
 		toggle.tooltip_text = "切换角色展示"
 		toggle.pressed.connect(func(): use_model = not use_model; _select_showcase(selected))
 		commands.add_child(toggle)
+	var identity = HBoxContainer.new()
+	detail.add_child(identity)
+	identity.add_child(DungeonStyle.picture(str(row.get("icon", "")), Vector2(64, 64)))
 	var title = DungeonStyle.label(str(row.title), 26)
 	title.modulate = DungeonStyle.GOLD
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	detail.add_child(title)
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	identity.add_child(title)
+	for entry in row.get("buttons", []):
+		if str(entry.action) == "page:character_talents": detail.add_child(_command_button(entry, true))
 	owner_page._row(detail, {"title": "角色详情" if mode == "character" else "武器详情", "description": row.get("description", "")}, false)
+	showcase_description = detail.get_child(detail.get_child_count() - 1)
 	for stat in row.get("stats", []):
 		var line = HBoxContainer.new()
 		var name_label = DungeonStyle.label(str(stat[0]))
@@ -263,7 +318,8 @@ func _select_showcase(index: int) -> void:
 		detail.add_child(line)
 	detail.add_child(HSeparator.new())
 	for entry in row.get("buttons", []):
-		if str(entry.action) not in ["select_character", "equip_weapon"]: detail.add_child(_command_button(entry, true))
+		if str(entry.action) not in ["select_character", "equip_weapon", "page:character_talents"]: detail.add_child(_command_button(entry, true))
+	_adapt_showcase.call_deferred()
 
 func _select_button(row: Dictionary, dimensions: Vector2) -> Button:
 	var key = Button.new()
@@ -437,7 +493,10 @@ func _prepare() -> void:
 		key.expand_icon = true
 		key.add_theme_constant_override("icon_max_width", 35)
 		choices.add_child(key)
-	stack.add_child(_command_button({"text": "进入迷宫", "action": "primary"}))
+	if owner_page.page_context.get("in_run", false):
+		stack.add_child(DungeonStyle.label("当前难度：等级%d" % int(owner_page.page_context.get("difficulty", 0)), 22))
+	else:
+		stack.add_child(_command_button({"text": "进入迷宫", "action": "primary"}))
 	detail = _scroll(self)
 	for row in rows: owner_page._row(detail, row)
 

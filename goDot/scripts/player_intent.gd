@@ -4,8 +4,42 @@ const FEEL = preload("res://assets/feel_settings.tres")
 var pending: Dictionary = {}
 var last_move := Vector3.ZERO
 var heavy_held := false
+var attack_held := false
+var attack_hold_elapsed := 0.0
+var hold_consumed := false
+
+func attack_button(combat: RefCounted, pressed: bool) -> Dictionary:
+	attack_held = pressed
+	if pressed:
+		attack_hold_elapsed = 0.0
+		hold_consumed = false
+		return request(combat, 0, true)
+	if hold_consumed:
+		request(combat, 4, false)
+		hold_consumed = false
+	attack_hold_elapsed = 0.0
+	return request(combat, 0, false)
+
+func advance_hold(combat: RefCounted, delta: float) -> void:
+	if not attack_held or hold_consumed: return
+	attack_hold_elapsed += delta
+	if attack_hold_elapsed + 0.000001 < FEEL.attack_hold_threshold: return
+	# A held gesture survives the short tap buffer until a legal transition.
+	if not pending.is_empty() and int(pending.slot) != 0: return
+	if not combat.input_block_reason(4).is_empty() or combat.input_action_delay(4) > 0 or float(combat.cooldowns[4]) > 0: return
+	var result = request(combat, 4, true)
+	if result.success: hold_consumed = true
+
+func manual_attack_active() -> bool:
+	return attack_held or heavy_held or not pending.is_empty()
 
 func request(combat: RefCounted, slot: int, pressed: bool) -> Dictionary:
+	if pressed and slot in [1, 2, 3]:
+		attack_held = false
+		hold_consumed = false
+		attack_hold_elapsed = 0.0
+		if heavy_held: request(combat, 4, false)
+	combat.record_input(slot, pressed)
 	if slot == 4 and not pressed:
 		heavy_held = false
 		if int(pending.get("slot", -1)) == 4: pending.clear()
@@ -52,6 +86,9 @@ func take_ready(combat: RefCounted, delta: float) -> int:
 func clear(combat: RefCounted = null) -> void:
 	pending.clear()
 	heavy_held = false
+	attack_held = false
+	hold_consumed = false
+	attack_hold_elapsed = 0.0
 	if combat: combat.cancel_held_input()
 
 func dodge_direction(movement: Vector3, facing: Vector3) -> Vector3:

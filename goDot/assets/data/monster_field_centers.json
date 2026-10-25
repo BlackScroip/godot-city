@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "coordinate_space": "Unity native numeric xyz; same as imported Godot environments",
+  "environments": {
+    "1050104": {
+      "300021": {
+        "position": [
+          52.5,
+          0.0,
+          63.56999969482422
+        ],
+        "kind": "EEUT_PosChecker",
+        "name": "EnvUnit_Ground Center"
+      }
+    }
+  }
+}

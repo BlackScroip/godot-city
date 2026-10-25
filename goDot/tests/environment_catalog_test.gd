@@ -22,11 +22,11 @@ func _run() -> void:
 	root.add_child(controller)
 	controller.effects = parsed.effects
 	check(controller.effects.size() >= 113, "Original environmental directory fully exported")
-	var textures: Dictionary = {}
 	var visible_effects := 0
 	var particles := 0
 	for address: String in controller.effects:
 		var definition: Dictionary = controller.effects[address]
+		controller.cache_textures(definition)
 		for layer in definition.layers:
 			for material in layer.get("materials", []):
 				var path := str(material.get("texture", ""))
@@ -36,11 +36,19 @@ func _run() -> void:
 		for low_quality in [false, true]:
 			var effect = AUTHORED.new()
 			root.add_child(effect)
-			effect.configure(definition, low_quality, textures)
+			effect.configure(definition, low_quality, controller.texture_cache)
 			effect.restart()
 			effect.advance(0.2, false)
 			check(effect.particle_count <= (144 if low_quality else 384), address + " respects particle budget")
 			check(is_finite(effect.lifetime), address + " lifetime finite")
+			for emitter in effect.emitters:
+				var material = emitter.node.material_override
+				var source_name: String = emitter.node.get_parent().get_meta("source_layer", "")
+				for layer in definition.layers:
+					if str(layer.name) != source_name or layer.get("materials", []).is_empty(): continue
+					var texture_path := str(layer.materials[0].get("texture", ""))
+					if not texture_path.is_empty():
+						check(material is ShaderMaterial and material.get_shader_parameter("main_texture") is Texture2D and material.get_shader_parameter("main_texture") == controller.texture_cache.get(texture_path), address + "/" + source_name + " binds actual source texture")
 			if not low_quality:
 				if effect.particle_count > 0: visible_effects += 1
 				particles += effect.particle_count

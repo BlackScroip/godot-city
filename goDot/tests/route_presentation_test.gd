@@ -14,7 +14,7 @@ func check(value: bool, message: String) -> void:
 	if not value: failures.append(message)
 
 func _run() -> void:
-	create_timer(45).timeout.connect(func():
+	create_timer(90).timeout.connect(func():
 		push_error("Route presentation test timed out")
 		quit(2))
 	canvas = SubViewport.new()
@@ -41,8 +41,8 @@ func _run() -> void:
 	game.world.camera.look_at(player.position)
 	game.world._camera_focus = player.position + Vector3.UP * 0.4
 	check(is_instance_valid(player.direction_indicator), "Player has a ground direction indicator")
-	var ring: MeshInstance3D = player.direction_indicator.get_node_or_null("GroundRing")
-	check(is_instance_valid(ring) and ring.mesh.get_surface_count() == 1, "Ground indicator includes a rendered ring")
+	var arrow: MeshInstance3D = player.direction_indicator.get_node_or_null("FacingArrow")
+	check(is_instance_valid(arrow) and arrow.mesh.get_surface_count() == 1, "Ground indicator includes the rendered facing arrow")
 	var enemy = DungeonActor.new()
 	game.world.add_child(enemy)
 	check(enemy.direction_indicator == null, "Enemy does not receive player indicator")
@@ -82,9 +82,12 @@ func _run() -> void:
 	check(game.hud.page.position == Vector2.ZERO, "Map fills viewport")
 	var route: DungeonRoutePage = game.hud.page.route_view
 	route.confirm.pressed.emit()
+	await _wait_transition()
 	check(game.campaign.state.phase == "room", "Confirm enters selected entrance")
 	game._finish_noncombat()
 	game._action("next", 0, 0)
+	check(game.campaign.state.phase == "reward", "Unopened entrance chest requires leave confirmation")
+	game._action("leave_unclaimed", 0, 0)
 	for step in 8: await process_frame
 	check(game.campaign.choices().size() == 3, "First branch offers three rooms")
 	for dimensions in [Vector2i(1280, 720), Vector2i(1920, 1080), Vector2i(2460, 1080), Vector2i(1200, 900), Vector2i(844, 390)]:
@@ -115,12 +118,14 @@ func _run() -> void:
 	check(game.profile.data.get("auto_route", false), "Automatic route preference persists")
 	check(game.campaign.state.phase == "route", "Automatic route does not skip a branching choice")
 	route.confirm.pressed.emit()
+	await _wait_transition()
 	check(int(game.campaign.state.current_node_id) == chosen, "Confirm enters selected third branch")
 	check(not game.hud.modal_open and game.hud.navigation.visible, "Entering restores combat HUD")
 	await _check_lane_change()
 	game.profile.data["auto_route"] = true
 	game.campaign.generate(12345, 0)
 	game._route()
+	await _wait_transition()
 	check(game.campaign.state.phase == "room", "Automatic route enters single entrance")
 	game.profile.data["auto_route"] = false
 	game._camp()
@@ -172,6 +177,7 @@ func _check_lane_change() -> void:
 	check(game.campaign.state.phase == "route" and game.systems.search_point_count() == 2, "Selection alone does not enter or spend")
 	await _capture("route-shift")
 	route.confirm.pressed.emit()
+	await _wait_transition()
 	check(game.campaign.state.phase == "room" and int(game.campaign.state.current_node_id) == target, "Vertical confirmation enters the linked room")
 	check(int(game.campaign.state.layer_index) == 1, "Vertical room stays in the same column")
 	check(game.systems.search_point_count() == 1, "Confirmed lane change spends exactly one point")
@@ -181,6 +187,7 @@ func _check_lane_change() -> void:
 	check(game.profile.restore(saved), "Paid lane change profile restores from disk")
 	check(game.campaign.restore(saved.run.route), "Paid lane change route restores from disk")
 	game._load_room(true)
+	await _wait_transition()
 	check(int(game.campaign.state.current_node_id) == target and int(game.campaign.state.layer_index) == 1, "Resume loads the same vertical room and column")
 	check(game.systems.search_point_count() == 1, "Resume preserves the paid resource balance")
 	_complete_route_room()
@@ -195,6 +202,10 @@ func _complete_route_room() -> void:
 	else: game.campaign.resolve_action()
 	check(game.campaign.complete_room().success, "Integration fixture completes its current room")
 	check(game.campaign.advance().success, "Integration fixture advances to route selection")
+
+func _wait_transition() -> void:
+	while game._transitioning:
+		await process_frame
 
 func _capture(name: String) -> void:
 	if DisplayServer.get_name() == "headless": return

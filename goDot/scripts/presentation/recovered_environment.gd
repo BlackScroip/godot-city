@@ -23,6 +23,13 @@ static func material(source: StandardMaterial3D) -> Material:
 	if not _properties.has(source.resource_name): return null
 	var data: Dictionary = _properties[source.resource_name]
 	if data.shader != "OmniShade/Standard URP": return null
+	# This auxiliary source material has no texture and uses _ZTest=1 (Never).
+	if source.resource_name == "EnvDetail_[CommonOriginModel]_FakeShadow":
+		var invisible := StandardMaterial3D.new()
+		invisible.resource_name = "UnityHidden/" + source.resource_name
+		invisible.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+		invisible.albedo_color = Color(0, 0, 0, 0)
+		return invisible
 	var result: StandardMaterial3D = source.duplicate()
 	result.resource_name = "UnityPaint/" + source.resource_name
 	result.albedo_color = _color(data.color)
@@ -39,12 +46,15 @@ static func material(source: StandardMaterial3D) -> Material:
 	result.roughness = 1.0
 	result.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX if data.vertex_lit else BaseMaterial3D.SHADING_MODE_PER_PIXEL
 	result.disable_receive_shadows = not data.shadows
+	result.vertex_color_use_as_albedo = false
 	result.emission_enabled = false
 	if data.cutout:
 		result.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 		result.alpha_scissor_threshold = data.cutoff
-	if not data.cutout and not data.transparent:
-		result.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+		result.alpha_antialiasing_mode = BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
+		result.alpha_antialiasing_edge = 0.3
+	elif data.transparent:
+		result.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	return result
 
 static func _terrain_material(data: Dictionary, label: String) -> ShaderMaterial:
@@ -71,6 +81,7 @@ static func _water_material(data: Dictionary, label: String) -> ShaderMaterial:
 	var colors: Dictionary = data.colors
 	var values: Dictionary = data.floats
 	var island := colors.has("_FlowSpeed")
+	result.set_shader_parameter("original_unlit", not island)
 	var flow: Dictionary = colors.get("_FlowSpeed", colors.get("_GlobalSpeed", {}))
 	var tiling: Dictionary = colors.get("_WaveTiling", {"r": 3.0, "g": 3.0})
 	result.set_shader_parameter("flow_speed", Vector2(flow.get("r", 0.3), flow.get("g", 0.0)))
@@ -82,7 +93,7 @@ static func _water_material(data: Dictionary, label: String) -> ShaderMaterial:
 	if "WaterFall" in label:
 		result.set_shader_parameter("foam_mask", load("res://assets/environment_recovered/waterfall_mask.png"))
 	result.set_shader_parameter("world_uv", island and float(values.get("_WorldSpaceUV", 0.0)) > 0.0)
-	result.set_shader_parameter("opacity", float(values.get("_Opacity", 0.9)))
+	result.set_shader_parameter("opacity", float(values.get("_Opacity", colors.get("Color_A271762B", {}).get("a", 0.9))))
 	result.set_shader_parameter("foam_strength", float(values.get("_FoamIntensity", values.get("_FoamTextureStrenth", 1.0))))
 	return result
 

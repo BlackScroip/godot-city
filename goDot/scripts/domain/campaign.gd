@@ -10,6 +10,8 @@ var events: Array = []
 var _nodes: Dictionary = {}
 var _random_state: int = 1
 var route_rules: Dictionary = {}
+var _enemy_rows: Dictionary = {}
+var _spawn_settings: Dictionary = {}
 
 func configure(data: Dictionary = {}) -> bool:
 	if FileAccess.file_exists("res://assets/data/route_rules.json"):
@@ -22,6 +24,12 @@ func configure(data: Dictionary = {}) -> bool:
 	_nodes.clear()
 	for node in database.get("Nodes", []) + database.get("SpecialStages", []):
 		_nodes[int(node.Id)] = node
+	_enemy_rows.clear()
+	if FileAccess.file_exists("res://assets/data/EnemyData.json"):
+		for row in JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/EnemyData.json")):
+			_enemy_rows[int(row.id)] = row
+	if FileAccess.file_exists("res://assets/data/RogueConfigData.json"):
+		_spawn_settings = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/RogueConfigData.json"))
 	return not _nodes.is_empty()
 
 func generate(seed_value: int, difficulty: int) -> Dictionary:
@@ -128,12 +136,15 @@ func _build_connections() -> void:
 
 func route_map(all_regions := false) -> Array:
 	var result: Array = []
-	if state.is_empty() or state.phase != "route": return result
+	if state.is_empty() or state.phase not in ["route", "room", "reward"]: return result
 	var current = int(state.layer_index)
+	if current < 0 or current >= state.layers.size(): return result
 	var region = int(state.layers[current].region)
 	var reachable = choices().map(func(room): return int(room.node_id))
 	var vertical = vertical_choices().map(func(room): return int(room.node_id))
 	var anchor = route_anchor()
+	if state.phase != "route":
+		anchor = {"layer_index": current, "node_id": int(state.current_node_id)}
 	for index in state.layers.size():
 		var layer: Dictionary = state.layers[index]
 		if not all_regions and int(layer.region) != region: continue
@@ -146,6 +157,7 @@ func route_map(all_regions := false) -> Array:
 			room["vertical"] = index == current - 1 and vertical.has(int(room.node_id))
 			room["visited"] = layer.get("completed_ids", []).has(int(room.node_id))
 			room["is_anchor"] = not anchor.is_empty() and index == int(anchor.layer_index) and int(room.node_id) == int(anchor.node_id)
+			room["current"] = state.phase != "route" and bool(room.is_anchor)
 			room["parents"] = []
 			if index > 0:
 				for source in state.layers[index - 1].get("connections", {}):
@@ -170,7 +182,7 @@ func enter(node_id: int, allow_vertical := false) -> Dictionary:
 	state.waves_cleared = 0
 	state.action_resolved = false
 	_random_state = (int(state.seed) ^ node_id ^ int(state.layer_index) * 397) & 0xffffffff
-	state.wave_count = _next_int(int(room.WaveMin), int(room.WaveMax) + 1) if _is_combat(room) else 0
+	state.wave_count = _next_int(int(room.WaveMin), int(room.WaveMax) + 1) if _is_combat(room) and bool(room.RandomEnemies) else 0
 	var groups: Array = []
 	for spawn in room.ForcedSpawns:
 		if int(spawn.Group) > 0 and not groups.has(int(spawn.Group)):
@@ -178,8 +190,10 @@ func enter(node_id: int, allow_vertical := false) -> Dictionary:
 	_random_state = (int(state.seed) ^ node_id) & 0xffffffff
 	state.spawn_group = groups[_next_int(0, groups.size())] if not groups.is_empty() else 0
 	for spawn in room.ForcedSpawns:
-		if bool(room.ManualEnemies) and (int(spawn.Group) == 0 or int(spawn.Group) == int(state.spawn_group)):
+		if bool(room.ManualEnemies) and int(spawn.EnemyId) > 0 and (int(spawn.Group) == 0 or int(spawn.Group) == int(state.spawn_group)):
 			state.wave_count = maxi(int(state.wave_count), int(spawn.Wave))
+	state["spawn_plan"] = _build_spawn_plan(room)
+	state["spawn_plan_version"] = 2
 	state.phase = "room"
 	events.append({"type": "room_enter", "id": node_id, "region": int(room.Region), "node_type": int(room.Type), "occurrence": state.layer_index})
 	return _result(true, "Room entered", node_id)
@@ -204,36 +218,85 @@ func start_practice(node_id: int, seed_value: int = 1) -> Dictionary:
 	return enter(node_id)
 
 func wave_spawns(wave: int) -> Array:
-	var result: Array = []
 	if state.is_empty() or state.phase != "room" or wave < 1 or wave > int(state.wave_count):
-		return result
+		return []
 	var room: Dictionary = _nodes[int(state.current_node_id)]
 	if not _is_combat(room):
-		return result
-	_random_state = (int(state.seed) ^ int(room.Id) ^ wave * 7919) & 0xffffffff
-	for spawn in room.ForcedSpawns:
-		if int(spawn.Wave) == wave and bool(room.ManualEnemies) and (int(spawn.Group) == 0 or int(spawn.Group) == int(state.spawn_group)):
-			result.append(_forced_spawn(room, spawn))
-	if bool(room.RandomEnemies) and not room.EnemyIds.is_empty():
-		var lower = maxi(1, int(room.EliteTypeMin) if room.EnemyClass == "Elite" else int(room.EnemyTypeMin))
-		var upper = maxi(lower, int(room.EliteTypeMax) if room.EnemyClass == "Elite" else int(room.EnemyTypeMax))
-		for index in range(_next_int(lower, upper + 1)):
-			result.append(_spawn(room, int(room.EnemyIds[_next_int(0, room.EnemyIds.size())]), int(room.SpawnPoints[index % room.SpawnPoints.size()].Id) if not room.SpawnPoints.is_empty() else 0, false))
-	# Some packaged elite rooms request 2-3 waves but only describe wave 1.
-	# Repeating their last scripted composition keeps the published wave count playable.
-	if result.is_empty() and bool(room.ManualEnemies):
-		var previous_wave = 0
-		for spawn in room.ForcedSpawns:
-			if int(spawn.Wave) < wave and (int(spawn.Group) == 0 or int(spawn.Group) == int(state.spawn_group)):
-				previous_wave = maxi(previous_wave, int(spawn.Wave))
-		if previous_wave > 0:
-			for spawn in room.ForcedSpawns:
-				if int(spawn.Wave) == previous_wave and (int(spawn.Group) == 0 or int(spawn.Group) == int(state.spawn_group)):
-					var enemy = _forced_spawn(room, spawn)
-					enemy.reconstructed = true
-					result.append(enemy)
-			_report("Manual wave composition repeated: node %s wave %s from wave %s" % [room.Id, wave, previous_wave])
-	return result
+		return []
+	if not state.has("spawn_plan"):
+		state["spawn_plan"] = _build_spawn_plan(room)
+	return state.spawn_plan.get(str(wave), []).duplicate(true)
+
+func _build_spawn_plan(room: Dictionary) -> Dictionary:
+	var plan: Dictionary = {}
+	if not _is_combat(room): return plan
+	_random_state = (int(state.seed) ^ int(room.Id) ^ 0x53504157) & 0xffffffff
+	var species: Array = []
+	if bool(room.RandomEnemies):
+		for rate in ["Elite", "Normal"]:
+			var candidates: Array = []
+			for id in room.EnemyIds:
+				var row: Dictionary = _enemy_rows.get(int(id), {})
+				if row.get("enemy_rate", "") == rate and float(row.get("difficulty", 0)) > 0:
+					candidates.append(row)
+			var lower = int(room.get("EliteTypeMin", 0) if rate == "Elite" else room.get("EnemyTypeMin", 0))
+			var upper = int(room.get("EliteTypeMax", lower) if rate == "Elite" else room.get("EnemyTypeMax", lower))
+			for index in mini(candidates.size(), _next_int(lower, maxi(lower, upper) + 1)):
+				species.append(candidates.pop_at(_next_int(0, candidates.size())))
+	var percentages: Array = []
+	var patterns: Array = database.get("WavePatterns", []).filter(func(pattern): return int(pattern.TotWaveCount) == int(state.wave_count))
+	if not patterns.is_empty():
+		var total_weight = 0
+		for pattern in patterns: total_weight += maxi(1, int(pattern.SelectWeight))
+		var pick = _next_int(0, total_weight)
+		for pattern in patterns:
+			pick -= maxi(1, int(pattern.SelectWeight))
+			if pick < 0:
+				percentages = pattern.DifficultyPercent
+				break
+	for wave in range(1, int(state.wave_count) + 1):
+		var enemies: Array = []
+		var points: Array = room.SpawnPoints.duplicate(true)
+		var forced: Array = room.ForcedSpawns.filter(func(spawn): return bool(room.ManualEnemies) and int(spawn.EnemyId) > 0 and (int(spawn.Group) == 0 or int(spawn.Group) == int(state.spawn_group)) and _matches_wave(int(spawn.Wave), wave, int(state.wave_count)))
+		for spawn in forced:
+			var found = points.filter(func(point): return int(point.Id) == int(spawn.SpawnIndex))
+			if found.is_empty():
+				_report("Invalid forced spawn point: node %s wave %s point %s" % [room.Id, wave, spawn.SpawnIndex])
+				continue
+			enemies.append(_forced_spawn(room, spawn))
+			points.erase(found[0])
+		var random_ids: Array = []
+		var percent = float(percentages[wave - 1]) if wave <= percentages.size() else 1.0 / maxi(1, int(state.wave_count))
+		var remaining_budget = float(room.get("MaxEnemyDifficulty", 0)) * percent
+		var average = remaining_budget / maxi(1, species.size())
+		for index in species.size():
+			var allocation = average + average / 3.0 * (_next_unit() * 2.0 - 1.0)
+			if index == species.size() - 1 or allocation > remaining_budget: allocation = remaining_budget
+			var cost = float(species[index].difficulty)
+			var count = int(allocation / cost)
+			for amount in maxi(1, count): random_ids.append(int(species[index].id))
+			remaining_budget -= cost * count
+		var nearby: Array = points.filter(func(point):
+			var distance = _point_distance(point.Position, room.PlayerStart)
+			return distance > float(_spawn_settings.get("EnemyRandomCreateDistanceToPlayerMin", 10)) and distance < float(_spawn_settings.get("EnemyRandomCreateDistanceToPlayerMax", 25)))
+		for id in random_ids:
+			if points.is_empty(): break
+			var pool: Array = nearby if not nearby.is_empty() else points
+			var point: Dictionary = pool[_next_int(0, pool.size())]
+			enemies.append(_spawn(room, id, int(point.Id), false))
+			points.erase(point)
+			nearby.erase(point)
+		plan[str(wave)] = enemies
+	return plan
+
+func _matches_wave(authored: int, wave: int, total: int) -> bool:
+	return authored == wave if authored > 0 else authored == wave - total - 1
+
+func _point_distance(a: Dictionary, b: Dictionary) -> float:
+	return Vector3(float(a.get("X", 0)) - float(b.get("X", 0)), float(a.get("Y", 0)) - float(b.get("Y", 0)), float(a.get("Z", 0)) - float(b.get("Z", 0))).length()
+
+func _next_unit() -> float:
+	return float(_next_int(0, 16777216)) / 16777216.0
 
 func clear_wave() -> Dictionary:
 	if state.is_empty() or state.phase != "room" or not _is_combat(_nodes[int(state.current_node_id)]) or int(state.waves_cleared) >= int(state.wave_count):
@@ -332,13 +395,27 @@ func restore(saved: Dictionary) -> bool:
 		var max_wave = int(node.WaveMax)
 		for spawn in node.ForcedSpawns:
 			max_wave = maxi(max_wave, int(spawn.Wave))
-		if cleared < 0 or cleared > wave_count or (_is_combat(node) and (wave_count < int(node.WaveMin) or wave_count > max_wave)):
+		if not saved.has("spawn_plan") and bool(node.ManualEnemies) and not bool(node.RandomEnemies):
+			var authored_count = 0
+			for spawn in node.ForcedSpawns:
+				if int(spawn.EnemyId) > 0 and (int(spawn.Group) == 0 or int(spawn.Group) == int(saved.get("spawn_group", 0))):
+					authored_count = maxi(authored_count, int(spawn.Wave))
+			if authored_count > 0:
+				wave_count = authored_count
+				cleared = mini(cleared, authored_count)
+				saved.wave_count = wave_count
+				saved.waves_cleared = cleared
+		var min_wave = int(node.WaveMin) if bool(node.RandomEnemies) else 1
+		if cleared < 0 or cleared > wave_count or (_is_combat(node) and (wave_count < min_wave or wave_count > max_wave)):
 			return false
 		if saved.phase == "reward" and ((_is_combat(node) and cleared != wave_count) or (not _is_combat(node) and not bool(saved.get("action_resolved", false)))):
 			return false
 	elif saved.phase in ["room", "reward", "won"]:
 		return false
 	state = saved.duplicate(true)
+	if current != 0 and not state.has("spawn_plan"):
+		state["spawn_plan"] = _build_spawn_plan(_nodes[current])
+		state["spawn_plan_version"] = 2
 	_build_connections()
 	state["visited"] = state.get("visited", [])
 	events.clear()
@@ -390,16 +467,18 @@ func _room_alias(node: Dictionary) -> Dictionary:
 
 func _spawn(node: Dictionary, id: int, index: int, forced: bool) -> Dictionary:
 	var position: Dictionary = node.PlayerStart.duplicate()
+	var rotation: Dictionary = {}
 	var found = false
 	for point in node.SpawnPoints:
 		if int(point.Id) == index:
 			position = point.Position.duplicate()
+			rotation = point.get("Rotation", {}).duplicate()
 			found = true
 			break
 	if not found:
 		position.X = float(position.X) + 4.0
 		position.Z = float(position.Z) + 4.0
-	return {"EnemyId": id, "SpawnIndex": index, "Forced": forced, "Position": position, "enemy_id": id, "spawn_index": index, "forced": forced, "position": position, "health_override": 0.0, "attack_override": 0.0, "passive_buff_ids": []}
+	return {"EnemyId": id, "SpawnIndex": index, "Forced": forced, "Position": position, "Rotation": rotation, "enemy_id": id, "spawn_index": index, "forced": forced, "position": position, "rotation": rotation, "born_position": position.duplicate(), "health_override": 0.0, "attack_override": 0.0, "passive_buff_ids": []}
 
 func _forced_spawn(node: Dictionary, spawn: Dictionary) -> Dictionary:
 	var enemy = _spawn(node, int(spawn.EnemyId), int(spawn.SpawnIndex), true)

@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--apk', type=Path, required=True)
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--runtime-output', type=Path)
     args = parser.parse_args()
     manifest = json.loads(args.manifest.read_text())
     evidence = {'method': 'Static UnityPy serialized object parsing; not runtime observation',
@@ -72,6 +73,24 @@ def main():
             if ident in evidence['textures']:
                 tex['resolved'] = evidence['textures'][ident]
     args.output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
+    if args.runtime_output:
+        runtime = {}
+        for name, material in evidence['materials'].items():
+            floats = material['floats']
+            color = material['colors'].get('_Color', dict(r=1, g=1, b=1, a=1))
+            shader = evidence['shaders'].get(str(material['shader']['m_PathID']), {})
+            runtime[name] = {
+                'shader': shader.get('name', 'unknown'),
+                'color': [color[key] for key in 'rgba'],
+                'cull': floats.get('_Cull', 2),
+                'cutout': bool(floats.get('_Cutout', 0)),
+                'cutoff': floats.get('_Cutoff', 0.5),
+                'transparent': floats.get('_SourceBlend') == 5 and floats.get('_DestBlend') == 10,
+                'vertex_lit': floats.get('_DiffusePerPixel') == 0,
+                'shadows': bool(floats.get('_ShadowsEnabled', 1)),
+            }
+        args.runtime_output.parent.mkdir(parents=True, exist_ok=True)
+        args.runtime_output.write_text(json.dumps(runtime, indent=2) + '\n')
     print(json.dumps({'output': str(args.output), 'materials': len(evidence['materials']),
                       'textures': len(evidence['textures']), 'shaders': len(evidence['shaders'])}))
 

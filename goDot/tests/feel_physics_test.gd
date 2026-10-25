@@ -40,12 +40,15 @@ func _run() -> void:
 		if actor.velocity.x >= 0: failures.append("Reverse input must reverse velocity within 40 ms at %d Hz" % fps)
 		actor.combat = preload("res://scripts/domain/combat.gd").new()
 		actor.combat.configure()
-		actor.action_motion.append({"velocity": Vector3.RIGHT * 2, "remaining": 0.2, "input_motion": true, "scale_input": true, "speed": 2.0})
+		actor.begin_action({"duration": 0.2, "timeline_duration": 0.2, "speed": 1.0})
+		actor.add_action_motion({"type": "EET_Move", "time": 0.0, "duration": 0.2}, {"CustomSpeed": 2.0, "MoveDirType": "EMDT_InputMoveDir", "MoveSpeedMultiInputDir": true})
 		actor.desired_velocity = Vector3.LEFT * actor.combat.move_speed
+		actor.combat.action_elapsed = 1.0 / fps
 		await physics_frame
 		actor._physics_process(1.0 / fps)
 		if actor.velocity.x >= 0: failures.append("Action motion must use live input at %d Hz" % fps)
 		actor.desired_velocity = Vector3.ZERO
+		actor.combat.action_elapsed += 1.0 / fps
 		await physics_frame
 		actor._physics_process(1.0 / fps)
 		if absf(actor.velocity.x) > 0.001: failures.append("Released input must stop input-driven action motion at %d Hz" % fps)

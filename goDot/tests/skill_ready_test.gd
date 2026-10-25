@@ -22,8 +22,8 @@ func run() -> void:
 		combat.configure(null, null, character)
 		for slot in range(5): combat.energy[slot] = float(combat.fighter.skills[slot].maxSp)
 		hud.update_combat(combat, false)
-		for slot in range(5):
-			var key: DungeonTouchButton = hud.skill_buttons[slot]
+		for slot in hud.skill_by_slot:
+			var key: DungeonTouchButton = hud.skill_by_slot[slot]
 			var definition: Dictionary = combat.fighter.skills[slot]
 			var expected = slot == 3 and float(definition.maxSp) > 0 and float(definition.maxSp) >= float(definition.sp)
 			check(key.ready_full == expected and key.ready_orbit.active == expected, "Character %d slot %d full stock readiness" % [character, slot])

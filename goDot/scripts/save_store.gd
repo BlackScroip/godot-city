@@ -5,6 +5,56 @@ const SAVE_PATH = "user://dungeon-profile-v1.json"
 const MAX_BYTES = 16 * 1024 * 1024
 var warning := ""
 var path: String
+var _writer: Thread
+var _pending: Dictionary = {}
+var requested_version := 0
+var committed_version := 0
+var last_write_ms := 0.0
+var last_request_ms := 0.0
+var last_failed := false
+
+func request_save(data: Dictionary) -> void:
+	var before := Time.get_ticks_usec()
+	requested_version += 1
+	# Only this isolated copy crosses the thread boundary.
+	_pending = {"version": requested_version, "data": data.duplicate(true)}
+	poll()
+	last_request_ms = (Time.get_ticks_usec() - before) / 1000.0
+
+func poll() -> void:
+	if _writer != null and not _writer.is_alive(): _collect()
+	if _writer == null and not _pending.is_empty():
+		var job := _pending
+		_pending = {}
+		_writer = Thread.new()
+		var result := _writer.start(_write_job.bind(path, job))
+		if result != OK:
+			_writer = null
+			last_failed = true
+			warning = "无法启动存档任务：%s" % error_string(result)
+
+static func _write_job(destination: String, job: Dictionary) -> Dictionary:
+	var worker := DungeonSaveStore.new(destination)
+	var before := Time.get_ticks_usec()
+	var success := worker._save_sync(job.data)
+	return {"version": job.version, "success": success, "warning": worker.warning, "ms": (Time.get_ticks_usec() - before) / 1000.0}
+
+func _collect() -> void:
+	var result: Dictionary = _writer.wait_to_finish()
+	_writer = null
+	last_write_ms = result.ms
+	last_failed = not result.success
+	warning = result.warning
+	if result.success: committed_version = int(result.version)
+
+func flush() -> bool:
+	while _writer != null or not _pending.is_empty():
+		if _writer != null: _collect()
+		poll()
+	return not last_failed
+
+func is_saving() -> bool:
+	return _writer != null or not _pending.is_empty()
 
 func _init(storage_path: String = SAVE_PATH) -> void:
 	path = storage_path
@@ -21,25 +71,30 @@ func _read(path: String) -> Dictionary:
 		warning = "存档格式损坏，正在尝试备份"
 		return {}
 	var data: Dictionary = parser.data
-	if int(data.get("version", 0)) != 1 or not data.get("run") is Dictionary:
+	var profile = preload("res://scripts/domain/profile.gd").new()
+	if not profile.restore(data):
 		warning = "存档版本或结构不兼容"
 		return {}
-	for key in ["materials", "stats", "character_levels"]:
-		if not data.get(key) is Dictionary:
-			return {}
-		for value in data[key].values():
-			if not (value is float or value is int) or value < 0:
-				return {}
-	return data
+	return profile.data
 
 func load_profile() -> Dictionary:
+	warning = ""
 	for candidate in [path, path + ".bak"]:
 		var data = _read(candidate)
 		if not data.is_empty():
+			if candidate != path: warning = "主存档不可用，已恢复备份进度"
 			return data
 	return {}
 
 func save(data: Dictionary) -> bool:
+	flush()
+	requested_version += 1
+	last_failed = not _save_sync(data)
+	if not last_failed: committed_version = requested_version
+	return not last_failed
+
+func _save_sync(data: Dictionary) -> bool:
+	warning = ""
 	data["saved_utc"] = int(Time.get_unix_time_from_system())
 	var temporary = path + ".tmp"
 	var file = FileAccess.open(temporary, FileAccess.WRITE)

@@ -20,6 +20,8 @@ func _run() -> void:
 	check(not loading.visible, "Overlay starts hidden")
 	loading.begin("幽暗密林 · 精英关卡")
 	check(loading.visible and loading.spinner.texture != null, "Loading shows original game art")
+	check(loading.background.texture != null, "Loading uses the recovered forest illustration")
+	check(loading.destination == "幽暗密林 · 精英关卡", "Destination remains available during transition")
 	loading.set_progress(0.42)
 	loading.set_progress(0.2)
 	check(is_equal_approx(loading.progress_bar.value, 42.0), "Progress never moves backwards")
@@ -28,13 +30,18 @@ func _run() -> void:
 	loading.begin("幽暗密林 · 精英关卡")
 	loading.set_progress(0.42)
 	check(is_equal_approx(loading.progress_bar.value, 42.0), "A new transition resets progress")
-	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]:
 		canvas.size = dimensions
 		await process_frame
 		await process_frame
 		check(loading.blocker.size.is_equal_approx(Vector2(dimensions)), "Overlay fills viewport %s" % dimensions)
 		check(Rect2(Vector2.ZERO, Vector2(dimensions)).encloses(loading.content.get_global_rect()), "Loading content fits viewport %s" % dimensions)
 		check(loading.title_label.size.y >= loading.title_label.get_minimum_size().y, "Title fits its container")
+		check(loading.tip_label.size.y >= loading.tip_label.get_minimum_size().y, "Wrapped hint fits its container")
+		check(loading.content.get_global_rect().end.y < loading.progress_bar.position.y, "Hint remains above progress bar")
+		check(loading.content.get_global_rect().end.x < loading.spinner.position.x, "Hint stays clear of loading indicator")
+		check(loading.status_label.get_global_rect().end.x <= dimensions.x, "Status stays inside viewport")
+		check(is_equal_approx(loading.progress_bar.size.x, dimensions.x), "Progress spans viewport width")
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
 			var first: Image = canvas.get_texture().get_image()

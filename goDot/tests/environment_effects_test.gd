@@ -30,6 +30,8 @@ func _run() -> void:
 	controller.configure(world)
 	controller.set_process(false)
 	controller.effects = {"test": {"layers": [{"name": "test", "active": true, "looping": true, "duration": 1, "materials": [{"color": {"r": 1, "g": 1, "b": 1, "a": 1}}], "initial": {"startLifetime": {"scalar": 1}}, "emission": {"rateOverTime": {"scalar": 4}}}]}}
+	var original_texture := "res://assets/environment_effects/texture_d00fa6198cd9f832b06a.png"
+	controller.effects.test.layers[0].materials[0].texture = original_texture
 	check(CONTROLLER.source_address("Test_u123") == "test", "Exporter node suffix resolves")
 	check(CONTROLLER.source_address("Test_unit") == "test_unit", "Non-numeric suffix retained")
 	check(controller.resolve_address("test_1__u123") == "test", "Numbered exported duplicate resolves")
@@ -42,6 +44,7 @@ func _run() -> void:
 	check(controller.register_anchor(anchor, "test") == entry and controller.bindings.size() == 1, "Registration deduplicates")
 	controller._process(0.2)
 	check(is_instance_valid(entry.effect) and entry.effect.particle_count > 0, "Nearby source creates particles")
+	check(entry.effect.emitters[0].node.material_override.get_shader_parameter("main_texture") is Texture2D, "Runtime loads and binds original particle texture")
 	check(is_equal_approx(entry.effect.age, 0.2), "Active clock advances")
 	world.paused = true
 	controller._process(0.5)

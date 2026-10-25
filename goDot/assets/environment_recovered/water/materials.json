@@ -1,0 +1,3754 @@
+{
+  "materials": {
+    "EnvSeal_WaterFall": {
+      "bundle": 1,
+      "path_id": -522109103408967963,
+      "serialized_file": "CAB-5c05dfb9f850a0095972b05b956c8527",
+      "shader": {
+        "m_FileID": 1,
+        "m_PathID": -4698155739361515650
+      },
+      "keywords": [
+        "_MODE_RIVER",
+        "_USEFOAMTEXTURE"
+      ],
+      "invalid_keywords": [],
+      "render_queue": 3000,
+      "disabled_passes": [],
+      "colors": {
+        "Color_A271762B": {
+          "r": 0.003346535610035062,
+          "g": 0.021219009533524513,
+          "b": 0.14126332104206085,
+          "a": 0.9803921580314636
+        },
+        "Color_AFFD055F": {
+          "r": 0.7156937718391418,
+          "g": 0.8796225786209106,
+          "b": 0.9386858940124512,
+          "a": 1.0
+        },
+        "Color_E0824245": {
+          "r": 0.0,
+          "g": 0.08865560591220856,
+          "b": 0.34191444516181946,
+          "a": 0.9215686321258545
+        },
+        "Color_b6745e534bad48b7b4cbd4c7da724615": {
+          "r": 0.30588236451148987,
+          "g": 0.33725491166114807,
+          "b": 0.35686275362968445,
+          "a": 1.0
+        },
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_FormTiling": {
+          "r": 0.30000001192092896,
+          "g": 0.20000000298023224,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FresColor": {
+          "r": 0.6597539186477661,
+          "g": 0.6597539186477661,
+          "b": 0.6597539186477661,
+          "a": 0.0
+        },
+        "_GlobalSpeed": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_SpecColor": {
+          "r": 0.20000000298023224,
+          "g": 0.20000000298023224,
+          "b": 0.20000000298023224,
+          "a": 1.0
+        },
+        "_WaveTiling": {
+          "r": 3.0,
+          "g": 3.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_rippleTiling": {
+          "r": 1.0,
+          "g": 2.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "Vector1_1": 0.0,
+        "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.4000000059604645,
+        "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 12.199999809265137,
+        "Vector1_4830f1fa588b45d2819e15a4b69ec032": 5.0,
+        "Vector1_53B9698E": 0.5,
+        "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+        "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 24.100000381469727,
+        "Vector1_7da725783e8a4c839247558169c9111a": 2.0,
+        "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.0,
+        "Vector1_93DCFAA9": 2.5,
+        "Vector1_972e1747dcad4452851abeb6ba9d9d47": 0.30000001192092896,
+        "Vector1_C5543ECF": 1.5,
+        "Vector1_E23798DE": 0.09000000357627869,
+        "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+        "_Alpha": 1.0,
+        "_AlphaClip": 0.0,
+        "_AlphaToMask": 0.0,
+        "_Blend": 0.0,
+        "_BlendModePreserveSpecular": 1.0,
+        "_BumpScale": 1.0,
+        "_ClearCoatMask": 0.0,
+        "_ClearCoatSmoothness": 0.0,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DetailAlbedoMapScale": 1.0,
+        "_DetailNormalMapScale": 1.0,
+        "_DstBlend": 0.0,
+        "_DstBlendAlpha": 0.0,
+        "_EnvironmentReflections": 1.0,
+        "_Float": -1.0,
+        "_FoamTextureStrenth": 1.6699999570846558,
+        "_FoamVertexColor": -1.0,
+        "_FresPower": 3.0,
+        "_GlossMapScale": 0.0,
+        "_Glossiness": 0.0,
+        "_GlossyReflections": 0.0,
+        "_IsOrtographic": 0.0,
+        "_MODE": 0.0,
+        "_Metallic": 0.0,
+        "_Mode": 0.0,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.004999999888241291,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 0.0,
+        "_ReceiveShadows": 1.0,
+        "_Smoothness": 0.5,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_SrcBlendAlpha": 1.0,
+        "_Surface": 0.0,
+        "_USEFOAMTEXTURE": 1.0,
+        "_WorkflowMode": 1.0,
+        "_ZWrite": 1.0,
+        "_isPool": 0.0
+      },
+      "textures": {
+        "_FoamTexture": {
+          "m_Texture": {
+            "m_FileID": 2,
+            "m_PathID": 1258409655283026799
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "resolved": {
+            "bundle": 5498,
+            "path_id": 1258409655283026799,
+            "serialized_file": "CAB-17b79654ca5c2b2781231756d267c341",
+            "name": "EnvCampsite_Detail_WaterFall_[Mask]",
+            "width": 512,
+            "height": 512,
+            "format": 45,
+            "mips": 1,
+            "color_space": 1,
+            "settings": {
+              "m_FilterMode": 1,
+              "m_Aniso": 1,
+              "m_MipBias": 0.0,
+              "m_WrapU": 0,
+              "m_WrapV": 0,
+              "m_WrapW": 0
+            }
+          }
+        },
+        "unity_Lightmaps": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "externals": [
+        "archive:/CAB-e0e868e1a4508c641226989c4c20c91b/CAB-e0e868e1a4508c641226989c4c20c91b",
+        "archive:/CAB-17b79654ca5c2b2781231756d267c341/CAB-17b79654ca5c2b2781231756d267c341",
+        "archive:/CAB-5b7696d8ee30066a51fb57471f7fdd9e/CAB-5b7696d8ee30066a51fb57471f7fdd9e",
+        "archive:/CAB-e19d02d13f4120abe36733542a534546/CAB-e19d02d13f4120abe36733542a534546",
+        "archive:/CAB-83bae41ab347773c3a195e8d89d27cc5/CAB-83bae41ab347773c3a195e8d89d27cc5",
+        "archive:/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0"
+      ],
+      "named_values": {
+        "RippleMoveSpeed": 0.0,
+        "RefractionScale": 0.4000000059604645,
+        "RippleSlimness": 12.199999809265137,
+        "RippleDensity": 5.0,
+        "Foam Amount": 0.5,
+        "RefractionSpeed": 0.009999999776482582,
+        "RippleSpeed": 24.100000381469727,
+        "WaveSpeed": 2.0,
+        "WaveIntensity": 0.0,
+        "Water Depth": 2.5,
+        "RippleAlpha": 0.30000001192092896,
+        "Foam Cutoff": 1.5,
+        "Foam Speed": 0.09000000357627869,
+        "RefractionStrength": 0.30000001192092896,
+        "Alpha": 1.0,
+        "FoamTextureStrenth": 1.6699999570846558,
+        "FoamVertexColor": -1.0,
+        "FresPower": 3.0,
+        "Mode": 0.0,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 0.0,
+        "UseFoamTexture": 1.0,
+        "isPool": 0.0,
+        "Deep Water": {
+          "r": 0.003346535610035062,
+          "g": 0.021219009533524513,
+          "b": 0.14126332104206085,
+          "a": 0.9803921580314636
+        },
+        "Foam Color": {
+          "r": 0.7156937718391418,
+          "g": 0.8796225786209106,
+          "b": 0.9386858940124512,
+          "a": 1.0
+        },
+        "Shallow Water": {
+          "r": 0.0,
+          "g": 0.08865560591220856,
+          "b": 0.34191444516181946,
+          "a": 0.9215686321258545
+        },
+        "RippleColor": {
+          "r": 0.30588236451148987,
+          "g": 0.33725491166114807,
+          "b": 0.35686275362968445,
+          "a": 1.0
+        },
+        "FormTiling": {
+          "r": 0.30000001192092896,
+          "g": 0.20000000298023224,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "FresColor": {
+          "r": 0.6597539186477661,
+          "g": 0.6597539186477661,
+          "b": 0.6597539186477661,
+          "a": 0.0
+        },
+        "GlobalSpeed": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "WaveTiling": {
+          "r": 3.0,
+          "g": 3.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "rippleTiling": {
+          "r": 1.0,
+          "g": 2.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "bound_textures": {
+        "_FoamTexture": {
+          "name": "EnvCampsite_Detail_WaterFall_[Mask]",
+          "path": "res://assets/environment_recovered/water/texture_1258409655283026799.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "a09e722e2afee3de063d57510897a09a6f74e140fb4c65585ef0ceaae554a40a"
+        }
+      }
+    },
+    "EnvDetails_River": {
+      "bundle": 1,
+      "path_id": 1569788434841436399,
+      "serialized_file": "CAB-5c05dfb9f850a0095972b05b956c8527",
+      "shader": {
+        "m_FileID": 1,
+        "m_PathID": -4698155739361515650
+      },
+      "keywords": [
+        "_MODE_RIVER",
+        "_USEFOAMTEXTURE"
+      ],
+      "invalid_keywords": [],
+      "render_queue": -1,
+      "disabled_passes": [],
+      "colors": {
+        "Color_A271762B": {
+          "r": 0.07843136787414551,
+          "g": 0.7156550288200378,
+          "b": 1.0,
+          "a": 0.6470587849617004
+        },
+        "Color_AFFD055F": {
+          "r": 2.8284270763397217,
+          "g": 2.8284270763397217,
+          "b": 2.8284270763397217,
+          "a": 1.0
+        },
+        "Color_E0824245": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.3738570213317871,
+          "a": 0.6588234901428223
+        },
+        "Color_b6745e534bad48b7b4cbd4c7da724615": {
+          "r": 1.0,
+          "g": 0.802344024181366,
+          "b": 0.34433960914611816,
+          "a": 1.0
+        },
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_FormTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FresColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_GlobalSpeed": {
+          "r": 0.30000001192092896,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_SpecColor": {
+          "r": 0.20000000298023224,
+          "g": 0.20000000298023224,
+          "b": 0.20000000298023224,
+          "a": 1.0
+        },
+        "_WaveTiling": {
+          "r": 4.0,
+          "g": 4.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_rippleTiling": {
+          "r": 3.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "Vector1_1": 1.0,
+        "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.30000001192092896,
+        "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 7.800000190734863,
+        "Vector1_4830f1fa588b45d2819e15a4b69ec032": 6.599999904632568,
+        "Vector1_53B9698E": 0.5,
+        "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+        "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 4.0,
+        "Vector1_7da725783e8a4c839247558169c9111a": 0.5,
+        "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.20000000298023224,
+        "Vector1_93DCFAA9": 2.0999999046325684,
+        "Vector1_972e1747dcad4452851abeb6ba9d9d47": 0.3700000047683716,
+        "Vector1_C5543ECF": 1.5,
+        "Vector1_E23798DE": 0.1899999976158142,
+        "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+        "_Alpha": 1.0,
+        "_AlphaClip": 0.0,
+        "_AlphaToMask": 0.0,
+        "_Blend": 0.0,
+        "_BlendModePreserveSpecular": 1.0,
+        "_BumpScale": 1.0,
+        "_ClearCoatMask": 0.0,
+        "_ClearCoatSmoothness": 0.0,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DetailAlbedoMapScale": 1.0,
+        "_DetailNormalMapScale": 1.0,
+        "_DstBlend": 0.0,
+        "_DstBlendAlpha": 0.0,
+        "_EnvironmentReflections": 1.0,
+        "_Float": 0.0,
+        "_FoamTextureStrenth": 1.0,
+        "_FoamVertexColor": 0.0,
+        "_FresPower": 10.0,
+        "_GlossMapScale": 0.0,
+        "_Glossiness": 0.0,
+        "_GlossyReflections": 0.0,
+        "_IsOrtographic": 0.0,
+        "_MODE": 0.0,
+        "_Metallic": 0.0,
+        "_Mode": 0.949999988079071,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.004999999888241291,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 0.0,
+        "_ReceiveShadows": 1.0,
+        "_Smoothness": 0.5,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_SrcBlendAlpha": 1.0,
+        "_Surface": 0.0,
+        "_USEFOAMTEXTURE": 1.0,
+        "_WorkflowMode": 1.0,
+        "_ZWrite": 1.0,
+        "_isPool": 0.0
+      },
+      "textures": {
+        "_FoamTexture": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_Lightmaps": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "externals": [
+        "archive:/CAB-e0e868e1a4508c641226989c4c20c91b/CAB-e0e868e1a4508c641226989c4c20c91b",
+        "archive:/CAB-17b79654ca5c2b2781231756d267c341/CAB-17b79654ca5c2b2781231756d267c341",
+        "archive:/CAB-5b7696d8ee30066a51fb57471f7fdd9e/CAB-5b7696d8ee30066a51fb57471f7fdd9e",
+        "archive:/CAB-e19d02d13f4120abe36733542a534546/CAB-e19d02d13f4120abe36733542a534546",
+        "archive:/CAB-83bae41ab347773c3a195e8d89d27cc5/CAB-83bae41ab347773c3a195e8d89d27cc5",
+        "archive:/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0"
+      ],
+      "named_values": {
+        "RippleMoveSpeed": 1.0,
+        "RefractionScale": 0.30000001192092896,
+        "RippleSlimness": 7.800000190734863,
+        "RippleDensity": 6.599999904632568,
+        "Foam Amount": 0.5,
+        "RefractionSpeed": 0.009999999776482582,
+        "RippleSpeed": 4.0,
+        "WaveSpeed": 0.5,
+        "WaveIntensity": 0.20000000298023224,
+        "Water Depth": 2.0999999046325684,
+        "RippleAlpha": 0.3700000047683716,
+        "Foam Cutoff": 1.5,
+        "Foam Speed": 0.1899999976158142,
+        "RefractionStrength": 0.30000001192092896,
+        "Alpha": 1.0,
+        "FoamTextureStrenth": 1.0,
+        "FoamVertexColor": 0.0,
+        "FresPower": 10.0,
+        "Mode": 0.0,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 0.0,
+        "UseFoamTexture": 1.0,
+        "isPool": 0.0,
+        "Deep Water": {
+          "r": 0.07843136787414551,
+          "g": 0.7156550288200378,
+          "b": 1.0,
+          "a": 0.6470587849617004
+        },
+        "Foam Color": {
+          "r": 2.8284270763397217,
+          "g": 2.8284270763397217,
+          "b": 2.8284270763397217,
+          "a": 1.0
+        },
+        "Shallow Water": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.3738570213317871,
+          "a": 0.6588234901428223
+        },
+        "RippleColor": {
+          "r": 1.0,
+          "g": 0.802344024181366,
+          "b": 0.34433960914611816,
+          "a": 1.0
+        },
+        "FormTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "FresColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "GlobalSpeed": {
+          "r": 0.30000001192092896,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "WaveTiling": {
+          "r": 4.0,
+          "g": 4.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "rippleTiling": {
+          "r": 3.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "bound_textures": {}
+    },
+    "EnvDetails_WaterFall": {
+      "bundle": 1,
+      "path_id": 6564640874230674781,
+      "serialized_file": "CAB-5c05dfb9f850a0095972b05b956c8527",
+      "shader": {
+        "m_FileID": 1,
+        "m_PathID": -4698155739361515650
+      },
+      "keywords": [
+        "_MODE_RIVER",
+        "_USEFOAMTEXTURE"
+      ],
+      "invalid_keywords": [],
+      "render_queue": 3021,
+      "disabled_passes": [],
+      "colors": {
+        "Color_A271762B": {
+          "r": 0.07843136787414551,
+          "g": 0.7156550288200378,
+          "b": 1.0,
+          "a": 0.6470587849617004
+        },
+        "Color_AFFD055F": {
+          "r": 2.8284270763397217,
+          "g": 2.8284270763397217,
+          "b": 2.8284270763397217,
+          "a": 1.0
+        },
+        "Color_E0824245": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.3738570213317871,
+          "a": 0.6588234901428223
+        },
+        "Color_b6745e534bad48b7b4cbd4c7da724615": {
+          "r": 1.0,
+          "g": 0.802344024181366,
+          "b": 0.34433960914611816,
+          "a": 1.0
+        },
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_FormTiling": {
+          "r": 0.30000001192092896,
+          "g": 0.20000000298023224,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FresColor": {
+          "r": 0.6597539186477661,
+          "g": 0.6597539186477661,
+          "b": 0.6597539186477661,
+          "a": 0.0
+        },
+        "_GlobalSpeed": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_SpecColor": {
+          "r": 0.20000000298023224,
+          "g": 0.20000000298023224,
+          "b": 0.20000000298023224,
+          "a": 1.0
+        },
+        "_WaveTiling": {
+          "r": 3.0,
+          "g": 3.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_rippleTiling": {
+          "r": 1.0,
+          "g": 2.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "Vector1_1": 0.0,
+        "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.4000000059604645,
+        "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 12.199999809265137,
+        "Vector1_4830f1fa588b45d2819e15a4b69ec032": 5.0,
+        "Vector1_53B9698E": 0.5,
+        "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+        "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 24.100000381469727,
+        "Vector1_7da725783e8a4c839247558169c9111a": 2.0,
+        "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.12999999523162842,
+        "Vector1_93DCFAA9": 2.5,
+        "Vector1_972e1747dcad4452851abeb6ba9d9d47": 0.30000001192092896,
+        "Vector1_C5543ECF": 1.5,
+        "Vector1_E23798DE": 0.09000000357627869,
+        "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+        "_Alpha": 1.0,
+        "_AlphaClip": 0.0,
+        "_AlphaToMask": 0.0,
+        "_Blend": 0.0,
+        "_BlendModePreserveSpecular": 1.0,
+        "_BumpScale": 1.0,
+        "_ClearCoatMask": 0.0,
+        "_ClearCoatSmoothness": 0.0,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DetailAlbedoMapScale": 1.0,
+        "_DetailNormalMapScale": 1.0,
+        "_DstBlend": 0.0,
+        "_DstBlendAlpha": 0.0,
+        "_EnvironmentReflections": 1.0,
+        "_Float": -1.0,
+        "_FoamTextureStrenth": 1.6699999570846558,
+        "_FoamVertexColor": -1.0,
+        "_FresPower": 10.0,
+        "_GlossMapScale": 0.0,
+        "_Glossiness": 0.0,
+        "_GlossyReflections": 0.0,
+        "_IsOrtographic": 0.0,
+        "_MODE": 0.0,
+        "_Metallic": 0.0,
+        "_Mode": 0.0,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.004999999888241291,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 21.0,
+        "_ReceiveShadows": 1.0,
+        "_Smoothness": 0.5,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_SrcBlendAlpha": 1.0,
+        "_Surface": 0.0,
+        "_USEFOAMTEXTURE": 1.0,
+        "_WorkflowMode": 1.0,
+        "_ZWrite": 1.0,
+        "_isPool": 0.0
+      },
+      "textures": {
+        "_FoamTexture": {
+          "m_Texture": {
+            "m_FileID": 2,
+            "m_PathID": 1258409655283026799
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "resolved": {
+            "bundle": 5498,
+            "path_id": 1258409655283026799,
+            "serialized_file": "CAB-17b79654ca5c2b2781231756d267c341",
+            "name": "EnvCampsite_Detail_WaterFall_[Mask]",
+            "width": 512,
+            "height": 512,
+            "format": 45,
+            "mips": 1,
+            "color_space": 1,
+            "settings": {
+              "m_FilterMode": 1,
+              "m_Aniso": 1,
+              "m_MipBias": 0.0,
+              "m_WrapU": 0,
+              "m_WrapV": 0,
+              "m_WrapW": 0
+            }
+          }
+        },
+        "unity_Lightmaps": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "externals": [
+        "archive:/CAB-e0e868e1a4508c641226989c4c20c91b/CAB-e0e868e1a4508c641226989c4c20c91b",
+        "archive:/CAB-17b79654ca5c2b2781231756d267c341/CAB-17b79654ca5c2b2781231756d267c341",
+        "archive:/CAB-5b7696d8ee30066a51fb57471f7fdd9e/CAB-5b7696d8ee30066a51fb57471f7fdd9e",
+        "archive:/CAB-e19d02d13f4120abe36733542a534546/CAB-e19d02d13f4120abe36733542a534546",
+        "archive:/CAB-83bae41ab347773c3a195e8d89d27cc5/CAB-83bae41ab347773c3a195e8d89d27cc5",
+        "archive:/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0"
+      ],
+      "named_values": {
+        "RippleMoveSpeed": 0.0,
+        "RefractionScale": 0.4000000059604645,
+        "RippleSlimness": 12.199999809265137,
+        "RippleDensity": 5.0,
+        "Foam Amount": 0.5,
+        "RefractionSpeed": 0.009999999776482582,
+        "RippleSpeed": 24.100000381469727,
+        "WaveSpeed": 2.0,
+        "WaveIntensity": 0.12999999523162842,
+        "Water Depth": 2.5,
+        "RippleAlpha": 0.30000001192092896,
+        "Foam Cutoff": 1.5,
+        "Foam Speed": 0.09000000357627869,
+        "RefractionStrength": 0.30000001192092896,
+        "Alpha": 1.0,
+        "FoamTextureStrenth": 1.6699999570846558,
+        "FoamVertexColor": -1.0,
+        "FresPower": 10.0,
+        "Mode": 0.0,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 21.0,
+        "UseFoamTexture": 1.0,
+        "isPool": 0.0,
+        "Deep Water": {
+          "r": 0.07843136787414551,
+          "g": 0.7156550288200378,
+          "b": 1.0,
+          "a": 0.6470587849617004
+        },
+        "Foam Color": {
+          "r": 2.8284270763397217,
+          "g": 2.8284270763397217,
+          "b": 2.8284270763397217,
+          "a": 1.0
+        },
+        "Shallow Water": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.3738570213317871,
+          "a": 0.6588234901428223
+        },
+        "RippleColor": {
+          "r": 1.0,
+          "g": 0.802344024181366,
+          "b": 0.34433960914611816,
+          "a": 1.0
+        },
+        "FormTiling": {
+          "r": 0.30000001192092896,
+          "g": 0.20000000298023224,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "FresColor": {
+          "r": 0.6597539186477661,
+          "g": 0.6597539186477661,
+          "b": 0.6597539186477661,
+          "a": 0.0
+        },
+        "GlobalSpeed": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "WaveTiling": {
+          "r": 3.0,
+          "g": 3.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "rippleTiling": {
+          "r": 1.0,
+          "g": 2.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "bound_textures": {
+        "_FoamTexture": {
+          "name": "EnvCampsite_Detail_WaterFall_[Mask]",
+          "path": "res://assets/environment_recovered/water/texture_1258409655283026799.png",
+          "width": 512,
+          "height": 512,
+          "sha256": "a09e722e2afee3de063d57510897a09a6f74e140fb4c65585ef0ceaae554a40a"
+        }
+      }
+    },
+    "EnvSeal_River": {
+      "bundle": 1,
+      "path_id": 8207632086267057194,
+      "serialized_file": "CAB-5c05dfb9f850a0095972b05b956c8527",
+      "shader": {
+        "m_FileID": 1,
+        "m_PathID": -4698155739361515650
+      },
+      "keywords": [
+        "_MODE_RIVER",
+        "_USEFOAMTEXTURE"
+      ],
+      "invalid_keywords": [],
+      "render_queue": -1,
+      "disabled_passes": [],
+      "colors": {
+        "Color_A271762B": {
+          "r": 0.01043921522796154,
+          "g": 0.021272823214530945,
+          "b": 0.08627451211214066,
+          "a": 1.0
+        },
+        "Color_AFFD055F": {
+          "r": 0.6745283007621765,
+          "g": 0.9306154847145081,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "Color_E0824245": {
+          "r": 0.0,
+          "g": 0.08872107416391373,
+          "b": 0.3396226167678833,
+          "a": 0.9019607901573181
+        },
+        "Color_b6745e534bad48b7b4cbd4c7da724615": {
+          "r": 0.46422216296195984,
+          "g": 0.5500999689102173,
+          "b": 0.6037735939025879,
+          "a": 1.0
+        },
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_FormTiling": {
+          "r": 2.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FresColor": {
+          "r": 0.0,
+          "g": 0.02248428203165531,
+          "b": 0.10377359390258789,
+          "a": 0.0
+        },
+        "_GlobalSpeed": {
+          "r": 0.8299999833106995,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_SpecColor": {
+          "r": 0.20000000298023224,
+          "g": 0.20000000298023224,
+          "b": 0.20000000298023224,
+          "a": 1.0
+        },
+        "_WaveTiling": {
+          "r": 3.0,
+          "g": 3.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_rippleTiling": {
+          "r": 2.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "Vector1_1": 0.20000000298023224,
+        "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.30000001192092896,
+        "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 4.0,
+        "Vector1_4830f1fa588b45d2819e15a4b69ec032": 15.0,
+        "Vector1_53B9698E": 0.12999999523162842,
+        "Vector1_667b757cacad456b914a6435f3b21f79": 0.009999999776482582,
+        "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 2.5,
+        "Vector1_7da725783e8a4c839247558169c9111a": 1.0,
+        "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 0.15000000596046448,
+        "Vector1_93DCFAA9": 1.5499999523162842,
+        "Vector1_972e1747dcad4452851abeb6ba9d9d47": 2.0,
+        "Vector1_C5543ECF": 1.350000023841858,
+        "Vector1_E23798DE": 0.029999999329447746,
+        "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.30000001192092896,
+        "_Alpha": 1.0,
+        "_AlphaClip": 0.0,
+        "_AlphaToMask": 0.0,
+        "_Blend": 0.0,
+        "_BlendModePreserveSpecular": 1.0,
+        "_BumpScale": 1.0,
+        "_ClearCoatMask": 0.0,
+        "_ClearCoatSmoothness": 0.0,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DetailAlbedoMapScale": 1.0,
+        "_DetailNormalMapScale": 1.0,
+        "_DstBlend": 0.0,
+        "_DstBlendAlpha": 0.0,
+        "_EnvironmentReflections": 1.0,
+        "_Float": 0.0,
+        "_FoamTextureStrenth": 1.0,
+        "_FoamVertexColor": 0.0,
+        "_FresPower": 3.5,
+        "_GlossMapScale": 0.0,
+        "_Glossiness": 0.0,
+        "_GlossyReflections": 0.0,
+        "_IsOrtographic": 0.0,
+        "_MODE": 0.0,
+        "_Metallic": 0.0,
+        "_Mode": 0.949999988079071,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.004999999888241291,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 0.0,
+        "_ReceiveShadows": 1.0,
+        "_Smoothness": 0.5,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_SrcBlendAlpha": 1.0,
+        "_Surface": 0.0,
+        "_USEFOAMTEXTURE": 1.0,
+        "_WorkflowMode": 1.0,
+        "_ZWrite": 1.0,
+        "_isPool": 0.0
+      },
+      "textures": {
+        "_FoamTexture": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_Lightmaps": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "externals": [
+        "archive:/CAB-e0e868e1a4508c641226989c4c20c91b/CAB-e0e868e1a4508c641226989c4c20c91b",
+        "archive:/CAB-17b79654ca5c2b2781231756d267c341/CAB-17b79654ca5c2b2781231756d267c341",
+        "archive:/CAB-5b7696d8ee30066a51fb57471f7fdd9e/CAB-5b7696d8ee30066a51fb57471f7fdd9e",
+        "archive:/CAB-e19d02d13f4120abe36733542a534546/CAB-e19d02d13f4120abe36733542a534546",
+        "archive:/CAB-83bae41ab347773c3a195e8d89d27cc5/CAB-83bae41ab347773c3a195e8d89d27cc5",
+        "archive:/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0/CAB-c8dba33fb5d837f5e0b5d01e2e7ffde0"
+      ],
+      "named_values": {
+        "RippleMoveSpeed": 0.20000000298023224,
+        "RefractionScale": 0.30000001192092896,
+        "RippleSlimness": 4.0,
+        "RippleDensity": 15.0,
+        "Foam Amount": 0.12999999523162842,
+        "RefractionSpeed": 0.009999999776482582,
+        "RippleSpeed": 2.5,
+        "WaveSpeed": 1.0,
+        "WaveIntensity": 0.15000000596046448,
+        "Water Depth": 1.5499999523162842,
+        "RippleAlpha": 2.0,
+        "Foam Cutoff": 1.350000023841858,
+        "Foam Speed": 0.029999999329447746,
+        "RefractionStrength": 0.30000001192092896,
+        "Alpha": 1.0,
+        "FoamTextureStrenth": 1.0,
+        "FoamVertexColor": 0.0,
+        "FresPower": 3.5,
+        "Mode": 0.0,
+        "_QueueControl": 0.0,
+        "_QueueOffset": 0.0,
+        "UseFoamTexture": 1.0,
+        "isPool": 0.0,
+        "Deep Water": {
+          "r": 0.01043921522796154,
+          "g": 0.021272823214530945,
+          "b": 0.08627451211214066,
+          "a": 1.0
+        },
+        "Foam Color": {
+          "r": 0.6745283007621765,
+          "g": 0.9306154847145081,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "Shallow Water": {
+          "r": 0.0,
+          "g": 0.08872107416391373,
+          "b": 0.3396226167678833,
+          "a": 0.9019607901573181
+        },
+        "RippleColor": {
+          "r": 0.46422216296195984,
+          "g": 0.5500999689102173,
+          "b": 0.6037735939025879,
+          "a": 1.0
+        },
+        "FormTiling": {
+          "r": 2.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "FresColor": {
+          "r": 0.0,
+          "g": 0.02248428203165531,
+          "b": 0.10377359390258789,
+          "a": 0.0
+        },
+        "GlobalSpeed": {
+          "r": 0.8299999833106995,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "WaveTiling": {
+          "r": 3.0,
+          "g": 3.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "rippleTiling": {
+          "r": 2.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "bound_textures": {}
+    },
+    "Simple_Water": {
+      "bundle": 5852,
+      "path_id": 1915331770308093822,
+      "serialized_file": "CAB-e0e868e1a4508c641226989c4c20c91b",
+      "shader": {
+        "m_FileID": 0,
+        "m_PathID": -4698155739361515650
+      },
+      "keywords": [
+        "_MODE_RIVER",
+        "_USEFOAMTEXTURE"
+      ],
+      "invalid_keywords": [],
+      "render_queue": -1,
+      "disabled_passes": [],
+      "colors": {
+        "Color_A271762B": {
+          "r": 0.07843136787414551,
+          "g": 0.7156550288200378,
+          "b": 1.0,
+          "a": 0.6470587849617004
+        },
+        "Color_AFFD055F": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "Color_E0824245": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.9130989909172058,
+          "a": 0.6588234901428223
+        },
+        "Color_b6745e534bad48b7b4cbd4c7da724615": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_FormTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FresColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_GlobalSpeed": {
+          "r": 1.4900000095367432,
+          "g": 5.570000171661377,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaveTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_rippleTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "Vector1_1": 1.0,
+        "Vector1_3519f9570c104bd68e5a8af33d62bf8d": 0.800000011920929,
+        "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4": 20.0,
+        "Vector1_4830f1fa588b45d2819e15a4b69ec032": 2.0,
+        "Vector1_53B9698E": 4.0,
+        "Vector1_667b757cacad456b914a6435f3b21f79": 0.029999999329447746,
+        "Vector1_6bf863ff78f047bdb614bf9990bda5dc": 3.0,
+        "Vector1_7da725783e8a4c839247558169c9111a": 0.20000000298023224,
+        "Vector1_8556eac2acc249edb98f5bbb2a4807bc": 1.0,
+        "Vector1_93DCFAA9": 5.0,
+        "Vector1_972e1747dcad4452851abeb6ba9d9d47": 1.0,
+        "Vector1_C5543ECF": 5.0,
+        "Vector1_E23798DE": 0.009999999776482582,
+        "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb": 0.6000000238418579,
+        "_Alpha": 0.0,
+        "_FoamTextureStrenth": 1.0,
+        "_FoamVertexColor": 0.0,
+        "_FresPower": 10.0,
+        "_MODE": 0.0,
+        "_QueueControl": -1.0,
+        "_QueueOffset": 0.0,
+        "_USEFOAMTEXTURE": 1.0,
+        "_isPool": 0.0
+      },
+      "textures": {
+        "_FoamTexture": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_Lightmaps": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "m_Texture": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          },
+          "m_Scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_Offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "externals": [
+        "Library/unity default resources",
+        "archive:/CAB-e19d02d13f4120abe36733542a534546/CAB-e19d02d13f4120abe36733542a534546"
+      ],
+      "named_values": {
+        "RippleMoveSpeed": 1.0,
+        "RefractionScale": 0.800000011920929,
+        "RippleSlimness": 20.0,
+        "RippleDensity": 2.0,
+        "Foam Amount": 4.0,
+        "RefractionSpeed": 0.029999999329447746,
+        "RippleSpeed": 3.0,
+        "WaveSpeed": 0.20000000298023224,
+        "WaveIntensity": 1.0,
+        "Water Depth": 5.0,
+        "RippleAlpha": 1.0,
+        "Foam Cutoff": 5.0,
+        "Foam Speed": 0.009999999776482582,
+        "RefractionStrength": 0.6000000238418579,
+        "Alpha": 0.0,
+        "FoamTextureStrenth": 1.0,
+        "FoamVertexColor": 0.0,
+        "FresPower": 10.0,
+        "Mode": 0.0,
+        "_QueueControl": -1.0,
+        "_QueueOffset": 0.0,
+        "UseFoamTexture": 1.0,
+        "isPool": 0.0,
+        "Deep Water": {
+          "r": 0.07843136787414551,
+          "g": 0.7156550288200378,
+          "b": 1.0,
+          "a": 0.6470587849617004
+        },
+        "Foam Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "Shallow Water": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 0.9130989909172058,
+          "a": 0.6588234901428223
+        },
+        "RippleColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "FormTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "FresColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "GlobalSpeed": {
+          "r": 1.4900000095367432,
+          "g": 5.570000171661377,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "WaveTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "rippleTiling": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "bound_textures": {}
+    }
+  },
+  "textures": {
+    "1258409655283026799": {
+      "name": "EnvCampsite_Detail_WaterFall_[Mask]",
+      "path": "res://assets/environment_recovered/water/texture_1258409655283026799.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "a09e722e2afee3de063d57510897a09a6f74e140fb4c65585ef0ceaae554a40a"
+    }
+  },
+  "shader": {
+    "name": "Shader Graphs/Simple_Water",
+    "properties": [
+      {
+        "m_Name": "Vector1_93DCFAA9",
+        "m_Description": "Water Depth",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 5.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 50.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_GlobalSpeed",
+        "m_Description": "GlobalSpeed",
+        "m_Attributes": [],
+        "m_Type": 1,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.4900000095367432,
+        "m_DefValue[1]": 5.570000171661377,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Color_E0824245",
+        "m_Description": "Shallow Water",
+        "m_Attributes": [],
+        "m_Type": 0,
+        "m_Flags": 16,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 0.9130989909172058,
+        "m_DefValue[3]": 0.6588234901428223,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Color_A271762B",
+        "m_Description": "Deep Water",
+        "m_Attributes": [],
+        "m_Type": 0,
+        "m_Flags": 16,
+        "m_DefValue[0]": 0.07843136787414551,
+        "m_DefValue[1]": 0.7156550288200378,
+        "m_DefValue[2]": 1.0,
+        "m_DefValue[3]": 0.6470587849617004,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Color_AFFD055F",
+        "m_Description": "Foam Color",
+        "m_Attributes": [],
+        "m_Type": 0,
+        "m_Flags": 16,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 1.0,
+        "m_DefValue[3]": 1.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Color_b6745e534bad48b7b4cbd4c7da724615",
+        "m_Description": "RippleColor",
+        "m_Attributes": [],
+        "m_Type": 0,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 1.0,
+        "m_DefValue[3]": 1.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_FresPower",
+        "m_Description": "FresPower",
+        "m_Attributes": [],
+        "m_Type": 2,
+        "m_Flags": 0,
+        "m_DefValue[0]": 10.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_FresColor",
+        "m_Description": "FresColor",
+        "m_Attributes": [],
+        "m_Type": 0,
+        "m_Flags": 16,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 1.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_isPool",
+        "m_Description": "isPool",
+        "m_Attributes": [
+          "ToggleUI"
+        ],
+        "m_Type": 2,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_MODE",
+        "m_Description": "Mode",
+        "m_Attributes": [
+          "KeywordEnum(river, pool)"
+        ],
+        "m_Type": 2,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_Alpha",
+        "m_Description": "Alpha",
+        "m_Attributes": [],
+        "m_Type": 2,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_3f3dc3bb8bcd4bf1842d80e898f53bc4",
+        "m_Description": "RippleSlimness",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 20.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 50.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_rippleTiling",
+        "m_Description": "rippleTiling",
+        "m_Attributes": [],
+        "m_Type": 1,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_4830f1fa588b45d2819e15a4b69ec032",
+        "m_Description": "RippleDensity",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 2.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 100.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_6bf863ff78f047bdb614bf9990bda5dc",
+        "m_Description": "RippleSpeed",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 3.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 100.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_1",
+        "m_Description": "RippleMoveSpeed",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 10.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_972e1747dcad4452851abeb6ba9d9d47",
+        "m_Description": "RippleAlpha",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 10.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_USEFOAMTEXTURE",
+        "m_Description": "UseFoamTexture",
+        "m_Attributes": [
+          "Toggle(_USEFOAMTEXTURE)"
+        ],
+        "m_Type": 2,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_FoamTexture",
+        "m_Description": "FoamTexture",
+        "m_Attributes": [],
+        "m_Type": 4,
+        "m_Flags": 4,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "black",
+          "m_TexDim": 2
+        }
+      },
+      {
+        "m_Name": "_FoamTextureStrenth",
+        "m_Description": "FoamTextureStrenth",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": -3.0,
+        "m_DefValue[2]": 3.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_FormTiling",
+        "m_Description": "FormTiling",
+        "m_Attributes": [],
+        "m_Type": 1,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_FoamVertexColor",
+        "m_Description": "FoamVertexColor",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": -1.0,
+        "m_DefValue[2]": 1.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_C5543ECF",
+        "m_Description": "Foam Cutoff",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 5.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 5.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_E23798DE",
+        "m_Description": "Foam Speed",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.009999999776482582,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 2.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_53B9698E",
+        "m_Description": "Foam Amount",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 4.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 30.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_7da725783e8a4c839247558169c9111a",
+        "m_Description": "WaveSpeed",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.20000000298023224,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 20.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_WaveTiling",
+        "m_Description": "WaveTiling",
+        "m_Attributes": [],
+        "m_Type": 1,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 1.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_8556eac2acc249edb98f5bbb2a4807bc",
+        "m_Description": "WaveIntensity",
+        "m_Attributes": [],
+        "m_Type": 2,
+        "m_Flags": 0,
+        "m_DefValue[0]": 1.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_c1464b810f4e4d7c98dcf0d5534e8cfb",
+        "m_Description": "RefractionStrength",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.6000000238418579,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 5.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_3519f9570c104bd68e5a8af33d62bf8d",
+        "m_Description": "RefractionScale",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.800000011920929,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 5.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "Vector1_667b757cacad456b914a6435f3b21f79",
+        "m_Description": "RefractionSpeed",
+        "m_Attributes": [],
+        "m_Type": 3,
+        "m_Flags": 0,
+        "m_DefValue[0]": 0.029999999329447746,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 5.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_QueueOffset",
+        "m_Description": "_QueueOffset",
+        "m_Attributes": [],
+        "m_Type": 2,
+        "m_Flags": 1,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "_QueueControl",
+        "m_Description": "_QueueControl",
+        "m_Attributes": [],
+        "m_Type": 2,
+        "m_Flags": 1,
+        "m_DefValue[0]": -1.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 1
+        }
+      },
+      {
+        "m_Name": "unity_Lightmaps",
+        "m_Description": "unity_Lightmaps",
+        "m_Attributes": [],
+        "m_Type": 4,
+        "m_Flags": 5,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 5
+        }
+      },
+      {
+        "m_Name": "unity_LightmapsInd",
+        "m_Description": "unity_LightmapsInd",
+        "m_Attributes": [],
+        "m_Type": 4,
+        "m_Flags": 5,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 5
+        }
+      },
+      {
+        "m_Name": "unity_ShadowMasks",
+        "m_Description": "unity_ShadowMasks",
+        "m_Attributes": [],
+        "m_Type": 4,
+        "m_Flags": 5,
+        "m_DefValue[0]": 0.0,
+        "m_DefValue[1]": 0.0,
+        "m_DefValue[2]": 0.0,
+        "m_DefValue[3]": 0.0,
+        "m_DefTexture": {
+          "m_DefaultName": "",
+          "m_TexDim": 5
+        }
+      }
+    ],
+    "render_states": [
+      {
+        "tags": {
+          "tags": [
+            [
+              "DisableBatching",
+              "False"
+            ],
+            [
+              "QUEUE",
+              "Transparent"
+            ],
+            [
+              "RenderPipeline",
+              "UniversalPipeline"
+            ],
+            [
+              "RenderType",
+              "Transparent"
+            ],
+            [
+              "ShaderGraphShader",
+              "true"
+            ],
+            [
+              "ShaderGraphTargetId",
+              "UniversalUnlitSubTarget"
+            ],
+            [
+              "UniversalMaterialType",
+              "Unlit"
+            ]
+          ]
+        },
+        "passes": [
+          {
+            "m_Name": "Universal Forward",
+            "rtBlend0": {
+              "srcBlend": {
+                "val": 5.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 10.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 10.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend1": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend2": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend3": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend4": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend5": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend6": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend7": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtSeparateBlend": false,
+            "zClip": {
+              "val": 1.0,
+              "name": "<noninit>"
+            },
+            "zTest": {
+              "val": 4.0,
+              "name": "<noninit>"
+            },
+            "zWrite": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "culling": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "conservative": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetFactor": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetUnits": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "alphaToMask": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "stencilOp": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpFront": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpBack": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilReadMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilWriteMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilRef": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "fogStart": {
+              "val": 0.0,
+              "name": "unity_FogStart"
+            },
+            "fogEnd": {
+              "val": 0.0,
+              "name": "unity_FogEnd"
+            },
+            "fogDensity": {
+              "val": 0.0,
+              "name": "unity_FogDensity"
+            },
+            "fogColor": {
+              "x": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "y": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "z": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "w": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "name": "unity_FogColor"
+            },
+            "fogMode": -1,
+            "gpuProgramID": 55283,
+            "m_Tags": {
+              "tags": [
+                [
+                  "DisableBatching",
+                  "False"
+                ],
+                [
+                  "QUEUE",
+                  "Transparent"
+                ],
+                [
+                  "RenderPipeline",
+                  "UniversalPipeline"
+                ],
+                [
+                  "RenderType",
+                  "Transparent"
+                ],
+                [
+                  "ShaderGraphShader",
+                  "true"
+                ],
+                [
+                  "ShaderGraphTargetId",
+                  "UniversalUnlitSubTarget"
+                ],
+                [
+                  "UniversalMaterialType",
+                  "Unlit"
+                ]
+              ]
+            },
+            "m_LOD": 0,
+            "lighting": false
+          },
+          {
+            "m_Name": "DepthNormalsOnly",
+            "rtBlend0": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend1": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend2": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend3": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend4": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend5": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend6": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend7": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtSeparateBlend": false,
+            "zClip": {
+              "val": 1.0,
+              "name": "<noninit>"
+            },
+            "zTest": {
+              "val": 4.0,
+              "name": "<noninit>"
+            },
+            "zWrite": {
+              "val": 1.0,
+              "name": "<noninit>"
+            },
+            "culling": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "conservative": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetFactor": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetUnits": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "alphaToMask": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "stencilOp": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpFront": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpBack": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilReadMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilWriteMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilRef": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "fogStart": {
+              "val": 0.0,
+              "name": "unity_FogStart"
+            },
+            "fogEnd": {
+              "val": 0.0,
+              "name": "unity_FogEnd"
+            },
+            "fogDensity": {
+              "val": 0.0,
+              "name": "unity_FogDensity"
+            },
+            "fogColor": {
+              "x": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "y": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "z": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "w": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "name": "unity_FogColor"
+            },
+            "fogMode": -1,
+            "gpuProgramID": 94778,
+            "m_Tags": {
+              "tags": [
+                [
+                  "DisableBatching",
+                  "False"
+                ],
+                [
+                  "LIGHTMODE",
+                  "DepthNormalsOnly"
+                ],
+                [
+                  "QUEUE",
+                  "Transparent"
+                ],
+                [
+                  "RenderPipeline",
+                  "UniversalPipeline"
+                ],
+                [
+                  "RenderType",
+                  "Transparent"
+                ],
+                [
+                  "ShaderGraphShader",
+                  "true"
+                ],
+                [
+                  "ShaderGraphTargetId",
+                  "UniversalUnlitSubTarget"
+                ],
+                [
+                  "UniversalMaterialType",
+                  "Unlit"
+                ]
+              ]
+            },
+            "m_LOD": 0,
+            "lighting": false
+          },
+          {
+            "m_Name": "ShadowCaster",
+            "rtBlend0": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 0.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend1": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend2": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend3": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend4": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend5": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend6": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend7": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtSeparateBlend": false,
+            "zClip": {
+              "val": 1.0,
+              "name": "<noninit>"
+            },
+            "zTest": {
+              "val": 4.0,
+              "name": "<noninit>"
+            },
+            "zWrite": {
+              "val": 1.0,
+              "name": "<noninit>"
+            },
+            "culling": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "conservative": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetFactor": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetUnits": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "alphaToMask": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "stencilOp": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpFront": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpBack": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilReadMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilWriteMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilRef": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "fogStart": {
+              "val": 0.0,
+              "name": "unity_FogStart"
+            },
+            "fogEnd": {
+              "val": 0.0,
+              "name": "unity_FogEnd"
+            },
+            "fogDensity": {
+              "val": 0.0,
+              "name": "unity_FogDensity"
+            },
+            "fogColor": {
+              "x": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "y": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "z": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "w": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "name": "unity_FogColor"
+            },
+            "fogMode": -1,
+            "gpuProgramID": 146148,
+            "m_Tags": {
+              "tags": [
+                [
+                  "DisableBatching",
+                  "False"
+                ],
+                [
+                  "LIGHTMODE",
+                  "SHADOWCASTER"
+                ],
+                [
+                  "QUEUE",
+                  "Transparent"
+                ],
+                [
+                  "RenderPipeline",
+                  "UniversalPipeline"
+                ],
+                [
+                  "RenderType",
+                  "Transparent"
+                ],
+                [
+                  "ShaderGraphShader",
+                  "true"
+                ],
+                [
+                  "ShaderGraphTargetId",
+                  "UniversalUnlitSubTarget"
+                ],
+                [
+                  "UniversalMaterialType",
+                  "Unlit"
+                ]
+              ]
+            },
+            "m_LOD": 0,
+            "lighting": false
+          },
+          {
+            "m_Name": "GBuffer",
+            "rtBlend0": {
+              "srcBlend": {
+                "val": 5.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 10.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 10.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend1": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend2": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend3": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend4": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend5": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend6": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtBlend7": {
+              "srcBlend": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlend": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "srcBlendAlpha": {
+                "val": 1.0,
+                "name": "<noninit>"
+              },
+              "destBlendAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOp": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "blendOpAlpha": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "colMask": {
+                "val": 15.0,
+                "name": "<noninit>"
+              }
+            },
+            "rtSeparateBlend": false,
+            "zClip": {
+              "val": 1.0,
+              "name": "<noninit>"
+            },
+            "zTest": {
+              "val": 4.0,
+              "name": "<noninit>"
+            },
+            "zWrite": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "culling": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "conservative": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetFactor": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "offsetUnits": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "alphaToMask": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "stencilOp": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpFront": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilOpBack": {
+              "pass": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "fail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "zFail": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "comp": {
+                "val": 8.0,
+                "name": "<noninit>"
+              }
+            },
+            "stencilReadMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilWriteMask": {
+              "val": 255.0,
+              "name": "<noninit>"
+            },
+            "stencilRef": {
+              "val": 0.0,
+              "name": "<noninit>"
+            },
+            "fogStart": {
+              "val": 0.0,
+              "name": "unity_FogStart"
+            },
+            "fogEnd": {
+              "val": 0.0,
+              "name": "unity_FogEnd"
+            },
+            "fogDensity": {
+              "val": 0.0,
+              "name": "unity_FogDensity"
+            },
+            "fogColor": {
+              "x": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "y": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "z": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "w": {
+                "val": 0.0,
+                "name": "<noninit>"
+              },
+              "name": "unity_FogColor"
+            },
+            "fogMode": -1,
+            "gpuProgramID": 242343,
+            "m_Tags": {
+              "tags": [
+                [
+                  "DisableBatching",
+                  "False"
+                ],
+                [
+                  "LIGHTMODE",
+                  "UniversalGBuffer"
+                ],
+                [
+                  "QUEUE",
+                  "Transparent"
+                ],
+                [
+                  "RenderPipeline",
+                  "UniversalPipeline"
+                ],
+                [
+                  "RenderType",
+                  "Transparent"
+                ],
+                [
+                  "ShaderGraphShader",
+                  "true"
+                ],
+                [
+                  "ShaderGraphTargetId",
+                  "UniversalUnlitSubTarget"
+                ],
+                [
+                  "UniversalMaterialType",
+                  "Unlit"
+                ]
+              ]
+            },
+            "m_LOD": 0,
+            "lighting": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundles": [
+    {
+      "member": "assets/yoo/DefaultPackage/0b2f3bd3a74fa0db64005df35d45b576.bundle",
+      "sha256": "24f6eae524a61fe1456a6dcfdd4c2796e50feb57a36f2c77be6a470e1a51e887"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/01d05fe4e913bf05e1f641ca64d58c8e.bundle",
+      "sha256": "41547ef3f40177428efa9896c6bc6df0062b1224ebc2eeabc8939a233c4901d9"
+    }
+  ],
+  "method": "Static APK serialized material and shader property parsing. Texture decoding only.",
+  "limitations": [
+    "Property descriptions recovered from shader metadata; full compiled shading formula not recovered.",
+    "Null river foam sampler uses shader default black. Runtime depth/color buffers are not packaged textures."
+  ]
+}

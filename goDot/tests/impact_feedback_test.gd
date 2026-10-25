@@ -274,7 +274,7 @@ func _run() -> void:
 	immune.combat.busy = 0
 	immune.position = gated.position + Vector3.BACK * 0.2 - Vector3.UP * 0.75
 	world._tick_projectiles(0.02)
-	check(gated.hits.has(immune.combat.actor_key) and received.size() == contacts_before + 1, "Projectile can contact again after action protection ends")
+	check(world.projectiles.is_empty() and received.size() == contacts_before + 1 and immune.combat.health < immune.combat.max_health, "Projectile can contact again after action protection ends and is recycled")
 	world.free()
 	var coverage: Array = []
 	for character in range(1, 8):

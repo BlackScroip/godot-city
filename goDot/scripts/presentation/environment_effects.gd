@@ -3,7 +3,7 @@ extends Node3D
 const AUTHORED = preload("res://scripts/presentation/authored_effect.gd")
 const WATER = preload("res://scripts/presentation/recovered_environment.gd")
 const CATALOG = "res://assets/environment_effects/catalog.json"
-const CAMP_HANDLED = ["24102301_fx_env_maincityprotal", "24111405_fx_env_campfire", "23042001_fx_env_forestleafatmosphere", "23051502_fx_env_firefly", "25050801_fx_env_steam", "24061801_fx_env_waterfall"]
+const CAMP_HANDLED = ["24111405_fx_env_campfire", "23042001_fx_env_forestleafatmosphere", "23051502_fx_env_firefly", "25050801_fx_env_steam", "24061801_fx_env_waterfall"]
 var bindings: Array[Dictionary] = []
 var effects: Dictionary = {}
 var texture_cache: Dictionary = {}
@@ -47,6 +47,15 @@ func resolve_address(node_name: String) -> String:
 
 func _on_effect_requested(context: Dictionary) -> void:
 	trigger_at(str(context.get("address", "")), context.get("position", Vector3.ZERO))
+
+func cache_textures(definition: Dictionary) -> void:
+	for layer in definition.get("layers", []):
+		for material in layer.get("materials", []):
+			var path := str(material.get("texture", ""))
+			if path.is_empty() or texture_cache.has(path): continue
+			if ResourceLoader.exists(path):
+				var texture = load(path)
+				if texture is Texture2D: texture_cache[path] = texture
 
 func register_anchor(anchor: Node3D, address: String, autoplay := true) -> Dictionary:
 	if not effects.has(address): return {}
@@ -139,6 +148,7 @@ func _process(delta: float) -> void:
 			var visual = AUTHORED.new()
 			visual.name = "RecoveredEnvironmentEffect"
 			entry.anchor.add_child(visual)
+			cache_textures(entry.definition)
 			visual.configure(entry.definition, _low_quality, texture_cache)
 			entry.effect = visual
 		if active_particle_count + entry.effect.particle_count > budget:

@@ -29,6 +29,21 @@ func _run() -> void:
 	await process_frame
 	var fx = game.world.environment_root.get_node("CampEffects")
 	check(fx.bindings.get("portal", 0) > 0, "Summoning platform has an active effect")
+	check(fx.portal_surface_count == 5, "Only the five source portal mesh materials are restored")
+	var source_materials: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment_effects/camp_portal_materials.json")).materials
+	for material in fx.circles:
+		var definition: Dictionary = source_materials[material.resource_name]
+		var tint: Dictionary = definition.source_colors._Color
+		check(material.get_shader_parameter("source_tint") == Color(tint.r, tint.g, tint.b, tint.a), "Portal material retains exact APK tint " + material.resource_name)
+		check(material.get_shader_parameter("use_shape2") == ("SHAPE2_ON" in definition.keywords), "Portal material retains original second shape switch")
+		var main_map: Dictionary = definition.textures.filter(func(slot): return slot.property == "_MainTex")[0]
+		check(material.get_shader_parameter("shape1_st") == Vector4(main_map.scale.x, main_map.scale.y, main_map.offset.x, main_map.offset.y), "Portal material retains original UV scale and offset")
+		check(material.get_shader_parameter("main_texture") != null, "Portal material resolves original raster texture")
+	var environment_fx = game.world.environment_root.get_node("EnvironmentEffects")
+	var portal_bindings: Array = environment_fx.bindings.filter(func(entry): return entry.address == "24102301_fx_env_maincityprotal")
+	check(portal_bindings.size() == int(fx.bindings.get("portal", 0)), "Every camp portal uses exactly one APK particle binding")
+	check(fx.find_children("RunicCircle", "MeshInstance3D", true, false).is_empty() and fx.find_children("SpiralFlow", "MeshInstance3D", true, false).is_empty(), "Portal adds no invented ring or cylinder geometry")
+	_check_portal_material_scope()
 	check(fx.bindings.get("campfire", 0) > 0, "Campfires have flame, ember and smoke emitters")
 	check(fx.bindings.get("steam", 0) == 2, "Inactive scenery does not emit steam")
 	print("CAMP EFFECT BINDINGS ", fx.bindings, " spawn=", game.world.player.position)
@@ -105,3 +120,20 @@ func capture(label: String) -> Image:
 	image.save_png(path)
 	captures.append(path)
 	return image
+
+func _check_portal_material_scope() -> void:
+	var scope := Node3D.new()
+	root.add_child(scope)
+	var anchor := Node3D.new()
+	scope.add_child(anchor)
+	var neighbor := MeshInstance3D.new()
+	neighbor.mesh = BoxMesh.new()
+	var original := StandardMaterial3D.new()
+	neighbor.mesh.surface_set_material(0, original)
+	scope.add_child(neighbor)
+	var probe = preload("res://scripts/presentation/camp_effects.gd").new()
+	scope.add_child(probe)
+	probe._portal(anchor)
+	check(neighbor.get_active_material(0) == original and neighbor.get_surface_override_material(0) == null, "Portal configuration never changes neighboring scene materials")
+	check(probe.emitters.is_empty() and probe.lights.is_empty(), "Portal configuration does not add invented particles or local lights")
+	scope.queue_free()

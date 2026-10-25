@@ -20,6 +20,8 @@ var stack: VBoxContainer
 var backdrop: TextureRect
 var route_view: DungeonRoutePage
 var resource_bar: HBoxContainer
+var outcome_view: Control
+var page_context: Dictionary = {}
 
 func _ready() -> void:
 	add_theme_stylebox_override("panel", DungeonStyle.panel())
@@ -75,6 +77,7 @@ func _ready() -> void:
 	resized.connect(_adapt)
 
 func display(title: String, rows: Array, layout := "list", context: Dictionary = {}) -> void:
+	page_context = context
 	_clear(resource_bar)
 	for resource in context.get("resources", []):
 		var line = HBoxContainer.new()
@@ -88,6 +91,10 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	_choices.clear()
 	_clear(rows_host)
 	_clear(detail)
+	if is_instance_valid(outcome_view):
+		stack.remove_child(outcome_view)
+		outcome_view.queue_free()
+		outcome_view = null
 	if is_instance_valid(route_view):
 		stack.remove_child(route_view)
 		route_view.queue_free()
@@ -96,9 +103,18 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.remove_child(special)
 		special.queue_free()
 		special = null
-	stack.get_child(0).visible = layout != "route"
-	stack.get_child(1).visible = layout != "route"
-	stack.add_theme_constant_override("separation", 0 if layout == "route" else 16)
+	stack.get_child(0).visible = layout not in ["route", "outcome"]
+	stack.get_child(1).visible = layout not in ["route", "outcome"]
+	stack.add_theme_constant_override("separation", 0 if layout in ["route", "outcome"] else 16)
+	if layout == "outcome":
+		backdrop.hide()
+		body.hide()
+		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+		outcome_view = preload("res://scripts/presentation/run_outcome.gd").new()
+		stack.add_child(outcome_view)
+		outcome_view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+		outcome_view.configure(context)
+		return
 	if layout == "route":
 		backdrop.hide()
 		body.hide()
@@ -125,6 +141,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.add_child(special)
 		special.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
 		special.configure(self, rows, layout)
+		_adapt.call_deferred()
 		return
 	detail_scroll.visible = layout in ["grid", "model"]
 	if rows.is_empty(): rows_host.add_child(DungeonStyle.label("暂无可用项目"))
@@ -223,6 +240,14 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 	if separator: item.add_child(HSeparator.new())
 
 func _adapt() -> void:
+	var compact = size.x < 1000
+	resource_bar.add_theme_constant_override("separation", 6 if compact else 12)
+	for line in resource_bar.get_children():
+		line.custom_minimum_size.x = 74 if compact else 130
+		for child in line.get_children():
+			if child is Label: child.add_theme_font_size_override("font_size", 17 if compact else 22)
+			if child is TextureRect: child.custom_minimum_size = Vector2(26, 26) if compact else Vector2(36, 36)
+	title_label.add_theme_font_size_override("font_size", 22 if compact else 28)
 	if is_instance_valid(grid): grid.columns = 2 if size.x < 1100 or _layout == "model" else 3
 	if detail_scroll.visible:
 		list_scroll.size_flags_stretch_ratio = 1.2 if size.x >= 1100 else 1.0

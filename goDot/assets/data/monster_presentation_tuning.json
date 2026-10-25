@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "enemies": {
+    "42002": {
+      "anchor_aliases": {
+        "Bip001 Head": "head"
+      },
+      "reason": "Source attack prompt names the high-model head; the selected APK low prefab contains the exact bone name head.",
+      "source_bundle": "assets/yoo/DefaultPackage/ad133acd2efcbf245564398d3552d726.bundle",
+      "source_bundle_sha256": "3f7f2ead9d1c9f729b10e99c9d6f49ef772c38c33e003eaebfed349d5b471f42",
+      "evidence_type": "APK low-prefab GameObject name observed; compatibility mapping is a reconstruction choice."
+    }
+  }
+}

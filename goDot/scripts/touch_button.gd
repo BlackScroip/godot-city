@@ -8,19 +8,24 @@ var cooldown := 0.0
 var cooldown_total := 1.0
 var unavailable := false
 var stock := -1
+var recharge_remaining := 0.0
+var recharge_total := 1.0
 var charging := false
 var charge_fraction := 0.0
 var queued := false
 var ready_full := false:
 	set(value):
+		if ready_full == value: return
 		ready_full = value
 		_sync_ready_effect()
 var readiness_suspended := false:
 	set(value):
+		if readiness_suspended == value: return
 		readiness_suspended = value
 		_sync_ready_effect()
 var low_effects := false:
 	set(value):
+		if low_effects == value: return
 		low_effects = value
 		if is_instance_valid(ready_orbit): ready_orbit.low_effects = value
 var ready_orbit: Node2D
@@ -68,6 +73,9 @@ func _draw() -> void:
 	if art: draw_texture_rect(art, Rect2(size * 0.12, size * 0.76), false, Color(1, 1, 1, 0.35 if unavailable else 1.0))
 	if charging: draw_arc(center, radius, -PI / 2, -PI / 2 + TAU * maxf(0.01, charge_fraction), 48, Color("a4edff"), 4, true)
 	if queued: draw_arc(center, radius, 0, TAU, 48, Color("ffdc78"), 3, true)
+	if recharge_remaining > 0:
+		var progress = 1.0 - clampf(recharge_remaining / maxf(0.001, recharge_total), 0, 1)
+		draw_arc(center, radius, -PI / 2, -PI / 2 + TAU * maxf(0.001, progress), 48, Color("a4edff"), 4, true)
 	if cooldown > 0:
 		var points = PackedVector2Array([center])
 		var angle = TAU * clampf(cooldown / cooldown_total, 0, 1)
@@ -76,7 +84,11 @@ func _draw() -> void:
 		var value = "%.1f" % cooldown
 		var font = get_theme_default_font()
 		draw_string(font, Vector2(center.x - font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x / 2, center.y + 8), value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
-	elif stock >= 0:
+	elif recharge_remaining > 0 and unavailable:
+		var value = "%.1f" % recharge_remaining
+		var font = get_theme_default_font()
+		draw_string(font, Vector2(center.x - font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x / 2, center.y + 8), value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
+	if stock >= 0:
 		draw_string(get_theme_default_font(), Vector2(size.x * 0.65, 23), str(stock), HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
 
 func _input(event: InputEvent) -> void:

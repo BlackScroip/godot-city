@@ -11,6 +11,8 @@ uniform float opacity = 0.9;
 uniform float foam_strength = 1.0;
 uniform bool waterfall = false;
 uniform bool world_uv = false;
+uniform bool original_unlit = false;
+uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
 uniform sampler2D foam_mask : filter_linear, repeat_enable;
 varying vec3 world_position;
 
@@ -38,10 +40,23 @@ void fragment() {
 		float mask = texture(foam_mask, UV - flow).r;
 		foam = max(foam, mask * smoothstep(0.35, 0.75, waves));
 	}
+	if (original_unlit && !waterfall) {
+		float depth = texture(depth_texture, SCREEN_UV).r;
+		vec4 behind = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
+		float thickness = max(-behind.z / behind.w + VERTEX.z, 0.0);
+		float edge = 1.0 - smoothstep(0.04, 0.5, thickness);
+		foam = max(foam * 0.24, edge * (0.4 + 0.5 * sin(thickness * 26.0 - elapsed * 2.0) * sin(thickness * 26.0 - elapsed * 2.0)));
+	}
 	vec3 water = mix(deep_color.rgb, shallow_color.rgb, waves * 0.75);
 	ALBEDO = mix(water, foam_color.rgb, clamp(foam * foam_strength * 0.65, 0.0, 0.8));
 	EMISSION = water * 0.12 + foam_color.rgb * foam * 0.08;
 	ROUGHNESS = 0.32;
 	SPECULAR = 0.35;
 	ALPHA = clamp(opacity + foam * 0.1, 0.0, 1.0);
+	if (original_unlit) {
+		// The shipped Simple_Water pass is unlit; grade its HDR colors for the night scene.
+		EMISSION = mix(water * vec3(0.32, 0.40, 0.42), min(foam_color.rgb * 0.34, vec3(1.0)), clamp(foam * foam_strength, 0.0, 1.0));
+		ALBEDO = vec3(0.0);
+		SPECULAR = 0.0;
+	}
 }

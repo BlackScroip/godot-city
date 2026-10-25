@@ -23,30 +23,36 @@ func _ready() -> void:
 	resized.connect(queue_redraw)
 
 func _draw() -> void:
-	var frame = Rect2(Vector2(5, 5), size - Vector2(10, 10))
-	var lit = available or portrait != null or visited
-	var fill = Color("e7d69c") if lit else Color(0.08, 0.065, 0.045, 0.91)
-	if chosen: fill = Color("fff0b3")
-	if chosen or (available and (is_hovered() or has_focus())):
-		for width in [14.0, 9.0, 5.0]:
-			draw_style_box(_frame(Color(1, 0.84, 0.37, 0.045), Color(1, 0.85, 0.39, 0.09), int(width)), frame.grow(width * 0.45))
-	draw_style_box(_frame(fill, GOLD, 2), frame)
-	draw_style_box(_frame(Color.TRANSPARENT, Color("927c50"), 1), frame.grow(-4))
-	draw_line(frame.position + Vector2(9, 3), Vector2(frame.end.x - 9, frame.position.y + 3), Color(1, 0.94, 0.7, 0.38), 1, true)
-	if portrait:
-		var side = minf(size.y - 12, size.x * 0.65)
-		draw_texture_rect(portrait, Rect2((size - Vector2.ONE * side) * 0.5, Vector2.ONE * side), false)
-	else:
-		var art = _artwork()
-		if art:
-			var side = size.y * 1.04
-			draw_texture_rect(art, Rect2((size - Vector2.ONE * side) * 0.5, Vector2.ONE * side), false)
-		_badges()
+	var radius = maxf(14, minf(size.x * 0.44, (size.y - 24) * 0.5))
+	var center = Vector2(size.x * 0.5, radius + 3)
+	var locked = bool(room.get("locked", false))
+	var unknown = bool(room.get("unknown", false))
+	var tint = Color("e64d36") if locked else GOLD
+	var diamond = PackedVector2Array([center + Vector2(0, -radius), center + Vector2(radius, 0), center + Vector2(0, radius), center + Vector2(-radius, 0)])
+	draw_colored_polygon(diamond, Color(0.08, 0.09, 0.06, 0.42))
+	diamond.append(diamond[0])
+	draw_polyline(diamond, tint if chosen else Color(tint, 0.38), 3 if chosen else 1.5, true)
+	if available and (is_hovered() or has_focus()): draw_polyline(diamond, Color("fff0b3"), 3, true)
+	var art = portrait if portrait else _artwork()
+	if unknown:
+		draw_string(get_theme_font("font"), center + Vector2(-radius * 0.32, radius * 0.42), "?", HORIZONTAL_ALIGNMENT_LEFT, -1, int(radius * 1.5), GOLD)
+	elif art:
+		var side = radius * 1.5
+		draw_texture_rect(art, Rect2(center - Vector2.ONE * side * 0.5, Vector2.ONE * side), false, Color("ed6752") if locked else Color.WHITE)
+	if locked:
+		draw_arc(center - Vector2(0, 4), 7, PI, TAU, 16, Color("f04730"), 3, true)
+		draw_rect(Rect2(center - Vector2(9, 4), Vector2(18, 16)), Color("e83c28"))
+		draw_circle(center + Vector2(0, 2), 2, Color("5e281e"))
+	var caption = "未知领域" if unknown else str(room.get("name", ""))
+	var font_size = 13 if size.y < 90 else 17
+	var baseline = minf(size.y - 2, radius * 2 + font_size + 5)
+	draw_string_outline(get_theme_font("font"), Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, 3, Color("17201b"))
+	draw_string(get_theme_font("font"), Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, Color("fff4d7"))
 	if visited and portrait == null:
-		draw_polyline(PackedVector2Array([Vector2(size.x - 29, 17), Vector2(size.x - 23, 23), Vector2(size.x - 12, 11)]), Color("527841"), 3, true)
+		draw_polyline(PackedVector2Array([center + Vector2(radius - 16, 0), center + Vector2(radius - 10, 6), center + Vector2(radius + 1, -6)]), Color("d7f29b"), 3, true)
 	if chosen:
 		var x = size.x * 0.5
-		draw_colored_polygon(PackedVector2Array([Vector2(x - 8, size.y + 12), Vector2(x, size.y + 21), Vector2(x + 8, size.y + 12), Vector2(x, size.y + 15)]), Color("ffe9a0"))
+		draw_colored_polygon(PackedVector2Array([Vector2(x - 6, 1), Vector2(x, 7), Vector2(x + 6, 1)]), Color("ffe9a0"))
 
 func _frame(fill: Color, border: Color, width: int) -> StyleBoxFlat:
 	var style = StyleBoxFlat.new()

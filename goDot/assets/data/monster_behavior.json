@@ -1,0 +1,678 @@
+{
+  "schema": 1,
+  "provenance": {
+    "evidence_type": "Static APK UnityFS TextAsset extraction; no APK execution.",
+    "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+    "manifest_member": "assets/yoo/DefaultPackage/DefaultPackage_2026-08-06-1233.bytes",
+    "manifest_sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71",
+    "bundle_name": "assets_[00002]resource_actionenginecfg_unit_monster.bundle",
+    "bundle_member": "assets/yoo/DefaultPackage/b3ca1f792d069643c67b0afe3f151019.bundle",
+    "bundle_sha256": "9f05991d2628a00f0ca3bff1670d9927670f702637a846a7a114b2e605bc4683",
+    "validation": "All 39 IDs match combat.enemies; action group spelling differs only in case for Chimera. Every nonempty FirstAct/BossAct exists in the imported action group, with source and imported names retained per entry."
+  },
+  "enemies": {
+    "11001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[11001]",
+        "path_id": "3992678691680375017",
+        "sha256": "68829a111840cfef9b4f7930d07ea0804ed49eb33220e8fe78e21aeee1762e50",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_kuangyamolang",
+        "imported_action_group": "ActGroup_kuangyamolang"
+      }
+    },
+    "11002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[11002]",
+        "path_id": "-1708545448816148426",
+        "sha256": "ef63d67d8e519a061d8eb3b934adaf86063987d34954551c9e8e5e1fa0dfd107",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_mofu",
+        "imported_action_group": "ActGroup_mofu"
+      }
+    },
+    "11003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[11003]",
+        "path_id": "-3405186993422701048",
+        "sha256": "e8b0ad497dacb99f6478c7c4aee0d3c39e55fddec5e7688297360e395096f1b8",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_mozhaowa",
+        "imported_action_group": "ActGroup_mozhaowa"
+      }
+    },
+    "11004": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[11004]",
+        "path_id": "-9173767934839712405",
+        "sha256": "ca106b3a7f012ba4e068f6850757275de4de4d4d5c1d15fc2e09ccd5946a0802",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_moguguai",
+        "imported_action_group": "ActGroup_moguguai"
+      }
+    },
+    "11005": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[11005]",
+        "path_id": "7639889789383161283",
+        "sha256": "93da42a3250a0bc3ba1ed4c2a91e87faa423b10afcf66d8f11395852cc5d761f",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_xiaoshanzhu",
+        "imported_action_group": "ActGroup_xiaoshanzhu"
+      }
+    },
+    "12001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[12001]",
+        "path_id": "2707251795236420094",
+        "sha256": "4aef473ee9382ddc621df99e0ac3d8839ae2d2212d71cdb6890f86a1bfd26839",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_shuixiyi",
+        "imported_action_group": "ActGroup_shuixiyi"
+      }
+    },
+    "12002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[12002]",
+        "path_id": "6861951371258682087",
+        "sha256": "6bc64e9d9e7aed3555356255d71e0410f0d15f0ca0e24a5dc112406fb78baa22",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_jumo",
+        "imported_action_group": "ActGroup_jumo"
+      }
+    },
+    "12003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[12003]",
+        "path_id": "-3492009507072673340",
+        "sha256": "89c2ef3d7529e0ba3e4cf3622632550735a35b7de2514b76b204ca9b48051b82",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_senlinyaohua",
+        "imported_action_group": "ActGroup_senlinyaohua"
+      }
+    },
+    "13001": {
+      "first_action": "born",
+      "boss_action": "bosspose",
+      "boss_action_time": 4.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[13001]",
+        "path_id": "3002398528097236978",
+        "sha256": "6dad80d288b99d8f54e60e79604d7a01a8a1f4f3b6d9972668192784028c8074",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_senlinlangwang",
+        "imported_action_group": "ActGroup_senlinlangwang"
+      }
+    },
+    "21001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[21001]",
+        "path_id": "946262501063405463",
+        "sha256": "d3094b42630da53b8933c7f1ec97ff98903c14a4fd3b8b5e7126e7554de1b9c8",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_xiyiren",
+        "imported_action_group": "ActGroup_xiyiren"
+      }
+    },
+    "21002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[21002]",
+        "path_id": "-5903676383518572770",
+        "sha256": "4598b54d5bf2d55b0fdad56a82906485276d4de8fe3c69609dd2d93991fa758d",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_xiyiren_gongshou",
+        "imported_action_group": "ActGroup_xiyiren_gongshou"
+      }
+    },
+    "21003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[21003]",
+        "path_id": "2050840927008480226",
+        "sha256": "585f26a5dfbb852bb3d26be469ea3c3d755b7911d5334335a4dac932c1f5f849",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_feishe",
+        "imported_action_group": "ActGroup_feishe"
+      }
+    },
+    "21004": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[21004]",
+        "path_id": "2376913307429011198",
+        "sha256": "1e9a28a3caf0f0fde14cd49771b98bcc2a20085fa891f0db665c4d31ce5ed75f",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_xianrenzhang",
+        "imported_action_group": "ActGroup_xianrenzhang"
+      }
+    },
+    "21005": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[21005]",
+        "path_id": "6357407213935334627",
+        "sha256": "8f308054a16a91c3356f27304eeb1e0a9ad78132b9d815e66b52dea0bb90e4d7",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_tubolong",
+        "imported_action_group": "ActGroup_tubolong"
+      }
+    },
+    "22001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[22001]",
+        "path_id": "3892804769616850524",
+        "sha256": "10b1c17ad3d309da22f12c850d21f241e8fca4ad8db4fc5bd25a1baf31b42a19",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_padijuchong",
+        "imported_action_group": "ActGroup_padijuchong"
+      }
+    },
+    "22002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[22002]",
+        "path_id": "7991437336209259414",
+        "sha256": "75ece3833985dd122ac08ab82cd0d0278807b7e28580c1fc1676bce290a5c77e",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_liushaguai",
+        "imported_action_group": "ActGroup_liushaguai"
+      }
+    },
+    "23001": {
+      "first_action": "born",
+      "boss_action": "bosspose",
+      "boss_action_time": 7.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[23001]",
+        "path_id": "-5539912486942797754",
+        "sha256": "810d003bcc01dd6ff6a6b5906c815de490a1d740d084b0085335dc10ce6fa66b",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_gelifenniaoshou",
+        "imported_action_group": "ActGroup_gelifenniaoshou"
+      }
+    },
+    "31001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[31001]",
+        "path_id": "-8357387026319145700",
+        "sha256": "597015024c68f82d15f1e81ad9333498910ad3175c0c31186aab05de01f01890",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_gujiagui",
+        "imported_action_group": "ActGroup_gujiagui"
+      }
+    },
+    "31002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[31002]",
+        "path_id": "-1300097789369564500",
+        "sha256": "99431e2f158d24a7eca973b628b05afb3f6dcf8434b47abc639e0ec25654f1fc",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_xiaoxueguai",
+        "imported_action_group": "ActGroup_xiaoxueguai"
+      }
+    },
+    "31003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[31003]",
+        "path_id": "-3205962108709881521",
+        "sha256": "939701b4fba8bc11ce87ceede0285367363510100c098d4e696ce39368e8a85e",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_haixianghuwei",
+        "imported_action_group": "ActGroup_haixianghuwei"
+      }
+    },
+    "31004": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[31004]",
+        "path_id": "-327724757554892044",
+        "sha256": "c58d1b1752d2db8f43e041d3bb8c1875ea341a15095386ab3aaba9fa688a7492",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_haixiangtoumaoshou",
+        "imported_action_group": "ActGroup_haixiangtoumaoshou"
+      }
+    },
+    "31005": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[31005]",
+        "path_id": "-3114712921628163691",
+        "sha256": "047f623bcfee064d537e8e3af72d87f4a198bcae60bb573527d194c9c9137228",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_bingjingguai",
+        "imported_action_group": "ActGroup_bingjingguai"
+      }
+    },
+    "32001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 3.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[32001]",
+        "path_id": "1769302982648492047",
+        "sha256": "2a0aff407c68fc719c69f46293f5768b5b403527516f3298d81eb0ce68077d24",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_tiankongfeilong",
+        "imported_action_group": "ActGroup_tiankongfeilong"
+      }
+    },
+    "32002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[32002]",
+        "path_id": "1193612311601108755",
+        "sha256": "f9cdb5b77c470bf902b3acf370fa062d249b6cf1ccbbc98bdae8134b6962af6b",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_juchifeiyao",
+        "imported_action_group": "ActGroup_juchifeiyao"
+      }
+    },
+    "33001": {
+      "first_action": "born",
+      "boss_action": "bosspose",
+      "boss_action_time": 4.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[33001]",
+        "path_id": "600280451360879608",
+        "sha256": "39da9bc8f2fd889790b292c8514234f482dd22a54f2bcaa921671b1da42e5341",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_jiaolu",
+        "imported_action_group": "ActGroup_jiaolu"
+      }
+    },
+    "41001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[41001]",
+        "path_id": "-842238993903510581",
+        "sha256": "cdc0d5caa8b3069c2d821e52b788f88fe6157f3d7708d461f971a1546a5f01dc",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_jingshijiachong",
+        "imported_action_group": "ActGroup_jingshijiachong"
+      }
+    },
+    "41002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[41002]",
+        "path_id": "-7439957432731565304",
+        "sha256": "8aa47256abf94a17af467bfd9023c6f6fae13aa18715bb44476fbdbc653453f6",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_dubaofeng",
+        "imported_action_group": "ActGroup_dubaofeng"
+      }
+    },
+    "41003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[41003]",
+        "path_id": "3756094754789931764",
+        "sha256": "24658df35dd64d42199d7b61e9b50aca4e702bb195ae41afed44cd6835013681",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_youlingfashi",
+        "imported_action_group": "ActGroup_youlingfashi"
+      }
+    },
+    "41004": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[41004]",
+        "path_id": "-5203393080363736156",
+        "sha256": "278518f1fd2be400164822b7853374f66e11d28a90124e1a5ab3374d61a08b51",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_juedishu",
+        "imported_action_group": "ActGroup_juedishu"
+      }
+    },
+    "42001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[42001]",
+        "path_id": "-2531711636097117020",
+        "sha256": "514d1a99520dbef67d233afde818f1dea668a9e74fee82ebb27b4ec5f87c11f6",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_zhadanchuanshanjia",
+        "imported_action_group": "ActGroup_zhadanchuanshanjia"
+      }
+    },
+    "42002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[42002]",
+        "path_id": "7596893884440505320",
+        "sha256": "85865151ac0714b9c63ffd50c1e49897678d6bf4e512126c1d66bfcd725570ba",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_jingshimoxie",
+        "imported_action_group": "ActGroup_jingshimoxie"
+      }
+    },
+    "43001": {
+      "first_action": "born",
+      "boss_action": "born",
+      "boss_action_time": 4.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[43001]",
+        "path_id": "-866798870027715822",
+        "sha256": "317f2a3d8edca40c8ceda3efb5b388f82aa184b23683f3aa1137ad60e1370c46",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_jushimoxiang",
+        "imported_action_group": "ActGroup_jushimoxiang"
+      }
+    },
+    "52001": {
+      "first_action": "born",
+      "boss_action": "born",
+      "boss_action_time": 4.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[52001]",
+        "path_id": "-2424320835284979225",
+        "sha256": "8b485b8add41f40ff214859ed95739c3209f0be4f1c39d7b8f9757bdefe8f85b",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_chimera",
+        "imported_action_group": "ActGroup_Chimera"
+      }
+    },
+    "52002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[52002]",
+        "path_id": "-7298172851515855317",
+        "sha256": "3e9a026dbc7a85b09c021baf6ff639d30fe1bfe45cc1374f1e5ec81a53460268",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_ShaYu",
+        "imported_action_group": "ActGroup_ShaYu"
+      }
+    },
+    "52003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 4.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[52003]",
+        "path_id": "-6014995905169570340",
+        "sha256": "f8de347cb665224fba51c3e2392d1e3bcc0f9c67cf1a7a425319c86a5fd6c996",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_SiShen",
+        "imported_action_group": "ActGroup_SiShen"
+      }
+    },
+    "53001": {
+      "first_action": "bosspose",
+      "boss_action": "bosspose",
+      "boss_action_time": 5.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[53001]",
+        "path_id": "448311137304752592",
+        "sha256": "5a31b8b6e1e45fd31436ab01236b8883a9c838cc5961f8b7acd0a1d56dc93719",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_feimolong",
+        "imported_action_group": "ActGroup_feimolong"
+      }
+    },
+    "90001": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[90001]",
+        "path_id": "-7481463539860299997",
+        "sha256": "d33bc2ad9900a67a1d992d11fd1aaeaa53ffac55b7a881b8edd8340c8b4d5961",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_ShiLaiMu",
+        "imported_action_group": "ActGroup_ShiLaiMu"
+      }
+    },
+    "90002": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[90002]",
+        "path_id": "-2798222094081244747",
+        "sha256": "fa281419c925ab6b159d7c5e3bd37eac301e7e81b11f18b89b0856befbb820d3",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_ShiLaiMu",
+        "imported_action_group": "ActGroup_ShiLaiMu"
+      }
+    },
+    "90003": {
+      "first_action": "born",
+      "boss_action": "",
+      "boss_action_time": 0.0,
+      "provenance": {
+        "asset": "MonsterActionCfg_[90003]",
+        "path_id": "712049641040517096",
+        "sha256": "a71b8ed32fa0c8b6039e620eb522d0f3525edea68a83ed8abd012659d797e438",
+        "fields": [
+          "FirstAct",
+          "BossAct",
+          "BossActTime"
+        ],
+        "source_action_group": "ActGroup_ShiLaiMu",
+        "imported_action_group": "ActGroup_ShiLaiMu"
+      }
+    }
+  }
+}

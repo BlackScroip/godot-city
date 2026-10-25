@@ -508,7 +508,7 @@ func cook_meal(id: int, level: int = 1) -> Dictionary:
 	return _done(Catalog.row_name(row), id)
 
 func begin_run(seed_value: int, character: int, health_value: float, difficulty: int = 0) -> Dictionary:
-	if profile.data.run.active or rank(profile.data.character_levels, character) == 0 or health_value <= 0: return _fail("无法开始冒险")
+	if profile.data.run.active or not profile.data.run.get("outcome", {}).is_empty() or rank(profile.data.character_levels, character) == 0 or health_value <= 0: return _fail("无法开始冒险")
 	profile.data.run = Profile.new_run(seed_value, character, health_value)
 	profile.data.run.active = true
 	profile.data.run.difficulty = difficulty
@@ -523,6 +523,7 @@ func begin_run(seed_value: int, character: int, health_value: float, difficulty:
 	return _done("冒险已开始")
 
 func record_kill(enemy_id: int, gold: int = 0) -> void:
+	if profile.data.run.active: _add(profile.data.run.counters, "run:kills", 1)
 	record("kill:" + str(enemy_id))
 	record("kills")
 	grant_material(101, gold)
@@ -565,6 +566,22 @@ func end_run(victory: bool) -> Dictionary:
 	profile.data.selected_meal = 0
 	profile.data.meal_rank = 0
 	return _done("冒险胜利" if victory else "返回营地")
+
+func settlement_experience(total_depth: int, region: int, kills: int) -> Dictionary:
+	var experience = maxi(0, total_depth - 1) * int(catalog.config.get("CharaExpGet_PerDepth", 50))
+	experience += maxi(0, region - 1) * int(catalog.config.get("CharaExpGet_PerLevel", 50))
+	experience += maxi(0, kills) * int(catalog.config.get("CharaExpGet_PerKillMonster", 0))
+	var effective = experience * experience_multiplier()
+	var divisor = maxi(1, int(catalog.config.get("CharaUpgradeItemProvideExp", 100)))
+	return {"experience": experience, "effective_experience": effective, "vouchers": 0 if effective < 50 else ceili(float(effective) / divisor)}
+
+func claim_settlement_experience() -> Dictionary:
+	var outcome: Dictionary = profile.data.run.get("outcome", {})
+	if outcome.is_empty() or profile.data.run.active or outcome.get("experience_claimed", false): return _fail("结算奖励已领取或尚未结算")
+	outcome["experience_claimed"] = true
+	var count = maxi(0, int(outcome.get("vouchers", 0)))
+	grant_material(501, count)
+	return _done("获得冒险凭证 × %d" % count, 501)
 
 func next_random(maximum: int) -> int:
 	if maximum <= 0: return 0
@@ -882,7 +899,7 @@ func loot_description(id: int) -> String:
 	var row = catalog.find("LootData", id)
 	return Catalog.description(catalog.find("AbilityItems", int(row.get("ability_item_id", id))))
 
-func _pool_candidates(pool_id: int, green_rate: float = 0) -> Array:
+func _pool_candidates(pool_id: int, green_rate: float = 0, rarity_weights: Dictionary = {}) -> Array:
 	var result = []
 	var pool = catalog.find("ItemPoolData", pool_id)
 	for sub_id in Catalog.ids(pool.get("sub_data_id_list", "")):
@@ -895,14 +912,17 @@ func _pool_candidates(pool_id: int, green_rate: float = 0) -> Array:
 		for i in ids.size():
 			if not can_add_loot(ids[i]): continue
 			var weight = float(weights[mini(i, weights.size() - 1)] if not weights.is_empty() else 1)
+			var loot = catalog.find("LootData", ids[i])
+			var rare = int(catalog.find("AbilityItems", int(loot.get("ability_item_id", ids[i]))).get("Rare", 0))
+			weight += float(rarity_weights.get(rare, 0))
 			if catalog.find("LootData", ids[i]).get("loot_type", "") == "生命宝石": weight *= maxf(0, 1 + green_rate / 1000.0)
 			result.append({"id": ids[i], "weight": maxi(0, int(weight * 1000))})
 	return result
 
-func roll_pool(pool_id: int, count: int, green_rate: float = 0) -> Array:
+func roll_pool(pool_id: int, count: int, green_rate: float = 0, excluded: Array = [], rarity_weights: Dictionary = {}) -> Array:
 	var result = []
 	if not profile.data.run.active or count < 1: return result
-	var candidates = _pool_candidates(pool_id, green_rate)
+	var candidates = _pool_candidates(pool_id, green_rate, rarity_weights).filter(func(entry): return not excluded.has(int(entry.id)))
 	while result.size() < mini(20, count) and not candidates.is_empty():
 		var total = candidates.reduce(func(value, entry): return value + int(entry.weight), 0)
 		if total <= 0: break
@@ -915,13 +935,26 @@ func roll_pool(pool_id: int, count: int, green_rate: float = 0) -> Array:
 				break
 	return result
 
+func monster_drops(enemy_id: int) -> Array:
+	if not profile.data.run.active: return []
+	var row = catalog.find("EnemyData", enemy_id)
+	return preload("res://scripts/domain/loot_rewards.gd").new(self).monster(str(row.get("enemy_rate", "")), int(profile.data.run.counters.get("run:total_depth", 0)), attributes())
+
+func treasure_drops(quality: String, treasure_id: int, first_node: bool) -> Array:
+	if not profile.data.run.active: return []
+	return preload("res://scripts/domain/loot_rewards.gd").new(self).treasure(quality, treasure_id, first_node, int(profile.data.run.region) == 1, int(profile.data.run.counters.get("run:total_depth", 0)), attributes())
+
 func queue_loot_reward(rarity: String, count: int) -> void:
-	var field = {"Curse": "AbilityItemLootPoolId_Curse", "OldDay": "AbilityItemLootPoolId_OldDay", "Reward": "AbilityItemLootPoolId_Reward", "Low": "LowRareAbilityItemLootPoolId"}.get(rarity, "DefaultAbilityItemLootPoolId")
-	var pool = int(catalog.config.get(field, 0))
+	var field = {"Curse": "AbilityItemLootPoolId_Curse", "OldDay": "AbilityItemLootPoolId_OldDay", "Reward": "AbilityItemLootPoolId_Reward", "Sprites": "AbilityItemLootPoolId_Sprites"}.get(rarity, "DefaultAbilityItemLootPoolId")
+	var weights: Dictionary = {"Low": {1: 50, 2: 50, 3: 50, 4: 0, 5: -1000}, "Middle": {1: -1000, 2: 50, 3: 50, 4: 50, 5: 0}, "High": {1: -1000, 2: -1000, 3: -5, 4: 50, 5: 200}}.get(rarity, {})
+	var fallback = "AbilityItemLootGuaranteedPoolId_" + ({"Low": "LowRare", "Middle": "MiddleRare", "High": "HighRare"}.get(rarity, rarity))
 	for i in mini(99, count):
-		var choices = roll_pool(pool, 3)
-		if choices.is_empty(): choices = roll_pool(int(catalog.config.get("AbilityItemLootGuaranteedPoolId_LowRare", 0)), 3)
-		profile.data.run.rewards.append({"key": "reward-" + str(profile.data.run.random_step) + "-" + str(profile.data.run.rewards.size()), "pool_id": pool, "choices": choices})
+		var pool = int(catalog.config.get(field, 0))
+		var choices = roll_pool(pool, 3, 0, [], weights)
+		if choices.is_empty():
+			pool = int(catalog.config.get(fallback, 0))
+			choices = roll_pool(pool, 3)
+		profile.data.run.rewards.append({"key": "reward-" + str(profile.data.run.random_step) + "-" + str(profile.data.run.rewards.size()), "pool_id": pool, "quality": rarity, "choices": choices})
 
 func choose_loot_reward(key: String, id: int) -> Dictionary:
 	for reward in profile.data.run.rewards:
@@ -1361,7 +1394,7 @@ func consume_route_shift() -> Dictionary:
 	return _done("已消耗 %d 点刻印圣典" % int(quote.cost))
 
 func revival_protection_seconds() -> float:
-	return maxf(2.0, float(attributes().get("RevivalGodTime", 2)))
+	return float(maxi(0, int(1 + float(attributes().get("RevivalGodTime", 0)))))
 
 func revive_player() -> Dictionary:
 	var run = profile.data.run
@@ -1369,13 +1402,16 @@ func revive_player() -> Dictionary:
 	if revival_count() < 1: return _fail("复苏宝石不足")
 	var previous = attributes()
 	_add(run.counters, "RevivalRemainCount", -1)
+	# Native restoration precedes CharaRevive; its modifiers affect later revivals.
+	var recovered = float(run.max_health) * maxf(0, 300 + float(previous.get("RevivalHpRatio", 0))) / 1000.0
+	run.health = clampf(recovered, 0, float(run.max_health))
 	effects.dispatch("CharaRevive")
 	var current = attributes()
 	var old_rate = maxf(0.001, 1 + float(previous.get("HpAddRate", 0)) / 1000.0)
 	var new_rate = maxf(0, 1 + float(current.get("HpAddRate", 0)) / 1000.0)
 	var basis = float(run.max_health) / old_rate - float(previous.get("BaseHp", 0)) - float(previous.get("HpAddFixed", 0))
 	run.max_health = maxf(1, round((basis + float(current.get("BaseHp", 0)) + float(current.get("HpAddFixed", 0))) * new_rate))
-	run.health = clampf(ceil(float(run.max_health) * maxf(0, 1 + float(current.get("RevivalHpRatio", 0)) / 1000.0)), 1, float(run.max_health))
+	run.health = clampf(float(run.health), 0, float(run.max_health))
 	_add(run.counters, "revivals:used", 1)
 	record("revivals")
 	return _done("已复苏", 12101)

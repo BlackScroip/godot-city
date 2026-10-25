@@ -1,0 +1,1805 @@
+
+{
+  "entries" : [
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 102,
+      "stage_multipliers" : [
+        56.48,
+        141.19,
+        352.98,
+        882.46,
+        2206.14
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 102,
+      "stage_multipliers" : [
+        5.46,
+        8.19,
+        12.28,
+        18.42,
+        27.63
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 102,
+      "stage_multipliers" : [
+        56.48,
+        169.43,
+        508.3,
+        1524.89,
+        4574.66
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 102,
+      "stage_multipliers" : [
+        5.46,
+        7.09,
+        9.22,
+        11.99,
+        15.59
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 102,
+      "stage_multipliers" : [
+        56.48,
+        197.67,
+        691.85,
+        2421.46,
+        8475.12
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 102,
+      "stage_multipliers" : [
+        5.46,
+        7.09,
+        9.22,
+        11.99,
+        15.59
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 103,
+      "stage_multipliers" : [
+        62.12,
+        155.31,
+        388.28,
+        970.7,
+        2426.76
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 104,
+      "stage_multipliers" : [
+        68.34,
+        170.84,
+        427.11,
+        1067.77,
+        2669.43
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 105,
+      "stage_multipliers" : [
+        75.17,
+        187.93,
+        469.82,
+        1174.55,
+        2936.38
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 106,
+      "stage_multipliers" : [
+        80.43,
+        201.08,
+        502.71,
+        1256.77,
+        3141.92
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 107,
+      "stage_multipliers" : [
+        86.06,
+        215.16,
+        537.9,
+        1344.74,
+        3361.86
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 108,
+      "stage_multipliers" : [
+        92.09,
+        230.22,
+        575.55,
+        1438.88,
+        3597.19
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 109,
+      "stage_multipliers" : [
+        98.53,
+        246.34,
+        615.84,
+        1539.6,
+        3848.99
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 103,
+      "stage_multipliers" : [
+        5.73,
+        8.59,
+        12.89,
+        19.34,
+        29.01
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 104,
+      "stage_multipliers" : [
+        6.02,
+        9.02,
+        13.54,
+        20.3,
+        30.46
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 105,
+      "stage_multipliers" : [
+        6.32,
+        9.48,
+        14.21,
+        21.32,
+        31.98
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 106,
+      "stage_multipliers" : [
+        6.63,
+        9.95,
+        14.92,
+        22.39,
+        33.58
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 107,
+      "stage_multipliers" : [
+        6.96,
+        10.45,
+        15.67,
+        23.51,
+        35.26
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 108,
+      "stage_multipliers" : [
+        7.31,
+        10.97,
+        16.45,
+        24.68,
+        37.02
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 109,
+      "stage_multipliers" : [
+        7.68,
+        11.52,
+        17.28,
+        25.91,
+        38.87
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 103,
+      "stage_multipliers" : [
+        62.12,
+        186.37,
+        559.12,
+        1677.37,
+        5032.12
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 104,
+      "stage_multipliers" : [
+        68.34,
+        205.01,
+        615.04,
+        1845.11,
+        5535.34
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 105,
+      "stage_multipliers" : [
+        75.17,
+        225.51,
+        676.54,
+        2029.62,
+        6088.87
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 106,
+      "stage_multipliers" : [
+        80.43,
+        241.3,
+        723.9,
+        2171.7,
+        6515.09
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 107,
+      "stage_multipliers" : [
+        86.06,
+        258.19,
+        774.57,
+        2323.72,
+        6971.15
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 108,
+      "stage_multipliers" : [
+        92.09,
+        276.26,
+        828.79,
+        2486.38,
+        7459.13
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 109,
+      "stage_multipliers" : [
+        98.53,
+        295.6,
+        886.81,
+        2660.42,
+        7981.27
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 103,
+      "stage_multipliers" : [
+        5.73,
+        7.45,
+        9.68,
+        12.59,
+        16.36
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 104,
+      "stage_multipliers" : [
+        6.02,
+        7.82,
+        10.17,
+        13.22,
+        17.18
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 105,
+      "stage_multipliers" : [
+        6.32,
+        8.21,
+        10.68,
+        13.88,
+        18.04
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 106,
+      "stage_multipliers" : [
+        6.63,
+        8.62,
+        11.21,
+        14.57,
+        18.94
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 107,
+      "stage_multipliers" : [
+        6.96,
+        9.05,
+        11.77,
+        15.3,
+        19.89
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 108,
+      "stage_multipliers" : [
+        7.31,
+        9.51,
+        12.36,
+        16.07,
+        20.89
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 109,
+      "stage_multipliers" : [
+        7.68,
+        9.98,
+        12.98,
+        16.87,
+        21.93
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 103,
+      "stage_multipliers" : [
+        62.12,
+        217.44,
+        761.03,
+        2663.61,
+        9322.63
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 104,
+      "stage_multipliers" : [
+        68.34,
+        239.18,
+        837.13,
+        2929.97,
+        10254.9
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 105,
+      "stage_multipliers" : [
+        75.17,
+        263.1,
+        920.85,
+        3222.97,
+        11280.38
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 106,
+      "stage_multipliers" : [
+        80.43,
+        281.52,
+        985.31,
+        3448.58,
+        12070.01
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 107,
+      "stage_multipliers" : [
+        86.06,
+        301.22,
+        1054.28,
+        3689.98,
+        12914.91
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 108,
+      "stage_multipliers" : [
+        92.09,
+        322.31,
+        1128.08,
+        3948.27,
+        13818.96
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 109,
+      "stage_multipliers" : [
+        98.53,
+        344.87,
+        1207.04,
+        4224.65,
+        14786.28
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 103,
+      "stage_multipliers" : [
+        5.73,
+        7.45,
+        9.68,
+        12.59,
+        16.36
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 104,
+      "stage_multipliers" : [
+        6.02,
+        7.82,
+        10.17,
+        13.22,
+        17.18
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 105,
+      "stage_multipliers" : [
+        6.32,
+        8.21,
+        10.68,
+        13.88,
+        18.04
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 106,
+      "stage_multipliers" : [
+        6.63,
+        8.62,
+        11.21,
+        14.57,
+        18.94
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 107,
+      "stage_multipliers" : [
+        6.96,
+        9.05,
+        11.77,
+        15.3,
+        19.89
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 108,
+      "stage_multipliers" : [
+        7.31,
+        9.51,
+        12.36,
+        16.07,
+        20.89
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 109,
+      "stage_multipliers" : [
+        7.68,
+        9.98,
+        12.98,
+        16.87,
+        21.93
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 1,
+      "stage_multipliers" : [
+        3.5,
+        7,
+        14,
+        28,
+        56
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 2,
+      "stage_multipliers" : [
+        6.12,
+        12.25,
+        24.5,
+        49,
+        98
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 3,
+      "stage_multipliers" : [
+        10.72,
+        21.44,
+        42.88,
+        85.75,
+        171.5
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 4,
+      "stage_multipliers" : [
+        18.76,
+        37.52,
+        75.03,
+        150.06,
+        300.12
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 5,
+      "stage_multipliers" : [
+        22.51,
+        45.02,
+        90.04,
+        180.07,
+        360.15
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 6,
+      "stage_multipliers" : [
+        27.01,
+        54.02,
+        108.04,
+        216.09,
+        432.18
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 7,
+      "stage_multipliers" : [
+        32.41,
+        64.83,
+        129.65,
+        259.31,
+        518.62
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 8,
+      "stage_multipliers" : [
+        38.9,
+        77.79,
+        155.58,
+        311.17,
+        622.34
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 9,
+      "stage_multipliers" : [
+        46.68,
+        93.35,
+        186.7,
+        373.4,
+        746.81
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 101,
+      "stage_multipliers" : [
+        51.34,
+        128.36,
+        320.89,
+        802.23,
+        2005.58
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 1,
+      "stage_multipliers" : [
+        1.12,
+        1.68,
+        2.52,
+        3.78,
+        5.67
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 2,
+      "stage_multipliers" : [
+        1.57,
+        2.35,
+        3.53,
+        5.29,
+        7.94
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 3,
+      "stage_multipliers" : [
+        2.2,
+        3.29,
+        4.94,
+        7.41,
+        11.11
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 4,
+      "stage_multipliers" : [
+        3.07,
+        4.61,
+        6.91,
+        10.37,
+        15.56
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 5,
+      "stage_multipliers" : [
+        3.38,
+        5.07,
+        7.61,
+        11.41,
+        17.11
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 6,
+      "stage_multipliers" : [
+        3.72,
+        5.58,
+        8.37,
+        12.55,
+        18.83
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 7,
+      "stage_multipliers" : [
+        4.09,
+        6.14,
+        9.2,
+        13.81,
+        20.71
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 8,
+      "stage_multipliers" : [
+        4.5,
+        6.75,
+        10.12,
+        15.19,
+        22.78
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 9,
+      "stage_multipliers" : [
+        4.95,
+        7.42,
+        11.14,
+        16.7,
+        25.06
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 101,
+      "stage_multipliers" : [
+        5.2,
+        7.8,
+        11.69,
+        17.54,
+        26.31
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 1,
+      "stage_multipliers" : [
+        3.5,
+        8.75,
+        21.88,
+        54.69,
+        136.72
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 2,
+      "stage_multipliers" : [
+        6.12,
+        15.31,
+        38.28,
+        95.7,
+        239.26
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 3,
+      "stage_multipliers" : [
+        10.72,
+        26.8,
+        66.99,
+        167.48,
+        418.7
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 4,
+      "stage_multipliers" : [
+        18.76,
+        46.89,
+        117.24,
+        293.09,
+        732.73
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 5,
+      "stage_multipliers" : [
+        22.51,
+        56.27,
+        140.68,
+        351.71,
+        879.27
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 6,
+      "stage_multipliers" : [
+        27.01,
+        67.53,
+        168.82,
+        422.05,
+        1055.13
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 7,
+      "stage_multipliers" : [
+        32.41,
+        81.03,
+        202.58,
+        506.46,
+        1266.15
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 8,
+      "stage_multipliers" : [
+        38.9,
+        97.24,
+        243.1,
+        607.75,
+        1519.38
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 9,
+      "stage_multipliers" : [
+        46.68,
+        116.69,
+        291.72,
+        729.3,
+        1823.26
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 101,
+      "stage_multipliers" : [
+        51.34,
+        154.03,
+        462.09,
+        1386.26,
+        4158.78
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 1,
+      "stage_multipliers" : [
+        1.12,
+        1.46,
+        1.89,
+        2.46,
+        3.2
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 2,
+      "stage_multipliers" : [
+        1.57,
+        2.04,
+        2.65,
+        3.44,
+        4.48
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 3,
+      "stage_multipliers" : [
+        2.2,
+        2.85,
+        3.71,
+        4.82,
+        6.27
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 4,
+      "stage_multipliers" : [
+        3.07,
+        4,
+        5.19,
+        6.75,
+        8.78
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 5,
+      "stage_multipliers" : [
+        3.38,
+        4.39,
+        5.71,
+        7.43,
+        9.66
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 6,
+      "stage_multipliers" : [
+        3.72,
+        4.83,
+        6.28,
+        8.17,
+        10.62
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 7,
+      "stage_multipliers" : [
+        4.09,
+        5.32,
+        6.91,
+        8.99,
+        11.68
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 8,
+      "stage_multipliers" : [
+        4.5,
+        5.85,
+        7.6,
+        9.89,
+        12.85
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 9,
+      "stage_multipliers" : [
+        4.95,
+        6.43,
+        8.36,
+        10.87,
+        14.14
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 101,
+      "stage_multipliers" : [
+        5.2,
+        6.76,
+        8.78,
+        11.42,
+        14.84
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 1,
+      "stage_multipliers" : [
+        3.5,
+        10.5,
+        31.5,
+        94.5,
+        283.5
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 2,
+      "stage_multipliers" : [
+        6.12,
+        18.38,
+        55.12,
+        165.38,
+        496.12
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 3,
+      "stage_multipliers" : [
+        10.72,
+        32.16,
+        96.47,
+        289.41,
+        868.22
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 4,
+      "stage_multipliers" : [
+        18.76,
+        56.27,
+        168.82,
+        506.46,
+        1519.38
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 5,
+      "stage_multipliers" : [
+        22.51,
+        67.53,
+        202.58,
+        607.75,
+        1823.26
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 6,
+      "stage_multipliers" : [
+        27.01,
+        81.03,
+        243.1,
+        729.3,
+        2187.91
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 7,
+      "stage_multipliers" : [
+        32.41,
+        97.24,
+        291.72,
+        875.16,
+        2625.49
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 8,
+      "stage_multipliers" : [
+        38.9,
+        116.69,
+        350.07,
+        1050.2,
+        3150.59
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 9,
+      "stage_multipliers" : [
+        46.68,
+        140.03,
+        420.08,
+        1260.24,
+        3780.71
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 101,
+      "stage_multipliers" : [
+        51.34,
+        179.7,
+        628.95,
+        2201.33,
+        7704.66
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 1,
+      "stage_multipliers" : [
+        1.12,
+        1.46,
+        1.89,
+        2.46,
+        3.2
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 2,
+      "stage_multipliers" : [
+        1.57,
+        2.04,
+        2.65,
+        3.44,
+        4.48
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 3,
+      "stage_multipliers" : [
+        2.2,
+        2.85,
+        3.71,
+        4.82,
+        6.27
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 4,
+      "stage_multipliers" : [
+        3.07,
+        4,
+        5.19,
+        6.75,
+        8.78
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 5,
+      "stage_multipliers" : [
+        3.38,
+        4.39,
+        5.71,
+        7.43,
+        9.66
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 6,
+      "stage_multipliers" : [
+        3.72,
+        4.83,
+        6.28,
+        8.17,
+        10.62
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 7,
+      "stage_multipliers" : [
+        4.09,
+        5.32,
+        6.91,
+        8.99,
+        11.68
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 8,
+      "stage_multipliers" : [
+        4.5,
+        5.85,
+        7.6,
+        9.89,
+        12.85
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 9,
+      "stage_multipliers" : [
+        4.95,
+        6.43,
+        8.36,
+        10.87,
+        14.14
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 101,
+      "stage_multipliers" : [
+        5.2,
+        6.76,
+        8.78,
+        11.42,
+        14.84
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 0,
+      "stage_multipliers" : [
+        2,
+        4,
+        8,
+        16,
+        32
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 0,
+      "stage_multipliers" : [
+        0.8,
+        1.2,
+        1.8,
+        2.7,
+        4.05
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 0,
+      "stage_multipliers" : [
+        2,
+        5,
+        12.5,
+        31.25,
+        78.12
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 0,
+      "stage_multipliers" : [
+        0.8,
+        1.04,
+        1.35,
+        1.76,
+        2.28
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 0,
+      "stage_multipliers" : [
+        2,
+        6,
+        18,
+        54,
+        162
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 0,
+      "stage_multipliers" : [
+        0.4,
+        1.04,
+        1.35,
+        1.76,
+        2.28
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 110,
+      "stage_multipliers" : [
+        105.43,
+        263.58,
+        658.95,
+        1647.37,
+        4118.42
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 110,
+      "stage_multipliers" : [
+        8.06,
+        12.09,
+        18.14,
+        27.21,
+        40.82
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 110,
+      "stage_multipliers" : [
+        105.43,
+        316.29,
+        948.88,
+        2846.65,
+        8539.96
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 110,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 110,
+      "stage_multipliers" : [
+        105.43,
+        369.01,
+        1291.54,
+        4520.38,
+        15821.32
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 110,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 111,
+      "stage_multipliers" : [
+        115.97,
+        316.30,
+        988.43,
+        3294.74,
+        8236.84
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 111,
+      "stage_multipliers" : [
+        8.06,
+        12.09,
+        18.14,
+        27.21,
+        40.82
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 111,
+      "stage_multipliers" : [
+        115.97,
+        379.55,
+        1423.32,
+        5693.30,
+        17079.92
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 111,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 111,
+      "stage_multipliers" : [
+        115.97,
+        442.81,
+        1937.31,
+        9040.76,
+        31642.64
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 111,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 112,
+      "stage_multipliers" : [
+        126.52,
+        369.01,
+        1317.90,
+        4118.43,
+        10296.05
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 112,
+      "stage_multipliers" : [
+        8.06,
+        12.09,
+        18.14,
+        27.21,
+        40.82
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 112,
+      "stage_multipliers" : [
+        126.52,
+        442.81,
+        1897.76,
+        7116.63,
+        21349.90
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 112,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 112,
+      "stage_multipliers" : [
+        126.52,
+        516.61,
+        2583.08,
+        11300.95,
+        39553.30
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 112,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 113,
+      "stage_multipliers" : [
+        137.06,
+        421.73,
+        1647.38,
+        4942.11,
+        12355.26
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 113,
+      "stage_multipliers" : [
+        8.06,
+        12.09,
+        18.14,
+        27.21,
+        40.82
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 113,
+      "stage_multipliers" : [
+        137.06,
+        506.06,
+        2372.20,
+        8539.95,
+        25619.88
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 113,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 113,
+      "stage_multipliers" : [
+        137.06,
+        590.42,
+        3228.85,
+        13561.14,
+        47463.96
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 113,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 114,
+      "stage_multipliers" : [
+        147.60,
+        474.44,
+        1976.85,
+        5765.80,
+        14414.47
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 114,
+      "stage_multipliers" : [
+        8.06,
+        12.09,
+        18.14,
+        27.21,
+        40.82
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 114,
+      "stage_multipliers" : [
+        147.60,
+        569.32,
+        2846.64,
+        9963.28,
+        29889.86
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 114,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 114,
+      "stage_multipliers" : [
+        147.60,
+        664.22,
+        3874.62,
+        15821.33,
+        55374.62
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 114,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "HP",
+      "difficulty" : 115,
+      "stage_multipliers" : [
+        158.15,
+        527.16,
+        2306.33,
+        6589.48,
+        16473.68
+      ]
+    },
+    {
+      "enemy_type" : "Normal",
+      "attr_type"  : "ATK",
+      "difficulty" : 115,
+      "stage_multipliers" : [
+        8.06,
+        12.09,
+        18.14,
+        27.21,
+        40.82
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "HP",
+      "difficulty" : 115,
+      "stage_multipliers" : [
+        158.15,
+        632.58,
+        3321.08,
+        11386.60,
+        34159.84
+      ]
+    },
+    {
+      "enemy_type" : "Elite",
+      "attr_type"  : "ATK",
+      "difficulty" : 115,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "HP",
+      "difficulty" : 115,
+      "stage_multipliers" : [
+        158.15,
+        738.02,
+        4520.39,
+        18081.52,
+        63285.28
+      ]
+    },
+    {
+      "enemy_type" : "Boss",
+      "attr_type"  : "ATK",
+      "difficulty" : 115,
+      "stage_multipliers" : [
+        8.06,
+        10.48,
+        13.63,
+        17.71,
+        23.03
+      ]
+    }
+  ]
+}

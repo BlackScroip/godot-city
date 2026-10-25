@@ -14,8 +14,7 @@ func _run() -> void:
 	canvas.add_child(game)
 	await process_frame
 	game._primary()
-	game._enter_node(int(game.campaign.choices()[0].node_id))
-	while game._loading: await process_frame
+	while game._loading or game._transitioning: await process_frame
 	game.hud.close_page()
 	var granted: Array = []
 	for id in [20210, 20211, 20220, 20230, 20260]:
@@ -33,8 +32,14 @@ func _run() -> void:
 	for y in range(0, capture.get_height(), 20):
 		for x in range(0, capture.get_width(), 20): colors[capture.get_pixel(x, y).to_html()] = true
 	var result := capture.save_png("res://reports/spirit-followers.png")
+	for frame in 12: game.world.spirit_followers.advance(1.0 / 60.0, game.world.player)
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var animated: Image = canvas.get_texture().get_image()
+	animated.save_png("res://reports/spirit-followers-animated.png")
+	var motion_visible := capture.get_data() != animated.get_data()
 	var count: int = game.world.spirit_followers.entries.size()
-	print(JSON.stringify({"granted": granted, "companions": count, "sample_colors": colors.size(), "saved": result == OK, "position": str(game.world.player.position)}))
+	print(JSON.stringify({"granted": granted, "companions": count, "sample_colors": colors.size(), "saved": result == OK, "motion_visible": motion_visible, "position": str(game.world.player.position)}))
 	game.queue_free()
 	await process_frame
-	quit(0 if count >= 2 and colors.size() > 50 and result == OK else 1)
+	quit(0 if count >= 2 and colors.size() > 50 and result == OK and motion_visible else 1)

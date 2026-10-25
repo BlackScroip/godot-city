@@ -57,6 +57,17 @@ func _run() -> void:
 	game.world.ground_loot.remove_altar("visual-test")
 	await process_frame
 	if is_instance_valid(entry.get("effect_anchor")): failures.append("Consumed altar retains effect anchor")
+	canvas.size = Vector2i(1600, 900)
+	game.systems.begin_run(9131, game.selected_character, 100, 0)
+	game.campaign.start_practice(1010101, 9131)
+	game._load_room()
+	game.world.set_physics_process(false)
+	game.hud.close_page()
+	for i in 50: await process_frame
+	var room_effects = game.world.environment_root.get_node("EnvironmentEffects")
+	if game.world._camp_camera: failures.append("Room capture remained in camp")
+	if room_effects.bindings.is_empty(): failures.append("Playable room has no environment particle bindings")
+	await capture("level-desktop")
 	var report := {"passed": failures.is_empty(), "failures": failures, "captures": captures}
 	FileAccess.open("res://reports/environment-effects-visual-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("ENVIRONMENT_EFFECTS_VISUAL ", JSON.stringify(report))

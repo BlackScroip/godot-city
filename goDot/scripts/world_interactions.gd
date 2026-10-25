@@ -9,12 +9,15 @@ signal message_requested(name: String, context: Dictionary)
 signal object_changed(marker_id: String, state: Dictionary)
 signal diagnostic_reported(context: Dictionary)
 signal effect_requested(context: Dictionary)
+signal player_trigger_entered(trigger_id: int, context: Dictionary)
 
 const RULES_PATH := "res://assets/environment_rules.json"
-const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_AbilityItemTreasureBox", "EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan", "EEUT_BillBoard", "EEUT_UIInteractable", "EEUT_Protal"]
+const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_AbilityItemTreasureBox", "EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan", "EEUT_BillBoard", "EEUT_UIInteractable", "EEUT_Protal", "EEUT_ProtectTarget"]
 const PASSIVE := ["EEUT_AreaInfoMarker", "EEUT_Door", "EEUT_CloseArea"]
 const PHASES := ["idle", "starting", "active", "ending", "finished", "destroyed"]
-const CLOSE_AREA_CLEAR_DISTANCE := 3.0
+const SPRITES_ALTAR := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
+const ALTAR_EGG := "sprite_abilityitemicon_14104"
+const ROOM_ACTIONS := {"EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent": "冒险事件", "EnvUnit_MonoData_BtnDisplayName_OldDayAltar": "旧日祭坛"}
 
 var diagnostics: Array[Dictionary] = []
 var scene := ""
@@ -67,6 +70,19 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 				"cycle": 0, "hits_once": {}, "hit_cooldowns": {}, "inside": false, "talk_delay": maxf(0, float(data.get("FirstTriggerDelayTime", 0)))}}
 		if is_instance_valid(item.visual): item.visible = item.visual.visible
 		else: _diagnose(id, "missing_visual", "Exported node identity is absent")
+		if str(marker.get("Type", "")) == "EEUT_CloseArea": item.state.enabled = false
+		if str(marker.get("Type", "")) == "EEUT_ProtectTarget": item.state.enabled = false
+		item["effect_states"] = {}
+		item["altar_eggs"] = []
+		if is_instance_valid(item.visual) and _is_sprites_altar(item):
+			for node in item.visual.find_children("*", "Node3D", true, false):
+				if str(node.name) == ALTAR_EGG or str(node.name).begins_with(ALTAR_EGG + "_u") or str(node.name).begins_with(ALTAR_EGG + "__u"):
+					item.altar_eggs.append({"node": node, "visible": node.visible})
+		if is_instance_valid(item.visual) and str(marker.get("Type", "")) == "EEUT_DoorController":
+			for node in item.visual.find_children("*", "Node3D", true, false):
+				for address in ["24040301_fx_env_switch_on", "24040301_fx_env_switch_off"]:
+					if str(node.name) == address or str(node.name).begins_with(address + "_u"):
+						item.effect_states[address] = node
 		var path := scene + "/" + "/".join(marker.get("Path", []))
 		for collider in services.get("colliders", []):
 			var collider_path := str(collider.get("path", ""))
@@ -108,7 +124,7 @@ func _validate_binding(item: Dictionary) -> void:
 		elif catalog == null or not catalog.has_method("find") or catalog.find("NPCData", npc_id).is_empty():
 			_diagnose(item.id, "missing_npc_config", npc_id)
 	elif kind == "EEUT_UIInteractable":
-		if not CAMP_ACTIONS.has(str(item.data.get("UIBtnName", ""))): _diagnose(item.id, "missing_message_binding", str(item.data.get("UIBtnName", "")))
+		if not _is_sprites_altar(item) and not CAMP_ACTIONS.has(str(item.data.get("UIBtnName", ""))) and not ROOM_ACTIONS.has(str(item.data.get("UIBtnName", ""))): _diagnose(item.id, "missing_message_binding", str(item.data.get("UIBtnName", "")))
 	elif kind not in INTERACTIVE and kind not in PASSIVE and kind not in ["EEUT_PlayerTrigger", "EEUT_SimpleTalkTrigger"]:
 		_diagnose(item.id, "unsupported_marker", kind)
 
@@ -124,7 +140,11 @@ func nearest_interaction(position: Vector3, radius: float = 3.0) -> Dictionary:
 	for item in _items.values():
 		if not item.state.enabled or item.state.broken or item.marker.get("Type", "") not in INTERACTIVE: continue
 		if item.state.opened or (item.state.used and not item.data.get("CanRepeatDeactive", false)): continue
-		if item.marker.get("Type", "") == "EEUT_UIInteractable" and not CAMP_ACTIONS.has(str(item.data.get("UIBtnName", ""))): continue
+		if item.marker.get("Type", "") == "EEUT_StageChangeDoor":
+			if float(item.state.idle_remaining) > 0: continue
+			if not _volumes(item, "Box_TiggerEnter").is_empty() and not _contains(item, position + Vector3.UP * 0.8, 0.35, "Box_TiggerEnter"): continue
+		if item.marker.get("Type", "") == "EEUT_UIInteractable" and not _is_sprites_altar(item) and not CAMP_ACTIONS.has(str(item.data.get("UIBtnName", ""))) and not ROOM_ACTIONS.has(str(item.data.get("UIBtnName", ""))): continue
+		if item.marker.get("Type", "") == "EEUT_ProtectTarget" and not _contains(item, position + Vector3.UP * 0.8, 0, "Box_InteractArea"): continue
 		var current: float = position.distance_to(_world_position(item.position))
 		if current <= distance:
 			distance = current
@@ -148,8 +168,11 @@ const CAMP_ACTIONS := {
 
 func prompt_for(item: Dictionary) -> Array:
 	var key := str(item.data.get("UIBtnName", ""))
+	if _is_sprites_altar(item): return ["精灵祭坛", "", "interaction_quest"]
 	if CAMP_ACTIONS.has(key): return CAMP_ACTIONS[key]
+	if ROOM_ACTIONS.has(key): return [ROOM_ACTIONS[key], "", "interaction_quest"]
 	match str(item.marker.get("Type", "")):
+		"EEUT_ProtectTarget": return ["启动守护", "", "interaction_quest"]
 		"EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan": return ["交谈", "npc", "interaction_quest"]
 		"EEUT_AbilityItemTreasureBox": return ["普通宝箱" if str(item.data.get("TreasureType", "Normal")) == "Normal" else "珍贵宝箱", "", "interaction_quest"]
 		"EEUT_DoorController": return ["开启机关", "", "interaction_blacksmith"]
@@ -162,6 +185,12 @@ func interact(marker_id: String) -> Dictionary:
 	var data: Dictionary = item.data
 	var context := _context(item)
 	match str(item.marker.get("Type", "")):
+		"EEUT_ProtectTarget":
+			if item.state.used: return {"success": false, "reason": "already_used"}
+			item.state.used = true
+			_changed(item)
+			message_requested.emit("EnvUnit_InteractProtectTarget", context)
+			return {"success": true, "context": context}
 		"EEUT_DoorController":
 			if item.state.used and not data.get("CanRepeatDeactive", false): return {"success": false, "reason": "already_used"}
 			var found := 0
@@ -183,6 +212,9 @@ func interact(marker_id: String) -> Dictionary:
 			reward_requested.emit(context)
 			return {"success": true, "context": context}
 		"EEUT_StageChangeDoor", "EEUT_Protal":
+			if str(item.marker.get("Type", "")) == "EEUT_StageChangeDoor":
+				if float(item.state.idle_remaining) > 0: return {"success": false, "reason": "interaction_cooldown"}
+				item.state.idle_remaining = 0.5
 			transition_requested.emit(context)
 		"EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan":
 			var npc_id := str(data.get("NpcId", ""))
@@ -192,6 +224,14 @@ func interact(marker_id: String) -> Dictionary:
 			npc_requested.emit(npc_id, context)
 		"EEUT_BillBoard": message_requested.emit(str(data.get("Text", "")), context)
 		"EEUT_UIInteractable":
+			if ROOM_ACTIONS.has(str(data.get("UIBtnName", ""))):
+				message_requested.emit("room_action", context)
+				return {"success": true, "context": context}
+			if _is_sprites_altar(item):
+				if item.state.used: return {"success": false, "reason": "already_used"}
+				context["sprites_altar"] = true
+				reward_requested.emit(context)
+				return {"success": true, "context": context}
 			if CAMP_ACTIONS.has(str(data.get("UIBtnName", ""))):
 				context["page"] = CAMP_ACTIONS[str(data.UIBtnName)][1]
 				message_requested.emit("camp_page", context)
@@ -202,23 +242,53 @@ func interact(marker_id: String) -> Dictionary:
 	_changed(item)
 	return {"success": true, "context": context}
 
-func damage_near(position: Vector3, radius: float, amount: float, source_camp: int = 2) -> Array:
+func damage_near(position: Vector3, radius: float, amount: float, source_camp: int = 2, hit_id := "") -> Array:
 	var damaged: Array = []
 	if not is_finite(amount) or not is_finite(radius) or amount <= 0 or radius < 0: return damaged
 	for item in _items.values():
 		if item.marker.get("Type", "") != "EEUT_DestoryableItem" or not item.state.enabled or item.state.broken or item.state.breaking: continue
-		var definition: Dictionary = item.definition
-		if not definition.get("CanBeAttack", false) or not camp_allows(str(definition.get("CanBeAttackCamp", "")), source_camp): continue
 		if not _contains(item, position, radius, "", true): continue
-		item.state.hp = maxf(0, float(item.state.hp) - amount)
-		_effect(item, "BeAttackEffect")
-		if item.state.hp <= 0:
-			item.state.breaking = true
-			item.state.break_remaining = maxf(0, float(definition.get("BreakDelayTime", 0)))
-			if item.state.break_remaining > 0: _effect(item, "BreakDelayVfxName")
-			if item.state.break_remaining <= 0: _finish_break(item)
-		_changed(item)
-		damaged.append(str(item.id))
+		if damage_marker(str(item.id), amount, source_camp, hit_id): damaged.append(str(item.id))
+	return damaged
+
+func damage_marker(marker_id: String, acc_tenacity: float, source_camp: int = 2, hit_id := "") -> bool:
+	var item: Dictionary = _items.get(marker_id, {})
+	if item.is_empty() or str(item.marker.get("Type", "")) != "EEUT_DestoryableItem": return false
+	if not is_finite(acc_tenacity) or int(acc_tenacity) <= 0 or not item.state.enabled or item.state.broken or item.state.breaking: return false
+	var definition: Dictionary = item.definition
+	if not definition.get("CanBeAttack", false) or not camp_allows(str(definition.get("CanBeAttackCamp", "")), source_camp): return false
+	if not hit_id.is_empty():
+		if item.state.hits_once.has(hit_id): return false
+		item.state.hits_once[hit_id] = true
+	# Unity HitFeedBackData_EnvUnit.AccTenacity is an integer; HP damage is independent.
+	item.state.hp = maxf(0, float(item.state.hp) - int(acc_tenacity))
+	_effect(item, "BeAttackEffect")
+	if item.state.hp <= 0:
+		item.state.breaking = true
+		item.state.break_remaining = maxf(0, float(definition.get("BreakDelayTime", 0)))
+		if item.state.break_remaining > 0: _effect(item, "BreakDelayVfxName")
+		if item.state.break_remaining <= 0: _finish_break(item)
+	_changed(item)
+	return true
+
+func damage_collider(collider: CollisionObject3D, acc_tenacity: float, source_camp: int = 2, hit_id := "") -> bool:
+	if not is_instance_valid(collider): return false
+	for item in _items.values():
+		for body in item.bodies:
+			if body.node == collider: return damage_marker(str(item.id), acc_tenacity, source_camp, hit_id)
+	return false
+
+func damage_segment(from: Vector3, to: Vector3, radius: float, acc_tenacity: float, source_camp: int = 2, hit_id := "") -> Array:
+	var damaged: Array = []
+	if not from.is_finite() or not to.is_finite() or not is_finite(radius) or radius < 0: return damaged
+	# Sample a swept hit at half-radius intervals so fast bullets cannot skip narrow pots.
+	var steps := maxi(1, ceili(from.distance_to(to) / maxf(0.1, radius * 0.5)))
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_DestoryableItem" or not item.state.enabled or item.state.broken or item.state.breaking: continue
+		for step in range(steps + 1):
+			if not _contains(item, from.lerp(to, float(step) / steps), radius, "", true): continue
+			if damage_marker(str(item.id), acc_tenacity, source_camp, hit_id): damaged.append(str(item.id))
+			break
 	return damaged
 
 func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
@@ -233,10 +303,8 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 		for item in _items.values():
 			if not item.state.enabled or item.state.broken: continue
 			match str(item.marker.get("Type", "")):
-				"EEUT_CloseArea":
-					if _contains(item, player_position + Vector3.UP * 0.8, CLOSE_AREA_CLEAR_DISTANCE):
-						item.state.enabled = false
-						_changed(item)
+				"EEUT_StageChangeDoor":
+					item.state.idle_remaining = maxf(0.0, float(item.state.idle_remaining) - step)
 				"EEUT_DestoryableItem":
 					var touching := _contains(item, player_position + Vector3.UP * 0.8, 0.35)
 					if touching and not item.state.inside: _effect(item, "TriggerTouchUnitPlayEffect")
@@ -260,7 +328,9 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 						if item.data.get("ActivedSwitchFalse", false): item.state.enabled = false
 						item.state.used = true
 						_changed(item)
-						message_requested.emit(name, context)
+						if str(item.marker.get("Type", "")) == "EEUT_PlayerTrigger":
+							player_trigger_entered.emit(int(item.data.get("TriggerId", -1)), context)
+						if not name.is_empty(): message_requested.emit(name, context)
 					item.state.inside = inside
 
 func _advance_trap(item: Dictionary, delta: float, inside: bool) -> void:
@@ -351,15 +421,42 @@ func _finish_break(item: Dictionary) -> void:
 		context["drop_item_ids"] = definition.DropItemIdList
 		context["drop_item_counts"] = definition.get("DropItemCountList", [])
 		reward_requested.emit(context)
+	if str(item.binding.get("ConfigId", "")).is_valid_int():
+		var context := _context(item)
+		context["destroyable_reward"] = true
+		reward_requested.emit(context)
+
+static func _is_sprites_altar(item: Dictionary) -> bool:
+	return str(item.get("marker", {}).get("Type", "")) == "EEUT_UIInteractable" and str(item.get("data", {}).get("UIBtnName", "")) == SPRITES_ALTAR
+
+func set_altar_consumed(marker_id: String) -> bool:
+	var item: Dictionary = _items.get(marker_id, {})
+	if item.is_empty() or not _is_sprites_altar(item) or item.state.used: return false
+	item.state.used = true
+	_changed(item)
+	return true
 
 func set_trigger_active(trigger_id: int, active: bool) -> int:
 	var changed := 0
 	for item in _items.values():
+		if str(item.marker.get("Type", "")) not in ["EEUT_PlayerTrigger", "EEUT_SimpleTalkTrigger"]: continue
 		if int(item.data.get("TriggerId", -1)) != trigger_id: continue
 		item.state.enabled = active
 		_changed(item)
 		changed += 1
 	return changed
+
+func set_battle_boundaries_active(active: bool) -> void:
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_CloseArea" or int(item.data.get("TriggerId", -1)) not in [1, 2]: continue
+		item.state.enabled = active
+		_changed(item)
+
+func set_protection_enabled(active: bool) -> void:
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_ProtectTarget": continue
+		item.state.enabled = active
+		_changed(item)
 
 func set_exit_enabled(active: bool) -> void:
 	for item in _items.values():
@@ -418,10 +515,36 @@ func _apply(item: Dictionary) -> void:
 	if is_instance_valid(item.visual):
 		item.visual.visible = bool(item.visible) and active
 		item.visual.set_meta("interaction_opened", item.state.opened)
+		if str(item.marker.get("Type", "")) == "EEUT_StageChangeDoor":
+			# The source locks interaction/effects, retaining the physical doorway.
+			_set_source_active(item.visual, not item.state.broken)
+			item.visual.set_meta("interaction_enabled", active)
+		elif str(item.marker.get("Type", "")) in ["EEUT_Protal", "EEUT_CloseArea"]:
+			_set_source_active(item.visual, active)
+		elif str(item.marker.get("Type", "")) == "EEUT_ProtectTarget":
+			_set_source_active(item.visual, not item.state.broken)
+			for node in item.visual.find_children("*", "Node3D", true, false):
+				for prefix in ["Container_UnActive", "Container_Active", "Container_Destory"]:
+					if str(node.name) == prefix or str(node.name).begins_with(prefix + "_"):
+						_set_source_active(node, (not item.state.used if prefix == "Container_UnActive" else item.state.used if prefix == "Container_Active" else false))
+		elif str(item.marker.get("Type", "")) == "EEUT_DestoryableItem":
+			item.visual.set_meta("unityActive", active)
+	for egg in item.get("altar_eggs", []):
+		if is_instance_valid(egg.node):
+			_set_source_active(egg.node, active and not item.state.used and bool(egg.visible))
+	for address in item.get("effect_states", {}):
+		var on: bool = address == "24040301_fx_env_switch_on"
+		_set_source_active(item.effect_states[address], active and (bool(item.state.used) == on))
 	for body in item.bodies:
 		if is_instance_valid(body.node):
-			body.node.collision_layer = int(body.layer) if active else 0
-			body.node.collision_mask = int(body.mask) if active else 0
+			var solid: bool = not item.state.broken if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_ProtectTarget"] else active
+			body.node.collision_layer = int(body.layer) if solid else 0
+			body.node.collision_mask = int(body.mask) if solid else 0
+
+static func _set_source_active(node: Node3D, active: bool) -> void:
+	if not is_instance_valid(node): return
+	node.visible = active
+	node.set_meta("unityActive", active)
 
 func _context(item: Dictionary) -> Dictionary:
 	return {"marker_id": str(item.id), "scene": scene, "type": str(item.marker.get("Type", "")), "data": item.data.duplicate(true), "config_id": str(item.binding.get("ConfigId", "")), "position": _world_position(item.position), "definition": item.definition.duplicate(true)}

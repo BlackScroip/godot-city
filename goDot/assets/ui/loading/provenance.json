@@ -1,0 +1,28 @@
+{
+  "source": "com.teamelo.dungeonchasers.apk",
+  "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+  "archive_evidence_id": "ev_6893c551b1ceeacbc6bbd8090f2a216659f956bcf4d2136b5224207e1eb780bf",
+  "extraction": "UnityPy texture and sprite decoding from manifest-selected bundles; no screenshot crops",
+  "forest.png": {
+    "bundle_index": 4806,
+    "texture": "Bg1",
+    "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg1.jpg",
+    "dimensions": [1024, 512],
+    "configuration": "PanelLoadIllustrationsData id=1"
+  },
+  "spinner.png": {
+    "bundle_index": 5603,
+    "sprite": "加载圈",
+    "path_id": "-6181035303413260029",
+    "prefab": "ATPanel_Load",
+    "prefab_bundle_index": 4647,
+    "prefab_object": "Icon_Loading",
+    "prefab_sprite_file_id": 2
+  },
+  "tip": {
+    "bundle_index": 68,
+    "configuration": "PanelLoadTipsData",
+    "id": "5"
+  },
+  "limitations": "Static packaged-resource evidence; layout and motion reconstructed from the supplied screenshot, not measured from APK runtime."
+}

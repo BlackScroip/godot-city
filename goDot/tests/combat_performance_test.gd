@@ -69,6 +69,7 @@ func _run() -> void:
 					presentation.prepare_step()
 					await process_frame
 			var warm_ms = (Time.get_ticks_usec() - before_warm) / 1000.0
+			var prepared_builds: int = presentation.get("authored_builds") if not baseline else 0
 			var timings: Array[float] = []
 			var peak := Vector2i.ZERO
 			for key in names:
@@ -83,9 +84,28 @@ func _run() -> void:
 			timings.sort()
 			rows.append({"boss": int(boss.id), "low_quality": low, "effects": names.size(), "prepare_ms": warm_ms, "spawn_p95_ms": timings[int(timings.size() * 0.95)] if not timings.is_empty() else 0, "spawn_max_ms": timings.back() if not timings.is_empty() else 0, "peak_particles": peak.x, "peak_emitters": peak.y})
 			if not baseline:
+				check(names.is_empty() or peak.x > 0 and peak.y > 0, "Boss %s actually emits particles (%s)" % [boss.id, low])
+				check(presentation.authored_builds == prepared_builds, "Boss %s prepares every action effect before casting (%s)" % [boss.id, low])
 				check(peak.x <= (presentation.FEEL.low_particle_budget if low else presentation.FEEL.particle_budget), "Boss %s respects global particle budget (%s)" % [boss.id, low])
 				check(peak.y <= (presentation.FEEL.low_emitter_budget if low else presentation.FEEL.emitter_budget), "Boss %s respects global emitter budget (%s)" % [boss.id, low])
 				check(presentation.active.is_empty() and presentation.pool.size() == presentation.FEEL.effect_budget, "Clear returns every active effect")
+	if not baseline:
+		var key = "24080201_fx_sword_satk_dimensionalslash"
+		presentation.low_quality = false
+		presentation.emit_effect(actor, key, Vector3.ZERO)
+		var original: Node3D = presentation.active.back().authored
+		presentation.emit_effect(actor, key, Vector3.ZERO)
+		var other: Node3D = presentation.active.back().authored
+		check(original.emitters.size() > 0 and original.emitters.size() == other.emitters.size(), "Clones retain their emitter definitions")
+		check(original.emitters[0].node.mesh == other.emitters[0].node.mesh, "Clones share loaded geometry")
+		check(original.emitters[0].node.material_override != other.emitters[0].node.material_override, "Clones retain independent animated uniforms")
+		presentation.clear()
+		check(presentation._active_particles == 0 and presentation._active_emitters == 0, "Clear releases particle and emitter accounting")
+		var before_reuse: int = presentation.authored_reuses
+		presentation.emit_effect(actor, key, Vector3.ZERO)
+		check(presentation.authored_reuses == before_reuse + 1, "Scene changes retain reusable effects")
+		presentation.clear()
+		check(presentation._authored_pool_size <= presentation.FEEL.effect_budget and presentation._authored_templates.size() <= presentation.FEEL.effect_template_budget, "Persistent caches remain bounded")
 	var first := Telegraph.new()
 	var second := Telegraph.new()
 	first.configure(Vector2(2, 3))

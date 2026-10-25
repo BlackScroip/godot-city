@@ -49,15 +49,19 @@ func open(page: String, id: int = 0) -> void:
 				rows.append(item(entry[0], "", [command("查看", "page:" + entry[1])]))
 			rows.push_front(item("继续冒险" if profile.data.run.active else "新的冒险", "", [command("继续" if profile.data.run.active else "出发", "primary")]))
 		"characters":
-			title = "角色"
+			title = "角色详情"
 			for row in catalog.rows("CharData"):
 				if row.get("available_state", "") != "Normal": continue
 				var cid = int(row.id)
+				if profile.data.run.active and cid != game.selected_character: continue
 				var level = int(profile.data.character_levels.get(str(cid), 0))
 				var buttons: Array = [command("选择" if game.selected_character != cid else "已选择", "select_character", cid, 0, level <= 0)]
-				buttons.append(command("升级" if level > 0 else "招募", "op:" + ("upgrade_character" if level > 0 else "unlock_character"), cid))
-				buttons.append(command("武器", "page:weapons", cid))
+				if not profile.data.run.active:
+					buttons.append(command("升级" if level > 0 else "招募", "op:" + ("upgrade_character" if level > 0 else "unlock_character"), cid))
+				buttons.append(command("查看天赋", "page:character_talents", cid))
 				rows.append(item(name_of(row) + "  Lv.%d" % level, description(row), buttons))
+				rows.back()["in_run"] = bool(profile.data.run.active)
+				rows.back()["active_character"] = cid == game.selected_character
 		"weapons":
 			title = "武器"
 			var character = catalog.find("CharData", id if id > 0 else game.selected_character)
@@ -179,6 +183,13 @@ func open(page: String, id: int = 0) -> void:
 				var status = systems.task_status(int(row.id))
 				var state_text = "已领取" if status.claimed else "领取奖励"
 				rows.append(item(name_of(row), "%s\n%s / %s    奖励 %s" % [str(status.get("description", "")), str(status.current), str(status.required), str(row.get("reward_get_materials", ""))], [command(state_text, "op:claim_task", int(row.id), 0, status.claimed or not status.available or not status.complete)]))
+		"storage":
+			title = "仓库"
+			for key in profile.data.materials:
+				var amount = int(profile.data.materials[key])
+				if amount <= 0: continue
+				rows.append(item(clean(systems.material_name(int(key))) + "  ×%d" % amount))
+				rows.back()["material_id"] = int(key)
 		"inventory", "archive":
 			title = "角色详情" if page == "inventory" else "战利品图鉴  %d / 358" % profile.data.discovered_loot.size()
 			if page == "inventory":
@@ -207,7 +218,7 @@ func open(page: String, id: int = 0) -> void:
 				rows.append(item(name_of(row), description(row) + "\n" + price, [command("兑换", "op:buy_mall", offer_id, 0, not quote.get("success", false))]))
 		"difficulty":
 			title = "冒险难度"
-			for level in range(11): rows.append(item("难度 %d" % level, "", [command("已选择" if game.difficulty == level else "选择", "difficulty", level)]))
+			for level in range(11): rows.append(item("难度 %d" % level, "", [command("已选择" if game.difficulty == level else "选择", "difficulty", level, 0, profile.data.run.active)]))
 		"settings":
 			title = "设置"
 			if game.ads.available(): rows.append(item("广告隐私", "", [command("隐私选项", "privacy_ads")]))
@@ -219,9 +230,11 @@ func open(page: String, id: int = 0) -> void:
 				for option in row.options: option["selected"] = visual[option.action.trim_prefix("visual:")] == option.id
 			rows.append(item("声音", "", [command("开启 / 关闭", "toggle_audio")]))
 			rows.append({"title": "音量", "controls": [{"type": "slider", "action": "volume", "value": float(profile.data.get("volume", 1.0))}]})
-			rows.append({"title": "战斗", "controls": [{"type": "toggle", "text": "自动攻击", "action": "auto_attack", "value": bool(profile.data.get("auto_attack", true))}]})
+			var attack_options = [command("普攻", "auto_attack_mode", "normal"), command("重击", "auto_attack_mode", "heavy"), command("关闭", "auto_attack_mode", "off")]
+			for option in attack_options: option["selected"] = option.id == DungeonProfile.attack_mode(profile.data)
+			rows.append({"title": "自动攻击", "options": attack_options})
 			rows.append({"title": "战斗表现", "controls": [{"type": "toggle", "text": "镜头震动", "action": "camera_shake", "value": bool(profile.data.get("camera_shake", true))}, {"type": "toggle", "text": "精简特效", "action": "low_effects", "value": bool(profile.data.get("low_effects", false))}]})
-			var key_names = {"move_left": "左移", "move_right": "右移", "move_up": "前进", "move_down": "后退", "skill": "战技", "dodge": "闪避", "burst": "爆发", "heavy": "重击", "interact": "交互", "pause_game": "暂停"}
+			var key_names = {"move_left": "左移", "move_right": "右移", "move_up": "前进", "move_down": "后退", "skill": "战技", "dodge": "闪避", "burst": "爆发", "heavy": "重击", "interact": "交互", "pause_game": "暂停", "map": "路线地图"}
 			for key in key_names:
 				var names: Array[String] = []
 				for event in InputMap.action_get_events(key):
@@ -235,10 +248,13 @@ func open(page: String, id: int = 0) -> void:
 			return
 	if rows.is_empty(): rows.append(item("暂无可用项目"))
 	_enrich(page, rows)
-	var specialized = {"inventory": "inventory", "characters": "character", "weapons": "weapon", "settings": "settings", "talents": "tree", "character_talents": "tree", "awakening": "awakening", "buildings": "buildings", "difficulty": "prepare", "mall": "shop"}
+	var specialized = {"inventory": "inventory", "storage": "inventory", "characters": "character", "weapons": "weapon", "settings": "settings", "talents": "tree", "character_talents": "tree", "awakening": "awakening", "buildings": "buildings", "difficulty": "prepare", "mall": "shop"}
 	var layout = str(specialized.get(page, "model" if page == "partners" else "grid" if page in ["camp", "inventory", "archive", "tokens", "amplifiers", "meals"] else "list"))
-	var context: Dictionary = {}
-	if page == "inventory":
+	var context: Dictionary = {"page": page}
+	if page == "difficulty":
+		context["in_run"] = profile.data.run.active
+		context["difficulty"] = game.difficulty
+	if page in ["inventory", "characters", "weapons", "storage"]:
 		context["resources"] = [["material:101", str(systems.material(101))], ["material:102", str(systems.material(102))], ["loot:12101", "%d/%d" % [systems.search_point_count(), systems.search_point_max()]], ["material:10501", str(systems.material(10501))]]
 	hud.show_page(title, rows, layout, context)
 
@@ -265,6 +281,10 @@ func _enrich(page: String, rows: Array) -> void:
 			if parent.is_valid_int(): row.parents.append(int(parent))
 		if page == "characters":
 			row["stats"] = [["生命", source.get("hp", 0)], ["攻击", source.get("atk", 0)], ["防御", source.get("def", 0)], ["暴击率", "%.1f%%" % (float(source.get("criti_rate", 0)) / 10)], ["暴击伤害", "%.0f%%" % (float(source.get("criti_mult", 0)) / 10)]]
+			if row.get("in_run", false) and is_instance_valid(game.world.player):
+				var combat: DungeonCombat = game.world.player.combat
+				var defense = (combat.defense + combat.attribute("BaseDef") + combat.attribute("DefAddFixed")) * (1.0 + combat.attribute("DefAddRate") / 1000.0)
+				row["stats"] = [["生命", "%d / %d" % [ceili(combat.health), ceili(combat.max_health)]], ["攻击", str(roundi(combat.effective_attack_power()))], ["防御", str(roundi(defense))], ["暴击率", "%.1f%%" % ((float(combat.fighter.get("critRate", 0)) + combat.attribute("CriticalRate") / 1000.0) * 100)], ["暴击伤害", "%.0f%%" % ((float(combat.fighter.get("critMultiplier", 1.5)) + combat.attribute("CriticalMulti") / 1000.0) * 100)]]
 		if page == "weapons": row.description += "\n" + clean(source.get("effect_description", "")).replace("|", "\n")
 		if page == "settings":
 			var title = str(row.title)

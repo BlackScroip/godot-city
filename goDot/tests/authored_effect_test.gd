@@ -23,6 +23,9 @@ func run() -> void:
 		camera.current = true
 	var scaled = EFFECT.curve({"scalar": 3.0, "maxCurve": {"m_Curve": [{"time": 0, "value": 0.5}, {"time": 1, "value": 1.0}]}})
 	check(is_equal_approx(scaled.sample(1), 3.0), "Source curve multipliers retain authored growth")
+	check(EFFECT.scalar_range({"minMaxState": 3, "scalar": 1.5, "minScalar": 2.5}) == Vector2(1.5, 2.5), "Reversed Unity random endpoints preserve both altar lifetimes")
+	var custom = EFFECT.custom_stream({"vector1_0": {"scalar": 1.0, "maxCurve": {"m_Curve": [{"time": 0, "value": 1.0, "outSlope": -2.0}, {"time": 1, "value": -1.0, "inSlope": -2.0}]}}}, 1).get_image()
+	check(is_equal_approx(custom.get_pixel(0, 0).r, 1.0) and is_equal_approx(custom.get_pixel(custom.get_width() - 1, 0).r, -1.0), "Portal custom stream retains signed lifetime erosion values")
 	var motion = EFFECT._integrated_motion({"x": {"scalar": 10.0}, "speedModifier": {"scalar": 0.5}}, 0.4)
 	check(absf(motion.curve_x.sample(1) - 2.0) < 0.001, "Velocity module displacement uses lifetime and speed multiplier")
 	check(EFFECT._uses_reconstructed_ribbon({"name": "axe_slash", "renderer": {"render_mode": 4}}, {"alpha_from_luminance": true, "blend": "alpha"}), "Broad mesh slash receives translucent reconstruction")

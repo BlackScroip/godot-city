@@ -1,0 +1,12 @@
+{
+  "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+  "manifest_sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71",
+  "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+  "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+  "sprite": "icon_nodeicon_trapchallenge",
+  "sprite_path_id": "8134934211269375171",
+  "prefab": "Box_EnemyState_Elite",
+  "prefab_image_sprite_path_id": "8134934211269375171",
+  "basis": "Exact Image.m_Sprite reference in elite prefab, matching the supplied white/purple-eye insignia screenshot.",
+  "limitation": "Static serialized artwork, not a runtime observation. Godot bar geometry and damage-follow timing are reconstructed."
+}

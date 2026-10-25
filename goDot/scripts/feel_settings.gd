@@ -2,6 +2,12 @@ extends Resource
 
 @export var joystick_deadzone := 0.10
 @export var input_buffer := 0.15
+@export var attack_hold_threshold := 0.35
+@export var projectile_pool_capacity := 128
+@export var damage_number_budget := 96
+@export var actor_warning_budget := 96
+@export var projectile_warning_budget := 512
+@export var perception_interval := 0.1
 @export var acceleration := 85.0
 @export var braking := 140.0
 @export var turn_response := 24.0
@@ -9,6 +15,8 @@ extends Resource
 @export var auto_attack_move_alignment := 0.25
 @export var dodge_duration := 0.28
 @export var dodge_distance := 3.0
+# Start with the APK's extra-use bonus available, as requested for this version.
+@export var dodge_base_extra_uses := 1
 @export var camera_response := 14.0
 @export var camera_lookahead := 0.3
 @export var level_camera_height := 9.5
@@ -50,6 +58,7 @@ extends Resource
 @export var camera_impact_limit := 0.16
 @export var player_stagger_limit := 0.08
 @export var player_stagger_grace := 0.2
+@export var monster_field_pull_per_power := 0.005
 @export var impact_profiles: Dictionary = {
 	"light": {"stop": 0.04, "shake": 0.08, "amplitude": 0.025, "distance": 0.15, "travel": 0.12, "stagger": 0.09, "flash": 0.045, "scale": 1.0, "gain": 0.85},
 	"heavy": {"stop": 0.08, "shake": 0.16, "amplitude": 0.09, "distance": 0.75, "travel": 0.22, "stagger": 0.18, "flash": 0.075, "scale": 1.5, "gain": 1.0},
