@@ -7,7 +7,7 @@ var failures: Array = []
 func _initialize() -> void:
 	var campaign = Campaign.new()
 	_check(campaign.configure(), "Campaign data loads")
-	_check(campaign.database.Nodes.size() == 356, "356 campaign nodes")
+	_check(campaign.database.Nodes.size() >= 356, "Recovered campaign includes the original nodes and newer map branches")
 	_check(campaign.database.Regions.size() == 5, "5 regions")
 	var route_count = 0
 	var room_count = 0
@@ -23,6 +23,11 @@ func _initialize() -> void:
 			_check(JSON.stringify(original) == JSON.stringify(check_copy.snapshot()), "Seeded route deterministic")
 			while campaign.state.phase != "won":
 				_check(campaign.state.phase == "route", "Route reachable after reward")
+				if campaign.state.get("region_selection", false):
+					var regions = campaign.region_choices()
+					_check(regions.size() == 1, "Next region is selected on the world map")
+					if regions.is_empty(): break
+					_check(campaign.select_region(int(regions[0].node_id)).success, "Select reachable region")
 				var choices = campaign.choices()
 				_check(not choices.is_empty(), "Each layer has choices")
 				if choices.is_empty():

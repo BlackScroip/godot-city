@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "evidence": {
+    "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+    "archive_evidence": "ev_abcc9134d78621f34fad95c09ca5c13a0e7fa21b69aa75a2edba067acdd81a4e",
+    "audio_layers": "res://assets/combat_presentation/catalog.json",
+    "audio_layer_extractor": "res://tools/build_combat_presentation.py:main",
+    "region_names": "res://assets/data/RogueConfigData.json:RegionNameList",
+    "limitations": [
+      "Recovered clip, volume, pitch and delay values are static source evidence, not an observation of APK playback.",
+      "Semantic event bindings, regional ambience loops and distance-based player footsteps are local presentation adapters. Exact original menu and environment audio call sites have not all been recovered.",
+      "Alternate chest tracks, unidentified UI jingles and NPC or monster voices remain unbound until a matching source event is established."
+    ]
+  },
+  "events": {
+    "ui_click": {"sound": "audio_fx_btn_click_level1"},
+    "ui_back": {"sound": "audio_fx_btn_back"},
+    "ui_confirm": {"sound": "audio_fx_btn_sure"},
+    "ui_cancel": {"sound": "audio_fx_btn_cancel"},
+    "ui_item": {"sound": "audio_fx_btn_item_click"},
+    "ui_dialogue": {"sound": "audio_fx_btn_naninovel_talk"},
+    "skill_unavailable": {"sound": "audio_fx_btn_cannotuseskill"},
+    "page_open": {"sound": "audio_ui_turnpage"},
+    "page:meals": {"sound": "audio_ui_catmealmenu_open"},
+    "page:weapons": {"sound": "audio_ui_blacksmith"},
+    "page:buildings": {"sound": "audio_ui_openmaincitydeveloper"},
+    "page:mall": {"sound": "audio_ui_mall"},
+    "page:tokens": {"sound": "audio_ui_relationshiptokens"},
+    "upgrade_success": {"sound": "audio_ui_shininglevelup"},
+    "build_success": {"sound": "audio_build"},
+    "cook_success": {"sound": "audio_cook"},
+    "reward_get": {"sound": "audio_ui_getitem"},
+    "chest_open": {"sound": "audio_fx_item_treasurebox_open", "pause_with_world": true},
+    "door_open": {"sound": "audio_fx_item_open_door_controller", "pause_with_world": true},
+    "pickup_coin": {"sound": "audio_fx_item_coin_get", "pause_with_world": true},
+    "pickup_material": {"sound": "audio_fx_item_material_get", "pause_with_world": true},
+    "pickup_ability": {"sound": "audio_fx_item_ablity_get"},
+    "talent_selected": {"sound": "audio_fx_item_ablity_get"},
+    "transfer_depart": {"sound": "audio_fx_event_exit_room"},
+    "transfer_arrive": {"sound": "audio_fx_event_enter_room"},
+    "revive_start": {"sound": "audio_fx_event_revive_1"},
+    "revive_burst": {"sound": "audio_fx_event_revive_2"},
+    "boss_appear": {"sound": "audio_bossappear"},
+    "room_victory": {"sound": "audio_fx_battle_win"},
+    "run_victory": {"sound": "audio_win"},
+    "run_defeat": {"sound": "audio_ui_lose"},
+    "route_change": {"sound": "audio_ui_layerchange"}
+  },
+  "environments": {
+    "camp": ["audio_environment_forest"],
+    "1": ["audio_environment_forest"],
+    "2": ["audio_environment_crazywind"],
+    "3": ["audio_fx_ambient_wind"],
+    "4": ["audio_environment_mine"],
+    "5": ["audio_environment_blackhole"]
+  },
+  "footsteps": {
+    "camp": ["audio_fx_movestep_gravel_01"],
+    "1": ["audio_fx_movestep_glassdirt_01", "audio_fx_movestep_glassdirt_02", "audio_fx_movestep_glassdirt_03", "audio_fx_movestep_glassdirt_04"],
+    "2": ["audio_fx_movestep_sanddirt_01"],
+    "3": ["audio_fx_movestep_sonwdirt_01"],
+    "4": ["audio_fx_movestep_minedirt_01"],
+    "5": ["audio_fx_movestep_gravel_01"]
+  }
+}

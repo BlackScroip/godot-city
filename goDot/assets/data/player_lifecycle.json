@@ -1,0 +1,1196 @@
+{
+  "schema": 1,
+  "time_unit": "seconds",
+  "source": {
+    "apk": "com.teamelo.dungeonchasers.apk",
+    "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+    "manifest_member": "assets/yoo/DefaultPackage/DefaultPackage_2026-08-06-1233.bytes",
+    "manifest_sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71",
+    "evidence_type": "static APK manifest and Unity TextAsset configuration",
+    "evidence_report": "res://reports/player-lifecycle-source.json"
+  },
+  "actions": {
+    "enterroom": {
+      "id": "enterroom",
+      "duration": 1.0,
+      "duration_ms": 1000,
+      "speed": 1.0,
+      "source": {
+        "address": "ActGroup_playerchara_[enterroom]",
+        "asset_path": "Assets/[00002]Resource/ActionEngineCfg/Action/ActGroup_playerchara/ActGroup_playerchara_[enterroom].json",
+        "bundle": 37,
+        "bundle_name": "assets_[00002]resource_actionenginecfg_action_actgroup_playerchara.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/4445db9ca8e75add44959d9427e0e840.bundle",
+        "bundle_sha256": "a043ab241574370b86767df5f03598cb34d40c8304029fbe1a2071ca737ccc1d",
+        "text_asset_path_id": "4472995131948408077",
+        "json_sha256": "8766a6ca0103080b58f99d2e3d4ea280b1c3c3354c8ac40a09ff4297a41c1c9e"
+      },
+      "events": [
+        {
+          "index": 0,
+          "track": "PlayAnim",
+          "track_index": 10,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": true,
+          "conditions": [
+            {
+              "type": "EECT_CheckBuffExist",
+              "buff": "100000",
+              "exists": true,
+              "layers": 1,
+              "compare": "ECT_GreaterEqual",
+              "property": "",
+              "value": "",
+              "raw": "{\"ConditionType\":\"EECT_CheckBuffExist\",\"BuffId\":\"100000\",\"IsExist\":true,\"CompareType\":\"ECT_GreaterEqual\",\"CheckLayerCount\":1}"
+            }
+          ],
+          "source_conditions": [
+            {
+              "ConditionType": "EECT_CheckBuffExist",
+              "BuffId": "100000",
+              "IsExist": true,
+              "CompareType": "ECT_GreaterEqual",
+              "CheckLayerCount": 1
+            }
+          ],
+          "data": {
+            "AnimName": "sword@transfer",
+            "AnimCrossFadeDuration": 0.0,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"sword@transfer\",\"AnimCrossFadeDuration\":0.0,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "sword@transfer"
+        },
+        {
+          "index": 1,
+          "track": "PlayAnim",
+          "track_index": 100,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": true,
+          "conditions": [
+            {
+              "type": "EECT_CheckBuffExist",
+              "buff": "200000",
+              "exists": true,
+              "layers": 1,
+              "compare": "ECT_GreaterEqual",
+              "property": "",
+              "value": "",
+              "raw": "{\"ConditionType\":\"EECT_CheckBuffExist\",\"BuffId\":\"200000\",\"IsExist\":true,\"CompareType\":\"ECT_GreaterEqual\",\"CheckLayerCount\":1}"
+            }
+          ],
+          "source_conditions": [
+            {
+              "ConditionType": "EECT_CheckBuffExist",
+              "BuffId": "200000",
+              "IsExist": true,
+              "CompareType": "ECT_GreaterEqual",
+              "CheckLayerCount": 1
+            }
+          ],
+          "data": {
+            "AnimName": "sickle@transfer",
+            "AnimCrossFadeDuration": 0.0,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"sickle@transfer\",\"AnimCrossFadeDuration\":0.0,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "sickle@transfer"
+        },
+        {
+          "index": 2,
+          "track": "PlayAnim",
+          "track_index": 107,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": true,
+          "conditions": [
+            {
+              "type": "EECT_CheckBuffExist",
+              "buff": "300000",
+              "exists": true,
+              "layers": 1,
+              "compare": "ECT_GreaterEqual",
+              "property": "",
+              "value": "",
+              "raw": "{\"ConditionType\":\"EECT_CheckBuffExist\",\"BuffId\":\"300000\",\"IsExist\":true,\"CompareType\":\"ECT_GreaterEqual\",\"CheckLayerCount\":1}"
+            }
+          ],
+          "source_conditions": [
+            {
+              "ConditionType": "EECT_CheckBuffExist",
+              "BuffId": "300000",
+              "IsExist": true,
+              "CompareType": "ECT_GreaterEqual",
+              "CheckLayerCount": 1
+            }
+          ],
+          "data": {
+            "AnimName": "axe@transfer",
+            "AnimCrossFadeDuration": 0.0,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"axe@transfer\",\"AnimCrossFadeDuration\":0.0,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "axe@transfer"
+        },
+        {
+          "index": 3,
+          "track": "PlayAnim",
+          "track_index": 108,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": true,
+          "conditions": [
+            {
+              "type": "EECT_CheckBuffExist",
+              "buff": "400000",
+              "exists": true,
+              "layers": 1,
+              "compare": "ECT_GreaterEqual",
+              "property": "",
+              "value": "",
+              "raw": "{\"ConditionType\":\"EECT_CheckBuffExist\",\"BuffId\":\"400000\",\"IsExist\":true,\"CompareType\":\"ECT_GreaterEqual\",\"CheckLayerCount\":1}"
+            }
+          ],
+          "source_conditions": [
+            {
+              "ConditionType": "EECT_CheckBuffExist",
+              "BuffId": "400000",
+              "IsExist": true,
+              "CompareType": "ECT_GreaterEqual",
+              "CheckLayerCount": 1
+            }
+          ],
+          "data": {
+            "AnimName": "wand@transfer",
+            "AnimCrossFadeDuration": 0.0,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"wand@transfer\",\"AnimCrossFadeDuration\":0.0,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "wand@transfer"
+        },
+        {
+          "index": 4,
+          "track": "PlayAnim",
+          "track_index": 109,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": true,
+          "conditions": [
+            {
+              "type": "EECT_CheckBuffExist",
+              "buff": "500000",
+              "exists": true,
+              "layers": 1,
+              "compare": "ECT_GreaterEqual",
+              "property": "",
+              "value": "",
+              "raw": "{\"ConditionType\":\"EECT_CheckBuffExist\",\"BuffId\":\"500000\",\"IsExist\":true,\"CompareType\":\"ECT_GreaterEqual\",\"CheckLayerCount\":1}"
+            }
+          ],
+          "source_conditions": [
+            {
+              "ConditionType": "EECT_CheckBuffExist",
+              "BuffId": "500000",
+              "IsExist": true,
+              "CompareType": "ECT_GreaterEqual",
+              "CheckLayerCount": 1
+            }
+          ],
+          "data": {
+            "AnimName": "bow@transfer",
+            "AnimCrossFadeDuration": 0.0,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"bow@transfer\",\"AnimCrossFadeDuration\":0.0,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "bow@transfer"
+        },
+        {
+          "index": 5,
+          "track": "PlayAnim",
+          "track_index": 110,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": true,
+          "conditions": [
+            {
+              "type": "EECT_CheckBuffExist",
+              "buff": "600000",
+              "exists": true,
+              "layers": 1,
+              "compare": "ECT_GreaterEqual",
+              "property": "",
+              "value": "",
+              "raw": "{\"ConditionType\":\"EECT_CheckBuffExist\",\"BuffId\":\"600000\",\"IsExist\":true,\"CompareType\":\"ECT_GreaterEqual\",\"CheckLayerCount\":1}"
+            }
+          ],
+          "source_conditions": [
+            {
+              "ConditionType": "EECT_CheckBuffExist",
+              "BuffId": "600000",
+              "IsExist": true,
+              "CompareType": "ECT_GreaterEqual",
+              "CheckLayerCount": 1
+            }
+          ],
+          "data": {
+            "AnimName": "orb@transfer",
+            "AnimCrossFadeDuration": 0.0,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"orb@transfer\",\"AnimCrossFadeDuration\":0.0,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "orb@transfer"
+        },
+        {
+          "index": 6,
+          "track": "PlayEffect",
+          "track_index": 500,
+          "type": "EET_PlayEffect",
+          "time": 0.0,
+          "duration": 0.0,
+          "time_ms": 0,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "EffectTriggerDef": {
+              "EffectName": "23121801_fx_other_transferdrop.prefab",
+              "IsLoop": false,
+              "DummyType": "EEDT_DummyPosition",
+              "DummyData": {
+                "CustomDummyName": "",
+                "DummyType": "Unit_FootBottom"
+              },
+              "Position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Euler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "EffectSpeed": 1.5,
+              "DestoryWhenActionSwitch": false,
+              "DelayTimeToDestroy": 0,
+              "DelayTimeToWorldPos": 0.0,
+              "EnableAnimationChange": false,
+              "AnimationPlayTime": 0.0,
+              "InitSoundDef": {
+                "SoundName": ""
+              }
+            },
+            "ScaleModifyPropertyName": ""
+          },
+          "raw": "{\"EffectTriggerDef\":{\"EffectName\":\"23121801_fx_other_transferdrop.prefab\",\"IsLoop\":false,\"DummyType\":\"EEDT_DummyPosition\",\"DummyData\":{\"CustomDummyName\":\"\",\"DummyType\":\"Unit_FootBottom\"},\"Position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Euler\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Scale\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"EffectSpeed\":1.5,\"DestoryWhenActionSwitch\":false,\"DelayTimeToDestroy\":0,\"DelayTimeToWorldPos\":0.0,\"EnableAnimationChange\":false,\"AnimationPlayTime\":0.0,\"InitSoundDef\":{\"SoundName\":\"\"}},\"ScaleModifyPropertyName\":\"\"}",
+          "effect": "23121801_fx_other_transferdrop",
+          "speed": 1.5,
+          "anchor": "Unit_FootBottom",
+          "attachment": "EEDT_DummyPosition"
+        },
+        {
+          "index": 7,
+          "track": "PlaySound",
+          "track_index": 700,
+          "type": "EET_PlaySound",
+          "time": 0.017,
+          "duration": 0.0,
+          "time_ms": 17,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "SoundName": "audio_fx_charachange_enter.prefab",
+            "LoopTime": 0.0
+          },
+          "raw": "{\"SoundName\":\"audio_fx_charachange_enter.prefab\",\"LoopTime\":0.0}",
+          "sound": "audio_fx_charachange_enter"
+        },
+        {
+          "index": 8,
+          "track": "PlaySound",
+          "track_index": 706,
+          "type": "EET_PlaySound",
+          "time": 0.017,
+          "duration": 0.0,
+          "time_ms": 17,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "SoundName": "audio_fx_event_enter_room.prefab",
+            "LoopTime": 0.0
+          },
+          "raw": "{\"SoundName\":\"audio_fx_event_enter_room.prefab\",\"LoopTime\":0.0}",
+          "sound": "audio_fx_event_enter_room"
+        },
+        {
+          "index": 9,
+          "track": "TempWeaponBind",
+          "track_index": 3012,
+          "type": "EET_TempWeaponBind",
+          "time": 0.0,
+          "duration": 1.0,
+          "time_ms": 0,
+          "duration_ms": 1000,
+          "enabled": true,
+          "all": false,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "HideWeaponFx": false
+          },
+          "raw": "{\"HideWeaponFx\":false}"
+        },
+        {
+          "index": 10,
+          "track": "SetUnitDisplay",
+          "track_index": 3700,
+          "type": "EET_SetUnitDisplay",
+          "time": 0.0,
+          "duration": 0.0,
+          "time_ms": 0,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "IsActive": true,
+            "IsInVisible": true,
+            "MoveArtModelToFarPos": false
+          },
+          "raw": "{\"IsActive\":true,\"IsInVisible\":true,\"MoveArtModelToFarPos\":false}",
+          "visible": false
+        },
+        {
+          "index": 11,
+          "track": "SetUnitDisplay",
+          "track_index": 3700,
+          "type": "EET_SetUnitDisplay",
+          "time": 0.167,
+          "duration": 0.0,
+          "time_ms": 167,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "IsActive": true,
+            "IsInVisible": false,
+            "MoveArtModelToFarPos": false
+          },
+          "raw": "{\"IsActive\":true,\"IsInVisible\":false,\"MoveArtModelToFarPos\":false}",
+          "visible": true
+        }
+      ],
+      "interrupts": [
+        {
+          "index": 0,
+          "track": "3_[\u7cfb\u7edf]\u5f85\u673a",
+          "track_index": 1,
+          "type": "EET_Interrupt",
+          "time": 1.0,
+          "duration": 0.0,
+          "time_ms": 1000,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "ActionID": "sys_idle",
+            "CheckAllCondition": true,
+            "Conditions": []
+          },
+          "raw": "{\"ActionID\":\"sys_idle\",\"CheckAllCondition\":true,\"Conditions\":[]}",
+          "target": "sys_idle"
+        }
+      ],
+      "source_event_count": 12
+    },
+    "leftroom": {
+      "id": "leftroom",
+      "duration": 2.5,
+      "duration_ms": 2500,
+      "speed": 1.0,
+      "source": {
+        "address": "ActGroup_playerchara_[leftroom]",
+        "asset_path": "Assets/[00002]Resource/ActionEngineCfg/Action/ActGroup_playerchara/ActGroup_playerchara_[leftroom].json",
+        "bundle": 37,
+        "bundle_name": "assets_[00002]resource_actionenginecfg_action_actgroup_playerchara.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/4445db9ca8e75add44959d9427e0e840.bundle",
+        "bundle_sha256": "a043ab241574370b86767df5f03598cb34d40c8304029fbe1a2071ca737ccc1d",
+        "text_asset_path_id": "-5672415852087293139",
+        "json_sha256": "093035daa9dd029de334893d298eed917078fb211c5f753ba8d5879afe8c59b0"
+      },
+      "events": [
+        {
+          "index": 0,
+          "track": "PlayAnim",
+          "track_index": 10,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 2.5,
+          "time_ms": 0,
+          "duration_ms": 2500,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "AnimName": "orb@skill_shenzhijianglin",
+            "AnimCrossFadeDuration": 0.0500000007450581,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"orb@skill_shenzhijianglin\",\"AnimCrossFadeDuration\":0.0500000007450581,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "orb@skill_shenzhijianglin"
+        },
+        {
+          "index": 1,
+          "track": "PlayEffect",
+          "track_index": 500,
+          "type": "EET_PlayEffect",
+          "time": 0.0,
+          "duration": 0.0,
+          "time_ms": 0,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "EffectTriggerDef": {
+              "EffectName": "23121801_fx_other_transferrise.prefab",
+              "IsLoop": false,
+              "DummyType": "EEDT_DummyPosition",
+              "DummyData": {
+                "CustomDummyName": "",
+                "DummyType": "Unit_FootBottom"
+              },
+              "Position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Euler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "EffectSpeed": 1.0,
+              "DestoryWhenActionSwitch": false,
+              "DelayTimeToDestroy": 0,
+              "DelayTimeToWorldPos": 0.0,
+              "EnableAnimationChange": false,
+              "AnimationPlayTime": 0.0,
+              "InitSoundDef": {
+                "SoundName": ""
+              }
+            },
+            "ScaleModifyPropertyName": ""
+          },
+          "raw": "{\"EffectTriggerDef\":{\"EffectName\":\"23121801_fx_other_transferrise.prefab\",\"IsLoop\":false,\"DummyType\":\"EEDT_DummyPosition\",\"DummyData\":{\"CustomDummyName\":\"\",\"DummyType\":\"Unit_FootBottom\"},\"Position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Euler\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Scale\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"EffectSpeed\":1.0,\"DestoryWhenActionSwitch\":false,\"DelayTimeToDestroy\":0,\"DelayTimeToWorldPos\":0.0,\"EnableAnimationChange\":false,\"AnimationPlayTime\":0.0,\"InitSoundDef\":{\"SoundName\":\"\"}},\"ScaleModifyPropertyName\":\"\"}",
+          "effect": "23121801_fx_other_transferrise",
+          "speed": 1.0,
+          "anchor": "Unit_FootBottom",
+          "attachment": "EEDT_DummyPosition"
+        },
+        {
+          "index": 2,
+          "track": "PlaySound",
+          "track_index": 700,
+          "type": "EET_PlaySound",
+          "time": 0.017,
+          "duration": 0.0,
+          "time_ms": 17,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "SoundName": "audio_fx_event_exit_room.prefab"
+          },
+          "raw": "{\"SoundName\":\"audio_fx_event_exit_room.prefab\"}",
+          "sound": "audio_fx_event_exit_room"
+        },
+        {
+          "index": 3,
+          "track": "PlaySound",
+          "track_index": 704,
+          "type": "EET_PlaySound",
+          "time": 0.017,
+          "duration": 0.0,
+          "time_ms": 17,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "SoundName": "audio_fx_event_exit_room_2.prefab"
+          },
+          "raw": "{\"SoundName\":\"audio_fx_event_exit_room_2.prefab\"}",
+          "sound": "audio_fx_event_exit_room_2"
+        },
+        {
+          "index": 4,
+          "track": "SetUnitDisplay",
+          "track_index": 3700,
+          "type": "EET_SetUnitDisplay",
+          "time": 0.33,
+          "duration": 0.0,
+          "time_ms": 330,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "IsActive": true,
+            "IsInVisible": true
+          },
+          "raw": "{\"IsActive\":true,\"IsInVisible\":true}",
+          "visible": false
+        }
+      ],
+      "interrupts": [
+        {
+          "index": 0,
+          "track": "3_[\u7cfb\u7edf]\u5f85\u673a",
+          "track_index": 1,
+          "type": "EET_Interrupt",
+          "time": 2.49,
+          "duration": 0.0,
+          "time_ms": 2490,
+          "duration_ms": 0,
+          "enabled": false,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "ActionID": "sys_idle",
+            "CheckAllCondition": true,
+            "Conditions": []
+          },
+          "raw": "{\"ActionID\":\"sys_idle\",\"CheckAllCondition\":true,\"Conditions\":[]}",
+          "target": "sys_idle"
+        }
+      ],
+      "source_event_count": 5
+    },
+    "revival": {
+      "id": "revival",
+      "duration": 2.5,
+      "duration_ms": 2500,
+      "speed": 1.0,
+      "source": {
+        "address": "ActGroup_playerchara_[revival]",
+        "asset_path": "Assets/[00002]Resource/ActionEngineCfg/Action/ActGroup_playerchara/ActGroup_playerchara_[revival].json",
+        "bundle": 37,
+        "bundle_name": "assets_[00002]resource_actionenginecfg_action_actgroup_playerchara.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/4445db9ca8e75add44959d9427e0e840.bundle",
+        "bundle_sha256": "a043ab241574370b86767df5f03598cb34d40c8304029fbe1a2071ca737ccc1d",
+        "text_asset_path_id": "5118678998302800601",
+        "json_sha256": "55886b7c23c3c882fe4e932782d4b77d9eee2f9dc3b1e53c5032618c3b0f9b2d"
+      },
+      "events": [
+        {
+          "index": 0,
+          "track": "PlayAnim",
+          "track_index": 10,
+          "type": "EET_PlayAnim",
+          "time": 0.0,
+          "duration": 2.5,
+          "time_ms": 0,
+          "duration_ms": 2500,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "AnimName": "common@reborn",
+            "AnimCrossFadeDuration": 0.0500000007450581,
+            "EnableRootMotion": false,
+            "IsLoop": false
+          },
+          "raw": "{\"AnimName\":\"common@reborn\",\"AnimCrossFadeDuration\":0.0500000007450581,\"EnableRootMotion\":false,\"IsLoop\":false}",
+          "anim": "common@reborn"
+        },
+        {
+          "index": 1,
+          "track": "PlayEffect",
+          "track_index": 500,
+          "type": "EET_PlayEffect",
+          "time": 0.0,
+          "duration": 0.0,
+          "time_ms": 0,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "EffectTriggerDef": {
+              "EffectId": "",
+              "EffectName": "23121201_fx_buff_rebirth_symbol.prefab",
+              "IsLoop": false,
+              "DummyType": "EEDT_DummyChild",
+              "DummyData": {
+                "CustomDummyName": "",
+                "DummyType": "Unit_Center"
+              },
+              "Position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Euler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              },
+              "EffectSpeed": 1.0,
+              "DestoryWhenActionSwitch": false,
+              "DelayTimeToDestroy": 0,
+              "DelayTimeToWorldPos": 0.0,
+              "EnableAnimationChange": false,
+              "AnimationPlayTime": 1.20000004768372,
+              "InitSoundDef": {
+                "SoundName": ""
+              }
+            },
+            "ScaleModifyPropertyName": ""
+          },
+          "raw": "{\"EffectTriggerDef\":{\"EffectId\":\"\",\"EffectName\":\"23121201_fx_buff_rebirth_symbol.prefab\",\"IsLoop\":false,\"DummyType\":\"EEDT_DummyChild\",\"DummyData\":{\"CustomDummyName\":\"\",\"DummyType\":\"Unit_Center\"},\"Position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Euler\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Scale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"EffectSpeed\":1.0,\"DestoryWhenActionSwitch\":false,\"DelayTimeToDestroy\":0,\"DelayTimeToWorldPos\":0.0,\"EnableAnimationChange\":false,\"AnimationPlayTime\":1.20000004768372,\"InitSoundDef\":{\"SoundName\":\"\"}},\"ScaleModifyPropertyName\":\"\"}",
+          "effect": "23121201_fx_buff_rebirth_symbol",
+          "speed": 1.0,
+          "anchor": "Unit_Center",
+          "attachment": "EEDT_DummyChild"
+        },
+        {
+          "index": 2,
+          "track": "PlayEffect",
+          "track_index": 500,
+          "type": "EET_PlayEffect",
+          "time": 1.2,
+          "duration": 0.0,
+          "time_ms": 1200,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "EffectTriggerDef": {
+              "EffectId": "",
+              "EffectName": "23121201_fx_buff_rebirth_explode.prefab",
+              "IsLoop": false,
+              "DummyType": "EEDT_DummyChild",
+              "DummyData": {
+                "CustomDummyName": "",
+                "DummyType": "Unit_FootBottom"
+              },
+              "Position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Euler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "Scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "EffectSpeed": 1.0,
+              "DestoryWhenActionSwitch": false,
+              "DelayTimeToDestroy": 0,
+              "DelayTimeToWorldPos": 0.0,
+              "EnableAnimationChange": false,
+              "AnimationPlayTime": 0.0,
+              "InitSoundDef": {
+                "SoundName": ""
+              }
+            },
+            "ScaleModifyPropertyName": ""
+          },
+          "raw": "{\"EffectTriggerDef\":{\"EffectId\":\"\",\"EffectName\":\"23121201_fx_buff_rebirth_explode.prefab\",\"IsLoop\":false,\"DummyType\":\"EEDT_DummyChild\",\"DummyData\":{\"CustomDummyName\":\"\",\"DummyType\":\"Unit_FootBottom\"},\"Position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Euler\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"Scale\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"EffectSpeed\":1.0,\"DestoryWhenActionSwitch\":false,\"DelayTimeToDestroy\":0,\"DelayTimeToWorldPos\":0.0,\"EnableAnimationChange\":false,\"AnimationPlayTime\":0.0,\"InitSoundDef\":{\"SoundName\":\"\"}},\"ScaleModifyPropertyName\":\"\"}",
+          "effect": "23121201_fx_buff_rebirth_explode",
+          "speed": 1.0,
+          "anchor": "Unit_FootBottom",
+          "attachment": "EEDT_DummyChild"
+        },
+        {
+          "index": 3,
+          "track": "PlaySound",
+          "track_index": 700,
+          "type": "EET_PlaySound",
+          "time": 0.0,
+          "duration": 0.0,
+          "time_ms": 0,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "SoundName": "audio_fx_event_revive_1.prefab",
+            "LoopTime": 0.0
+          },
+          "raw": "{\"SoundName\":\"audio_fx_event_revive_1.prefab\",\"LoopTime\":0.0}",
+          "sound": "audio_fx_event_revive_1"
+        },
+        {
+          "index": 4,
+          "track": "PlaySound",
+          "track_index": 700,
+          "type": "EET_PlaySound",
+          "time": 1.2,
+          "duration": 0.0,
+          "time_ms": 1200,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "SoundName": "audio_fx_event_revive_2.prefab",
+            "LoopTime": 0.0
+          },
+          "raw": "{\"SoundName\":\"audio_fx_event_revive_2.prefab\",\"LoopTime\":0.0}",
+          "sound": "audio_fx_event_revive_2"
+        },
+        {
+          "index": 5,
+          "track": "CameraEffect",
+          "track_index": 900,
+          "type": "EET_CameraEffect",
+          "time": 1.15,
+          "duration": 0.5,
+          "time_ms": 1150,
+          "duration_ms": 500,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "EffectType": "ECET_RadialBlur",
+            "EffectData": {
+              "BlurRadius": 0.200000002980232,
+              "FadeInOut": {
+                "x": 10.0,
+                "y": 2.0
+              }
+            }
+          },
+          "raw": "{\"EffectType\":\"ECET_RadialBlur\",\"EffectData\":{\"BlurRadius\":0.200000002980232,\"FadeInOut\":{\"x\":10.0,\"y\":2.0}}}"
+        },
+        {
+          "index": 6,
+          "track": "CameraFade",
+          "track_index": 1000,
+          "type": "EET_CameraFade",
+          "time": 0.0,
+          "duration": 1.5,
+          "time_ms": 0,
+          "duration_ms": 1500,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "TargetFade": -3.0
+          },
+          "raw": "{\"TargetFade\":-3.0}"
+        },
+        {
+          "index": 8,
+          "track": "ChangeLightIndensity",
+          "track_index": 3200,
+          "type": "EET_ChangeLightIndensity",
+          "time": 0.0,
+          "duration": 1.5,
+          "time_ms": 0,
+          "duration_ms": 1500,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "LightMultiIndensity": 0.5,
+            "FadeInOut": {
+              "x": 10.0,
+              "y": 2.0
+            }
+          },
+          "raw": "{\"LightMultiIndensity\":0.5,\"FadeInOut\":{\"x\":10.0,\"y\":2.0}}"
+        },
+        {
+          "index": 9,
+          "track": "BattleTimeScaleModify",
+          "track_index": 4900,
+          "type": "EET_BattleTimeScaleModify",
+          "time": 0.0,
+          "duration": 0.2,
+          "time_ms": 0,
+          "duration_ms": 200,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "ModifyBattleTimeScale": 0.200000002980232
+          },
+          "raw": "{\"ModifyBattleTimeScale\":0.200000002980232}"
+        }
+      ],
+      "interrupts": [
+        {
+          "index": 0,
+          "track": "3_[\u7cfb\u7edf]\u5f85\u673a",
+          "track_index": 1,
+          "type": "EET_Interrupt",
+          "time": 1.667,
+          "duration": 0.0,
+          "time_ms": 1667,
+          "duration_ms": 0,
+          "enabled": true,
+          "all": true,
+          "conditions": [],
+          "source_conditions": [],
+          "data": {
+            "ActionID": "sys_idle",
+            "CheckAllCondition": true,
+            "Conditions": []
+          },
+          "raw": "{\"ActionID\":\"sys_idle\",\"CheckAllCondition\":true,\"Conditions\":[]}",
+          "target": "sys_idle"
+        }
+      ],
+      "source_event_count": 10
+    }
+  },
+  "resources": {
+    "effects": {
+      "23121201_fx_buff_rebirth_explode": {
+        "address": "23121201_fx_buff_rebirth_explode",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/FX/Buff/23121201_fx_buff_rebirth_explode.prefab",
+        "bundle": 3073,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_fx_buff_23121201_fx_buff_rebirth_explode.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/e2faec57d3d484608e2be0ec187654b5.bundle",
+        "bundle_sha256": "654f685f332a791d55fa790d3232b3f1a03b73c72d2a78cd6eb635ad50dd6562"
+      },
+      "23121201_fx_buff_rebirth_symbol": {
+        "address": "23121201_fx_buff_rebirth_symbol",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/FX/Buff/23121201_fx_buff_rebirth_symbol.prefab",
+        "bundle": 3074,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_fx_buff_23121201_fx_buff_rebirth_symbol.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/b93c6fb48fae9f84b347f820955d4d0f.bundle",
+        "bundle_sha256": "22f2508d619f9d9b5c28558f2f9c8b9eea7f961cc423365c464425f5eb102c24"
+      },
+      "23121801_fx_other_transferdrop": {
+        "address": "23121801_fx_other_transferdrop",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/FX/Other/23121801_fx_other_transferdrop.prefab",
+        "bundle": 3839,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_fx_other_23121801_fx_other_transferdrop.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/2010ae5eda49f97d04ce0e166875867e.bundle",
+        "bundle_sha256": "e06c9cdbbcfa84bf66b53e279658a782c4fb2c7cb8acdb5c5b90e14149c856c5"
+      },
+      "23121801_fx_other_transferrise": {
+        "address": "23121801_fx_other_transferrise",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/FX/Other/23121801_fx_other_transferrise.prefab",
+        "bundle": 3840,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_fx_other_23121801_fx_other_transferrise.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/cfb29a3fd181e929e24a73fffa82324c.bundle",
+        "bundle_sha256": "4ba2172161a00879fc85be4059c85a366a7f7dd08f8179a3c0e2e5f7c5d8f071"
+      }
+    },
+    "sounds": {
+      "audio_fx_charachange_enter": {
+        "address": "audio_fx_charachange_enter",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/Audio/audio_fx_charachange_enter.prefab",
+        "bundle": 185,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_audio_audio_fx_charachange_enter.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/3bb402414ba086a6ced2908fc34abcb8.bundle",
+        "bundle_sha256": "0ff8e0b6f2b353e321207bf7df7a9563782c2515589ba3880dcba8b63e2913d1"
+      },
+      "audio_fx_event_enter_room": {
+        "address": "audio_fx_event_enter_room",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/Audio/audio_fx_event_enter_room.prefab",
+        "bundle": 186,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_audio_audio_fx_event_enter_room.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/b0d43287585e482d01cadfccd25ee1e9.bundle",
+        "bundle_sha256": "d0c9360036f36c69cecf12bca46c34ac9c1eeccc9488f35df933e07e9b8a48e1"
+      },
+      "audio_fx_event_exit_room": {
+        "address": "audio_fx_event_exit_room",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/Audio/audio_fx_event_exit_room.prefab",
+        "bundle": 187,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_audio_audio_fx_event_exit_room.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/043772d3b7a1fd89af33a4cb2e9360ea.bundle",
+        "bundle_sha256": "86d5c236fc641a95ceab7cda6703c428ba3f50ff856b5cf482094363f92fedf1"
+      },
+      "audio_fx_event_exit_room_2": {
+        "address": "audio_fx_event_exit_room_2",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/Audio/audio_fx_event_exit_room_2.prefab",
+        "bundle": 188,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_audio_audio_fx_event_exit_room_2.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/529cc6c06154f2557e1f8cf87edff2d0.bundle",
+        "bundle_sha256": "de2c3dc2146e34bf3a77ae1d8e42d6b14353afacbaf9734ae1a889f2b1be00b3"
+      },
+      "audio_fx_event_revive_1": {
+        "address": "audio_fx_event_revive_1",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/Audio/audio_fx_event_revive_1.prefab",
+        "bundle": 189,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_audio_audio_fx_event_revive_1.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/25d94c2fb1a7fcd547b533052845a3d6.bundle",
+        "bundle_sha256": "939376d74026f998f785641a799cc1d7451515f935d70403d5d1edc9f4533dad"
+      },
+      "audio_fx_event_revive_2": {
+        "address": "audio_fx_event_revive_2",
+        "asset_path": "Assets/[00002]Resource/Prefabs/BattleSys/Audio/audio_fx_event_revive_2.prefab",
+        "bundle": 190,
+        "bundle_name": "assets_[00002]resource_prefabs_battlesys_audio_audio_fx_event_revive_2.bundle",
+        "bundle_member": "assets/yoo/DefaultPackage/89bab7bb683e2dbb3bdf821da17d71fb.bundle",
+        "bundle_sha256": "1a94a193902b2122cdf9b03abcdecb720f7cef223ffd1e59c22a9e04342d06d5"
+      }
+    },
+    "animations": {
+      "axe@transfer": {
+        "source_name": "axe@transfer",
+        "imported": [
+          {
+            "character_id": 3,
+            "model": "res://assets/characters/character_3.glb",
+            "name": "axe_transfer",
+            "duration": 1.0333333,
+            "loop": false,
+            "tracks": 246,
+            "source_name": "axe@transfer"
+          }
+        ]
+      },
+      "bow@transfer": {
+        "source_name": "bow@transfer",
+        "imported": [
+          {
+            "character_id": 5,
+            "model": "res://assets/characters/character_5.glb",
+            "name": "bow_transfer",
+            "duration": 1.0333333,
+            "loop": false,
+            "tracks": 219,
+            "source_name": "bow@transfer"
+          }
+        ]
+      },
+      "common@reborn": {
+        "source_name": "common@reborn",
+        "imported": [
+          {
+            "character_id": 1,
+            "model": "res://assets/characters/character_1.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          },
+          {
+            "character_id": 2,
+            "model": "res://assets/characters/character_2.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          },
+          {
+            "character_id": 3,
+            "model": "res://assets/characters/character_3.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          },
+          {
+            "character_id": 4,
+            "model": "res://assets/characters/character_4.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          },
+          {
+            "character_id": 5,
+            "model": "res://assets/characters/character_5.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          },
+          {
+            "character_id": 6,
+            "model": "res://assets/characters/character_6.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          },
+          {
+            "character_id": 7,
+            "model": "res://assets/characters/character_7.glb",
+            "name": "common_reborn",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 162,
+            "source_name": "common@reborn"
+          }
+        ]
+      },
+      "orb@skill_shenzhijianglin": {
+        "source_name": "orb@skill_shenzhijianglin",
+        "imported": [
+          {
+            "character_id": 6,
+            "model": "res://assets/characters/character_6.glb",
+            "name": "orb_skill_shenzhijianglin",
+            "duration": 2.5333333,
+            "loop": false,
+            "tracks": 345,
+            "source_name": "orb@skill_shenzhijianglin"
+          }
+        ]
+      },
+      "orb@transfer": {
+        "source_name": "orb@transfer",
+        "imported": [
+          {
+            "character_id": 6,
+            "model": "res://assets/characters/character_6.glb",
+            "name": "orb_transfer",
+            "duration": 1.0333333,
+            "loop": false,
+            "tracks": 359,
+            "source_name": "orb@transfer"
+          }
+        ]
+      },
+      "sickle@transfer": {
+        "source_name": "sickle@transfer",
+        "imported": [
+          {
+            "character_id": 2,
+            "model": "res://assets/characters/character_2.glb",
+            "name": "sickle_transfer",
+            "duration": 1.0333333,
+            "loop": false,
+            "tracks": 300,
+            "source_name": "sickle@transfer"
+          }
+        ]
+      },
+      "sword@transfer": {
+        "source_name": "sword@transfer",
+        "imported": [
+          {
+            "character_id": 1,
+            "model": "res://assets/characters/character_1.glb",
+            "name": "sword_transfer",
+            "duration": 1.0333333,
+            "loop": false,
+            "tracks": 249,
+            "source_name": "sword@transfer"
+          }
+        ]
+      },
+      "wand@transfer": {
+        "source_name": "wand@transfer",
+        "imported": [
+          {
+            "character_id": 4,
+            "model": "res://assets/characters/character_4.glb",
+            "name": "wand_transfer",
+            "duration": 1.0333333,
+            "loop": false,
+            "tracks": 288,
+            "source_name": "wand@transfer"
+          }
+        ]
+      }
+    }
+  },
+  "limitations": [
+    "Static source configuration is not observation of original APK execution.",
+    "Source millisecond timing, conditions, event order, effect speed, attachment and raw event data are preserved without acceleration.",
+    "Revival input movement is outside this presentation import and retained in the evidence report.",
+    "Source revival also permits sys_idle at 1.667 seconds although the action TotalTime is 2.5 seconds; both values are retained.",
+    "Source enterroom defines transfer animations only for buff 100000 through 600000. No lance/blade event is invented.",
+    "Source leftroom requests orb@skill_shenzhijianglin unconditionally; the current model catalog supplies that clip for character 6 only.",
+    "Godot particle rendering and custom shader equivalence retain the limitations recorded in the existing presentation catalog."
+  ]
+}

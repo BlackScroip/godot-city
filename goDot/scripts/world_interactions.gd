@@ -9,6 +9,8 @@ signal message_requested(name: String, context: Dictionary)
 signal object_changed(marker_id: String, state: Dictionary)
 signal diagnostic_reported(context: Dictionary)
 signal effect_requested(context: Dictionary)
+signal sound_requested(name: String)
+signal presentation_requested(kind: String, context: Dictionary)
 signal player_trigger_entered(trigger_id: int, context: Dictionary)
 
 const RULES_PATH := "res://assets/environment_rules.json"
@@ -189,6 +191,7 @@ func interact(marker_id: String) -> Dictionary:
 			if item.state.used: return {"success": false, "reason": "already_used"}
 			item.state.used = true
 			_changed(item)
+			presentation_requested.emit("protect_activate", context)
 			message_requested.emit("EnvUnit_InteractProtectTarget", context)
 			return {"success": true, "context": context}
 		"EEUT_DoorController":
@@ -209,6 +212,7 @@ func interact(marker_id: String) -> Dictionary:
 			if item.state.opened: return {"success": false, "reason": "already_opened"}
 			item.state.opened = true
 			_changed(item)
+			presentation_requested.emit("chest_open", context)
 			reward_requested.emit(context)
 			return {"success": true, "context": context}
 		"EEUT_StageChangeDoor", "EEUT_Protal":
@@ -263,10 +267,13 @@ func damage_marker(marker_id: String, acc_tenacity: float, source_camp: int = 2,
 	# Unity HitFeedBackData_EnvUnit.AccTenacity is an integer; HP damage is independent.
 	item.state.hp = maxf(0, float(item.state.hp) - int(acc_tenacity))
 	_effect(item, "BeAttackEffect")
+	_sound(item, "BeAttackSound")
 	if item.state.hp <= 0:
 		item.state.breaking = true
 		item.state.break_remaining = maxf(0, float(definition.get("BreakDelayTime", 0)))
-		if item.state.break_remaining > 0: _effect(item, "BreakDelayVfxName")
+		if item.state.break_remaining > 0:
+			_effect(item, "BreakDelayVfxName")
+			_sound(item, "BreakDelaySoundName")
 		if item.state.break_remaining <= 0: _finish_break(item)
 	_changed(item)
 	return true
@@ -307,7 +314,9 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 					item.state.idle_remaining = maxf(0.0, float(item.state.idle_remaining) - step)
 				"EEUT_DestoryableItem":
 					var touching := _contains(item, player_position + Vector3.UP * 0.8, 0.35)
-					if touching and not item.state.inside: _effect(item, "TriggerTouchUnitPlayEffect")
+					if touching and not item.state.inside:
+						_effect(item, "TriggerTouchUnitPlayEffect")
+						_sound(item, "TriggerTouchUnitSoundName")
 					item.state.inside = touching
 					if item.state.breaking:
 						item.state.break_remaining = maxf(0, float(item.state.break_remaining) - step)
@@ -351,6 +360,7 @@ func _advance_trap(item: Dictionary, delta: float, inside: bool) -> void:
 			state.hits_once.clear()
 			state.hit_cooldowns.clear()
 			_effect(item, "TriggerStartEffectName")
+			_sound(item, "TriggerStartSound")
 		var key := "TriggerStartTime" if state.phase == "starting" else "TriggerLastingTime" if state.phase == "active" else "TriggerEndTime"
 		var duration := maxf(0, float(definition.get(key, 0)))
 		var used := minf(remaining, maxf(0, duration - float(state.phase_time)))
@@ -407,6 +417,7 @@ func _affect(item: Dictionary, target: Dictionary, frame_hits: Dictionary) -> vo
 func _finish_break(item: Dictionary) -> void:
 	if item.state.broken: return
 	_effect(item, "BreakEffect", "BreakEffectPosOffset")
+	_sound(item, "BreakSoundTrigger")
 	item.state.broken = true
 	item.state.break_remaining = 0.0
 	_changed(item)
@@ -457,6 +468,14 @@ func set_protection_enabled(active: bool) -> void:
 		if str(item.marker.get("Type", "")) != "EEUT_ProtectTarget": continue
 		item.state.enabled = active
 		_changed(item)
+
+func complete_protection() -> void:
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_ProtectTarget" or not item.state.used or item.state.phase == "destroyed": continue
+		item.state.phase = "destroyed"
+		item.state.enabled = false
+		_changed(item)
+		presentation_requested.emit("protect_complete", _context(item))
 
 func set_exit_enabled(active: bool) -> void:
 	for item in _items.values():
@@ -523,10 +542,11 @@ func _apply(item: Dictionary) -> void:
 			_set_source_active(item.visual, active)
 		elif str(item.marker.get("Type", "")) == "EEUT_ProtectTarget":
 			_set_source_active(item.visual, not item.state.broken)
+			var completed: bool = item.state.phase == "destroyed"
 			for node in item.visual.find_children("*", "Node3D", true, false):
 				for prefix in ["Container_UnActive", "Container_Active", "Container_Destory"]:
 					if str(node.name) == prefix or str(node.name).begins_with(prefix + "_"):
-						_set_source_active(node, (not item.state.used if prefix == "Container_UnActive" else item.state.used if prefix == "Container_Active" else false))
+						_set_source_active(node, (not item.state.used and not completed if prefix == "Container_UnActive" else item.state.used and not completed if prefix == "Container_Active" else completed))
 		elif str(item.marker.get("Type", "")) == "EEUT_DestoryableItem":
 			item.visual.set_meta("unityActive", active)
 	for egg in item.get("altar_eggs", []):
@@ -537,7 +557,7 @@ func _apply(item: Dictionary) -> void:
 		_set_source_active(item.effect_states[address], active and (bool(item.state.used) == on))
 	for body in item.bodies:
 		if is_instance_valid(body.node):
-			var solid: bool = not item.state.broken if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_ProtectTarget"] else active
+			var solid: bool = not item.state.broken and item.state.phase != "destroyed" if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_ProtectTarget"] else active
 			body.node.collision_layer = int(body.layer) if solid else 0
 			body.node.collision_mask = int(body.mask) if solid else 0
 
@@ -555,6 +575,11 @@ func _effect(item: Dictionary, field: String, offset_field := "") -> void:
 	var local_point: Vector3 = item.position
 	if not offset_field.is_empty(): local_point += _vector(item.definition.get(offset_field, {}))
 	effect_requested.emit({"address": address, "position": _world_position(local_point), "marker_id": str(item.id), "source_field": field})
+
+func _sound(item: Dictionary, field: String) -> void:
+	var value: Variant = item.definition.get(field, {})
+	var name := str(value.get("SoundName", "")) if value is Dictionary else str(value)
+	if not name.is_empty(): sound_requested.emit(name)
 
 func _volumes(item: Dictionary, role: String) -> Array:
 	if role.is_empty(): return item.colliders

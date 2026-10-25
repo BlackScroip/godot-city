@@ -18,6 +18,10 @@ var selected_index := -1
 var edges: Array = []
 var column_width := 310.0
 var node_size := Vector2(180, 88)
+var map_switch: Button
+
+func is_world_map() -> bool:
+	return context.get("map_scope", "rooms") == "world"
 
 func configure(data: Array, details: Dictionary) -> void:
 	rows = data
@@ -54,6 +58,13 @@ void fragment() {
 	var title = DungeonStyle.label("区域路线" if context.get("preview", false) else "选择路线", 30)
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	header.add_child(title)
+	map_switch = Button.new()
+	map_switch.text = "小地图" if is_world_map() else "大地图"
+	map_switch.tooltip_text = "查看区域内路线" if is_world_map() else "查看区域总览"
+	map_switch.custom_minimum_size = Vector2(94, 44)
+	map_switch.visible = not is_world_map() or bool(context.get("can_view_rooms", false))
+	map_switch.pressed.connect(func(): command.emit("route_rooms" if is_world_map() else "route_world", 0, 0))
+	header.add_child(map_switch)
 	var spacer = Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(spacer)
@@ -72,9 +83,10 @@ void fragment() {
 	scroll.add_child(graph)
 	origin = DungeonRouteNode.new()
 	origin.portrait = DungeonStyle.texture(str(context.get("portrait", "sprite_cardicon_square_jiannan")))
-	origin.room = {"name": str(context.get("character", ""))}
+	origin.room = {"name": str(context.get("character", "")), "map_mode": "world" if is_world_map() else "rooms", "world_icon": "森林图标"}
 	origin.disabled = true
-	origin.visible = int(context.get("current_layer", 0)) == int(context.get("first_layer", 0)) and not context.get("preview", false)
+	origin.visible = is_world_map() or (int(context.get("current_layer", 0)) == int(context.get("first_layer", 0)) and not context.get("preview", false))
+	if is_world_map() and int(context.get("current_layer", 1)) > 1: origin.portrait = null
 	graph.add_child(origin)
 	for row in rows:
 		var key = DungeonRouteNode.new()
@@ -83,8 +95,10 @@ void fragment() {
 		key.visited = bool(row.get("visited", false))
 		if row.get("is_anchor", false):
 			key.portrait = origin.portrait
-		key.disabled = not key.available
-		key.pressed.connect(func(): _select(int(row.node_id), int(row.layer_index)))
+		key.disabled = not key.available and not is_world_map()
+		key.pressed.connect(func():
+			if is_world_map() and not key.available: command.emit("region_info", int(row.node_id), 0)
+			else: _select(int(row.node_id), int(row.layer_index)))
 		key.focus_entered.connect(func(): scroll.ensure_control_visible(key))
 		graph.add_child(key)
 		if row.get("current", false):
@@ -118,7 +132,7 @@ void fragment() {
 	confirm.pressed.connect(_confirm)
 	footer.add_child(confirm)
 	automatic = CheckBox.new()
-	automatic.text = "无多选项时自动进入下一节点"
+	automatic.text = "无多选项时自动进入下一节点（含切层演出）"
 	automatic.button_pressed = bool(context.get("automatic", false))
 	automatic.add_theme_font_size_override("font_size", 17)
 	for state in ["normal", "hover", "pressed", "focus"]: automatic.add_theme_stylebox_override(state, StyleBoxEmpty.new())
@@ -160,7 +174,7 @@ func _layout() -> void:
 	header.size = Vector2(maxf(0, size.x - 60), 74)
 	footer.size = footer.get_combined_minimum_size().max(Vector2(size.x - 48, 56))
 	var compact = size.x < 1000
-	automatic.text = "单一路线自动进入" if compact else "无多选项时自动进入下一节点"
+	automatic.text = "单一路线自动进入" if compact else "无多选项时自动进入下一节点（含切层演出）"
 	confirm.custom_minimum_size.x = 190 if compact else 360 if size.x >= 1800 else 260
 	footer.get_child(0).custom_minimum_size.x = automatic.get_combined_minimum_size().x + 24 if size.x >= 1100 else 0
 	footer.position = Vector2(24, size.y - 82)
@@ -168,8 +182,8 @@ func _layout() -> void:
 	scroll.position = Vector2(24, 112)
 	scroll.size = Vector2(maxf(0, size.x - 48), maxf(160, size.y - 220))
 	var height = maxf(160, scroll.size.y - 20)
-	var card_height = clampf(height * 0.29, 48, 170)
-	node_size = Vector2(maxf(100, card_height * 1.15), card_height)
+	var card_height = clampf(height * (0.29 if is_world_map() else 0.20), 48, 170 if is_world_map() else 132)
+	node_size = Vector2(maxf(100, card_height * (1.15 if is_world_map() else 2.15)), card_height)
 	column_width = node_size.x + clampf(size.x * 0.1, 90, 220)
 	var first_column = int(context.get("first_layer", 0))
 	var last_column = first_column
@@ -221,8 +235,8 @@ func _draw_paths() -> void:
 			_vertical_arrow(middle + Vector2(-12, -length * 0.5), middle + Vector2(-12, length * 0.5), color)
 			_vertical_arrow(middle + Vector2(12, length * 0.5), middle + Vector2(12, -length * 0.5), color)
 		else:
-			var start = source.position + Vector2(source.size.x + 3, (source.size.y - 24) * 0.5)
-			var end = target.position + Vector2(-6, (target.size.y - 24) * 0.5)
+			var start = source.position + Vector2(source.size.x + 3, (source.size.y - (24 if is_world_map() else 0)) * 0.5)
+			var end = target.position + Vector2(-6, (target.size.y - (24 if is_world_map() else 0)) * 0.5)
 			var lit = source.portrait != null
 			var color = Color("a77a4f")
 			graph.draw_circle(start, 5, color)
@@ -266,4 +280,4 @@ func _select(id: int, layer := -1) -> void:
 func _confirm() -> void:
 	if selected_id == 0 or context.get("preview", false): return
 	confirm.disabled = true
-	command.emit("enter_node", selected_id, 0)
+	command.emit("select_region" if is_world_map() else "enter_node", selected_id, 0)

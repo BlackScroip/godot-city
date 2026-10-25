@@ -40,8 +40,23 @@ func validate() -> bool:
 			return false
 	for key in ["claimed_tasks", "claimed_achievements", "discovered_loot", "equipped_partners", "active_awakenings", "equipped_tokens", "equipped_amplifiers"]:
 		if not _ids(data[key]): return false
+	var assigned_partners: Array = []
+	var assigned_work: Array = []
 	for job in data.work:
 		if not job is Dictionary: return false
+		for key in ["work_id", "partner_id", "started_utc", "due_utc", "material_id", "reward"]:
+			if not _number(job.get(key)) or job[key] < 0 or float(job[key]) != floor(float(job[key])): return false
+		if job.work_id <= 0 or job.partner_id <= 0 or job.material_id <= 0 or job.reward <= 0: return false
+		if int(job.work_id) in assigned_work or int(job.partner_id) in assigned_partners: return false
+		if job.has("level") and (not _number(job.level) or job.level < 0 or float(job.level) != floor(float(job.level))): return false
+		for key in ["quantity", "claimed_quantity", "cycle_seconds"]:
+			if job.has(key) and (not _number(job[key]) or job[key] < 0 or float(job[key]) != floor(float(job[key]))): return false
+		if int(job.get("quantity", 1)) < 1 or int(job.get("quantity", 1)) > 5: return false
+		if int(job.get("claimed_quantity", 0)) >= int(job.get("quantity", 1)): return false
+		if job.has("cycle_seconds") and int(job.cycle_seconds) < 1: return false
+		if int(job.get("quantity", 1)) > 1 and not job.has("cycle_seconds"): return false
+		assigned_work.append(int(job.work_id))
+		assigned_partners.append(int(job.partner_id))
 	var run = data.run
 	var defaults = new_run()
 	for key in defaults:
@@ -104,3 +119,6 @@ func normalize_ids() -> void:
 	data.run.completed_nodes = data.run.completed_nodes.map(func(value): return int(value))
 	for reward in data.run.rewards:
 		reward.choices = reward.choices.map(func(value): return int(value))
+	for job in data.work:
+		for key in ["work_id", "partner_id", "started_utc", "due_utc", "material_id", "reward", "level", "quantity", "claimed_quantity", "cycle_seconds"]:
+			if job.has(key): job[key] = int(job[key])

@@ -9,6 +9,7 @@ signal room_exit_ready
 signal interact_requested
 signal world_message(name: String, payload: Dictionary)
 signal environment_action(kind: String, payload: Dictionary)
+signal environment_sound(name: String)
 signal skill_request_resolved(slot: int, result: Dictionary)
 signal impact_confirmed(impact: Dictionary)
 
@@ -75,7 +76,19 @@ var _event_markers: Dictionary = {}
 var _event_refresh_at := 0
 var ground_loot = preload("res://scripts/ground_loot.gd").new()
 var spirit_followers = preload("res://scripts/presentation/spirit_followers.gd").new()
+var player_transfer = preload("res://scripts/presentation/player_transfer.gd").new()
+var player_revival = preload("res://scripts/presentation/player_lifecycle.gd").new()
 var camera_closeup = preload("res://scripts/presentation/camera_closeup.gd").new()
+var camp_camera = preload("res://scripts/presentation/camp_camera.gd").new()
+var camp_progression = preload("res://scripts/presentation/camp_progression.gd").new()
+var _camp_destination := ""
+var _camp_destination_page := ""
+var _camp_stall_time := 0.0
+var _camp_last_position := Vector3.ZERO
+var _camp_pointer_id := -2
+var _camp_pointer_start := Vector2.ZERO
+var _camp_pointer_marker := ""
+var _camp_focus_nodes: Dictionary = {}
 var _outcome_camera := false
 
 func update_event_markers(camp: bool) -> void:
@@ -155,6 +168,8 @@ var _seen_blasts: Dictionary = {}
 func _ready() -> void:
 	add_child(ground_loot)
 	add_child(spirit_followers)
+	add_child(player_transfer)
+	add_child(player_revival)
 	var file = FileAccess.open("res://assets/catalog.json", FileAccess.READ)
 	if file: catalog = JSON.parse_string(file.get_as_text())
 	var sky = WorldEnvironment.new()
@@ -203,6 +218,8 @@ func asset_path(kind: String, id: Variant) -> String:
 func release_environment() -> void:
 	# Callers may yield a frame here so queued GPU/scene resources retire before loading.
 	_environment_generation += 1
+	player_transfer.cancel()
+	player_revival.cancel()
 	room_spawn_points.clear()
 	enemy_stage_layer = 1
 	monster_spawn_queue.clear()
@@ -215,6 +232,11 @@ func release_environment() -> void:
 	_room_stage_wait = 0.0
 	_entry_wave.clear()
 	camera_closeup.restore()
+	camp_camera.reset()
+	_cancel_camp_navigation()
+	_camp_pointer_id = -2
+	_camp_pointer_marker = ""
+	_camp_focus_nodes.clear()
 	_outcome_camera = false
 	spirit_followers.clear()
 	if not ground_loot.get_parent(): add_child(ground_loot)
@@ -273,9 +295,11 @@ func load_environment(id: Variant, camp := false) -> void:
 		var bounds = entry.get("bounds", {})
 		if bounds is Dictionary and bounds.has("center"):
 			_scene_center = vector(bounds.center)
+	if camp and systems: camp_progression.apply(environment_root, systems.profile.data.buildings)
 	_load_collisions(path)
 	interactions = load("res://scripts/world_interactions.gd").new()
 	interactions.transition_requested.connect(func(context): environment_action.emit("transition", context))
+	interactions.sound_requested.connect(func(name): environment_sound.emit(name))
 	interactions.npc_requested.connect(func(id, context):
 		context["npc_id"] = id
 		environment_action.emit("npc", context))
@@ -288,7 +312,7 @@ func load_environment(id: Variant, camp := false) -> void:
 	interactions.trap_triggered.connect(_environment_trap)
 	interactions.diagnostic_reported.connect(func(context): _diagnostic("Environment: " + str(context)))
 	interactions.setup(environment_root, semantic_markers, {"colliders": markers, "catalog": systems.catalog if systems else null, "is_unlocked": func(id): return systems.is_unlocked(int(id)) if systems else false})
-	_build_navigation(str(id))
+	_build_navigation(_camp_navigation_key() if camp else str(id))
 	var angles: Array = environment_entry.get("camera_rotation", [45.0, -45.0])
 	var elevation = deg_to_rad(float(angles[0]))
 	var yaw = deg_to_rad(float(angles[1]))
@@ -302,6 +326,40 @@ func load_environment(id: Variant, camp := false) -> void:
 	camera.size = 17.0 if camp else FEEL.level_camera_height
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL if camp else Camera3D.PROJECTION_PERSPECTIVE
 	camera.fov = FEEL.level_camera_fov
+	if camp:
+		camp_camera.configure(camera, environment_entry)
+		_camera_offset = camp_camera.offset()
+		_apply_camp_interaction_states()
+
+func _camp_navigation_key() -> String:
+	return "10000:" + camp_progression.signature
+
+func _apply_camp_interaction_states() -> void:
+	if not interactions: return
+	for item in interactions._items.values():
+		var node_name := str(item.marker.get("exported_node_name", ""))
+		if not camp_progression.controls(node_name): continue
+		item.state.enabled = bool(camp_progression.active_nodes.get(node_name, false))
+		interactions._apply(item)
+	for label in environment_root.find_children("*", "Label3D", true, false):
+		if not label.has_meta("camp_marker_id"): continue
+		var item: Dictionary = interactions._items.get(str(label.get_meta("camp_marker_id")), {})
+		label.visible = not item.is_empty() and bool(item.get("visible", false))
+
+func refresh_camp_progression() -> void:
+	if not _camp_camera or not systems or not is_instance_valid(environment_root): return
+	_cancel_camp_navigation()
+	camp_progression.apply(environment_root, systems.profile.data.buildings)
+	for marker in markers:
+		var body := environment_root.get_node_or_null("Collider_" + str(marker.get("fileID", "")))
+		if body is StaticBody3D and camp_progression.controls(str(marker.get("exported_node_name", ""))):
+			body.collision_layer = 1 if camp_progression.collider_active(marker) else 0
+	_apply_camp_interaction_states()
+	if is_instance_valid(navigation_region):
+		environment_root.remove_child(navigation_region)
+		navigation_region.queue_free()
+	_build_navigation(_camp_navigation_key())
+	_event_refresh_at = 0
 
 func _load_collisions(path: String) -> void:
 	var sidecar_path = path.trim_suffix(".glb") + ".markers.json"
@@ -315,7 +373,9 @@ func _load_collisions(path: String) -> void:
 	semantic_markers = sidecar.get("semantic_markers", [])
 	for item in markers:
 		var properties: Dictionary = item.get("properties", {})
-		if not item.get("active", true) or not properties.get("m_Enabled", 1):
+		var active := camp_progression.collider_active(item) if _camp_camera else bool(item.get("active", true))
+		var staged := _camp_camera and camp_progression.controls(str(item.get("exported_node_name", "")))
+		if (not active and not staged) or not properties.get("m_Enabled", 1):
 			collision_report.inactive += 1
 			continue
 		if properties.get("m_IsTrigger", 0):
@@ -326,7 +386,7 @@ func _load_collisions(path: String) -> void:
 		var body = StaticBody3D.new()
 		body.name = "Collider_" + str(item.get("fileID", ""))
 		body.position = matrix.origin
-		body.collision_layer = 1
+		body.collision_layer = 1 if active else 0
 		var shape = CollisionShape3D.new()
 		var center = vector(properties.get("m_Center", {}))
 		match int(item.kind):
@@ -437,7 +497,7 @@ func create_player(combat: RefCounted, character_id: int, position_data: Variant
 	return player
 
 func _camera_target() -> Vector3:
-	if _camp_camera: return player.position + Vector3.UP * 0.4
+	if _camp_camera: return camp_camera.target(player.position)
 	var view_basis = Basis.looking_at(-_camera_offset.normalized(), Vector3.UP)
 	# Keep the same world scale on wide phones; reserve the lower area for controls.
 	return player.position + view_basis.y * camera.size * (FEEL.level_player_screen_y - 0.5)
@@ -445,6 +505,152 @@ func _camera_target() -> Vector3:
 func snap_camera() -> void:
 	if not is_instance_valid(player): return
 	_camera_focus = _camera_target()
+	camera.position = _camera_focus + _camera_offset
+	camera.look_at(_camera_focus)
+
+func _camp_facility_available(item: Dictionary) -> bool:
+	return not item.is_empty() and item.state.enabled and not item.state.broken and not item.state.opened and not item.state.used and item.position.y > -10.0 and not str(item.get("page", interactions.prompt_for(item)[1])).is_empty()
+
+func camp_facility(page: String) -> Dictionary:
+	if not _camp_camera or not interactions: return {}
+	if page == "difficulty": page = "primary"
+	if page == "work": return _camp_marker("camp:work")
+	for item in interactions._items.values():
+		if page == "talents" and int(item.data.get("NpcId", 0)) == 1000 and _camp_facility_available(item): return item
+		if _camp_facility_available(item) and str(interactions.prompt_for(item)[1]) == page: return item
+	return {}
+
+func _camp_focus_node(source_name: String) -> Node3D:
+	if _camp_focus_nodes.is_empty():
+		for node in interactions._nodes.values():
+			if node is Node3D and is_instance_valid(node):
+				_camp_focus_nodes[str(node.get_meta("extras", {}).get("unityName", str(node.name)))] = node
+	return _camp_focus_nodes.get(source_name)
+
+func _camp_marker(marker_id: String) -> Dictionary:
+	if not interactions: return {}
+	if marker_id == "camp:work":
+		var node := _camp_focus_node("PosChecker_符文石")
+		if node:
+			return {"id": marker_id, "page": "work", "position": node.global_position, "data": {}, "marker": {}, "state": {"enabled": true, "broken": false, "opened": false, "used": false}}
+	return interactions._items.get(marker_id, {})
+
+func focus_camp_facility(page: String, duration := 2.4) -> bool:
+	var item := camp_facility(page)
+	if item.is_empty(): return false
+	_cancel_camp_navigation()
+	camp_camera.focus(item.position + Vector3.UP * 0.7, duration)
+	return true
+
+func focus_camp_building(building_id: int, stage: int, duration := 2.4) -> bool:
+	if not _camp_camera or not systems or not interactions: return false
+	var row: Dictionary = systems.catalog.find("Buildings", building_id)
+	var targets := str(row.get("build_anim_target_transform_name", "")).split("|", false)
+	if stage < 1 or stage > targets.size(): return false
+	var target_name := str(targets[stage - 1])
+	var node := _camp_focus_node(target_name)
+	if node:
+		_cancel_camp_navigation()
+		camp_camera.focus(node.global_position + Vector3.UP * 0.7, duration)
+		return true
+	return false
+
+func navigate_to_camp_facility(page: String) -> bool:
+	var item := camp_facility(page)
+	var accepted := _navigate_to_camp_marker(str(item.get("id", "")))
+	if accepted and page in ["work", "talents"]: _camp_destination_page = page
+	return accepted
+
+func _navigate_to_camp_marker(marker_id: String) -> bool:
+	if not _camp_camera or not interactions or not is_instance_valid(player) or paused or _background: return false
+	var item := _camp_marker(marker_id)
+	if not _camp_facility_available(item): return false
+	camp_camera.focus_remaining = 0.0
+	_camp_destination = marker_id
+	_camp_destination_page = str(item.get("page", ""))
+	_camp_stall_time = 0.0
+	_camp_last_position = player.position
+	player.navigation_timer = 0.0
+	return true
+
+func _cancel_camp_navigation() -> void:
+	_camp_destination = ""
+	_camp_destination_page = ""
+	_camp_stall_time = 0.0
+
+func _camp_navigation_velocity(delta: float) -> Vector3:
+	if _camp_destination.is_empty(): return Vector3.ZERO
+	var item := _camp_marker(_camp_destination)
+	if not _camp_facility_available(item):
+		_cancel_camp_navigation()
+		return Vector3.ZERO
+	if player.position.distance_to(item.position) <= 2.65:
+		var destination := _camp_destination
+		var page := _camp_destination_page
+		_cancel_camp_navigation()
+		if not page.is_empty(): world_message.emit("camp_page", {"page": page})
+		else: interactions.interact(destination)
+		return Vector3.ZERO
+	_camp_stall_time = _camp_stall_time + delta if player.position.distance_squared_to(_camp_last_position) < 0.00001 else 0.0
+	_camp_last_position = player.position
+	if _camp_stall_time > 1.5:
+		_cancel_camp_navigation()
+		if hud: hud.toast("无法到达设施，请调整位置后重试")
+		return Vector3.ZERO
+	return _chase(player, item.position, delta)
+
+func camp_marker_at_screen(point: Vector2) -> String:
+	if not _camp_camera or not interactions or not camera: return ""
+	var closest := ""
+	var best := 40.0 * maxf(1.0, get_viewport().get_visible_rect().size.y / 900.0)
+	var candidates: Array = interactions._items.values()
+	var work := _camp_marker("camp:work")
+	if not work.is_empty(): candidates.append(work)
+	for item in candidates:
+		if not _camp_facility_available(item): continue
+		var anchor: Vector3 = item.position + Vector3.UP * 0.7
+		if camera.is_position_behind(anchor): continue
+		var projected := camera.unproject_position(anchor)
+		if not get_viewport().get_visible_rect().has_point(projected): continue
+		var distance := point.distance_to(projected)
+		if distance < best:
+			best = distance
+			closest = str(item.id)
+	return closest
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not _camp_camera or paused or _background or (hud and hud.modal_open): return
+	if event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+		camp_camera.zoom(-1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.0)
+		get_viewport().set_input_as_handled()
+		return
+	var pointer := -2
+	var pressed := false
+	var point := Vector2.ZERO
+	if event is InputEventScreenTouch:
+		pointer = event.index
+		pressed = event.pressed
+		point = event.position
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		pointer = -1
+		pressed = event.pressed
+		point = event.position
+	else: return
+	if pressed:
+		_camp_pointer_id = pointer
+		_camp_pointer_start = point
+		_camp_pointer_marker = camp_marker_at_screen(point)
+	elif pointer == _camp_pointer_id:
+		var marker := _camp_pointer_marker
+		_camp_pointer_id = -2
+		_camp_pointer_marker = ""
+		if not marker.is_empty() and point.distance_to(_camp_pointer_start) <= 18.0 and camp_marker_at_screen(point) == marker:
+			if _navigate_to_camp_marker(marker): get_viewport().set_input_as_handled()
+
+func _update_camp_camera(delta: float, hold_focus := false) -> void:
+	camp_camera.step(delta, hold_focus)
+	_camera_offset = camp_camera.offset()
+	_camera_focus = _camera_focus.lerp(_camera_target(), camp_camera.follow_weight(delta))
 	camera.position = _camera_focus + _camera_offset
 	camera.look_at(_camera_focus)
 
@@ -527,6 +733,7 @@ func _start_entry_wave() -> void:
 
 func begin_room_clear() -> void:
 	if room_stage in ["clearing", "rewards", "open"]: return
+	if room_fight_type == "ProtectTarget": interactions.complete_protection()
 	fighting = false
 	room_stage = "clearing"
 	_room_stage_wait = 0.0 if room_fight_type in ["DodgeBattle", "ProtectTarget"] else 1.0
@@ -699,6 +906,9 @@ func _release_auto_heavy() -> void:
 		player.combat.custom_properties.AttackModeStr = "normal"
 
 func clear_input() -> void:
+	_cancel_camp_navigation()
+	_camp_pointer_id = -2
+	_camp_pointer_marker = ""
 	_release_auto_heavy()
 	intent.clear(player.combat if is_instance_valid(player) else null)
 	if player:
@@ -772,6 +982,8 @@ func _execute_player(slot: int, automatic := false, selected_target: DungeonActo
 	return true
 
 func _process(delta: float) -> void:
+	player_transfer.advance(delta, _background)
+	player_revival.advance(delta, _background)
 	if not paused and not _background and not (hud and hud.modal_open): _tick_damage_numbers(delta)
 	if not is_instance_valid(player) or player.dead: return
 	var stopped = paused or _background or (hud and hud.modal_open)
@@ -779,8 +991,13 @@ func _process(delta: float) -> void:
 		presentation.suspended = stopped
 		presentation.low_quality = low_effects
 	camera_closeup.pause(stopped)
-	if stopped: return
+	if stopped:
+		if _camp_camera and not paused and not _background and camp_camera.focus_remaining > 0.0: _update_camp_camera(delta, true)
+		return
 	_tick_monster_spawns()
+	if _camp_camera:
+		_update_camp_camera(delta)
+		return
 	if not _outcome_camera:
 		camera_closeup.update_action(player, player.combat.action_elapsed * float(player.combat.custom_properties.get("_feel_action_speed", 1)) * 1000.0)
 	camera_closeup.step(delta)
@@ -842,8 +1059,9 @@ func _physics_process(delta: float) -> void:
 	_tick_room_sequence(delta)
 	spirit_followers.advance(delta, player)
 	if systems and not player.dead:
-		if not ground_loot.advance_collection(delta, player.position, systems).is_empty():
-			environment_action.emit("auto_loot", {})
+		var collected := ground_loot.advance_collection(delta, player.position, systems)
+		if not collected.is_empty():
+			environment_action.emit("auto_loot", {"coin": collected.any(func(entry): return int(entry.get("id", 0)) == 101)})
 	_impact_clock += delta
 	for cache in [_seen_impacts, _seen_blasts]:
 		for key in cache.keys():
@@ -860,6 +1078,12 @@ func _physics_process(delta: float) -> void:
 	right.y = 0
 	forward.y = 0
 	player.desired_velocity = (right.normalized() * movement.x - forward.normalized() * movement.y) * float(player.combat.move_speed)
+	if _camp_camera:
+		if movement.length_squared() > 0.0001:
+			_cancel_camp_navigation()
+			camp_camera.focus_remaining = 0.0
+		elif not _camp_destination.is_empty():
+			player.desired_velocity = _camp_navigation_velocity(delta)
 	if player.desired_velocity.length_squared() > 0.0001: intent.last_move = player.desired_velocity.normalized()
 	if test_driver and fighting:
 		var nearest = _nearest_enemy(player.position)

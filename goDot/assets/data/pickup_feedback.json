@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "evidence": "res://reports/unbound-environment-effects-apk.json",
+  "bindings": {
+    "material:103": {
+      "source_config": "EnvUnitCfg_[10105]",
+      "source_prefab": "EnvUnit_PickUpable_MineralMat",
+      "event": "persistent",
+      "effect": "23051501_fx_env_star"
+    },
+    "loot:10002": {
+      "source_config": "EnvUnitCfg_[50004]",
+      "source_field": "EnvUnitData/InitEffectName",
+      "source_ability_id": 10002,
+      "event": "appear",
+      "effect": "23121501_fx_other_proppurpleappear"
+    }
+  }
+}

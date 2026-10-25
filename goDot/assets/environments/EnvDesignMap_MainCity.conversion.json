@@ -578,15 +578,16 @@
         126.0
       ]
     },
-    "meshes": 267,
+    "meshes": 348,
     "nodes": 3955,
     "skins": 19,
     "unsupported": {},
-    "bytes": 6905052,
+    "bytes": 9441220,
     "source": "OfflineUnity/Assets/Campaign/Recovered/Scenes/EnvDesignMap_MainCity.prefab",
     "source_sha256": "e8ab8fd60be7d0c89ec87ce5a6da222eef3bc343953b144a16da85f700876ecc",
     "default_animations": {},
     "markers": "res://assets/environments/EnvDesignMap_MainCity.markers.json",
     "colliders": 289
-  }
+  },
+  "construction_geometry_report": "goDot/reports/camp-construction-geometry.json"
 }

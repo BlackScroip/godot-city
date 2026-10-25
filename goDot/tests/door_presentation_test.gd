@@ -20,7 +20,9 @@ func _run() -> void:
 	for material in presentation.door_materials.materials:
 		if not material.get_shader_parameter("source_shapes"): failures.append("Barrier must use recovered source shader properties")
 	presentation.set_process(false)
-	world.interactions.set_trigger_active(2, true)
+	var environment_effects = world.environment_root.get_node("EnvironmentEffects")
+	environment_effects.set_process(false)
+	world.interactions.set_battle_boundaries_active(true)
 	var target := world.environment_root.to_global(Vector3(88, 0, 46))
 	world.camera.global_position = target + Vector3(0, 10, -14)
 	world.camera.look_at(target + Vector3.UP * 1.5)
@@ -28,8 +30,21 @@ func _run() -> void:
 	world.camera.size = 14
 	for size in [Vector2i(1600, 900), Vector2i(844, 390)]:
 		canvas.size = size
+		var closed_picture: Image
 		for closed in [true, false]:
-			world.interactions.set_trigger_active(2, closed)
+			world.interactions.set_battle_boundaries_active(closed)
+			for item in world.interactions._items.values():
+				if item.marker.Type != "EEUT_CloseArea": continue
+				if item.state.enabled != closed or item.visual.is_visible_in_tree() != closed:
+					failures.append("Boundary state and actual visibility must follow battle closure")
+				var visible_layers := 0
+				for mesh in item.visual.find_children("*", "MeshInstance3D", true, false):
+					if mesh.is_visible_in_tree(): visible_layers += 1
+				if closed and visible_layers < 4: failures.append("Closed boundary must display all four source mesh layers")
+				if not closed and visible_layers != 0: failures.append("Open boundary must remove every source mesh layer")
+				for body in item.bodies:
+					var expected: int = int(body.layer) if closed else 0
+					if body.node.collision_layer != expected: failures.append("Visible closure and actual collision must switch together")
 			for frame in 4: await process_frame
 			if DisplayServer.get_name() != "headless":
 				await RenderingServer.frame_post_draw
@@ -37,16 +52,22 @@ func _run() -> void:
 				if picture.is_empty(): failures.append("Empty door capture")
 				picture.save_png("/private/tmp/door-%s-%dx%d.png" % ["closed" if closed else "open", size.x, size.y])
 				if closed:
+					closed_picture = picture
 					presentation.door_materials.tick(1.5)
 					for frame in 4: await process_frame
 					await RenderingServer.frame_post_draw
-					var moving := canvas.get_texture().get_image()
+					for material in presentation.door_materials.materials:
+						if not is_equal_approx(float(material.get_shader_parameter("clock")), 1.5):
+							failures.append("Source material clocks must advance")
+					presentation.door_materials.tick(0)
+				else:
 					var changed := 0
 					for y in range(size.y / 3, size.y * 2 / 3, 2):
 						for x in range(size.x / 3, size.x * 2 / 3, 2):
-							if moving.get_pixel(x, y) != picture.get_pixel(x, y): changed += 1
-					if changed < 20: failures.append("Source barrier flow must animate on screen")
-					presentation.door_materials.tick(0)
+							var before := closed_picture.get_pixel(x, y)
+							var after := picture.get_pixel(x, y)
+							if before.r - after.r > 0.05 and before.b - after.b > 0.05: changed += 1
+					if changed < 100: failures.append("Opening must visibly remove the purple barrier from the passage")
 	var door: Dictionary = {}
 	for item in world.interactions._items.values():
 		if item.marker.Type == "EEUT_StageChangeDoor": door = item

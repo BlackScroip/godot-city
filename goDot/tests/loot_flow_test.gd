@@ -12,6 +12,12 @@ func check(value: bool, message: String) -> void:
 	checks += 1
 	if not value: failures.append(message)
 
+func wait_transition(game: Node) -> void:
+	var started := Time.get_ticks_msec()
+	while game._transitioning and Time.get_ticks_msec() - started < 20000:
+		await process_frame
+	check(not game._transitioning, "Portal animation and loading finish")
+
 func make_game() -> Node:
 	var game = load("res://scenes/main.tscn").instantiate()
 	game.save_store = DungeonSaveStore.new(save_path)
@@ -30,9 +36,12 @@ func _run() -> void:
 	var game = make_game()
 	game.hud.close_page()
 	game._primary()
-	var id := int(game.campaign.choices()[0].node_id)
-	game._select_node(id)
-	check(game._transitioning and game.room_loading.visible, "Selecting a level immediately shows loading and guards transitions")
+	check(game.campaign.state.region_selection and game.hud.page.route_view.context.map_scope == "world", "New adventure opens world selection before entering a room")
+	var id := int(game.campaign.state.layers[0].node_ids[0])
+	var regions: Array = game.campaign.region_choices()
+	check(not regions.is_empty(), "World map exposes a reachable source slot")
+	if not regions.is_empty(): game._action("select_region", int(regions[0].node_id), 0)
+	check(game._transitioning and game.world.player_transfer.active, "Selecting a level plays departure and guards transitions")
 	game._select_node(id)
 	check(game.campaign.state.phase == "route", "Duplicate selection cannot enter before async preload")
 	var started := Time.get_ticks_msec()
@@ -79,6 +88,7 @@ func _run() -> void:
 	check(game.campaign.state.phase == "reward" and not game.hud.modal_open, "Cancelling leave keeps player in completed room")
 	game._environment_action("transition", {})
 	game._action("leave_unclaimed", 0, 0)
+	await wait_transition(game)
 	check(game.campaign.state.phase == "route" and game.hud.modal_open, "Confirmed room portal opens route directly")
 	check(int(game.systems.material(101)) == gold + 17, "Portal settles attracted coins before leaving")
 	check(int(game.systems.material(102)) == magic + 5, "Portal settles remaining magic material")
@@ -90,6 +100,8 @@ func _run() -> void:
 	for item in game.world.interactions._items.values():
 		if str(item.marker.get("Type", "")) == "EEUT_AbilityItemTreasureBox": item.state.opened = true
 	game.campaign.generate(9127, 0)
+	regions = game.campaign.region_choices()
+	check(not regions.is_empty() and game.campaign.select_region(int(regions[0].node_id)).success, "Chapter exit fixture begins in a confirmed region")
 	for layer_index in game.campaign.state.layers.size() - 1:
 		var layer: Dictionary = game.campaign.state.layers[layer_index]
 		var next_layer: Dictionary = game.campaign.state.layers[layer_index + 1]
@@ -100,11 +112,19 @@ func _run() -> void:
 			game.campaign.state.phase = "reward"
 			var entrance_id := int(next_layer.node_ids[0])
 			game._environment_action("transition", {})
-			check(game._transitioning and game.room_loading.visible, "Chapter portal starts loading next chapter entrance")
+			check(game._transitioning and game.world.player_transfer.active, "Chapter portal plays departure before world selection")
 			started = Time.get_ticks_msec()
 			while game._transitioning and Time.get_ticks_msec() - started < 20000:
 				await process_frame
-			check(game.campaign.state.phase == "room" and int(game.campaign.state.current_node_id) == entrance_id, "Chapter portal enters next chapter entrance without route detour")
+			check(game.campaign.state.phase == "route" and game.campaign.state.region_selection and int(game.campaign.state.current_node_id) == 0, "Chapter portal waits for world confirmation before entering the next entrance")
+			check(game.hud.modal_open and game.hud.page.route_view.context.map_scope == "world", "Chapter portal displays the world map")
+			regions = game.campaign.region_choices()
+			for region in regions:
+				if int(region.region) == int(next_layer.region):
+					game._action("select_region", int(region.node_id), 0)
+					break
+			await wait_transition(game)
+			check(game.campaign.state.phase == "room" and int(game.campaign.state.current_node_id) == entrance_id, "World confirmation enters the selected next chapter entrance")
 			break
 	var combat_id := 0
 	for node in game.campaign.database.Nodes:
@@ -113,6 +133,7 @@ func _run() -> void:
 			break
 	game.campaign.start_practice(combat_id, 9127)
 	game._load_room()
+	await wait_transition(game)
 	game.world.set_physics_process(false)
 	for item in game.world.interactions._items.values():
 		if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_Protal"]:
@@ -120,7 +141,9 @@ func _run() -> void:
 	game._environment_action("transition", {})
 	check(game.campaign.state.phase == "room", "Combat blocks portal transition")
 	game.campaign.state.waves_cleared = game.campaign.state.wave_count
-	game._finish_room()
+	game.world.begin_room_clear()
+	game.world._tick_room_sequence(1.0)
+	game.world._tick_room_sequence(1.0)
 	check(game.campaign.state.phase == "reward", "Cleared boss waits in reward room")
 	for item in game.world.interactions._items.values():
 		if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_Protal"]:
@@ -145,6 +168,7 @@ func _run() -> void:
 	check(game.campaign.state.phase == "reward" and int(game.systems.material(101)) == gold, "Cancelling final exit keeps room and pending coins")
 	game._environment_action("transition", {})
 	game._action("leave_unclaimed", 0, 0)
+	await wait_transition(game)
 	check(game.campaign.state.phase == "won" and not game.profile.data.run.active and game.profile.data.run.outcome.stage == "share", "Final portal completes run and opens victory presentation")
 	check(int(game.systems.material(101)) == gold + 9, "Confirmed final exit settles remaining coins once")
 	game._action("result_next", 0, 0)

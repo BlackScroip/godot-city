@@ -18,31 +18,37 @@ func _ready() -> void:
 	focus_entered.connect(queue_redraw)
 	focus_exited.connect(queue_redraw)
 	tooltip_text = str(room.get("name", ""))
+	if not str(room.get("lock_reason", "")).is_empty(): tooltip_text += "\n" + str(room.lock_reason)
 	if room.get("vertical", false): tooltip_text += "（换路消耗 %d 点刻印圣典）" % int(room.get("shift_cost", 1))
 	if not available and portrait == null: tooltip_text += "（已通过）" if visited else "（后续路线）"
 	resized.connect(queue_redraw)
 
 func _draw() -> void:
+	if room.get("map_mode", "rooms") != "world":
+		_draw_room()
+		return
 	var radius = maxf(14, minf(size.x * 0.44, (size.y - 24) * 0.5))
 	var center = Vector2(size.x * 0.5, radius + 3)
 	var locked = bool(room.get("locked", false))
 	var unknown = bool(room.get("unknown", false))
 	var tint = Color("e64d36") if locked else GOLD
 	var diamond = PackedVector2Array([center + Vector2(0, -radius), center + Vector2(radius, 0), center + Vector2(0, radius), center + Vector2(-radius, 0)])
-	draw_colored_polygon(diamond, Color(0.08, 0.09, 0.06, 0.42))
-	diamond.append(diamond[0])
-	draw_polyline(diamond, tint if chosen else Color(tint, 0.38), 3 if chosen else 1.5, true)
+	var frame = DungeonStyle.texture("res://assets/ui/route/world_node_frame_active.png" if chosen else "res://assets/ui/route/world_node_frame.png")
+	if frame: draw_texture_rect(frame, Rect2(center - Vector2.ONE * radius, Vector2.ONE * radius * 2), false, Color.WHITE if chosen else Color(1, 1, 1, 0.45))
+	else:
+		draw_colored_polygon(diamond, Color(0.08, 0.09, 0.06, 0.42))
+		diamond.append(diamond[0])
+		draw_polyline(diamond, tint if chosen else Color(tint, 0.38), 3 if chosen else 1.5, true)
 	if available and (is_hovered() or has_focus()): draw_polyline(diamond, Color("fff0b3"), 3, true)
-	var art = portrait if portrait else _artwork()
-	if unknown:
+	var art = portrait if portrait else _world_artwork()
+	if unknown and art == null:
 		draw_string(get_theme_font("font"), center + Vector2(-radius * 0.32, radius * 0.42), "?", HORIZONTAL_ALIGNMENT_LEFT, -1, int(radius * 1.5), GOLD)
 	elif art:
 		var side = radius * 1.5
 		draw_texture_rect(art, Rect2(center - Vector2.ONE * side * 0.5, Vector2.ONE * side), false, Color("ed6752") if locked else Color.WHITE)
 	if locked:
-		draw_arc(center - Vector2(0, 4), 7, PI, TAU, 16, Color("f04730"), 3, true)
-		draw_rect(Rect2(center - Vector2(9, 4), Vector2(18, 16)), Color("e83c28"))
-		draw_circle(center + Vector2(0, 2), 2, Color("5e281e"))
+		var lock_art = DungeonStyle.texture("res://assets/ui/route/world_lock.png")
+		if lock_art: draw_texture_rect(lock_art, Rect2(center - Vector2(radius * 0.25, radius * 0.32), Vector2(radius * 0.5, radius * 0.64)), false, Color("cb0000"))
 	var caption = "未知领域" if unknown else str(room.get("name", ""))
 	var font_size = 13 if size.y < 90 else 17
 	var baseline = minf(size.y - 2, radius * 2 + font_size + 5)
@@ -53,6 +59,23 @@ func _draw() -> void:
 	if chosen:
 		var x = size.x * 0.5
 		draw_colored_polygon(PackedVector2Array([Vector2(x - 6, 1), Vector2(x, 7), Vector2(x + 6, 1)]), Color("ffe9a0"))
+
+func _world_artwork() -> Texture2D:
+	var names = {"森林图标": "forest", "沙漠图标": "desert", "雪山图标": "snow", "矿场图标": "mine", "封魔图标": "seal", "海岛图标": "island", "熔岩图标": "lava", "未知图标": "unknown"}
+	return DungeonStyle.texture("res://assets/ui/route/world_" + str(names.get(str(room.get("world_icon", "")), "camp")) + ".png")
+
+func _draw_room() -> void:
+	var state = "node_current" if available or visited else "room_available" if portrait else "node_2"
+	var frame = DungeonStyle.texture("res://assets/ui/route/" + state + ".png")
+	if frame: draw_texture_rect(frame, Rect2(Vector2.ZERO, size), false)
+	var art = portrait if portrait else _artwork()
+	if art:
+		var side = size.y * 0.9
+		draw_texture_rect(art, Rect2((size - Vector2.ONE * side) * 0.5, Vector2.ONE * side), false)
+	_badges()
+	if chosen or (available and (is_hovered() or has_focus())):
+		var selected = DungeonStyle.texture("res://assets/ui/route/node_selected_frame.png")
+		if selected: draw_texture_rect(selected, Rect2(Vector2(-3, -3), size + Vector2(6, 6)), false)
 
 func _frame(fill: Color, border: Color, width: int) -> StyleBoxFlat:
 	var style = StyleBoxFlat.new()

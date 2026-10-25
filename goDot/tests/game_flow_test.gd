@@ -27,9 +27,12 @@ func _wait_transition() -> void:
 
 func _start() -> void:
 	game._primary()
+	var regions: Array = game.campaign.region_choices()
+	check(not regions.is_empty() and game.campaign.state.region_selection, "New adventure waits for world region confirmation")
+	if not regions.is_empty(): game._select_region(int(regions[0].node_id))
 	await _wait_transition()
 	if game.world.room_stage == "opening": game.world._physics_process(game.world._room_stage_wait)
-	check(game.profile.data.run.active and game.campaign.state.get("phase") == "room", "New adventure automatically enters first room")
+	check(game.profile.data.run.active and game.campaign.state.get("phase") == "room", "World confirmation enters first room")
 	check(game.campaign.current_room().get("flow") == "Entrance", "First room is chapter entrance")
 	check(not game.hud.modal_open, "First room does not require route selection")
 
@@ -116,6 +119,7 @@ func _run() -> void:
 	game._environment_action("transition", {})
 	if game.campaign.state.phase == "reward" and game.hud.modal_open:
 		game._action("leave_unclaimed", 0, 0)
+	await _wait_transition()
 	check(game.campaign.state.phase == "route", "Exit gate advances completed entrance to route")
 	check(game.hud.modal_open and game.hud.page._layout == "route", "Exit gate opens route selection")
 	game._save(true)
@@ -148,6 +152,8 @@ func _run() -> void:
 	check(game.systems.revival_count() == 0 and int(game.profile.data.run.counters.get("revivals:used", 0)) == 1, "Revival consumes exactly one count")
 	check(game.world._enemy_count() == enemies and enemy_ids == game.world.actors.filter(func(actor): return not actor.is_player).map(func(actor): return actor.get_instance_id()), "Revival preserves existing enemy actors")
 	game._tick_death(1.5)
+	check(game.world.player_revival.active and game._flow_locked(), "Revival presentation holds input for its authored duration")
+	game.world.player_revival.advance(game.world.player_revival.duration)
 	game._tick_death(10)
 	check(not game._flow_locked() and not game.hud.modal_open and not game.world.paused, "Revival final delay resumes room")
 	check(int(game.profile.data.run.counters.get("revivals:used", 0)) == 1, "Repeated timer tick cannot consume extra revival")

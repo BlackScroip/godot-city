@@ -1,0 +1,4177 @@
+{
+  "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-08-06-1233.bytes",
+    "sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71"
+  },
+  "config_sources": {
+    "RogueConfigData": {
+      "member": "assets/yoo/DefaultPackage/f9245ea11c0a88ee49d98bf76b0e1d67.bundle",
+      "sha256": "6e56c409e8c7ece8a5f2c5c1f15b89e5cb5ed60f324c73714cd6203eb98675e1",
+      "path_id": "8259408848028059354"
+    },
+    "MonsterWorkData": {
+      "member": "assets/yoo/DefaultPackage/fc9500beb72cfdbf77b11627bbf0126a.bundle",
+      "sha256": "22f338fe67b695a7e2c29a68cf29d60eaaf7b20c0f7ceafd37c29a4cfd9b941c",
+      "path_id": "-1207273493051906865"
+    }
+  },
+  "sprites": [
+    {
+      "name": "icon_GoldApple",
+      "path": "res://assets/ui/camp/icon_GoldApple.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_GoldApple.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "2793861007053856615",
+      "width": 117,
+      "height": 127,
+      "png_sha256": "6d71cfb4e43e7dafdc267c9fa5dac89e9dfcb14159c0999a5c3e5b74ea8dfc03",
+      "alpha_bounds": [
+        2,
+        1,
+        115,
+        127
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_Extra challenges",
+      "path": "res://assets/ui/camp/icon_maincitybulid_Extra_challenges.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_Extra challenges.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1517067861937284469",
+      "width": 128,
+      "height": 107,
+      "png_sha256": "e3052979ff6587c731e71087d3d9ba00e2ac6a2ec9910d5c97e3987792b6c5f2",
+      "alpha_bounds": [
+        0,
+        2,
+        126,
+        107
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_Forging table",
+      "path": "res://assets/ui/camp/icon_maincitybulid_Forging_table.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_Forging table.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-8195522162302994410",
+      "width": 128,
+      "height": 68,
+      "png_sha256": "f0df718ccd3007a090fa7c94ea090148d8cb74350f9e60cf02e5c61ee8c8e715",
+      "alpha_bounds": [
+        2,
+        2,
+        128,
+        65
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_Talent tree",
+      "path": "res://assets/ui/camp/icon_maincitybulid_Talent_tree.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_Talent tree.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-2555074215160746139",
+      "width": 128,
+      "height": 87,
+      "png_sha256": "0f29e3cf7727f0c99551e0e5ace1c00d1d1efb2ed5df6c5c061d97831cac1d35",
+      "alpha_bounds": [
+        0,
+        2,
+        128,
+        86
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_Training ground",
+      "path": "res://assets/ui/camp/icon_maincitybulid_Training_ground.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_Training ground.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "8034823894687344822",
+      "width": 122,
+      "height": 128,
+      "png_sha256": "fbda94a3eeb75863313e92985a06c3143afd5f9a39f015939611d3f9237d7b39",
+      "alpha_bounds": [
+        3,
+        0,
+        122,
+        127
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_altar",
+      "path": "res://assets/ui/camp/icon_maincitybulid_altar.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_altar.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-4174397529442749424",
+      "width": 102,
+      "height": 128,
+      "png_sha256": "f665b53610dc945cb71ea42191a0b8d8f701d295603eeda8e7d76b424e0994ff",
+      "alpha_bounds": [
+        0,
+        1,
+        100,
+        128
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_archives",
+      "path": "res://assets/ui/camp/icon_maincitybulid_archives.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_archives.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "5354403910801899188",
+      "width": 115,
+      "height": 115,
+      "png_sha256": "2cb5c71d2a37776cfa43dc24b66422d67ec443b3d041064a144a2d994fd2de05",
+      "alpha_bounds": [
+        0,
+        0,
+        115,
+        115
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_blacksmith",
+      "path": "res://assets/ui/camp/icon_maincitybulid_blacksmith.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_blacksmith.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "6817831050123799443",
+      "width": 108,
+      "height": 113,
+      "png_sha256": "4cf7598ca46fa72f9ae62cde44bd88a0ae5d5107b51c30c1ff4845c0b8c7dc0e",
+      "alpha_bounds": [
+        0,
+        0,
+        105,
+        113
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_camp",
+      "path": "res://assets/ui/camp/icon_maincitybulid_camp.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_camp.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "6300335915973562546",
+      "width": 106,
+      "height": 125,
+      "png_sha256": "aafb7a3e51dc287d9f1cd548dccb570eadb10877de26da954fa8f7650fbf9012",
+      "alpha_bounds": [
+        0,
+        2,
+        104,
+        124
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_clearstore",
+      "path": "res://assets/ui/camp/icon_maincitybulid_clearstore.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_clearstore.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "4743602772043446604",
+      "width": 122,
+      "height": 125,
+      "png_sha256": "6d262b377a4d5f6957524d90a5e2bc9449da0ba5506f2cf5913030b2f6447e5e",
+      "alpha_bounds": [
+        3,
+        2,
+        120,
+        125
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_entrust",
+      "path": "res://assets/ui/camp/icon_maincitybulid_entrust.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_entrust.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "84422122827225665",
+      "width": 128,
+      "height": 117,
+      "png_sha256": "16ea7a6e170f2c6ea6e092602c0f76588af2e829e375d1c9698f58f9553e483e",
+      "alpha_bounds": [
+        1,
+        2,
+        127,
+        117
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_longmenu",
+      "path": "res://assets/ui/camp/icon_maincitybulid_longmenu.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_longmenu.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-3421533939066878292",
+      "width": 128,
+      "height": 111,
+      "png_sha256": "361bd67e5c4add81addc4479581a178ac7be414372311c911c019accdccd07d3",
+      "alpha_bounds": [
+        2,
+        2,
+        126,
+        110
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_meet1",
+      "path": "res://assets/ui/camp/icon_maincitybulid_meet1.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_meet1.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-4151414033272501259",
+      "width": 128,
+      "height": 87,
+      "png_sha256": "dc10400e7abf6c6e1cdb09730b54d7ffa7620f8b2a8888f3bbe149f40975b063",
+      "alpha_bounds": [
+        1,
+        3,
+        128,
+        85
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_monster",
+      "path": "res://assets/ui/camp/icon_maincitybulid_monster.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_monster.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "4602660523126737393",
+      "width": 128,
+      "height": 102,
+      "png_sha256": "428d553b714874b158da66dfda01be8112721b2b0830785fc4ff97d7861b6033",
+      "alpha_bounds": [
+        0,
+        1,
+        127,
+        100
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_pot",
+      "path": "res://assets/ui/camp/icon_maincitybulid_pot.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_pot.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-3130397571057900473",
+      "width": 128,
+      "height": 110,
+      "png_sha256": "0e900d7eca984441ac20ac1c577825a1e71307ceae7dc067d568104693ea3260",
+      "alpha_bounds": [
+        1,
+        2,
+        128,
+        108
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_research",
+      "path": "res://assets/ui/camp/icon_maincitybulid_research.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_research.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "612862320389780969",
+      "width": 97,
+      "height": 116,
+      "png_sha256": "5ba6b16bab2e9dc40cd906364c626afee0f47123619e797e08149d4dadaa2a74",
+      "alpha_bounds": [
+        3,
+        3,
+        97,
+        115
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_restaurant",
+      "path": "res://assets/ui/camp/icon_maincitybulid_restaurant.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_restaurant.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-3999567285834612992",
+      "width": 66,
+      "height": 124,
+      "png_sha256": "cef599e7d788157e7aa9bf411c14eba7967613bafccd9ef3f89130413e5cf0f0",
+      "alpha_bounds": [
+        3,
+        3,
+        66,
+        123
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_sacrifice",
+      "path": "res://assets/ui/camp/icon_maincitybulid_sacrifice.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_sacrifice.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1023013578229087395",
+      "width": 115,
+      "height": 128,
+      "png_sha256": "6c00751aac52b1e9fbe371915dae17e3fee86b3a6dd3f77147d4ac94a24f599a",
+      "alpha_bounds": [
+        2,
+        2,
+        112,
+        125
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_store",
+      "path": "res://assets/ui/camp/icon_maincitybulid_store.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_store.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "61880421186233362",
+      "width": 101,
+      "height": 125,
+      "png_sha256": "2954bcd894c9788b654a7d26c792d1314c8f286ec27cb9e64d6335b2cee52710",
+      "alpha_bounds": [
+        0,
+        0,
+        99,
+        122
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_task",
+      "path": "res://assets/ui/camp/icon_maincitybulid_task.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_task.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "4246577095242312217",
+      "width": 115,
+      "height": 113,
+      "png_sha256": "449fcadc439822840086e68d230379be827b24c712f03512c72a65ed5e3dbb84",
+      "alpha_bounds": [
+        0,
+        2,
+        115,
+        111
+      ]
+    },
+    {
+      "name": "icon_maincitybulid_wood",
+      "path": "res://assets/ui/camp/icon_maincitybulid_wood.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_maincitybulid_wood.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-349849007828243963",
+      "width": 128,
+      "height": 106,
+      "png_sha256": "f7c4f33e4635d886f997ddcebc52afa2276ba82e34824bafee4af2a666a1e82c",
+      "alpha_bounds": [
+        0,
+        0,
+        127,
+        106
+      ]
+    },
+    {
+      "name": "icon_stagerewardtypeicon_heal",
+      "path": "res://assets/ui/camp/icon_stagerewardtypeicon_heal.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_stagerewardtypeicon_heal.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-9091792953692683774",
+      "width": 110,
+      "height": 128,
+      "png_sha256": "b4e3762577e8a0b50c7310ba127df8a5752e4c7a386de9bf033015a509a2fc38",
+      "alpha_bounds": [
+        3,
+        0,
+        108,
+        126
+      ]
+    },
+    {
+      "name": "sprite_mosterwork_0",
+      "path": "res://assets/ui/camp/sprite_mosterwork_0.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/RuntimeLoad/sprite_mosterwork_0.png",
+      "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+      "bundle_sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270",
+      "sprite_path_id": "-6514967285529028602",
+      "width": 118,
+      "height": 124,
+      "png_sha256": "0a18b5beac52a396797416713f64e85615dc2286d0c170909a84eda53f123298",
+      "alpha_bounds": [
+        0,
+        2,
+        118,
+        124
+      ]
+    },
+    {
+      "name": "sprite_mosterwork_1",
+      "path": "res://assets/ui/camp/sprite_mosterwork_1.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/RuntimeLoad/sprite_mosterwork_1.png",
+      "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+      "bundle_sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270",
+      "sprite_path_id": "2332712214604514970",
+      "width": 139,
+      "height": 131,
+      "png_sha256": "b0ab510b92118e7aaad9cc19104972d029a65e14b4bd640191673812e4e17eed",
+      "alpha_bounds": [
+        0,
+        2,
+        137,
+        131
+      ]
+    },
+    {
+      "name": "sprite_mosterwork_2",
+      "path": "res://assets/ui/camp/sprite_mosterwork_2.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/RuntimeLoad/sprite_mosterwork_2.png",
+      "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+      "bundle_sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270",
+      "sprite_path_id": "8344848713199892629",
+      "width": 133,
+      "height": 132,
+      "png_sha256": "2ebd18e4aa834918d2f3436367715dfe4fdfb8d3464516fa7aee09fbe10f1785",
+      "alpha_bounds": [
+        0,
+        2,
+        131,
+        132
+      ]
+    },
+    {
+      "name": "sprite_mosterwork_3",
+      "path": "res://assets/ui/camp/sprite_mosterwork_3.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/RuntimeLoad/sprite_mosterwork_3.png",
+      "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+      "bundle_sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270",
+      "sprite_path_id": "6747876862787327940",
+      "width": 143,
+      "height": 125,
+      "png_sha256": "5362da9f027ef1daadff306d57b18920b8c808224c7c6c3e0df29049e167d2a2",
+      "alpha_bounds": [
+        0,
+        2,
+        143,
+        125
+      ]
+    },
+    {
+      "name": "sprite_mosterwork_4",
+      "path": "res://assets/ui/camp/sprite_mosterwork_4.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/RuntimeLoad/sprite_mosterwork_4.png",
+      "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+      "bundle_sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270",
+      "sprite_path_id": "5648719298922761099",
+      "width": 134,
+      "height": 136,
+      "png_sha256": "c1a4a1020f8c027c94b6ce2bc655b641f4ae218e637bf6fa0e2fd7a60de0f8b8",
+      "alpha_bounds": [
+        0,
+        15,
+        132,
+        136
+      ]
+    },
+    {
+      "name": "sprite_mosterwork_5",
+      "path": "res://assets/ui/camp/sprite_mosterwork_5.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/RuntimeLoad/sprite_mosterwork_5.png",
+      "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+      "bundle_sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270",
+      "sprite_path_id": "9096839145000085385",
+      "width": 140,
+      "height": 136,
+      "png_sha256": "5d9c2f93fe33eca46dde6b46667e08bd5b8896b69907819596da915d004a761c",
+      "alpha_bounds": [
+        2,
+        1,
+        138,
+        135
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "job_id": 101,
+      "material_id": 101,
+      "icon": "sprite_mosterwork_0"
+    },
+    {
+      "job_id": 102,
+      "material_id": 10101,
+      "icon": "sprite_mosterwork_1"
+    },
+    {
+      "job_id": 103,
+      "material_id": 10102,
+      "icon": "sprite_mosterwork_1"
+    },
+    {
+      "job_id": 104,
+      "material_id": 10201,
+      "icon": "sprite_mosterwork_2"
+    },
+    {
+      "job_id": 105,
+      "material_id": 10202,
+      "icon": "sprite_mosterwork_2"
+    },
+    {
+      "job_id": 106,
+      "material_id": 101,
+      "icon": "sprite_mosterwork_0"
+    },
+    {
+      "job_id": 107,
+      "material_id": 501,
+      "icon": "sprite_mosterwork_0"
+    },
+    {
+      "job_id": 108,
+      "material_id": 10301,
+      "icon": "sprite_mosterwork_3"
+    },
+    {
+      "job_id": 109,
+      "material_id": 10302,
+      "icon": "sprite_mosterwork_3"
+    },
+    {
+      "job_id": 110,
+      "material_id": 10401,
+      "icon": "sprite_mosterwork_4"
+    },
+    {
+      "job_id": 111,
+      "material_id": 10402,
+      "icon": "sprite_mosterwork_4"
+    },
+    {
+      "job_id": 112,
+      "material_id": 40001,
+      "icon": "sprite_mosterwork_0"
+    },
+    {
+      "job_id": 113,
+      "material_id": 107,
+      "icon": "sprite_mosterwork_0"
+    },
+    {
+      "job_id": 114,
+      "material_id": 101,
+      "icon": "sprite_mosterwork_0"
+    },
+    {
+      "job_id": 115,
+      "material_id": 10501,
+      "icon": "sprite_mosterwork_5"
+    },
+    {
+      "job_id": 117,
+      "material_id": 90002,
+      "icon": "sprite_mosterwork_0"
+    }
+  ],
+  "work_icon_rule": "materia_id <= 9999: 0; otherwise floor((materia_id % 10000) / 100)",
+  "work_icon_evidence": {
+    "method": "MonsterWorkData.GetIcon",
+    "file_offset": "0x2d04358",
+    "length": 356,
+    "va": "0x2d08358",
+    "native_sha256": "3fe1d04b7bef2b6c315161d14141b6fe9c148dd326ae6efafaccf7a29854d628",
+    "instructions": [
+      {
+        "va": "0x2d08358",
+        "mnemonic": "str",
+        "operands": "x30, [sp, #-0x20]!"
+      },
+      {
+        "va": "0x2d0835c",
+        "mnemonic": "stp",
+        "operands": "x20, x19, [sp, #0x10]"
+      },
+      {
+        "va": "0x2d08360",
+        "mnemonic": "adrp",
+        "operands": "x20, #0x6948000"
+      },
+      {
+        "va": "0x2d08364",
+        "mnemonic": "ldrb",
+        "operands": "w8, [x20, #0x48b]"
+      },
+      {
+        "va": "0x2d08368",
+        "mnemonic": "mov",
+        "operands": "x19, x0"
+      },
+      {
+        "va": "0x2d0836c",
+        "mnemonic": "tbnz",
+        "operands": "w8, #0, #0x2d083b4"
+      },
+      {
+        "va": "0x2d08370",
+        "mnemonic": "adrp",
+        "operands": "x0, #0x64a0000"
+      },
+      {
+        "va": "0x2d08374",
+        "mnemonic": "ldr",
+        "operands": "x0, [x0, #0xe0]"
+      },
+      {
+        "va": "0x2d08378",
+        "mnemonic": "bl",
+        "operands": "#0x2a40b9c"
+      },
+      {
+        "va": "0x2d0837c",
+        "mnemonic": "adrp",
+        "operands": "x0, #0x64a4000"
+      },
+      {
+        "va": "0x2d08380",
+        "mnemonic": "ldr",
+        "operands": "x0, [x0, #0x3b0]"
+      },
+      {
+        "va": "0x2d08384",
+        "mnemonic": "bl",
+        "operands": "#0x2a40b9c"
+      },
+      {
+        "va": "0x2d08388",
+        "mnemonic": "adrp",
+        "operands": "x0, #0x64a4000"
+      },
+      {
+        "va": "0x2d0838c",
+        "mnemonic": "ldr",
+        "operands": "x0, [x0, #0x3a8]"
+      },
+      {
+        "va": "0x2d08390",
+        "mnemonic": "bl",
+        "operands": "#0x2a40b9c"
+      },
+      {
+        "va": "0x2d08394",
+        "mnemonic": "adrp",
+        "operands": "x0, #0x64b0000"
+      },
+      {
+        "va": "0x2d08398",
+        "mnemonic": "ldr",
+        "operands": "x0, [x0, #0xc38]"
+      },
+      {
+        "va": "0x2d0839c",
+        "mnemonic": "bl",
+        "operands": "#0x2a40b9c"
+      },
+      {
+        "va": "0x2d083a0",
+        "mnemonic": "adrp",
+        "operands": "x0, #0x64b0000"
+      },
+      {
+        "va": "0x2d083a4",
+        "mnemonic": "ldr",
+        "operands": "x0, [x0, #0xc40]"
+      },
+      {
+        "va": "0x2d083a8",
+        "mnemonic": "bl",
+        "operands": "#0x2a40b9c"
+      },
+      {
+        "va": "0x2d083ac",
+        "mnemonic": "mov",
+        "operands": "w8, #1"
+      },
+      {
+        "va": "0x2d083b0",
+        "mnemonic": "strb",
+        "operands": "w8, [x20, #0x48b]"
+      },
+      {
+        "va": "0x2d083b4",
+        "mnemonic": "ldr",
+        "operands": "w8, [x19, #0x54]"
+      },
+      {
+        "va": "0x2d083b8",
+        "mnemonic": "mov",
+        "operands": "w9, #0x270f"
+      },
+      {
+        "va": "0x2d083bc",
+        "mnemonic": "cmp",
+        "operands": "w8, w9"
+      },
+      {
+        "va": "0x2d083c0",
+        "mnemonic": "b.le",
+        "operands": "#0x2d08470"
+      },
+      {
+        "va": "0x2d083c4",
+        "mnemonic": "adrp",
+        "operands": "x10, #0x64a4000"
+      },
+      {
+        "va": "0x2d083c8",
+        "mnemonic": "ldr",
+        "operands": "x10, [x10, #0x3a8]"
+      },
+      {
+        "va": "0x2d083cc",
+        "mnemonic": "mov",
+        "operands": "w9, #0x1759"
+      },
+      {
+        "va": "0x2d083d0",
+        "mnemonic": "movk",
+        "operands": "w9, #0xd1b7, lsl #16"
+      },
+      {
+        "va": "0x2d083d4",
+        "mnemonic": "umull",
+        "operands": "x9, w8, w9"
+      },
+      {
+        "va": "0x2d083d8",
+        "mnemonic": "ldr",
+        "operands": "x0, [x10]"
+      },
+      {
+        "va": "0x2d083dc",
+        "mnemonic": "lsr",
+        "operands": "x9, x9, #0x2d"
+      },
+      {
+        "va": "0x2d083e0",
+        "mnemonic": "mov",
+        "operands": "w10, #0x2710"
+      },
+      {
+        "va": "0x2d083e4",
+        "mnemonic": "msub",
+        "operands": "w8, w9, w10, w8"
+      },
+      {
+        "va": "0x2d083e8",
+        "mnemonic": "ldr",
+        "operands": "w9, [x0, #0xe0]"
+      },
+      {
+        "va": "0x2d083ec",
+        "mnemonic": "mov",
+        "operands": "w10, #0x851f"
+      },
+      {
+        "va": "0x2d083f0",
+        "mnemonic": "and",
+        "operands": "w8, w8, #0xffff"
+      },
+      {
+        "va": "0x2d083f4",
+        "mnemonic": "movk",
+        "operands": "w10, #0x51eb, lsl #16"
+      },
+      {
+        "va": "0x2d083f8",
+        "mnemonic": "umull",
+        "operands": "x8, w8, w10"
+      },
+      {
+        "va": "0x2d083fc",
+        "mnemonic": "lsr",
+        "operands": "x20, x8, #0x25"
+      },
+      {
+        "va": "0x2d08400",
+        "mnemonic": "cbnz",
+        "operands": "w9, #0x2d08408"
+      },
+      {
+        "va": "0x2d08404",
+        "mnemonic": "bl",
+        "operands": "#0x2a40d14"
+      },
+      {
+        "va": "0x2d08408",
+        "mnemonic": "adrp",
+        "operands": "x8, #0x64a4000"
+      },
+      {
+        "va": "0x2d0840c",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8, #0x3b0]"
+      },
+      {
+        "va": "0x2d08410",
+        "mnemonic": "ldr",
+        "operands": "x0, [x8]"
+      },
+      {
+        "va": "0x2d08414",
+        "mnemonic": "bl",
+        "operands": "#0x3e92018"
+      },
+      {
+        "va": "0x2d08418",
+        "mnemonic": "adrp",
+        "operands": "x8, #0x64a0000"
+      },
+      {
+        "va": "0x2d0841c",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8, #0xe0]"
+      },
+      {
+        "va": "0x2d08420",
+        "mnemonic": "mov",
+        "operands": "x19, x0"
+      },
+      {
+        "va": "0x2d08424",
+        "mnemonic": "add",
+        "operands": "x1, sp, #0xc"
+      },
+      {
+        "va": "0x2d08428",
+        "mnemonic": "str",
+        "operands": "w20, [sp, #0xc]"
+      },
+      {
+        "va": "0x2d0842c",
+        "mnemonic": "ldr",
+        "operands": "x0, [x8]"
+      },
+      {
+        "va": "0x2d08430",
+        "mnemonic": "bl",
+        "operands": "#0x2a40d1c"
+      },
+      {
+        "va": "0x2d08434",
+        "mnemonic": "adrp",
+        "operands": "x8, #0x64b0000"
+      },
+      {
+        "va": "0x2d08438",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8, #0xc38]"
+      },
+      {
+        "va": "0x2d0843c",
+        "mnemonic": "mov",
+        "operands": "x1, x0"
+      },
+      {
+        "va": "0x2d08440",
+        "mnemonic": "mov",
+        "operands": "x2, xzr"
+      },
+      {
+        "va": "0x2d08444",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8]"
+      },
+      {
+        "va": "0x2d08448",
+        "mnemonic": "mov",
+        "operands": "x0, x8"
+      },
+      {
+        "va": "0x2d0844c",
+        "mnemonic": "bl",
+        "operands": "#0x4dfa320"
+      },
+      {
+        "va": "0x2d08450",
+        "mnemonic": "cbz",
+        "operands": "x19, #0x2d084b8"
+      },
+      {
+        "va": "0x2d08454",
+        "mnemonic": "mov",
+        "operands": "x1, x0"
+      },
+      {
+        "va": "0x2d08458",
+        "mnemonic": "mov",
+        "operands": "x0, x19"
+      },
+      {
+        "va": "0x2d0845c",
+        "mnemonic": "mov",
+        "operands": "x2, xzr"
+      },
+      {
+        "va": "0x2d08460",
+        "mnemonic": "bl",
+        "operands": "#0x2fb1b34"
+      },
+      {
+        "va": "0x2d08464",
+        "mnemonic": "ldp",
+        "operands": "x20, x19, [sp, #0x10]"
+      },
+      {
+        "va": "0x2d08468",
+        "mnemonic": "ldr",
+        "operands": "x30, [sp], #0x20"
+      },
+      {
+        "va": "0x2d0846c",
+        "mnemonic": "ret",
+        "operands": ""
+      },
+      {
+        "va": "0x2d08470",
+        "mnemonic": "adrp",
+        "operands": "x8, #0x64a4000"
+      },
+      {
+        "va": "0x2d08474",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8, #0x3a8]"
+      },
+      {
+        "va": "0x2d08478",
+        "mnemonic": "ldr",
+        "operands": "x0, [x8]"
+      },
+      {
+        "va": "0x2d0847c",
+        "mnemonic": "ldr",
+        "operands": "w8, [x0, #0xe0]"
+      },
+      {
+        "va": "0x2d08480",
+        "mnemonic": "cbnz",
+        "operands": "w8, #0x2d08488"
+      },
+      {
+        "va": "0x2d08484",
+        "mnemonic": "bl",
+        "operands": "#0x2a40d14"
+      },
+      {
+        "va": "0x2d08488",
+        "mnemonic": "adrp",
+        "operands": "x8, #0x64a4000"
+      },
+      {
+        "va": "0x2d0848c",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8, #0x3b0]"
+      },
+      {
+        "va": "0x2d08490",
+        "mnemonic": "ldr",
+        "operands": "x0, [x8]"
+      },
+      {
+        "va": "0x2d08494",
+        "mnemonic": "bl",
+        "operands": "#0x3e92018"
+      },
+      {
+        "va": "0x2d08498",
+        "mnemonic": "cbz",
+        "operands": "x0, #0x2d084b8"
+      },
+      {
+        "va": "0x2d0849c",
+        "mnemonic": "adrp",
+        "operands": "x8, #0x64b0000"
+      },
+      {
+        "va": "0x2d084a0",
+        "mnemonic": "ldr",
+        "operands": "x8, [x8, #0xc40]"
+      },
+      {
+        "va": "0x2d084a4",
+        "mnemonic": "ldp",
+        "operands": "x20, x19, [sp, #0x10]"
+      },
+      {
+        "va": "0x2d084a8",
+        "mnemonic": "mov",
+        "operands": "x2, xzr"
+      },
+      {
+        "va": "0x2d084ac",
+        "mnemonic": "ldr",
+        "operands": "x1, [x8]"
+      },
+      {
+        "va": "0x2d084b0",
+        "mnemonic": "ldr",
+        "operands": "x30, [sp], #0x20"
+      },
+      {
+        "va": "0x2d084b4",
+        "mnemonic": "b",
+        "operands": "#0x2fb1b34"
+      },
+      {
+        "va": "0x2d084b8",
+        "mnemonic": "bl",
+        "operands": "#0x2a40e38"
+      }
+    ],
+    "metadata_member": "assets/bin/Data/Managed/Metadata/global-metadata.dat",
+    "metadata_sha256": "76f8a39cc65df9a944e7ebe01e9397d4f233a9b8d6281ec8323bd068c7a7aa63",
+    "string_literals": [
+      {
+        "index": 26013,
+        "file_offset": 983574,
+        "value": "sprite_mosterwork_0"
+      },
+      {
+        "index": 26014,
+        "file_offset": 983593,
+        "value": "sprite_mosterwork_{0}"
+      }
+    ]
+  },
+  "limits": "Static raw sprite extraction. Work icon mapping combines native arithmetic and matching metadata literals; no original runtime was launched. Contact sheet is a review montage, not a game asset.",
+  "developer_panel": {
+    "layout": "developer/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/b33892cde787b311c4992b4ffb01a1a7.bundle",
+      "sha256": "c7dd29f87b6c956be144271150ffd7574a78b047676fc4257d1fc45f9c9bdb60"
+    },
+    "sprites": [
+      {
+        "name": "6",
+        "path": "res://assets/ui/camp/developer/6.png",
+        "sprite_path_id": "-8645510521729199701",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 174,
+        "height": 53,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c112ef05251311ba3b8ba53878c7cecdfebff2ede8a78cc3aa174aa9bb8ddb15"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/camp/developer/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6b266ee8f0a7e587cc30d3a388771b9dac4af4d800e95dfe40d11ebdfa8f5965"
+      },
+      {
+        "name": "主城建造节点_当前升级_v1",
+        "path": "res://assets/ui/camp/developer/____________v1_3d6d4383a8.png",
+        "sprite_path_id": "4594309972646452754",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 257,
+        "height": 257,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "8f1875ca3cc302537a265d4ed306ec3c17e616e6b635d5c0f0c876fa9c6bad36"
+      },
+      {
+        "name": "主城建造节点_已升级_v1",
+        "path": "res://assets/ui/camp/developer/___________v1_3beabe765d.png",
+        "sprite_path_id": "8367955796231241325",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 159,
+        "height": 161,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "804d133e069af392984396fbb7b61f739266ffb58d8164639c50d8e570ffaf8b"
+      },
+      {
+        "name": "星星底",
+        "path": "res://assets/ui/camp/developer/____db6e5bd6e3.png",
+        "sprite_path_id": "-2772862117838662624",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 24,
+        "height": 24,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c64798fe1144eb6ea855b771e1aa5d9455f702e2c1b214903d81156e2e9ceec1"
+      },
+      {
+        "name": "主城建造节点_未达到_v1",
+        "path": "res://assets/ui/camp/developer/___________v1_1a42fcabce.png",
+        "sprite_path_id": "1871475257922499968",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 163,
+        "height": 163,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b59c14d43004a4904cbb1a53a20f51fe11875440647adce8bfed10a7cf8f6c9d"
+      },
+      {
+        "name": "锁",
+        "path": "res://assets/ui/camp/developer/__4f62f920d6.png",
+        "sprite_path_id": "-7779187746478388713",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 41,
+        "height": 49,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "02c1a8ed5d48e6cf951f0a3c0fd80490ea1f053d60649826d2930b5012c0d1c8"
+      },
+      {
+        "name": "主城建造节点连接线",
+        "path": "res://assets/ui/camp/developer/__________eccf6acbc1.png",
+        "sprite_path_id": "-5437639038809660258",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 220,
+        "height": 7,
+        "border": {
+          "x": 100.0,
+          "y": 0.0,
+          "z": 100.0,
+          "w": 0.0
+        },
+        "png_sha256": "99600b773837ae82349923f8cf36aea55b6c33863d9ea5eeec2da23f547a73f8"
+      },
+      {
+        "name": "icon_addnum",
+        "path": "res://assets/ui/camp/developer/icon_addnum.png",
+        "sprite_path_id": "-1575747556048610155",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 40,
+        "height": 40,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5a80ab4a3fa92dbb74edb2526fc290e52295fe2f8f4ae92021ebc9cac09c1d54"
+      },
+      {
+        "name": "几何ui-书页矩形花纹",
+        "path": "res://assets/ui/camp/developer/__ui-_______8311f6a215.png",
+        "sprite_path_id": "775492295664635627",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 105,
+        "height": 111,
+        "border": {
+          "x": 32.0,
+          "y": 47.0,
+          "z": 30.0,
+          "w": 33.0
+        },
+        "png_sha256": "0df4bd6265e263355e49fbb84ff10b8ca36710b6f52c82474fcc0a7b6d294d4b"
+      },
+      {
+        "name": "教学图标",
+        "path": "res://assets/ui/camp/developer/_____c1120f2c77.png",
+        "sprite_path_id": "-9151705072264208941",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/a544570fa3bd2d0bf16772c905a8443e.bundle",
+          "sha256": "44c0c5500bac9ff4e4fdb42c7a608c54ebe7146414d2e5923b239c080ced0bd8"
+        },
+        "width": 56,
+        "height": 46,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "1a9bc5e473027b5e207cb4246c9673193933290debcb9aab0050a9c0a83e8135"
+      },
+      {
+        "name": "星星大",
+        "path": "res://assets/ui/camp/developer/____d1b367e11c.png",
+        "sprite_path_id": "-814199833485362129",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 50,
+        "height": 47,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "9400cf2c149885193261b2daaf0c73e5619127ee5b1bf2897293b2ec2bd1108a"
+      },
+      {
+        "name": "减号按钮",
+        "path": "res://assets/ui/camp/developer/_____54b659420f.png",
+        "sprite_path_id": "-2453844321401970427",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 42,
+        "height": 44,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "65ed6919ed6c49f78e047df66ba7a874b61cf5bca8c84db1b21979baeaab13ed"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/camp/developer/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "sprite_rect_128x128",
+        "path": "res://assets/ui/camp/developer/sprite_rect_128x128.png",
+        "sprite_path_id": "3483957996699903255",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+          "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 13.0,
+          "y": 13.0,
+          "z": 13.0,
+          "w": 13.0
+        },
+        "png_sha256": "77085affe7ed4ae748996e56e57aec088d5b4a996a3060829b41925cc8383fcc"
+      },
+      {
+        "name": "15",
+        "path": "res://assets/ui/camp/developer/15.png",
+        "sprite_path_id": "5348227326345149524",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 220,
+        "height": 14,
+        "border": {
+          "x": 100.0,
+          "y": 0.0,
+          "z": 100.0,
+          "w": 0.0
+        },
+        "png_sha256": "77576a23ba584a6f738d148b8b190db38ce2d0051255345c29fe5e14692a9d3f"
+      },
+      {
+        "name": "滚动条按钮",
+        "path": "res://assets/ui/camp/developer/______5c668fd39a.png",
+        "sprite_path_id": "7096661275413308309",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 62,
+        "height": 64,
+        "border": {
+          "x": 31.0,
+          "y": 0.0,
+          "z": 32.0,
+          "w": 0.0
+        },
+        "png_sha256": "d6734f4de8bcd604fbfa2a29c37b1f07d22500a8224045450092ac2fc330818d"
+      },
+      {
+        "name": "icon_maincitybulid_restaurant",
+        "path": "res://assets/ui/camp/developer/icon_maincitybulid_restaurant.png",
+        "sprite_path_id": "-3999567285834612992",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+          "sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc"
+        },
+        "width": 66,
+        "height": 124,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cef599e7d788157e7aa9bf411c14eba7967613bafccd9ef3f89130413e5cf0f0"
+      },
+      {
+        "name": "sprite_materialicon_101",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_101.png",
+        "sprite_path_id": "-4929560618279763517",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "96301f425e0736f9675c3126461bc60e18712e5c0be51ee2f0935d3372900bad"
+      },
+      {
+        "name": "sprite_attackicon_300033",
+        "path": "res://assets/ui/camp/developer/sprite_attackicon_300033.png",
+        "sprite_path_id": "-3686439076997110730",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/e4064f462de747dcdf7b8056e58cef9f.bundle",
+          "sha256": "2a26cfb3e43793ae2e02f58731776c7800db4590ad071d7d09489afd1ba2eb33"
+        },
+        "width": 219,
+        "height": 235,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ba8c6a55f5e55d56bf2616186a7eaf2fcfd5f1d53af5a21ec5374b39c5c0cb65"
+      },
+      {
+        "name": "货币_底",
+        "path": "res://assets/ui/camp/developer/_____a5692cce8c.png",
+        "sprite_path_id": "8416506778996739775",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 249,
+        "height": 51,
+        "border": {
+          "x": 125.0,
+          "y": 25.0,
+          "z": 124.0,
+          "w": 26.0
+        },
+        "png_sha256": "b6c2b884d1703b1567cbb06bae0fe3c4469fd81048e8c02b09f81df0120aff87"
+      },
+      {
+        "name": "分割线-有进度底",
+        "path": "res://assets/ui/camp/developer/___-_____a21b58c2d4.png",
+        "sprite_path_id": "7332686488428864595",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 17,
+        "height": 7,
+        "border": {
+          "x": 9.0,
+          "y": 0.0,
+          "z": 8.0,
+          "w": 0.0
+        },
+        "png_sha256": "8b150ed0c1895928f890b791b836bb89f77a8294fa85f2ee7cfbc28f6aae22d6"
+      },
+      {
+        "name": "sprite_materialicon_103",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_103.png",
+        "sprite_path_id": "-2847287226865223873",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b17594d3308b06cbcaea415d4a789d461f5228cde363ec8180e5d91d1d9ccd94"
+      },
+      {
+        "name": "几何ui-椭圆白色按钮",
+        "path": "res://assets/ui/camp/developer/__ui-_______39ebe9c97d.png",
+        "sprite_path_id": "-1055889953380836409",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 284,
+        "height": 84,
+        "border": {
+          "x": 82.0,
+          "y": 0.0,
+          "z": 87.0,
+          "w": 0.0
+        },
+        "png_sha256": "922f2e030787fe0f57a6bc7fc0e2c004e7ee01e727575dbda78701f48de1b2f1"
+      },
+      {
+        "name": "选择高亮",
+        "path": "res://assets/ui/camp/developer/_____8efb0fde4e.png",
+        "sprite_path_id": "-495095694787399995",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 68,
+        "height": 68,
+        "border": {
+          "x": 34.0,
+          "y": 34.0,
+          "z": 34.0,
+          "w": 34.0
+        },
+        "png_sha256": "2df42c41735b7f0153e92d431cbf72cc135594b62807498abe253c7487cd6778"
+      },
+      {
+        "name": "24",
+        "path": "res://assets/ui/camp/developer/24.png",
+        "sprite_path_id": "5985676854447024116",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 145,
+        "height": 30,
+        "border": {
+          "x": 40.0,
+          "y": 20.0,
+          "z": 40.0,
+          "w": 5.0
+        },
+        "png_sha256": "9ab8cf6f9f3fbdf02ca35bd227ab20d9def27c9ee0f3c78e5e5d8f06fd35643b"
+      },
+      {
+        "name": "slotfg_rare_square_1_v2",
+        "path": "res://assets/ui/camp/developer/slotfg_rare_square_1_v2.png",
+        "sprite_path_id": "-6259846521885095785",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+          "sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270"
+        },
+        "width": 157,
+        "height": 160,
+        "border": {
+          "x": 79.0,
+          "y": 80.0,
+          "z": 78.0,
+          "w": 80.0
+        },
+        "png_sha256": "a7abd6dca840d52fc0ab0ac11f37964eb431ad31b0b4fd182de3a420b2e21496"
+      },
+      {
+        "name": "锁定遮罩",
+        "path": "res://assets/ui/camp/developer/_____c317ca9908.png",
+        "sprite_path_id": "918722314435250836",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 145,
+        "height": 145,
+        "border": {
+          "x": 73.0,
+          "y": 72.0,
+          "z": 72.0,
+          "w": 73.0
+        },
+        "png_sha256": "e9018db60457de8ec82fb160b917594540512dab2aba5a6f634bddecaa633dae"
+      },
+      {
+        "name": "sprite_materialicon_502",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_502.png",
+        "sprite_path_id": "8462504211962514845",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "843f47a640631f9622eef9410efc0ecef3c6d92e332a8a292493b146d083c4ad"
+      },
+      {
+        "name": "分割线1",
+        "path": "res://assets/ui/camp/developer/___1_9f291de47f.png",
+        "sprite_path_id": "-2795178781909742681",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 359,
+        "height": 2,
+        "border": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "png_sha256": "a382b25a4e2d46768fa406a45c24798702bed3c34161fc025d003819e31b8d08"
+      },
+      {
+        "name": "菱形花纹",
+        "path": "res://assets/ui/camp/developer/_____998ce04483.png",
+        "sprite_path_id": "-7992398096313811617",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cb2c2db9713ebe875624e4f44fe1770675956b44accb9302c03de7d2ad9cb75b"
+      },
+      {
+        "name": "X",
+        "path": "res://assets/ui/camp/developer/X.png",
+        "sprite_path_id": "-8294706861700341050",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 155,
+        "height": 158,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b405ec5bf45029d275ab17f3bab7d3b7df92ecf629779198c7f758e74b903dbb"
+      },
+      {
+        "name": "characterillustration_tianfushu_normal",
+        "path": "res://assets/ui/camp/developer/characterillustration_tianfushu_normal.png",
+        "sprite_path_id": "-9073427135528037882",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+          "sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3"
+        },
+        "width": 479,
+        "height": 907,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "886dc6662077a599df50b217679c1e68c0f4d60201da81bc735fe4e67a4dac89"
+      },
+      {
+        "name": "商店对话框",
+        "path": "res://assets/ui/camp/developer/______df1886ae10.png",
+        "sprite_path_id": "5342556400856675714",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 174,
+        "height": 132,
+        "border": {
+          "x": 87.0,
+          "y": 66.0,
+          "z": 87.0,
+          "w": 66.0
+        },
+        "png_sha256": "c4f83357caa45c3c3bd09aa173c62731a27fceb8c29317965ba2ab296589748f"
+      },
+      {
+        "name": "sprite_materialicon_90002",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_90002.png",
+        "sprite_path_id": "6651430658684800665",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "dc9b215600c7704fa3d8a0ecfd239a0c22be5feb53fdeb508d95d8f285ffa71c"
+      },
+      {
+        "name": "几何ui-书页矩形",
+        "path": "res://assets/ui/camp/developer/__ui-_____02aac0a4c2.png",
+        "sprite_path_id": "9094836545165679839",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 105,
+        "height": 111,
+        "border": {
+          "x": 35.0,
+          "y": 48.0,
+          "z": 35.0,
+          "w": 38.0
+        },
+        "png_sha256": "c9c3d47f5079f6e386779009dce971f41c1ed8a0cca4389ed9c99b1ea0ed193e"
+      },
+      {
+        "name": "几何ui-背景用渐变圆角矩形",
+        "path": "res://assets/ui/camp/developer/__ui-__________647acc3b20.png",
+        "sprite_path_id": "-581522297785427559",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 102,
+        "border": {
+          "x": 37.0,
+          "y": 59.0,
+          "z": 41.0,
+          "w": 48.0
+        },
+        "png_sha256": "65aa03c977eb5c4a2039c082906fdf132f1213faae74bf0d31f3fad46e0b0999"
+      },
+      {
+        "name": "sprite_materialicon_40001",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_40001.png",
+        "sprite_path_id": "-7693951651999609644",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6ab184d2b4cbcae48c4b3f81bcb7942dbb8e365119faf4c70dfa1074df4a884e"
+      },
+      {
+        "name": "sprite_materialicon_108",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_108.png",
+        "sprite_path_id": "-6886311129609553285",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b58dd6471091d9c999bd0ff372331b65bbfe4a29b0d73d1595b9750d24689d9d"
+      },
+      {
+        "name": "标题栏",
+        "path": "res://assets/ui/camp/developer/____c3ebe56c46.png",
+        "sprite_path_id": "8976650107445284133",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 178,
+        "height": 168,
+        "border": {
+          "x": 100.0,
+          "y": 100.0,
+          "z": 100.0,
+          "w": 100.0
+        },
+        "png_sha256": "467fc4ade72b26b9e7e3f6a30513cf3bd31b19cd7a9d394d43274046ca82f163"
+      },
+      {
+        "name": "建造底框（暗）",
+        "path": "res://assets/ui/camp/developer/________3df54f31a7.png",
+        "sprite_path_id": "-741888453186036825",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 127,
+        "height": 128,
+        "border": {
+          "x": 60.0,
+          "y": 60.0,
+          "z": 60.0,
+          "w": 60.0
+        },
+        "png_sha256": "83489661cba5596a72d54487c41c59f8dce031ed2f3b62b5418fb8eb54922c6c"
+      },
+      {
+        "name": "须知",
+        "path": "res://assets/ui/camp/developer/___3195038864.png",
+        "sprite_path_id": "-3264226760608914741",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 76,
+        "height": 76,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "af69931f0cdc4f2c3c2f4d02497bef174c00c24f34f24ff0f6627ae2b0750aa0"
+      },
+      {
+        "name": "商店存储选项_white底(激活)",
+        "path": "res://assets/ui/camp/developer/_______white______cbf053c013.png",
+        "sprite_path_id": "-1518945744767151471",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 35.0,
+          "y": 38.0,
+          "z": 33.0,
+          "w": 35.0
+        },
+        "png_sha256": "c3e89a370d6dfba90ff43da7b091fb91dc7a22c3d3dd135f4ea45f10757f8700"
+      },
+      {
+        "name": "副标题底框 1",
+        "path": "res://assets/ui/camp/developer/______1_1da835c43c.png",
+        "sprite_path_id": "4694312864656249691",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 450,
+        "height": 128,
+        "border": {
+          "x": 200.0,
+          "y": 0.0,
+          "z": 200.0,
+          "w": 0.0
+        },
+        "png_sha256": "9b1ac6c498f1c8ffb622bf88e54860b7c65bd6d1b9677cadab598e2cb466d6da"
+      },
+      {
+        "name": "sprite_materialicon_90001",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_90001.png",
+        "sprite_path_id": "-8314781698419631035",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "88e100470b19e403a2b43e4a4695b33717e592aea20e826f0bcaa40bdb75aad2"
+      },
+      {
+        "name": "sprite_materialicon_102",
+        "path": "res://assets/ui/camp/developer/sprite_materialicon_102.png",
+        "sprite_path_id": "3894177138201564098",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "e4476fc28917b9a0a8e64b6368fbc329c024a681c0c6e0a83bac9d138522d5f9"
+      },
+      {
+        "name": "sprite_abilityitemicon_15101",
+        "path": "res://assets/ui/camp/developer/sprite_abilityitemicon_15101.png",
+        "sprite_path_id": "4722616278204564780",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a7219173209a907a91fd6be84f533600b6446756b9aada84c46d9d539eed37a8"
+      },
+      {
+        "name": "分割线-无进度",
+        "path": "res://assets/ui/camp/developer/___-____379351ce5f.png",
+        "sprite_path_id": "1749052139309600037",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 16,
+        "height": 6,
+        "border": {
+          "x": 8.0,
+          "y": 0.0,
+          "z": 8.0,
+          "w": 0.0
+        },
+        "png_sha256": "2de7271387f49e9b5f1bd484648e615d5bf1ad5832fad2f8a19b45d2fb5598e0"
+      },
+      {
+        "name": "分割线-有进度顶",
+        "path": "res://assets/ui/camp/developer/___-_____ac42f21c6d.png",
+        "sprite_path_id": "6325337732902878773",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 14,
+        "height": 5,
+        "border": {
+          "x": 7.0,
+          "y": 0.0,
+          "z": 7.0,
+          "w": 0.0
+        },
+        "png_sha256": "95e134707c3432c402472432d5e542a63f1d0f8544e912b8514a255c9bd81b8a"
+      },
+      {
+        "name": "几何ui-书皮矩形",
+        "path": "res://assets/ui/camp/developer/__ui-_____3a8a942d48.png",
+        "sprite_path_id": "-1683756753952292453",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 186,
+        "height": 192,
+        "border": {
+          "x": 51.0,
+          "y": 74.0,
+          "z": 57.0,
+          "w": 68.0
+        },
+        "png_sha256": "2afc3910df39597aa4ebc1159188de86b149ff3cfa6d54605e8ec976485d0e72"
+      },
+      {
+        "name": "纹理",
+        "path": "res://assets/ui/camp/developer/___262348fa5f.png",
+        "sprite_path_id": "-3722087069973044491",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 64,
+        "height": 64,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7f32677fdfbe5353666357d80bcde559bfaa05f2008b04ec4951e03520edf681"
+      },
+      {
+        "name": "滚动条按钮 竖直",
+        "path": "res://assets/ui/camp/developer/_________fb37869566.png",
+        "sprite_path_id": "-7061695698488307602",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 62,
+        "height": 64,
+        "border": {
+          "x": 0.0,
+          "y": 32.0,
+          "z": 0.0,
+          "w": 32.0
+        },
+        "png_sha256": "f7fd33aa588b9f7d23a2c9db4bcac77519fb87c0c38640f847fd9ae09da56d12"
+      },
+      {
+        "name": "滚动条底框",
+        "path": "res://assets/ui/camp/developer/______4ed190de42.png",
+        "sprite_path_id": "-5344902869955551001",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 128,
+        "height": 64,
+        "border": {
+          "x": 50.0,
+          "y": 0.0,
+          "z": 50.0,
+          "w": 0.0
+        },
+        "png_sha256": "ea821520b2f5cb5946b717af96d6dac6cccaf3863587cc8eee5eb8a5232248ac"
+      },
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/camp/developer/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "1a759d2ed5c834d658ceee556a7eb3b9e6a82f6c31783734e4b99dd7a6710641"
+      },
+      {
+        "name": "bg装饰",
+        "path": "res://assets/ui/camp/developer/bg___effdc594aa.png",
+        "sprite_path_id": "478666742663739318",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 464,
+        "height": 464,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "086a76601708610ac710a581a2a230255ab1b4041d142f8186336a8e93d2b6a4"
+      },
+      {
+        "name": "滚动条底框 竖直",
+        "path": "res://assets/ui/camp/developer/_________32d1c63fcd.png",
+        "sprite_path_id": "-5117438217601264092",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 64,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 50.0,
+          "z": 0.0,
+          "w": 50.0
+        },
+        "png_sha256": "59f3962e1ef0a07cd6ff4f64c05f88a96a62b98d2b101fd645b99a754299bf13"
+      },
+      {
+        "name": "bg_maincity",
+        "path": "res://assets/ui/camp/developer/bg_maincity.png",
+        "sprite_path_id": "8185732856346455805",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/86b46b70b7f75a2d93096cf1345cc024.bundle",
+          "sha256": "98aaf9b35a2c27a2c956a29342eaa1932cd98b37c143ad888f8083d4e9ac9a3d"
+        },
+        "width": 1024,
+        "height": 512,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "1ed6c564e0c43b53066ebd02404635c083e00c3285f904bef77cac341fc2db65"
+      },
+      {
+        "name": "信息框底2",
+        "path": "res://assets/ui/camp/developer/____2_4894679493.png",
+        "sprite_path_id": "434496613652898986",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 102,
+        "height": 98,
+        "border": {
+          "x": 51.0,
+          "y": 52.0,
+          "z": 51.0,
+          "w": 52.0
+        },
+        "png_sha256": "9cfd994401bfb0963150b712c2021a64539484fd6fa313a7acc3b4a8dfc4557d"
+      },
+      {
+        "name": "hammer",
+        "path": "res://assets/ui/camp/developer/hammer.png",
+        "sprite_path_id": "6375565027561004253",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 157,
+        "height": 251,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "e0d50b41a78242d375d847816db754a1af4c368c6bd52b2f738089660982d8d3"
+      },
+      {
+        "name": "wood",
+        "path": "res://assets/ui/camp/developer/wood.png",
+        "sprite_path_id": "-5287063022090514121",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 248,
+        "height": 218,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "db2ef2d2cfe299134027f5f94918afe876da12842a21f5463cce6f788a7b8ab0"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/camp/developer/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b33892cde787b311c4992b4ffb01a1a7.bundle",
+          "sha256": "c7dd29f87b6c956be144271150ffd7574a78b047676fc4257d1fc45f9c9bdb60"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      }
+    ],
+    "errors": []
+  },
+  "dialogue_panel": {
+    "layout": "dialogue/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/b758818fa88667c62ee6241b21a4ca69.bundle",
+      "sha256": "e1f7e4c2f8e4edf0f29bc44cdd236396b537c5fc0476feb57b867573bec2d12c"
+    },
+    "sprites": [
+      {
+        "name": "剧情对话框",
+        "path": "res://assets/ui/camp/dialogue/______80bb21a2d7.png",
+        "sprite_path_id": "2430279230048488914",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/55552d120615d1e90f831a1f8f55a98f.bundle",
+          "sha256": "96fe8466f7c6d1b90b784dc9efdaac560c7c1309f4f5dd4a6833d95b12fac030"
+        },
+        "width": 4,
+        "height": 128,
+        "border": {
+          "x": 2.0,
+          "y": 85.0,
+          "z": 2.0,
+          "w": 42.0
+        },
+        "png_sha256": "7db55d5642b46ea87e6a374e064789cb9d38e998f11dcfddd11e126634deebc1"
+      },
+      {
+        "name": "分割线四",
+        "path": "res://assets/ui/camp/dialogue/_____6e3c952045.png",
+        "sprite_path_id": "-8332524736635863099",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 22,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6bf8ef10874a3e25df0c4ec5990732204a9e28d033df8e3f97bbf87cc8aac124"
+      }
+    ],
+    "errors": []
+  },
+  "interact_dialogue_panel": {
+    "layout": "interact_dialogue/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/9ba0f3785b264b4a3372dd0fe20e8192.bundle",
+      "sha256": "3a587c2d3628af17b7cfb4aed0824c3e929be40b258ac388d9892055dbdfa140"
+    },
+    "sprites": [
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/camp/interact_dialogue/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "对话按钮_底",
+        "path": "res://assets/ui/camp/interact_dialogue/_______2096af79d7.png",
+        "sprite_path_id": "7437783003131464813",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 402,
+        "height": 82,
+        "border": {
+          "x": 78.0,
+          "y": 0.0,
+          "z": 198.0,
+          "w": 0.0
+        },
+        "png_sha256": "eced998490e106a098820ebb0d52f817e7d31bb1643eec54af5b033b3ab172a8"
+      },
+      {
+        "name": "sprite_conversation_get",
+        "path": "res://assets/ui/camp/interact_dialogue/sprite_conversation_get.png",
+        "sprite_path_id": "-1649478104668176202",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+          "sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc"
+        },
+        "width": 127,
+        "height": 121,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6fc0148957c5a09dba3b51291bba37379ae01006b2281ca6640c8d04b2ec5183"
+      }
+    ],
+    "errors": []
+  },
+  "guild_panel": {
+    "layout": "guild/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/87c400157729525ebf8429a112d2b179.bundle",
+      "sha256": "7bfac06d75de8c03a7e90f0762ff0415a4569190d7c1d45193a513d92f529988"
+    },
+    "sprites": [
+      {
+        "name": "24",
+        "path": "res://assets/ui/camp/guild/24.png",
+        "sprite_path_id": "5985676854447024116",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 145,
+        "height": 30,
+        "border": {
+          "x": 40.0,
+          "y": 20.0,
+          "z": 40.0,
+          "w": 5.0
+        },
+        "png_sha256": "9ab8cf6f9f3fbdf02ca35bd227ab20d9def27c9ee0f3c78e5e5d8f06fd35643b"
+      },
+      {
+        "name": "连接线-已解锁",
+        "path": "res://assets/ui/camp/guild/___-____9e383a1fce.png",
+        "sprite_path_id": "532667822691675574",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 28,
+        "height": 16,
+        "border": {
+          "x": 14.0,
+          "y": 8.0,
+          "z": 14.0,
+          "w": 8.0
+        },
+        "png_sha256": "6daef63da6c5ad18c3fc30a35e9eee48b1e2c8915e480801940a541bf3722952"
+      },
+      {
+        "name": "星星底",
+        "path": "res://assets/ui/camp/guild/____db6e5bd6e3.png",
+        "sprite_path_id": "-2772862117838662624",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 24,
+        "height": 24,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c64798fe1144eb6ea855b771e1aa5d9455f702e2c1b214903d81156e2e9ceec1"
+      },
+      {
+        "name": "连接线-未解锁",
+        "path": "res://assets/ui/camp/guild/___-____f6fc3e51c4.png",
+        "sprite_path_id": "-3413848574477456898",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 16,
+        "height": 4,
+        "border": {
+          "x": 8.0,
+          "y": 2.0,
+          "z": 8.0,
+          "w": 2.0
+        },
+        "png_sha256": "7061ee1554386d16dbb8289045e7f9ae45b816d72fe873812a714ef3724270dd"
+      },
+      {
+        "name": "sprite_rect_128x128",
+        "path": "res://assets/ui/camp/guild/sprite_rect_128x128.png",
+        "sprite_path_id": "3483957996699903255",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+          "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 13.0,
+          "y": 13.0,
+          "z": 13.0,
+          "w": 13.0
+        },
+        "png_sha256": "77085affe7ed4ae748996e56e57aec088d5b4a996a3060829b41925cc8383fcc"
+      },
+      {
+        "name": "分割线1",
+        "path": "res://assets/ui/camp/guild/___1_9f291de47f.png",
+        "sprite_path_id": "-2795178781909742681",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 359,
+        "height": 2,
+        "border": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "png_sha256": "a382b25a4e2d46768fa406a45c24798702bed3c34161fc025d003819e31b8d08"
+      },
+      {
+        "name": "锁定遮罩",
+        "path": "res://assets/ui/camp/guild/_____c317ca9908.png",
+        "sprite_path_id": "918722314435250836",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 145,
+        "height": 145,
+        "border": {
+          "x": 73.0,
+          "y": 72.0,
+          "z": 72.0,
+          "w": 73.0
+        },
+        "png_sha256": "e9018db60457de8ec82fb160b917594540512dab2aba5a6f634bddecaa633dae"
+      },
+      {
+        "name": "装饰花纹 1",
+        "path": "res://assets/ui/camp/guild/_____1_1ee01401ef.png",
+        "sprite_path_id": "6207561443359159708",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 61,
+        "height": 61,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ce5b42fbc0841684f165439d107a45e1842f4a5e5d9228087882bae7e59f5c46"
+      },
+      {
+        "name": "技能框待解锁叠加",
+        "path": "res://assets/ui/camp/guild/_________fdde66efd8.png",
+        "sprite_path_id": "-6930619922077078161",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 155,
+        "height": 155,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "3995b58d6a86357d75c1fa28e7d1702f7b079197b9d1444a16687f1f7124f6f0"
+      },
+      {
+        "name": "星星大",
+        "path": "res://assets/ui/camp/guild/____d1b367e11c.png",
+        "sprite_path_id": "-814199833485362129",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 50,
+        "height": 47,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "9400cf2c149885193261b2daaf0c73e5619127ee5b1bf2897293b2ec2bd1108a"
+      },
+      {
+        "name": "物品框外发光",
+        "path": "res://assets/ui/camp/guild/_______6e00f2d4d7.png",
+        "sprite_path_id": "-804876785892098690",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 198,
+        "height": 198,
+        "border": {
+          "x": 98.0,
+          "y": 96.0,
+          "z": 98.0,
+          "w": 96.0
+        },
+        "png_sha256": "954eaca82fe75db123368e7f02828016e12d4f746dec91a9d304a92878a876ec"
+      },
+      {
+        "name": "sprite_attackicon_300033",
+        "path": "res://assets/ui/camp/guild/sprite_attackicon_300033.png",
+        "sprite_path_id": "-3686439076997110730",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/e4064f462de747dcdf7b8056e58cef9f.bundle",
+          "sha256": "2a26cfb3e43793ae2e02f58731776c7800db4590ad071d7d09489afd1ba2eb33"
+        },
+        "width": 219,
+        "height": 235,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ba8c6a55f5e55d56bf2616186a7eaf2fcfd5f1d53af5a21ec5374b39c5c0cb65"
+      },
+      {
+        "name": "40_1",
+        "path": "res://assets/ui/camp/guild/40_1.png",
+        "sprite_path_id": "4112028227247745938",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 157,
+        "height": 160,
+        "border": {
+          "x": 50.0,
+          "y": 50.0,
+          "z": 50.0,
+          "w": 50.0
+        },
+        "png_sha256": "a5efb047c838d44b6cc43897abd9a17699b3ad53c8aa2b4aec31d153f5d4ea7b"
+      },
+      {
+        "name": "选择高亮",
+        "path": "res://assets/ui/camp/guild/_____8efb0fde4e.png",
+        "sprite_path_id": "-495095694787399995",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 68,
+        "height": 68,
+        "border": {
+          "x": 34.0,
+          "y": 34.0,
+          "z": 34.0,
+          "w": 34.0
+        },
+        "png_sha256": "2df42c41735b7f0153e92d431cbf72cc135594b62807498abe253c7487cd6778"
+      },
+      {
+        "name": "锁头",
+        "path": "res://assets/ui/camp/guild/___eb52231830.png",
+        "sprite_path_id": "-3531569690072326385",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 73,
+        "height": 84,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a87c2295afce0cff383d3a2f4ad47a4d0dfd50228bfd32fcdf24a06f8c6cb646"
+      },
+      {
+        "name": "技能框未解锁叠加",
+        "path": "res://assets/ui/camp/guild/_________360a494418.png",
+        "sprite_path_id": "-4038934268801725831",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 155,
+        "height": 155,
+        "border": {
+          "x": 78.0,
+          "y": 77.0,
+          "z": 77.0,
+          "w": 78.0
+        },
+        "png_sha256": "8dba9a0294de3d69bf27ba20044a130efa4ca4a31bf6d40c7d5f4b55aba2d784"
+      },
+      {
+        "name": "装备清单_1",
+        "path": "res://assets/ui/camp/guild/_____1_dfe3a04dda.png",
+        "sprite_path_id": "9113063670658511550",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 72,
+        "height": 64,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0393701190ebc4a853cb22533116271970570383c9d80f719252474c9fb6dd8b"
+      },
+      {
+        "name": "几何ui-书页矩形花纹",
+        "path": "res://assets/ui/camp/guild/__ui-_______8311f6a215.png",
+        "sprite_path_id": "775492295664635627",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 105,
+        "height": 111,
+        "border": {
+          "x": 32.0,
+          "y": 47.0,
+          "z": 30.0,
+          "w": 33.0
+        },
+        "png_sha256": "0df4bd6265e263355e49fbb84ff10b8ca36710b6f52c82474fcc0a7b6d294d4b"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/camp/guild/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "分类选中",
+        "path": "res://assets/ui/camp/guild/_____ee3dc408b4.png",
+        "sprite_path_id": "2801027422704194543",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 412,
+        "height": 126,
+        "border": {
+          "x": 206.0,
+          "y": 63.0,
+          "z": 206.0,
+          "w": 63.0
+        },
+        "png_sha256": "f8e25f1018996a07eae8c033d5f2c22f134671fc2948288f7063d67324350bed"
+      },
+      {
+        "name": "锁",
+        "path": "res://assets/ui/camp/guild/__4f62f920d6.png",
+        "sprite_path_id": "-7779187746478388713",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 41,
+        "height": 49,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "02c1a8ed5d48e6cf951f0a3c0fd80490ea1f053d60649826d2930b5012c0d1c8"
+      },
+      {
+        "name": "货币_底",
+        "path": "res://assets/ui/camp/guild/_____a5692cce8c.png",
+        "sprite_path_id": "8416506778996739775",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 249,
+        "height": 51,
+        "border": {
+          "x": 125.0,
+          "y": 25.0,
+          "z": 124.0,
+          "w": 26.0
+        },
+        "png_sha256": "b6c2b884d1703b1567cbb06bae0fe3c4469fd81048e8c02b09f81df0120aff87"
+      },
+      {
+        "name": "减号按钮",
+        "path": "res://assets/ui/camp/guild/_____54b659420f.png",
+        "sprite_path_id": "-2453844321401970427",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 42,
+        "height": 44,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "65ed6919ed6c49f78e047df66ba7a874b61cf5bca8c84db1b21979baeaab13ed"
+      },
+      {
+        "name": "icon_addnum",
+        "path": "res://assets/ui/camp/guild/icon_addnum.png",
+        "sprite_path_id": "-1575747556048610155",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 40,
+        "height": 40,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5a80ab4a3fa92dbb74edb2526fc290e52295fe2f8f4ae92021ebc9cac09c1d54"
+      },
+      {
+        "name": "物品详情_底",
+        "path": "res://assets/ui/camp/guild/_______d311bbfc6d.png",
+        "sprite_path_id": "-24360010370924150",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 104,
+        "height": 104,
+        "border": {
+          "x": 52.0,
+          "y": 52.0,
+          "z": 52.0,
+          "w": 52.0
+        },
+        "png_sha256": "9a6d046db3f81378172ccdd5d68b4857fb6bfd4857980ff9b65e7bc11fde0bb6"
+      },
+      {
+        "name": "选中光效",
+        "path": "res://assets/ui/camp/guild/_____bc5830e3ce.png",
+        "sprite_path_id": "-8930961703222545816",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 101,
+        "height": 81,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0ab9767f0084a1ba1788853c9749e8bc13179abf74fd2a00843c5348a808d9f7"
+      },
+      {
+        "name": "须知",
+        "path": "res://assets/ui/camp/guild/___3195038864.png",
+        "sprite_path_id": "-3264226760608914741",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 76,
+        "height": 76,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "af69931f0cdc4f2c3c2f4d02497bef174c00c24f34f24ff0f6627ae2b0750aa0"
+      },
+      {
+        "name": "sprite_materialicon_40001",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_40001.png",
+        "sprite_path_id": "-7693951651999609644",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6ab184d2b4cbcae48c4b3f81bcb7942dbb8e365119faf4c70dfa1074df4a884e"
+      },
+      {
+        "name": "sprite_materialicon_108",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_108.png",
+        "sprite_path_id": "-6886311129609553285",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b58dd6471091d9c999bd0ff372331b65bbfe4a29b0d73d1595b9750d24689d9d"
+      },
+      {
+        "name": "bg装饰",
+        "path": "res://assets/ui/camp/guild/bg___effdc594aa.png",
+        "sprite_path_id": "5221211053828565629",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/f417744f83f6d2e5f145ffbb53d9ee1c.bundle",
+          "sha256": "45fc65aa0dfbc4b1daab801b7bdb8992b2455bc4f0c85acc8a2ab9fc2a6de6f5"
+        },
+        "width": 464,
+        "height": 464,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0d2a25142aa601ee5532ae0457e37a7baa2a74480c5904ec1b88ffc6ba11b15d"
+      },
+      {
+        "name": "sprite_materialicon_102",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_102.png",
+        "sprite_path_id": "3894177138201564098",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "e4476fc28917b9a0a8e64b6368fbc329c024a681c0c6e0a83bac9d138522d5f9"
+      },
+      {
+        "name": "sprite_materialicon_502",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_502.png",
+        "sprite_path_id": "8462504211962514845",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "843f47a640631f9622eef9410efc0ecef3c6d92e332a8a292493b146d083c4ad"
+      },
+      {
+        "name": "外边框",
+        "path": "res://assets/ui/camp/guild/____aa7ecc1930.png",
+        "sprite_path_id": "2134213357096785780",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 106,
+        "height": 106,
+        "border": {
+          "x": 53.0,
+          "y": 53.0,
+          "z": 53.0,
+          "w": 53.0
+        },
+        "png_sha256": "3d08222ab1d46046c17c9388b57634a1a159e35952f4f14f2143e82940134eea"
+      },
+      {
+        "name": "slotfg_rare_square_1_v2",
+        "path": "res://assets/ui/camp/guild/slotfg_rare_square_1_v2.png",
+        "sprite_path_id": "-6259846521885095785",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+          "sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270"
+        },
+        "width": 157,
+        "height": 160,
+        "border": {
+          "x": 79.0,
+          "y": 80.0,
+          "z": 78.0,
+          "w": 80.0
+        },
+        "png_sha256": "a7abd6dca840d52fc0ab0ac11f37964eb431ad31b0b4fd182de3a420b2e21496"
+      },
+      {
+        "name": "几何ui-背景用渐变圆角矩形",
+        "path": "res://assets/ui/camp/guild/__ui-__________647acc3b20.png",
+        "sprite_path_id": "-581522297785427559",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 102,
+        "border": {
+          "x": 37.0,
+          "y": 59.0,
+          "z": 41.0,
+          "w": 48.0
+        },
+        "png_sha256": "65aa03c977eb5c4a2039c082906fdf132f1213faae74bf0d31f3fad46e0b0999"
+      },
+      {
+        "name": "icon_mainstatus",
+        "path": "res://assets/ui/camp/guild/icon_mainstatus.png",
+        "sprite_path_id": "175650892367624043",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/42980b97b21fef16088e1fbbb3c13a72.bundle",
+          "sha256": "9d11ee9773833192ad744e7ef446bb91978f1421f83ea50dbcaa1fad9e4bbd23"
+        },
+        "width": 43,
+        "height": 47,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0e2be2a9b6522f5a65681799eb62333e9c9c04fb479aa0870c70b03290b3b388"
+      },
+      {
+        "name": "几何ui-椭圆白色按钮",
+        "path": "res://assets/ui/camp/guild/__ui-_______39ebe9c97d.png",
+        "sprite_path_id": "-1055889953380836409",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 284,
+        "height": 84,
+        "border": {
+          "x": 82.0,
+          "y": 0.0,
+          "z": 87.0,
+          "w": 0.0
+        },
+        "png_sha256": "922f2e030787fe0f57a6bc7fc0e2c004e7ee01e727575dbda78701f48de1b2f1"
+      },
+      {
+        "name": "18",
+        "path": "res://assets/ui/camp/guild/18.png",
+        "sprite_path_id": "-742374628967678081",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 52,
+        "height": 4,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c38279272333ed729d50794518c744172c8dd7529c7c13e9882d1d03c96e606e"
+      },
+      {
+        "name": "几何ui-书页矩形",
+        "path": "res://assets/ui/camp/guild/__ui-_____02aac0a4c2.png",
+        "sprite_path_id": "9094836545165679839",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 105,
+        "height": 111,
+        "border": {
+          "x": 35.0,
+          "y": 48.0,
+          "z": 35.0,
+          "w": 38.0
+        },
+        "png_sha256": "c9c3d47f5079f6e386779009dce971f41c1ed8a0cca4389ed9c99b1ea0ed193e"
+      },
+      {
+        "name": "sprite_materialicon_103",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_103.png",
+        "sprite_path_id": "-2847287226865223873",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b17594d3308b06cbcaea415d4a789d461f5228cde363ec8180e5d91d1d9ccd94"
+      },
+      {
+        "name": "滚动条按钮",
+        "path": "res://assets/ui/camp/guild/______5c668fd39a.png",
+        "sprite_path_id": "7096661275413308309",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 62,
+        "height": 64,
+        "border": {
+          "x": 31.0,
+          "y": 0.0,
+          "z": 32.0,
+          "w": 0.0
+        },
+        "png_sha256": "d6734f4de8bcd604fbfa2a29c37b1f07d22500a8224045450092ac2fc330818d"
+      },
+      {
+        "name": "sprite_materialicon_101",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_101.png",
+        "sprite_path_id": "-4929560618279763517",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "96301f425e0736f9675c3126461bc60e18712e5c0be51ee2f0935d3372900bad"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/camp/guild/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 512,
+        "height": 31,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c731cbb5f399c3bc4f3ffd53d84883c13ccd5ca5794135e3d794260e4f33799e"
+      },
+      {
+        "name": "侧边按钮暗",
+        "path": "res://assets/ui/camp/guild/______f8b0f14d40.png",
+        "sprite_path_id": "1235230477398367199",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 34,
+        "height": 118,
+        "border": {
+          "x": 17.0,
+          "y": 59.0,
+          "z": 17.0,
+          "w": 59.0
+        },
+        "png_sha256": "6bd5cb82340405bf14887115a4942275b1f19a3e8fb898f81c9478df7fae6811"
+      },
+      {
+        "name": "箭头白",
+        "path": "res://assets/ui/camp/guild/____edaacdc6ad.png",
+        "sprite_path_id": "4384636787489496816",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 38,
+        "height": 36,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "08742c3e5ac240745a6f562e8c1e00065c2f7cf901f2f7677499c7a7b38b6d42"
+      },
+      {
+        "name": "sprite_materialicon_90001",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_90001.png",
+        "sprite_path_id": "-8314781698419631035",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "88e100470b19e403a2b43e4a4695b33717e592aea20e826f0bcaa40bdb75aad2"
+      },
+      {
+        "name": "sprite_materialicon_90002",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_90002.png",
+        "sprite_path_id": "6651430658684800665",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "dc9b215600c7704fa3d8a0ecfd239a0c22be5feb53fdeb508d95d8f285ffa71c"
+      },
+      {
+        "name": "工会委托_1",
+        "path": "res://assets/ui/camp/guild/_____1_b917f27887.png",
+        "sprite_path_id": "-307457941710933346",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 82,
+        "height": 75,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "16ea941afb19bbb80fd11a3d8afd2a7b1ac74b5a24a6fb7fde54f8f215004700"
+      },
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/camp/guild/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "1a759d2ed5c834d658ceee556a7eb3b9e6a82f6c31783734e4b99dd7a6710641"
+      },
+      {
+        "name": "sprite_materialicon_10101",
+        "path": "res://assets/ui/camp/guild/sprite_materialicon_10101.png",
+        "sprite_path_id": "5335861423126377821",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ede52cf3f4f57559273d04707eb78b7ce0265ec8a87b2bfe8b7dc6bbe13743e9"
+      },
+      {
+        "name": "营地装修_1",
+        "path": "res://assets/ui/camp/guild/_____1_b23162c90c.png",
+        "sprite_path_id": "7991817975102979411",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 80,
+        "height": 50,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7d0ebea39e2b56fecc1bb3342f95e6e372477397009cf1201a07e6f9dd633422"
+      },
+      {
+        "name": "sprite_abilityitemicon_15101",
+        "path": "res://assets/ui/camp/guild/sprite_abilityitemicon_15101.png",
+        "sprite_path_id": "4722616278204564780",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a7219173209a907a91fd6be84f533600b6446756b9aada84c46d9d539eed37a8"
+      },
+      {
+        "name": "边框上",
+        "path": "res://assets/ui/camp/guild/____0c43befd0e.png",
+        "sprite_path_id": "7895338744128560519",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 512,
+        "height": 55,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 499.5,
+          "w": 0.0
+        },
+        "png_sha256": "07b4008f6b94baa2cbf01dc6a378811069a9a300f38e96d7e7bc719f4a560e38"
+      },
+      {
+        "name": "几何ui-白圆角矩形",
+        "path": "res://assets/ui/camp/guild/__ui-______083f833001.png",
+        "sprite_path_id": "6661574081893680522",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 40.0,
+          "z": 38.0,
+          "w": 38.0
+        },
+        "png_sha256": "1b187b4528c3257212ad59a16301d073ef7c6fde073b42045481ffe488f32611"
+      },
+      {
+        "name": "滚动条底框",
+        "path": "res://assets/ui/camp/guild/______4ed190de42.png",
+        "sprite_path_id": "-5344902869955551001",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b0835882533d1997f66534776b37eb32.bundle",
+          "sha256": "7f751361ce06accd6a3e83671143981cf3700d9c0686260da9a235fdb2fc0af2"
+        },
+        "width": 128,
+        "height": 64,
+        "border": {
+          "x": 50.0,
+          "y": 0.0,
+          "z": 50.0,
+          "w": 0.0
+        },
+        "png_sha256": "ea821520b2f5cb5946b717af96d6dac6cccaf3863587cc8eee5eb8a5232248ac"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/camp/guild/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6b266ee8f0a7e587cc30d3a388771b9dac4af4d800e95dfe40d11ebdfa8f5965"
+      },
+      {
+        "name": "底框-1",
+        "path": "res://assets/ui/camp/guild/__-1_14b911c7ea.png",
+        "sprite_path_id": "3759198304104013307",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 128,
+        "height": 125,
+        "border": {
+          "x": 50.0,
+          "y": 50.0,
+          "z": 50.0,
+          "w": 50.0
+        },
+        "png_sha256": "6d358c710aaa725100856ff6820656d8d550713336914966bb018892b6ca265b"
+      },
+      {
+        "name": "分割线带阴影",
+        "path": "res://assets/ui/camp/guild/_______042b22d57b.png",
+        "sprite_path_id": "-7981229739878698161",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 28,
+        "height": 443,
+        "border": {
+          "x": 0.0,
+          "y": 222.0,
+          "z": 0.0,
+          "w": 218.0
+        },
+        "png_sha256": "2d64ec25de8e8affe18389a4674b1f3cc2f6d097793c54d0e21a692d4603cfc3"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/camp/guild/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/87c400157729525ebf8429a112d2b179.bundle",
+          "sha256": "7bfac06d75de8c03a7e90f0762ff0415a4569190d7c1d45193a513d92f529988"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      }
+    ],
+    "errors": []
+  },
+  "commission_panel": {
+    "layout": "commission/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/3590860f8cb39d9f5f46c60eacca48f9.bundle",
+      "sha256": "bd5894c7c96a9d219d23fb8aed8faa68994b7d72395b568710763581c83df112"
+    },
+    "sprites": [
+      {
+        "name": "星星大",
+        "path": "res://assets/ui/camp/commission/____d1b367e11c.png",
+        "sprite_path_id": "-814199833485362129",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 50,
+        "height": 47,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "9400cf2c149885193261b2daaf0c73e5619127ee5b1bf2897293b2ec2bd1108a"
+      },
+      {
+        "name": "icon_addnum",
+        "path": "res://assets/ui/camp/commission/icon_addnum.png",
+        "sprite_path_id": "-1575747556048610155",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 40,
+        "height": 40,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5a80ab4a3fa92dbb74edb2526fc290e52295fe2f8f4ae92021ebc9cac09c1d54"
+      },
+      {
+        "name": "几何ui-白圆角矩形",
+        "path": "res://assets/ui/camp/commission/__ui-______083f833001.png",
+        "sprite_path_id": "6661574081893680522",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 40.0,
+          "z": 38.0,
+          "w": 38.0
+        },
+        "png_sha256": "1b187b4528c3257212ad59a16301d073ef7c6fde073b42045481ffe488f32611"
+      },
+      {
+        "name": "选择高亮",
+        "path": "res://assets/ui/camp/commission/_____8efb0fde4e.png",
+        "sprite_path_id": "-495095694787399995",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 68,
+        "height": 68,
+        "border": {
+          "x": 34.0,
+          "y": 34.0,
+          "z": 34.0,
+          "w": 34.0
+        },
+        "png_sha256": "2df42c41735b7f0153e92d431cbf72cc135594b62807498abe253c7487cd6778"
+      },
+      {
+        "name": "通用背景",
+        "path": "res://assets/ui/camp/commission/_____73575f9d22.png",
+        "sprite_path_id": "4445401531142077585",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/b52c9f21bfad7e0df560b74dc7ef71b9.bundle",
+          "sha256": "7b86098ae02505a1675663b362db38095750bb77d93b2e5301913b2f77976c39"
+        },
+        "width": 512,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cb50e755654849ba81e092c2047eaff8fec879c711c6266ed5b2373bc79734f9"
+      },
+      {
+        "name": "完成（普通委托）",
+        "path": "res://assets/ui/camp/commission/_________1af2265e1d.png",
+        "sprite_path_id": "-6441706681384598002",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 128,
+        "height": 127,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "47935a9ef30f1540a899f37c3782cc7d2cc94cad93bc590ee8a84ee2c010026b"
+      },
+      {
+        "name": "星星底",
+        "path": "res://assets/ui/camp/commission/____db6e5bd6e3.png",
+        "sprite_path_id": "-2772862117838662624",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 24,
+        "height": 24,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c64798fe1144eb6ea855b771e1aa5d9455f702e2c1b214903d81156e2e9ceec1"
+      },
+      {
+        "name": "分割线高亮-有进度顶",
+        "path": "res://assets/ui/camp/commission/_____-_____d0f27e4a36.png",
+        "sprite_path_id": "7232426655495280421",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 14,
+        "height": 5,
+        "border": {
+          "x": 7.0,
+          "y": 0.0,
+          "z": 7.0,
+          "w": 0.0
+        },
+        "png_sha256": "c18a3401894f0f1911e3b524840344769cc91421cb2e7722148d53d19729902a"
+      },
+      {
+        "name": "24",
+        "path": "res://assets/ui/camp/commission/24.png",
+        "sprite_path_id": "5985676854447024116",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 145,
+        "height": 30,
+        "border": {
+          "x": 40.0,
+          "y": 20.0,
+          "z": 40.0,
+          "w": 5.0
+        },
+        "png_sha256": "9ab8cf6f9f3fbdf02ca35bd227ab20d9def27c9ee0f3c78e5e5d8f06fd35643b"
+      },
+      {
+        "name": "几何ui-椭圆白色按钮",
+        "path": "res://assets/ui/camp/commission/__ui-_______39ebe9c97d.png",
+        "sprite_path_id": "-1055889953380836409",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 284,
+        "height": 84,
+        "border": {
+          "x": 82.0,
+          "y": 0.0,
+          "z": 87.0,
+          "w": 0.0
+        },
+        "png_sha256": "922f2e030787fe0f57a6bc7fc0e2c004e7ee01e727575dbda78701f48de1b2f1"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/camp/commission/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "sprite_rect_128x128",
+        "path": "res://assets/ui/camp/commission/sprite_rect_128x128.png",
+        "sprite_path_id": "3483957996699903255",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+          "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 13.0,
+          "y": 13.0,
+          "z": 13.0,
+          "w": 13.0
+        },
+        "png_sha256": "77085affe7ed4ae748996e56e57aec088d5b4a996a3060829b41925cc8383fcc"
+      },
+      {
+        "name": "sprite_materialicon_40001",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_40001.png",
+        "sprite_path_id": "-7693951651999609644",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6ab184d2b4cbcae48c4b3f81bcb7942dbb8e365119faf4c70dfa1074df4a884e"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/camp/commission/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6b266ee8f0a7e587cc30d3a388771b9dac4af4d800e95dfe40d11ebdfa8f5965"
+      },
+      {
+        "name": "sprite_materialicon_90002",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_90002.png",
+        "sprite_path_id": "6651430658684800665",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "dc9b215600c7704fa3d8a0ecfd239a0c22be5feb53fdeb508d95d8f285ffa71c"
+      },
+      {
+        "name": "sprite_materialicon_502",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_502.png",
+        "sprite_path_id": "8462504211962514845",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "843f47a640631f9622eef9410efc0ecef3c6d92e332a8a292493b146d083c4ad"
+      },
+      {
+        "name": "AchieveIcon_100",
+        "path": "res://assets/ui/camp/commission/AchieveIcon_100.png",
+        "sprite_path_id": "-6490535405167656639",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/6c62c03ed5850653253bb5c510079a65.bundle",
+          "sha256": "20bb5687e9bc471dbfc0daba72f3b828c598135436315c67fb4e4ce712e8cbef"
+        },
+        "width": 126,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "4aec6c97d33c99a5b4eb68ea26d15795e8bf8ff6c424d5d40cd47a08fbaf404a"
+      },
+      {
+        "name": "减号按钮",
+        "path": "res://assets/ui/camp/commission/_____54b659420f.png",
+        "sprite_path_id": "-2453844321401970427",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 42,
+        "height": 44,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "65ed6919ed6c49f78e047df66ba7a874b61cf5bca8c84db1b21979baeaab13ed"
+      },
+      {
+        "name": "分割线-有进度底",
+        "path": "res://assets/ui/camp/commission/___-_____a21b58c2d4.png",
+        "sprite_path_id": "7332686488428864595",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 17,
+        "height": 7,
+        "border": {
+          "x": 9.0,
+          "y": 0.0,
+          "z": 8.0,
+          "w": 0.0
+        },
+        "png_sha256": "8b150ed0c1895928f890b791b836bb89f77a8294fa85f2ee7cfbc28f6aae22d6"
+      },
+      {
+        "name": "几何ui-白左渐变圆角矩形",
+        "path": "res://assets/ui/camp/commission/__ui-_________c5e87178a6.png",
+        "sprite_path_id": "-474771377498333912",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 102,
+        "height": 108,
+        "border": {
+          "x": 42.0,
+          "y": 40.0,
+          "z": 0.0,
+          "w": 39.0
+        },
+        "png_sha256": "dbbc3573001fbaa03c2a36d28167bf06eec5a742cd2c6315383546cbc5910c03"
+      },
+      {
+        "name": "商店按钮_底",
+        "path": "res://assets/ui/camp/commission/_______dd24d75bc3.png",
+        "sprite_path_id": "-8548341121348774352",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 294,
+        "height": 93,
+        "border": {
+          "x": 101.0,
+          "y": 0.0,
+          "z": 115.0,
+          "w": 0.0
+        },
+        "png_sha256": "706283395fc606d53857da0bb5026ad542ff62a59d2fbab72ef604ba7105a2c2"
+      },
+      {
+        "name": "slotfg_rare_square_1_v2",
+        "path": "res://assets/ui/camp/commission/slotfg_rare_square_1_v2.png",
+        "sprite_path_id": "-6259846521885095785",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ccabc6368b7769ca3f6fcdc780aa4830.bundle",
+          "sha256": "59c9eeab8845c140f0040e137bfdc1deac97581d166c4db03452b1ec0b3bf270"
+        },
+        "width": 157,
+        "height": 160,
+        "border": {
+          "x": 79.0,
+          "y": 80.0,
+          "z": 78.0,
+          "w": 80.0
+        },
+        "png_sha256": "a7abd6dca840d52fc0ab0ac11f37964eb431ad31b0b4fd182de3a420b2e21496"
+      },
+      {
+        "name": "货币_底",
+        "path": "res://assets/ui/camp/commission/_____a5692cce8c.png",
+        "sprite_path_id": "8416506778996739775",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 249,
+        "height": 51,
+        "border": {
+          "x": 125.0,
+          "y": 25.0,
+          "z": 124.0,
+          "w": 26.0
+        },
+        "png_sha256": "b6c2b884d1703b1567cbb06bae0fe3c4469fd81048e8c02b09f81df0120aff87"
+      },
+      {
+        "name": "分割线-无进度",
+        "path": "res://assets/ui/camp/commission/___-____379351ce5f.png",
+        "sprite_path_id": "1749052139309600037",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 16,
+        "height": 6,
+        "border": {
+          "x": 8.0,
+          "y": 0.0,
+          "z": 8.0,
+          "w": 0.0
+        },
+        "png_sha256": "2de7271387f49e9b5f1bd484648e615d5bf1ad5832fad2f8a19b45d2fb5598e0"
+      },
+      {
+        "name": "几何ui-暗左圆角矩形",
+        "path": "res://assets/ui/camp/commission/__ui-_______11286503b7.png",
+        "sprite_path_id": "2909923345520168463",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 49.0,
+          "y": 42.0,
+          "z": 27.0,
+          "w": 38.0
+        },
+        "png_sha256": "477016e6df3bc9830fb0602a2bfa8b9bfec5218db4e96053e87776f6b6ef715d"
+      },
+      {
+        "name": "底部进度条底",
+        "path": "res://assets/ui/camp/commission/_______6527172a9e.png",
+        "sprite_path_id": "4203604434722647758",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 32,
+        "height": 18,
+        "border": {
+          "x": 16.0,
+          "y": 0.0,
+          "z": 16.0,
+          "w": 0.0
+        },
+        "png_sha256": "5f5ce401e56560d5de93b626a907536e54909e38cdc959aa98cb18e38d6ef23a"
+      },
+      {
+        "name": "选择高亮_1",
+        "path": "res://assets/ui/camp/commission/_____1_4706e186f6.png",
+        "sprite_path_id": "9216056464713323481",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 100,
+        "height": 100,
+        "border": {
+          "x": 50.0,
+          "y": 50.0,
+          "z": 50.0,
+          "w": 50.0
+        },
+        "png_sha256": "d539a8e38ea8db7028ece5127637f73a5fce9c9c7d4162024c4486b20c770f80"
+      },
+      {
+        "name": "sprite_attackicon_300033",
+        "path": "res://assets/ui/camp/commission/sprite_attackicon_300033.png",
+        "sprite_path_id": "-3686439076997110730",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/e4064f462de747dcdf7b8056e58cef9f.bundle",
+          "sha256": "2a26cfb3e43793ae2e02f58731776c7800db4590ad071d7d09489afd1ba2eb33"
+        },
+        "width": 219,
+        "height": 235,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ba8c6a55f5e55d56bf2616186a7eaf2fcfd5f1d53af5a21ec5374b39c5c0cb65"
+      },
+      {
+        "name": "锁定遮罩",
+        "path": "res://assets/ui/camp/commission/_____c317ca9908.png",
+        "sprite_path_id": "918722314435250836",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 145,
+        "height": 145,
+        "border": {
+          "x": 73.0,
+          "y": 72.0,
+          "z": 72.0,
+          "w": 73.0
+        },
+        "png_sha256": "e9018db60457de8ec82fb160b917594540512dab2aba5a6f634bddecaa633dae"
+      },
+      {
+        "name": "bg装饰",
+        "path": "res://assets/ui/camp/commission/bg___effdc594aa.png",
+        "sprite_path_id": "5221211053828565629",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/f417744f83f6d2e5f145ffbb53d9ee1c.bundle",
+          "sha256": "45fc65aa0dfbc4b1daab801b7bdb8992b2455bc4f0c85acc8a2ab9fc2a6de6f5"
+        },
+        "width": 464,
+        "height": 464,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0d2a25142aa601ee5532ae0457e37a7baa2a74480c5904ec1b88ffc6ba11b15d"
+      },
+      {
+        "name": "sprite_materialicon_90001",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_90001.png",
+        "sprite_path_id": "-8314781698419631035",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "88e100470b19e403a2b43e4a4695b33717e592aea20e826f0bcaa40bdb75aad2"
+      },
+      {
+        "name": "sprite_abilityitemicon_15101",
+        "path": "res://assets/ui/camp/commission/sprite_abilityitemicon_15101.png",
+        "sprite_path_id": "4722616278204564780",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a7219173209a907a91fd6be84f533600b6446756b9aada84c46d9d539eed37a8"
+      },
+      {
+        "name": "sprite_materialicon_103",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_103.png",
+        "sprite_path_id": "-2847287226865223873",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b17594d3308b06cbcaea415d4a789d461f5228cde363ec8180e5d91d1d9ccd94"
+      },
+      {
+        "name": "商店存储选项_white底(激活)",
+        "path": "res://assets/ui/camp/commission/_______white______cbf053c013.png",
+        "sprite_path_id": "-1518945744767151471",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 35.0,
+          "y": 38.0,
+          "z": 33.0,
+          "w": 35.0
+        },
+        "png_sha256": "c3e89a370d6dfba90ff43da7b091fb91dc7a22c3d3dd135f4ea45f10757f8700"
+      },
+      {
+        "name": "锁",
+        "path": "res://assets/ui/camp/commission/__4f62f920d6.png",
+        "sprite_path_id": "-7779187746478388713",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 41,
+        "height": 49,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "02c1a8ed5d48e6cf951f0a3c0fd80490ea1f053d60649826d2930b5012c0d1c8"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/camp/commission/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 512,
+        "height": 31,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "c731cbb5f399c3bc4f3ffd53d84883c13ccd5ca5794135e3d794260e4f33799e"
+      },
+      {
+        "name": "sprite_materialicon_108",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_108.png",
+        "sprite_path_id": "-6886311129609553285",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b58dd6471091d9c999bd0ff372331b65bbfe4a29b0d73d1595b9750d24689d9d"
+      },
+      {
+        "name": "物品详情_暗底",
+        "path": "res://assets/ui/camp/commission/________317879d486.png",
+        "sprite_path_id": "-6460998417707828491",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 104,
+        "height": 104,
+        "border": {
+          "x": 35.0,
+          "y": 38.0,
+          "z": 37.0,
+          "w": 40.0
+        },
+        "png_sha256": "3f74ef1c89ffbd856a6767a99c9aecf1198cc8ba8a975f3262c948ff972f2f8b"
+      },
+      {
+        "name": "须知",
+        "path": "res://assets/ui/camp/commission/___3195038864.png",
+        "sprite_path_id": "-3264226760608914741",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/596f2e827453694fc1e3c0b813db790e.bundle",
+          "sha256": "804a39a7d847e8a0be0df6d08da4174ca752c6cd576d846898db924ccd174d19"
+        },
+        "width": 76,
+        "height": 76,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "af69931f0cdc4f2c3c2f4d02497bef174c00c24f34f24ff0f6627ae2b0750aa0"
+      },
+      {
+        "name": "渐变底板_1",
+        "path": "res://assets/ui/camp/commission/_____1_0d6f33e28f.png",
+        "sprite_path_id": "-6813201748781789747",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 4,
+        "height": 959,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "02766416777fbd0e8861348fd611d108794a128be7218089812e22ea3d14b8e1"
+      },
+      {
+        "name": "sprite_materialicon_101",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_101.png",
+        "sprite_path_id": "-4929560618279763517",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "96301f425e0736f9675c3126461bc60e18712e5c0be51ee2f0935d3372900bad"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/camp/commission/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/3590860f8cb39d9f5f46c60eacca48f9.bundle",
+          "sha256": "bd5894c7c96a9d219d23fb8aed8faa68994b7d72395b568710763581c83df112"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      },
+      {
+        "name": "sprite_materialicon_102",
+        "path": "res://assets/ui/camp/commission/sprite_materialicon_102.png",
+        "sprite_path_id": "3894177138201564098",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+          "sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "e4476fc28917b9a0a8e64b6368fbc329c024a681c0c6e0a83bac9d138522d5f9"
+      },
+      {
+        "name": "右边栏底",
+        "path": "res://assets/ui/camp/commission/_____30feb592c3.png",
+        "sprite_path_id": "-8310244591510694277",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/23a27b27d62229f75555f0e8737d1100.bundle",
+          "sha256": "1a1ef98eacdddabadbc2d581eeb4beb0af652fb6fb6dc47f740a372861a318ef"
+        },
+        "width": 32,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 32.0,
+          "w": 0.0
+        },
+        "png_sha256": "7f6be2e8a1b661d210f0e6438f5c941d38fe1618117b8e20ca826ee0accc00f5"
+      },
+      {
+        "name": "委托板",
+        "path": "res://assets/ui/camp/commission/____3d9c52dc75.png",
+        "sprite_path_id": "6902453790770714411",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
+          "sha256": "43247ca44a5d54cf0dcc6cd4272251155a71fa6af48e60c070e2ead9bac77488"
+        },
+        "width": 261,
+        "height": 87,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7d6a87ae5f513d15c99168ca216879c28c9f927212448a618c6c4036ed340f4c"
+      },
+      {
+        "name": "几何ui-白左圆角矩形",
+        "path": "res://assets/ui/camp/commission/__ui-_______ac6acf11c5.png",
+        "sprite_path_id": "-1961486748502678649",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ddcc1411af33bf43a783290ab0a44ceb.bundle",
+          "sha256": "54ca7fe999e60ed62ccc16ca3244f694cb2f246955b9d25921ec9b80de08de7b"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 42.0,
+          "y": 37.0,
+          "z": 29.0,
+          "w": 36.0
+        },
+        "png_sha256": "8254feb906c276de48736e7d27242af5a6a3e261f84f2157a8dff51ad2080813"
+      }
+    ],
+    "errors": []
+  }
+}

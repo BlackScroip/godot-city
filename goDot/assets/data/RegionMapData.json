@@ -1,0 +1,297 @@
+[
+  {
+    "Id": 1,
+    "Name": "正式路线260917",
+    "IsActive": true,
+    "StartSlot": {
+      "Id": 0,
+      "NodeLevel": 0,
+      "Name": "冒险家迷宫营地",
+      "Desc": "冒险家探索迷宫的前哨站，许多想要探索迷宫的人都聚集在此。",
+      "UnlockDesc": "",
+      "UnopenDesc": "",
+      "IconName": "森林图标",
+      "BackgroundName": "bg_maincity",
+      "IsHighRisk": false,
+      "ClearBossEnemyIdList": [],
+      "ExtraRewardList": [],
+      "IsOpen": true,
+      "IsAdminOnly": false,
+      "UnlockConditionType": 0,
+      "UnlockParam1": 0,
+      "UnlockParam2": 0,
+      "UnlockParam3": 0
+    },
+    "ModuleList": [
+      {
+        "ModuleId": 1,
+        "SlotList": [
+          {
+            "Id": 1,
+            "NodeLevel": 6,
+            "Name": "翠灵岛",
+            "Desc": "此区域的魔物们<color=#FF5A5A>更加强大</color>！",
+            "UnlockDesc": "<color=#f73232>混沌难度</color>下才可找到进入翠灵岛的入口…",
+            "UnopenDesc": "",
+            "IconName": "海岛图标",
+            "BackgroundName": "Bg6",
+            "IsHighRisk": true,
+            "ClearBossEnemyIdList": [
+              13002
+            ],
+            "ExtraRewardList": [
+              {
+                "AttributeType": "DropGoldFactor",
+                "Value": 1000
+              }
+            ],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 1053,
+            "UnlockParam1": 10,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          },
+          {
+            "Id": 2,
+            "NodeLevel": 1,
+            "Name": "魔法森林",
+            "Desc": "魔物们在此处正常栖息。",
+            "UnlockDesc": "攻略1次<color=#f73232>混沌难度</color>才可找到进入翠灵岛的入口…",
+            "UnopenDesc": "",
+            "IconName": "森林图标",
+            "BackgroundName": "Bg1",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      },
+      {
+        "ModuleId": 2,
+        "SlotList": [
+          {
+            "Id": 3,
+            "NodeLevel": 7,
+            "Name": "焚世熔岩",
+            "Desc": "此区域的魔物们<color=#FF5A5A>更加强大</color>！",
+            "UnlockDesc": "<color=#f73232>混沌难度</color>下才可找到进入焚世熔岩的入口…",
+            "UnopenDesc": "",
+            "IconName": "熔岩图标",
+            "BackgroundName": "Bg7",
+            "IsHighRisk": true,
+            "ClearBossEnemyIdList": [
+              43002
+            ],
+            "ExtraRewardList": [
+              {
+                "AttributeType": "DropGoldFactor",
+                "Value": 1000
+              }
+            ],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 1053,
+            "UnlockParam1": 10,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          },
+          {
+            "Id": 4,
+            "NodeLevel": 2,
+            "Name": "荒漠古迹",
+            "Desc": "魔物们在此处正常栖息。",
+            "UnlockDesc": "",
+            "UnopenDesc": "",
+            "IconName": "沙漠图标",
+            "BackgroundName": "Bg2",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      },
+      {
+        "ModuleId": 3,
+        "SlotList": [
+          {
+            "Id": 5,
+            "NodeLevel": 0,
+            "Name": "未知领域",
+            "Desc": "迷宫的该区域正在被侦察队探索，暂不可进入。",
+            "UnlockDesc": "迷宫的该区域正在被侦察队探索，暂不可进入。",
+            "UnopenDesc": "迷宫的该区域正在被侦察队探索，暂不可进入。",
+            "IconName": "未知图标",
+            "BackgroundName": "Bg0",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": false,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          },
+          {
+            "Id": 6,
+            "NodeLevel": 3,
+            "Name": "山地雪原",
+            "Desc": "魔物们在此处正常栖息。",
+            "UnlockDesc": "",
+            "UnopenDesc": "",
+            "IconName": "雪山图标",
+            "BackgroundName": "Bg3",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      },
+      {
+        "ModuleId": 4,
+        "SlotList": [
+          {
+            "Id": 7,
+            "NodeLevel": 0,
+            "Name": "未知领域",
+            "Desc": "该危险区域暂未被发现，不可进入。",
+            "UnlockDesc": "该危险区域暂未被发现，不可进入。",
+            "UnopenDesc": "该危险区域暂未被发现，不可进入。",
+            "IconName": "未知图标",
+            "BackgroundName": "Bg0",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": false,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          },
+          {
+            "Id": 8,
+            "NodeLevel": 4,
+            "Name": "凋零矿洞",
+            "Desc": "魔物们在此处正常栖息。",
+            "UnlockDesc": "",
+            "UnopenDesc": "",
+            "IconName": "矿场图标",
+            "BackgroundName": "Bg4",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      },
+      {
+        "ModuleId": 5,
+        "SlotList": [
+          {
+            "Id": 9,
+            "NodeLevel": 5,
+            "Name": "聚魔之地",
+            "Desc": "迷宫诞生之地，强大的魔物都聚集在此。",
+            "UnlockDesc": "",
+            "UnopenDesc": "",
+            "IconName": "封魔图标",
+            "BackgroundName": "Bg5",
+            "IsHighRisk": false,
+            "ClearBossEnemyIdList": [],
+            "ExtraRewardList": [],
+            "IsOpen": true,
+            "IsAdminOnly": false,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "正式路线",
+    "IsActive": false,
+    "StartSlot": {
+      "Id": 0,
+      "NodeLevel": 0,
+      "Name": "迷宫入口",
+      "Desc": "",
+      "UnlockDesc": "",
+      "IconName": "森林图标",
+      "BackgroundName": "",
+      "IsOpen": true,
+      "UnlockConditionType": 0,
+      "UnlockParam1": 0,
+      "UnlockParam2": 0,
+      "UnlockParam3": 0
+    },
+    "ModuleList": [
+      {
+        "ModuleId": 1,
+        "SlotList": [
+          {
+            "Id": 101,
+            "NodeLevel": 1,
+            "Name": "森林",
+            "Desc": "",
+            "UnlockDesc": "",
+            "IconName": "森林图标",
+            "BackgroundName": "",
+            "IsOpen": true,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      },
+      {
+        "ModuleId": 2,
+        "SlotList": [
+          {
+            "Id": 102,
+            "NodeLevel": 2,
+            "Name": "沙漠",
+            "Desc": "",
+            "UnlockDesc": "",
+            "IconName": "沙漠图标",
+            "BackgroundName": "",
+            "IsOpen": true,
+            "UnlockConditionType": 0,
+            "UnlockParam1": 0,
+            "UnlockParam2": 0,
+            "UnlockParam3": 0
+          }
+        ]
+      }
+    ]
+  }
+]

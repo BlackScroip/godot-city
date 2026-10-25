@@ -8,6 +8,7 @@ func _load_kind(value: String, field := "Flow") -> void:
 	game.save_store = DungeonSaveStore.new("/private/tmp/city-special-gates-%d.json" % Time.get_ticks_usec())
 	root.add_child(game)
 	game.set_process(false)
+	game.world.set_physics_process(false)
 	_check(game.systems.begin_run(42, 1, 100, 0).success, "Independent run starts for " + value)
 	var id := 0
 	for node in game.campaign.database.Nodes:
@@ -82,10 +83,13 @@ func _run() -> void:
 		_check(game.world.room_stage == "open" and game.campaign.state.phase == "room", flow + " permits exit before resolving optional activity")
 		var magic: int = game.systems.material(102)
 		_exit()
+		await _wait_loading()
 		_check(game.campaign.state.phase != "room", flow + " exits without consuming its activity")
 		_check(game.systems.material(102) >= magic, flow + " exit does not spend currency")
 	await _load_kind("Curse")
 	_check(game.world.room_stage == "event_locked", "Curse exit starts locked")
+	game._finish_noncombat()
+	_check(game.world.room_stage == "event_locked" and game.campaign.state.phase == "room", "Direct noncombat completion cannot bypass required curse choice")
 	game._room_action()
 	_check(game.hud.modal_open, "Curse interaction shows choice menu")
 	game._action("close_page", 0, 0)

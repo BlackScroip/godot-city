@@ -12,6 +12,7 @@ var active_particle_count := 0
 var _world: Node3D
 var _low_quality := false
 var _quality_refresh := 0.0
+var _event_effects: Dictionary = {}
 
 func configure(world: Node3D, camp := false) -> void:
 	_world = world
@@ -21,6 +22,9 @@ func configure(world: Node3D, camp := false) -> void:
 		if catalog is Dictionary: effects = catalog.get("effects", {})
 	if is_instance_valid(world.get("interactions")) and world.interactions.has_signal("effect_requested"):
 		world.interactions.effect_requested.connect(_on_effect_requested)
+		world.interactions.presentation_requested.connect(_on_presentation_requested)
+	var event_data: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/environment_feedback.json"))
+	if event_data is Dictionary: _event_effects = event_data.get("events", {})
 	for anchor in world.environment_root.find_children("*", "Node3D", true, false):
 		var address := resolve_address(str(anchor.name))
 		if not effects.has(address): continue
@@ -47,6 +51,19 @@ func resolve_address(node_name: String) -> String:
 
 func _on_effect_requested(context: Dictionary) -> void:
 	trigger_at(str(context.get("address", "")), context.get("position", Vector3.ZERO))
+
+func _on_presentation_requested(kind: String, context: Dictionary) -> void:
+	var event: Dictionary = _event_effects.get(kind, {})
+	var address := str(event.get("effect", ""))
+	if event.has("variants"):
+		address = str(event.variants.get(str(context.get("data", {}).get("TreasureType", "")), ""))
+	if address.is_empty(): return
+	var item: Dictionary = _world.interactions._items.get(str(context.get("marker_id", "")), {})
+	# An exported source particle anchor already follows its container's activation.
+	if is_instance_valid(item.get("visual")):
+		for anchor in item.visual.find_children("*", "Node3D", true, false):
+			if resolve_address(str(anchor.name)) == address: return
+	trigger_at(address, context.get("position", Vector3.ZERO))
 
 func cache_textures(definition: Dictionary) -> void:
 	for layer in definition.get("layers", []):

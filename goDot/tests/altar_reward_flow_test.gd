@@ -73,6 +73,7 @@ func _run() -> void:
 	game.hud.close_page()
 	check(game.systems.begin_run(817024, game.selected_character, 100, 0).success, "Run begins for altar integration test")
 	check(game.campaign.generate(817024, 0).success, "A real campaign route is generated")
+	check(game.campaign.select_region(2).success, "The world map confirms the authored altar region")
 	# Enter an authored battle room with a real altar in a completed room state.
 	var entrance: Dictionary = game.campaign.choices()[0]
 	check(game.campaign.enter(int(entrance.node_id)).success, "Authored entrance can be entered")

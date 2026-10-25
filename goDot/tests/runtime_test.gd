@@ -49,9 +49,11 @@ func _run() -> void:
 		await process_frame
 	scene.hud.close_page()
 	scene._primary()
+	check(scene.campaign.state.region_selection and scene.hud.page.route_view.context.map_scope == "world", "Camp opens world selection before the first room")
+	scene._action("select_region", 2, 0)
 	var started = Time.get_ticks_msec()
 	while scene._transitioning and Time.get_ticks_msec() - started < 20000: await process_frame
-	check(scene.profile.data.run.active and scene.campaign.state.phase == "room", "Camp automatically enters the seeded first room")
+	check(scene.profile.data.run.active and scene.campaign.state.phase == "room", "World confirmation enters the seeded first room")
 	check(not scene._transitioning, "First room loading finishes")
 	if scene.campaign.state.phase == "room":
 		check(scene.campaign.state.phase == "room", "Route enters original room")
@@ -62,6 +64,8 @@ func _run() -> void:
 			check(scene._save(true), "Run snapshot saves")
 			scene._action("next", 0, 0)
 			if scene.campaign.state.phase == "reward": scene._action("leave_unclaimed", 0, 0)
+			started = Time.get_ticks_msec()
+			while scene._transitioning and Time.get_ticks_msec() - started < 20000: await process_frame
 			check(scene.campaign.state.phase in ["route", "won"], "Rewards advance adventure")
 	var snapshot = scene.save_store.load_profile()
 	check(snapshot.get("run", {}).get("active", false), "Saved adventure remains active")

@@ -15,6 +15,8 @@ func _check(ok: bool, message: String) -> void:
 		printerr(message)
 
 func _wait_loading() -> void:
+	game.world.set_physics_process(false)
+	game.world.set_process(true)
 	var deadline := Time.get_ticks_msec() + 60000
 	while game._transitioning and Time.get_ticks_msec() < deadline: await process_frame
 	_check(not game._transitioning, "Room loading completes")

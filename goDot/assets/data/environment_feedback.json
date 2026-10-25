@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "evidence": "res://reports/ENVIRONMENT_EVENT_EFFECTS.md",
+  "limitations": [
+    "Chest quality opening effects follow EnvUnitCfg_[19001]/EnvUnitData/TypePrefabOpenFxList in TypePrefabList order.",
+    "Protect activation and destruction prefabs are original children of Container_Active and Container_Destory. Completing the protection encounter selects the destruction presentation locally.",
+    "An existing exact source anchor takes priority to avoid duplicate particles. Loading a save does not replay transient feedback."
+  ],
+  "events": {
+    "chest_open": {
+      "variants": {
+        "Normal": "24050601_fx_env_treasureboxopen_low",
+        "Unusual": "24050601_fx_env_treasureboxopen_middle",
+        "Luxury": "24050601_fx_env_treasureboxopen",
+        "Curse": "24050602_fx_env_treasureboxcurseopen"
+      }
+    },
+    "protect_activate": {"effect": "24061701_fx_env_protecttarget_activation"},
+    "protect_complete": {"effect": "24061701_fx_env_protecttarget_destruction"}
+  }
+}

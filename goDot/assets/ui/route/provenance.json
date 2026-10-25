@@ -1,0 +1,1424 @@
+{
+  "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-08-06-1233.bytes",
+    "sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71"
+  },
+  "atlas": {
+    "address": "SpriteAtlas_RoadMapSelect",
+    "path": "Assets/[00001]Media/TextureSpriteAtlas/SpriteAtlas_RoadMapSelect.spriteatlasv2",
+    "path_id": "-7295149746218527352",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+      "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+      "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+      "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+    }
+  },
+  "node_prefab": {
+    "address": "ATSlot_RoadMapNode",
+    "path": "Assets/[00002]Resource/Prefabs/ProjectAT/SubItem/ATSlot_RoadMapNode.prefab",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/5bdebfca4ef64e5b15909e479b431beb.bundle",
+      "bundle_name": "assets_[00002]resource_prefabs_projectat_subitem_atslot_roadmapnode.bundle",
+      "bundle_hash": "5bdebfca4ef64e5b15909e479b431beb",
+      "sha256": "66191d877a98b8199fb36cefde04c8042820e13e35c7e2f9b3199fa6a5173d1d"
+    },
+    "controller_path_id": "-859858271999692329",
+    "states": {
+      "stateArray_NoReachable": [
+        {
+          "game_object": "Image_NoReachable",
+          "sprite": "b",
+          "sprite_path_id": "8767090849215688338"
+        }
+      ],
+      "stateArray_Passed": [
+        {
+          "game_object": "Image_Passed",
+          "sprite": "地图节点_当前",
+          "sprite_path_id": "3130801262237433958"
+        }
+      ],
+      "stateArray_Cur": [
+        {
+          "game_object": "Image_Current",
+          "sprite": "可选房间",
+          "sprite_path_id": "1519314185287000549"
+        }
+      ],
+      "stateArray_AfterReachable": [
+        {
+          "game_object": "Image_AfterReachable",
+          "sprite": "地图节点2",
+          "sprite_path_id": "-330550751862692474"
+        }
+      ],
+      "stateArray_NextReachable": [
+        {
+          "game_object": "Image_NextReachable",
+          "sprite": "地图节点_当前",
+          "sprite_path_id": "3130801262237433958"
+        }
+      ]
+    },
+    "selected": [
+      {
+        "game_object": "Image",
+        "sprite": "地图节点_选中框",
+        "sprite_path_id": "-5640438037176184194"
+      }
+    ]
+  },
+  "sprites": [
+    {
+      "name": "未选路径（斜）",
+      "path": "res://assets/ui/route/path_diagonal_unavailable.png",
+      "sprite_path_id": "8944012408213745029",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 200.0
+      },
+      "width": 202,
+      "height": 177,
+      "png_sha256": "eab1f6bb2620d94f72247fbbd29f496cd419093d87f3d5cff97c4089d063f114",
+      "alpha_bounds": [
+        2,
+        2,
+        200,
+        175
+      ]
+    },
+    {
+      "name": "可选路径（斜）",
+      "path": "res://assets/ui/route/path_diagonal_available.png",
+      "sprite_path_id": "-1844448219850780546",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 200.0
+      },
+      "width": 220,
+      "height": 195,
+      "png_sha256": "29303d21bcb83ea1414a64807db853cce115be89d8a4c2d8fb161e258d1fc1d5",
+      "alpha_bounds": [
+        2,
+        3,
+        218,
+        193
+      ]
+    },
+    {
+      "name": "地图节点2",
+      "path": "res://assets/ui/route/node_2.png",
+      "sprite_path_id": "-330550751862692474",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 273,
+      "height": 136,
+      "png_sha256": "917ad0016c80572a71e9d6ea7407f604f6de6bb17877a598ba173c87dacfcda7",
+      "alpha_bounds": [
+        2,
+        1,
+        271,
+        133
+      ]
+    },
+    {
+      "name": "地图节点_选中框",
+      "path": "res://assets/ui/route/node_selected_frame.png",
+      "sprite_path_id": "-5640438037176184194",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 331,
+      "height": 190,
+      "png_sha256": "0727f33c5b83f7deda62f5dd492a06bfaeb2e91c5b844da7ef237b667810e935",
+      "alpha_bounds": [
+        0,
+        0,
+        331,
+        190
+      ]
+    },
+    {
+      "name": "未选路径",
+      "path": "res://assets/ui/route/path_unavailable.png",
+      "sprite_path_id": "-2151394349868829466",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 220.0,
+        "height": 64.0
+      },
+      "width": 195,
+      "height": 38,
+      "png_sha256": "8e82179fc6632a04d522807bee78b2ed5e1b27c77054d2e5d151f499382e8197",
+      "alpha_bounds": [
+        2,
+        2,
+        193,
+        36
+      ]
+    },
+    {
+      "name": "b",
+      "path": "res://assets/ui/route/node_background.png",
+      "sprite_path_id": "8767090849215688338",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 273,
+      "height": 135,
+      "png_sha256": "3dce73c149d8313d7d40df94acb59f487fc1d7d7fe95b4600f7bdc97195596e8",
+      "alpha_bounds": [
+        2,
+        3,
+        273,
+        133
+      ]
+    },
+    {
+      "name": "箭头_右(激活)",
+      "path": "res://assets/ui/route/arrow_right_active.png",
+      "sprite_path_id": "-2040617313533502192",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+        "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+        "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+        "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 182.0,
+        "height": 30.0
+      },
+      "width": 182,
+      "height": 30,
+      "png_sha256": "4433beedaaba38b58aa24a1fc3734ad47aa73a73e58173606344aca810745e36",
+      "alpha_bounds": [
+        0,
+        1,
+        182,
+        29
+      ]
+    },
+    {
+      "name": "已选房间",
+      "path": "res://assets/ui/route/room_passed.png",
+      "sprite_path_id": "3725139157629163942",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+        "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+        "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+        "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 273,
+      "height": 136,
+      "png_sha256": "1025171966586b056feea03ab9ed41de2b805f36627cdae5c000ce64f26a0709",
+      "alpha_bounds": [
+        2,
+        2,
+        271,
+        134
+      ]
+    },
+    {
+      "name": "走过路径",
+      "path": "res://assets/ui/route/path_passed.png",
+      "sprite_path_id": "4741357016693267056",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 220.0,
+        "height": 64.0
+      },
+      "width": 199,
+      "height": 42,
+      "png_sha256": "33fd06063e3fb39668bded4f3791b2899fef2a3c8010c59504a5b1f494502fd0",
+      "alpha_bounds": [
+        2,
+        0,
+        196,
+        40
+      ]
+    },
+    {
+      "name": "箭头_下",
+      "path": "res://assets/ui/route/arrow_down.png",
+      "sprite_path_id": "-8350808524587598484",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 47.0,
+        "height": 74.0
+      },
+      "width": 47,
+      "height": 74,
+      "png_sha256": "903a113ed9ba24dfd165abd527812a9075a8ecfa682c7bbed528d9b18ada7018",
+      "alpha_bounds": [
+        0,
+        1,
+        47,
+        73
+      ]
+    },
+    {
+      "name": "可选路径",
+      "path": "res://assets/ui/route/path_available.png",
+      "sprite_path_id": "856439175278525708",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 220.0,
+        "height": 64.0
+      },
+      "width": 212,
+      "height": 56,
+      "png_sha256": "a85e89abc272607c26eed187afafaaf8a5630d3accc87f8a465ee0b611f92a1e",
+      "alpha_bounds": [
+        0,
+        1,
+        210,
+        56
+      ]
+    },
+    {
+      "name": "地图节点1",
+      "path": "res://assets/ui/route/node_1.png",
+      "sprite_path_id": "8546856947903895948",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+        "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+        "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+        "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 299,
+      "height": 158,
+      "png_sha256": "f37979cf846f87a6fe56cd67e966236ba7aa409b93e3fb7767a48db9b579c24e",
+      "alpha_bounds": [
+        0,
+        0,
+        296,
+        156
+      ]
+    },
+    {
+      "name": "地图节点_当前",
+      "path": "res://assets/ui/route/node_current.png",
+      "sprite_path_id": "3130801262237433958",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 273,
+      "height": 136,
+      "png_sha256": "2486f357c297dac104a1e82203485dae182740fc640f606e04ca1c5c054c669b",
+      "alpha_bounds": [
+        2,
+        2,
+        271,
+        134
+      ]
+    },
+    {
+      "name": "可选房间",
+      "path": "res://assets/ui/route/room_available.png",
+      "sprite_path_id": "1519314185287000549",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 331.0,
+        "height": 190.0
+      },
+      "width": 299,
+      "height": 158,
+      "png_sha256": "31ab318e30c216321689179fca2a3815afc4b42bd3136f3e08a2e352a9283e06",
+      "alpha_bounds": [
+        0,
+        2,
+        296,
+        158
+      ]
+    },
+    {
+      "name": "走过路径（斜）",
+      "path": "res://assets/ui/route/path_diagonal_passed.png",
+      "sprite_path_id": "-514952155868534620",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 200.0
+      },
+      "width": 206,
+      "height": 181,
+      "png_sha256": "1aa5a3282570b144cdf2126fb6a6b33e065712a1ac9e6c83cfbab9dccea9fb00",
+      "alpha_bounds": [
+        2,
+        3,
+        203,
+        181
+      ]
+    },
+    {
+      "name": "箭头_右(未激活)",
+      "path": "res://assets/ui/route/arrow_right_inactive.png",
+      "sprite_path_id": "-8640437311824628742",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+        "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+        "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+        "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 182.0,
+        "height": 30.0
+      },
+      "width": 182,
+      "height": 30,
+      "png_sha256": "07b7e976b1df70af0428c4a8ea1ed9ce7e474a100ddb86b123e568aa7cee479e",
+      "alpha_bounds": [
+        3,
+        3,
+        178,
+        25
+      ]
+    },
+    {
+      "name": "箭头_右上(激活)",
+      "path": "res://assets/ui/route/arrow_up_right_active.png",
+      "sprite_path_id": "4225977506910038003",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+        "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+        "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+        "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 186.0,
+        "height": 207.0
+      },
+      "width": 186,
+      "height": 207,
+      "png_sha256": "c38ee531e96883ea0958e63a5d2d39b2de335bab2dbe4703a8a4b7e2b97b11e4",
+      "alpha_bounds": [
+        0,
+        1,
+        186,
+        207
+      ]
+    },
+    {
+      "name": "箭头_右上(未激活)",
+      "path": "res://assets/ui/route/arrow_up_right_inactive.png",
+      "sprite_path_id": "4455124283529394358",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/d82d51848f4e55798d7f106bd306e209.bundle",
+        "bundle_name": "assets_[00001]media_texturespriteatlas.bundle",
+        "bundle_hash": "d82d51848f4e55798d7f106bd306e209",
+        "sha256": "ab60ae5f9065aafa788d9bf5a3543e232506e0be1e6fd336319fd6f5308df236"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 186.0,
+        "height": 207.0
+      },
+      "width": 182,
+      "height": 204,
+      "png_sha256": "05b0968500ac6ca6837e13ba76b4a87cbeba3ab41d02721df0be77c3fff8cd0f",
+      "alpha_bounds": [
+        2,
+        2,
+        180,
+        202
+      ]
+    },
+    {
+      "name": "箭头_上",
+      "path": "res://assets/ui/route/arrow_up.png",
+      "sprite_path_id": "5218427736472422516",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/a1a11edf20d8a11106f35a3d5a9fb1b4.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "a1a11edf20d8a11106f35a3d5a9fb1b4",
+        "sha256": "e163f5904912d27957a77ff3dfe9b3877ace09328288a289e7aae697f4f5d24d"
+      },
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 47.0,
+        "height": 74.0
+      },
+      "width": 47,
+      "height": 74,
+      "png_sha256": "373e1dbfc717676f9483c4906d2f2e3ae8db1e4e794b61f0e9b15a806c57ca15",
+      "alpha_bounds": [
+        1,
+        1,
+        47,
+        73
+      ]
+    }
+  ],
+  "limits": "Static raw atlas recovery. Names do not establish runtime state. This package predates the supplied October world-map screenshot; the recovered atlas contains room cards and paths, not world-region icons.",
+  "world_map": {
+    "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+    "manifest": {
+      "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+      "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+    },
+    "sprites": [
+      {
+        "name": "封魔图标",
+        "path": "res://assets/ui/route/world_seal.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/封魔图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "6945928456794921324",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 166,
+        "height": 210,
+        "png_sha256": "2b3ada9a1cafb6845555f330d36cf3fc040c0581c77aaa82f6844d634449bd56",
+        "alpha_bounds": [
+          2,
+          2,
+          164,
+          208
+        ]
+      },
+      {
+        "name": "未知图标",
+        "path": "res://assets/ui/route/world_unknown.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/未知图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "-5624875578873048220",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 113,
+        "height": 161,
+        "png_sha256": "cf30d4137e6c740492b91dd08eac4763730a76ce2882a5d1de991c0e6df3548d",
+        "alpha_bounds": [
+          1,
+          2,
+          111,
+          159
+        ]
+      },
+      {
+        "name": "森林图标",
+        "path": "res://assets/ui/route/world_forest.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/森林图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "-3495903786354914570",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 160,
+        "height": 185,
+        "png_sha256": "04392f6903cd28acb1dbc847e5556e2c582205841f81a13e9b88de5e2ab32994",
+        "alpha_bounds": [
+          2,
+          2,
+          158,
+          183
+        ]
+      },
+      {
+        "name": "沙漠图标",
+        "path": "res://assets/ui/route/world_desert.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/沙漠图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "-2083301950807577580",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 183,
+        "height": 200,
+        "png_sha256": "b99d040e2b72049759cdb8e9934acae80ee3d96af16d25b301adb1c55318c312",
+        "alpha_bounds": [
+          2,
+          2,
+          181,
+          197
+        ]
+      },
+      {
+        "name": "海岛图标",
+        "path": "res://assets/ui/route/world_island.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/海岛图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "3273642481518156214",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 180,
+        "height": 189,
+        "png_sha256": "793a48951bfdb4f229175e188d691192a437c74ead13ac2f0d24346b86866ee7",
+        "alpha_bounds": [
+          2,
+          2,
+          178,
+          187
+        ]
+      },
+      {
+        "name": "熔岩图标",
+        "path": "res://assets/ui/route/world_lava.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/熔岩图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "-6672364045903861625",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 163,
+        "height": 235,
+        "png_sha256": "5a65dfb74da531ddffeaceebfd9769c038589756bb32690bd839faa9110d9f8a",
+        "alpha_bounds": [
+          2,
+          1,
+          161,
+          232
+        ]
+      },
+      {
+        "name": "矿场图标",
+        "path": "res://assets/ui/route/world_mine.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/矿场图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "-7729501171249973778",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 155,
+        "height": 173,
+        "png_sha256": "c3d9f206c4ed6faa967c3e8aef7d7f6cbe8cd674651f7783946f2a815bb25d90",
+        "alpha_bounds": [
+          3,
+          15,
+          153,
+          171
+        ]
+      },
+      {
+        "name": "营地图标3",
+        "path": "res://assets/ui/route/world_camp.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/营地图标3.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "531540931677787795",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 165,
+        "height": 188,
+        "png_sha256": "6cf41736ea878855f4421120949e4c5e3656ab841f5550b034d3c0cced4254ea",
+        "alpha_bounds": [
+          2,
+          2,
+          162,
+          185
+        ]
+      },
+      {
+        "name": "雪山图标",
+        "path": "res://assets/ui/route/world_snow.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/RegionMap/雪山图标.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bbc483d9f8f7f57d01388606776f9375.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_regionmap.bundle",
+          "bundle_hash": "bbc483d9f8f7f57d01388606776f9375",
+          "sha256": "1dd735791f9ce5824d4ad06c2b403144774c70275dd20a11038bfa5e914a0274"
+        },
+        "sprite_path_id": "-7229790338977786628",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 235,
+        "height": 201,
+        "png_sha256": "a61762112362bee9f4ddc3f6059dd289da01d7f0bfeb9b677b8f8122833df549",
+        "alpha_bounds": [
+          1,
+          2,
+          233,
+          199
+        ]
+      },
+      {
+        "name": "Bg0",
+        "path": "res://assets/ui/route/world_background_0.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg0.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "-8183914803537722955",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "537f09040b437c91aa56f8cd8f2acd2c6f53860bd12336d43958e2c2d51705c5",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg1",
+        "path": "res://assets/ui/route/world_background_1.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg1.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "2390416119025954208",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "92e01a5da68175c7d303f891537fa772f77b7d16360a002f461d6ef8cb0c4d05",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg2",
+        "path": "res://assets/ui/route/world_background_2.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg2.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "1717193219836127535",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "f61d00ce60cf0a5ade9ca4fdcb11ba51f2b56ee548e729c473f72d03af5a2ad7",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg3",
+        "path": "res://assets/ui/route/world_background_3.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg3.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "2342591450711344690",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "a0d659e83e9dd00ac6c2f680e50ab3a6c9a2398349b7d5dc1c064a0e592da8bb",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg4",
+        "path": "res://assets/ui/route/world_background_4.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg4.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "-4551024138773939227",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "d4cf7ecda3a68936c8b646b9e178182ef1e5e3a96b5e4b2a1dac518e3313b8be",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg5",
+        "path": "res://assets/ui/route/world_background_5.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg5.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "-3711178037510192835",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "485e51bacb4e83d3afad8331a035854481e64ffb8b19352655b74391576e4f06",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg6",
+        "path": "res://assets/ui/route/world_background_6.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg6.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "2722180274735420400",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1024.0,
+          "height": 512.0
+        },
+        "width": 1024,
+        "height": 512,
+        "png_sha256": "66f31f6b74bc79c3728c01947f6639685d0c78349074334a76d041534b3a3f46",
+        "alpha_bounds": [
+          0,
+          0,
+          1024,
+          512
+        ]
+      },
+      {
+        "name": "Bg7",
+        "path": "res://assets/ui/route/world_background_7.png",
+        "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Panel/BigBg/Bg7.jpg",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_panel_bigbg.bundle",
+          "bundle_hash": "909bf4569331fadfd25f6d470a200eea",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "sprite_path_id": "7729366653358357089",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 2048.0,
+          "height": 1151.0
+        },
+        "width": 2048,
+        "height": 1151,
+        "png_sha256": "f324d1a3eb697defbf6ff6ccf98f2159a310bc219f90856c9ee94da229fa70e1",
+        "alpha_bounds": [
+          0,
+          0,
+          2048,
+          1151
+        ]
+      },
+      {
+        "name": "场景ui底纹",
+        "path": "res://assets/ui/route/world_node_frame.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+          "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "sprite_path_id": "1473947491660872058",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 128.0,
+          "height": 128.0
+        },
+        "width": 128,
+        "height": 128,
+        "png_sha256": "3a4b859878cde4aa142e158d93306eaa0c2be974fcaac0e845c9152c078ec2c8",
+        "alpha_bounds": [
+          4,
+          4,
+          124,
+          124
+        ]
+      },
+      {
+        "name": "未选路径（斜）_1",
+        "path": "res://assets/ui/route/world_path_dotted.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+          "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+          "bundle_hash": "ee9ece7880db73803095bfb4da47ad8d",
+          "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+        },
+        "sprite_path_id": "-1317084214936201132",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 224,
+        "height": 238,
+        "png_sha256": "ca012636e9caa897a4c86b0c84bf8e24fc734bdc6ec4b1ad0828208f54d06984",
+        "alpha_bounds": [
+          2,
+          2,
+          222,
+          236
+        ]
+      },
+      {
+        "name": "锁头",
+        "path": "res://assets/ui/route/world_lock.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+          "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "sprite_path_id": "-3531569690072326385",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 73.0,
+          "height": 84.0
+        },
+        "width": 73,
+        "height": 84,
+        "png_sha256": "c18da33ddfde777db7987ed972d054035bcb0e690b2659455f2a2be78c4b0a2d",
+        "alpha_bounds": [
+          1,
+          1,
+          71,
+          83
+        ]
+      },
+      {
+        "name": "未选路径（斜）_2",
+        "path": "res://assets/ui/route/world_path_cross.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+          "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+          "bundle_hash": "ee9ece7880db73803095bfb4da47ad8d",
+          "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+        },
+        "sprite_path_id": "-4049620818378493167",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 187,
+        "height": 198,
+        "png_sha256": "ff887c43bb5317f13aa4cd2e740e14da75eec532f33238dbd1d69ac2c19dca63",
+        "alpha_bounds": [
+          2,
+          2,
+          185,
+          196
+        ]
+      },
+      {
+        "name": "场景ui底纹_active",
+        "path": "res://assets/ui/route/world_node_frame_active.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+          "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "sprite_path_id": "-8762522478123672492",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 128.0,
+          "height": 128.0
+        },
+        "width": 128,
+        "height": 128,
+        "png_sha256": "f9a7402301595a88d003c43535bce6c9ee81c61f36d42e22fed387c0d1c6d291",
+        "alpha_bounds": [
+          0,
+          0,
+          128,
+          128
+        ]
+      },
+      {
+        "name": "走过路径（斜）_1",
+        "path": "res://assets/ui/route/world_path_dotted_passed.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+          "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+          "bundle_hash": "ee9ece7880db73803095bfb4da47ad8d",
+          "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+        },
+        "sprite_path_id": "2345979323161606116",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "width": 226,
+        "height": 240,
+        "png_sha256": "cdf20822524759b4a9d9af2bf33c72034f7d2d25807fdaae0075d2947a3e04e6",
+        "alpha_bounds": [
+          2,
+          3,
+          223,
+          238
+        ]
+      },
+      {
+        "name": "buff_LockHP",
+        "path": "res://assets/ui/route/world_unopen.png",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+          "bundle_name": "assets_[00002]resource_texture_projectat_icon_buff.bundle",
+          "bundle_hash": "8436f224a97f2ad232d14ba46d2bfbd8",
+          "sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f"
+        },
+        "sprite_path_id": "1731907921011673267",
+        "sprite_rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 128.0,
+          "height": 128.0
+        },
+        "width": 128,
+        "height": 119,
+        "png_sha256": "b0c69961e2883f6a4d342e626ee6e5eab9219f649f53f6d04479a261db333883",
+        "alpha_bounds": [
+          1,
+          2,
+          128,
+          117
+        ]
+      }
+    ],
+    "region_prefab": {
+      "address": "ATPanel_RegionMapSelect",
+      "path": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/ATPanel_RegionMapSelect.prefab",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/62884bfdf75cbc17875016f662a4493f.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_panel_atpanel_regionmapselect.bundle",
+        "bundle_hash": "62884bfdf75cbc17875016f662a4493f",
+        "sha256": "ca56fadd7b5a7e547e7e6493ccca59dec25a54960ebb4a5943166413574cae78"
+      },
+      "controller_path_id": "7469475986930684699",
+      "layout": {
+        "mColumnNodeSpace": 500.0,
+        "mLineNodeSpace": 540.0,
+        "mMapMargin": 400.0,
+        "mGroupSize": {
+          "x": 140.0,
+          "y": 430.0
+        },
+        "mExtraScrollWidth": 0.0
+      },
+      "widget_image_references": [
+        {
+          "game_object": "Image_Cur",
+          "sprite": "场景ui底纹",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 0.3499999940395355
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightUp",
+          "sprite": "未选路径（斜）_1",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_Lock",
+          "sprite": "锁头",
+          "color": {
+            "r": 0.7924528121948242,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_Passed",
+          "sprite": "场景ui底纹",
+          "color": {
+            "r": 0.5,
+            "g": 0.5,
+            "b": 0.5,
+            "a": 0.6000000238418579
+          }
+        },
+        {
+          "game_object": "Image_Locked",
+          "sprite": "场景ui底纹",
+          "color": {
+            "r": 0.20000000298023224,
+            "g": 0.20000000298023224,
+            "b": 0.20000000298023224,
+            "a": 0.5
+          }
+        },
+        {
+          "game_object": "Image_Reachable",
+          "sprite": "场景ui底纹",
+          "color": {
+            "r": 0.30000001192092896,
+            "g": 0.800000011920929,
+            "b": 1.0,
+            "a": 0.5
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightDown",
+          "sprite": "未选路径（斜）_1",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightUpMid_Active",
+          "sprite": "未选路径（斜）_2",
+          "color": {
+            "r": 0.4490565061569214,
+            "g": 0.44312557578086853,
+            "b": 0.44312557578086853,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightDownMid",
+          "sprite": "未选路径（斜）_2",
+          "color": {
+            "r": 0.7264150977134705,
+            "g": 0.7264150977134705,
+            "b": 0.7264150977134705,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_Reachable",
+          "sprite": "场景ui底纹",
+          "color": {
+            "r": 1.0,
+            "g": 0.9758461713790894,
+            "b": 0.29803919792175293,
+            "a": 0.5
+          }
+        },
+        {
+          "game_object": "Box_Select",
+          "sprite": "场景ui底纹",
+          "color": {
+            "r": 1.0,
+            "g": 0.949999988079071,
+            "b": 0.5,
+            "a": 0.8999999761581421
+          }
+        },
+        {
+          "game_object": "Box_Select",
+          "sprite": "场景ui底纹_active",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightDown_Active",
+          "sprite": "走过路径（斜）_1",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightUp_Active",
+          "sprite": "走过路径（斜）_1",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightUpMid",
+          "sprite": "未选路径（斜）_2",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_Unopen",
+          "sprite": "buff_LockHP",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightDownMid_Active",
+          "sprite": "未选路径（斜）_2",
+          "color": {
+            "r": 0.290566086769104,
+            "g": 0.290566086769104,
+            "b": 0.290566086769104,
+            "a": 1.0
+          }
+        },
+        {
+          "game_object": "Image_ConnectRightDownMid",
+          "sprite": "未选路径（斜）_2",
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        }
+      ]
+    },
+    "limits": "Static raw world-region sprites and region preview backgrounds from the October package."
+  }
+}

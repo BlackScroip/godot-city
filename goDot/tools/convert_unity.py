@@ -426,7 +426,9 @@ class Gltf:
                 continue
             if kind in (33, 137):
                 renderer = component if kind == 137 else renderer_by_game.get(game_id, {})
-                if not active(transform_id) or not renderer.get('m_Enabled', 1):
+                # Camp construction activates both source ruined/repaired branches.
+                # Keep their geometry even when the prefab's editor default hides it.
+                if (not active(transform_id) and path.stem != 'EnvDesignMap_MainCity') or not renderer.get('m_Enabled', 1):
                     continue
                 try:
                     mesh_index, info = self.geometry(component.get('m_Mesh', {}), renderer.get('m_Materials', []), kind == 137)

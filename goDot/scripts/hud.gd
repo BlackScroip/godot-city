@@ -31,6 +31,9 @@ var navigation: HBoxContainer
 var shade: ColorRect
 var counters: VBoxContainer
 var counter_values: Array[Label] = []
+var counter_icons: Array[TextureRect] = []
+var counter_buttons: Array[Button] = []
+var camp_button: Button
 var pickup_panel: PanelContainer
 var pickup_name: Label
 var pickup_description: Label
@@ -70,24 +73,41 @@ func _ready() -> void:
 	counters.position = Vector2(28, 45)
 	counters.add_theme_constant_override("separation", 8)
 	root.add_child(counters)
-	for id in [101, 102]:
-		var panel = PanelContainer.new()
+	for id in [101, 501, 90002]:
+		var panel = Button.new()
 		var style = DungeonStyle.box(Color(0.08, 0.07, 0.05, 0.85), DungeonStyle.GOLD, 2)
 		style.set_corner_radius_all(20)
 		style.content_margin_top = 0
 		style.content_margin_bottom = 0
-		panel.add_theme_stylebox_override("panel", style)
-		panel.custom_minimum_size = Vector2(186, 36)
+		for state in ["normal", "hover", "pressed", "disabled"]: panel.add_theme_stylebox_override(state, style)
+		panel.custom_minimum_size = Vector2(212, 40)
+		panel.set_meta("resource_id", id)
+		panel.pressed.connect(func(): action.emit("page:resource", int(panel.get_meta("resource_id")), 0))
+		counter_buttons.append(panel)
 		counters.add_child(panel)
 		var line = HBoxContainer.new()
+		line.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		line.offset_left = 8
+		line.offset_right = -8
+		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(line)
-		line.add_child(DungeonStyle.picture("material:" + str(id), Vector2(36, 36)))
+		var icon = DungeonStyle.picture("material:" + str(id), Vector2(36, 36))
+		line.add_child(icon)
+		counter_icons.append(icon)
 		var value = label("0", 20)
+		value.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		value.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		line.add_child(value)
 		counter_values.append(value)
+	camp_button = button("营地", "camp")
+	camp_button.icon = DungeonStyle.texture("menu_portal")
+	camp_button.expand_icon = true
+	camp_button.add_theme_constant_override("icon_max_width", 28)
+	camp_button.tooltip_text = "营地设施与资源"
+	root.add_child(camp_button)
 	pickup_panel = PanelContainer.new()
-	pickup_panel.add_theme_stylebox_override("panel", DungeonStyle.box(Color(0.02, 0.04, 0.08, 0.88), DungeonStyle.GOLD, 2))
+	pickup_panel.add_theme_stylebox_override("panel", DungeonStyle.artwork_box("gold_frame", 28, Color(0.75, 0.83, 0.88, 0.95)))
 	root.add_child(pickup_panel)
 	var pickup_stack = VBoxContainer.new()
 	pickup_panel.add_child(pickup_stack)
@@ -155,7 +175,7 @@ func _ready() -> void:
 	skill_cluster.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(skill_cluster)
 	# Combat slots stay stable; the former heavy button now selects automation.
-	var positions = [Vector2(222, 164), Vector2(106, 220), Vector2(128, 38), Vector2(300, 40), Vector2(42, 172)]
+	var positions = [Vector2(222, 164), Vector2(106, 220), Vector2(128, 38), Vector2(300, 40), Vector2(26, 156)]
 	var sizes = [156, 116, 112, 104, 72]
 	var icons = ["skill_attack", "skill_dodge", "skill_sword_whirl", "skill_sword_slash", "res://assets/art_generated/heavy-v1.png"]
 	var names = ["攻击", "闪避", "战技", "爆发", "重击 / 蓄力"]
@@ -166,7 +186,7 @@ func _ready() -> void:
 		key.custom_minimum_size = key.size
 		key.tooltip_text = names[slot]
 		key.art = DungeonStyle.texture(icons[slot])
-		key.ring = DungeonStyle.texture("skill_circle")
+		key.ring = DungeonStyle.texture("skill_ring" if slot == 0 else "skill_circle")
 		key.button_down.connect(func(): skill.emit(slot, true))
 		key.button_up.connect(func(): skill.emit(slot, false))
 		skill_cluster.add_child(key)
@@ -176,7 +196,8 @@ func _ready() -> void:
 	attack_mode_button.position = positions[4]
 	attack_mode_button.size = Vector2.ONE * sizes[4]
 	attack_mode_button.custom_minimum_size = attack_mode_button.size
-	attack_mode_button.ring = DungeonStyle.texture("skill_circle")
+	attack_mode_button.ring = DungeonStyle.texture("skill_circle_small")
+	attack_mode_button.art = DungeonStyle.texture("skill_swap")
 	attack_mode_button.button_down.connect(func():
 		var modes = ["normal", "heavy", "off"]
 		action.emit("auto_attack_mode", modes[(modes.find(attack_mode) + 1) % modes.size()], 0))
@@ -186,6 +207,9 @@ func _ready() -> void:
 	attack_mode_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	attack_mode_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	attack_mode_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	attack_mode_label.offset_top = 66
+	attack_mode_label.offset_bottom = 24
+	attack_mode_label.add_theme_font_size_override("font_size", 18)
 	attack_mode_button.add_child(attack_mode_label)
 	set_attack_mode(attack_mode)
 	vitals = Control.new()
@@ -226,8 +250,21 @@ func _ready() -> void:
 	primary.icon = DungeonStyle.texture("interaction_weapon")
 	primary.expand_icon = true
 	primary.add_theme_constant_override("icon_max_width", 30)
-	primary.add_theme_color_override("font_color", DungeonStyle.GOLD)
-	primary.add_theme_stylebox_override("normal", DungeonStyle.box(Color(0.06, 0.11, 0.15, 0.7), DungeonStyle.GOLD))
+	primary.add_theme_constant_override("h_separation", 12)
+	primary.add_theme_color_override("font_color", Color.WHITE)
+	primary.add_theme_font_size_override("font_size", 22)
+	for state in ["normal", "hover", "pressed"]:
+		var prompt_frame = StyleBoxTexture.new()
+		prompt_frame.texture = DungeonStyle.texture("对话按钮_底")
+		prompt_frame.texture_margin_left = 78
+		prompt_frame.texture_margin_right = 198
+		prompt_frame.texture_margin_top = 12
+		prompt_frame.texture_margin_bottom = 12
+		prompt_frame.set_content_margin_all(6)
+		prompt_frame.content_margin_left = 20
+		prompt_frame.content_margin_right = 24
+		prompt_frame.modulate_color = Color.WHITE if state == "normal" else Color(1.2, 1.15, 0.9)
+		primary.add_theme_stylebox_override(state, prompt_frame)
 	root.add_child(primary)
 	joystick.excluded_controls.assign([navigation, primary, skill_cluster])
 	battle_readout = preload("res://scripts/presentation/battle_readout.gd").new()
@@ -257,6 +294,9 @@ func set_adventure_mode(active: bool) -> void:
 	if is_instance_valid(navigation):
 		for key in navigation.get_children():
 			key.visible = not active or key.name not in ["menu_cloud", "menu_store"]
+			if key.name == "menu_settings":
+				key.get_child(0).texture = DungeonStyle.texture("menu_pause" if active else "menu_settings")
+				key.get_child(1).text = "暂停" if active else "设置"
 		_layout()
 
 func set_attack_mode(mode: String) -> void:
@@ -293,10 +333,10 @@ func button(text: String, kind: String, id: Variant = 0, extra: Variant = 0) -> 
 	return result
 
 func show_page(title: String, rows: Array, layout := "list", context: Dictionary = {}) -> void:
-	message_label.visible = layout != "outcome"
+	message_label.visible = layout not in ["outcome", "dialogue"]
 	page.display(title, rows, layout, context)
 	page.show()
-	shade.visible = layout != "route"
+	shade.visible = layout not in ["route", "dialogue"]
 	_set_navigation_visible(false)
 	modal_open = true
 	_layout()
@@ -321,7 +361,7 @@ func close_page() -> void:
 	if primary: primary.hide()
 
 func _set_navigation_visible(value: bool) -> void:
-	for control in [navigation, title_label, status_label, resources_label]:
+	for control in [navigation, title_label, status_label, resources_label, camp_button]:
 		if is_instance_valid(control): control.visible = value
 	if counters: counters.visible = value
 	if pickup_panel and not value: pickup_panel.hide()
@@ -332,6 +372,8 @@ func _layout() -> void:
 	var ui_scale = minf(1.0, minf(screen.x / 1280.0, screen.y / 720.0))
 	var s = screen / maxf(0.1, ui_scale)
 	counters.position = Vector2(28, 45)
+	camp_button.position = Vector2(28, 198)
+	camp_button.size = Vector2(212, 46)
 	title_label.position = Vector2(235, 25)
 	var navigation_width = 272.0 if adventure_mode else 456.0
 	navigation.position = Vector2(s.x - navigation_width - 28, 28)
@@ -346,14 +388,15 @@ func _layout() -> void:
 	joystick.size = Vector2(s.x * 0.4, s.y * 0.58)
 	joystick.home = Vector2(128, joystick.size.y - 140)
 	joystick.queue_redraw()
-	primary.position = Vector2(s.x - 620, s.y - 308)
-	primary.size = Vector2(200, 48)
+	primary.position = Vector2(s.x - 680, s.y - 308)
+	primary.size = Vector2(260, 48)
 	pickup_panel.position = Vector2(s.x - 490, maxf(145, s.y - 600))
 	pickup_panel.size = Vector2(300, 230)
-	for control in [navigation, message_label, skill_cluster, vitals, joystick, primary, pickup_panel, counters, title_label]:
+	for control in [navigation, message_label, skill_cluster, vitals, joystick, primary, pickup_panel, counters, title_label, camp_button]:
 		control.scale = Vector2.ONE * ui_scale
 		control.position *= ui_scale
-	var full_page = page._layout in ["inventory", "altar", "talent", "route", "outcome", "character", "weapon", "settings", "tree", "awakening", "buildings", "prepare", "shop"]
+	var full_page = page._layout in ["inventory", "altar", "talent", "route", "outcome", "character", "weapon", "settings", "tree", "awakening", "buildings", "prepare", "shop", "commission", "guild", "dialogue"]
+	full_page = full_page or (modal_open and page.page_context.get("camp", false))
 	var page_margin = Vector2.ZERO if OS.has_feature("mobile") or (modal_open and full_page) else Vector2(40, 40)
 	page.position = page_margin
 	page.size = screen - page_margin * 2
@@ -389,6 +432,7 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 	status_label.visible = false
 	resources_label.visible = false
 	counters.visible = not modal_open
+	camp_button.visible = camp and not modal_open
 	armor.max_value = maxf(1, combat.max_health)
 	armor.value = combat.armor
 	armor.visible = combat.armor > 0
@@ -420,9 +464,17 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 		charge_segments[i].modulate = Color.WHITE
 
 func update_counters(systems: RefCounted, difficulty: int) -> void:
-	for index in 2:
-		var id = 101 + index
-		counter_values[index].text = "%d   +%d" % [systems.material(id), int(systems.profile.data.run.materials.get(str(id), 0))]
+	var ids = [101, 102] if adventure_mode else [101, 501, 90002]
+	for index in counter_values.size():
+		counter_buttons[index].visible = index < ids.size()
+		if index >= ids.size(): continue
+		var id = int(ids[index])
+		if int(counter_buttons[index].get_meta("resource_id")) != id:
+			counter_buttons[index].set_meta("resource_id", id)
+			counter_icons[index].texture = DungeonStyle.texture("material:" + str(id))
+		counter_buttons[index].disabled = adventure_mode
+		counter_buttons[index].tooltip_text = DungeonCatalog.clean(systems.material_name(id))
+		counter_values[index].text = "%d   +%d" % [systems.material(id), int(systems.profile.data.run.materials.get(str(id), 0))] if adventure_mode else "%s  %d" % [DungeonCatalog.clean(systems.material_name(id)), systems.material(id)]
 	title_label.text = "难度 %d" % difficulty
 
 func show_pickup(entry: Dictionary, systems: RefCounted, modal: bool) -> void:

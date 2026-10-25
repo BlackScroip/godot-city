@@ -14,6 +14,7 @@ func _run() -> void:
 	canvas.add_child(game)
 	await process_frame
 	game._primary()
+	game._action("select_region", 2, 0)
 	while game._loading or game._transitioning: await process_frame
 	game.hud.close_page()
 	var granted: Array = []

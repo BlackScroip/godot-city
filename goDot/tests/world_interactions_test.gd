@@ -7,6 +7,8 @@ var rewards: Array = []
 var traps: Array = []
 var npcs: Array = []
 var effects: Array = []
+var sounds: Array[String] = []
+var presentation: Array = []
 
 class TestCatalog extends RefCounted:
 	func find(_table: String, id: String) -> Dictionary:
@@ -14,6 +16,7 @@ class TestCatalog extends RefCounted:
 
 func _initialize() -> void:
 	_test_close_area_proximity()
+	_test_stage_door_proximity()
 	var root := Node3D.new()
 	var markers: Array = []
 	for source in [["door", "EEUT_Door", {"DoorId": 1, "InitActive": true}],
@@ -48,9 +51,11 @@ func _initialize() -> void:
 		"Definitions": [{"ID": "jar", "Type": "EEUT_DestoryableItem", "CanBeAttack": true, "CanBeAttackCamp": "100", "Durablity": 50, "BreakDelayTime": 0.1, "DropItemIdList": []},
 		{"ID": "trap", "Type": "EEUT_TriggerTrap", "TriggerCondition": "PlayerTriggerEnter", "TriggerEndAct": "ResetToBeforeTrigger", "TriggerTimesType": "OnlyOncePerUnit", "TriggerStartTime": 0.1, "TriggerLastingTime": 0.3, "TriggerEndTime": 0.1, "TargetCampString": "100", "AddBuffData": {"BuffTriggerId": "92111072", "BuffAddLayer": 1}}]}
 	var interactions := Interactions.new()
-	rules.Definitions[0].merge({"BeAttackEffect": "test_hit", "BreakDelayVfxName": "test_fuse", "BreakEffect": "test_break", "BreakEffectPosOffset": {"x": 1, "y": 2, "z": 3}})
+	rules.Definitions[0].merge({"BeAttackEffect": "test_hit", "BreakDelayVfxName": "test_fuse", "BreakEffect": "test_break", "BreakEffectPosOffset": {"x": 1, "y": 2, "z": 3}, "BeAttackSound": {"SoundName": "test_attack_sound"}, "BreakDelaySoundName": {"SoundName": "test_fuse_sound"}, "BreakSoundTrigger": {"SoundName": "test_break_sound"}})
 	rules.Definitions[1]["TriggerStartEffectName"] = "test_trap"
 	interactions.effect_requested.connect(func(context): effects.append(context))
+	interactions.sound_requested.connect(func(name): sounds.append(name))
+	interactions.presentation_requested.connect(func(kind, context): presentation.append([kind, context]))
 	interactions.reward_requested.connect(func(context): rewards.append(context))
 	interactions.trap_triggered.connect(func(context): traps.append(context))
 	interactions.npc_requested.connect(func(id, context): npcs.append([id, context]))
@@ -72,6 +77,7 @@ func _initialize() -> void:
 	_check(not interactions.interact("controller").success, "One-use controller rejects duplicate")
 	_check(interactions.interact("chest").success and rewards.size() == 1, "Chest requests exactly one original treasure reward")
 	_check(not interactions.interact("chest").success and rewards.size() == 1, "Chest duplicate blocked")
+	_check(presentation.size() == 1 and presentation[0][0] == "chest_open", "Chest feedback fires only for a successful opening")
 	_check(rewards[0].data.TreasureId == 2 and rewards[0].data.TreasureType == "Unusual", "Treasure identity and type retained independently")
 	_check(interactions.interact("npc").success and npcs.size() == 1, "Configured NPC opens host menu")
 	_check(not interactions.interact("unknown").success and npcs.size() == 1, "Missing NPC never inferred from model name")
@@ -82,6 +88,7 @@ func _initialize() -> void:
 	interactions.tick(0.12, Vector3(100, 0, 100))
 	_check(interactions.state_for("jar").broken and not root.get_node("jar").visible, "Delayed break hides original object")
 	_check(effects.map(func(event): return event.address) == ["test_hit", "test_hit", "test_fuse", "test_break"], "Exact configured attack, delay and destruction effects fire once in order")
+	_check(sounds == ["test_attack_sound", "test_attack_sound", "test_fuse_sound", "test_break_sound"], "Exact configured attack, fuse and break audio fire at their gameplay events")
 	_check(effects.back().position == Vector3(1, 2, 3), "Destruction uses original configured offset")
 	_check(rewards.size() == 1, "Empty original destroyable drop list invents no loot")
 	interactions.tick(0.12, Vector3.ZERO)
@@ -168,6 +175,40 @@ func _test_close_area_proximity() -> void:
 	interactions.tick(0.02, Vector3(100, 0, 100), [{"id": "enemy", "position": Vector3(10, 0, 20), "camp": 1}])
 	_check(visual.visible and body.collision_layer == 5, "Enemy proximity alone does not clear a barrier")
 	_check(interactions.restore(opened) and not visual.visible and body.collision_layer == 0 and body.collision_mask == 0, "Cleared barrier survives save and reload")
+	environment.free()
+
+func _test_stage_door_proximity() -> void:
+	var environment := Node3D.new()
+	var visual := Node3D.new()
+	visual.name = "exit"
+	environment.add_child(visual)
+	var marker := {"SceneName": "Test", "SourceGameObjectId": "exit", "Type": "EEUT_StageChangeDoor", "Path": ["exit"], "DataJson": "{}", "exported_node_name": "exit", "world_position": [0, 0, 0]}
+	var volume := _box("exit", "Box_TiggerEnter")
+	volume.properties.m_IsTrigger = 1
+	var interactions := Interactions.new()
+	interactions.setup(environment, [marker], {"rules": {"Bindings": [], "Definitions": []}, "colliders": [volume]})
+	var transitions := {"count": 0}
+	interactions.transition_requested.connect(func(_context): transitions.count += 1)
+	_check(interactions.nearest_interaction(Vector3(1.36, 0, 0), 100).is_empty(), "Exit prompt rejects outside source Box_TiggerEnter even inside search radius")
+	_check(interactions.nearest_interaction(Vector3(1.34, 0, 0), 100).get("id", "") == "exit", "Exit prompt uses source volume plus player collision radius")
+	interactions.tick(0.1, Vector3.ZERO)
+	_check(transitions.count == 0, "Entering source exit volume alone never sends transition")
+	_check(interactions.interact_nearest(Vector3.ZERO).success and transitions.count == 1, "Explicit nearest exit action sends transition")
+	_check(not interactions.interact("exit").success and transitions.count == 1, "Immediate duplicate exit click is throttled")
+	_check(interactions.nearest_interaction(Vector3.ZERO).is_empty(), "Throttled exit has no active nearest prompt")
+	interactions.tick(0.25, Vector3.ZERO)
+	var saved: Dictionary = JSON.parse_string(JSON.stringify(interactions.snapshot()))
+	_check(is_equal_approx(saved.objects.exit.idle_remaining, 0.25), "Exit save records partially elapsed half second throttle")
+	interactions.tick(0.3, Vector3.ZERO)
+	_check(interactions.nearest_interaction(Vector3.ZERO).get("id", "") == "exit", "Exit becomes actionable when throttle expires")
+	_check(interactions.restore(saved), "Exit cooldown snapshot restores")
+	_check(not interactions.interact("exit").success and transitions.count == 1, "Restored cooldown prevents replayed exit click")
+	interactions.tick(0.249, Vector3.ZERO)
+	_check(not interactions.interact("exit").success, "Exit stays throttled until the last millisecond")
+	interactions.tick(0.0011, Vector3.ZERO)
+	_check(interactions.interact_nearest(Vector3.ZERO).success and transitions.count == 2, "Restored exit resumes after its remaining half second interval")
+	interactions.set_exit_enabled(false)
+	_check(not interactions.interact("exit").success and visual.visible, "Locked exit rejects interaction while keeping doorway visible")
 	environment.free()
 
 func _box(id: String, role: String) -> Dictionary:

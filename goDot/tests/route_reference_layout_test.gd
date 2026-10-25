@@ -23,6 +23,7 @@ func _run() -> void:
 	var campaign = DungeonCampaign.new()
 	campaign.configure()
 	campaign.generate(12345, 0)
+	check(campaign.select_region(2).success, "World map confirms the region before displaying its room layout")
 	var rooms = campaign.route_map()
 	for row in rooms:
 		row["config_id"] = int(row.layer_index) * 100000000 + int(row.node_id)

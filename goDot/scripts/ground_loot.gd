@@ -12,11 +12,13 @@ var _pointer_hud: DungeonHud
 var _pointer_host: Control
 var _pointer_allowed := false
 var _pointer_player := Vector3.ZERO
+var _pickup_effects: Dictionary = {}
+var _pickup_effects_loaded := false
 
 func is_automatic(entry: Dictionary) -> bool:
 	return bool(entry.get("material", false)) and int(entry.id) == 101
 
-func spawn(id: int, point: Vector3, amount := 1, material := false) -> void:
+func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appearance := true) -> void:
 	if id <= 0 or amount <= 0: return
 	var sprite = Sprite3D.new()
 	sprite.texture = DungeonStyle.texture(("material:" if material else "loot:") + str(id))
@@ -41,7 +43,9 @@ func spawn(id: int, point: Vector3, amount := 1, material := false) -> void:
 			add_child(echo)
 			trail.append(echo)
 		entry["trail"] = trail
+	entry["replay_appearance"] = replay_appearance
 	entries.append(entry)
+	_bind_pickup_effect(entry)
 
 func nearest(point: Vector3) -> Dictionary:
 	var result: Dictionary = {}
@@ -218,6 +222,34 @@ func _bind_altar_effect(entry: Dictionary) -> void:
 	entry["effect_controller"] = controller
 	entry["effect_binding"] = binding
 
+func _bind_pickup_effect(entry: Dictionary) -> void:
+	if entry.has("effect_binding") or entry.has("altar"): return
+	if not _pickup_effects_loaded:
+		_pickup_effects_loaded = true
+		var data: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/pickup_feedback.json"))
+		if data is Dictionary: _pickup_effects = data.get("bindings", {})
+	var key := ("material:" if entry.material else "loot:") + str(entry.id)
+	var rule: Dictionary = _pickup_effects.get(key, {})
+	if rule.is_empty() or (rule.event == "appear" and not entry.get("replay_appearance", true)): return
+	var world := get_parent()
+	if not is_instance_valid(world): return
+	var environment = world.get("environment_root")
+	if not is_instance_valid(environment): return
+	var controller = environment.get_node_or_null("EnvironmentEffects")
+	if controller == null: return
+	var anchor := Node3D.new()
+	anchor.name = "RecoveredPickupEffect"
+	add_child(anchor)
+	anchor.position = entry.position
+	var binding: Dictionary = controller.register_anchor(anchor, str(rule.effect), rule.event == "persistent")
+	if binding.is_empty():
+		anchor.queue_free()
+		return
+	if rule.event == "appear": binding.loop = false
+	entry["effect_anchor"] = anchor
+	entry["effect_controller"] = controller
+	entry["effect_binding"] = binding
+
 func remove_altar(key: String) -> void:
 	for entry in entries.duplicate():
 		if entry.get("altar", "") == key:
@@ -303,11 +335,12 @@ func restore(data: Array) -> void:
 	for entry in data:
 		var point = Vector3(entry.position[0], entry.position[1], entry.position[2])
 		if not str(entry.get("altar", "")).is_empty(): spawn_altar(point, str(entry.altar))
-		else: spawn(int(entry.id), point, int(entry.amount), bool(entry.material))
+		else: spawn(int(entry.id), point, int(entry.amount), bool(entry.material), false)
 
 func _process(_delta: float) -> void:
 	var clock = Time.get_ticks_msec() / 1000.0
 	for index in entries.size():
 		if entries[index].has("altar"): _bind_altar_effect(entries[index])
+		else: _bind_pickup_effect(entries[index])
 		if is_automatic(entries[index]) and float(entries[index].age) >= 0.16: continue
 		entries[index].visual.position.y = entries[index].position.y + 0.42 + sin(clock * 2.5 + index) * 0.06

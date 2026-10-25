@@ -12,8 +12,9 @@ func _draw() -> void:
 	edge.append(edge[0])
 	draw_polyline(edge, Color("e4e2d2"), 2, true)
 	draw_line(Vector2(0, 38), Vector2(244, 38), Color("dc8027"), 2, true)
+	var marker := DungeonStyle.texture("hud_charge_marker")
 	for x in [0.0, 122.0, 244.0]:
-		draw_colored_polygon(PackedVector2Array([Vector2(x - 5, 38), Vector2(x, 33), Vector2(x + 5, 38), Vector2(x, 43)]), Color("ffc35c"))
+		if marker: draw_texture_rect(marker, Rect2(Vector2(x - 6, 32), Vector2(12, 12)), false, Color("ffc35c"))
 	for i in 5:
 		var x = 18 + i * 46
 		var filled = charge_fraction >= (i + 1) / 5.0

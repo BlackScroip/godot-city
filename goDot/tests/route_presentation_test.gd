@@ -74,6 +74,8 @@ func _run() -> void:
 	game.world.camera.size = original_zoom
 	game.systems.begin_run(12345, 1, player.combat.max_health, 0)
 	game.campaign.generate(12345, 0)
+	var regions: Array = game.campaign.region_choices()
+	check(not regions.is_empty() and game.campaign.select_region(int(regions[0].node_id)).success, "Room map fixture confirms a reachable world slot")
 	game._route()
 	for step in 8: await process_frame
 	check(game.hud.page._layout == "route", "Adventure opens route map")
@@ -88,6 +90,7 @@ func _run() -> void:
 	game._action("next", 0, 0)
 	check(game.campaign.state.phase == "reward", "Unopened entrance chest requires leave confirmation")
 	game._action("leave_unclaimed", 0, 0)
+	await _wait_transition()
 	for step in 8: await process_frame
 	check(game.campaign.choices().size() == 3, "First branch offers three rooms")
 	for dimensions in [Vector2i(1280, 720), Vector2i(1920, 1080), Vector2i(2460, 1080), Vector2i(1200, 900), Vector2i(844, 390)]:
@@ -183,6 +186,7 @@ func _check_lane_change() -> void:
 	check(game.systems.search_point_count() == 1, "Confirmed lane change spends exactly one point")
 	game._enter_node(target)
 	check(game.systems.search_point_count() == 1, "Repeated confirmation cannot charge twice")
+	check(game._save(true), "Paid lane change is flushed before loading the checkpoint")
 	var saved: Dictionary = game.save_store.load_profile()
 	check(game.profile.restore(saved), "Paid lane change profile restores from disk")
 	check(game.campaign.restore(saved.run.route), "Paid lane change route restores from disk")

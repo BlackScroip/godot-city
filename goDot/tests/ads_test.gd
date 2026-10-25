@@ -81,7 +81,7 @@ func run() -> void:
 	assert(not rewards.claim(meal, "meal-limit").success)
 	var work = {"kind": "work", "id": 101}
 	assert(not rewards.quote(work).success)
-	profile.data.work = [{"work_id": 101, "partner_id": 11001, "due_utc": now[0] + 3600}]
+	profile.data.work = [{"work_id": 101, "partner_id": 11001, "started_utc": now[0], "due_utc": now[0] + 3600, "material_id": 101, "reward": 500}]
 	assert(rewards.claim(work, "work-1").success)
 	assert(profile.data.work[0].due_utc == now[0] + 1800)
 	assert(not rewards.claim(work, "work-1").success)

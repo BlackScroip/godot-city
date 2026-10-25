@@ -55,6 +55,7 @@ func _run() -> void:
 		for row in catalog.rows("LootData"): systems.add_loot(Catalog.row_id(row), false)
 	_claim_all()
 	check(systems.end_run(true).success, "finish adventure")
+	_prepare_facilities(systems)
 	for attempt in 8:
 		for row in catalog.rows("CharData"):
 			if row.available_state != "Normal": continue
@@ -84,6 +85,7 @@ func _run() -> void:
 				systems.start_work(Catalog.row_id(row), 11001)
 				now += 864000
 				systems.collect_work(Catalog.row_id(row))
+				systems.stop_work(Catalog.row_id(row))
 		_claim_all()
 		var character = attempt % 7 + 1
 		check(systems.begin_run(20000 + attempt, character, 500).success, "progression run starts " + str(attempt))
@@ -154,6 +156,7 @@ func _test_dispatch_costs() -> void:
 	var s = Systems.new(catalog, p)
 	var clock = {"utc": 100000}
 	s.utc_now = func(): return clock.utc
+	_prepare_facilities(s)
 	s.begin_run(98123, 1, 500)
 	for region in range(1, 6): s.complete_node("dispatch-unlock-" + str(region), region * 1000000, region, true)
 	s.record_kill(11001, 1)
@@ -182,6 +185,8 @@ func _test_dispatch_costs() -> void:
 			check(s.collect_work(id).success and s.material(material_id) - previous == int(rewards[level]), "dispatch exact level reward at due time " + str(id) + ":" + str(level))
 			var claimed = JSON.stringify(p.data)
 			check(not s.collect_work(id).success and JSON.stringify(p.data) == claimed, "dispatch reward cannot repeat " + str(id))
+			check(s.stop_work(id).success, "dispatch can return partner after collection " + str(id))
+			claimed = JSON.stringify(p.data)
 			if level == 2:
 				check(not s.upgrade_work(id).success and JSON.stringify(p.data) == claimed, "dispatch maximum level rejected without spending " + str(id))
 				continue
@@ -210,6 +215,7 @@ func _test_events() -> void:
 func _test_transactions() -> void:
 	var p = Profile.new()
 	var s = Systems.new(catalog, p)
+	_prepare_facilities(s)
 	check(not s.open_camp_treasure_boxes(1).success, "camp boxes enforce NPC prerequisite")
 	check(s.execute_npc_function(140101).success, "camp first conversation")
 	s.grant_material(101, 500000)
@@ -273,6 +279,7 @@ func _bind_progression(actor, state) -> void:
 func _test_combat_progression() -> void:
 	var p = Profile.new()
 	var s = Systems.new(catalog, p)
+	_prepare_facilities(s)
 	var actor = Combat.new()
 	check(actor.configure(null, null, 1).success, "progression uses actual combat catalog")
 	_bind_progression(actor, s)
@@ -303,6 +310,14 @@ func _test_combat_progression() -> void:
 	p.data.selected_character = 2
 	check(s.selected_weapon_buffs() == [291100], "incompatible selected weapon falls back to owned character default")
 
+func _prepare_facilities(state) -> void:
+	state.grant_material(101, 100000)
+	while state.stat("runs") < 5:
+		state.begin_run(4500 + state.stat("runs"), 1, 100)
+		state.end_run(false)
+	for row in catalog.rows("Buildings"):
+		for stage in int(row.max_level): state.upgrade_building(int(row.id))
+
 func _test_growth_drops() -> void:
 	var p = Profile.new()
 	var s = Systems.new(catalog, p)
@@ -329,6 +344,7 @@ func _test_growth_drops() -> void:
 		natural.complete_node(key, 1010000, 1, true, "2")
 		natural.claim_node_materials(key, 1, true)
 		natural.end_run(false)
+	check(natural.upgrade_building(1).success, "natural adventure gold repairs recruitment facility")
 	for row in catalog.rows("CharData"):
 		if row.available_state == "Normal" and int(row.id) != 1: check(natural.unlock_character(int(row.id)).success, "all seven characters have non-grant resource route " + str(int(row.id)))
 	for row in catalog.rows("RelationshipAmplifyData"):

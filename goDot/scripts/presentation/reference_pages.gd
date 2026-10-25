@@ -41,7 +41,8 @@ func configure(host: DungeonMenuPage, data: Array, layout: String) -> void:
 		"inventory": _inventory()
 		"character", "weapon": _showcase()
 		"settings": _settings()
-		"tree", "awakening", "buildings", "route": _tree()
+		"buildings": _buildings()
+		"tree", "awakening", "route": _tree()
 		"prepare": _prepare()
 		"shop": _shop()
 
@@ -342,6 +343,8 @@ func _command_button(entry: Dictionary, paper := false) -> Button:
 	if paper:
 		button.add_theme_stylebox_override("normal", DungeonStyle.box(PAPER, Color("9a987d")))
 		button.add_theme_color_override("font_color", BROWN)
+	else:
+		button.add_theme_stylebox_override("normal", DungeonStyle.artwork_box("gold_button", 38))
 	button.pressed.connect(func(): command.emit(str(entry.action), entry.get("id", 0), entry.get("extra", 0)))
 	return button
 
@@ -473,6 +476,40 @@ func _select_tree(row: Dictionary) -> void:
 	_clear(detail)
 	detail.add_child(DungeonStyle.picture(str(row.get("icon", "menu_adventure")), Vector2(100, 100)))
 	owner_page._row(detail, row, false)
+
+func _buildings() -> void:
+	rail = _scroll(self, 190, false)
+	rail.add_theme_constant_override("separation", 8)
+	detail = _scroll(self)
+	var selected_row: Dictionary = rows[0] if not rows.is_empty() else {}
+	for row in rows:
+		var key = _select_button(row, Vector2(190, 90))
+		key.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		key.vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
+		key.add_theme_constant_override("icon_max_width", 44)
+		rail.add_child(key)
+		key.pressed.connect(func():
+			owner_page.page_context.selected_id = int(row.get("config_id", 0))
+			_select_building(row))
+		selections.append(key)
+		if int(row.get("config_id", 0)) == int(owner_page.page_context.get("selected_id", 0)): selected_row = row
+	if not selected_row.is_empty(): _select_building(selected_row)
+
+func _select_building(row: Dictionary) -> void:
+	for i in selections.size():
+		var active = rows[i] == row
+		selections[i].add_theme_stylebox_override("normal", DungeonStyle.box(Color("dbe6dc") if active else PAPER, Color("4b7761") if active else Color("a8a89a"), 2))
+		selections[i].add_theme_color_override("font_color", BROWN)
+	_clear(detail)
+	var heading = row.duplicate(true)
+	heading["description"] = ""
+	owner_page._row(detail, heading, false)
+	var text = DungeonStyle.label(str(row.get("description", "")), 18)
+	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	text.add_theme_color_override("font_color", BROWN)
+	detail.add_child(text)
+	detail.get_parent().scroll_vertical = 0
 
 func _prepare() -> void:
 	var summary = PanelContainer.new()

@@ -14,6 +14,8 @@ func _run() -> void:
 	var campaign = DungeonCampaign.new()
 	campaign.configure()
 	campaign.generate(12345, 0)
+	check(campaign.route_map().all(func(row): return not row.available), "Small-map preview remains read only until world confirmation")
+	check(campaign.select_region(2).success, "World map confirms the first region")
 	var initial = campaign.route_map()
 	check(not initial.is_empty(), "Route selection has a map")
 	var region = int(campaign.state.layers[0].region)

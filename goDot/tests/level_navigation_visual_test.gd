@@ -29,9 +29,11 @@ func _run() -> void:
 	game.audio.stop()
 	await process_frame
 	game._primary()
+	check(game.campaign.state.region_selection and game.hud.page.route_view.context.map_scope == "world", "Adventure begins at world selection")
+	game._action("select_region", 2, 0)
 	var deadline = Time.get_ticks_msec() + 60000
 	while game._transitioning and Time.get_ticks_msec() < deadline: await process_frame
-	check(not game._transitioning and game.profile.data.run.active, "Enters actual adventure")
+	check(not game._transitioning and game.profile.data.run.active and game.campaign.state.phase == "room", "Confirmed region enters actual adventure")
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
 		canvas.size = dimensions
 		await process_frame

@@ -40,6 +40,9 @@ static func texture(key: String) -> Texture2D:
 	if _textures.has(key): return _textures[key]
 	if _map.is_empty() and FileAccess.file_exists("res://assets/ui/resource_map.json"):
 		_map = JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/resource_map.json"))
+		if FileAccess.file_exists("res://assets/ui/camp/resource_map.json"):
+			var camp_icons = JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/camp/resource_map.json"))
+			if camp_icons is Dictionary: _map.merge(camp_icons, true)
 	var path = str(_map.get(key, "res://assets/ui/" + key + ".png"))
 	if key.begins_with("res://"): path = key
 	if not ResourceLoader.exists(path):
@@ -56,6 +59,17 @@ static func box(color: Color, border := Color.TRANSPARENT, width := 1) -> StyleB
 	result.set_border_width_all(width)
 	result.set_corner_radius_all(3)
 	result.set_content_margin_all(12)
+	return result
+
+static func artwork_box(key: String, margin: int, tint := Color.WHITE) -> StyleBox:
+	var art := texture(key)
+	if not art: return box(INK, GOLD)
+	var result = StyleBoxTexture.new()
+	result.texture = art
+	result.modulate_color = tint
+	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
+		result.set_texture_margin(side, margin)
+		result.set_content_margin(side, 10)
 	return result
 
 static func theme() -> Theme:

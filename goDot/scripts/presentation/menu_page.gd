@@ -21,6 +21,10 @@ var backdrop: TextureRect
 var route_view: DungeonRoutePage
 var resource_bar: HBoxContainer
 var outcome_view: Control
+var building_view: Control
+var commission_view: Control
+var guild_view: Control
+var dialogue_view: Control
 var page_context: Dictionary = {}
 
 func _ready() -> void:
@@ -44,6 +48,11 @@ func _ready() -> void:
 	title_label = DungeonStyle.label("", 28)
 	title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(title_label)
+	var heading_art = DungeonStyle.picture("gold_line_top", Vector2.ZERO)
+	title_label.add_child(heading_art)
+	heading_art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	heading_art.stretch_mode = TextureRect.STRETCH_SCALE
+	heading_art.show_behind_parent = true
 	resource_bar = HBoxContainer.new()
 	resource_bar.add_theme_constant_override("separation", 12)
 	heading.add_child(resource_bar)
@@ -53,7 +62,13 @@ func _ready() -> void:
 	close.custom_minimum_size = Vector2(48, 48)
 	close.pressed.connect(func(): closed.emit())
 	heading.add_child(close)
-	stack.add_child(HSeparator.new())
+	var divider = TextureRect.new()
+	divider.texture = DungeonStyle.texture("gold_line_bottom")
+	divider.custom_minimum_size.y = 2
+	divider.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	divider.modulate = DungeonStyle.GOLD
+	divider.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	stack.add_child(divider)
 	body = HBoxContainer.new()
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	body.add_theme_constant_override("separation", 24)
@@ -86,11 +101,30 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		line.add_child(DungeonStyle.picture(str(resource[0]), Vector2(36, 36)))
 		line.add_child(DungeonStyle.label(str(resource[1]), 22))
 	title_label.text = title
+	var reference = layout in ["commission", "guild"]
+	for decoration in title_label.get_children(): decoration.visible = not reference
+	title_label.add_theme_color_override("font_shadow_color", Color.TRANSPARENT if reference else Color(0, 0, 0, 0.8))
+	var back: Button = stack.get_child(0).get_child(0)
+	back.text = "" if reference else "‹"
+	back.icon = DungeonStyle.texture("退出按钮") if reference else null
+	back.expand_icon = reference
+	back.custom_minimum_size = Vector2(58, 48) if reference else Vector2(48, 48)
+	for state in ["normal", "hover", "pressed"]:
+		if reference: back.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+		else: back.remove_theme_stylebox_override(state)
 	_rows = rows
 	_layout = layout
 	_choices.clear()
 	_clear(rows_host)
 	_clear(detail)
+	for view in [building_view, commission_view, guild_view, dialogue_view]:
+		if is_instance_valid(view):
+			stack.remove_child(view)
+			view.queue_free()
+	building_view = null
+	commission_view = null
+	guild_view = null
+	dialogue_view = null
 	if is_instance_valid(outcome_view):
 		stack.remove_child(outcome_view)
 		outcome_view.queue_free()
@@ -103,9 +137,32 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.remove_child(special)
 		special.queue_free()
 		special = null
-	stack.get_child(0).visible = layout not in ["route", "outcome"]
-	stack.get_child(1).visible = layout not in ["route", "outcome"]
+	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue"]
+	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue"]
 	stack.add_theme_constant_override("separation", 0 if layout in ["route", "outcome"] else 16)
+	if layout in ["buildings", "commission", "guild", "dialogue"]:
+		backdrop.hide()
+		body.hide()
+		var paths = {"buildings": "building_page", "commission": "commission_board", "guild": "guild_page", "dialogue": "dialogue_page"}
+		var view = load("res://scripts/presentation/" + paths[layout] + ".gd").new()
+		match layout:
+			"buildings": building_view = view
+			"commission": commission_view = view
+			"guild": guild_view = view
+			"dialogue": dialogue_view = view
+		stack.add_child(view)
+		view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+		if layout in ["buildings", "dialogue"]:
+			add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+			stack.add_theme_constant_override("separation", 0)
+		else:
+			var style = DungeonStyle.artwork_box("几何ui-书页矩形花纹", 40)
+			style.set_content_margin_all(16 if get_viewport_rect().size.y < 600 else 32)
+			add_theme_stylebox_override("panel", style)
+			title_label.add_theme_color_override("font_color", Color("69431d"))
+		view.configure(self, rows, context)
+		_adapt.call_deferred()
+		return
 	if layout == "outcome":
 		backdrop.hide()
 		body.hide()
@@ -195,18 +252,28 @@ func _select(index: int) -> void:
 	detail_scroll.scroll_vertical = 0
 
 func _row(parent: Control, row: Dictionary, separator := true) -> void:
+	var compact = page_context.get("camp", false) and get_viewport_rect().size.y < 600
 	var item = VBoxContainer.new()
-	item.add_theme_constant_override("separation", 10)
+	item.add_theme_constant_override("separation", 6 if compact else 10)
 	parent.add_child(item)
 	var heading = HBoxContainer.new()
 	item.add_child(heading)
-	if separator and not str(row.get("icon", "")).is_empty(): heading.add_child(DungeonStyle.picture(str(row.icon), Vector2(42, 42)))
-	var title = DungeonStyle.label(str(row.get("title", "")), 22)
+	if separator and not str(row.get("icon", "")).is_empty():
+		var picture = DungeonStyle.picture(str(row.icon), Vector2(42, 42))
+		if str(row.icon).begins_with("sprite_mosterwork_"):
+			var backing = PanelContainer.new()
+			var backing_style = DungeonStyle.box(Color("e7e9d5"), Color("a9b393"), 1)
+			backing_style.set_content_margin_all(3)
+			backing.add_theme_stylebox_override("panel", backing_style)
+			backing.add_child(picture)
+			heading.add_child(backing)
+		else: heading.add_child(picture)
+	var title = DungeonStyle.label(str(row.get("title", "")), 18 if compact else 22)
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(title)
 	if not str(row.get("description", "")).is_empty():
-		var description = DungeonStyle.label(str(row.description), 18)
+		var description = DungeonStyle.label(str(row.description), 16 if compact else 18)
 		description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		description.modulate = Color("b9c8c5")
 		item.add_child(description)
@@ -217,10 +284,12 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 	for entry in row.get("buttons", []):
 		var button = Button.new()
 		button.text = str(entry.text)
-		button.custom_minimum_size.y = 46
+		button.custom_minimum_size.y = 36 if compact else 46
+		if compact: button.add_theme_font_size_override("font_size", 16)
 		button.disabled = entry.get("disabled", false)
 		button.pressed.connect(func(): command.emit(str(entry.action), entry.get("id", 0), entry.get("extra", 0)))
 		commands.add_child(button)
+	if row.get("commands_first", false): item.move_child(commands, 1)
 	for entry in row.get("controls", []):
 		if entry.get("type") == "slider":
 			var slider = HSlider.new()
@@ -241,6 +310,11 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 
 func _adapt() -> void:
 	var compact = size.x < 1000
+	if page_context.get("camp", false) and _layout in ["list", "grid", "model"]:
+		var style = DungeonStyle.box(Color("172d30"), DungeonStyle.GOLD, 2) if get_viewport_rect().size.y < 600 else DungeonStyle.panel().duplicate()
+		style.set_content_margin_all(16 if get_viewport_rect().size.y < 600 else 62)
+		add_theme_stylebox_override("panel", style)
+		stack.add_theme_constant_override("separation", 8 if get_viewport_rect().size.y < 600 else 16)
 	resource_bar.add_theme_constant_override("separation", 6 if compact else 12)
 	for line in resource_bar.get_children():
 		line.custom_minimum_size.x = 74 if compact else 130
@@ -253,6 +327,7 @@ func _adapt() -> void:
 		list_scroll.size_flags_stretch_ratio = 1.2 if size.x >= 1100 else 1.0
 
 func displayed_row_count() -> int:
+	if _layout == "dialogue" and is_instance_valid(dialogue_view): return 1
 	return _rows.size()
 
 func _clear(node: Node) -> void:

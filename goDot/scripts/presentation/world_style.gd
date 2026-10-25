@@ -46,16 +46,21 @@ static func environment(world: Node3D, region: int, camp: bool) -> void:
 			if marker.get("Type", "") == "EEUT_NPC" and world.systems:
 				var npc = world.systems.catalog.find("NPCData", str(data.get("NpcId", "")))
 				if npc.is_empty(): continue
-				var label = Label3D.new()
-				label.text = str(npc.get("name", "")) + "\n" + str(npc.get("title", ""))
-				label.font = DungeonStyle.theme().default_font
-				label.font_size = 36
-				label.pixel_size = 0.008
-				label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-				label.modulate = Color("d8f0de")
-				label.outline_size = 8
-				world.environment_root.add_child(label)
-				label.position = world.vector(marker.get("world_position", [])) + Vector3.UP * 2.6
+				var source = world.interactions._items.get(str(marker.get("SourceGameObjectId", "")), {}) if world.interactions else {}
+				for index in 2:
+					var label = Label3D.new()
+					label.name = "CampNpcName" if index == 0 else "CampNpcService"
+					label.set_meta("camp_marker_id", str(marker.get("SourceGameObjectId", "")))
+					label.text = str(npc.get("name", "")) if index == 0 else "<" + str(npc.get("title", "")) + ">"
+					label.font = DungeonStyle.theme().default_font
+					label.font_size = 32
+					label.pixel_size = 0.007
+					label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+					label.modulate = Color.WHITE if index == 0 else Color("48f018")
+					label.outline_size = 8
+					world.environment_root.add_child(label)
+					label.position = world.vector(marker.get("world_position", [])) + Vector3.UP * (2.9 if index == 0 else 2.48)
+					if not source.is_empty(): label.visible = source.get("visible", true)
 			if str(data.get("UIBtnName", "")).ends_with("StartNewRun"):
 				effect(world.environment_root, world.vector(marker.get("world_position", [])), Color.WHITE, 3.2, -1)
 

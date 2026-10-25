@@ -1,0 +1,1474 @@
+{
+  "apk_sha256": "8b6b62e21360f8170fc70d86279e88ab04c7c9c6d0d91f659e76a48bdbdb4ea3",
+  "manifest_sha256": "6d738a843ef2fd5a0fd9771ff1cd14945509fc36bde7cbadc54a3cc074cf0e71",
+  "sprites": [
+    {
+      "name": "characterillustration_baoshi_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_baoshi_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_baoshi_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-8203773795394063477",
+      "width": 503,
+      "height": 573,
+      "alpha_bounds": [
+        2,
+        2,
+        501,
+        571
+      ],
+      "png_sha256": "a8b74e9152548087dd609fb7f2992e657655cd6a806e9c8fab336d19725b6295"
+    },
+    {
+      "name": "characterillustration_duiwu_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_duiwu_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_duiwu_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "5490389689721298799",
+      "width": 512,
+      "height": 918,
+      "alpha_bounds": [
+        15,
+        3,
+        500,
+        916
+      ],
+      "png_sha256": "d75196a0f47f3555e16865190743b5eadf1d4897f783c656e76f5bd3947be2aa"
+    },
+    {
+      "name": "characterillustration_funan_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_funan_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_funan_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-4500833375821652671",
+      "width": 468,
+      "height": 871,
+      "alpha_bounds": [
+        4,
+        3,
+        468,
+        869
+      ],
+      "png_sha256": "f9e15fc352554c3244c1f5bb789b74bed03345f5fd7f6403081f068a6254d133"
+    },
+    {
+      "name": "characterillustration_gongnan_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_gongnan_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_gongnan_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "605474189543325021",
+      "width": 498,
+      "height": 933,
+      "alpha_bounds": [
+        2,
+        71,
+        496,
+        931
+      ],
+      "png_sha256": "dbb2e8d1c9df9a2c6994b67cbefb0f61c72ab52cd6c5618250efd14fbce406d7"
+    },
+    {
+      "name": "characterillustration_jianzhu_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_jianzhu_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_jianzhu_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-8934889604495410100",
+      "width": 508,
+      "height": 747,
+      "alpha_bounds": [
+        0,
+        2,
+        506,
+        745
+      ],
+      "png_sha256": "91b2c75459fb26be990aa246ee024a6c9994d9dcd7e4a85cb0466bf1e8d38f52"
+    },
+    {
+      "name": "characterillustration_kai_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_kai_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_kai_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-7734737351295881645",
+      "width": 471,
+      "height": 855,
+      "alpha_bounds": [
+        2,
+        0,
+        468,
+        852
+      ],
+      "png_sha256": "160812d5cb9a41f8b323cc716eeeabd2671a89b840ecb93e3624125669fd823e"
+    },
+    {
+      "name": "characterillustration_liannv_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_liannv_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_liannv_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "3015383998426690455",
+      "width": 443,
+      "height": 952,
+      "alpha_bounds": [
+        2,
+        9,
+        438,
+        952
+      ],
+      "png_sha256": "be981addaa2b8d9c468681f9a4544ab408df6f7839b029c246d62168440a9edc"
+    },
+    {
+      "name": "characterillustration_qishi_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_qishi_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_qishi_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "938460080803273588",
+      "width": 475,
+      "height": 905,
+      "alpha_bounds": [
+        2,
+        3,
+        474,
+        903
+      ],
+      "png_sha256": "9ebb3b838124c10bae7590a89134342e7bce37b62ae58cb833c711c107b1f64b"
+    },
+    {
+      "name": "characterillustration_renwu_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_renwu_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_renwu_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-801908827884363888",
+      "width": 417,
+      "height": 937,
+      "alpha_bounds": [
+        2,
+        2,
+        415,
+        932
+      ],
+      "png_sha256": "dc553e812e07f1cd84fb45e9e6bd93fe1e60842b5e6965be232d643e7aa88b30"
+    },
+    {
+      "name": "characterillustration_shangdian_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_shangdian_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_shangdian_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-4415770224651339852",
+      "width": 497,
+      "height": 883,
+      "alpha_bounds": [
+        5,
+        2,
+        495,
+        881
+      ],
+      "png_sha256": "2b7b1492ab5059b96c6fd78bc42fee9382c089a9023602763548bbf5dd73b0fb"
+    },
+    {
+      "name": "characterillustration_tianfushu_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_tianfushu_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_tianfushu_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-9073427135528037882",
+      "width": 479,
+      "height": 907,
+      "alpha_bounds": [
+        1,
+        2,
+        476,
+        905
+      ],
+      "png_sha256": "886dc6662077a599df50b217679c1e68c0f4d60201da81bc735fe4e67a4dac89"
+    },
+    {
+      "name": "characterillustration_tiejiang_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_tiejiang_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_tiejiang_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "1427942980012202326",
+      "width": 504,
+      "height": 626,
+      "alpha_bounds": [
+        1,
+        0,
+        502,
+        624
+      ],
+      "png_sha256": "d5fc68060ed0e7ea143ca2f562f69bf54939fe8bea27e9a5bdc20e2ace704171"
+    },
+    {
+      "name": "characterillustration_tujian_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_tujian_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_tujian_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "7593547802193731139",
+      "width": 445,
+      "height": 884,
+      "alpha_bounds": [
+        3,
+        2,
+        442,
+        882
+      ],
+      "png_sha256": "3b819fbf96b5ebfb772d122f477c1fd563885730aeaf108fb52e6411a03aa5e2"
+    },
+    {
+      "name": "characterillustration_yannv_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_yannv_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_yannv_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-4658691145873488959",
+      "width": 452,
+      "height": 902,
+      "alpha_bounds": [
+        1,
+        3,
+        449,
+        899
+      ],
+      "png_sha256": "ba935eaeca174f4dbcd8713028a924216d58d88e96ba29ca2e8d1ab9be019d05"
+    },
+    {
+      "name": "characterillustration_zhangnv_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_zhangnv_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_zhangnv_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "-3542414889545337511",
+      "width": 497,
+      "height": 885,
+      "alpha_bounds": [
+        2,
+        0,
+        494,
+        884
+      ],
+      "png_sha256": "93ba1bbc669faedd53c6b0032b21a98efff666a266e72d636c1425e1f1f7b02f"
+    },
+    {
+      "name": "characterillustration_zhunv_normal",
+      "path": "res://assets/ui/camp/portraits/characterillustration_zhunv_normal.png",
+      "source_asset": "Assets/[00002]Resource/NaninovelRes/Characters/NPC/characterillustration_zhunv_normal.png",
+      "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
+      "bundle_sha256": "0e4b89323a7ae6bc78f53a95d98a70cf4aec0e5bbf04046d3e57d6820d78e0f3",
+      "sprite_path_id": "1917229777846479140",
+      "width": 474,
+      "height": 895,
+      "alpha_bounds": [
+        1,
+        1,
+        473,
+        892
+      ],
+      "png_sha256": "c1ea6f6eec5f2d3d44383820b18f3987eafa8bed4c89f156e429da8ee8158281"
+    },
+    {
+      "name": "sprite_materialicon_101",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_101.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_101.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-4929560618279763517",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        0,
+        46,
+        210,
+        210
+      ],
+      "png_sha256": "96301f425e0736f9675c3126461bc60e18712e5c0be51ee2f0935d3372900bad"
+    },
+    {
+      "name": "sprite_materialicon_10101",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10101.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10101.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "5335861423126377821",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        50,
+        1,
+        207,
+        254
+      ],
+      "png_sha256": "ede52cf3f4f57559273d04707eb78b7ce0265ec8a87b2bfe8b7dc6bbe13743e9"
+    },
+    {
+      "name": "sprite_materialicon_10102",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10102.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10102.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-4206039578540801390",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        47,
+        1,
+        208,
+        255
+      ],
+      "png_sha256": "b2f65f08ab69318df223988227ce7499a42cce8a3e61481ca9a02f53d1679371"
+    },
+    {
+      "name": "sprite_materialicon_102",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_102.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_102.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "3894177138201564098",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        0,
+        0,
+        196,
+        194
+      ],
+      "png_sha256": "e4476fc28917b9a0a8e64b6368fbc329c024a681c0c6e0a83bac9d138522d5f9"
+    },
+    {
+      "name": "sprite_materialicon_10201",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10201.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10201.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-1275227544706184004",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        6,
+        4,
+        252,
+        254
+      ],
+      "png_sha256": "455f890108d66b25a73af46c51432ea8b3317866cdc9c5faa2f13314a8c17759"
+    },
+    {
+      "name": "sprite_materialicon_10202",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10202.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10202.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8737850450830309821",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        32,
+        6,
+        225,
+        253
+      ],
+      "png_sha256": "df026e12577293bde61a94b719968d2450b6b48895c514f56ca0f52b03322f11"
+    },
+    {
+      "name": "sprite_materialicon_103",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_103.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_103.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-2847287226865223873",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        68,
+        49,
+        192,
+        212
+      ],
+      "png_sha256": "b17594d3308b06cbcaea415d4a789d461f5228cde363ec8180e5d91d1d9ccd94"
+    },
+    {
+      "name": "sprite_materialicon_10301",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10301.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10301.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-3487022628306928201",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        4,
+        53,
+        253,
+        237
+      ],
+      "png_sha256": "f5bc5b1a0b3c631da6812de58e79e4fe2a14aa903f57827b548f29c8ab7c1d09"
+    },
+    {
+      "name": "sprite_materialicon_10302",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10302.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10302.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-3492573123848144933",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        5,
+        27,
+        251,
+        244
+      ],
+      "png_sha256": "d39ca6c110e07e794dbf86f906766fe06e1541e92c122cbb71eeaa6867364755"
+    },
+    {
+      "name": "sprite_materialicon_10401",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10401.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10401.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-6122019976925242887",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        62,
+        7,
+        193,
+        251
+      ],
+      "png_sha256": "9d86fd00fbefcbddc5fcf6da03ef68cad6fc192da52d5890e4ac1cc01593706d"
+    },
+    {
+      "name": "sprite_materialicon_10402",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10402.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10402.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8000988700448661540",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        48,
+        4,
+        209,
+        252
+      ],
+      "png_sha256": "717a30a531859caf17b075c56fc25962a39b757644215feabe7b77148e63fbae"
+    },
+    {
+      "name": "sprite_materialicon_10501",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_10501.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_10501.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-3677791331855551914",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        50,
+        6,
+        225,
+        253
+      ],
+      "png_sha256": "d142da6df07885134872f0f6211876831ff0aec1f03ff8134c0475a2ffb88ac5"
+    },
+    {
+      "name": "sprite_materialicon_106",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_106.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_106.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "8194623582022106647",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        12,
+        0,
+        236,
+        249
+      ],
+      "png_sha256": "ea4f9f8c611b405922da0f357a1482757ad92134b2e58c507f91be95d96ce376"
+    },
+    {
+      "name": "sprite_materialicon_107",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_107.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_107.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-7003337703191154692",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        56,
+        0,
+        196,
+        256
+      ],
+      "png_sha256": "fcd2effa739b8f31d0ec26d3c280b36ad737cdeb7fe5bfaaa88fa4abfce62ab6"
+    },
+    {
+      "name": "sprite_materialicon_108",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_108.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_108.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-6886311129609553285",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        42,
+        18,
+        256,
+        242
+      ],
+      "png_sha256": "b58dd6471091d9c999bd0ff372331b65bbfe4a29b0d73d1595b9750d24689d9d"
+    },
+    {
+      "name": "sprite_materialicon_22000002",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000002.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000002.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-3889574503613080737",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        55,
+        12,
+        210,
+        248
+      ],
+      "png_sha256": "94bec8d4565d41bea759785be8860d5bcf9ba6be8564ef0247e0dc651e6853be"
+    },
+    {
+      "name": "sprite_materialicon_22000005",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000005.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000005.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-3319179092804542405",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        12,
+        24,
+        249,
+        242
+      ],
+      "png_sha256": "71d0d97fc41d7a3c13536ba0ac4154c81f599819bea4b734724478840cf62a42"
+    },
+    {
+      "name": "sprite_materialicon_22000008",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000008.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000008.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "7847958500274446547",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        14,
+        30,
+        246,
+        231
+      ],
+      "png_sha256": "8989be7e4f3e52fbd00d9ed015ced0f0eb7757b0327c3356430fd7e31d04cd6f"
+    },
+    {
+      "name": "sprite_materialicon_22000009",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000009.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000009.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8702445924207182147",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        12,
+        36,
+        242,
+        225
+      ],
+      "png_sha256": "bd476b6bbf694b899e7b1148e9567c21b0952215a58d3213d516c9c411a75dbb"
+    },
+    {
+      "name": "sprite_materialicon_22000013",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000013.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000013.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-7981660102375782163",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        14,
+        16,
+        256,
+        234
+      ],
+      "png_sha256": "960fada2bccc1b170469f12d48d1c215b874cfa83fa236da1553dea5de9b1031"
+    },
+    {
+      "name": "sprite_materialicon_22000014",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000014.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000014.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "6674848976524967670",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        28,
+        12,
+        230,
+        244
+      ],
+      "png_sha256": "eea53c41d0dbf788f87b838e974e92bf31c6456703d71365fac97784e053659b"
+    },
+    {
+      "name": "sprite_materialicon_22000015",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000015.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000015.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "5559550484666978611",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        14,
+        15,
+        246,
+        241
+      ],
+      "png_sha256": "e15cdb2b3daf231171797c1be40f9ea0841b4cd1b0b2e29388db61840170b57f"
+    },
+    {
+      "name": "sprite_materialicon_22000028",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_22000028.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_22000028.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-4502419309780433156",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        14,
+        26,
+        242,
+        231
+      ],
+      "png_sha256": "4f6a695e78f4b4af93be5392a2c37ae4a1225e1eb0dc11c47480666771c26810"
+    },
+    {
+      "name": "sprite_materialicon_40001",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_40001.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_40001.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-7693951651999609644",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        4,
+        26,
+        252,
+        234
+      ],
+      "png_sha256": "6ab184d2b4cbcae48c4b3f81bcb7942dbb8e365119faf4c70dfa1074df4a884e"
+    },
+    {
+      "name": "sprite_materialicon_40101",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_40101.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_40101.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "8606936360195398361",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        2,
+        38,
+        256,
+        220
+      ],
+      "png_sha256": "375a6b8149ee6fae9c54a2c326ce88a7205a68eac67469b43cf3deef29be1e43"
+    },
+    {
+      "name": "sprite_materialicon_501",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_501.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_501.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8677761075600534769",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        14,
+        2,
+        250,
+        254
+      ],
+      "png_sha256": "c737952d1da8a06d850c1108e421cb15670546b766903c79384bdda697019e47"
+    },
+    {
+      "name": "sprite_materialicon_502",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_502.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_502.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "8462504211962514845",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        4,
+        38,
+        256,
+        218
+      ],
+      "png_sha256": "843f47a640631f9622eef9410efc0ecef3c6d92e332a8a292493b146d083c4ad"
+    },
+    {
+      "name": "sprite_materialicon_503",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_503.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_503.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-2656130843932734814",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        20,
+        4,
+        242,
+        252
+      ],
+      "png_sha256": "4655c82b81582eff2078c587b8514396acd409bf856c23bc9d2b980c293fee25"
+    },
+    {
+      "name": "sprite_materialicon_504",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_504.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_504.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-7219816507466340872",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        4,
+        4,
+        252,
+        252
+      ],
+      "png_sha256": "7032ddb2a0d82bcb471aa47031569df71ca3c14d1fd1a2132c3bf523ba473f32"
+    },
+    {
+      "name": "sprite_materialicon_55000003",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_55000003.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_55000003.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8556701164239455246",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        12,
+        10,
+        240,
+        234
+      ],
+      "png_sha256": "05b857415f7aa694ce753ed1368034ea9abfe0a760c50bf609064deb820cb087"
+    },
+    {
+      "name": "sprite_materialicon_55000009",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_55000009.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_55000009.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-7798204513097810664",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        52,
+        42,
+        224,
+        226
+      ],
+      "png_sha256": "a66e2bdfac5443979cb60d36cd2a6555e38f62c9521cff24567a0ef3af902b86"
+    },
+    {
+      "name": "sprite_materialicon_801",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_801.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_801.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8112638183096446640",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        0,
+        12,
+        256,
+        256
+      ],
+      "png_sha256": "5bce9729555ffa193016eeab66687a3497f5481bf1c11fb7db8e0e94bb07224e"
+    },
+    {
+      "name": "sprite_materialicon_802",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_802.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_802.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "2978084552513259706",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        4,
+        12,
+        256,
+        252
+      ],
+      "png_sha256": "1b06da8889812cfc83c1fb84740c9a73d65844cfaf5f2509f4b467b8518435ca"
+    },
+    {
+      "name": "sprite_materialicon_803",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_803.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_803.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "2595902031368380848",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        0,
+        12,
+        256,
+        256
+      ],
+      "png_sha256": "5e15a81dc9cb7552ccf24cf66a7e4e1c7177e664c1bdb0480ea8530f25810dd0"
+    },
+    {
+      "name": "sprite_materialicon_90001",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_90001.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_90001.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "-8314781698419631035",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        0,
+        32,
+        256,
+        236
+      ],
+      "png_sha256": "88e100470b19e403a2b43e4a4695b33717e592aea20e826f0bcaa40bdb75aad2"
+    },
+    {
+      "name": "sprite_materialicon_90002",
+      "path": "res://assets/ui/camp/portraits/sprite_materialicon_90002.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_materialicon_90002.png",
+      "member": "assets/yoo/DefaultPackage/d7bab284e2d53052cb747d3ebee0d047.bundle",
+      "bundle_sha256": "660b6ee8df1ce8e8228f9ee761287ac99ee29f5b8696224393153a744e94894c",
+      "sprite_path_id": "6651430658684800665",
+      "width": 256,
+      "height": 256,
+      "alpha_bounds": [
+        54,
+        0,
+        198,
+        256
+      ],
+      "png_sha256": "dc9b215600c7704fa3d8a0ecfd239a0c22be5feb53fdeb508d95d8f285ffa71c"
+    },
+    {
+      "name": "sprite_conversation_apple",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_apple.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_apple.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "2894185756788300025",
+      "width": 102,
+      "height": 112,
+      "alpha_bounds": [
+        3,
+        0,
+        102,
+        110
+      ],
+      "png_sha256": "9be3dd05dcdb0f3662f38c4a517828c7ce10345bef27f87a43f8fcdcb2a1b850"
+    },
+    {
+      "name": "sprite_conversation_archives",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_archives.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_archives.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-1806304559254297504",
+      "width": 94,
+      "height": 112,
+      "alpha_bounds": [
+        2,
+        2,
+        93,
+        110
+      ],
+      "png_sha256": "cd488180ea79462e3515ae63c615c85399deabffda4503cc53fae2052228b6fe"
+    },
+    {
+      "name": "sprite_conversation_armory",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_armory.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_armory.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-6558155164065598823",
+      "width": 121,
+      "height": 127,
+      "alpha_bounds": [
+        0,
+        0,
+        121,
+        126
+      ],
+      "png_sha256": "32f65da8c02236c7a08ede901766c4855c075eeaf010cd91c428cc7c40d1807e"
+    },
+    {
+      "name": "sprite_conversation_badge",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_badge.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_badge.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "3503301289208238187",
+      "width": 108,
+      "height": 108,
+      "alpha_bounds": [
+        2,
+        1,
+        108,
+        108
+      ],
+      "png_sha256": "4fffa1f67863729e83eafcb9013d42c161d07e039e0543ca6def5caaa50f08d5"
+    },
+    {
+      "name": "sprite_conversation_brock",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_brock.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_brock.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1796732416219154333",
+      "width": 76,
+      "height": 70,
+      "alpha_bounds": [
+        0,
+        0,
+        76,
+        70
+      ],
+      "png_sha256": "03a8ebbe2c76cafbdb7c7ba2b2607dba5553b6390e490a3d1d60a2b13ff1dacd"
+    },
+    {
+      "name": "sprite_conversation_build",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_build.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_build.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "5767480908091319957",
+      "width": 121,
+      "height": 121,
+      "alpha_bounds": [
+        0,
+        0,
+        121,
+        121
+      ],
+      "png_sha256": "681145a26ca18a0062afd872b97027922e82909a3d881ed7079d29128ee00ec5"
+    },
+    {
+      "name": "sprite_conversation_buy",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_buy.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_buy.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "6933697329374241823",
+      "width": 110,
+      "height": 113,
+      "alpha_bounds": [
+        1,
+        0,
+        110,
+        113
+      ],
+      "png_sha256": "fb59a85104d58d3ad4c01c45b483833797d046a06e661ab5ba61b3c790986a97"
+    },
+    {
+      "name": "sprite_conversation_buygemstone",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_buygemstone.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_buygemstone.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1860978051266420817",
+      "width": 94,
+      "height": 128,
+      "alpha_bounds": [
+        3,
+        0,
+        91,
+        128
+      ],
+      "png_sha256": "145012d03b30112bb50a0a0ac09cb5262dadc231342c1d3e5b804ff3a7cbd9c6"
+    },
+    {
+      "name": "sprite_conversation_coin",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_coin.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_coin.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "7996632522740912111",
+      "width": 122,
+      "height": 125,
+      "alpha_bounds": [
+        2,
+        2,
+        121,
+        125
+      ],
+      "png_sha256": "ed06226c5169b68d5f7feb2056d8972d35d3dc4885e0bc331d60f51e841c3099"
+    },
+    {
+      "name": "sprite_conversation_crystallize",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_crystallize.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_crystallize.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-718192813046863976",
+      "width": 70,
+      "height": 124,
+      "alpha_bounds": [
+        3,
+        2,
+        67,
+        122
+      ],
+      "png_sha256": "38dba9f0487194a079220d4dc6a13688977a28e1921b58b274d44e611885095e"
+    },
+    {
+      "name": "sprite_conversation_difficulty",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_difficulty.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_difficulty.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "8528359133277323194",
+      "width": 128,
+      "height": 128,
+      "alpha_bounds": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "png_sha256": "9e30c9f4e7ac89b22dcf36a49c9b11cf091994d697d12651b70d6914f83f71e4"
+    },
+    {
+      "name": "sprite_conversation_Extra challenges",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_Extra challenges.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_Extra challenges.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-4376683354296090948",
+      "width": 108,
+      "height": 126,
+      "alpha_bounds": [
+        0,
+        0,
+        108,
+        126
+      ],
+      "png_sha256": "e7666e848bcb2a4383c6faa852852360aab4445fc948a2b2b8a284b256198893"
+    },
+    {
+      "name": "sprite_conversation_get",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_get.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_get.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-1649478104668176202",
+      "width": 127,
+      "height": 121,
+      "alpha_bounds": [
+        0,
+        0,
+        125,
+        121
+      ],
+      "png_sha256": "6fc0148957c5a09dba3b51291bba37379ae01006b2281ca6640c8d04b2ec5183"
+    },
+    {
+      "name": "sprite_conversation_gift",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_gift.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_gift.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1758540359052893790",
+      "width": 110,
+      "height": 112,
+      "alpha_bounds": [
+        2,
+        2,
+        108,
+        110
+      ],
+      "png_sha256": "55cd3a933cd4bb80bdd9bcd8ce934a8fba7a8034c9e61d17867e26ff24b44567"
+    },
+    {
+      "name": "sprite_conversation_healwater",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_healwater.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_healwater.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1677692218565720363",
+      "width": 84,
+      "height": 99,
+      "alpha_bounds": [
+        1,
+        0,
+        81,
+        99
+      ],
+      "png_sha256": "9c016a302488d3e2f90613f40ba73564f5e131e1b4aeb4396237a7eeb66d5037"
+    },
+    {
+      "name": "sprite_conversation_Illustrated",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_Illustrated.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_Illustrated.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-3231066098651673610",
+      "width": 95,
+      "height": 108,
+      "alpha_bounds": [
+        0,
+        0,
+        95,
+        108
+      ],
+      "png_sha256": "ff96de077a58c3e4416284ab9499d65b5f74b0bbdcbf1b44787d7eb313f186e2"
+    },
+    {
+      "name": "sprite_conversation_leave",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_leave.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_leave.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "1089628686744270306",
+      "width": 116,
+      "height": 112,
+      "alpha_bounds": [
+        0,
+        0,
+        116,
+        112
+      ],
+      "png_sha256": "14a4e8828e5e76056842df43a5424eed8ded8d9c7501b780f41df5197b4aa65e"
+    },
+    {
+      "name": "sprite_conversation_levelup",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_levelup.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_levelup.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "7792725058772886134",
+      "width": 118,
+      "height": 126,
+      "alpha_bounds": [
+        0,
+        2,
+        118,
+        126
+      ],
+      "png_sha256": "b1271c8ad12c8ececa925fdf5c65bba5cc3e18aab5c70a17a6a84075f222283b"
+    },
+    {
+      "name": "sprite_conversation_mission",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_mission.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_mission.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-4783404901962858125",
+      "width": 103,
+      "height": 110,
+      "alpha_bounds": [
+        0,
+        0,
+        101,
+        110
+      ],
+      "png_sha256": "8dd2c3cdc91d0d6603b05c7add6819b1e0e3bab78f07013d3a49d33c30aa825c"
+    },
+    {
+      "name": "sprite_conversation_monstersupport",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_monstersupport.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_monstersupport.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "820151322653450082",
+      "width": 128,
+      "height": 124,
+      "alpha_bounds": [
+        0,
+        0,
+        128,
+        124
+      ],
+      "png_sha256": "69f778b7b9a799b3b6a6cc060d388cd438e7263395862337b36e4a3b775b0028"
+    },
+    {
+      "name": "sprite_conversation_monsterwork",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_monsterwork.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_monsterwork.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "7227507774717540418",
+      "width": 108,
+      "height": 108,
+      "alpha_bounds": [
+        4,
+        3,
+        105,
+        106
+      ],
+      "png_sha256": "36dc9c1c08388a991fe6b8ef5a6eedecfc4df7c7295a4768cca602a1fe1183da"
+    },
+    {
+      "name": "sprite_conversation_restaurant",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_restaurant.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_restaurant.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "227722333321667141",
+      "width": 104,
+      "height": 114,
+      "alpha_bounds": [
+        0,
+        2,
+        104,
+        113
+      ],
+      "png_sha256": "d374ac5e1ef8df9d5caf7af2e4d212bdf034f24795cd426bbc6c67a30d950198"
+    },
+    {
+      "name": "sprite_conversation_RogueAdventureEvent",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_RogueAdventureEvent.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_RogueAdventureEvent.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "4988254713260902767",
+      "width": 94,
+      "height": 124,
+      "alpha_bounds": [
+        0,
+        1,
+        91,
+        121
+      ],
+      "png_sha256": "9af33fccb49faecdc0e169200f77c66758f5021d68cdce2b3ab431768ec49d7a"
+    },
+    {
+      "name": "sprite_conversation_RogueAdventureEvent_Special",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_RogueAdventureEvent_Special.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_RogueAdventureEvent_Special.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-8618024559516234711",
+      "width": 94,
+      "height": 124,
+      "alpha_bounds": [
+        2,
+        2,
+        93,
+        121
+      ],
+      "png_sha256": "8a1af3b0b89e1e609f05797de3cff159e0dfff100d26ed36fe54d708af11fc12"
+    },
+    {
+      "name": "sprite_conversation_Scarecrow",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_Scarecrow.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_Scarecrow.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-4165077290265164020",
+      "width": 108,
+      "height": 116,
+      "alpha_bounds": [
+        1,
+        0,
+        108,
+        116
+      ],
+      "png_sha256": "895b2c579852645b78cdaeb5d4f4f84618eb67ca99d41069c971924d3b332304"
+    },
+    {
+      "name": "sprite_conversation_start",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_start.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_start.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-2658015275956990078",
+      "width": 113,
+      "height": 128,
+      "alpha_bounds": [
+        0,
+        0,
+        113,
+        128
+      ],
+      "png_sha256": "96a602943218172aeea480636be4ea01a213b77188ff5ebaac839c7254d8fae8"
+    },
+    {
+      "name": "sprite_conversation_support",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_support.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_support.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "6062753289717109929",
+      "width": 128,
+      "height": 128,
+      "alpha_bounds": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "png_sha256": "75652b64b76a2052870b376c526af02a4ac76172ac1d67e44a14bc7b56f00e3d"
+    },
+    {
+      "name": "sprite_conversation_talk",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_talk.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_talk.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-4065923756578211528",
+      "width": 114,
+      "height": 100,
+      "alpha_bounds": [
+        1,
+        0,
+        113,
+        100
+      ],
+      "png_sha256": "6dec05fee03a69d555e3f019ed09d52cccb59a75ea6522e9922368632f9c13ee"
+    },
+    {
+      "name": "sprite_conversation_teammates",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_teammates.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_teammates.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "-1603948341283093769",
+      "width": 120,
+      "height": 128,
+      "alpha_bounds": [
+        0,
+        0,
+        120,
+        128
+      ],
+      "png_sha256": "f7369da7b8945c422d72b25214c23e418026c6797ea9e3aae992030f6f5cd662"
+    },
+    {
+      "name": "sprite_conversation_warehouse",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_warehouse.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_warehouse.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "5486717642978123013",
+      "width": 85,
+      "height": 78,
+      "alpha_bounds": [
+        2,
+        0,
+        82,
+        76
+      ],
+      "png_sha256": "08f17592a47b4164ed6fa178342da4251b07b5af20fdf63267671d65f7bd2bec"
+    },
+    {
+      "name": "sprite_conversation_warehouse1",
+      "path": "res://assets/ui/camp/portraits/sprite_conversation_warehouse1.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/sprite_conversation_warehouse1.png",
+      "member": "assets/yoo/DefaultPackage/3399d87a669a713a4a80b519ee807aae.bundle",
+      "bundle_sha256": "328fa59d6f00dd908b639598189287cb901470ad0c616adb0e88df89b70d5edc",
+      "sprite_path_id": "4820459735609325921",
+      "width": 112,
+      "height": 115,
+      "alpha_bounds": [
+        0,
+        3,
+        112,
+        115
+      ],
+      "png_sha256": "1b821dc15d8a0f403c1af780e4ef3361ae5032aecc51698acc14a4baea94b2b2"
+    }
+  ],
+  "text_printer_configuration": {
+    "member": "assets/yoo/DefaultPackage/6813a04d41efa4411ecbdaa320403db0.bundle",
+    "sha256": "3167a4fbccd5544c5aeb238c20700489b2b20657f9678efb8b6fabbf03e6c68d",
+    "path_id": "-4648095527710243530",
+    "default_printer_id": "Wide",
+    "default_metadata": {
+      "Implementation": "Naninovel.UITextPrinter, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "Loader": {
+        "PathPrefix": "TextPrinters",
+        "ProviderTypes": [
+          "RFrame.TMLGameResMgrResourceProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+        ]
+      },
+      "guid": "cacb8105-311c-4f20-9f90-8653877fd6d4",
+      "customData": {
+        "rid": -2
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "PixelsPerUnit": 100.0,
+      "EnableDepthPass": 1,
+      "DepthAlphaCutoff": 0.5,
+      "CustomTextureShader": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "CustomSpriteShader": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "RenderTexture": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "RenderRectangle": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0
+      },
+      "AutoReset": 1,
+      "AutoDefault": 1,
+      "AutoWait": 1,
+      "WaitAfterRevealSkip": 1,
+      "AutoLineBreak": 0,
+      "AddToBacklog": 1,
+      "SplitBacklogMessages": 0,
+      "StopVoice": 0,
+      "ChangeVisibilityDuration": 0.10000000149011612,
+      "WaitVisibilityBeforePrint": 0,
+      "PrintFrameDelay": 1,
+      "AuthoredTemplate": ""
+    }
+  },
+  "limit": "Raw packaged sprites. Names identify assets, not evidence of runtime use."
+}

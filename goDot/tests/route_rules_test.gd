@@ -27,6 +27,7 @@ func _initialize() -> void:
 				for pair in layer.vertical_links:
 					check(layer.node_ids.has(int(pair[0])) and layer.node_ids.has(int(pair[1])), "Vertical arrows stay within the column")
 	campaign.generate(12345, 0)
+	check(campaign.select_region(2).success, "World map confirms the first region before room selection")
 	check(campaign.enter(int(campaign.choices()[0].node_id)).success, "Enter entrance")
 	_complete(campaign)
 	var middle = int(campaign.state.layers[1].node_ids[1])
