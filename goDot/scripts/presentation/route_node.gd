@@ -15,6 +15,10 @@ const GOLD = Color("dcc58b")
 # The selected sprite includes glow padding around its visible outline.
 const SELECTED_FRAME_SIZE = Vector2(1.32, 1.50)
 const SELECTION_PEAK_SCALE = 1.05
+const ROOM_CONTENT_SCALE = 0.94
+const BADGE_ART = "res://assets/ui/route/badges/"
+const BADGE_IDS = {"gold": "70001", "magic": "70002", "mineral": "10000", "partner": "13006", "spirit": "13008"}
+const BADGE_ICON_SIZES = {"gold": Vector2(1, 55.0 / 60), "magic": Vector2(1, 55.0 / 60), "mineral": Vector2(46.0 / 60, 55.0 / 60), "partner": Vector2(54.0 / 60, 55.0 / 60), "spirit": Vector2(44.0 / 60, 57.5 / 60)}
 var _selection_scale := 1.0:
 	set(value):
 		_selection_scale = value
@@ -77,6 +81,10 @@ func _selected_frame_rect() -> Rect2:
 	var dimensions = size * SELECTED_FRAME_SIZE * (_selection_scale if chosen else 1.0)
 	return Rect2((size - dimensions) * 0.5, dimensions)
 
+func _room_rect() -> Rect2:
+	var dimensions = size * ROOM_CONTENT_SCALE
+	return Rect2((size - dimensions) * 0.5, dimensions)
+
 func _draw() -> void:
 	draw_set_transform_matrix(_reveal_transform())
 	if room.get("map_mode", "rooms") != "world":
@@ -120,17 +128,18 @@ func _world_artwork() -> Texture2D:
 	return DungeonStyle.texture("res://assets/ui/route/world_" + str(names.get(str(room.get("world_icon", "")), "camp")) + ".png")
 
 func _draw_room() -> void:
+	var inner = _room_rect()
 	var state = "node_current" if available or visited else "room_available" if portrait else "node_2"
 	var frame = DungeonStyle.texture("res://assets/ui/route/" + state + ".png")
-	if frame: draw_texture_rect(frame, Rect2(Vector2.ZERO, size), false)
+	if frame: draw_texture_rect(frame, inner, false)
 	var art = portrait if portrait else _artwork()
 	if art:
-		var side = size.y * 0.9
+		var side = inner.size.y * 0.9
 		draw_texture_rect(art, Rect2((size - Vector2.ONE * side) * 0.5, Vector2.ONE * side), false)
-	_badges()
 	if chosen or (available and (is_hovered() or has_focus())):
 		var selected = DungeonStyle.texture("res://assets/ui/route/node_selected_frame.png")
 		if selected: draw_texture_rect(selected, _selected_frame_rect(), false)
+	_badges()
 
 func _frame(fill: Color, border: Color, width: int) -> StyleBoxFlat:
 	var style = StyleBoxFlat.new()
@@ -154,28 +163,38 @@ func _artwork() -> Texture2D:
 	var index = {"Battle": 1 if room.get("EnemyClass", "") == "Elite" else 0, "Entrance": 2, "Treasure": 2, "Event": 3, "Shop": 4, "Rest": 5, "Curse": 6, "Boss": 7}.get(str(room.get("flow", "Battle")), 2)
 	return icons[int(index)]
 
-func _crystal(center: Vector2, color: Color, height: float) -> void:
-	var points = PackedVector2Array([center + Vector2(0, -height), center + Vector2(height * 0.6, 0), center + Vector2(0, height * 0.6), center + Vector2(-height * 0.6, 0)])
-	draw_colored_polygon(points, color.darkened(0.3))
-	draw_colored_polygon(PackedVector2Array([points[0], points[1], points[2], center]), color)
-	draw_line(points[0], center, color.lightened(0.6), 2, true)
-
 func _badges() -> void:
 	var types := _badge_types()
+	var areas := _badge_rects()
+	var frame = DungeonStyle.texture(BADGE_ART + "frame.png")
 	for index in types.size():
-		var radius = clampf(size.y * 0.15, 5, 16)
-		var point = Vector2(radius if index < 2 else size.x - radius, radius * 0.7 if index % 2 == 0 else size.y - radius * 0.7)
-		draw_circle(point, radius, Color("554633"))
-		draw_arc(point, radius, 0, TAU, 32, Color("c6b99a"), 1.5, true)
-		draw_set_transform_matrix(_reveal_transform().translated_local(point))
-		_crystal(Vector2.ZERO, {"magic": Color("ad93ed"), "mineral": Color("80cee9"), "gold": Color("ebd16e"), "spirit": Color("73d5ac"), "partner": Color("e09a78")}[types[index]], radius * 0.66)
-		draw_set_transform_matrix(_reveal_transform())
+		var area = areas[index]
+		if frame: draw_texture_rect(frame, area, false)
+		var icon = DungeonStyle.texture(BADGE_ART + types[index] + ".png")
+		if icon:
+			var dimensions = area.size * BADGE_ICON_SIZES[types[index]]
+			var offset = Vector2(0, -area.size.y * (1.25 if types[index] == "spirit" else 2.5) / 60.0)
+			draw_texture_rect(icon, Rect2(area.get_center() + offset - dimensions * 0.5, dimensions), false)
+
+func _badge_rects() -> Array[Rect2]:
+	var result: Array[Rect2] = []
+	var count = _badge_types().size()
+	var inner = _room_rect()
+	var diameter = clampf(inner.size.y * 0.44, 18, 56)
+	for index in count:
+		var upper = index >= 2
+		var row_count = count - 2 if upper else mini(count, 2)
+		var column = index - 2 if upper else index
+		var x = inner.get_center().x if row_count == 1 else lerpf(inner.position.x + diameter * 0.12, inner.end.x - diameter * 0.12, float(column) / (row_count - 1))
+		var y = inner.position.y + diameter * 0.12 if upper else inner.end.y - diameter * 0.12
+		result.append(Rect2(Vector2(x, y) - Vector2.ONE * diameter * 0.5, Vector2.ONE * diameter))
+	return result
 
 func _badge_types() -> Array[String]:
 	var types: Array[String] = []
 	if bool(room.get("is_hidden", false)): return types
 	var rewards: Dictionary = room.get("NodeIncrementData", {})
-	var names := {"70002": "magic", "10000": "mineral", "70001": "gold", "13008": "spirit", "13006": "partner"}
-	for key in rewards:
-		if names.has(str(key)): types.append(names[str(key)])
+	for kind in BADGE_IDS:
+		var id: String = BADGE_IDS[kind]
+		if rewards.has(id) or rewards.has(int(id)): types.append(kind)
 	return types

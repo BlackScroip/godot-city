@@ -7,6 +7,13 @@ const ALTAR_EGG_NAME := "sprite_abilityitemicon_14104"
 const ALTAR_EGG_TEXTURE := "res://assets/environment_effects/spirit_altar_egg.png"
 const PICKUP_GLOW_TEXTURE := "res://assets/combat_presentation/texture_36b152e75a0b0427f8a4.png"
 const RARITY_COLORS := [Color("d6dfd6"), Color("7bc765"), Color("70c8ee"), Color("bc86e7"), Color("f4ce70"), Color("ee777c")]
+const APPEAR_DELAY := 0.1
+const SCATTER_DURATION := 0.7
+const PICKUP_DELAY := 1.0
+const PICKUP_RANGE := 99.0
+const PICKUP_END_DISTANCE := 0.5
+const ATTRACT_ACCELERATION := 30.0
+const ATTRACT_MAX_TIME := 5.0
 
 var entries: Array[Dictionary] = []
 var source_altars: Array[Dictionary] = []
@@ -16,12 +23,34 @@ var _pointer_allowed := false
 var _pointer_player := Vector3.ZERO
 var _pickup_effects: Dictionary = {}
 var _pickup_effects_loaded := false
+var _flight_random := RandomNumberGenerator.new()
+
+func _init() -> void:
+	_flight_random.randomize()
 
 func is_automatic(entry: Dictionary) -> bool:
-	return bool(entry.get("material", false)) and int(entry.id) == 101
+	return bool(entry.get("material", false)) and int(entry.id) in [101, 102]
 
 func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appearance := true) -> void:
 	if id <= 0 or amount <= 0: return
+	if material and id in [101, 102] and replay_appearance:
+		for portion in _currency_portions(id, amount): _spawn_entry(id, point, portion, material, true)
+	else:
+		_spawn_entry(id, point, amount, material, replay_appearance)
+
+func _currency_portions(id: int, amount: int) -> Array[int]:
+	var divisor := 10 if id == 101 else 3
+	var limit := 5 if id == 101 else 4
+	var count := 1 if amount < divisor else mini(int(amount / float(divisor)), limit)
+	var portion := maxi(1, int(amount / float(count)))
+	var portions: Array[int] = []
+	var remaining := amount
+	while remaining > 0:
+		portions.append(mini(portion, remaining))
+		remaining -= portions.back()
+	return portions
+
+func _spawn_entry(id: int, point: Vector3, amount: int, material: bool, replay_appearance: bool) -> void:
 	var sprite = Sprite3D.new()
 	sprite.texture = DungeonItemArt.ground_texture(id, material)
 	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
@@ -32,6 +61,19 @@ func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appea
 	sprite.position = point + Vector3.UP * 0.42
 	var entry = {"id": id, "amount": amount, "material": material, "position": point, "visual": sprite, "age": 0.0, "speed": 0.0}
 	if is_automatic(entry):
+		var destination := point
+		var jump_height := 0.0
+		if replay_appearance:
+			# A sphere direction projected onto XZ preserves the APK's shorter throws.
+			var y := _flight_random.randf_range(-1.0, 1.0)
+			var angle := _flight_random.randf_range(0.0, TAU)
+			var radius := sqrt(maxf(0.0, 1.0 - y * y)) * _flight_random.randf_range(2.0, 5.0)
+			destination += Vector3(cos(angle), 0, sin(angle)) * radius
+			destination.y += 0.1
+			jump_height = _flight_random.randf_range(0.8, 1.2)
+		entry["flight"] = {"phase": "scatter" if replay_appearance else "waiting", "origin": point,
+			"destination": destination, "jump_height": jump_height, "attract_age": 0.0}
+		if not replay_appearance: entry.age = PICKUP_DELAY
 		var trail: Array[Sprite3D] = []
 		for index in 3:
 			var echo = Sprite3D.new()
@@ -39,7 +81,7 @@ func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appea
 			echo.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 			echo.shaded = false
 			echo.pixel_size = sprite.pixel_size
-			echo.modulate = Color(1.0, 0.83, 0.35, 0.22 - index * 0.06)
+			echo.modulate = Color(1.0, 0.83, 0.35, 0.22 - index * 0.06) if id == 101 else Color(0.4, 0.75, 1.0, 0.22 - index * 0.06)
 			echo.scale = Vector3.ONE * (0.65 - index * 0.13)
 			echo.position = sprite.position
 			add_child(echo)
@@ -322,19 +364,31 @@ func _release_visual(entry: Dictionary) -> void:
 
 func advance_collection(delta: float, target: Vector3, systems: RefCounted) -> Array[Dictionary]:
 	var collected: Array[Dictionary] = []
+	if delta <= 0: return collected
 	for entry in entries.duplicate():
 		if not is_automatic(entry): continue
-		entry.age += delta
-		if entry.age < 0.16: continue
-		entry.speed = minf(36.0, float(entry.speed) + delta * 38.0)
 		var previous: Vector3 = entry.visual.position
-		entry.position = (entry.position as Vector3).move_toward(target, float(entry.speed) * delta)
-		entry.visual.position = entry.position + Vector3.UP * (0.42 + sin(minf(float(entry.age), 0.8) * PI / 0.8) * 0.45)
+		var previous_age := float(entry.age)
+		entry.age += delta
+		var flight: Dictionary = entry.flight
+		if flight.phase == "scatter":
+			var progress := clampf((float(entry.age) - APPEAR_DELAY) / SCATTER_DURATION, 0.0, 1.0)
+			entry.position = (flight.origin as Vector3).lerp(flight.destination, progress)
+			entry.position += Vector3.UP * absf(sin(progress * TAU)) * float(flight.jump_height)
+			if progress >= 1.0: flight.phase = "waiting"
+		if entry.age >= PICKUP_DELAY and flight.phase == "waiting" and (entry.position as Vector3).distance_to(target) <= PICKUP_RANGE:
+			flight.phase = "attract"
+		if flight.phase == "attract":
+			var active_delta := maxf(0.0, float(entry.age) - maxf(previous_age, PICKUP_DELAY))
+			flight.attract_age = float(flight.attract_age) + active_delta
+			entry.speed = 1.0 + ATTRACT_ACCELERATION * minf(ATTRACT_MAX_TIME, float(flight.attract_age))
+			entry.position = (entry.position as Vector3).move_toward(target, float(entry.speed) * active_delta)
+		entry.visual.position = entry.position + Vector3.UP * 0.42
 		for echo in entry.get("trail", []):
 			var old: Vector3 = echo.position
 			echo.position = echo.position.lerp(previous, minf(1.0, delta * 20.0))
 			previous = old
-		if (entry.position as Vector3).distance_to(target) > 0.18: continue
+		if flight.phase != "attract" or (entry.position as Vector3).distance_to(target) > PICKUP_END_DISTANCE: continue
 		systems.grant_material(entry.id, entry.amount)
 		collected.append({"success": true, "id": entry.id, "amount": entry.amount})
 		_release_visual(entry)
@@ -362,7 +416,13 @@ func settle_materials(systems: RefCounted) -> void:
 func snapshot() -> Array:
 	var result: Array = []
 	for entry in entries:
-		result.append({"id": entry.id, "amount": entry.amount, "material": entry.material, "position": [entry.position.x, entry.position.y, entry.position.z], "altar": entry.get("altar", "")})
+		var saved := {"id": entry.id, "amount": entry.amount, "material": entry.material, "position": [entry.position.x, entry.position.y, entry.position.z], "altar": entry.get("altar", "")}
+		if is_automatic(entry):
+			var flight: Dictionary = entry.flight
+			saved["flight"] = {"age": entry.age, "phase": flight.phase, "jump_height": flight.jump_height,
+				"origin": [flight.origin.x, flight.origin.y, flight.origin.z],
+				"destination": [flight.destination.x, flight.destination.y, flight.destination.z], "attract_age": flight.attract_age}
+		result.append(saved)
 	return result
 
 func restore(data: Array) -> void:
@@ -370,12 +430,26 @@ func restore(data: Array) -> void:
 	for entry in data:
 		var point = Vector3(entry.position[0], entry.position[1], entry.position[2])
 		if not str(entry.get("altar", "")).is_empty(): spawn_altar(point, str(entry.altar))
-		else: spawn(int(entry.id), point, int(entry.amount), bool(entry.material), false)
+		else:
+			spawn(int(entry.id), point, int(entry.amount), bool(entry.material), false)
+			var restored: Dictionary = entries.back()
+			if not is_automatic(restored) or not entry.get("flight") is Dictionary: continue
+			var saved: Dictionary = entry.flight
+			var flight: Dictionary = restored.flight
+			flight.phase = str(saved.get("phase", "waiting"))
+			if flight.phase not in ["scatter", "waiting", "attract"]: flight.phase = "waiting"
+			for key in ["origin", "destination"]:
+				var coordinates: Array = saved.get(key, [point.x, point.y, point.z])
+				if coordinates.size() == 3: flight[key] = Vector3(coordinates[0], coordinates[1], coordinates[2])
+			flight.jump_height = clampf(float(saved.get("jump_height", 0.0)), 0.0, 1.2)
+			flight.attract_age = maxf(0.0, float(saved.get("attract_age", 0.0)))
+			restored.age = maxf(0.0, float(saved.get("age", PICKUP_DELAY)))
+			restored.speed = 1.0 + ATTRACT_ACCELERATION * minf(ATTRACT_MAX_TIME, float(flight.attract_age)) if flight.phase == "attract" else 0.0
 
 func _process(_delta: float) -> void:
 	var clock = Time.get_ticks_msec() / 1000.0
 	for index in entries.size():
 		if entries[index].has("altar"): _bind_altar_effect(entries[index])
 		else: _bind_pickup_effect(entries[index])
-		if is_automatic(entries[index]) and float(entries[index].age) >= 0.16: continue
+		if is_automatic(entries[index]): continue
 		entries[index].visual.position.y = entries[index].position.y + 0.42 + sin(clock * 2.5 + index) * 0.06

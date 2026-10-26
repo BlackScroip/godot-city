@@ -47,7 +47,15 @@ func _run() -> void:
 	campaign.resolve_action()
 	check(campaign.complete_room().success and campaign.advance().success, "Open the three-way branch")
 	rows = campaign.route_map()
-	for row in rows: row["config_id"] = int(row.layer_index) * 100000000 + int(row.node_id)
+	var catalog = DungeonCatalog.new()
+	check(catalog.load_all(), "Actual reward catalog loads")
+	var systems = DungeonSystems.new(catalog, DungeonProfile.new())
+	check(systems.begin_run(12345, 1, 100, 0).success, "Actual reward fixture starts a run")
+	systems.ensure_map_node_increments(campaign)
+	for row in rows:
+		row["config_id"] = int(row.layer_index) * 100000000 + int(row.node_id)
+		row["NodeIncrementData"] = systems.room_node_increments("12345:%d:%d" % [int(row.layer_index), int(row.node_id)], row)
+	check(rows.any(func(row): return not row.NodeIncrementData.is_empty()), "Preview includes actual rolled node rewards")
 	for dimensions in [Vector2i(1600, 900), Vector2i(2460, 1080), Vector2i(844, 390)]:
 		var page = _page(dimensions)
 		check(page.nodes.all(func(node): return is_zero_approx(node.modulate.a)), "Opening begins before the first visible frame")

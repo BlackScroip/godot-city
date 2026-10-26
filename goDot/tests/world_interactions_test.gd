@@ -15,6 +15,7 @@ class TestCatalog extends RefCounted:
 		return {"id": 1300} if id == "1300" else {}
 
 func _initialize() -> void:
+	_test_chest_fade()
 	_test_close_area_proximity()
 	_test_stage_door_proximity()
 	var root := Node3D.new()
@@ -223,6 +224,39 @@ func _test_stage_door_proximity() -> void:
 	_check(interactions.interact_nearest(Vector3.ZERO).success and transitions.count == 2, "Restored exit resumes after its remaining half second interval")
 	interactions.set_exit_enabled(false)
 	_check(not interactions.interact("exit").success and visual.visible, "Locked exit rejects interaction while keeping doorway visible")
+	environment.free()
+
+func _test_chest_fade() -> void:
+	var environment := Node3D.new()
+	var visual := MeshInstance3D.new()
+	visual.name = "chest"
+	visual.mesh = BoxMesh.new()
+	var original := StandardMaterial3D.new()
+	visual.material_override = original
+	environment.add_child(visual)
+	var body := StaticBody3D.new()
+	body.name = "Collider_chest"
+	environment.add_child(body)
+	var interactions := Interactions.new()
+	interactions.setup(environment, [{"SceneName": "Test", "SourceGameObjectId": "chest", "Type": "EEUT_AbilityItemTreasureBox", "Path": ["chest"], "DataJson": "{}", "exported_node_name": "chest"}], {"colliders": [_box("chest", "")]})
+	var item: Dictionary = interactions._items.chest
+	item["chest_presentation"] = true
+	var props = preload("res://scripts/presentation/room_props.gd").new()
+	var entry := {"item": item}
+	_check(interactions.interact("chest").success and visual.visible, "Opening chest remains visible for animation")
+	_check(body.collision_layer == 0 and body.collision_mask == 0, "Opening chest immediately stops blocking movement")
+	props._tick_chest_fade(entry, 0.5)
+	_check(visual.visible and visual.material_override == original, "Chest completes opening before fading")
+	props._tick_chest_fade(entry, 0.375)
+	_check(visual.visible and is_equal_approx(visual.get_active_material(0).albedo_color.a, 0.5), "Chest fades gradually after opening")
+	_check(original.albedo_color.a == 1.0, "Chest fade preserves shared source materials")
+	interactions._changed(item)
+	_check(is_equal_approx(item.chest_open_remaining, 0.375), "Repeated state updates do not restart chest fade")
+	var saved := interactions.snapshot()
+	props._tick_chest_fade(entry, 0.375)
+	_check(not visual.visible, "Chest disappears when fade completes")
+	_check(interactions.restore(saved) and not visual.visible and item.chest_open_remaining == 0.0, "Loading an opened chest skips the transient animation")
+	props.free()
 	environment.free()
 
 func _box(id: String, role: String) -> Dictionary:

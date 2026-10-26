@@ -241,20 +241,24 @@ func _ready() -> void:
 	primary.expand_icon = true
 	primary.add_theme_constant_override("icon_max_width", 30)
 	primary.add_theme_constant_override("h_separation", 12)
+	primary.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	primary.add_theme_color_override("font_color", Color.WHITE)
 	primary.add_theme_font_size_override("font_size", 22)
-	for state in ["normal", "hover", "pressed"]:
-		var prompt_frame = StyleBoxTexture.new()
-		prompt_frame.texture = DungeonStyle.texture("对话按钮_底")
-		prompt_frame.texture_margin_left = 78
-		prompt_frame.texture_margin_right = 198
-		prompt_frame.texture_margin_top = 12
-		prompt_frame.texture_margin_bottom = 12
-		prompt_frame.set_content_margin_all(6)
-		prompt_frame.content_margin_left = 20
-		prompt_frame.content_margin_right = 24
-		prompt_frame.modulate_color = Color.WHITE if state == "normal" else Color(1.2, 1.15, 0.9)
+	for state in ["normal", "hover", "pressed", "disabled"]:
+		var fill = Color("10241be8")
+		if state == "hover": fill = Color("263c28ef")
+		if state == "pressed": fill = Color("3c4327f2")
+		if state == "disabled": fill = Color("18231bba")
+		var prompt_frame = DungeonStyle.box(fill, Color("d9bb72") if state != "disabled" else Color("746c50"))
+		prompt_frame.set_corner_radius_all(24)
+		prompt_frame.content_margin_left = 22
+		prompt_frame.content_margin_right = 22
+		prompt_frame.content_margin_top = 8
+		prompt_frame.content_margin_bottom = 8
 		primary.add_theme_stylebox_override(state, prompt_frame)
+	var prompt_focus = DungeonStyle.box(Color.TRANSPARENT, Color("fff0b3"), 2)
+	prompt_focus.set_corner_radius_all(24)
+	primary.add_theme_stylebox_override("focus", prompt_focus)
 	root.add_child(primary)
 	joystick.excluded_controls.assign([navigation, primary, skill_cluster])
 	joystick.excluded_controls.append(pickup_panel)

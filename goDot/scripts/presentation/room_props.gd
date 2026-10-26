@@ -25,6 +25,7 @@ func configure(source: Node3D) -> void:
 		item.visual.add_child(anchor)
 		var entry := {"item": item, "anchor": anchor, "opened": false}
 		if kind == "EEUT_AbilityItemTreasureBox":
+			item["chest_presentation"] = true
 			entry["effect_address"] = CHEST_EFFECTS.get(str(item.data.get("TreasureType", "")), "")
 			var effect_anchor: Node3D
 			if not entry.effect_address.is_empty():
@@ -163,3 +164,30 @@ func _process(delta: float) -> void:
 			for child in entry.anchor.get_children():
 				if child is MeshInstance3D and child.mesh is PlaneMesh:
 					child.visible = not state.opened
+		if entry.item.get("chest_presentation", false) and state.opened:
+			_tick_chest_fade(entry, delta)
+
+func _tick_chest_fade(entry: Dictionary, delta: float) -> void:
+	var remaining := maxf(0.0, float(entry.item.get("chest_open_remaining", 0.0)) - delta)
+	entry.item["chest_open_remaining"] = remaining
+	if remaining <= 0.0:
+		entry.item.visual.hide()
+		return
+	# Let the lid finish opening before fading the chest's own materials.
+	if remaining >= 0.75: return
+	if not entry.has("fade_materials"):
+		entry["fade_materials"] = []
+		var meshes: Array = entry.item.visual.find_children("*", "MeshInstance3D", true, false)
+		if entry.item.visual is MeshInstance3D: meshes.append(entry.item.visual)
+		for mesh in meshes:
+			if mesh.mesh == null: continue
+			for surface in mesh.mesh.get_surface_count():
+				var original = mesh.get_active_material(surface)
+				if not original is BaseMaterial3D: continue
+				var material = original.duplicate()
+				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+				mesh.set_surface_override_material(surface, material)
+				entry.fade_materials.append({"material": material, "alpha": material.albedo_color.a})
+			mesh.material_override = null
+	for fade in entry.fade_materials:
+		fade.material.albedo_color.a = float(fade.alpha) * remaining / 0.75

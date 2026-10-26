@@ -560,6 +560,7 @@ func restore(saved: Dictionary) -> bool:
 		if not objects.has(id) or not _valid_state(objects[id], _items[id]): return false
 	for id in _items:
 		_items[id].state = objects[id].duplicate(true)
+		_items[id]["chest_open_remaining"] = 0.0
 		_apply(_items[id])
 	return true
 
@@ -584,6 +585,8 @@ func state_for(marker_id: String) -> Dictionary:
 	return _items[marker_id].state.duplicate(true) if _items.has(marker_id) else {}
 
 func _changed(item: Dictionary) -> void:
+	if item.get("chest_presentation", false) and item.state.opened and is_instance_valid(item.visual) and not item.visual.get_meta("interaction_opened", false):
+		item["chest_open_remaining"] = 1.25
 	_apply(item)
 	object_changed.emit(str(item.id), item.state.duplicate(true))
 
@@ -593,6 +596,8 @@ func _apply(item: Dictionary) -> void:
 		active = false
 	if is_instance_valid(item.visual):
 		item.visual.visible = bool(item.visible) and active
+		if item.get("chest_open_remaining", 0.0) > 0.0 and item.state.enabled and not item.state.broken:
+			item.visual.visible = bool(item.visible)
 		item.visual.set_meta("interaction_opened", item.state.opened)
 		if str(item.marker.get("Type", "")) == "EEUT_StageChangeDoor":
 			# The source locks interaction/effects, retaining the physical doorway.
