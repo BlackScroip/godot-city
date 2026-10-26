@@ -16,6 +16,7 @@ var showcase_description: Control
 var altar_parts: Array[Dictionary] = []
 var altar_cards: HBoxContainer
 var altar_toolbar: HBoxContainer
+var _settings_compact := false
 const PAPER = Color("f2efe6")
 const BROWN = Color("5b4933")
 
@@ -349,43 +350,71 @@ func _command_button(entry: Dictionary, paper := false) -> Button:
 	return button
 
 func _settings() -> void:
-	rail = VBoxContainer.new()
-	rail.custom_minimum_size.x = 150
+	_settings_compact = get_viewport_rect().size.x < 1000.0
+	rail = _scroll(self, 120 if _settings_compact else 170, false)
 	rail.add_theme_constant_override("separation", 18)
-	add_child(rail)
 	detail = _scroll(self)
-	for section in ["游戏性", "画面", "声音", "存档", "指南"]:
+	for section in ["语言", "游戏性", "画面", "声音", "存档", "指南"]:
 		var key = Button.new()
 		key.text = section
 		key.custom_minimum_size.y = 54
+		key.clip_text = true
+		key.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		key.add_theme_font_size_override("font_size", 17 if _settings_compact else 19)
+		key.set_meta("section", section)
 		key.pressed.connect(func(): _settings_section(section))
 		rail.add_child(key)
-	_settings_section("画面")
+	resized.connect(_adapt_settings)
+	_settings_section(str(owner_page.page_context.get("settings_section", "画面")))
+	_adapt_settings.call_deferred()
+
+func _adapt_settings() -> void:
+	if not is_inside_tree() or not is_instance_valid(owner_page): return
+	var compact := get_viewport_rect().size.x < 1000.0
+	var tight := compact or get_viewport_rect().size.y < 600.0
+	var page_style = owner_page.get_theme_stylebox("panel").duplicate()
+	page_style.set_content_margin_all(12 if tight else 28)
+	owner_page.add_theme_stylebox_override("panel", page_style)
+	add_theme_constant_override("separation", 12 if tight else 28)
+	rail.get_parent().custom_minimum_size.x = 120 if compact else 170
+	rail.add_theme_constant_override("separation", 6 if tight else 18)
+	for key in rail.get_children():
+		key.custom_minimum_size.y = 42 if tight else 54
+		key.add_theme_font_size_override("font_size", 17 if compact else 19)
+	if compact != _settings_compact:
+		_settings_compact = compact
+		_settings_section(str(owner_page.page_context.get("settings_section", "画面")))
 
 func _settings_section(section: String) -> void:
+	owner_page.page_context["settings_section"] = section
 	_clear(detail)
-	for key in rail.get_children(): key.modulate = DungeonStyle.GOLD if key.text == section else Color.WHITE
+	for key in rail.get_children(): key.modulate = DungeonStyle.GOLD if key.get_meta("section") == section else Color.WHITE
 	for row in rows:
 		if str(row.get("section", "游戏性")) != section: continue
 		var panel = PanelContainer.new()
+		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		panel.add_theme_stylebox_override("panel", DungeonStyle.box(PAPER, Color("b5b6a8")))
 		detail.add_child(panel)
-		var horizontal = HBoxContainer.new()
-		horizontal.add_theme_constant_override("separation", 24)
+		var horizontal: BoxContainer = VBoxContainer.new() if _settings_compact else HBoxContainer.new()
+		horizontal.add_theme_constant_override("separation", 10 if _settings_compact else 24)
 		panel.add_child(horizontal)
 		var name_label = DungeonStyle.label(str(row.title), 19)
 		name_label.add_theme_color_override("font_color", BROWN)
 		name_label.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
-		name_label.custom_minimum_size.x = 170
+		name_label.custom_minimum_size.x = 0 if _settings_compact else 170
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		horizontal.add_child(name_label)
 		if row.has("options"):
-			var options = HBoxContainer.new()
+			var options = HFlowContainer.new()
+			options.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			options.add_theme_constant_override("h_separation", 8)
+			options.add_theme_constant_override("v_separation", 8)
 			horizontal.add_child(options)
 			for option in row.options:
 				var key = _command_button(option)
-				key.custom_minimum_size.x = 70
+				key.custom_minimum_size.x = 90
+				key.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 				if option.get("selected", false): key.add_theme_stylebox_override("normal", DungeonStyle.box(Color("475966"), DungeonStyle.GOLD))
 				options.add_child(key)
 		else:
@@ -394,7 +423,31 @@ func _settings_section(section: String) -> void:
 			horizontal.add_child(content)
 			var copy = row.duplicate(true)
 			copy.title = ""
-			owner_page._row(content, copy, false)
+			var has_language_control := false
+			for entry in copy.get("controls", []):
+				if entry.get("type") == "language":
+					content.add_child(_language_control(entry))
+					has_language_control = true
+			if not has_language_control: owner_page._row(content, copy, false)
+
+func _language_control(entry: Dictionary) -> OptionButton:
+	var selector := OptionButton.new()
+	selector.name = "LanguageSelect"
+	selector.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	selector.get_popup().auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	selector.fit_to_longest_item = false
+	selector.clip_text = true
+	selector.custom_minimum_size = Vector2(0, 44)
+	selector.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	selector.add_theme_font_size_override("font_size", 19)
+	selector.tooltip_text = tr("语言")
+	for language in DungeonLocale.language_options():
+		selector.add_item(str(language.name))
+		var index := selector.item_count - 1
+		selector.set_item_metadata(index, str(language.code))
+		if str(language.code) == str(entry.get("value", DungeonLocale.current_locale())): selector.select(index)
+	selector.item_selected.connect(func(index: int): command.emit(str(entry.get("action", "language")), selector.get_item_metadata(index), 0))
+	return selector
 
 func _tree() -> void:
 	var tree_rows: Array = rows.filter(func(row): return row.get("presentation_role", "") != "awakening_summary")

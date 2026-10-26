@@ -38,5 +38,44 @@ func _initialize() -> void:
 	check(not systems.begin_run(8, 1, 100).success, "Pending settlement cannot be overwritten by new run")
 	check(systems.claim_settlement_experience().success and systems.material(501) == before + 4, "Settlement grants expected vouchers")
 	check(not systems.claim_settlement_experience().success and systems.material(501) == before + 4, "Settlement grant is idempotent")
+	_test_camp_cleanup(catalog)
 	print("SETTLEMENT_RULES_TEST ", JSON.stringify({"checks": checks, "failures": failures, "passed": failures.is_empty()}))
 	quit(0 if failures.is_empty() else 1)
+
+func _test_camp_cleanup(catalog: DungeonCatalog) -> void:
+	for victory in [false, true]:
+		var profile = DungeonProfile.new()
+		var systems = DungeonSystems.new(catalog, profile)
+		profile.data.talents["317"] = 2
+		profile.data.discovered_loot = [11001]
+		profile.data.character_levels["1"] = 5
+		systems.begin_run(12, 1, 100)
+		profile.data.run.inventory["11001"] = 1
+		profile.data.run.talents["101"] = 1
+		profile.data.run.counters["SearchPoint"] = 20
+		profile.data.run["region_rewards"] = [{"AttributeType": "AtkAddFixed", "Value": 10}]
+		profile.data.run.battle = {"player": {"buffs": [1]}}
+		for id in [101, 102, 103, 90002, 10101]: systems.grant_material(id, 10)
+		var active_run = profile.data.run.duplicate(true)
+		check(not systems.clear_completed_run() and profile.data.run == active_run, "Camp cleanup preserves active adventure and regional travel")
+		systems.end_run(victory)
+		profile.data.run["outcome"] = {"stage": "summary", "vouchers": 4, "experience_claimed": false}
+		var pending_run = profile.data.run.duplicate(true)
+		check(not systems.clear_completed_run() and profile.data.run == pending_run, "Camp cleanup preserves pending settlement")
+		systems.claim_settlement_experience()
+		profile.data.run.outcome.stage = "rewards"
+		pending_run = profile.data.run.duplicate(true)
+		check(not systems.clear_completed_run() and profile.data.run == pending_run, "Reward conversion keeps temporary items until settlement closes")
+		var persistent = profile.data.duplicate(true)
+		persistent.erase("run")
+		persistent.materials["102"] = 0
+		profile.data.run.erase("outcome")
+		check(systems.clear_completed_run(), "Completed settlement permits camp cleanup: victory=%s" % victory)
+		check(profile.data.run == DungeonProfile.new_run(), "Camp removes all run items, talents, resources, buffs and progress")
+		var actual = profile.data.duplicate(true)
+		actual.erase("run")
+		check(actual == persistent, "Camp preserves converted vouchers, permanent resources, discoveries and upgrades")
+		check(systems.material(501) == 4 and systems.material(102) == 0, "Converted vouchers remain while temporary magic is zero")
+		check(systems.clear_completed_run() and profile.data.run == DungeonProfile.new_run(), "Repeated camp cleanup is idempotent")
+		check(profile.restore(profile.data.duplicate(true)), "Clean camp state survives profile serialization")
+		check(systems.begin_run(13, 1, 100).success and profile.data.run.inventory.is_empty() and profile.data.run.talents.is_empty(), "Next adventure starts without previous items or talents")

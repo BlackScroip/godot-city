@@ -52,12 +52,13 @@ func _run() -> void:
 		game.hud.update_combat(charge_fixture, false)
 		await capture("dodge-zero-" + suffix)
 		game.set_process(true)
-		game.hud.adventure_button.pressed.emit()
+		game.hud.navigation.get_node("menu_difficulty").pressed.emit()
 		check(game.menus.current_page == "difficulty" and game.hud.page._layout == "prepare", "Difficulty navigation opens preparation page")
 		check(game.hud.page.page_context.get("in_run", false), "Difficulty page knows adventure is active")
 		for row in game.hud.page._rows:
 			for command in row.get("buttons", []): check(command.get("disabled", false), "Adventure difficulty is read only")
-		check(game.hud.page.find_children("*", "Button", true, false).all(func(key): return key.text != "进入迷宫"), "In-run page has no enter labyrinth action")
+		check(game.hud.page.prepare_view.start.disabled, "In-run difficulty disables the adventure start control")
+		check(game.hud.page.find_children("*", "Button", true, false).all(func(key): return key.text != "进入迷宫" or key.disabled or not key.is_visible_in_tree()), "In-run page has no actionable enter labyrinth control")
 		await capture("difficulty-" + suffix)
 		game.hud.page.closed.emit()
 		check(not game.hud.modal_open, "Difficulty close restores gameplay")
@@ -80,7 +81,7 @@ func _run() -> void:
 	game.hud.action.emit("result_camp", 0, 0)
 	await process_frame
 	check(not game.profile.data.run.active and not game.hud.adventure_mode, "Settings return action restores camp")
-	check(game.hud.navigation.get_children().filter(func(key): return key.visible).size() == 5, "Camp navigation restored after settings return")
+	check(game.hud.navigation.get_children().filter(func(key): return key.visible).size() == 3, "Retreat restores initial camp commands without unlocking victory entries")
 	game.queue_free()
 	canvas.queue_free()
 	await process_frame

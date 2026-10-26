@@ -56,16 +56,23 @@ func _run() -> void:
 		row["config_id"] = int(row.layer_index) * 100000000 + int(row.node_id)
 		row["NodeIncrementData"] = systems.room_node_increments("12345:%d:%d" % [int(row.layer_index), int(row.node_id)], row)
 	check(rows.any(func(row): return not row.NodeIncrementData.is_empty()), "Preview includes actual rolled node rewards")
+	for name in ["frame", "gold", "magic", "mineral", "partner", "spirit"]:
+		var texture = DungeonStyle.texture("res://assets/ui/route/badges/%s.png" % name)
+		check(texture != null and texture.get_width() > 0 and texture.get_height() > 0, "Recovered badge artwork loads: " + name)
+	await process_frame
+	await process_frame
 	for dimensions in [Vector2i(1600, 900), Vector2i(2460, 1080), Vector2i(844, 390)]:
 		var page = _page(dimensions)
 		check(page.nodes.all(func(node): return is_zero_approx(node.modulate.a)), "Opening begins before the first visible frame")
+		while not page._opening_started: await process_frame
 		await create_timer(0.12).timeout
-		check(page.nodes.front().modulate.a > page.nodes.back().modulate.a, "Opening reveals earlier columns first")
+		check(page.nodes.front().modulate.a > page.nodes.back().modulate.a, "Opening reveals earlier columns first at %s (first %.3f, last %.3f)" % [dimensions, page.nodes.front().modulate.a, page.nodes.back().modulate.a])
 		await create_timer(0.70).timeout
 		check(page.nodes.all(func(node): return is_equal_approx(node.modulate.a, 1.0)), "Opening reveals all nodes within one second")
 		check(is_equal_approx(page._opening_alpha, 1.0), "Connections finish their opening fade")
 		var choices = page.nodes.filter(func(node): return node.available)
 		check(choices.size() == 3, "Animation keeps all three reachable choices")
+		choices[0].pressed.emit()
 		var selected: DungeonRouteNode = choices[0]
 		var layout = selected.get_rect()
 		var narrowest := INF
@@ -80,6 +87,13 @@ func _run() -> void:
 			check(selected.get_rect() == layout and selected.scale == Vector2.ONE, "Animation preserves layout and input geometry")
 		check(widest - narrowest > 0.5, "Selected frame visibly breathes over time")
 		for node in page.nodes:
+			var inner: Rect2 = node._room_rect()
+			check(inner.size.x < node.size.x and inner.size.y < node.size.y, "Inner card leaves additional space around its artwork")
+			var badges: Array[Rect2] = node._badge_rects()
+			for index in badges.size():
+				check(node._selected_frame_rect().encloses(badges[index]), "Reward badge stays inside the reserved outer frame")
+				for other in range(index + 1, badges.size()):
+					check(not badges[index].intersects(badges[other]), "Reward badges remain individually readable")
 			var peak_size = node.size * DungeonRouteNode.SELECTED_FRAME_SIZE * DungeonRouteNode.SELECTION_PEAK_SCALE
 			var peak = Rect2(node.position + (node.size - peak_size) * 0.5, peak_size)
 			check(Rect2(Vector2(-0.1, -0.1), page.graph.size + Vector2(0.2, 0.2)).encloses(peak), "Even the peak frame fits inside scroll content")
@@ -122,6 +136,7 @@ func _capture_motion() -> void:
 	DirAccess.make_dir_recursive_absolute("res://reports/route-animation-frames")
 	var page = _page(Vector2i(1600, 900))
 	var choices = page.nodes.filter(func(node): return node.available)
+	choices[0].pressed.emit()
 	for frame in 180:
 		if frame == 70: page._select(int(choices[1].room.node_id))
 		if frame == 110: page._select(int(choices[2].room.node_id))

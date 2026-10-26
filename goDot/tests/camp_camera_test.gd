@@ -80,7 +80,11 @@ func _run() -> void:
 		if world.camp_progression.controls(str(marker.get("exported_node_name", ""))):
 			check(body.collision_layer == (1 if world.camp_progression.collider_active(marker) else 0), "Variant collision matches source branch visibility")
 			if original_layers.get(str(body.name), body.collision_layer) != body.collision_layer: changed_colliders += 1
-		else: check(body.collision_layer == original_layers[str(body.name)], "Shared whitebox collision is unchanged by construction")
+		else:
+			var owner_state := _interaction_body_state(world, body)
+			if not owner_state.is_empty():
+				check(body.collision_layer == (int(owner_state.layer) if owner_state.enabled else 0), "Facility collision follows its construction interaction gate")
+			else: check(body.collision_layer == original_layers[str(body.name)], "Shared whitebox collision is unchanged by construction")
 	check(changed_colliders > 0, "Construction removes abandoned signpost blockers")
 	check(world.navigation_region.navigation_mesh.get_polygon_count() > 0, "Construction refresh preserves a usable navigation mesh")
 	game.profile.data.buildings = initial_levels.duplicate(true)
@@ -89,9 +93,14 @@ func _run() -> void:
 	for marker in world.markers:
 		var body = world.environment_root.get_node_or_null("Collider_" + str(marker.get("fileID", "")))
 		if body is StaticBody3D: check(body.collision_layer == original_layers[str(body.name)], "Restoring saved rank restores exact collision activation")
+	for id in range(1, 8): game.profile.data.buildings[str(id)] = 1
+	game.profile.data.buildings["4"] = 2
+	world.refresh_camp_progression()
 	for page in ["buildings", "characters", "weapons", "archive", "partners", "tasks", "meals", "awakening", "primary", "work", "talents"]:
 		check(not world.camp_facility(page).is_empty(), "Recovered camp facility resolves: " + page)
 	check(world.camp_facility("difficulty").id == world.camp_facility("primary").id, "Hidden below-ground difficulty marker routes to departure gate")
+	game.profile.data.buildings = initial_levels.duplicate(true)
+	world.refresh_camp_progression()
 	for building_id in range(1, 8):
 		for stage in range(1, 4):
 			check(world.focus_camp_building(building_id, stage), "Authored construction focus resolves %d/%d" % [building_id, stage])
@@ -144,6 +153,8 @@ func _run() -> void:
 	check(world._camp_destination.is_empty(), "Arrival consumes navigation target")
 	game._close_page()
 	await physics_frame
+	game.profile.data.buildings["3"] = 1
+	world.refresh_camp_progression()
 	check(world.navigate_to_camp_facility("weapons"), "Another facility can be selected")
 	world.clear_input()
 	check(world._camp_destination.is_empty(), "Input suspension cancels navigation")
@@ -154,6 +165,12 @@ func _run() -> void:
 	game.queue_free()
 	await process_frame
 	quit(0 if failures.is_empty() else 1)
+
+func _interaction_body_state(world: Node3D, body: StaticBody3D) -> Dictionary:
+	for item in world.interactions._items.values():
+		for binding in item.bodies:
+			if binding.node == body: return {"enabled": bool(item.state.enabled), "layer": binding.layer}
+	return {}
 
 func _check_npc_labels(world: Node3D) -> void:
 	var count := 0

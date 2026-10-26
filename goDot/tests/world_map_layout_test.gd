@@ -27,16 +27,19 @@ func _run() -> void:
 		page._select(5)
 		check(page.selected_id == 0, "Closed unknown slot cannot be selected")
 		page._select(1)
-		check(page.selected_id == (1 if difficulty == 10 else 0), "High risk requires current difficulty10")
+		check(page.selected_id == 1 and page.confirm.disabled == (difficulty < 10), "Locked current region shows details but requires difficulty10 to enter")
 		for dimensions in [Vector2i(1600, 900), Vector2i(2460, 1080), Vector2i(844, 390)]:
 			canvas.size = dimensions
 			page.size = Vector2(dimensions)
 			for frame in 10: await process_frame
+			var expected = clampf(page.nodes[0].get_rect().get_center().x - page.scroll.size.x * 0.5, 0, maxf(0, page.graph.size.x - page.scroll.size.x))
+			check(absf(page.scroll.scroll_horizontal - expected) <= 1, "World stays focused on current module after resizing %s" % dimensions)
 			for control in [page.header, page.footer, page.scroll]: check(page.get_global_rect().encloses(control.get_global_rect()), "World controls fit %s" % dimensions)
 			check(page.nodes.size() == 9 and page.edges.size() > 9, "Actual nine world slots and connecting paths")
 			for node in page.nodes:
 				check(node.size.y >= 80, "World icon remains readable %s" % dimensions)
 				check(Rect2(Vector2.ZERO, page.graph.size).encloses(node.get_rect()), "World node stays inside scroll content %s" % dimensions)
+				check(node.get_rect().end.y <= page.scroll.size.y - page.scroll.get_h_scroll_bar().size.y, "World captions stay above horizontal scrollbar %s" % dimensions)
 			if DisplayServer.get_name() != "headless":
 				await RenderingServer.frame_post_draw
 				canvas.get_texture().get_image().save_png("/private/tmp/world-map-d%d-%dx%d.png" % [difficulty, dimensions.x, dimensions.y])

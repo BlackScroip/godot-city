@@ -39,9 +39,10 @@ func _input_cases(character: int, hz: int) -> void:
 	var combat = _fighter(character)
 	var intent = Intent.new()
 	intent.attack_button(combat, true)
-	check(intent.take_ready(combat, 0) == 0, "Immediate normal %d/%d" % [character, hz])
-	combat.request_attack(0)
+	check(intent.take_ready(combat, 0) == -1, "Normal waits for release %d/%d" % [character, hz])
 	intent.attack_button(combat, false)
+	check(intent.take_ready(combat, 0) == 0, "Short release requests normal %d/%d" % [character, hz])
+	combat.request_attack(0)
 	for frame in hz:
 		intent.advance_hold(combat, 1.0 / hz)
 		combat.tick(1.0 / hz)
@@ -50,7 +51,6 @@ func _input_cases(character: int, hz: int) -> void:
 	combat = _fighter(character)
 	intent = Intent.new()
 	intent.attack_button(combat, true)
-	combat.request_attack(intent.take_ready(combat, 0))
 	var heavy_started := false
 	for frame in hz * 5:
 		intent.advance_hold(combat, 1.0 / hz)
@@ -58,7 +58,7 @@ func _input_cases(character: int, hz: int) -> void:
 		if slot >= 0:
 			if slot == 4:
 				heavy_started = combat.request_attack(slot).success
-				check(float(frame + 1) / hz >= 0.35 - 0.00001, "Heavy threshold %d/%d" % [character, hz])
+				check(float(frame + 1) / hz >= 0.3 - 0.00001, "Heavy threshold %d/%d" % [character, hz])
 				break
 		combat.tick(1.0 / hz)
 		combat.drain_events()
@@ -67,7 +67,7 @@ func _input_cases(character: int, hz: int) -> void:
 	check(not intent.heavy_held and not combat.custom_properties.InputAttack_LongPress, "Release heavy %d/%d" % [character, hz])
 	intent.attack_button(combat, true)
 	intent.request(combat, 1, true)
-	check(not intent.attack_held, "Dodge disarms gesture %d/%d" % [character, hz])
+	check(intent.attack_held and not intent.heavy_held, "Dodge preserves independent attack touch while releasing the current heavy %d/%d" % [character, hz])
 	intent.clear(combat)
 	combat.drain_events()
 	check(not intent.manual_attack_active() and not combat.charging, "Focus/reset clears gesture %d/%d" % [character, hz])
@@ -88,7 +88,7 @@ func _hud_and_pool_cases() -> void:
 			changes.append(mode)
 			hud.set_attack_mode(mode)
 			world.set_attack_mode(mode))
-	for index in 3: hud.attack_mode_button.button_down.emit()
+	for index in 3: hud.attack_mode_button.pressed.emit()
 	check(changes == ["heavy", "off", "normal"], "Mode cycle")
 	var player := DungeonActor.new()
 	player.is_player = true

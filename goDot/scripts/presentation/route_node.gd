@@ -34,7 +34,7 @@ static var icons: Array[AtlasTexture] = []
 func _ready() -> void:
 	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
 		add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if available else Control.CURSOR_ARROW
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if not disabled else Control.CURSOR_ARROW
 	mouse_entered.connect(queue_redraw)
 	mouse_exited.connect(queue_redraw)
 	focus_entered.connect(queue_redraw)
@@ -42,7 +42,7 @@ func _ready() -> void:
 	tooltip_text = str(room.get("name", ""))
 	if not str(room.get("lock_reason", "")).is_empty(): tooltip_text += "\n" + str(room.lock_reason)
 	if room.get("vertical", false): tooltip_text += "（换路消耗 %d 点刻印圣典）" % int(room.get("shift_cost", 1))
-	if not available and portrait == null: tooltip_text += "（已通过）" if visited else "（后续路线）"
+	if not available and portrait == null and not room.get("selectable", false): tooltip_text += "（已通过）" if visited else "（后续路线）"
 	resized.connect(queue_redraw)
 	visibility_changed.connect(_animate_selection)
 	if chosen: _animate_selection()
@@ -112,7 +112,7 @@ func _draw() -> void:
 	if locked:
 		var lock_art = DungeonStyle.texture("res://assets/ui/route/world_lock.png")
 		if lock_art: draw_texture_rect(lock_art, Rect2(center - Vector2(radius * 0.25, radius * 0.32), Vector2(radius * 0.5, radius * 0.64)), false, Color("cb0000"))
-	var caption = "未知领域" if unknown else str(room.get("name", ""))
+	var caption = DungeonLocale.text("未知领域" if unknown else str(room.get("name", "")))
 	var font_size = 13 if size.y < 90 else 17
 	var baseline = minf(size.y - 2, radius * 2 + font_size + 5)
 	draw_string_outline(get_theme_font("font"), Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, 3, Color("17201b"))

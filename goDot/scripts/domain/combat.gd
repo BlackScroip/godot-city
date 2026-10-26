@@ -311,9 +311,15 @@ func begin_enemy_spawn() -> bool:
 		_monster_behavior_catalog = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/monster_behavior.json"))
 	var behavior: Dictionary = _monster_behavior_catalog.get("enemies", {}).get(str(enemy_id), {})
 	var action_name = str(behavior.get("first_action", "born"))
+	var first_action = _action(str(enemy.group), action_name)
 	# BattleManager requests BossAct; its AddBuff commands initialize boss phases.
 	if enemy.get("rank") == "Boss" and not str(behavior.get("boss_action", "")).is_empty():
 		action_name = str(behavior.boss_action)
+		if action_name != str(first_action.get("id", "")):
+			# FirstAct can install gameplay listeners before the entrance pose replaces it.
+			for command in first_action.get("events", []):
+				if bool(command.get("enabled", false)) and command.get("type", "") == "EET_AddBuff" and float(command.get("time", 0)) <= 0.000001 and _conditions(command.get("conditions", []), bool(command.get("all", true))):
+					add_buff(str(command.get("buff", "")), int(command.get("layers", 1)))
 	var initial = _action(str(enemy.group), action_name)
 	if initial.is_empty(): initial = _action(str(enemy.group), "idle")
 	custom_properties["_enemy_spawn_entered"] = true
@@ -501,6 +507,7 @@ func _enemy_action_advance(delta: float) -> float:
 
 func _tick_enemy_interrupts() -> void:
 	if not enemy_ai_enabled or frozen > 0 or impact_pause > 0 or stagger_remaining > 0: return
+	if _enemy_initial_buffs_pending(): return
 	var visited: Dictionary = {current_action: true}
 	for transition in range(12):
 		var changed = false
@@ -512,6 +519,7 @@ func _tick_enemy_interrupts() -> void:
 			var next = _action(str(enemy.group), command.target)
 			if next.is_empty(): continue
 			_start(next, 0)
+			if _enemy_initial_buffs_pending(): return
 			# Source helper fallbacks can return to an already checked action at t=0.
 			# Keep the authored transition, then yield until the next AI update.
 			if visited.has(current_action): return
@@ -520,6 +528,9 @@ func _tick_enemy_interrupts() -> void:
 			break
 		if not changed: return
 	_report("Enemy action transition budget exceeded: %s" % enemy_id)
+
+func _enemy_initial_buffs_pending() -> bool:
+	return _pending.any(func(event): return int(event.get("sequence", -1)) == _cast_sequence and float(event.get("at", INF)) <= _clock + 0.000001 and event.get("command", {}).get("type", "") == "EET_AddBuff")
 
 func input_block_reason(slot: int) -> String:
 	if fighter.is_empty() or slot < 0 or slot >= fighter.get("skills", []).size(): return "Unknown skill"
@@ -604,7 +615,9 @@ func dodge_recharge_remaining() -> float:
 func cancel_held_input() -> void:
 	custom_properties.InputSkill = false
 	custom_properties["InputSkill1_LongPress"] = false
-	custom_properties["InputSkill2_LongPress"] = false
+	cancel_held_attack()
+
+func cancel_held_attack() -> void:
 	custom_properties.InputAttack_LongPress = false
 	custom_properties.InputAttack = false
 	if charging or (_using_heavy_graph() and busy > 0):
@@ -1029,6 +1042,8 @@ func receive(hit: Dictionary, caster_attack: float = 0.0) -> float:
 	hit["resolved_absorbed"] = 0.0
 	hit["resolved_critical"] = false
 	hit["resolved_accepted"] = false
+	if bool(hit.get("definition", {}).get("carrier_only", false)):
+		return 0.0
 	if invincible > 0 or _dodge_time > 0 or _block_time > 0 or health <= 0 or (bool(hit.get("attack_collision", true)) and not can_receive_attack()):
 		if health > 0 and (_dodge_time > 0 or _block_time > 0 or _current_slot == 1):
 			notify_gameplay("dodge", {"definition": hit.get("definition", {}), "attacker": hit.get("source"), "dodge_type": "Block" if _block_time > 0 else "BeHiterAutoDodge" if _dodge_time > 0 else "Dodge"})
@@ -1110,11 +1125,39 @@ func apply_area(event: Dictionary, same_camp: bool, squared_distance: float, is_
 			if event.get("source") is DungeonCombat:
 				bind_buff_caster(str(application.id), event.source)
 			add_buff(str(application.id), int(application.layers), float(event.get("caster_attack", 0)))
-	var hit_def = {"damageId": int(definition.get("damageId", 0)), "attribute": definition.get("attribute", "None"), "element": definition.get("element", "None"), "actType": definition.get("actType", "None"), "targetBuffs": definition.get("targetBuffs", []) if bool(definition.get("addAfterHit", false)) else []}
+	var hit_def = {"damageId": int(definition.get("damageId", 0)), "attribute": definition.get("attribute", "None"), "element": definition.get("element", "None"), "actType": definition.get("actType", "None"), "critical": bool(definition.get("critical", false)), "targetBuffs": definition.get("targetBuffs", []) if bool(definition.get("addAfterHit", false)) else []}
 	var area_hit = event.duplicate()
 	area_hit.merge({"definition": hit_def, "damage": float(event.get("damage", 0)) if bool(definition.get("enableDamage", true)) else 0.0, "distance": sqrt(squared_distance), "attack_collision": false}, true)
 	receive(area_hit, float(event.get("caster_attack", 0)))
+	var summon: Dictionary = definition.get("summon", {})
+	var source = event.get("source")
+	if source is DungeonCombat and not str(summon.get("AddSummonUnitId", "")).is_empty():
+		var origin = summon.duplicate(true)
+		origin["OriginType"] = "targetPosAndSelfDir"
+		for index in range(clampi(int(origin.get("AddSummonUnitQuantity", 1)), 1, 30)):
+			source._spawn_summon(str(origin.AddSummonUnitId), source._clock, source.current_action, source._current_slot, float(origin.get("InitPosOffset", {}).get("z", 0)), 0, origin, actor_key)
 	return true
+
+func _status_area(definition: Dictionary, caster: DungeonCombat) -> Dictionary:
+	var raw: Dictionary = definition.get("raw_data", {})
+	var settings = _settings(definition, caster)
+	if settings.is_empty():
+		return definition.get("area", {})
+	var damage_owner: DungeonCombat = caster if bool(raw.get("DamageAttriOwnerIsCaster", true)) and caster != null else self
+	var damage = damage_owner._damage_data(int(settings.get("DamageDefId", 0)))
+	var applications: Array = []
+	var application: Dictionary = settings.get("BuffTrigger_AddToAttackee", {})
+	if not str(application.get("BuffTriggerId", "")).is_empty():
+		applications.append({"id": str(application.BuffTriggerId), "layers": int(application.get("BuffAddLayer", 1))})
+	var maximum = int(settings.get("MaxEffectObject", -1))
+	var layer_source = str(settings.get("MaxEffectObjectFollowBuffLayer", ""))
+	if not layer_source.is_empty(): maximum = buff_layers(layer_source)
+	return {"radius": float(settings.get("EffectRadius", 0)), "sameCamp": bool(raw.get("TargetIsSelfCamp", false)), "includeSelf": bool(raw.get("EffectToSelf", false)), "enableDamage": bool(raw.get("EnableDamage", true)), "addAfterHit": bool(raw.get("IsAddBuffAfterHit", false)), "damageId": int(settings.get("DamageDefId", 0)), "attribute": str(damage.get("DamageAttribType", "None")), "element": str(damage.get("DamageType", "None")), "actType": str(damage.get("DamageActType", "Other")), "critical": bool(damage.get("EnableCriticle", false)), "targetBuffs": applications, "randomTargets": bool(settings.get("RandomEffectObject", false)), "maxTargets": maximum, "summon": settings.get("SummonUnitDefProperty", {}).duplicate(true), "damage": damage_owner._damage_value(damage, damage_owner.effective_attack_power())}
+
+func _status_range_visual(definition: Dictionary, caster: DungeonCombat) -> void:
+	var raw: Dictionary = definition.get("raw_data", {})
+	if str(raw.get("EffectName", "")).is_empty() and str(raw.get("EffectName1", {}).get("EffectName", "")).is_empty(): return
+	_emit_event("buff_effect", {"id": str(definition.id), "phase": "pulse", "definition": raw, "effect_radius": float(_status_area(definition, caster).get("radius", 0))})
 
 func confirm_direct_damage(previous_health: float, context: Dictionary) -> void:
 	if not is_finite(previous_health) or previous_health <= health or invincible > 0 or _dodge_time > 0 or _block_time > 0: return
@@ -1138,6 +1181,18 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 		return false
 	if caster_attack < 0:
 		caster_attack = effective_attack_power()
+	var raw_add: Dictionary = definition.get("raw_data", {})
+	if layers > 0:
+		var add_cooldowns: Dictionary = custom_properties.get("_buff_add_cooldowns", {})
+		if bool(raw_add.get("EnableAddCd", false)) and not bool(raw_add.get("EnableAddCd_CanAddLayer", false)):
+			if _clock + 0.000001 < float(add_cooldowns.get(id, 0)):
+				return false
+			add_cooldowns[id] = _clock + maxf(0.0, float(raw_add.get("EnableAddCd_CdTime", 0)) / 1000.0)
+			custom_properties["_buff_add_cooldowns"] = add_cooldowns
+		# Instant applications remain visible until the next status tick, but each
+		# subsequent application must execute its initialization again.
+		if float(definition.get("duration", -1)) == 0 and statuses.has(id) and float(statuses[id].time) <= 0:
+			statuses.erase(id)
 	if layers > 0:
 		for old in definition.get("clear", []):
 			statuses.erase(str(old))
@@ -1225,6 +1280,7 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 	if int(entry.layers) == 0:
 		if type != "EBT_SpecialCustomStateBar":
 			statuses.erase(id)
+			_dispose_status(definition, entry, depth + 1)
 		return true
 	if created:
 		for condition in definition.get("raw_data", {}).get("Conditions", []):
@@ -1259,7 +1315,7 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 				_report("Attribute needs system adapter: %s buff %s" % [stat.attribute, id])
 	elif type == "Unknown" or (type != "EBT_ConditionBuff" and not str(definition.get("unsupported", "")).is_empty()):
 		_report("Buff rule requires review: %s %s %s" % [id, type, definition.get("unsupported", "")])
-	if type == "EBT_SpecialTriggerRangeDamage" and not bool(definition.get("selfOnlyDamage", false)) and not definition.get("area") is Dictionary:
+	if type == "EBT_SpecialTriggerRangeDamage" and not bool(definition.get("selfOnlyDamage", false)) and _status_area(definition, _caster_for(id)).is_empty():
 		_report("Unsupported area effect: %s %s" % [id, definition.get("areaUnsupported", "")])
 	notify_gameplay("buff_add", {"id": id, "layers": int(entry.layers) - old_layers, "before": old_layers, "after": int(entry.layers)})
 	return true
@@ -1269,6 +1325,13 @@ func buff_layers(id: String) -> int:
 
 func remove_buff(id: String) -> void:
 	statuses.erase(id)
+
+func _dispose_status(definition: Dictionary, entry: Dictionary, depth: int = 0) -> void:
+	var disposal: Dictionary = definition.get("raw_data", {}).get("DisposeTriggerBuff", {})
+	var id = str(definition.get("disposeBuff", disposal.get("BuffTriggerId", "")))
+	if id.is_empty(): return
+	bind_buff_caster(id, _caster_for(str(entry.id)))
+	add_buff(id, int(definition.get("disposeLayers", disposal.get("BuffAddLayer", 1))), float(entry.attack), depth)
 
 func special_resource() -> int:
 	return buff_layers(str(fighter.get("jp", "")))
@@ -1522,6 +1585,7 @@ func _start(definition: Dictionary, slot: int) -> void:
 	if enemy_ai != null and not current_action.is_empty() and int(custom_properties.get("_enemy_ended_sequence", -1)) != _cast_sequence:
 		enemy_ai.notify_action_ended(current_action)
 	_cancel_sequence(_cast_sequence, true)
+	if enemy.is_empty(): custom_properties.InputSkill = false
 	_current_slot = slot
 	current_action = str(definition.id)
 	if not enemy.is_empty(): EnemyHitReaction.action_started(self, definition)
@@ -1792,8 +1856,13 @@ func _emit_hit(event: Dictionary) -> void:
 			_schedule(nested.hit, float(event.at), str(event.action), int(event.slot), float(event.get("offset", 0)), str(definition.summon), event.get("origin", {}), str(event.get("target_key", "")))
 	if int(definition.get("damageId", 0)) <= 0:
 		var payload = JSON.parse_string(str(definition.get("raw", "{}")))
-		if not payload is Dictionary or payload.get("EntityType", "") != "EET_Physical": return
-		# Carrier entities can create damaging summons only when their flight ends.
+		if not payload is Dictionary: return
+		var ending: Dictionary = payload.get("EntityProperty", {}).get("AddSummonUnitDefOnEnd", {})
+		var end_summon := str(ending.get("AddSummonUnitId", ""))
+		var has_end_summon := end_summon not in ["", "0", "-1"]
+		if payload.get("EntityType", "") != "EET_Physical" and not has_end_summon: return
+		# Pure carriers still need their lifetime so their ending summon can run.
+		definition["carrier_only"] = has_end_summon and definition.get("targetBuffs", []).is_empty() and definition.get("ownerBuffs", []).is_empty()
 		definition.attribute = "None"
 		definition.element = "None"
 		definition.multiplier = 0.0
@@ -1936,25 +2005,34 @@ func _tick_statuses(delta: float) -> void:
 			while float(entry.tick) <= 0:
 				var value = (float(entry.attack) * float(definition.get("multiplier", 0)) + float(definition.get("fixedDamage", 0))) * int(entry.layers)
 				var previous = health
-				health = maxf(0.0, health - value)
-				_apply_health_locks(previous)
-				var settled = maxf(0.0, previous - health)
-				_emit_event("status_damage", {"id": id, "damage": settled})
-				_emission_sequence += 1
 				var caster = _caster_for(str(id))
+				_status_range_visual(definition, caster)
+				if caster != null and caster != self:
+					var area = _status_area(definition, caster)
+					_emission_sequence += 1
+					var status_hit = {"source": caster, "sequence": -1, "emission": "%s:%s:%d" % [actor_key, id, _emission_sequence], "damage": float(area.get("damage", value)) * int(entry.layers), "definition": {"damageId": area.get("damageId", 0), "actType": area.get("actType", "Buff"), "element": area.get("element", "None"), "critical": area.get("critical", false), "targetBuffs": area.get("targetBuffs", [])}, "continuous": true, "attack_collision": false}
+					receive(status_hit, float(entry.attack))
+				else:
+					health = maxf(0.0, health - value)
+					_apply_health_locks(previous)
+				var settled = maxf(0.0, previous - health)
+				_emit_event("status_damage", {"id": id, "damage": settled, "definition": definition.get("raw_data", {})})
+				if settled > 0 and (caster == null or caster == self): _emission_sequence += 1
 				var caster_key = caster.actor_key if caster != null else str(entry.get("caster_key", actor_key))
 				var status_impact = {"source_key": caster_key, "receiver_key": actor_key, "id": id, "emission": _emission_sequence, "continuous": true, "resolved_damage": settled, "resolved_absorbed": 0.0, "resolved_accepted": true}
-				if settled > 0:
+				if settled > 0 and (caster == null or caster == self):
 					impact_confirmed.emit(status_impact)
 					_emit_event("impact_confirmed", status_impact)
 				entry.tick = float(entry.tick) + maxf(0.05, float(definition.get("interval", 1)))
-		elif definition.get("area") is Dictionary:
+		elif definition.get("type") == "EBT_SpecialTriggerRangeDamage" and not _status_area(definition, _caster_for(str(id))).is_empty():
 			entry.tick = float(entry.tick) - active
 			while float(entry.tick) <= 0.000001:
-				var area: Dictionary = definition.area
-				var value = maxf(0.0, (float(entry.attack) if area.get("attribute") == "FinalAtk" else 0.0) * float(area.get("multiplier", 0)) + float(area.get("fixedDamage", 0))) * int(entry.layers)
+				var caster = _caster_for(str(id))
+				var area = _status_area(definition, caster)
+				_status_range_visual(definition, caster)
+				var value = maxf(0.0, float(area.get("damage", (float(entry.attack) if area.get("attribute") == "FinalAtk" else 0.0) * float(area.get("multiplier", 0)) + float(area.get("fixedDamage", 0))))) * int(entry.layers)
 				_emission_sequence += 1
-				_emit_event("area", {"id": id, "definition": area, "layers": entry.layers, "caster_attack": entry.attack, "damage": value, "emission": _emission_sequence, "source": self, "continuous": float(definition.get("interval", 0)) > 0, "action": current_action, "slot": _current_slot})
+				_emit_event("area", {"id": id, "host_key": actor_key, "definition": area, "layers": entry.layers, "caster_attack": entry.attack, "damage": value, "emission": _emission_sequence, "source": caster if caster != null else self, "continuous": float(definition.get("interval", 0)) > 0, "action": current_action, "slot": _current_slot})
 				entry.tick = float(entry.tick) + (float(definition.interval) if float(definition.get("interval", 0)) > 0 else 1.0e20)
 				if not statuses.has(id):
 					break
@@ -1967,16 +2045,16 @@ func _tick_statuses(delta: float) -> void:
 						entry.time = float(entry.time) + float(definition.duration)
 			if float(entry.time) <= 0.000001:
 				expired.append(id)
+	# Raw conditions must see their final active tick before expiry disposes them.
+	notify_gameplay("tick", {"delta": delta})
 	for id in expired:
 		if not statuses.has(id) or float(statuses[id].time) > 0.000001:
 			continue
 		var entry: Dictionary = statuses[id]
 		var definition: Dictionary = _buff_index.get(id, {})
 		statuses.erase(id)
-		if not str(definition.get("disposeBuff", "")).is_empty():
-			add_buff(str(definition.disposeBuff), int(definition.get("disposeLayers", 1)), float(entry.attack))
+		_dispose_status(definition, entry)
 	health = minf(health, max_health)
-	notify_gameplay("tick", {"delta": delta})
 
 func _fire(entry: Dictionary, index: int, caster_attack: float, depth: int, delayed: bool = false) -> void:
 	if depth > 16:
@@ -1994,11 +2072,13 @@ func _fire(entry: Dictionary, index: int, caster_attack: float, depth: int, dela
 		statuses.erase(str(old))
 	for addition in rule.get("add", []):
 		var layers = source_layers if not str(rule.get("sourceBuff", "")).is_empty() else int(addition.layers) * (int(entry.layers) if bool(rule.get("multiplySelfLayers", false)) else 1)
+		bind_buff_caster(str(addition.id), _caster_for(str(entry.id)))
 		add_buff(str(addition.id), layers, caster_attack, depth + 1)
 	if int(rule.get("reduceSelf", 0)) > 0:
 		entry.layers = maxi(0, int(entry.layers) - int(rule.reduceSelf))
 		if int(entry.layers) == 0:
 			statuses.erase(str(entry.id))
+			_dispose_status(definition, entry, depth + 1)
 
 func _confirm_status_hit(hit: Dictionary) -> void:
 	var hit_def: Dictionary = hit.get("definition", {})
@@ -2054,7 +2134,10 @@ func _apply_combat_modifiers(context: Dictionary, target: DungeonCombat, source:
 			continue
 		var key = str(hit.get("sequence", 0))
 		match str(settings.get("MaxModifyCounterType", "DamageInstance")):
-			"AttackDef": key += ":" + str(hit_def.get("damageId", 0))
+			"AttackDef":
+				var token = str(hit.get("origin", {}).get("_summon_token", ""))
+				if not token.is_empty(): key = token
+				key += ":" + str(hit_def.get("damageId", 0))
 			"DamageInstance": key += ":" + str(hit.get("emission", 0))
 		if str(entry.get("modifier_key", "")) != key:
 			entry.modifier_key = key
@@ -2101,6 +2184,8 @@ func _apply_combat_modifiers(context: Dictionary, target: DungeonCombat, source:
 		target._apply_raw_buff(settings.get("AddBuff_ToAttackee", {}), caster_attack, 0, source)
 		var summon: Dictionary = settings.get("AddSummonUnitDef_OnAttackeePos", {})
 		if not str(summon.get("AddSummonUnitId", "")).is_empty():
+			summon = summon.duplicate(true)
+			summon["OriginType"] = "targetPosAndSelfDir"
 			var summoner = source if source != null else self
 			for index in range(clampi(int(summon.get("AddSummonUnitQuantity", 1)), 1, 30)):
 				summoner._spawn_summon(str(summon.AddSummonUnitId), summoner._clock, str(hit.get("action", "")), int(hit.get("slot", 0)), float(summon.get("InitPosOffset", {}).get("z", 0)), 0, summon, target.actor_key)
@@ -2122,9 +2207,11 @@ func _modifier_matches(settings: Dictionary, context: Dictionary, target: Dungeo
 	var hit: Dictionary = context.hit
 	var definition: Dictionary = hit.get("definition", {})
 	if bool(settings.get("EnableCheckDamageDefId", false)):
-		var ids: Array = [int(settings.get("CheckDamageDefId", 0)), int(settings.get("CheckDamageDefId2", 0))]
+		var ids: Array = []
+		for field in ["CheckDamageDefId", "CheckDamageDefId2"]:
+			if int(settings.get(field, 0)) > 0: ids.append(int(settings[field]))
 		for id in str(settings.get("CheckDamageDefId3", "")).split("|", false):
-			ids.append(int(id))
+			if int(id) > 0: ids.append(int(id))
 		if not ids.has(int(definition.get("damageId", 0))):
 			return false
 	if bool(settings.get("EnableCheckDamageActType", false)):
@@ -2212,7 +2299,7 @@ func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
 		custom_properties["ComboCount"] = int(custom_properties.get("ComboCount", 0)) + 1
 	for entry in statuses.values().duplicate():
 		var definition: Dictionary = _buff_index.get(entry.id, {})
-		if definition.get("type") != "EBT_ConditionBuff" or not definition.get("triggers", []).is_empty() or int(entry.layers) <= 0 or float(entry.get("raw_cooldown", 0)) > 0:
+		if definition.get("type") != "EBT_ConditionBuff" or not definition.get("triggers", []).is_empty() or int(entry.layers) <= 0 or float(entry.get("raw_cooldown", 0)) > 0 or bool(entry.get("raw_triggering", false)) or bool(entry.get("raw_instant_completed", false)):
 			continue
 		var raw: Dictionary = definition.get("raw_data", {})
 		var conditions: Array = raw.get("Conditions", [])
@@ -2227,7 +2314,7 @@ func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
 		var settings = _settings(definition, _caster_for(str(entry.id)))
 		if settings.is_empty():
 			continue
-		var cooldown = 0.01
+		var cooldown = 0.0
 		for condition in conditions:
 			if condition.get("ConditionType") == "ECT_CheckBuffCD":
 				cooldown = maxf(cooldown, float(condition.get("ColdTime", 0)) / 1000.0)
@@ -2235,12 +2322,15 @@ func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
 				cooldown = maxf(cooldown, float(condition.get("CheckSuccessIntervalTime", 0)) / 1000.0)
 		entry.raw_cooldown = cooldown
 		entry.condition_counters = {}
+		entry.raw_triggering = true
 		if float(raw.get("TriggerRandom", 100)) < 100 and _random() * 100.0 >= float(raw.get("TriggerRandom", 100)):
 			var failed = str(raw.get("FailedTriggerBuffId", ""))
 			if not failed.is_empty():
 				add_buff(failed, 1, float(entry.attack), _condition_depth)
+			entry.raw_triggering = false
 			continue
 		var effect = {"id": entry.id, "layers": int(entry.layers), "attack": float(entry.attack), "caster_actor": entry.get("caster_actor", character_id if character_id > 0 else enemy_id), "caster_key": entry.get("caster_key", actor_key), "settings": settings.duplicate(true)}
+		if float(definition.get("duration", -1)) == 0: entry.raw_instant_completed = true
 		var delay = float(raw.get("AddTimeDelay", 0)) / 1000.0
 		if delay > 0:
 			_pending.append({"at": _clock + delay, "sequence": -1, "condition_effect": effect})
@@ -2251,6 +2341,8 @@ func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
 			entry.layers = maxi(0, int(entry.layers) - reduce)
 			if int(entry.layers) == 0:
 				statuses.erase(str(entry.id))
+				_dispose_status(definition, entry, _condition_depth)
+		entry.raw_triggering = false
 	_condition_depth -= 1
 
 func _raw_condition(entry: Dictionary, condition: Dictionary, kind: String, payload: Dictionary, key: String) -> bool:
@@ -2436,6 +2528,7 @@ func _apply_condition_effect(effect: Dictionary) -> void:
 		recipient.remove_buff(str(id))
 	for id in settings.get("AddBuffIDList", []):
 		if float(settings.get("BuffAddRandom", 100)) >= 100 or _random() * 100.0 < float(settings.get("BuffAddRandom", 100)):
+			recipient.bind_buff_caster(str(id), _caster_for(str(effect.id)))
 			recipient.add_buff(str(id), layers, float(effect.attack), _condition_depth)
 
 func _rule_hit_matches(rule: Dictionary, hit_def: Dictionary) -> bool:
@@ -2608,11 +2701,11 @@ func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack:
 			var summon: Dictionary = settings.get("AddSummonUnitDef", {}).duplicate(true)
 			var summoner: DungeonCombat = self
 			var target_key := ""
-			# Spirit hit buffs live on the victim, but use the player's tier and attacks.
-			if str(raw.get("LevelSourceType", "")) == "BuffExist_Caster" and caster != null:
+			# A transferred hit effect retains the caster's team and target origin.
+			if caster != null and caster != self:
 				summoner = caster
 				target_key = actor_key
-				if str(summon.get("OriginType", "")) == "NoModify": summon["OriginType"] = "targetPosAndSelfDir"
+				summon["OriginType"] = "targetPosAndSelfDir"
 			for index in range(clampi(int(summon.get("AddSummonUnitQuantity", 1)), 1, 30)):
 				summoner._spawn_summon(str(summon.get("AddSummonUnitId", "")), summoner._clock, summoner.current_action, summoner._current_slot, float(summon.get("InitPosOffset", {}).get("z", 0)), depth + 1, summon, target_key)
 		"EBT_PlayEffect":
@@ -2639,7 +2732,7 @@ func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack:
 				_report("Resource conversion needs system adapter: " + str(entry.id))
 		"EBT_ModifyAttackDef":
 			for key in settings:
-				if key in ["Level", "AttackDefIdList", "HitFeedBack_StopFrameAdd", "ModifyEntity_PhysicEntitySizeAddPercent", "ModifyEntity_PhysicEntityIntervalAddSummonUnitList"]: continue
+				if key in ["Level", "AttackDefIdList", "HitFeedBack_StopFrameAdd", "ModifyEntity_PhysicEntitySizeAddPercent", "ModifyEntity_PhysicEntityIntervalAddSummonUnitList", "DetectionEffectName", "ReplaceEffectName"]: continue
 				var value: Variant = settings[key]
 				if (value is int or value is float) and not is_zero_approx(float(value)) or value is String and not value.is_empty() or value is Array and not value.is_empty():
 					_report("Attack definition modifier requires adapter: %s %s" % [entry.id, key])
@@ -2781,7 +2874,7 @@ func _damage_data(id: int) -> Dictionary:
 	var rows: Array = catalog.get("damage_definitions", {}).get(str(id), [])
 	var fallback: Dictionary = {}
 	for row in rows:
-		if int(row.get("Level", 1)) == 1:
+		if int(row.get("Level", 1)) <= 1:
 			fallback = row
 		elif buff_layers(str(int(row.get("Level", 0)))) > 0:
 			return row
@@ -2799,7 +2892,7 @@ func _settings(definition: Dictionary, source: DungeonCombat = null) -> Dictiona
 		var owner = source if mode == "BuffExist_Caster" and source != null else self
 		var fallback: Dictionary = {}
 		for row in settings:
-			if int(row.get("Level", 0)) == 1:
+			if int(row.get("Level", 0)) <= 1:
 				fallback = row
 			elif owner.buff_layers(str(int(row.get("Level", 0)))) > 0:
 				return row
@@ -2852,10 +2945,11 @@ func _expire_battle_time_scale_windows(cancelled_sequence: int = -1) -> void:
 
 func record_input(slot: int, pressed: bool) -> void:
 	if slot in [2, 3]:
-		custom_properties["InputSkill%d_LongPress" % (slot - 1)] = pressed
-		custom_properties.InputSkill = bool(custom_properties.get("InputSkill1_LongPress", false)) or bool(custom_properties.get("InputSkill2_LongPress", false))
-		custom_properties.InputAttack = pressed
-		if pressed: custom_properties["LastInputAttackKeyName"] = "skill_%d" % (slot - 1)
+		if pressed:
+			custom_properties.InputSkill = true
+			custom_properties["LastInputAttackKeyName"] = "skill_%d" % (slot - 1)
+		elif slot == 2:
+			custom_properties["InputSkill1_LongPress"] = false
 
 func _action(group: String, id: String) -> Dictionary:
 	return _action_index.get(group + "/" + id, {})

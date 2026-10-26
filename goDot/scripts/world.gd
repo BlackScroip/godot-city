@@ -30,6 +30,8 @@ var fighting := false
 var elapsed := 0.0
 var received_hits := 0
 var projectiles: Array[Dictionary] = []
+var pending_attack_entities: Array[Dictionary] = []
+var active_attack_entities: Array[Dictionary] = []
 var _projectile_visual_pool: Array[MeshInstance3D] = []
 var _projectile_state_pool: Array[DungeonProjectile] = []
 var _projectile_mesh: SphereMesh
@@ -87,6 +89,7 @@ var camera_closeup = preload("res://scripts/presentation/camera_closeup.gd").new
 var camp_camera = preload("res://scripts/presentation/camp_camera.gd").new()
 var camp_progression = preload("res://scripts/presentation/camp_progression.gd").new()
 var camp_decorations = preload("res://scripts/presentation/camp_decorations.gd").new()
+var camp_training = preload("res://scripts/camp_training.gd").new()
 var _camp_destination := ""
 var _camp_destination_page := ""
 var _camp_stall_time := 0.0
@@ -94,6 +97,7 @@ var _camp_last_position := Vector3.ZERO
 var _camp_pointer_id := -2
 var _camp_pointer_start := Vector2.ZERO
 var _camp_pointer_marker := ""
+var _camp_pointer_dragged := false
 var _camp_focus_nodes: Dictionary = {}
 var _outcome_camera := false
 var trial_room = preload("res://scripts/trial_room.gd").new()
@@ -228,6 +232,7 @@ func asset_path(kind: String, id: Variant) -> String:
 
 func release_environment() -> void:
 	# Callers may yield a frame here so queued GPU/scene resources retire before loading.
+	camp_training.clear()
 	trial_room.reset()
 	_environment_generation += 1
 	player_transfer.cancel()
@@ -279,6 +284,8 @@ func release_environment() -> void:
 	for projectile in projectiles:
 		_recycle_projectile(projectile)
 	projectiles.clear()
+	pending_attack_entities.clear()
+	active_attack_entities.clear()
 	for unit in summon_units:
 		if is_instance_valid(unit.get("visual")): unit.visual.queue_free()
 	summon_units.clear()
@@ -311,6 +318,9 @@ func load_environment(id: Variant, camp := false) -> void:
 		camp_progression.apply(environment_root, systems.profile.data.buildings)
 		camp_decorations.apply(environment_root, systems.decorations)
 	_load_collisions(path)
+	if camp:
+		var training_marker: Dictionary = camp_training.marker(environment_root)
+		if not training_marker.is_empty(): semantic_markers.append(training_marker)
 	interactions = load("res://scripts/world_interactions.gd").new()
 	interactions.transition_requested.connect(func(context): environment_action.emit("transition", context))
 	interactions.sound_requested.connect(func(name): environment_sound.emit(name))
@@ -325,7 +335,8 @@ func load_environment(id: Variant, camp := false) -> void:
 		if id == 1: enter_room_encounter())
 	interactions.trap_triggered.connect(_environment_trap)
 	interactions.diagnostic_reported.connect(func(context): _diagnostic("Environment: " + str(context)))
-	interactions.setup(environment_root, semantic_markers, {"colliders": markers, "catalog": systems.catalog if systems else null, "is_unlocked": func(id): return systems.is_unlocked(int(id)) if systems else false})
+	interactions.setup(environment_root, semantic_markers, {"colliders": markers, "catalog": systems.catalog if systems else null, "camp": camp, "is_unlocked": func(id): return systems.is_unlocked(int(id)) if systems else false})
+	if camp: _apply_camp_interaction_states()
 	_build_navigation(_camp_navigation_key() if camp else str(id))
 	var angles: Array = environment_entry.get("camera_rotation", [45.0, -45.0])
 	var elevation = deg_to_rad(float(angles[0]))
@@ -352,8 +363,24 @@ func _apply_camp_interaction_states() -> void:
 	if not interactions: return
 	for item in interactions._items.values():
 		var node_name := str(item.marker.get("exported_node_name", ""))
-		if not camp_progression.controls(node_name): continue
-		item.state.enabled = bool(camp_progression.active_nodes.get(node_name, false))
+		var active := bool(camp_progression.active_nodes.get(node_name, true)) and bool(item.data.get("InitActive", item.data.get("IsInitStateActive", true)))
+		var page := str(interactions.prompt_for(item)[1])
+		var npc_id := int(item.data.get("NpcId", 0))
+		if npc_id == 1000: page = "talents"
+		elif npc_id == 1100: page = "weapons"
+		elif npc_id == 1200: page = "archive"
+		elif npc_id == 1300: page = "task_npc"
+		elif npc_id == 1400: page = "storage"
+		elif npc_id == 1500: page = "characters"
+		# The commission board remains interactable while its facility is locked.
+		if systems and page in ["characters", "weapons", "talents", "awakening", "tokens", "storage", "archive", "partners", "work", "meals", "training"]:
+			active = active and bool(systems.camp_feature_status(page).available)
+		elif systems and page == "achievements":
+			active = active and bool(systems.camp_feature_status("talents").available)
+		elif systems and page == "task_npc":
+			active = active and bool(systems.camp_feature_status("tasks").available)
+		elif not camp_progression.controls(node_name): continue
+		item.state.enabled = active
 		interactions._apply(item)
 	for label in environment_root.find_children("*", "Label3D", true, false):
 		if not label.has_meta("camp_marker_id"): continue
@@ -375,6 +402,7 @@ func refresh_camp_progression() -> void:
 		navigation_region.queue_free()
 	_build_navigation(_camp_navigation_key())
 	_event_refresh_at = 0
+	if is_instance_valid(player): camp_training.refresh()
 
 func _load_collisions(path: String) -> void:
 	var sidecar_path = path.trim_suffix(".glb") + ".markers.json"
@@ -511,7 +539,47 @@ func create_player(combat: RefCounted, character_id: int, position_data: Variant
 		presentation.low_quality = low_effects
 		presentation.prepare_combat([combat])
 	snap_camera()
+	if _camp_camera: camp_training.configure(self)
 	return player
+
+func camp_training_status() -> Dictionary:
+	return camp_training.status()
+
+func start_camp_training() -> Dictionary:
+	return camp_training.start()
+
+func end_camp_training() -> Dictionary:
+	return camp_training.finish()
+
+func reset_camp_training() -> Dictionary:
+	return camp_training.reset_statistics()
+
+func clear_training_effects() -> void:
+	if is_instance_valid(player):
+		player.end_action_motion()
+		player.clear_impact_state()
+		player.action_time = 0.0
+		if presentation: presentation.cancel_actor(player)
+	for projectile in projectiles: _recycle_projectile(projectile)
+	projectiles.clear()
+	pending_attack_entities.clear()
+	active_attack_entities.clear()
+	for unit in summon_units:
+		if is_instance_valid(unit.get("visual")): unit.visual.queue_free()
+	summon_units.clear()
+	_battle_scales.clear()
+	_source_stop_hits.clear()
+	_source_stop_projectiles.clear()
+	_refresh_battle_scale()
+	camera_closeup.restore()
+	_camera_impulses.clear()
+	_seen_impacts.clear()
+	_seen_blasts.clear()
+	for number in _numbers:
+		number.node.hide()
+		_number_pool.append(number.node)
+	_numbers.clear()
+	_auto_target = null
 
 func _camera_target(interpolated := false) -> Vector3:
 	var point := to_local(player.get_global_transform_interpolated().origin) if interpolated else player.position
@@ -527,14 +595,15 @@ func snap_camera() -> void:
 	camera.look_at(_camera_focus)
 
 func _camp_facility_available(item: Dictionary) -> bool:
-	return not item.is_empty() and item.state.enabled and not item.state.broken and not item.state.opened and not item.state.used and item.position.y > -10.0 and not str(item.get("page", interactions.prompt_for(item)[1])).is_empty()
+	return not item.is_empty() and interactions.is_interaction_available(item) and item.position.y > -10.0 and not str(interactions.prompt_for(item)[1]).is_empty()
 
 func camp_facility(page: String) -> Dictionary:
 	if not _camp_camera or not interactions: return {}
-	if page == "difficulty": page = "primary"
-	if page == "work": return _camp_marker("camp:work")
+	page = {"difficulty": "primary", "recruit": "characters", "weapon_upgrade": "weapons", "partner_skill": "partners", "work_rare": "work", "work_precious": "work"}.get(page, page)
 	for item in interactions._items.values():
 		if page == "talents" and int(item.data.get("NpcId", 0)) == 1000 and _camp_facility_available(item): return item
+		if page in ["treasure", "chests", "storage"] and int(item.data.get("NpcId", 0)) == 1400 and _camp_facility_available(item): return item
+		if page == "history" and str(interactions.prompt_for(item)[1]) == "achievements" and _camp_facility_available(item): return item
 		if _camp_facility_available(item) and str(interactions.prompt_for(item)[1]) == page: return item
 	return {}
 
@@ -548,9 +617,8 @@ func _camp_focus_node(source_name: String) -> Node3D:
 func _camp_marker(marker_id: String) -> Dictionary:
 	if not interactions: return {}
 	if marker_id == "camp:work":
-		var node := _camp_focus_node("PosChecker_符文石")
-		if node:
-			return {"id": marker_id, "page": "work", "position": node.global_position, "data": {}, "marker": {}, "state": {"enabled": true, "broken": false, "opened": false, "used": false}}
+		for item in interactions._items.values():
+			if str(item.marker.get("Type", "")) == "EEUT_Special_MonsterWork": return item
 	return interactions._items.get(marker_id, {})
 
 func focus_camp_facility(page: String, duration := 2.4) -> bool:
@@ -576,16 +644,16 @@ func focus_camp_building(building_id: int, stage: int, duration := 2.4) -> bool:
 func navigate_to_camp_facility(page: String) -> bool:
 	var item := camp_facility(page)
 	var accepted := _navigate_to_camp_marker(str(item.get("id", "")))
-	if accepted and page in ["work", "talents"]: _camp_destination_page = page
+	if accepted and page in ["work", "talents", "treasure", "chests", "storage", "training", "history"]: _camp_destination_page = page
 	return accepted
 
 func _navigate_to_camp_marker(marker_id: String) -> bool:
-	if not _camp_camera or not interactions or not is_instance_valid(player) or paused or _background: return false
+	if not _camp_camera or not interactions or not is_instance_valid(player) or player.dead or paused or _background or (hud and hud.modal_open): return false
 	var item := _camp_marker(marker_id)
 	if not _camp_facility_available(item): return false
 	camp_camera.focus_remaining = 0.0
-	_camp_destination = marker_id
-	_camp_destination_page = str(item.get("page", ""))
+	_camp_destination = str(item.id)
+	_camp_destination_page = ""
 	_camp_stall_time = 0.0
 	_camp_last_position = player.position
 	player.navigation_timer = 0.0
@@ -596,18 +664,27 @@ func _cancel_camp_navigation() -> void:
 	_camp_destination_page = ""
 	_camp_stall_time = 0.0
 
+func interact_camp_marker(marker_id: String) -> Dictionary:
+	if not _camp_camera or not interactions or not is_instance_valid(player) or player.dead or paused or _background or (hud and hud.modal_open):
+		return {"success": false, "reason": "interaction_paused"}
+	var item := _camp_marker(marker_id)
+	if item.is_empty() or not interactions.is_interaction_available(item) or item.position.y <= -10.0: return {"success": false, "reason": "unavailable"}
+	if not interactions.can_interact_at(str(item.id), player.position): return {"success": false, "reason": "out_of_range"}
+	_cancel_camp_navigation()
+	return interactions.interact(str(item.id))
+
 func _camp_navigation_velocity(delta: float) -> Vector3:
 	if _camp_destination.is_empty(): return Vector3.ZERO
 	var item := _camp_marker(_camp_destination)
 	if not _camp_facility_available(item):
 		_cancel_camp_navigation()
 		return Vector3.ZERO
-	if player.position.distance_to(item.position) <= 2.65:
+	if interactions.can_interact_at(str(item.id), player.position):
 		var destination := _camp_destination
 		var page := _camp_destination_page
 		_cancel_camp_navigation()
 		if not page.is_empty(): world_message.emit("camp_page", {"page": page})
-		else: interactions.interact(destination)
+		else: interact_camp_marker(destination)
 		return Vector3.ZERO
 	_camp_stall_time = _camp_stall_time + delta if player.position.distance_squared_to(_camp_last_position) < 0.00001 else 0.0
 	_camp_last_position = player.position
@@ -638,6 +715,12 @@ func camp_marker_at_screen(point: Vector2) -> String:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not _camp_camera or paused or _background or (hud and hud.modal_open): return
+	if event is InputEventScreenDrag and event.index == _camp_pointer_id:
+		_camp_pointer_dragged = _camp_pointer_dragged or event.position.distance_to(_camp_pointer_start) > 18.0
+		return
+	if event is InputEventMouseMotion and _camp_pointer_id == -1:
+		_camp_pointer_dragged = _camp_pointer_dragged or event.position.distance_to(_camp_pointer_start) > 18.0
+		return
 	if event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
 		camp_camera.zoom(-1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.0)
 		get_viewport().set_input_as_handled()
@@ -655,14 +738,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		point = event.position
 	else: return
 	if pressed:
+		if _camp_pointer_id != -2: return
 		_camp_pointer_id = pointer
 		_camp_pointer_start = point
 		_camp_pointer_marker = camp_marker_at_screen(point)
+		_camp_pointer_dragged = false
 	elif pointer == _camp_pointer_id:
 		var marker := _camp_pointer_marker
+		var dragged: bool = _camp_pointer_dragged or (event is InputEventScreenTouch and event.canceled)
 		_camp_pointer_id = -2
 		_camp_pointer_marker = ""
-		if not marker.is_empty() and point.distance_to(_camp_pointer_start) <= 18.0 and camp_marker_at_screen(point) == marker:
+		_camp_pointer_dragged = false
+		if not dragged and not marker.is_empty() and point.distance_to(_camp_pointer_start) <= 18.0 and camp_marker_at_screen(point) == marker:
 			if _navigate_to_camp_marker(marker): get_viewport().set_input_as_handled()
 
 func _update_camp_camera(delta: float, hold_focus := false) -> void:
@@ -912,11 +999,12 @@ func prepare_feedback_rendering() -> void:
 
 func use_skill(slot: int, pressed := true) -> Dictionary:
 	var result: Dictionary
-	if not player or player.dead or paused or _background or (hud and hud.modal_open): result = {"success": false, "status": "rejected"}
+	if not player or player.dead or paused or _background or (hud and hud.modal_open) or (_camp_camera and not camp_training.active): result = {"success": false, "status": "rejected"}
 	else:
 		if pressed:
 			_release_auto_heavy()
 			_automatic_action = false
+			if slot == 0 and auto_attack_enabled: player.combat.request_attack(4, false)
 		result = intent.attack_button(player.combat, pressed) if slot == 0 else intent.request(player.combat, slot, pressed)
 	skill_request_resolved.emit(slot, result)
 	return result
@@ -927,6 +1015,10 @@ func set_attack_mode(mode: String) -> void:
 	_release_auto_heavy()
 	_automatic_action = false
 	auto_attack_mode = normalized
+	_auto_attack = 0.0
+
+func cancel_skill(slot: int) -> void:
+	if is_instance_valid(player): intent.cancel_button(player.combat, slot)
 
 func _release_auto_heavy() -> void:
 	if not _automatic_heavy_held: return
@@ -940,6 +1032,7 @@ func clear_input() -> void:
 	_cancel_camp_navigation()
 	_camp_pointer_id = -2
 	_camp_pointer_marker = ""
+	_camp_pointer_dragged = false
 	_release_auto_heavy()
 	intent.clear(player.combat if is_instance_valid(player) else null)
 	if player:
@@ -947,8 +1040,8 @@ func clear_input() -> void:
 		player.locomotion = Vector3.ZERO
 	if hud:
 		hud.joystick._reset()
-		for key in hud.skill_buttons: key.release()
-		hud.attack_mode_button.release()
+		for key in hud.skill_buttons: key.release(true)
+		hud.attack_mode_button.release(true)
 
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_APPLICATION_PAUSED]:
@@ -1008,7 +1101,7 @@ func _execute_player(slot: int, automatic := false, selected_target: DungeonActo
 	_automatic_action = automatic
 	if slot == 1:
 		player.face_direction(intent.dodge_direction(player.desired_velocity, player.facing))
-		intent.clear()
+		intent.heavy_held = false
 	elif target: player.face_direction(target.position - player.position)
 	return true
 
@@ -1080,6 +1173,7 @@ func _physics_process(delta: float) -> void:
 	spirit_followers.sync_from_run(systems, player)
 	var stopped = paused or _background or (hud and hud.modal_open)
 	if not stopped: _advance_battle_scale(delta * simulation_scale)
+	var input_delta = delta
 	delta *= simulation_scale
 	spirit_followers.advance(delta, player, stopped)
 	if stopped and not _input_suspended: clear_input()
@@ -1092,6 +1186,7 @@ func _physics_process(delta: float) -> void:
 		for actor in actors:
 			if is_instance_valid(actor): actor.desired_velocity = Vector3.ZERO
 		return
+	camp_training.advance(delta)
 	_physics_serial += 1
 	_prune_source_stop_hits()
 	_tick_room_sequence(delta)
@@ -1133,7 +1228,7 @@ func _physics_process(delta: float) -> void:
 		if not _movement_allows_auto_attack(_auto_target):
 			player.combat.cancel_normal_attack()
 			_automatic_action = false
-	_tick_player_input(delta)
+	_tick_player_input(input_delta)
 	var monster_indices: Dictionary = {}
 	_warn_budget("actors", actors.size(), FEEL.actor_warning_budget)
 	for actor in actors.duplicate():
@@ -1159,7 +1254,10 @@ func _physics_process(delta: float) -> void:
 		actor.previous_position = actor.position
 		actor.combat.custom_properties["InputMove"] = actor.desired_velocity.length_squared() > 0.01
 		actor.combat.notify_gameplay("move", {"moving": actor.desired_velocity.length_squared() > 0.01, "distance": travelled, "delta": delta})
-		if not actor.is_player:
+		if actor.get_meta("camp_training", false):
+			actor.desired_velocity = Vector3.ZERO
+			actor.combat._tick_enemy_interrupts()
+		elif not actor.is_player:
 			var direction = player.position - actor.position
 			direction.y = 0
 			var monster_index = int(monster_indices.get(actor.actor_id, 0))
@@ -1174,6 +1272,7 @@ func _physics_process(delta: float) -> void:
 	for actor in actors:
 		if is_instance_valid(actor): actor._physics_process(delta)
 	presentation.sync_buffs(actors)
+	_tick_attack_entities(delta)
 	_tick_projectiles(delta)
 	_tick_summons(delta)
 	if interactions:
@@ -1186,7 +1285,7 @@ func _physics_process(delta: float) -> void:
 func _tick_player_input(delta: float) -> void:
 	intent.advance_hold(player.combat, delta)
 	if _automatic_heavy_held:
-		if player.dead or intent.manual_attack_active() or not fighting or not _movement_allows_auto_attack(_attack_target(4)):
+		if player.dead or intent.manual_attack_active() or not (fighting or camp_training.active) or not _movement_allows_auto_attack(_attack_target(4)):
 			_release_auto_heavy()
 		elif player.combat.busy <= 0:
 			_release_auto_heavy()
@@ -1194,12 +1293,18 @@ func _tick_player_input(delta: float) -> void:
 	if requested >= 0:
 		var executed = _execute_player(requested)
 		skill_request_resolved.emit(requested, {"success": executed, "status": "executed" if executed else "rejected"})
-	elif not intent.manual_attack_active() and auto_attack_enabled and fighting and not player.dead and player.combat.busy <= 0 and player.dodge_elapsed < 0:
+	elif not intent.manual_attack_active() and auto_attack_enabled and (fighting or camp_training.active) and not player.dead and player.dodge_elapsed < 0:
 		var slot = 4 if auto_attack_mode == "heavy" else 0
-		if player.combat.input_block_reason(slot).is_empty() and player.combat.cooldowns[slot] <= 0:
-			var target = _attack_target(slot)
-			if _movement_allows_auto_attack(target) and _execute_player(slot, true, target):
+		var target = _attack_target(slot)
+		if not _movement_allows_auto_attack(target): return
+		if slot == 0:
+			_auto_attack += delta
+			if _auto_attack + 0.000001 < 0.25: return
+		if player.combat.busy <= 0 and player.combat.input_block_reason(slot).is_empty() and player.combat.cooldowns[slot] <= 0:
+			if slot == 0: player.combat.request_attack(4, false)
+			if _execute_player(slot, true, target):
 				_automatic_heavy_held = slot == 4
+				if slot == 0: _auto_attack = 0.0
 
 func _line_blocked(actor: DungeonActor, distance_squared: float) -> bool:
 	var key := actor.get_instance_id()
@@ -1282,10 +1387,7 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 		"hit":
 			if actor.get_meta("chest_trial", false) and trial_room.consume_hit(event): return
 			presentation.attack_emitted(actor, event, _hit_origin(actor, event))
-			var definition: Dictionary = event.get("definition", {})
-			var raw = _raw_definition(definition)
-			if raw.get("EntityType", "EET_Physical" if definition.get("projectile", false) else "") == "EET_Physical": _projectile(actor, event)
-			else: _hit_area(actor, event)
+			_start_attack_entity(actor, event)
 		"summon": _create_summon(actor, event)
 		"summon_trigger_effect":
 			var raw: Dictionary = event.get("definition", {})
@@ -1300,17 +1402,11 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 			if actor.is_player: spirit_followers.trigger_message(message, actor, presentation)
 			for recipient in actors:
 				if is_instance_valid(recipient) and not recipient.dead: recipient.combat.notify_gameplay("message", {"name": message, "argument": definition.get("MsgArg1", definition.get("Arg1", ""))})
-			world_message.emit(message, definition)
+			if not camp_training.active: world_message.emit(message, definition)
 		"buff_effect":
 			presentation.buff_effect(actor, event)
 		"area":
-			var center = actor.position + actor.facing * float(event.get("forward_offset", 0))
-			event["impact_origin"] = DungeonProjectile._array(center)
-			for target in actors:
-				if not is_instance_valid(target) or target.dead: continue
-				_bind_impact(target)
-				target.combat.apply_area(event, actor.is_player == target.is_player, target.position.distance_squared_to(center), actor == target)
-				if target.combat.health <= 0: _die(target)
+			_consume_area(actor, event)
 		"command":
 			var command: Dictionary = event.get("command", event)
 			if int(event.get("sequence", -1)) != actor.combat._cast_sequence: return
@@ -1332,24 +1428,135 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 		"diagnostic":
 			_diagnostic(str(event.get("message", "")))
 
+func _consume_area(actor: DungeonActor, event: Dictionary) -> void:
+	var host = _actor_by_key(str(event.get("host_key", "")))
+	if not is_instance_valid(host): host = actor
+	var definition: Dictionary = event.get("definition", {})
+	var center = host.position + host.facing * float(event.get("forward_offset", 0))
+	event["impact_origin"] = DungeonProjectile._array(center)
+	var radius_squared = pow(maxf(0.0, float(definition.get("radius", 0))), 2)
+	var targets: Array[DungeonActor] = []
+	for target in actors:
+		if not is_instance_valid(target) or target.dead: continue
+		if target == host:
+			if not bool(definition.get("includeSelf", false)): continue
+		elif (target.is_player == host.is_player) != bool(definition.get("sameCamp", false)): continue
+		if target.position.distance_squared_to(center) <= radius_squared: targets.append(target)
+	var maximum = int(definition.get("maxTargets", -1))
+	if bool(definition.get("randomTargets", false)) and targets.size() > 1:
+		var source = event.get("source", host.combat)
+		if not source is DungeonCombat: source = host.combat
+		# Use the saved combat RNG so a restored random-target skill is reproducible.
+		for index in range(targets.size() - 1, 0, -1):
+			var chosen = mini(index, int(source._random() * (index + 1)))
+			var previous = targets[index]
+			targets[index] = targets[chosen]
+			targets[chosen] = previous
+	if maximum >= 0 and targets.size() > maximum: targets.resize(maximum)
+	for target in targets:
+		if target.get_meta("camp_training", false) and not camp_training.active: continue
+		_bind_impact(target)
+		target.combat.apply_area(event, host.is_player == target.is_player, target.position.distance_squared_to(center), host == target)
+		if target.combat.health <= 0: _die(target)
+
+func _start_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
+	var raw = _raw_definition(hit.get("definition", {}))
+	var delay = maxf(0.0, float(raw.get("EntityProperty", {}).get("Delay", 0)))
+	if delay <= 0:
+		_activate_attack_entity(actor, hit)
+		return
+	var saved = hit.duplicate(true)
+	saved.erase("source")
+	saved["entity_origin"] = DungeonProjectile._array(_hit_origin(actor, hit))
+	saved["entity_facing"] = DungeonProjectile._array(_hit_facing(actor, hit))
+	pending_attack_entities.append({"owner": actor.combat.actor_key, "remaining": delay, "hit": saved})
+
+func _tick_attack_entities(delta: float) -> void:
+	if delta <= 0: return
+	for entry in active_attack_entities.duplicate():
+		var source = _actor_by_key(str(entry.owner))
+		if not is_instance_valid(source):
+			active_attack_entities.erase(entry)
+			continue
+		var raw = _raw_definition(entry.hit.get("definition", {}))
+		if bool(raw.get("DeadActionChanged", false)) and int(entry.hit.get("sequence", -1)) != source.combat._cast_sequence:
+			active_attack_entities.erase(entry)
+			continue
+		entry.age = float(entry.age) + delta
+		if float(entry.age) + 0.000001 >= float(entry.life):
+			_finish_attack_entity(source, entry.hit)
+			active_attack_entities.erase(entry)
+			continue
+		entry.hit["entity_age"] = entry.age
+		_hit_area(source, entry.hit)
+	for entry in pending_attack_entities.duplicate():
+		var source = _actor_by_key(str(entry.owner))
+		if not is_instance_valid(source):
+			pending_attack_entities.erase(entry)
+			continue
+		var raw = _raw_definition(entry.hit.get("definition", {}))
+		if bool(raw.get("DeadActionChanged", false)) and int(entry.hit.get("sequence", -1)) != source.combat._cast_sequence:
+			pending_attack_entities.erase(entry)
+			continue
+		entry.remaining = maxf(0.0, float(entry.remaining) - delta)
+		if float(entry.remaining) > 0.000001: continue
+		pending_attack_entities.erase(entry)
+		_activate_attack_entity(source, entry.hit)
+
+func _activate_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
+	presentation.entity_activated(actor, hit, _hit_origin(actor, hit), _hit_facing(actor, hit))
+	var definition: Dictionary = hit.get("definition", {})
+	var raw = _raw_definition(definition)
+	if raw.get("EntityType", "EET_Physical" if definition.get("projectile", false) else "") == "EET_Physical": _projectile(actor, hit)
+	else:
+		var saved = hit.duplicate(true)
+		saved.erase("source")
+		saved["entity_origin"] = DungeonProjectile._array(_hit_origin(actor, hit))
+		saved["entity_facing"] = DungeonProjectile._array(_hit_facing(actor, hit))
+		saved["entity_contacts"] = {}
+		saved["entity_age"] = 0.0
+		_hit_area(actor, saved)
+		var lifetime = maxf(0.0, float(raw.get("EntityProperty", {}).get("CheckTime", 0)))
+		if lifetime > 0: active_attack_entities.append({"owner": actor.combat.actor_key, "age": 0.0, "life": lifetime, "hit": saved})
+		else: _finish_attack_entity(actor, saved)
+
+func _finish_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
+	var raw = _raw_definition(hit.get("definition", {}))
+	var point = vector(hit.get("impact_origin", DungeonProjectile._array(_hit_origin(actor, hit))))
+	var ending: Dictionary = raw.get("EntityProperty", {}).get("AddSummonUnitDefOnEnd", {}).duplicate(true)
+	var yaw := deg_to_rad(float(raw.get("EmitProperty", {}).get("EmitRotation", {}).get("y", 0)))
+	ending["world_facing"] = DungeonProjectile._array(_hit_facing(actor, hit).rotated(Vector3.UP, yaw))
+	_spawn_from_definition(actor, ending, point, hit)
+
 func _hit_area(source: DungeonActor, hit: Dictionary, area := false) -> void:
 	var definition: Dictionary = hit.get("definition", hit.get("area", {}))
 	var raw = _raw_definition(definition)
 	var entity: Dictionary = raw.get("EntityProperty", {})
 	var width = maxf(0, float(definition.get("width", 1)))
 	var length_value = maxf(0, float(definition.get("length", 1)))
-	var center = _hit_origin(source, hit) + source.facing * (float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0)))
-	var hit_facing = vector(hit.get("trial_facing", source.facing))
+	var facing = _hit_facing(source, hit)
+	var center = _hit_origin(source, hit) + facing * (float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0)))
+	var hit_facing = vector(hit.get("trial_facing", facing))
 	if not source.is_player:
 		var emit: Dictionary = raw.get("EmitProperty", {})
 		var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
 		var offset = vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * (vector(emit.get("AfterRotateEmitOffset", {})) + Vector3(0, 0, float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0))))
-		center = _hit_origin(source, hit) + DungeonProjectile.orient(offset, source.facing)
+		center = _hit_origin(source, hit) + DungeonProjectile.orient(offset, facing)
 		hit_facing = hit_facing.rotated(Vector3.UP, yaw)
 	hit["impact_origin"] = DungeonProjectile._array(center)
 	hit["impact_radius"] = maxf(width, length_value) * 0.5
 	for target in actors:
 		if not is_instance_valid(target) or target.dead or target.is_player == source.is_player: continue
+		var contacts: Dictionary = hit.get("entity_contacts", {})
+		var target_key = str(target.combat.actor_key)
+		var previous: Dictionary = contacts.get(target_key, {})
+		if hit.has("entity_contacts") and not previous.is_empty():
+			if not bool(entity.get("CheckTimeCauseContinuousTrigger", false)): continue
+			var frame_limit = int(entity.get("CheckActiveEffectTargetMaxCount", 0))
+			var attack_limit = int(raw.get("EffectActiveTotalCountToEachUnit", 999999))
+			var maximum = mini(frame_limit if frame_limit > 0 else 2147483647, attack_limit if attack_limit > 0 else 2147483647)
+			var interval = maxf(float(entity.get("CheckActiveEffectTargetCDTime", 0)), float(raw.get("EffectActiveIntervalToEachUnit", 0)))
+			if int(previous.count) >= maximum or float(hit.get("entity_age", 0)) - float(previous.at) + 0.000001 < interval: continue
 		var difference = target.position - center
 		difference.y = 0
 		var intersects = difference.length() <= maxf(width, length_value) * 0.5 + 0.35 if definition.get("shape", "Cube") == "Sphere" else absf(difference.dot(hit_facing)) <= length_value * 0.5 + 0.35 and absf(difference.dot(Vector3.UP.cross(hit_facing))) <= width * 0.5 + 0.35
@@ -1357,7 +1564,13 @@ func _hit_area(source: DungeonActor, hit: Dictionary, area := false) -> void:
 			var degrees = float(entity.get("Degree", 360))
 			intersects = difference.length() <= float(entity.get("Radius", maxf(width, length_value) * 0.5)) + 0.35 and (degrees >= 359 or difference.length() < 0.4 or absf(rad_to_deg(hit_facing.signed_angle_to(difference.normalized(), Vector3.UP))) <= degrees * 0.5)
 		if intersects:
-			_apply_hit(source, target, hit)
+			# Settled hit payloads contain live caster references and target-specific data.
+			var contact = hit.duplicate(true)
+			if hit.has("entity_contacts"): contact["contact"] = int(previous.get("count", 0))
+			_apply_hit(source, target, contact)
+			if contact.has("emission"): hit["emission"] = contact.emission
+			if hit.has("entity_contacts") and bool(contact.get("resolved_accepted", false)):
+				contacts[target_key] = {"count": int(previous.get("count", 0)) + 1, "at": float(hit.get("entity_age", 0))}
 	if interactions:
 		var tenacities := _environment_tenacities(hit)
 		var hit_id := _environment_hit_id(source, hit)
@@ -1400,6 +1613,7 @@ func _environment_hit_id(source: DungeonActor, hit: Dictionary) -> String:
 
 func _apply_hit(source: DungeonActor, target: DungeonActor, hit: Dictionary) -> void:
 	if target.dead or target.invulnerability > 0: return
+	if target.get_meta("camp_training", false) and not camp_training.active: return
 	_bind_impact(target)
 	hit["source"] = source.combat
 	if not hit.has("emission"):
@@ -1428,6 +1642,7 @@ func _on_impact(hit: Dictionary, target: DungeonActor) -> void:
 	hit["profile"] = profile
 	hit["attack_instance"] = instance
 	var damage = float(hit.get("resolved_damage", 0))
+	if camp_training.active: camp_training.record_impact(hit, target)
 	if bool(profile.get("source_only", false)):
 		_register_source_hit_stop(hit, source, profile.get("source_feedback", {}))
 	if FEEL.impact_enabled:
@@ -1447,8 +1662,8 @@ func _on_impact(hit: Dictionary, target: DungeonActor) -> void:
 				_queue_impact_shake(profile, point)
 	if damage > 0:
 		_damage_number(target.position + Vector3.UP * 1.8, damage, target.is_player)
-		if target.is_player: received_hits += 1
-	impact_confirmed.emit(hit)
+		if target.is_player and not camp_training.active: received_hits += 1
+	if not camp_training.active and not target.get_meta("camp_training", false): impact_confirmed.emit(hit)
 
 func _queue_source_shakes(shakes: Array) -> void:
 	for definition in shakes:
@@ -1481,10 +1696,11 @@ func _projectile(source: DungeonActor, hit: Dictionary) -> void:
 	var origin = _hit_origin(source, hit)
 	var target_point = target.position if target else origin + source.facing * 8
 	var raw := _raw_definition(hit.get("definition", {}))
-	var direction = DungeonProjectile.emission_facing(raw, int(hit.get("emit_index", 0)), source.facing, target_point - origin)
+	var facing = _hit_facing(source, hit)
+	var direction = DungeonProjectile.emission_facing(raw, int(hit.get("emit_index", 0)), facing, target_point - origin)
 	var dummy := str(raw.get("EmitProperty", {}).get("DummyData", {}).get("DummyType", ""))
 	hit["owner_height"] = 0.0 if dummy == "Unit_FootBottom" else 0.75
-	state.configure(hit, origin + Vector3.UP * float(hit.owner_height) + source.facing * float(hit.get("forward_offset", 0)), direction, target_point, source.facing)
+	state.configure(hit, origin + Vector3.UP * float(hit.owner_height) + facing * float(hit.get("forward_offset", 0)), direction, target_point, facing)
 	state.source_key = str(source.combat.actor_key)
 	state.source_player = source.is_player
 	state.target_key = str(target.combat.actor_key) if target else ""
@@ -1626,6 +1842,7 @@ func _cancel_attached_projectiles(source: DungeonActor, sequence: int, keep := f
 		projectiles.erase(projectile)
 
 func _apply_feedback(source: DungeonActor, target: DungeonActor, hit: Dictionary) -> void:
+	if target.get_meta("camp_training", false): return
 	var profile: Dictionary = hit.profile if hit.has("profile") else ImpactProfiles.resolve(hit, source.combat if source else null)
 	# Monster hit reactions are settled through source tenacity and action interrupts.
 	if not target.is_player and profile.category != "continuous": return
@@ -1751,6 +1968,7 @@ func _tick_monster_spawns() -> void:
 	spawn_wave([request.spawn], int(request.difficulty), int(request.seed))
 
 func _hit_origin(source: DungeonActor, hit: Dictionary) -> Vector3:
+	if hit.has("entity_origin"): return vector(hit.entity_origin)
 	if hit.has("trial_origin"): return vector(hit.trial_origin)
 	var summon_id = str(hit.get("summon_id", ""))
 	if not summon_id.is_empty():
@@ -1779,15 +1997,22 @@ func _resolve_origin(source: DungeonActor, event: Dictionary) -> Vector3:
 		if target and str(value.get("OriginType", "")) == "targetPosAndSelfDir": return target.position
 	return source.position
 
+func _hit_facing(source: DungeonActor, event: Dictionary) -> Vector3:
+	if event.has("entity_facing"): return vector(event.entity_facing)
+	var origin: Dictionary = event.get("origin", {}) if event.get("origin", {}) is Dictionary else {}
+	return vector(origin.world_facing) if origin.has("world_facing") else source.facing
+
 func _create_summon(source: DungeonActor, event: Dictionary) -> void:
 	var definition: Dictionary = event.get("definition", {})
 	var raw: Dictionary = definition.get("raw_data", {})
 	var origin = _resolve_origin(source, event)
 	var origin_def: Dictionary = event.get("origin", {}) if event.get("origin", {}) is Dictionary else {}
 	var offset = vector(raw.get("InitPosOffset", {})) + vector(origin_def.get("InitPosOffset", {}))
+	var facing = _hit_facing(source, event)
 	if origin_def.is_empty() or (origin_def.size() == 1 and origin_def.has("_summon_token")): offset += Vector3(0, 0, float(event.get("forward_offset", 0)))
 	_summon_serial += 1
-	var unit = {"serial": _summon_serial, "id": str(event.id), "owner": str(source.combat.actor_key), "position": origin + DungeonProjectile.orient(offset, source.facing), "offset": offset, "age": 0.0, "life": maxf(0.05, float(event.get("lifetime", 1))), "next": 0.0, "raw": raw, "type": str(definition.get("type", "")), "triggered": false, "children": {}, "action": event.get("action", source.combat.current_action), "slot": event.get("slot", source.combat._current_slot), "sequence": event.get("sequence", source.combat._cast_sequence)}
+	var unit = {"serial": _summon_serial, "id": str(event.id), "owner": str(source.combat.actor_key), "position": origin + DungeonProjectile.orient(offset, facing), "offset": offset, "age": 0.0, "life": maxf(0.05, float(event.get("lifetime", 1))), "next": 0.0, "raw": raw, "type": str(definition.get("type", "")), "triggered": false, "children": {}, "action": event.get("action", source.combat.current_action), "slot": event.get("slot", source.combat._current_slot), "sequence": event.get("sequence", source.combat._cast_sequence)}
+	if origin_def.has("world_facing"): unit["fixed_facing"] = DungeonProjectile._array(facing)
 	unit["source_heavy"] = ImpactProfiles.is_source_heavy(event, source.combat)
 	unit["token"] = str(origin_def.get("_summon_token", ""))
 	var limit = int(raw.get("MaxExistCount", -1))
@@ -1796,7 +2021,7 @@ func _create_summon(source: DungeonActor, event: Dictionary) -> void:
 		if previous_unit.id == unit.id and previous_unit.owner == unit.owner: existing.append(previous_unit)
 	while limit > 0 and existing.size() >= limit: _dispose_summon(existing.pop_front(), false)
 	if not source.is_player or not spirit_followers.handles_prefab(str(raw.get("Prefab", ""))):
-		unit["effect_token"] = presentation.summon_started(source, raw, unit.position, source.facing, unit.source_heavy)
+		unit["effect_token"] = presentation.summon_started(source, raw, unit.position, facing, unit.source_heavy)
 	if not unit.source_heavy and unit.type == "ESUT_PickupableItem" and int(unit.get("effect_token", 0)) == 0:
 		var mesh = Sprite3D.new()
 		mesh.texture = DungeonStyle.texture("material:" + str(unit.id))
@@ -1829,7 +2054,7 @@ func _tick_summons(delta: float) -> void:
 			"MoveToNearestEnemyTarget":
 				var target = _nearest_opponent(owner, unit.position)
 				if target: unit.position = unit.position.move_toward(target.position, float(raw.get("MoveToNearestTargetMaxSpeed", 8)) * delta)
-		presentation.summon_updated(int(unit.get("effect_token", 0)), unit.position, owner.facing)
+		presentation.summon_updated(int(unit.get("effect_token", 0)), unit.position, vector(unit.get("fixed_facing", owner.facing)))
 		if unit.type == "ESUT_PickupableItem" and player and not player.dead and player.position.distance_to(unit.position) <= float(raw.get("PickUpRange", 2)):
 			_apply_raw_buff(player.combat, raw.get("BuffTrigger_Picker", {}), owner.combat)
 			player.combat.notify_gameplay("pickup", {"id": unit.id})
@@ -1867,7 +2092,7 @@ func _monster_field_feedback(unit: Dictionary, raw: Dictionary, interval: float)
 		toward.y = 0
 		if toward.length_squared() < 0.00001 or toward.length() > radius: continue
 		var degrees = float(entity.get("Degree", 360))
-		if degrees < 359 and toward.length() > 0.01 and absf(rad_to_deg(owner.facing.signed_angle_to(toward.normalized(), Vector3.UP))) > degrees * 0.5: continue
+		if degrees < 359 and toward.length() > 0.01 and absf(rad_to_deg(vector(unit.get("fixed_facing", owner.facing)).signed_angle_to(toward.normalized(), Vector3.UP))) > degrees * 0.5: continue
 		_apply_feedback(null, target, {"definition": {"raw": JSON.stringify(raw)}, "impact_origin": DungeonProjectile._array(unit.position), "profile": {"category": "continuous", "distance": absf(power) * FEEL.monster_field_pull_per_power, "travel": interval, "stagger": 0.0}})
 
 func _summon_area(unit: Dictionary, owner: DungeonActor, phase: String) -> void:
@@ -1927,9 +2152,11 @@ func transient_snapshot() -> Dictionary:
 		motion_states[str(actor.combat.actor_key)] = {"sequence": actor.combat._cast_sequence, "duration": actor.action_timeline_duration, "cursor": actor.action_cursor, "speed": actor.action_speed, "events": actor.action_motion.duplicate(true), "target": str(actor.action_target.combat.actor_key) if is_instance_valid(actor.action_target) else "", "facing": DungeonProjectile._array(actor.facing), "animation": str(actor.animation.current_animation) if actor.animation else "", "animation_position": actor.animation.current_animation_position if actor.animation else 0.0}
 		motion_states[str(actor.combat.actor_key)].merge({"born_position": DungeonProjectile._array(actor.born_position), "born_facing": DungeonProjectile._array(actor.born_facing), "field_center": DungeonProjectile._array(actor.field_center), "animation_state_speed": actor.animation_state_speed})
 	var source_stop := {"hits": _source_stop_hits.keys(), "register": _battle_scales.get("UnitStopFrame", {}).duplicate()}
-	return {"projectiles": bullets, "summons": units, "source_hit_stop": source_stop, "actor_serial": _actor_serial, "summon_serial": _summon_serial, "ground_loot": ground_loot.snapshot(), "action_motion": motion_states, "monster_spawn_queue": monster_spawn_queue.duplicate(true), "wave_spawns": wave_spawn_queue.duplicate(true), "wave_spawn_wait": _wave_spawn_wait, "wave_gate": _wave_gate_remaining, "wave_clear_wait": _wave_clear_remaining, "wave_final": _wave_final, "chest_trial": trial_room.snapshot(), "room_flow": {"stage": room_stage, "fight_type": room_fight_type, "remaining": _room_stage_wait, "entry_wave": _entry_wave.duplicate(true)}}
+	return {"projectiles": bullets, "pending_attack_entities": pending_attack_entities.duplicate(true), "active_attack_entities": active_attack_entities.duplicate(true), "summons": units, "source_hit_stop": source_stop, "actor_serial": _actor_serial, "summon_serial": _summon_serial, "ground_loot": ground_loot.snapshot(), "action_motion": motion_states, "monster_spawn_queue": monster_spawn_queue.duplicate(true), "wave_spawns": wave_spawn_queue.duplicate(true), "wave_spawn_wait": _wave_spawn_wait, "wave_gate": _wave_gate_remaining, "wave_clear_wait": _wave_clear_remaining, "wave_final": _wave_final, "chest_trial": trial_room.snapshot(), "room_flow": {"stage": room_stage, "fight_type": room_fight_type, "remaining": _room_stage_wait, "entry_wave": _entry_wave.duplicate(true)}}
 
 func restore_transients(snapshot: Dictionary) -> void:
+	pending_attack_entities.assign(snapshot.get("pending_attack_entities", []).duplicate(true))
+	active_attack_entities.assign(snapshot.get("active_attack_entities", []).duplicate(true))
 	_source_stop_hits.clear()
 	_battle_scales.erase("UnitStopFrame")
 	var source_stop: Dictionary = snapshot.get("source_hit_stop", {})
@@ -2022,6 +2249,12 @@ func _environment_trap(context: Dictionary) -> void:
 		if actor.combat.health <= 0: _die(actor)
 
 func _die(actor: DungeonActor) -> void:
+	if actor.get_meta("camp_training", false):
+		actor.combat.health = actor.combat.max_health
+		return
+	if actor.is_player and camp_training.active:
+		camp_training.finish("player_exhausted")
+		return
 	if actor.dead: return
 	actor.clear_impact_state()
 	actor.end_action_motion()

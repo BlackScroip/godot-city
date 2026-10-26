@@ -1,0 +1,1058 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "prefab": {
+    "address": "ATPanel_MallPanel",
+    "path": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/ATPanel_MallPanel.prefab",
+    "bundle": 5340
+  },
+  "source": {
+    "member": "assets/yoo/DefaultPackage/5924db57224099111ee5aaf452acabcd.bundle",
+    "sha256": "7acaf03916823adbc3f4baaf890bcf63c5a7b29ab1d3e2e1b4c199649e567e82"
+  },
+  "sprites": [
+    {
+      "name": "背景装饰环",
+      "path": "res://assets/ui/mall/______2c4446c9ff.png",
+      "sprite_path_id": "732784776847690929",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/dd01b7ed17ef95572ae71526f27bae78.bundle",
+        "sha256": "c9b0e70879ca8e66761df0e47a11dd9ecd2d0514de28541de420d8f9f0006539"
+      },
+      "width": 256,
+      "height": 256,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "69282fbd989881b5f876a3848df0d89426d7b42858c1da157ef42c6cd02b2dd1"
+    },
+    {
+      "name": "购买按钮",
+      "path": "res://assets/ui/mall/_____12ad945765.png",
+      "sprite_path_id": "6465876915388501643",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 270,
+      "height": 101,
+      "border": {
+        "x": 100.0,
+        "y": 0.0,
+        "z": 100.0,
+        "w": 0.0
+      },
+      "png_sha256": "88b6d580c6ddf36637381ce91d44670b2daf6b39f97cf962de535a25e7c892d9"
+    },
+    {
+      "name": "货币_底",
+      "path": "res://assets/ui/mall/_____a5692cce8c.png",
+      "sprite_path_id": "8416506778996739775",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 249,
+      "height": 51,
+      "border": {
+        "x": 125.0,
+        "y": 25.0,
+        "z": 124.0,
+        "w": 26.0
+      },
+      "png_sha256": "8637e4e85bc5cf905943031f7a48c503dab670432b5148fe5e811e285ff0381a"
+    },
+    {
+      "name": "30",
+      "path": "res://assets/ui/mall/30.png",
+      "sprite_path_id": "4305161011271669708",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 179,
+      "height": 181,
+      "border": {
+        "x": 90.0,
+        "y": 90.0,
+        "z": 89.0,
+        "w": 91.0
+      },
+      "png_sha256": "c927d7c99b16cdd64f4be616fcd5d73a7e375e808b40754bf8fd00d081e18b4b"
+    },
+    {
+      "name": "白星标",
+      "path": "res://assets/ui/mall/____45d48c752b.png",
+      "sprite_path_id": "-347511828128864971",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      "width": 38,
+      "height": 38,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "8699c7d9416095c140cd356e50cca62a8b6d0006700a47d9e89b784591193c44"
+    },
+    {
+      "name": "16",
+      "path": "res://assets/ui/mall/16.png",
+      "sprite_path_id": "1481679402683038572",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 139,
+      "height": 50,
+      "border": {
+        "x": 50.0,
+        "y": 0.0,
+        "z": 50.0,
+        "w": 0.0
+      },
+      "png_sha256": "2c9c7aee9de5f7db4fea7a643fe7fff27fcf1cee535faeb9642d81052142f467"
+    },
+    {
+      "name": "提示点",
+      "path": "res://assets/ui/mall/____e75be5f55f.png",
+      "sprite_path_id": "3080528424784802588",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "width": 26,
+      "height": 26,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+    },
+    {
+      "name": "特权",
+      "path": "res://assets/ui/mall/___177e014218.png",
+      "sprite_path_id": "8665401804500407554",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 400,
+      "height": 502,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "99b98a731f4cc27779c549398948954fccd76b36249ca6ac89df97ef38a4a8ff"
+    },
+    {
+      "name": "铁宝箱",
+      "path": "res://assets/ui/mall/____7774570ee3.png",
+      "sprite_path_id": "-4509099533434365361",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 255,
+      "height": 244,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "b1ff6cdf8146fa3e4ec8f7da17456aa6bd67f5d80dcb5d6e000c1ac15b99b8f9"
+    },
+    {
+      "name": "客服",
+      "path": "res://assets/ui/mall/___eae0efe236.png",
+      "sprite_path_id": "-5045540851554772619",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 85,
+      "height": 90,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "f2be29cf0643026f7e38f2e17e631b5964248c0c7a4014c1608db71950115cf4"
+    },
+    {
+      "name": "商城",
+      "path": "res://assets/ui/mall/___70a0cb94b2.png",
+      "sprite_path_id": "4510076836863094063",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
+        "sha256": "43247ca44a5d54cf0dcc6cd4272251155a71fa6af48e60c070e2ead9bac77488"
+      },
+      "width": 196,
+      "height": 88,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "9c2badf59a6547447ba56e17c33fa10ac52f932d2fa5befe8ab51b0ddc838e8b"
+    },
+    {
+      "name": "退出按钮",
+      "path": "res://assets/ui/mall/_____395376c50f.png",
+      "sprite_path_id": "-7962153020995228324",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 91,
+      "height": 79,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+    },
+    {
+      "name": "须知",
+      "path": "res://assets/ui/mall/___3195038864.png",
+      "sprite_path_id": "-3264226760608914741",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 50,
+      "height": 50,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "1605d616392871b7965873cf67b90c8248e174ca98f4084676cc0fcd27701eb5"
+    },
+    {
+      "name": "祝福模式Pluscn",
+      "path": "res://assets/ui/mall/____Pluscn_2a4ee8704e.png",
+      "sprite_path_id": "-2995985909672082545",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 352,
+      "height": 190,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "1a4cb67139b48dd5f4cfce11bdc3b14553ffe150b661e6d9fb1253182eb56e33"
+    },
+    {
+      "name": "商店按钮_底",
+      "path": "res://assets/ui/mall/_______dd24d75bc3.png",
+      "sprite_path_id": "-8548341121348774352",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 294,
+      "height": 93,
+      "border": {
+        "x": 101.0,
+        "y": 0.0,
+        "z": 115.0,
+        "w": 0.0
+      },
+      "png_sha256": "54c5ce8ad8391544b6d3c6bf13dbc094491a13dbedc6d74ee0cab02fc562b5ba"
+    },
+    {
+      "name": "暗色按钮",
+      "path": "res://assets/ui/mall/_____b35a0a5c6d.png",
+      "sprite_path_id": "1365846701170589819",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 294,
+      "height": 93,
+      "border": {
+        "x": 101.0,
+        "y": 0.0,
+        "z": 116.0,
+        "w": 0.0
+      },
+      "png_sha256": "410e39625ab0e90fff7d06a55745c5cb26f5d3ebffb558de7514a37b71ecc17c"
+    },
+    {
+      "name": "ATPanel_Mall_Luna",
+      "path": "res://assets/ui/mall/ATPanel_Mall_Luna.png",
+      "sprite_path_id": "7827488993126096524",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 229,
+      "height": 255,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "bccf7ca76a0429c78dc2b7efb640a972117b7109541d785e3dae021797f7d02e"
+    },
+    {
+      "name": "木宝箱",
+      "path": "res://assets/ui/mall/____7a0fa58914.png",
+      "sprite_path_id": "122109957188260473",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 256,
+      "height": 244,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "aa0025a3a93ba2c37494c194ecb1ddc0ddba2d0662cb5dea747b330607c2dbab"
+    },
+    {
+      "name": "祝福模式Breakcn",
+      "path": "res://assets/ui/mall/____Breakcn_614ce0f857.png",
+      "sprite_path_id": "-1064414799177044718",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 352,
+      "height": 146,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "22062420e587e595c6289bb827266c7a0454d2b0955a66a09ad85054eaae1229"
+    },
+    {
+      "name": "Icon_BlessingModePlus",
+      "path": "res://assets/ui/mall/Icon_BlessingModePlus.png",
+      "sprite_path_id": "-6477909770011793654",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      "width": 124,
+      "height": 90,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "efdbc7ee399ded2475630f4151afd6fde57619651a7b0a7ea509f84f3d647b4b"
+    },
+    {
+      "name": "Icon_BlessingModeBreak",
+      "path": "res://assets/ui/mall/Icon_BlessingModeBreak.png",
+      "sprite_path_id": "-4710381455283941613",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      "width": 124,
+      "height": 90,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "b202df54c514ee69db04056f966b9fc53a3c1e8442e6f03beeb54a4a4188ee57"
+    },
+    {
+      "name": "金宝箱",
+      "path": "res://assets/ui/mall/____cd6506fa7f.png",
+      "sprite_path_id": "1705704389505018908",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 256,
+      "height": 245,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "a16804c48371ffb4cc2c9fa56b6613851078bf1c0472a882b8362b98bb6d4a6f"
+    },
+    {
+      "name": "祝福模式标题cn",
+      "path": "res://assets/ui/mall/______cn_8c07237d9b.png",
+      "sprite_path_id": "-4948020621140927297",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 357,
+      "height": 150,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "3047f535cd58cd6d30851867710e9c07f138022bcb6218162230f64de230a211"
+    },
+    {
+      "name": "Icon_BlessingMode",
+      "path": "res://assets/ui/mall/Icon_BlessingMode.png",
+      "sprite_path_id": "1952339800570227503",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      "width": 128,
+      "height": 98,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "f0e8b367290f87a4b11d490b6229a32b477a73984245dd70c61d3d705f379c79"
+    },
+    {
+      "name": "免广告",
+      "path": "res://assets/ui/mall/____74bce00969.png",
+      "sprite_path_id": "-6883726420387777339",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 59,
+      "height": 55,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "f23963613655cf0c47cfc92e8f507388bdd9c483277d7fe7f49459e136849e4c"
+    },
+    {
+      "name": "迷宫特权标题cn",
+      "path": "res://assets/ui/mall/______cn_002f61b00e.png",
+      "sprite_path_id": "6427274909353422800",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "width": 496,
+      "height": 150,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "a8bb8b107f07c2a92437f7c2c5e43018d75d07d3af512a3e04ca5536eb5c8259"
+    }
+  ],
+  "vip_initial_texts": [
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/ATBtn_Receive/Container/ATBox_RedDot/Text_Num",
+      "text": "3",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4719758441515654571
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -5239918760290083413
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -0.5
+        },
+        "m_SizeDelta": {
+          "x": -10.0,
+          "y": -11.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 20.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Box_AdFree/Text_AdFree",
+      "text": "免广告",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7296837330976251307
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -28774818995495509
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 40.23400115966797,
+          "y": -8.27309995656833e-05
+        },
+        "m_SizeDelta": {
+          "x": 176.47000122070312,
+          "y": 64.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 42.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Box_DailyGain/Text_DailyGainTitle",
+      "text": "每日额外领取!",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3733567031883522645
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7093650614531646037
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 38.5,
+          "y": 60.0
+        },
+        "m_SizeDelta": {
+          "x": 223.0,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 28.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Text_Add (1)",
+      "text": "+",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8578030104581104213
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5827782887104978347
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 300.0,
+          "y": -83.0
+        },
+        "m_SizeDelta": {
+          "x": 200.0,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 32.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/ATBtn_Receive/Container/CustomLocalizationText/Text_Localization",
+      "text": "领取",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6800876075518190165
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3661346095637455445
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -4.904300212860107
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": -22.069400787353516
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 52.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Text_Add",
+      "text": "+",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 967121800163564971
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5827782887104978347
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 300.0,
+          "y": 67.0
+        },
+        "m_SizeDelta": {
+          "x": 200.0,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 32.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Box_DailyGain/Text_RainbowCrystalCount",
+      "text": "300",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6681444916457824853
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7093650614531646037
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 53.11610412597656,
+          "y": -8.27309995656833e-05
+        },
+        "m_SizeDelta": {
+          "x": 164.43409729003906,
+          "y": 65.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 50.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Box_GetNow/Text_RainbowCrystalCount",
+      "text": "3000",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -128461875659203157
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1542631974273555883
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 59.25669860839844,
+          "y": 2.5
+        },
+        "m_SizeDelta": {
+          "x": 178.31520080566406,
+          "y": 65.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 50.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/ATBtn_Buy/Container/CustomLocalizationText/Text_Localization",
+      "text": "￥30",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1507292850098150827
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8678268273580842411
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 52.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/ATBtn_Buy/Container/ATBox_RedDot/Text_Num",
+      "text": "3",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1912669780948345429
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3618901995875328597
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -0.5
+        },
+        "m_SizeDelta": {
+          "x": -10.0,
+          "y": -11.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 20.0
+    },
+    {
+      "path": "ATPanel_MallPanel/Container/Model_VIP/Content/Box_GetNow/Text_GetNow",
+      "text": "购买立即获得！",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2660713991635606955
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1542631974273555883
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 25.0,
+          "y": 60.0
+        },
+        "m_SizeDelta": {
+          "x": 200.0,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 28.0
+    }
+  ],
+  "limit": "Serialized initial prefab. Runtime texts and enabled states can differ. Unity coordinates use upward positive Y.",
+  "display_precedence": "Actual MallTradeData quote and RogueConfigData override prefab initial text."
+}

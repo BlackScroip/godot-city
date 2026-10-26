@@ -45,6 +45,11 @@ func _run() -> void:
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
 			canvas.get_texture().get_image().save_png("res://reports/route-reference-%dx%d.png" % [dimensions.x, dimensions.y])
+	check(page.selected_id == 0 and not page.confirm.visible, "Small map waits for deliberate selection")
+	for row in rooms:
+		if row.available:
+			page._select(int(row.node_id), int(row.layer_index))
+			break
 	var selected = page.selected_id
 	for row in rooms:
 		if not row.available:

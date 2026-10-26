@@ -40,6 +40,11 @@ func validate() -> bool:
 			return false
 	for key in ["claimed_tasks", "claimed_achievements", "discovered_loot", "equipped_partners", "active_awakenings", "equipped_tokens", "equipped_amplifiers"]:
 		if not _ids(data[key]): return false
+	if data.has("selected_weapons"):
+		if not data.selected_weapons is Dictionary: return false
+		for key in data.selected_weapons:
+			var weapon = data.selected_weapons[key]
+			if not str(key).is_valid_int() or int(key) < 1 or not _number(weapon) or weapon < 1 or float(weapon) != floor(float(weapon)): return false
 	var assigned_partners: Array = []
 	var assigned_work: Array = []
 	for job in data.work:

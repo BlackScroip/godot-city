@@ -22,15 +22,16 @@ func run() -> void:
 	display.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(display)
 	var game = load("res://scripts/main.gd").new()
-	game.save_store = DungeonSaveStore.new("user://skill-controls-render-%d.json" % Time.get_ticks_usec())
+	game.save_store = DungeonSaveStore.new("/private/tmp/city-skill-controls-render-%d.json" % Time.get_ticks_usec())
 	canvas.add_child(game)
-	game.set_process(false)
 	game.world.process_mode = Node.PROCESS_MODE_DISABLED
 	game.world.set_attack_mode("off")
 	game.hud.close_page()
 	game.hud.skill.disconnect(game._skill)
 	for frame in 8: await process_frame
-	for key in game.hud.skill_buttons: key.set_process(false)
+	for key in game.hud.skill_buttons + [game.hud.attack_mode_button]:
+		key.set_process(false)
+		key.ready_orbit.set_process(false)
 	var combat = game.world.player.combat
 	for slot in range(5): combat.energy[slot] = combat.skill_capacity(slot)
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]:
@@ -63,13 +64,18 @@ func run() -> void:
 		var area = Rect2i(key.get_global_rect())
 		var changed := 0
 		var art_pixels := 0
+		var outer_changes := 0
+		var inverse = key.get_global_transform_with_canvas().affine_inverse()
+		var art_bounds = Rect2(key.size * 0.1, key.size * 0.8)
 		for y in range(area.position.y, area.end.y):
 			for x in range(area.position.x, area.end.x):
 				var before = normal.get_pixel(x, y)
 				var after = pressed.get_pixel(x, y)
 				if Vector3(before.r - after.r, before.g - after.g, before.b - after.b).length() > 0.18: changed += 1
+				if not art_bounds.has_point(inverse * Vector2(x + 0.5, y + 0.5)) and Vector3(before.r - after.r, before.g - after.g, before.b - after.b).length() > 0.03: outer_changes += 1
 				if after.r > 0.7 and after.g > 0.7 and after.b > 0.7: art_pixels += 1
 		if changed < 100 or art_pixels < 40: failures.append("Missing visible press feedback or artwork at " + label)
+		if outer_changes > 0: failures.append("Press changed the outer frame at " + label + ": " + str(outer_changes))
 		for button in [key, dodge, ultimate]:
 			button.release()
 			button._advance_feedback(0.12)
@@ -85,7 +91,16 @@ func run() -> void:
 		await capture(canvas, label + "-charging")
 		key.charging = false
 		key.queue_redraw()
-	var report = {"failures": failures, "captures": captures, "renderer": RenderingServer.get_video_adapter_name()}
+		event.index = 8
+		event.pressed = true
+		event.position = key.get_global_transform_with_canvas() * (key.size * 0.5)
+		key._input(event)
+		event.pressed = false
+		key._input(event)
+		key._advance_feedback(0.04)
+		await capture(canvas, label + "-tap")
+		key._advance_feedback(0.3)
+	var report = {"failures": failures, "captures": captures, "main_processing": game.is_processing(), "renderer": RenderingServer.get_video_adapter_name()}
 	FileAccess.open("res://reports/skill-controls-visual.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("SKILL_CONTROLS_VISUAL ", JSON.stringify(report))
 	game.queue_free()

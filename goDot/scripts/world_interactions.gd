@@ -14,7 +14,7 @@ signal presentation_requested(kind: String, context: Dictionary)
 signal player_trigger_entered(trigger_id: int, context: Dictionary)
 
 const RULES_PATH := "res://assets/environment_rules.json"
-const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_AbilityItemTreasureBox", "EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan", "EEUT_BillBoard", "EEUT_UIInteractable", "EEUT_Protal", "EEUT_ProtectTarget"]
+const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_AbilityItemTreasureBox", "EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan", "EEUT_Special_MonsterWork", "EEUT_BillBoard", "EEUT_UIInteractable", "EEUT_Protal", "EEUT_ProtectTarget"]
 const PASSIVE := ["EEUT_AreaInfoMarker", "EEUT_Door", "EEUT_CloseArea"]
 const PHASES := ["idle", "starting", "active", "ending", "finished", "destroyed"]
 const SPRITES_ALTAR := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
@@ -143,24 +143,47 @@ func interact_nearest(position: Vector3, radius: float = 3.0) -> Dictionary:
 	return interact(str(nearest.id))
 
 func nearest_interaction(position: Vector3, radius: float = 3.0) -> Dictionary:
-	if not is_finite(radius) or radius < 0: return {}
-	var nearest: Dictionary = {}
-	var distance := radius
+	var candidates := available_interactions(position, radius)
+	return candidates[0] if not candidates.is_empty() else {}
+
+func is_interaction_available(item: Dictionary) -> bool:
+	if item.is_empty() or not item.state.enabled or item.state.broken or item.state.phase == "destroyed" or item.marker.get("Type", "") not in INTERACTIVE: return false
+	if item.state.opened or (item.state.used and not item.data.get("CanRepeatDeactive", false)): return false
+	var kind := str(item.marker.get("Type", ""))
+	if kind == "EEUT_StageChangeDoor" and float(item.state.idle_remaining) > 0: return false
+	if kind in ["EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan"]:
+		var catalog = _services.get("catalog")
+		var npc_id := str(item.data.get("NpcId", ""))
+		if npc_id.is_empty() or catalog == null or not catalog.has_method("find") or catalog.find("NPCData", npc_id).is_empty(): return false
+	if kind == "EEUT_UIInteractable" and not _is_sprites_altar(item) and not CAMP_ACTIONS.has(str(item.data.get("UIBtnName", ""))) and not ROOM_ACTIONS.has(str(item.data.get("UIBtnName", ""))): return false
+	return true
+
+func can_interact_at(marker_id: String, position: Vector3, radius: float = 3.0) -> bool:
+	if not position.is_finite() or not is_finite(radius) or radius < 0: return false
+	var item: Dictionary = _items.get(marker_id, {})
+	if not is_interaction_available(item): return false
+	var kind := str(item.marker.get("Type", ""))
+	if bool(_services.get("camp", false)):
+		var role := "Box_TriggerArea" if kind == "EEUT_BillBoard" else "Box_TiggerEnter"
+		if not _volumes(item, role).is_empty():
+			# Camp triggers extend down to the feet, including the sunken work stone.
+			return _contains(item, position + Vector3.UP * 0.35, 0.35, role)
+	if kind == "EEUT_StageChangeDoor" and not _volumes(item, "Box_TiggerEnter").is_empty() and not _contains(item, position + Vector3.UP * 0.8, 0.35, "Box_TiggerEnter"): return false
+	if kind == "EEUT_ProtectTarget" and not _contains(item, position + Vector3.UP * 0.8, 0, "Box_InteractArea"): return false
+	return position.distance_to(_world_position(item.position)) <= radius
+
+func available_interactions(position: Vector3, radius: float = 3.0) -> Array[Dictionary]:
+	var candidates: Array[Dictionary] = []
 	for item in _items.values():
-		if not item.state.enabled or item.state.broken or item.marker.get("Type", "") not in INTERACTIVE: continue
-		if item.state.opened or (item.state.used and not item.data.get("CanRepeatDeactive", false)): continue
-		if item.marker.get("Type", "") == "EEUT_StageChangeDoor":
-			if float(item.state.idle_remaining) > 0: continue
-			if not _volumes(item, "Box_TiggerEnter").is_empty() and not _contains(item, position + Vector3.UP * 0.8, 0.35, "Box_TiggerEnter"): continue
-		if item.marker.get("Type", "") == "EEUT_UIInteractable" and not _is_sprites_altar(item) and not CAMP_ACTIONS.has(str(item.data.get("UIBtnName", ""))) and not ROOM_ACTIONS.has(str(item.data.get("UIBtnName", ""))): continue
-		if item.marker.get("Type", "") == "EEUT_ProtectTarget" and not _contains(item, position + Vector3.UP * 0.8, 0, "Box_InteractArea"): continue
-		var current: float = position.distance_to(_world_position(item.position))
-		if current <= distance:
-			distance = current
-			nearest = item
-	return nearest
+		if can_interact_at(str(item.id), position, radius): candidates.append(item)
+	candidates.sort_custom(func(a: Dictionary, b: Dictionary):
+		var first := position.distance_squared_to(_world_position(a.position))
+		var second := position.distance_squared_to(_world_position(b.position))
+		return str(a.id).naturalnocasecmp_to(str(b.id)) < 0 if is_equal_approx(first, second) else first < second)
+	return candidates
 
 const CAMP_ACTIONS := {
+	"camp_training": ["训练场", "training", "sprite_conversation_Scarecrow"],
 	"EnvUnit_MonoData_BtnDisplayName_ItemArchieve": ["遗物图鉴", "archive", "interaction_weapon"],
 	"keyword_Records": ["成就记录", "achievements", "interaction_quest"],
 	"EnvUnit_MonoData_BtnDisplayName_SelectWeapon": ["选择武器", "weapons", "interaction_weapon"],
@@ -181,6 +204,7 @@ func prompt_for(item: Dictionary) -> Array:
 	if CAMP_ACTIONS.has(key): return CAMP_ACTIONS[key]
 	if ROOM_ACTIONS.has(key): return [ROOM_ACTIONS[key], "", "interaction_quest"]
 	match str(item.marker.get("Type", "")):
+		"EEUT_Special_MonsterWork": return ["怪物工作", "work", "sprite_conversation_monsterwork"]
 		"EEUT_ProtectTarget": return ["启动守护", "", "interaction_quest"]
 		"EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan": return ["交谈", "npc", "interaction_quest"]
 		"EEUT_AbilityItemTreasureBox": return ["普通宝箱" if str(item.data.get("TreasureType", "Normal")) == "Normal" else "珍贵宝箱", "", "interaction_quest"]
@@ -194,6 +218,10 @@ func interact(marker_id: String) -> Dictionary:
 	var data: Dictionary = item.data
 	var context := _context(item)
 	match str(item.marker.get("Type", "")):
+		"EEUT_Special_MonsterWork":
+			context["page"] = "work"
+			message_requested.emit("camp_page", context)
+			return {"success": true, "context": context}
 		"EEUT_ProtectTarget":
 			if item.state.used: return {"success": false, "reason": "already_used"}
 			item.state.used = true

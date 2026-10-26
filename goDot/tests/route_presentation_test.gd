@@ -85,6 +85,8 @@ func _run() -> void:
 	check(not game.hud.navigation.visible, "Map hides camp navigation")
 	check(game.hud.page.position == Vector2.ZERO, "Map fills viewport")
 	var route: DungeonRoutePage = game.hud.page.route_view
+	check(route.selected_id == 0 and not route.confirm.visible, "Room map starts without a selected destination")
+	route._select(int(game.campaign.choices()[0].node_id), int(game.campaign.state.layer_index))
 	route.confirm.pressed.emit()
 	await _wait_transition()
 	check(game.campaign.state.phase == "room", "Confirm enters selected entrance")
@@ -130,8 +132,10 @@ func _run() -> void:
 	game.profile.data["auto_route"] = true
 	game.campaign.generate(12345, 0)
 	game._route()
+	check(game.campaign.state.region_selection and game.hud.page.route_view.is_world_map(), "Automatic route retains initial world selection")
+	game._select_region(int(game.campaign.region_choices()[0].node_id))
 	await _wait_transition()
-	check(game.campaign.state.phase == "room", "Automatic route enters single entrance")
+	check(game.campaign.state.phase == "room", "Confirmed region enters its entrance with automatic route enabled")
 	game.profile.data["auto_route"] = false
 	game._camp()
 	game.menus.open("characters")

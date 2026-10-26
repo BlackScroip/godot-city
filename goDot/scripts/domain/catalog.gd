@@ -78,7 +78,7 @@ static func description(row: Dictionary) -> String:
 	return ""
 
 static func clean(value: Variant) -> String:
-	var text = str(value)
+	var text = DungeonLocale.text(str(value))
 	if not text.contains("<"): return text
 	text = text.replace("<br>", "\n").replace("<br/>", "\n")
 	if _display_terms.is_empty():
@@ -91,15 +91,17 @@ static func clean(value: Variant) -> String:
 			_cleanup_regexes.append(regex)
 	for matched in _cleanup_regexes[0].search_all(text):
 		var key = matched.get_string(1)
-		text = text.replace(matched.get_string(), str(_display_terms.get("specinfo", {}).get(key, "【术语：" + key + "】")))
+		var fallback = str(_display_terms.get("specinfo", {}).get(key, "【术语：" + key + "】"))
+		text = text.replace(matched.get_string(), DungeonLocale.keyed("<#specinfo=" + key + ">", fallback))
 	# Inline localization carries authored fallback text; keep it when present.
 	for matched in _cleanup_regexes[1].search_all(text):
 		var fallback = matched.get_string(2)
 		var key = matched.get_string(1)
-		text = text.replace(matched.get_string(), fallback if not fallback.is_empty() else str(_display_terms.get("localization", {}).get(key, "【文本：" + key + "】")))
+		if fallback.is_empty(): fallback = str(_display_terms.get("localization", {}).get(key, "【文本：" + key + "】"))
+		text = text.replace(matched.get_string(), DungeonLocale.keyed(key, fallback))
 	for matched in _cleanup_regexes[2].search_all(text):
 		var key = matched.get_string(1)
-		text = text.replace(matched.get_string(), str(_display_terms.get("localization", {}).get(key, "【文本：" + key + "】")))
+		text = text.replace(matched.get_string(), DungeonLocale.keyed(key, str(_display_terms.get("localization", {}).get(key, "【文本：" + key + "】"))))
 	for matched in _cleanup_regexes[3].search_all(text): text = text.replace(matched.get_string(), "【" + matched.get_string(1) + "】")
 	return _cleanup_regexes[4].sub(text, "", true)
 

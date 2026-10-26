@@ -1,7 +1,9 @@
 class_name DungeonTouchButton
 extends Button
 
-const PRESSED_SCALE := 0.88
+signal touch_canceled
+
+const PRESSED_SCALE := 0.9
 const PRESS_DURATION := 0.065
 const RELEASE_DURATION := 0.18
 const SP_FILL = preload("res://assets/ui/battle_guide/39b0cffbf50d0122.png")
@@ -13,6 +15,7 @@ var _feedback_start := 1.0
 var _feedback_target := 1.0
 var _feedback_elapsed := 0.0
 var _feedback_duration := 0.0
+var _release_after_press := false
 var art: Texture2D
 var ring: Texture2D
 var cooldown := 0.0
@@ -80,7 +83,12 @@ func _process(delta: float) -> void:
 	_sync_ready_effect()
 
 func _start_feedback(pressed: bool) -> void:
-	_feedback_start = minf(visual_scale, 0.96) if pressed else visual_scale
+	# Finish a quick tap's compression even when down/up arrive in one frame.
+	if not pressed and _feedback_target == PRESSED_SCALE and _feedback_duration > 0:
+		_release_after_press = true
+		return
+	_release_after_press = false
+	_feedback_start = minf(visual_scale, 0.94) if pressed else visual_scale
 	_feedback_target = PRESSED_SCALE if pressed else 1.0
 	_feedback_elapsed = 0.0
 	_feedback_duration = PRESS_DURATION if pressed else RELEASE_DURATION
@@ -88,23 +96,26 @@ func _start_feedback(pressed: bool) -> void:
 
 func _advance_feedback(delta: float) -> void:
 	if _feedback_duration <= 0: return
-	_feedback_elapsed = minf(_feedback_duration, _feedback_elapsed + delta)
+	var step = minf(maxf(0.0, delta), _feedback_duration - _feedback_elapsed)
+	_feedback_elapsed += step
 	var progress = _feedback_elapsed / _feedback_duration
 	var tail = progress - 1.0
 	var eased = 1.0 + tail * tail * tail
 	if _feedback_target == 1.0:
 		eased = 1.0 + 2.70158 * tail * tail * tail + 1.70158 * tail * tail
 	_set_visual_scale(lerpf(_feedback_start, _feedback_target, eased))
-	if _feedback_elapsed >= _feedback_duration: _feedback_duration = 0.0
+	if _feedback_elapsed >= _feedback_duration:
+		_feedback_duration = 0.0
+		if _release_after_press:
+			_start_feedback(false)
+			_advance_feedback(delta - step)
 
 func _set_visual_scale(value: float) -> void:
 	visual_scale = value
-	if is_instance_valid(ready_orbit):
-		ready_orbit.scale = Vector2.ONE * value
-		ready_orbit.position = size * 0.5 * (1.0 - value)
 	queue_redraw()
 
 func _reset_feedback() -> void:
+	_release_after_press = false
 	if _feedback_duration <= 0 and visual_scale == 1.0: return
 	_feedback_duration = 0.0
 	_set_visual_scale(1.0)
@@ -124,9 +135,7 @@ func _visibility_changed() -> void:
 func _draw() -> void:
 	var center = size * 0.5
 	var radius = size.x * 0.48
-	# Animate the artwork while the pointer keeps its original circular target.
-	draw_set_transform(center * (1.0 - visual_scale), 0, Vector2.ONE * visual_scale)
-	draw_circle(center, radius, Color(0.06, 0.13, 0.18, 0.25 if not button_pressed else 0.6))
+	draw_circle(center, radius, Color(0.06, 0.13, 0.18, 0.25))
 	if ring: draw_texture_rect(ring, Rect2(Vector2.ZERO, size), false, Color(1, 1, 1, 0.65))
 	else: draw_arc(center, radius, 0, TAU, 64, Color(0.8, 0.9, 0.9, 0.5), 1.0, true)
 	if resource_fraction >= 0:
@@ -138,7 +147,7 @@ func _draw() -> void:
 			var source := Rect2(Vector2(0, source_size.y * (1 - fraction)), Vector2(source_size.x, source_size.y * fraction))
 			var destination := Rect2(disk_rect.position + Vector2(0, disk_rect.size.y * (1 - fraction)), Vector2(disk_rect.size.x, disk_rect.size.y * fraction))
 			draw_texture_rect_region(SP_FILL, destination, source, Color(resource_color, 0.72))
-	if art: draw_texture_rect(art, Rect2(size * 0.12, size * 0.76), false, Color(1, 1, 1, 0.5 if unavailable else 1.0))
+	if art: draw_texture_rect(art, _art_rect(), false, Color(1, 1, 1, 0.5 if unavailable else 1.0))
 	if charging: draw_arc(center, radius, -PI / 2, -PI / 2 + TAU * maxf(0.01, charge_fraction), 48, Color("a4edff"), 4, true)
 	if queued: draw_arc(center, radius, 0, TAU, 48, Color("ffdc78"), 3, true)
 	if recharge_remaining > 0:
@@ -162,7 +171,10 @@ func _draw() -> void:
 		draw_string(font, Vector2(center.x - font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x / 2, center.y + 8), value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
 	if stock >= 0:
 		draw_string(get_theme_default_font(), Vector2(size.x * 0.65, 23), str(stock), HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
-	draw_set_transform(Vector2.ZERO)
+
+func _art_rect() -> Rect2:
+	var dimensions = size * 0.76 * visual_scale
+	return Rect2((size - dimensions) * 0.5, dimensions)
 
 func _input(event: InputEvent) -> void:
 	if disabled or not is_visible_in_tree():
@@ -176,14 +188,14 @@ func _input(event: InputEvent) -> void:
 			finger = event.index
 			button_pressed = true
 			button_down.emit()
-		elif not event.pressed and finger == event.index: release()
+		elif not event.pressed and finger == event.index: release(false, _contains(event.position))
 		else: return
 	elif event is InputEventMouseButton and event.device != -1 and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed and finger == -1 and _contains(event.position):
 			finger = -2
 			button_pressed = true
 			button_down.emit()
-		elif not event.pressed and finger == -2: release()
+		elif not event.pressed and finger == -2: release(false, _contains(event.position))
 		else: return
 	else: return
 	get_viewport().set_input_as_handled()
@@ -191,11 +203,13 @@ func _input(event: InputEvent) -> void:
 func _contains(point: Vector2) -> bool:
 	return (get_global_transform_with_canvas().affine_inverse() * point).distance_to(size * 0.5) <= minf(size.x, size.y) * 0.5 + hit_padding
 
-func release(reset_feedback := false) -> void:
+func release(reset_feedback := false, clicked_inside := false) -> void:
 	if finger != -1:
 		finger = -1
 		button_pressed = false
+		if reset_feedback: touch_canceled.emit()
 		button_up.emit()
+		if clicked_inside and not reset_feedback: pressed.emit()
 	if reset_feedback: _reset_feedback()
 
 func _mouse_exited() -> void:

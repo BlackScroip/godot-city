@@ -34,7 +34,7 @@ func snapshot(page: String, dimensions: Vector2i) -> void:
 		check(game.hud.page.page_context.selected_id == 3, "Requested facility remains selected")
 	if page == "world":
 		check(game.hud.camp_button.visible, "Camp overview remains reachable")
-		check(game.hud.counter_buttons[1].get_meta("resource_id") == 501, "Camp HUD shows adventure vouchers")
+		check(game.hud.counter_buttons.map(func(key): return key.get_meta("resource_id")) == [101, 102, 103, 12101, 90002, 108], "Camp keeps the six APK resource identities without a permanent voucher slot")
 	if render_check:
 		await RenderingServer.frame_post_draw
 		var frame = canvas.get_texture().get_image()
@@ -56,6 +56,7 @@ func _run() -> void:
 	game.systems.utc_now = func(): return clock
 	await settle_layout()
 	game.hud.update_counters(game.systems, 0)
+	check(game.hud.counter_buttons.all(func(key): return not key.visible), "Initial resource values do not reveal transient counters")
 	game.menus.open("buildings", 3)
 	check(game.hud.page._rows.size() == 7, "Architect placeholder is not a purchasable building")
 	game._action("op:upgrade_building", 3, 0)

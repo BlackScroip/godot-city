@@ -69,6 +69,10 @@ func _run() -> void:
 	var sample := DungeonRouteNode.new()
 	sample.room = {"NodeIncrementData": {"70001": 0, "70002": 0, "10000": 0, "13006": 0}}
 	check(sample._badge_types().size() == 4, "All four selected increments receive badges")
+	sample.room.NodeIncrementData["13008"] = 0
+	check(sample._badge_types() == ["gold", "magic", "mineral", "partner", "spirit"], "All five source reward icons have a stable display order")
+	sample.room = {"NodeIncrementData": {70001: 0, 13008: 0}}
+	check(sample._badge_types() == ["gold", "spirit"], "Unsaved integer reward keys receive the same badges")
 	sample.room = {"IncrementOptions": "GoldLode,MagicpointLode,CollectingMaterials,SpritesAltar"}
 	check(sample._badge_types().is_empty(), "Candidate increment flags are never presented as selected rewards")
 	sample.free()

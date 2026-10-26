@@ -61,6 +61,10 @@ func _run() -> void:
 	page.queue_free()
 	var hud = DungeonHud.new()
 	root.add_child(hud)
+	var profile = DungeonProfile.new()
+	var systems = DungeonSystems.new(DungeonCatalog.new(), profile)
+	profile.data.stats["wins"] = 1
+	hud.update_navigation(systems)
 	var actions: Array = []
 	hud.action.connect(func(kind, _id, _extra): actions.append(kind))
 	hud.adventure_button.pressed.emit()
@@ -69,8 +73,9 @@ func _run() -> void:
 	check(hud.adventure_caption.text == "难度", "Adventure HUD shows difficulty entry")
 	hud.set_adventure_mode(false)
 	hud.adventure_button.pressed.emit()
-	check(actions == ["page:difficulty", "page:difficulty", "page:difficulty"], "Adventure entry opens preparation in camp and difficulty details during a run")
+	check(actions == ["quick_start", "page:difficulty", "quick_start"], "Camp entry dispatches quick start while run entry opens read-only difficulty details")
 	check(hud.adventure_caption.text == "开始冒险", "Camp restores adventure caption")
+	systems.decorations = null
 	hud.queue_free()
 	await process_frame
 	print("MAP_PREVIEW ", JSON.stringify({"passed": failures.is_empty(), "assertions": assertions, "failures": failures}))

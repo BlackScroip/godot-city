@@ -46,7 +46,7 @@ func _run() -> void:
 		board.position = Vector2(20, 62)
 		board.size = Vector2(dimensions) - Vector2(40, 82)
 		for frame in 8: await process_frame
-		check(board.group_buttons.size() == 62, "commission sidebar contains all original groups %s" % dimensions)
+		check(board.group_buttons.size() == catalog.rows("AchieveData").size(), "commission sidebar contains all source groups %s" % dimensions)
 		check(board.task_scroll.size.x > 300 and board.task_scroll.size.y > 150, "task list remains usable %s" % dimensions)
 		check(board.get_global_rect().encloses(board.footer.get_global_rect()), "commission footer stays in view %s" % dimensions)
 		check(board.get_global_rect().encloses(board.footer_button.get_global_rect()), "group claim remains reachable %s" % dimensions)

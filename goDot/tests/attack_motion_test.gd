@@ -180,7 +180,8 @@ func _world_cases() -> void:
 	world._consume(actor, {"type": "command", "sequence": combat._cast_sequence, "slot": 3, "command": {"type": "EET_FindTarget", "time": 0.7, "duration": 0.3, "raw_data": {"IsFaceTarget": true, "OnlyEnterFindTarget": true, "IsSmoothFaceTarget": true, "RotateSpeedScale": 1}}})
 	check(actor.facing.dot(Vector3.RIGHT) > 0.99, "Only-enter target search retains source instant facing")
 	combat.record_input(2, true)
-	check(combat.custom_properties.InputSkill1_LongPress and combat.custom_properties.LastInputAttackKeyName == "skill_1", "Skill hold input context reaches source branch conditions")
+	check(not combat.custom_properties.get("InputSkill1_LongPress", false) and combat.custom_properties.LastInputAttackKeyName == "skill_1", "Skill down records its key without premature long-press input")
+	combat.custom_properties["InputSkill1_LongPress"] = true
 	combat.record_input(2, false)
 	check(not combat.custom_properties.InputSkill1_LongPress, "Skill release clears source hold flag")
 	world.restore_transients({})
@@ -252,6 +253,7 @@ func _action_matrix() -> void:
 			combat.energy[slot] = combat.fighter.skills[slot].maxSp
 			combat.add_buff(str(combat.fighter.jp), 300 if id == 7 else 75)
 			check(world.use_skill(slot, true).success, "Character %d slot%d accepts the original action input" % [id, slot])
+			if slot == 0: check(world.use_skill(slot, false).success, "Character %d short release requests normal attack" % id)
 			var actions: Array = []
 			var moves := 0
 			for frame in 240:

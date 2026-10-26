@@ -5,8 +5,8 @@ var checks := 0
 
 class PresentationRecorder extends Node3D:
 	var effects: Array = []
-	func emit_effect(_actor: DungeonActor, effect: String, point: Vector3, dimensions: Vector3) -> void:
-		effects.append({"effect": effect, "point": point, "dimensions": dimensions})
+	func summon_trigger(_actor: DungeonActor, raw: Dictionary, point: Vector3, phase: String, source_only: bool) -> void:
+		effects.append({"effect": str(raw.get("TriggerEffectName_" + phase, "")), "point": point, "dimensions": Vector3.ONE, "source_only": source_only})
 
 func _initialize() -> void:
 	_run.call_deferred()
@@ -73,6 +73,7 @@ func _run() -> void:
 	check(followers.trigger_message("unrelated", player, recorder) == 0, "Unrelated gameplay messages emit no follower effect")
 	check(followers.trigger_message("trigger_firesprite", player, recorder) == 1, "Fire spirit responds to its source custom trigger")
 	check(recorder.effects.back().effect == "23120601_fx_skill_firesword_hit_full.prefab" and recorder.effects.back().point == followers.entries[20210].visual.global_position, "Tier one fire effect starts at its actual follower")
+	check(recorder.effects.back().source_only, "Follower custom trigger retains the source prefab lifetime and visual gain")
 	profile.data.run.inventory = {"20211": 1}
 	followers.sync_from_run(systems, player)
 	followers.trigger_message("trigger_firesprite", player, recorder)

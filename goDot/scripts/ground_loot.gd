@@ -376,9 +376,15 @@ func advance_collection(delta: float, target: Vector3, systems: RefCounted) -> A
 			entry.position = (flight.origin as Vector3).lerp(flight.destination, progress)
 			entry.position += Vector3.UP * absf(sin(progress * TAU)) * float(flight.jump_height)
 			if progress >= 1.0: flight.phase = "waiting"
-		if entry.age >= PICKUP_DELAY and flight.phase == "waiting" and (entry.position as Vector3).distance_to(target) <= PICKUP_RANGE:
+		if entry.age > PICKUP_DELAY and flight.phase == "waiting" and (entry.position as Vector3).distance_to(target) <= PICKUP_RANGE:
 			flight.phase = "attract"
 		if flight.phase == "attract":
+			if (entry.position as Vector3).distance_to(target) <= PICKUP_END_DISTANCE:
+				systems.grant_material(entry.id, entry.amount)
+				collected.append({"success": true, "id": entry.id, "amount": entry.amount})
+				_release_visual(entry)
+				entries.erase(entry)
+				continue
 			var active_delta := maxf(0.0, float(entry.age) - maxf(previous_age, PICKUP_DELAY))
 			flight.attract_age = float(flight.attract_age) + active_delta
 			entry.speed = 1.0 + ATTRACT_ACCELERATION * minf(ATTRACT_MAX_TIME, float(flight.attract_age))
@@ -388,11 +394,6 @@ func advance_collection(delta: float, target: Vector3, systems: RefCounted) -> A
 			var old: Vector3 = echo.position
 			echo.position = echo.position.lerp(previous, minf(1.0, delta * 20.0))
 			previous = old
-		if flight.phase != "attract" or (entry.position as Vector3).distance_to(target) > PICKUP_END_DISTANCE: continue
-		systems.grant_material(entry.id, entry.amount)
-		collected.append({"success": true, "id": entry.id, "amount": entry.amount})
-		_release_visual(entry)
-		entries.erase(entry)
 	return collected
 
 func settle_automatic(systems: RefCounted) -> int:

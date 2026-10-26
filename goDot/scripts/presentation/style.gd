@@ -60,6 +60,11 @@ static func texture(key: String) -> Texture2D:
 		if FileAccess.file_exists("res://assets/ui/camp/resource_map.json"):
 			var camp_icons = JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/camp/resource_map.json"))
 			if camp_icons is Dictionary: _map.merge(camp_icons, true)
+		if FileAccess.file_exists("res://assets/ui/hud_navigation/resource_map.json"):
+			var navigation_icons = JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/hud_navigation/resource_map.json"))
+			if navigation_icons is Dictionary: _map.merge(navigation_icons, true)
+		_map["menu_comment"] = _map.get("Button_GoComment", "")
+		_map["menu_meal_buffs"] = _map.get("猫饭", "")
 	var path = str(_map.get(key, "res://assets/ui/" + key + ".png"))
 	if key.begins_with("res://"): path = key
 	if not ResourceLoader.exists(path):

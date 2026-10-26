@@ -2,7 +2,7 @@ extends Resource
 
 @export var joystick_deadzone := 0.10
 @export var input_buffer := 0.15
-@export var attack_hold_threshold := 0.35
+@export var attack_hold_threshold := 0.3
 @export var projectile_pool_capacity := 128
 @export var damage_number_budget := 96
 @export var actor_warning_budget := 96

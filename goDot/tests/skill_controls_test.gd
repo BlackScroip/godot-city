@@ -53,6 +53,7 @@ func run() -> void:
 				check(point.distance_to(center(other)) > target_radius + radius(other) + 2, "Touch circles have a gap " + str(dimensions))
 			controls.append({"center": [point.x, point.y], "touch_diameter": target_radius * 2})
 			var rect = key.get_global_rect()
+			var original_art = key._art_rect()
 			# A touch near the rim must remain valid after the artwork shrinks.
 			var rim = point + Vector2.RIGHT * (target_radius - 1)
 			touch(index + 10, rim, true)
@@ -60,6 +61,7 @@ func run() -> void:
 			check(key.visual_scale < 1, "Fast press has immediate feedback")
 			key._advance_feedback(0.1)
 			check(is_equal_approx(key.visual_scale, key.PRESSED_SCALE) and key._contains(rim) and key.get_global_rect() == rect, "Held scale keeps stable touch bounds")
+			check(key._art_rect().get_center().is_equal_approx(original_art.get_center()) and key._art_rect().size.is_equal_approx(original_art.size * key.PRESSED_SCALE), "Only the centered artwork contracts")
 			touch(99, Vector2.ZERO, false)
 			check(key.button_pressed, "Other finger cannot release a held skill")
 			touch(index + 10, Vector2.ZERO, false)
@@ -98,12 +100,23 @@ func run() -> void:
 		attack.disabled = false
 		touch(4, center(attack), true)
 		hud._layout()
-		check(attack.finger == -1 and attack.visual_scale == 1.0, "Layout changes cancel stale pointer coordinates")
+		for frame in 4: hud.set_adventure_mode(hud.adventure_mode)
+		check(attack.finger == 4 and attack.visual_scale < 1.0, "Unchanged layout and mode refresh preserve held input")
+		root.size = dimensions + Vector2i(20, 0)
+		await process_frame
+		hud._layout()
+		check(attack.finger == -1 and attack.visual_scale == 1.0, "Changed geometry cancels stale pointer coordinates")
+		touch(4, center(attack), true)
+		touch(4, center(attack), false)
+		attack._advance_feedback(0.04)
+		check(attack.finger == -1 and attack.visual_scale < 0.92, "Same-frame tap still completes visible icon compression")
+		attack._advance_feedback(0.3)
+		check(is_equal_approx(attack.visual_scale, 1.0), "Quick tap settles fully")
 	var burst: DungeonTouchButton = keys[3]
 	burst.ready_full = true
 	touch(5, center(burst), true)
 	burst._advance_feedback(0.1)
-	check(burst.ready_orbit.scale == Vector2.ONE * burst.visual_scale, "Ready orbit follows the artwork scale")
+	check(burst.ready_orbit.scale == Vector2.ONE, "Ready orbit keeps its full frame size during icon feedback")
 	check((burst.ready_orbit.position + burst.ready_orbit.scale * burst.size * 0.5).is_equal_approx(burst.size * 0.5), "Ready orbit stays centered")
 	touch(5, center(burst), false)
 	var mouse := InputEventMouseButton.new()
@@ -118,6 +131,8 @@ func run() -> void:
 	check(keys[0].finger == -2, "Desktop mouse captures skill")
 	keys[0]._mouse_exited()
 	check(keys[0].finger == -1 and keys[0].visual_scale == 1.0, "Leaving the window clears mouse feedback")
+	check(DungeonHud.skill_safe_insets(Vector2(844, 390), Vector2(2532, 1170), Rect2(132, 0, 2268, 1107)).is_equal_approx(Vector2(44, 21)), "Mobile safe area converts native pixels to viewport coordinates")
+	check(DungeonHud.skill_safe_insets(Vector2(844, 390), Vector2.ZERO, Rect2()).is_zero_approx(), "Missing safe area leaves layout unchanged")
 	var report = {"assertions": assertions, "failures": failures, "layouts": layouts}
 	FileAccess.open("res://reports/skill-controls-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("SKILL_CONTROLS ", JSON.stringify({"assertions": assertions, "failures": failures, "viewports": layouts.size()}))

@@ -29,6 +29,7 @@ func _run() -> void:
 	var event := {"damage": 10.0, "sequence": 1, "source_key": "fixture", "definition": {"raw": JSON.stringify({"MotionAnimatorType": "EMAT_Line", "MotionAnimatorProperty": {"Speed": 8, "MaxLifetime": 4}, "EntityProperty": {"ModlePrefab": key, "MaxPassNum": 3, "ColliderType": "Sphere", "ModelBoxColliderSize": {"x": 1.2, "y": 1.2, "z": 1.2}}})}}
 	var projectile := DungeonProjectile.new()
 	projectile.configure(event, Vector3.UP, Vector3.FORWARD, Vector3.FORWARD * 3)
+	projectile.source_key = "fixture"
 	var before := projectile.snapshot()
 	world._add_projectile_visual(projectile, actor)
 	var fallback: MeshInstance3D = world.projectiles.back().visual

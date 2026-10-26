@@ -69,13 +69,13 @@ func _run() -> void:
 		canvas.size_2d_override = dimensions
 		for i in 8: await process_frame
 		check(Rect2(Vector2.ZERO, game.hud.root.size).encloses(game.hud.navigation.get_rect()), "Top navigation stays inside " + str(dimensions))
-		check(game.hud.navigation.get_child_count() == 5, "Reference navigation retains five commands")
+		check(game.hud.navigation.get_children().filter(func(key): return key.visible).size() == 3, "Camp initially exposes store, character and settings")
 		await capture("%dx%d" % [dimensions.x, dimensions.y])
 	var commands: Array[String] = []
 	game.hud.action.connect(func(kind, _id, _extra): commands.append(kind))
-	game.hud.navigation.get_child(1).pressed.emit()
-	check(commands.has("save"), "Cloud artwork button dispatches local save")
-	check(game.hud.message_label.text == "进度已保存", "Save button completes existing offline save")
+	game.hud.navigation.get_node("menu_store").pressed.emit()
+	check(commands.has("page:mall"), "Store artwork button dispatches the actual store")
+	check(game.menus.current_page == "mall" and game.hud.modal_open, "Store navigation opens its inspectable offers")
 	game.menus.open("settings")
 	for i in 3: await process_frame
 	fx.set_process(false)

@@ -1,0 +1,558 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+  "observed_runtime": false,
+  "source": {
+    "EnvUnitCfg_[90010]": {
+      "EnvUnitType": "EEUT_PosChecker_Scare",
+      "EnvUnitData": {
+        "ID": "90010",
+        "Name_EDT": "稻草人生成器",
+        "Description_EDT": "稻草人生成器,在场景中自动生成稻草人怪物",
+        "Prefab": "EnvUnit_PosChecker_Scare",
+        "CanBeAttack": true,
+        "CanBeAttackCamp": "100",
+        "TargetPriority": 0,
+        "BeAttackEffect": "",
+        "CollisionBulletPenetrationNumber": 0,
+        "BeAttackSound": {
+          "SoundName": ""
+        },
+        "TriggerTouchUnitPlayEffect": "",
+        "TriggerTouchUnitSoundName": {
+          "SoundName": ""
+        },
+        "MonsterId": 90010,
+        "Hp": 100000
+      }
+    },
+    "MonsterActionCfg_[90010]": {
+      "ID": "90010",
+      "Name_EDT": "90010_主城稻草人",
+      "Description_EDT": "",
+      "Prefab": "monster_cityscarecrow.prefab",
+      "FirstAct": "born",
+      "BossAct": "",
+      "StartupAI": "EnemyAIBT_CityScareCrow",
+      "BossActTime": 0.0,
+      "ActionGroup": "ActGroup_cityscarecrow",
+      "BeHitBlendStateName": "BeHit",
+      "BeHitBlendStateRatio_SpecialAction": 0.5,
+      "BeHitBlendStateRatio_NormalAction": 0.600000023841858,
+      "CanBeIgnoreCollision": false,
+      "BodySize": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "SearchDist": 5.0,
+      "MoveSpeed": 0.100000001490116,
+      "BaseTenacity": 1000.0,
+      "BaseTenacityAccReduce": 99999.0,
+      "BaseWeakTime": 0.100000001490116,
+      "Weight": 100,
+      "PushForceResist": 10000,
+      "UpperForceResist": 10000,
+      "AddSpWhenHp75": 0.0,
+      "AddSpWhenHp50": 0.0,
+      "AddSpWhenHp25": 0.0,
+      "AddSpWhenDead": 0.0,
+      "PreLoadPrefabList": []
+    },
+    "EnemyAIBT_CityScareCrow": {
+      "type": "NodeCanvas.BehaviourTrees.BehaviourTree",
+      "nodes": [
+        {
+          "_position": {
+            "x": -80.0,
+            "y": -420.0
+          },
+          "$type": "NodeCanvas.BehaviourTrees.Parallel"
+        }
+      ],
+      "connections": [],
+      "canvasGroups": [],
+      "localBlackboard": {
+        "_variables": {
+          "IP_SelfObj": {
+            "_name": "IP_SelfObj",
+            "_id": "d014e3e8-fea9-4dda-b41a-d485426174c0",
+            "$type": "NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+          },
+          "IP_Target": {
+            "_name": "IP_Target",
+            "_id": "bdab8b0a-c50b-4605-8e3f-f60fd948a8c1",
+            "$type": "NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+          },
+          "IP_MoveSpeed": {
+            "_value": 2.0,
+            "_name": "IP_MoveSpeed",
+            "_id": "90776744-3f85-494f-812c-7523bc0cac8f",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          },
+          "IP_CurAction": {
+            "_value": "idle",
+            "_name": "IP_CurAction",
+            "_id": "71704727-c684-4e0c-8459-6b1c17e2877f",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          },
+          "OP_AIAction": {
+            "_value": "born",
+            "_name": "OP_AIAction",
+            "_id": "b4b718ad-f41f-4ee8-be84-241d789260a6",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          },
+          "SYS_AttackDist": {
+            "_value": 2.0,
+            "_name": "SYS_AttackDist",
+            "_id": "fec08d59-aab1-484c-afd0-acd1dfe6f428",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          },
+          "SYS_AttackCD": {
+            "_value": 5.0,
+            "_name": "SYS_AttackCD",
+            "_id": "abeda7ff-e298-49ac-9708-4462c942eaff",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          },
+          "SYS_AttackCDTimer": {
+            "_name": "SYS_AttackCDTimer",
+            "_id": "36d6183e-8119-4ef2-8f1f-1c19cc0530dd",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          },
+          "SYS_KeepDist": {
+            "_value": 5.0,
+            "_name": "SYS_KeepDist",
+            "_id": "adee1e3e-8266-4ef3-a963-486aec8e90c2",
+            "$type": "NodeCanvas.Framework.Variable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+          }
+        }
+      },
+      "derivedData": {
+        "repeat": true,
+        "$type": "NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"
+      }
+    }
+  },
+  "source_evidence": {
+    "EnvUnitCfg_[90010]": {
+      "member": "assets/yoo/DefaultPackage/78a2f88534b77d2ad9d476dde0302aed.bundle",
+      "bundle_sha256": "aac6a9f84d6cd11b14582b07e22afdb7d4ff3286390c01896439e56fa4b7c8dc",
+      "source_asset": "Assets/[00002]Resource/ActionEngineCfg/EnvUnit/EnvUnitCfg_[90010].json",
+      "path_id": "7838626513207766945"
+    },
+    "MonsterActionCfg_[90010]": {
+      "member": "assets/yoo/DefaultPackage/70a97840af00044fe956350477d90d5c.bundle",
+      "bundle_sha256": "0759732f05715e705e64e91a5fe4903b194b2435a33a98776e63a0eba7f66865",
+      "source_asset": "Assets/[00002]Resource/ActionEngineCfg/Unit/Monster/MonsterActionCfg_[90010].json",
+      "path_id": "1720794197020832895"
+    },
+    "EnemyAIBT_CityScareCrow": {
+      "member": "assets/yoo/DefaultPackage/b8d27f248fe69f92bdb0a9abea7be2b6.bundle",
+      "bundle_sha256": "79fc301135befb49553b29f6bc17a3a444e2069dda7729c3498ea714945648de",
+      "source_asset": "Assets/[00002]Resource/NodeCanvasRes/AI/EnemyAIBT_CityScareCrow.asset",
+      "path_id": "2632767346129864523"
+    }
+  },
+  "model": {
+    "path": "res://assets/camp_training/scarecrow.glb",
+    "source_asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_cityscarecrow.prefab",
+    "sha256": "cae7eeeff5bc006209a237743100a07b6e8ce9935653c421ddd488598b38b617",
+    "bundle_sources": [
+      {
+        "member": "assets/yoo/DefaultPackage/993d72812de7cc27b7d74d88b5803478.bundle",
+        "sha256": "4f58aa58606fefa5c2aaf4a14f02b393b7254a5a0203ef511b10f6c00e814405"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/f4fd17e1b64c8d39c6e0885be97aca9f.bundle",
+        "sha256": "b729338a2d422a8b53281cf436a90f3fffa8c6381cd3e8bc8359595cf3b30d6c"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/0dc2b45053f2e3fd2fe1be7322ce38fe.bundle",
+        "sha256": "2b419ee8189ee5571cf0d0a597ac8d884988de083c56de9b49317a7ccaad99e2"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/fd61dd33b175aff6c3f7357a1fb916de.bundle",
+        "sha256": "9908170a5620bf6acc297dc6a7b06b982d67284117c2e45c133019a242492e41"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+        "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/b8d27f248fe69f92bdb0a9abea7be2b6.bundle",
+        "sha256": "79fc301135befb49553b29f6bc17a3a444e2069dda7729c3498ea714945648de"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/77fffee87cf6b18e452098aa4201d3ba.bundle",
+        "sha256": "343e75e54051ddeee87cc222b9acc47dc8f731bafad87a112167459142804fa9"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/b3d85c6a3658aeb1c74207e6696456ff.bundle",
+        "sha256": "982eda6cbbca2fdbcaa3de20123be631f177d2433786e5f2cf933b55876a793f"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/f62f4d997be6d365d133dde80f71df99.bundle",
+        "sha256": "7331ddaba8240a83560e229b907c379d8ee9a4e452d18b0ff081ee3ad6a96bff"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/f639cda52bb47ea3793bfc3145250db3.bundle",
+        "sha256": "b5583292a0109d7078fd2723c3872e67a157be421c043e7d63e62ea3c71e7fae"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/f7eeed297e712acc112a5d20fdfcd3d6.bundle",
+        "sha256": "a49d43c7c9bc2adb11366c37f8744d5a6d941fd8b6d3502571da737c71d61f22"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+        "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/36a5679f9f1e3ecf957f6702d3ff5e8f.bundle",
+        "sha256": "51810ecd1b6294eea4a44c2ef70dcd7d6ec2d1ea99b800c1fa1915cad362c8db"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/cee9e011ff08a1fbe09351e5b533a3e0.bundle",
+        "sha256": "468377f627fca6391bcbb383f44fca02a3c47f038cc28b8155285555324d3e76"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+        "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/bd2971c9a43ceae693478c4d783c5bf5.bundle",
+        "sha256": "3917a40e9a30487d9a4252232c16162b71e5d0c6c863db7893d8933cf93c426b"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/3e11a5ae41f3cf96a50d2cb778f7d348.bundle",
+        "sha256": "1091bf821f6aa006c4549767e733810d2ae790efd98822586c5ba19e9cdb6cb4"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/bfbe316338a656c5253773b988b9f7bb.bundle",
+        "sha256": "2688ae2469ccb8787f16a2d65182ae03243fde693b747daa002a3cdaec6f1e41"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/77d2059a2ad939fc35ec3ac7ed8a185c.bundle",
+        "sha256": "d1f1f4de7b29a48856cf5d10833481412d3394b21966809a53c97b56281d0e5c"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/b5977aac9e13b56b1cda2551fc9ef8c1.bundle",
+        "sha256": "f6ccc4ad82955ccfa043887362ca24c9ae5eac331569cbf0b1a83a54114ee0b5"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/6cc237ca5eb0f4223dfe51915336438d.bundle",
+        "sha256": "d26324b62bc7d606268b69d97d774137dc731d84b27f6e43389ddd94bc288bda"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/5d696fecda2a41415526d103e047d102.bundle",
+        "sha256": "718935465cd3747ec29485e96014f209516ea6f1411a45f5c791ad3d0e250fd5"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+        "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/05af32cea76ffd3b2d11ac1921072dfe.bundle",
+        "sha256": "f33fea0369e1904a3f4cadfc54188eda4d52e76f0a0b1d9f45c6b018ce32bf85"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/5cbd5e7f86ddc254c0eeb600f2d0fe14.bundle",
+        "sha256": "151560dcfebdfd912cf32e91884bfba04a801bf3cb4b0f0a491c042abb51dffd"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/63ffca709b78820c6dfc245547baebe8.bundle",
+        "sha256": "05c8587c97a7f5b0a33b666651aec03fac5bbd5013a00c7f3e0091a3f52f9ba9"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/f7e77e4888dd1df4707e01d59b254716.bundle",
+        "sha256": "4388bdc738568a0731b40239442faab424b478c09746adb29926d88f81bfc1a9"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/4935d51ea727769a6e2f066a5444d4e0.bundle",
+        "sha256": "26b39080213359cf1ec99fc805e850f72d6fc44f53ac3643ad7f8a2e56921ca6"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+        "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/3961b4d904c55f63b5b6760930cea46b.bundle",
+        "sha256": "2e84065f93bd5b39ab227a14ebea9aaed9f33daeab753f413851199fc349fb33"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/2cec4d6a703e31a087ce975d04fa4f12.bundle",
+        "sha256": "393d9a05bccc7a223cc9836d87c2667d7a504a58378c5fbf7eebac236f4e118a"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/e3760e23149852091a866c8382071b42.bundle",
+        "sha256": "b9654304bf6c20b63862b52691255b56dc099532a21ee1f754e20ce116057d37"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+        "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+        "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
+        "sha256": "03596ac9627ac23fecb9ee6240f868f50a8dd144773f170fff7be1e137d2eaa3"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/fa3bf1143d54bd6ed520c0ac787fc172.bundle",
+        "sha256": "29258a70ecf3018a84c019f8ef15438827081ab276b89fd736b2091cdf8aa556"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/6afd8f101c3f1890248e03c7f86b8d2e.bundle",
+        "sha256": "4ca2d7e4f9ef23b892f899056835ec15bc7d326fa04b4db15c3ff46a5c6c3d7e"
+      },
+      {
+        "member": "assets/yoo/DefaultPackage/6cf9f765ef1c8e037ad4f013333c5a9a.bundle",
+        "sha256": "c1dba3b6790f844eb1123b5a9e958e80a1074c5cd1f09dc7127fe4153bb7f3a7"
+      }
+    ],
+    "bounds": {
+      "min": [
+        -1.5450057958704093,
+        -0.05370117185454415,
+        -0.49263126011182123
+      ],
+      "max": [
+        1.5433697437666183,
+        3.86493952844927,
+        0.4909952080080302
+      ],
+      "size": [
+        3.0883755396370276,
+        3.918640700303814,
+        0.9836264681198514
+      ]
+    },
+    "meshes": 1,
+    "skins": 0,
+    "animations": [
+      {
+        "name": "idle",
+        "source_name": "Idle",
+        "duration": 1.2000000476837158,
+        "loop": true,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-2454628143712836429",
+            "clip_name": "Idle",
+            "state_name": "Idle"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "move_forward",
+        "source_name": "Move_Forward",
+        "duration": 0.8000000715255737,
+        "loop": true,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-662898161306265898",
+            "clip_name": "Moveforward",
+            "state_name": "Move_Forward"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "attack",
+        "source_name": "Attack",
+        "duration": 2.6666667461395264,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:3383256274240467462",
+            "clip_name": "Fireball",
+            "state_name": "Attack"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "damage",
+        "source_name": "Damage",
+        "duration": 1.2000000476837158,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-5254543123952826084",
+            "clip_name": "Behit1",
+            "state_name": "Damage"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "die",
+        "source_name": "Die",
+        "duration": 1.6666667461395264,
+        "loop": false,
+        "tracks": 93,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-2240349580449006445",
+            "clip_name": "dead",
+            "state_name": "Die"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "damage2",
+        "source_name": "Damage2",
+        "duration": 2.3333334922790527,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-8359452707163390266",
+            "clip_name": "Behit2",
+            "state_name": "Damage2"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "attack2",
+        "source_name": "Attack2",
+        "duration": 3.3333334922790527,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-911856042863905355",
+            "clip_name": "Dive",
+            "state_name": "Attack2"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "move_back",
+        "source_name": "Move_Back",
+        "duration": 0.8000000715255737,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:9193970571371805051",
+            "clip_name": "Moveback",
+            "state_name": "Move_Back"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "move_left",
+        "source_name": "Move_Left",
+        "duration": 0.8000000715255737,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-8276273740849105826",
+            "clip_name": "Moveleft",
+            "state_name": "Move_Left"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "move_right",
+        "source_name": "Move_Right",
+        "duration": 0.8000000715255737,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-6825414061058284966",
+            "clip_name": "Moveright",
+            "state_name": "Move_Right"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "attack3",
+        "source_name": "Attack3",
+        "duration": 2.6666667461395264,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-4977494980453228430",
+            "clip_name": "WingsHit",
+            "state_name": "Attack3"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      },
+      {
+        "name": "behit",
+        "source_name": "BeHit",
+        "duration": 1.2000000476837158,
+        "loop": false,
+        "tracks": 90,
+        "apk_sources": [
+          {
+            "controller": "CAB-72e5a3561e9c681419266176c9691f3a:-3195672701396399933",
+            "clip": "CAB-959372ec5fd0b074d8b955769c63bcc6:-5254543123952826084",
+            "clip_name": "Behit1",
+            "state_name": "BeHit"
+          }
+        ],
+        "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+      }
+    ],
+    "unsupported": {
+      "animation_non_trs_binding": 154,
+      "animation_unbound_path": 1083,
+      "animation_empty_controller_state": 12
+    }
+  },
+  "limitations": [
+    "Source EnemyData has no 90010 record; training uses zero defense and no attacks.",
+    "Unity custom material shaders use source textures with Godot PBR approximations.",
+    "Session statistics, resets and isolated player combat are reconstruction choices."
+  ]
+}

@@ -47,7 +47,7 @@ func trigger_message(message: String, actor: DungeonActor, presentation: Node3D)
 		if str(raw.get("CustomTriggerMsg_MsgName", "")) != message: continue
 		var effect := str(raw.get("TriggerEffectName_NoDelay", ""))
 		if effect.is_empty(): continue
-		presentation.emit_effect(actor, effect, entry.visual.global_position, Vector3.ONE)
+		presentation.summon_trigger(actor, raw, entry.visual.global_position, "NoDelay", true)
 		count += 1
 	return count
 

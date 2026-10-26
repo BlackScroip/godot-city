@@ -51,6 +51,8 @@ func _run() -> void:
 		check(rooms.edges.filter(func(edge): return not edge.vertical and rooms._path_state(edge) == "available").size() == 3, "Only the current entrance's three reachable branches glow")
 		_validate_paths(rooms)
 		await _capture("rooms", dimensions)
+	var option = rooms.nodes.filter(func(node): return node.available)[0]
+	option.pressed.emit()
 	var chosen = rooms.selected_id
 	rooms._confirm()
 	check(chosen > 0, "Corrected path presentation keeps room selection functional")

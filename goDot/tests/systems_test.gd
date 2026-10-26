@@ -354,8 +354,13 @@ func _test_offline_mall() -> void:
 			check(not s.buy_offer(id).success, "original disabled mall item stays unavailable " + str(id))
 			continue
 		var quote = s.offer_quote(id)
-		check(quote.success and quote.price > 0, "every enabled mall offer has explicit nonzero price " + str(id))
-		if not quote.success: continue
+		check(quote.payment == effective.GoodsPayType and quote.price == int(effective.Price) and not quote.offline_conversion, "mall preserves packaged payment type and price " + str(id))
+		if effective.GoodsPayType not in ["Gold", "PurchaseCion", "FreeCion"]:
+			var payment_snapshot = JSON.stringify(p.data)
+			check(not quote.success and not quote.can_buy and not quote.reason.is_empty() and not quote.rewards.is_empty(), "nonresource mall payment remains displayable with an unavailable reason " + str(id))
+			check(not s.buy_offer(id).success and not s.buy_mall(id).success and JSON.stringify(p.data) == payment_snapshot, "mall cannot bypass advertising or verified payment " + str(id))
+			continue
+		check(quote.success and quote.price > 0, "funded resource mall offer can transact at its original price " + str(id))
 		var before = s.material(int(quote.currency))
 		var same_currency_reward = 0
 		for option in quote.rewards:
@@ -373,7 +378,7 @@ func _test_offline_mall() -> void:
 	var fresh = Profile.new()
 	var rejected = Systems.new(catalog, fresh)
 	var snapshot = JSON.stringify(fresh.data)
-	check(not rejected.buy_offer(2006).success and not rejected.open_material_box(803).success and JSON.stringify(fresh.data) == snapshot, "unfunded offline mall and box operations preserve state")
+	check(not rejected.offer_quote(20001).can_buy and not rejected.buy_offer(20001).success and not rejected.open_material_box(803).success and JSON.stringify(fresh.data) == snapshot, "unfunded resource mall and box operations preserve state")
 
 func _test_rogue_event_producers() -> void:
 	var p = Profile.new()

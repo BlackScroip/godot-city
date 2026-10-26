@@ -156,6 +156,8 @@ func region_map() -> Array:
 			var row = _world_slot_alias(slot, module_index)
 			var id = int(slot.Id)
 			row.merge({"config_id": (module_index + 1) * 100000000 + id, "lane": lane, "lane_count": slots.size(), "parents": [], "vertical_neighbors": [], "visited": int(chosen[module_index]) == id and bool(state.layers[_module_start(module_index) + _module_size(module_index) - 1].complete), "current": not pending and module_index == current and int(chosen[module_index]) == id, "is_anchor": id == anchor_slot, "available": available.has(id), "unknown": not slot.get("IsOpen", false) and int(slot.NodeLevel) == 0, "locked": slot.get("IsOpen", false) and not _slot_unlocked(slot, int(state.difficulty))})
+			var data_ready = int(slot.NodeLevel) < 1 or database.Nodes.any(func(node): return int(node.Region) == int(slot.NodeLevel))
+			row["selectable"] = pending and module_index == current and data_ready
 			if module_index > 0:
 				for previous in _world_modules[module_index - 1].get("SlotList", []): row.parents.append(module_index * 100000000 + int(previous.Id))
 			row["passed_parents"] = []
@@ -296,8 +298,16 @@ func choices() -> Array:
 	if not anchor.is_empty():
 		ids = state.layers[int(anchor.layer_index)].get("connections", {}).get(str(int(anchor.node_id)), [])
 	for id in ids:
-		result.append(_room_alias(_nodes[int(id)]))
+		var room = _room_alias(_nodes[int(id)])
+		room["layer_index"] = int(state.layer_index)
+		room["vertical"] = false
+		result.append(room)
 	return result
+
+func route_choice(node_id: int, layer_index := -1) -> Dictionary:
+	for room in choices() + vertical_choices():
+		if int(room.node_id) == node_id and (layer_index < 0 or int(room.layer_index) == layer_index): return room
+	return {}
 
 func route_anchor() -> Dictionary:
 	if state.is_empty() or int(state.layer_index) <= 0: return {}
@@ -544,14 +554,13 @@ func _restore_hide_values(saved: Dictionary) -> bool:
 			layer.hide_rolls[key] = int(value)
 	return true
 
-func enter(node_id: int, allow_vertical := false) -> Dictionary:
+func enter(node_id: int, allow_vertical := false, layer_index := -1) -> Dictionary:
 	if state.is_empty() or state.phase != "route" or state.get("region_selection", false):
 		return _result(false, "Route selection is not active", node_id)
-	var reachable = choices().any(func(room): return int(room.node_id) == node_id)
-	var vertical = vertical_choices().filter(func(room): return int(room.node_id) == node_id)
-	if not reachable and not (allow_vertical and not vertical.is_empty()):
+	var destination = route_choice(node_id, layer_index)
+	if destination.is_empty() or (destination.vertical and not allow_vertical):
 		return _result(false, "Node is not reachable", node_id)
-	if not reachable: state.layer_index = int(vertical[0].layer_index)
+	state.layer_index = int(destination.layer_index)
 	var room: Dictionary = _nodes[node_id]
 	state.current_node_id = node_id
 	state.layers[int(state.layer_index)].selected_id = node_id

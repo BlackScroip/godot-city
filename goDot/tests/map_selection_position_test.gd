@@ -1,0 +1,203 @@
+extends SceneTree
+
+class GameProbe extends "res://scripts/main.gd":
+	var entered_regions: Array[int] = []
+	var loaded_layers: Array[int] = []
+	func _ready() -> void:
+		set_process(false)
+	func _load_room(_resume := false) -> void:
+		loaded_layers.append(int(campaign.state.layer_index))
+	func _save(_immediate := false) -> bool:
+		return true
+	func _select_region(id: int, _confirmed := false) -> void:
+		entered_regions.append(id)
+
+var checks := 0
+var failures: Array[String] = []
+var captures: Array[String] = []
+var canvas: SubViewport
+
+func check(value: bool, message: String) -> void:
+	checks += 1
+	if not value: failures.append(message)
+
+func _initialize() -> void:
+	_run.call_deferred()
+
+func _page(rows: Array, details: Dictionary) -> DungeonRoutePage:
+	var page = DungeonRoutePage.new()
+	page.theme = DungeonStyle.theme()
+	canvas.add_child(page)
+	page.size = Vector2(canvas.size)
+	page.configure(rows, details)
+	return page
+
+func _settle() -> void:
+	for frame in 8: await process_frame
+
+func _run() -> void:
+	create_timer(60).timeout.connect(func(): quit(2))
+	canvas = SubViewport.new()
+	canvas.size = Vector2i(1600, 900)
+	canvas.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	root.add_child(canvas)
+	var display = TextureRect.new()
+	display.texture = canvas.get_texture()
+	display.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	display.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	root.add_child(display)
+	var background = TextureRect.new()
+	background.texture = DungeonStyle.texture("res://assets/ui/route/world_background_1.png")
+	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	canvas.add_child(background)
+	var campaign = DungeonCampaign.new()
+	check(campaign.configure() and campaign.generate(12345, 0).success, "Current APK campaign loads")
+	var world = _page(campaign.region_map(), {"map_scope": "world", "first_layer": 1, "current_layer": 1})
+	check(world.selected_id == 0 and not world.confirm.visible, "World map opens unselected")
+	world._select(2, 1)
+	check(world.selected_id == 2 and not world.confirm.disabled, "Open current region can be confirmed")
+	world._select(1, 1)
+	check(world.selected_id == 1 and world.confirm.disabled and world.nodes.filter(func(node): return node.chosen).size() == 1, "Locked region replaces previous selection and disables entry")
+	check(not world.selection_detail.text.is_empty(), "Locked selection displays its detail on the map")
+	var emitted: Array = []
+	world.command.connect(func(kind, id, extra): emitted.append([kind, id, extra]))
+	world._confirm()
+	check(emitted.is_empty(), "Locked region cannot dispatch entry")
+	world._select(5, 3)
+	check(world.selected_id == 1, "Future region cannot replace selection")
+	world._select(2, 1)
+	world._confirm()
+	world._confirm()
+	check(emitted.size() == 1 and emitted[0][0] == "select_region" and emitted[0][1] == 2, "Confirmation dispatches once")
+	world.queue_free()
+	await process_frame
+	check(campaign.select_region(2).success, "Select actual forest region")
+	var duplicate := 1010801
+	var anchor := 1010101
+	var previous: Dictionary = campaign.state.layers[2]
+	previous.node_ids = [anchor, duplicate]
+	previous.selected_id = anchor
+	previous.complete = true
+	previous.completed_ids = [anchor]
+	previous.connections = {str(anchor): [duplicate], str(duplicate): [duplicate]}
+	previous.vertical_links = [[anchor, duplicate]]
+	campaign.state.layers[3].node_ids = [duplicate]
+	campaign.state.layer_index = 3
+	var fixture: Dictionary = campaign.snapshot().duplicate(true)
+	check(campaign.route_choice(duplicate).layer_index == 3, "Unqualified entry prefers forward occurrence")
+	check(campaign.route_choice(duplicate, 2).vertical, "Explicit previous column resolves the vertical occurrence")
+	check(not campaign.enter(duplicate, false, 2).success, "Vertical occurrence requires vertical authorization")
+	check(campaign.enter(duplicate, true, 2).success and campaign.state.layer_index == 2, "Vertical entry cannot enter the forward duplicate")
+	campaign.state = fixture.duplicate(true)
+	check(campaign.enter(duplicate, true, 3).success and campaign.state.layer_index == 3, "Forward entry cannot enter the vertical duplicate")
+	campaign.state = fixture.duplicate(true)
+	var rows = campaign.route_map()
+	for row in rows:
+		row["config_id"] = int(row.layer_index) * 100000000 + int(row.node_id)
+		row["available"] = row.available or row.vertical
+	var rooms = _page(rows, {"first_layer": 0, "current_layer": 3})
+	check(rooms.selected_id == 0 and not rooms.confirm.visible, "Room map opens unselected")
+	emitted.clear()
+	rooms.command.connect(func(kind, id, extra): emitted.append([kind, id, extra]))
+	rooms._confirm()
+	check(emitted.is_empty(), "Unselected room confirmation is ignored")
+	rooms._select(duplicate, 2)
+	rooms._select(duplicate, 3)
+	check(rooms.nodes.filter(func(node): return node.chosen).size() == 1 and rooms.rows[rooms.selected_index].layer_index == 3, "Duplicate room selections highlight one occurrence")
+	rooms._confirm()
+	rooms._confirm()
+	check(emitted.size() == 1 and emitted[0][2] == {"layer_index": 3}, "Room confirmation preserves column identity exactly once")
+	rooms.queue_free()
+	await process_frame
+	for dimensions in [Vector2i(1600, 900), Vector2i(2460, 1080), Vector2i(844, 390)]:
+		canvas.size = dimensions
+		background.size = Vector2(dimensions)
+		for scope in ["world", "rooms"]:
+			var layout_rows: Array = []
+			for column in 9:
+				layout_rows.append({"node_id": column + 1, "config_id": column + 1, "layer_index": column,
+					"lane": 0, "lane_count": 1, "available": column == 5, "is_anchor": column == 4,
+					"map_mode": scope, "name": "Forest", "world_icon": "森林图标", "IconName": "icon_stagerewardtypeicon_Normal"})
+			var page = _page(layout_rows, {"map_scope": scope, "first_layer": 0, "current_layer": 5})
+			await _settle()
+			var focus = page.nodes[5 if scope == "world" else 4]
+			var center: float = focus.get_rect().get_center().x
+			check(absf(center - page.scroll.scroll_horizontal - page.scroll.size.x * 0.5) <= 1.0, "%s centers current focus at %s" % [scope, dimensions])
+			check(page.get_rect().encloses(page.header.get_rect()) and page.get_rect().encloses(page.footer.get_rect()), "Controls stay inside %s" % dimensions)
+			check(page.scroll.get_rect().end.y <= page.footer.position.y, "Graph stays above controls at %s" % dimensions)
+			page.scroll.scroll_horizontal += 110
+			var old_column: float = (page.scroll.scroll_horizontal + page.scroll.size.x * 0.5 - page._graph_margin - page.node_size.x * 0.5) / page.column_width
+			page.size.x -= 40
+			await _settle()
+			var new_column: float = (page.scroll.scroll_horizontal + page.scroll.size.x * 0.5 - page._graph_margin - page.node_size.x * 0.5) / page.column_width
+			check(absf(old_column - new_column) < 0.01, "Resize preserves manually browsed column")
+			page.size = Vector2(dimensions)
+			await _settle()
+			page._scroll_to_current()
+			await _capture(page, scope, dimensions)
+			page.context.current_layer = 8
+			for row in page.rows: row.is_anchor = false
+			page._scroll_to_current()
+			var last: Rect2 = page.nodes.back().get_rect()
+			check(last.end.x - page.scroll.scroll_horizontal <= page.scroll.size.x + 1, "Last column remains visible after clamping")
+			page.queue_free()
+			await process_frame
+	await _check_game(campaign, fixture, duplicate)
+	canvas.queue_free()
+	display.queue_free()
+	await process_frame
+	var report = {"checks": checks, "passed": failures.is_empty(), "failures": failures, "captures": captures}
+	FileAccess.open("res://reports/map-selection-position-test.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
+	print("MAP_SELECTION_POSITION ", JSON.stringify(report))
+	quit(0 if failures.is_empty() else 1)
+
+func _check_game(campaign: DungeonCampaign, fixture: Dictionary, duplicate: int) -> void:
+	var game = GameProbe.new()
+	root.add_child(game)
+	game.catalog = DungeonCatalog.new()
+	check(game.catalog.load_all(), "Game entry catalog loads")
+	game.profile = DungeonProfile.new()
+	game.systems = DungeonSystems.new(game.catalog, game.profile)
+	game.systems.begin_run(12345, 1, 100, 0)
+	game.campaign = campaign
+	game.hud = DungeonHud.new()
+	canvas.add_child(game.hud)
+	game.world = DungeonWorld.new()
+	game.menus = DungeonMenus.new(game)
+	game.systems.effects.acquire(15102)
+	check(game.systems.search_point_count() == 2, "Entry fixture has two shift charges")
+	campaign.state = fixture.duplicate(true)
+	game._enter_node(duplicate, 3)
+	check(campaign.state.layer_index == 3 and game.systems.search_point_count() == 2, "Forward duplicate costs no shift charge")
+	campaign.state = fixture.duplicate(true)
+	game._enter_node(duplicate, 2)
+	check(campaign.state.layer_index == 2 and game.systems.search_point_count() == 1, "Vertical duplicate enters previous column and costs one charge")
+	game._enter_node(duplicate, 2)
+	check(game.systems.search_point_count() == 1 and game.loaded_layers == [3, 2], "Repeated entry cannot load or charge twice")
+	campaign.generate(12345, 0)
+	game.profile.data.auto_route = true
+	game._world_route(false)
+	check(game.entered_regions.is_empty() and game.hud.page.route_view.is_world_map(), "Automatic option keeps initial world selection")
+	check(campaign.state.region_selection, "Opening initial world map does not mutate the route")
+	campaign.state.layer_index = 7
+	campaign.state.module_index = 1
+	campaign.state.layers[6].complete = true
+	campaign.state.layers[6].selected_id = int(campaign.state.layers[6].node_ids[0])
+	game._world_route(false)
+	check(game.entered_regions.size() == 1, "Later single-choice module still enters automatically")
+	game.systems.decorations = null
+	for node in [game.resource_audio, game.ads, game.world.ground_loot, game.world.spirit_followers, game.world.player_transfer, game.world.player_revival]: node.free()
+	game.world.free()
+	game.hud.queue_free()
+	game.queue_free()
+	await process_frame
+
+func _capture(page: DungeonRoutePage, scope: String, dimensions: Vector2i) -> void:
+	if DisplayServer.get_name() == "headless": return
+	page._select(6, 5)
+	await create_timer(0.9).timeout
+	await RenderingServer.frame_post_draw
+	var path = "res://reports/map-position-%s-%dx%d.png" % [scope, dimensions.x, dimensions.y]
+	canvas.get_texture().get_image().save_png(path)
+	captures.append(path)

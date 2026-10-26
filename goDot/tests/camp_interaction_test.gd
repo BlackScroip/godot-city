@@ -5,9 +5,12 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var game = load("res://scenes/main.tscn").instantiate()
-	game.save_store = DungeonSaveStore.new("res://reports/camp-interaction-test.json")
+	game.save_store = DungeonSaveStore.new("/private/tmp/camp-interaction-%d.json" % Time.get_ticks_usec())
 	root.add_child(game)
 	await process_frame
+	game.profile.data.buildings["3"] = 1
+	game.profile.data.buildings["2"] = 1
+	game.world.refresh_camp_progression()
 	game.world.player.position = Vector3(100, 0, 100)
 	await process_frame
 	assert(not game.hud.primary.visible, "Far away hides interaction")

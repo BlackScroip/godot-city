@@ -28,6 +28,8 @@ var dialogue_view: Control
 var prepare_view: Control
 var unclaimed_view: Control
 var room_shop_view: Control
+var character_view: Control
+var shop_view: Control
 var page_context: Dictionary = {}
 
 func _ready() -> void:
@@ -120,7 +122,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	_choices.clear()
 	_clear(rows_host)
 	_clear(detail)
-	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view, room_shop_view, unclaimed_view]:
+	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view, room_shop_view, unclaimed_view, character_view, shop_view]:
 		if is_instance_valid(view):
 			stack.remove_child(view)
 			view.queue_free()
@@ -131,6 +133,8 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	prepare_view = null
 	unclaimed_view = null
 	room_shop_view = null
+	character_view = null
+	shop_view = null
 	if is_instance_valid(outcome_view):
 		stack.remove_child(outcome_view)
 		outcome_view.queue_free()
@@ -143,9 +147,23 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.remove_child(special)
 		special.queue_free()
 		special = null
-	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "talent", "support", "room_shop", "unclaimed"]
-	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "talent", "support", "room_shop", "unclaimed"]
+	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "talent", "support", "room_shop", "unclaimed", "character", "shop"]
+	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "talent", "support", "room_shop", "unclaimed", "character", "shop"]
 	stack.add_theme_constant_override("separation", 0 if layout in ["route", "outcome"] else 16)
+	if layout in ["character", "shop"]:
+		backdrop.hide()
+		body.hide()
+		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+		stack.add_theme_constant_override("separation", 0)
+		var view = load("res://scripts/presentation/character_page.gd" if layout == "character" else "res://scripts/presentation/mall_page.gd").new()
+		if layout == "character": character_view = view
+		else: shop_view = view
+		stack.add_child(view)
+		view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+		if view.has_signal("closed"): view.closed.connect(func(): closed.emit())
+		if view.has_signal("back_requested"): view.back_requested.connect(func(): back_requested.emit())
+		view.configure(self, rows, context)
+		return
 	if layout == "room_shop":
 		backdrop.hide()
 		body.hide()

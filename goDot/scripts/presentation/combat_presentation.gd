@@ -175,6 +175,45 @@ func _effect_key(actor: DungeonActor, value: Variant) -> String:
 				return _key(replacement.ReplaceEffectName)
 	return key
 
+func _source_style(actor: DungeonActor, hit: Dictionary = {}, summon: Dictionary = {}) -> bool:
+	if not actor.is_player and str(actor.combat.enemy.get("rank", "")) == "Boss": return true
+	if str(hit.get("definition", {}).get("actType", "")) == "Spirit": return true
+	if not hit.get("source_attack_effect_replacements", {}).is_empty(): return true
+	var id := str(summon.get("ID", hit.get("summon_id", "")))
+	return str(actor.combat._summon_index.get(id, {}).get("hit", {}).get("actType", "")) == "Spirit"
+
+func _source_dimensions(value: Variant, fallback := Vector3.ONE) -> Vector3:
+	var dimensions := DungeonWorld.vector(value) if value is Dictionary else Vector3.ZERO
+	return fallback if dimensions.is_zero_approx() else dimensions
+
+func _attack_effect_replacements(actor: DungeonActor, hit: Dictionary) -> Dictionary:
+	var raw := DungeonWorld._raw_definition(hit.get("definition", {}))
+	var attack_id := int(raw.get("Id", 0))
+	var result: Dictionary = {}
+	if attack_id == 0: return result
+	for entry in actor.combat.statuses.values():
+		var buff: Dictionary = actor.combat._buff_index.get(str(entry.id), {})
+		if buff.get("type", "") != "EBT_ModifyAttackDef" or int(entry.get("layers", 0)) <= 0: continue
+		var settings: Dictionary = actor.combat._settings(buff, actor.combat._caster_for(str(entry.id)))
+		if not settings.get("AttackDefIdList", []).any(func(id): return int(id) == attack_id): continue
+		var detection := _key(settings.get("DetectionEffectName", ""))
+		var replacement := str(settings.get("ReplaceEffectName", ""))
+		if not detection.is_empty() and not replacement.is_empty(): result[detection] = replacement
+	return result
+
+func _attack_effect_name(actor: DungeonActor, name: String, hit: Dictionary) -> String:
+	var replacements: Dictionary = hit.get("source_attack_effect_replacements", {}) if hit.has("source_attack_effect_replacements") else _attack_effect_replacements(actor, hit)
+	return str(replacements.get(_key(name), name))
+
+func _attack_effect_definition(actor: DungeonActor, definition: Dictionary, hit: Dictionary) -> Dictionary:
+	var name := str(definition.get("EffectName", ""))
+	var replacement := _attack_effect_name(actor, name, hit)
+	if name == replacement: return definition
+	var result := definition.duplicate(true)
+	result["EffectName"] = replacement
+	result["attack_modifier_style"] = true
+	return result
+
 func _collect_media(value: Variant, source: DungeonCombat, effects: Dictionary, sounds: Dictionary, pending: Dictionary) -> void:
 	if value is Dictionary:
 		for field in value:
@@ -187,9 +226,9 @@ func _collect_media(value: Variant, source: DungeonCombat, effects: Dictionary, 
 					var key = str(int(id)) if id is int or id is float else str(id)
 					if source._buff_index.has(key): pending["buff:" + key] = source._buff_index[key]
 					if source._summon_index.has(key): pending["summon:" + key] = source._summon_index[key]
-			if field == "AddSummonUnitId" and not str(child).is_empty(): pending["summon:" + str(child)] = source._summon_index.get(str(child), {})
-			elif field in ["BuffTriggerId", "BuffId", "buff"] and not str(child).is_empty(): pending["buff:" + str(child)] = source._buff_index.get(str(child), {})
-			elif field == "CommonBuffEffectId" and not str(child).is_empty(): pending["buff:" + str(child)] = source._buff_index.get(str(child), {})
+			if field == "AddSummonUnitId" and str(child) not in ["", "0"]: pending["summon:" + str(child)] = source._summon_index.get(str(child), {})
+			elif field in ["BuffTriggerId", "BuffId", "buff"] and str(child) not in ["", "0"]: pending["buff:" + str(child)] = source._buff_index.get(str(child), {})
+			elif field == "CommonBuffEffectId" and str(child) not in ["", "0"]: pending["buff:" + str(child)] = source._buff_index.get(str(child), {})
 			elif field == "MonsterId" and int(child) > 0:
 				for enemy in source.catalog.get("enemies", []):
 					if int(enemy.id) == int(child): pending["enemy:" + str(child)] = {"action_group": str(enemy.group)}
@@ -500,7 +539,8 @@ func _anchor(actor: DungeonActor, definition: Dictionary) -> Node3D:
 	if not actor.is_player and not str(dummy.get("CustomDummyName", "")).is_empty(): unresolved_anchors[str(actor.actor_id) + ":" + name] = true
 	return actor
 
-func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point := Vector3.INF, use_action_clock := true, source_only := false) -> void:
+func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point := Vector3.INF, use_action_clock := true, source_only := false, facing := Vector3.ZERO) -> void:
+	source_only = source_only or _source_style(actor) or bool(definition.get("attack_modifier_style", false))
 	var name = str(definition.get("EffectName", ""))
 	if name.is_empty(): return
 	if not actor.is_player and "enemyatkrange" in name.to_lower():
@@ -510,9 +550,11 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 	var follows = str(definition.get("DummyType", "")) in ["EEDT_DummyChild", "EEDT_DummyPosFollow_WithoutRotate"]
 	var offset = DungeonWorld.vector(definition.get("Position", {}))
 	if not source_only and _sword_slash(_key(name)): offset.z += 0.55
+	var direction := actor.facing if facing.is_zero_approx() else facing
+	var yaw := atan2(direction.x, direction.z)
 	var bone_bound = not actor.is_player and anchor != actor and not str(definition.get("DummyData", {}).get("CustomDummyName", "")).is_empty()
-	var location = anchor.to_global(offset) if bone_bound else anchor.global_position + Basis(Vector3.UP, atan2(actor.facing.x, actor.facing.z)) * offset
-	if point != Vector3.INF: location = point + offset
+	var location = anchor.to_global(offset) if bone_bound else anchor.global_position + Basis(Vector3.UP, yaw) * offset
+	if point != Vector3.INF: location = point + (Basis(Vector3.UP, yaw) * offset if source_only else offset)
 	if not source_only: location.y += 0.08
 	var dimensions = DungeonWorld.vector(definition.get("Scale", {}))
 	if dimensions.is_zero_approx() if source_only else dimensions.length_squared() < 0.01: dimensions = Vector3.ONE
@@ -531,7 +573,7 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 		active.back().detach_after = maxf(0, float(definition.get("DelayTimeToWorldPos", 0))) / 1000.0
 		if not loop and float(definition.get("DelayTimeToDestroy", 0)) <= 0 and active.back().authored:
 			active.back().duration = maxf(0.05, minf(active.back().authored.lifetime, 4.0) / playback_speed)
-		active.back().root.rotation += DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0
+		active.back().root.rotation = Vector3(0, yaw, 0) + DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0
 		if bone_bound: active.back().root.global_basis = anchor.global_basis.orthonormalized() * Basis.from_euler(DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0)
 		if not source_only and _sword_slash(_key(name)): active.back().root.rotate_y(PI)
 		active.back().position_without_rotate = str(definition.get("DummyType", "")) == "EEDT_DummyPosFollow_WithoutRotate"
@@ -650,21 +692,32 @@ func command(actor: DungeonActor, event: Dictionary) -> void:
 		"EET_PlayVoice": play_sound(str(raw.get("VoiceName", "")), actor.position, actor, int(event.sequence))
 
 func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3) -> void:
+	# Entity styles retain the modifiers active at creation across their delay/lifetime.
+	if not hit.has("source_attack_effect_replacements"): hit["source_attack_effect_replacements"] = _attack_effect_replacements(actor, hit)
 	var definition: Dictionary = hit.get("definition", {})
 	var raw = DungeonWorld._raw_definition(definition)
 	var entity: Dictionary = raw.get("EntityProperty", {})
-	var effect: Dictionary = entity.get("EffectTriggerDef", {})
+	var effect := _attack_effect_definition(actor, entity.get("EffectTriggerDef", {}), hit)
 	var emitted_before = spawned
 	var attached = str(raw.get("MotionAnimatorType", "")) in ["EMAT_FollowOwner", "EMAT_RotateOwner"]
-	if not str(effect.get("EffectName", "")).is_empty() and (raw.get("EntityType", "") != "EET_Physical" or attached): trigger(actor, effect, int(hit.get("sequence", -1)), origin, true, preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat))
+	if not str(effect.get("EffectName", "")).is_empty() and (raw.get("EntityType", "") != "EET_Physical" or attached): trigger(actor, effect, int(hit.get("sequence", -1)), origin, true, _source_style(actor, hit) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat))
 	if spawned > emitted_before:
 		if preload("res://scripts/presentation/impact_profiles.gd").ranged(hit): active.back().clock_sequence = -1
 	play_sound(str(entity.get("CreateSound", {}).get("SoundName", "")), origin, actor, int(hit.get("sequence", -1)))
 
+func entity_activated(actor: DungeonActor, hit: Dictionary, origin: Vector3, facing := Vector3.ZERO) -> void:
+	var raw := DungeonWorld._raw_definition(hit.get("definition", {}))
+	var entity: Dictionary = raw.get("EntityProperty", {})
+	var source_only := _source_style(actor, hit) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat)
+	trigger(actor, _attack_effect_definition(actor, entity.get("EffectDelayTriggerDef", {}), hit), int(hit.get("sequence", -1)), origin, true, source_only, facing)
+	var sound: Variant = entity.get("Sound", entity.get("SoundTriggerDef", ""))
+	if sound is Dictionary: sound = sound.get("SoundName", "")
+	play_sound(str(sound), origin, actor, int(hit.get("sequence", -1)))
+
 func impact(source: DungeonActor, target: DungeonActor, hit: Dictionary) -> void:
 	impacts += 1
 	var profile: Dictionary = hit.profile if hit.has("profile") else preload("res://scripts/presentation/impact_profiles.gd").resolve(hit, source.combat)
-	if bool(profile.get("source_only", false)):
+	if bool(profile.get("source_only", false)) or _source_style(source, hit):
 		var point := DungeonWorld.vector(hit.get("impact_position", DungeonProjectile._array(target.position + Vector3.UP * 0.65)))
 		preload("res://scripts/presentation/source_heavy_impact.gd").present(self, source, target, hit, point)
 		return
@@ -708,12 +761,14 @@ func explosion(source: DungeonActor, point: Vector3, profile: Dictionary) -> voi
 	play_sound("audio_monster_rockexplosion", point, source, -1, 0.6, 0.86, true)
 
 func projectile_started(actor: DungeonActor, state: DungeonProjectile, visual: Node3D) -> void:
-	var definition: Dictionary = state.entity.get("EffectTriggerDef", {})
+	var definition := _attack_effect_definition(actor, state.entity.get("EffectTriggerDef", {}), state.hit)
 	var name = str(state.entity.get("ModlePrefab", definition.get("EffectName", "")))
 	if name.is_empty(): name = str(definition.get("EffectName", ""))
+	var original_name: String = name
+	name = _attack_effect_name(actor, name, state.hit)
 	# Attached hitboxes already emitted their action-owned slash at the actor anchor.
 	if state.motion_type in ["EMAT_FollowOwner", "EMAT_RotateOwner"] and str(state.entity.get("ModlePrefab", "")).is_empty(): return
-	var source_only := preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(state.hit, actor.combat)
+	var source_only := _source_style(actor, state.hit) or original_name != name or bool(definition.get("attack_modifier_style", false)) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(state.hit, actor.combat)
 	if source_only and str(state.entity.get("ModlePrefab", "")).is_empty():
 		var before := spawned
 		trigger(actor, definition, -1, state.position, false, true)
@@ -724,16 +779,15 @@ func projectile_started(actor: DungeonActor, state: DungeonProjectile, visual: N
 			entry.world_offset = entry.root.global_position - visual.global_position
 		return
 	var before := spawned
-	var dimensions := DungeonWorld.vector(state.entity.get("ModlePrefabSize", {})) if source_only else Vector3.ONE * clampf(state.radius * 2, 0.6, 3)
-	if source_only and dimensions.is_zero_approx(): dimensions = Vector3.ONE
+	var dimensions := _source_dimensions(state.entity.get("ModlePrefabSize", {}), Vector3.ONE if source_only else Vector3.ONE * clampf(state.radius * 2, 0.6, 3))
 	emit_effect(actor, name, state.position, dimensions, state.lifetime, visual, false, -1, true, false, source_only)
-	if source_only and spawned > before and active.back().authored: active.back().authored.scale = dimensions
+	if spawned > before and active.back().authored: active.back().authored.scale = dimensions
 
 func projectile_ended(actor: DungeonActor, state: DungeonProjectile) -> void:
-	var name = str(state.entity.get("EntityEndEffect", ""))
-	var source_only := preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(state.hit, actor.combat)
-	if source_only: _summon_style(actor, name, state.position, DungeonWorld.vector(state.entity.get("EntityEndEffectScale", {})), true)
-	else: emit_effect(actor, name, state.position, Vector3.ONE * clampf(state.radius * 2, 0.8, 4), 0.24)
+	var original_name := str(state.entity.get("EntityEndEffect", ""))
+	var name := _attack_effect_name(actor, original_name, state.hit)
+	var source_only := _source_style(actor, state.hit) or original_name != name or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(state.hit, actor.combat)
+	if not name.is_empty(): _summon_style(actor, name, state.position, _source_dimensions(state.entity.get("EntityEndEffectScale", {}), Vector3.ONE if source_only else Vector3.ONE * clampf(state.radius * 2, 0.8, 4)), source_only)
 	play_sound(str(state.entity.get("EntityEndSoundDef", {}).get("SoundName", state.entity.get("EntityEndSound", ""))), state.position, actor)
 
 func release_anchor(anchor: Node3D) -> void:
@@ -743,6 +797,7 @@ func release_anchor(anchor: Node3D) -> void:
 		if follow and follow.get_ref() == anchor: _recycle(index)
 
 func summon_started(actor: DungeonActor, raw: Dictionary, point: Vector3, facing := Vector3.ZERO, source_only := false) -> int:
+	source_only = source_only or _source_style(actor, {}, raw)
 	var prefab = str(raw.get("Prefab", ""))
 	if prefab.is_empty(): return 0
 	var definition: Dictionary = media.get("effects", {}).get(_key(prefab), {})
@@ -772,20 +827,25 @@ func _summon_style(actor: DungeonActor, name: String, point: Vector3, dimensions
 		active.back().duration = maxf(0.05, minf(active.back().authored.lifetime, 8.0))
 
 func summon_created(actor: DungeonActor, raw: Dictionary, point: Vector3, source_only := false) -> void:
+	source_only = source_only or _source_style(actor, {}, raw)
 	_summon_style(actor, str(raw.get("InitEffect", "")), point, Vector3.ONE, source_only)
 	play_sound(str(raw.get("InitSoundTriggerDef", {}).get("SoundName", "")), point, actor)
 
 func summon_phase(actor: DungeonActor, raw: Dictionary, point: Vector3, phase: String, source_only := false) -> void:
+	source_only = source_only or _source_style(actor, {}, raw)
 	_summon_style(actor, str(raw.get("EffectName_" + phase, "")), point, DungeonWorld.vector(raw.get("EffectScale_" + phase, {})), source_only)
 	play_sound(str(raw.get("SoundTrigger_" + phase, {}).get("SoundName", "")), point, actor)
 
 func summon_trigger(actor: DungeonActor, raw: Dictionary, point: Vector3, phase: String, source_only := false) -> void:
+	source_only = source_only or _source_style(actor, {}, raw)
 	_summon_style(actor, str(raw.get("TriggerEffectName_" + phase, "")), point, Vector3.ONE, source_only)
 
 func summon_pickup(actor: DungeonActor, raw: Dictionary, point: Vector3, source_only := false) -> void:
+	source_only = source_only or _source_style(actor, {}, raw)
 	_summon_style(actor, str(raw.get("PickUpEffect", "")), point, Vector3.ONE, source_only)
 
 func summon_disposed(actor: DungeonActor, raw: Dictionary, point: Vector3, source_only := false) -> void:
+	source_only = source_only or _source_style(actor, {}, raw)
 	_summon_style(actor, str(raw.get("DestoryEffect", "")), point, Vector3.ONE, source_only)
 	play_sound(str(raw.get("DestroySoundTriggerDef", {}).get("SoundName", "")), point, actor)
 
@@ -819,8 +879,12 @@ func buff_effect(actor: DungeonActor, event: Dictionary) -> void:
 		sync_actor_buffs(actor)
 		return
 	var emitted_before = spawned
-	trigger(actor, raw.get("EffectTriggerDef", raw), actor.combat._cast_sequence)
+	var definition: Variant = raw.get("EffectName1", raw.get("EffectTriggerDef", raw))
+	if definition is String: definition = {"EffectName": definition}
+	if definition is Dictionary:
+		trigger(actor, definition, actor.combat._cast_sequence, Vector3.INF, false, raw.has("EffectName1"))
 	if spawned > emitted_before: active.back().clock_sequence = -1
+	play_sound(str(raw.get("SoundTriggerDef", {}).get("SoundName", "")), actor.position, actor)
 
 func _buff_style_definitions(actor: DungeonActor, owner_id: String) -> Dictionary:
 	if _buff_style_bindings.has(owner_id): return _buff_style_bindings[owner_id]

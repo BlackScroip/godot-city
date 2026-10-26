@@ -3,10 +3,23 @@ extends CanvasLayer
 
 signal action(kind: String, id: Variant, extra: Variant)
 signal skill(slot: int, pressed: bool)
-const SKILL_CLUSTER_SIZE := Vector2(400, 344)
+signal skill_canceled(slot: int)
+const SKILL_CLUSTER_SIZE := Vector2(520, 392)
 const SKILL_CLUSTER_MARGIN := Vector2(24, 24)
-const SKILL_POSITIONS := [Vector2(208, 152), Vector2(80, 212), Vector2(84, 52), Vector2(252, 12), Vector2(8, 148)]
-const SKILL_SIZES := [168, 112, 112, 112, 64]
+const INTERACTION_OFFSET := Vector2(-192, 56)
+const SKILL_POSITIONS := [Vector2(272, 184), Vector2(118, 236), Vector2(172, 48), Vector2(384, 44), Vector2(28, 172)]
+const SKILL_SIZES := [192, 120, 128, 112, 72]
+const RESOURCE_IDS := [101, 102, 103, 12101, 90002, 108]
+const NAVIGATION_ENTRIES := [
+	["开始冒险", "quick_start", "menu_adventure"],
+	["分享评价", "go_comment", "menu_comment"],
+	["云存档", "cloud_save", "menu_cloud"],
+	["餐品", "page:meal_buffs", "menu_meal_buffs"],
+	["难度", "page:difficulty", "menu_difficulty"],
+	["商城", "page:mall", "menu_store"],
+	["角色", "page:characters", "menu_character"],
+	["设置", "settings", "menu_settings"],
+]
 var root: Control
 var joystick: DungeonJoystick
 var title_label: Label
@@ -44,13 +57,20 @@ var pickup_description: Label
 var pickup_icon: TextureRect
 var reference_vitals: Control
 var objective_guide: Control
+var region_notice: Control
 var readiness_suspended := false
 var low_effects := false
 var adventure_mode := false
+var _adventure_mode_applied := false
 var adventure_button: Button
 var adventure_caption: Label
 var battle_readout: Control
 var adventure_icon: TextureRect
+var navigation_buttons: Dictionary = {}
+var _navigation_badges: Dictionary = {}
+var _navigation_state: Dictionary = {}
+var _navigation_visibility: Dictionary = {}
+var _seen_navigation_hints: Dictionary = {}
 
 func _ready() -> void:
 	root = Control.new()
@@ -77,90 +97,71 @@ func _ready() -> void:
 	counters.position = Vector2(28, 45)
 	counters.add_theme_constant_override("separation", 8)
 	root.add_child(counters)
-	for id in [101, 501, 90002]:
-		var panel = Button.new()
-		var style = DungeonStyle.box(Color(0.08, 0.07, 0.05, 0.85), DungeonStyle.GOLD, 2)
-		style.set_corner_radius_all(20)
-		style.content_margin_top = 0
-		style.content_margin_bottom = 0
-		for state in ["normal", "hover", "pressed", "disabled"]: panel.add_theme_stylebox_override(state, style)
-		panel.custom_minimum_size = Vector2(212, 40)
+	for id in RESOURCE_IDS:
+		var panel = preload("res://scripts/presentation/resource_counter.gd").new()
 		panel.set_meta("resource_id", id)
 		panel.pressed.connect(func(): action.emit("page:resource", int(panel.get_meta("resource_id")), 0))
 		counter_buttons.append(panel)
 		counters.add_child(panel)
-		var line = HBoxContainer.new()
-		line.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		line.offset_left = 8
-		line.offset_right = -8
-		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		panel.add_child(line)
-		var icon = DungeonStyle.picture("material:" + str(id), Vector2(36, 36))
-		line.add_child(icon)
-		counter_icons.append(icon)
-		var value = label("0", 20)
-		value.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		value.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		line.add_child(value)
-		counter_values.append(value)
+		panel.resource_icon.texture = DungeonStyle.texture(("loot:" if id == 12101 else "material:") + str(id))
+		counter_icons.append(panel.resource_icon)
+		counter_values.append(panel.value_label)
 	camp_button = button("营地", "camp")
 	camp_button.icon = DungeonStyle.texture("menu_portal")
 	camp_button.expand_icon = true
 	camp_button.add_theme_constant_override("icon_max_width", 28)
 	camp_button.tooltip_text = "营地设施与资源"
 	root.add_child(camp_button)
+	counters.minimum_size_changed.connect(func(): _layout_camp_button.call_deferred())
 	pickup_panel = preload("res://scripts/presentation/pickup_card.gd").new()
 	root.add_child(pickup_panel)
 	pickup_icon = pickup_panel.icon
 	pickup_name = pickup_panel.name_label
 	pickup_description = pickup_panel.description_label
 	navigation = HBoxContainer.new()
-	navigation.add_theme_constant_override("separation", 4)
+	navigation.add_theme_constant_override("separation", 25)
 	root.add_child(navigation)
-	for entry in [["开始冒险", "primary", "menu_adventure"], ["云存档", "save", "menu_cloud"], ["商城", "page:mall", "menu_store"], ["角色", "page:characters", "menu_character"], ["设置", "settings", "menu_settings"]]:
-		var key = Button.new() if entry[1] == "primary" else button("", entry[1])
-		if entry[1] == "primary":
-			adventure_button = key
-			key.pressed.connect(func(): action.emit("page:difficulty", 0, 0))
+	for entry in NAVIGATION_ENTRIES:
+		var key = button("", entry[1])
 		key.name = entry[2]
-		key.custom_minimum_size = Vector2(88, 100)
+		key.custom_minimum_size = Vector2(90, 112)
 		key.tooltip_text = entry[0]
-		if entry[1] == "save": key.tooltip_text = "离线版本：保存进度到本机"
 		for state in ["normal", "hover", "pressed", "disabled"]:
 			key.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 		key.add_theme_stylebox_override("focus", DungeonStyle.box(Color.TRANSPARENT, Color(1, 1, 1, 0.6)))
 		navigation.add_child(key)
+		navigation_buttons[entry[2]] = key
 		var icon = DungeonStyle.picture(entry[2], Vector2.ZERO)
-		icon.position = Vector2(12, 0)
-		icon.size = Vector2(64, 64)
+		icon.position = Vector2(5, 0)
+		icon.size = Vector2(80, 80)
 		if entry[2] == "menu_adventure":
-			adventure_icon = icon
 			var white_icon = ShaderMaterial.new()
 			white_icon.shader = preload("res://scripts/presentation/white_menu_icon.gdshader")
 			icon.material = white_icon
 		key.add_child(icon)
-		var caption = label(entry[0], 22)
+		var caption = label(entry[0], 20 if str(entry[0]).length() > 3 else 22)
 		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		caption.position = Vector2(0, 66)
-		caption.size = Vector2(88, 32)
+		caption.position = Vector2(0, 80)
+		caption.size = Vector2(90, 32)
 		caption.add_theme_color_override("font_color", Color.WHITE)
 		caption.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.75))
 		caption.add_theme_constant_override("outline_size", 4)
 		key.add_child(caption)
-		if entry[1] == "primary": adventure_caption = caption
 		key.button_down.connect(func(): icon.modulate = Color(0.7, 0.8, 0.85))
 		key.button_up.connect(func(): icon.modulate = Color.WHITE)
-		if entry[1] in ["save", "page:mall"]:
+		if entry[1] in ["quick_start", "go_comment", "cloud_save"]:
 			var badge = DungeonStyle.picture("menu_red_dot", Vector2.ZERO)
-			badge.position = Vector2(63, 0)
+			badge.position = Vector2(70, 0)
 			badge.size = Vector2(18, 18)
 			key.add_child(badge)
-			key.pressed.connect(badge.hide)
+			_navigation_badges[entry[2]] = badge
 	message_label = label("", 22)
 	message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	root.add_child(message_label)
+	region_notice = preload("res://scripts/presentation/region_notice.gd").new()
+	region_notice.z_index = 10
+	root.add_child(region_notice)
 	joystick = DungeonJoystick.new()
 	root.add_child(joystick)
 	skill_cluster = Control.new()
@@ -179,6 +180,7 @@ func _ready() -> void:
 		key.ring = DungeonStyle.texture("skill_ring" if slot == 0 else "skill_circle")
 		key.button_down.connect(func(): skill.emit(slot, true))
 		key.button_up.connect(func(): skill.emit(slot, false))
+		key.touch_canceled.connect(func(): skill_canceled.emit(slot))
 		skill_cluster.add_child(key)
 		skill_buttons.append(key)
 		skill_by_slot[slot] = key
@@ -188,7 +190,7 @@ func _ready() -> void:
 	attack_mode_button.custom_minimum_size = attack_mode_button.size
 	attack_mode_button.ring = DungeonStyle.texture("skill_circle_small")
 	attack_mode_button.art = DungeonStyle.texture("skill_swap")
-	attack_mode_button.button_down.connect(func():
+	attack_mode_button.pressed.connect(func():
 		var modes = ["normal", "heavy", "off"]
 		action.emit("auto_attack_mode", modes[(modes.find(attack_mode) + 1) % modes.size()], 0))
 	skill_cluster.add_child(attack_mode_button)
@@ -197,7 +199,7 @@ func _ready() -> void:
 	attack_mode_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	attack_mode_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	attack_mode_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	attack_mode_label.offset_top = 64
+	attack_mode_label.offset_top = SKILL_SIZES[4]
 	attack_mode_label.offset_bottom = 26
 	attack_mode_label.add_theme_font_size_override("font_size", 18)
 	attack_mode_button.add_child(attack_mode_label)
@@ -241,24 +243,20 @@ func _ready() -> void:
 	primary.expand_icon = true
 	primary.add_theme_constant_override("icon_max_width", 30)
 	primary.add_theme_constant_override("h_separation", 12)
+	primary.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	primary.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	primary.add_theme_color_override("font_color", Color.WHITE)
 	primary.add_theme_font_size_override("font_size", 22)
 	for state in ["normal", "hover", "pressed", "disabled"]:
-		var fill = Color("10241be8")
-		if state == "hover": fill = Color("263c28ef")
-		if state == "pressed": fill = Color("3c4327f2")
-		if state == "disabled": fill = Color("18231bba")
-		var prompt_frame = DungeonStyle.box(fill, Color("d9bb72") if state != "disabled" else Color("746c50"))
-		prompt_frame.set_corner_radius_all(24)
-		prompt_frame.content_margin_left = 22
-		prompt_frame.content_margin_right = 22
+		var prompt_frame = StyleBoxTexture.new()
+		prompt_frame.texture = DungeonStyle.texture("interaction_frame")
+		prompt_frame.content_margin_left = 28
+		prompt_frame.content_margin_right = 24
 		prompt_frame.content_margin_top = 8
 		prompt_frame.content_margin_bottom = 8
+		prompt_frame.modulate_color = Color(1.15, 1.12, 1.0) if state == "hover" else Color(0.9, 0.85, 0.7) if state == "pressed" else Color(1, 1, 1, 0.45) if state == "disabled" else Color.WHITE
 		primary.add_theme_stylebox_override(state, prompt_frame)
-	var prompt_focus = DungeonStyle.box(Color.TRANSPARENT, Color("fff0b3"), 2)
-	prompt_focus.set_corner_radius_all(24)
-	primary.add_theme_stylebox_override("focus", prompt_focus)
+	primary.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	root.add_child(primary)
 	joystick.excluded_controls.assign([navigation, primary, skill_cluster])
 	joystick.excluded_controls.append(pickup_panel)
@@ -282,17 +280,58 @@ func _ready() -> void:
 	set_adventure_mode(adventure_mode)
 
 func set_adventure_mode(active: bool) -> void:
+	if _adventure_mode_applied and adventure_mode == active: return
 	adventure_mode = active
-	if is_instance_valid(adventure_button): adventure_button.tooltip_text = "难度" if active else "开始冒险"
-	if is_instance_valid(adventure_caption): adventure_caption.text = "难度" if active else "开始冒险"
-	if is_instance_valid(adventure_icon): adventure_icon.texture = DungeonStyle.texture("menu_difficulty" if active else "menu_adventure")
-	if is_instance_valid(navigation):
-		for key in navigation.get_children():
-			key.visible = not active or key.name not in ["menu_cloud", "menu_store"]
-			if key.name == "menu_settings":
-				key.get_child(0).texture = DungeonStyle.texture("menu_pause" if active else "menu_settings")
-				key.get_child(1).text = "暂停" if active else "设置"
+	if not is_instance_valid(navigation): return
+	_adventure_mode_applied = true
+	_refresh_navigation()
+
+func update_navigation(systems: RefCounted) -> void:
+	var has_win: bool = systems.stat("wins") > 0
+	for level in range(11):
+		if systems.stat("difficulty:win:" + str(level)) > 0:
+			has_win = true
+			break
+	var next := {
+		"guide_ready": int(systems.profile.data.get("guide_index", 10)) >= 10,
+		"has_win": has_win,
+		"meal_buffs": not systems.purchased_meals().is_empty(),
+		"dialogue": not systems.profile.data.get("dialogue_state", {}).is_empty(),
+		"quick_read": systems.profile.data.stats.has("ui:read:Btn_QuickStart"),
+		"comment_read": systems.profile.data.stats.has("ui:read:Btn_GoComment"),
+		"cloud_read": systems.profile.data.stats.has("ui:read:Btn_CloudSave"),
+	}
+	if next == _navigation_state: return
+	_navigation_state = next
+	_refresh_navigation()
+
+func _refresh_navigation() -> void:
+	var ready := bool(_navigation_state.get("guide_ready", true))
+	var available := not bool(_navigation_state.get("dialogue", false))
+	var completed := available and ready and bool(_navigation_state.get("has_win", false)) and not adventure_mode
+	var flags := {
+		"menu_adventure": completed,
+		"menu_comment": completed and not _navigation_state.get("comment_read", false),
+		"menu_cloud": completed and not _navigation_state.get("cloud_read", false),
+		"menu_meal_buffs": available and adventure_mode and bool(_navigation_state.get("meal_buffs", false)),
+		"menu_difficulty": available and adventure_mode and ready,
+		"menu_store": available and not adventure_mode and ready,
+		"menu_character": available,
+		"menu_settings": available,
+	}
+	for key in flags: navigation_buttons[key].visible = flags[key]
+	for key in _navigation_badges:
+		_navigation_badges[key].visible = not _navigation_state.get("quick_read", false) if key == "menu_adventure" else not _seen_navigation_hints.get(key, false)
+	adventure_button = navigation_buttons["menu_difficulty" if adventure_mode else "menu_adventure"]
+	adventure_icon = adventure_button.get_child(0)
+	adventure_caption = adventure_button.get_child(1)
+	if flags != _navigation_visibility:
+		_navigation_visibility = flags
 		_layout()
+
+func dismiss_navigation_hint(key: String) -> void:
+	_seen_navigation_hints[key] = true
+	if _navigation_badges.has(key): _navigation_badges[key].hide()
 
 func set_attack_mode(mode: String) -> void:
 	attack_mode = mode if mode in ["normal", "heavy", "off"] else "normal"
@@ -329,6 +368,7 @@ func button(text: String, kind: String, id: Variant = 0, extra: Variant = 0) -> 
 	return result
 
 func show_page(title: String, rows: Array, layout := "list", context: Dictionary = {}) -> void:
+	region_notice.clear()
 	message_label.visible = layout not in ["outcome", "dialogue", "unclaimed"]
 	page.display(title, rows, layout, context)
 	page.show()
@@ -338,8 +378,8 @@ func show_page(title: String, rows: Array, layout := "list", context: Dictionary
 	_layout()
 	joystick._reset()
 	joystick.hide()
-	for key in skill_buttons: key.release()
-	attack_mode_button.release()
+	for key in skill_buttons: key.release(true)
+	attack_mode_button.release(true)
 	skill_cluster.hide()
 	vitals.hide()
 	primary.hide()
@@ -364,6 +404,7 @@ func _set_navigation_visible(value: bool) -> void:
 
 func _layout() -> void:
 	if not is_instance_valid(page): return
+	var previous_skill_transform = skill_cluster.get_global_transform_with_canvas()
 	var screen = root.size
 	var ui_scale = minf(1.0, minf(screen.x / 1280.0, screen.y / 720.0))
 	var s = screen / maxf(0.1, ui_scale)
@@ -371,15 +412,14 @@ func _layout() -> void:
 	camp_button.position = Vector2(28, 198)
 	camp_button.size = Vector2(212, 46)
 	title_label.position = Vector2(235, 25)
-	var navigation_width = 272.0 if adventure_mode else 456.0
+	var visible_navigation = navigation.get_children().filter(func(key): return key.visible).size()
+	var navigation_width = visible_navigation * 90.0 + maxi(0, visible_navigation - 1) * 25.0
 	navigation.position = Vector2(s.x - navigation_width - 28, 28)
-	navigation.size = Vector2(navigation_width, 100)
+	navigation.size = Vector2(navigation_width, 112)
 	message_label.position = Vector2(s.x * 0.25, 140)
 	message_label.size = Vector2(s.x * 0.5, 64)
 	skill_cluster.position = s - SKILL_CLUSTER_SIZE - SKILL_CLUSTER_MARGIN
 	skill_cluster.size = SKILL_CLUSTER_SIZE
-	for key in skill_buttons: key.release(true)
-	attack_mode_button.release(true)
 	attack_mode_button.hit_padding = maxf(8.0, (48.0 / ui_scale - attack_mode_button.size.x) * 0.5)
 	vitals.position = Vector2(s.x * 0.5 - 122, s.y - 145)
 	vitals.size = Vector2(244, 80)
@@ -387,12 +427,25 @@ func _layout() -> void:
 	joystick.size = Vector2(s.x * 0.4, s.y * 0.58)
 	joystick.home = Vector2(128, joystick.size.y - 140)
 	joystick.queue_redraw()
-	primary.position = Vector2(s.x - 680, s.y - 308)
-	primary.size = Vector2(260, 48)
+	# Match the complete 402 x 82 sprite instead of squeezing its nine-slice caps.
+	primary.size = Vector2(260, 260.0 * 82.0 / 402.0)
 	pickup_panel.layout(s)
 	for control in [navigation, message_label, skill_cluster, vitals, joystick, primary, pickup_panel, counters, title_label, camp_button]:
 		control.scale = Vector2.ONE * ui_scale
 		control.position *= ui_scale
+	if OS.has_feature("mobile"):
+		skill_cluster.position -= skill_safe_insets(screen, Vector2(DisplayServer.window_get_size()), Rect2(DisplayServer.get_display_safe_area()))
+	_layout_interaction(ui_scale)
+	_layout_camp_button()
+	for key in skill_buttons:
+		var pickup_bounds = pickup_panel.get_global_rect()
+		var skill_bounds = key.get_global_rect()
+		if pickup_bounds.intersects(skill_bounds):
+			pickup_panel.position.y -= pickup_bounds.end.y - skill_bounds.position.y + 12 * ui_scale
+	# State refreshes must not cancel a held skill; only changed geometry does.
+	if previous_skill_transform != skill_cluster.get_global_transform_with_canvas():
+		for key in skill_buttons: key.release(true)
+		attack_mode_button.release(true)
 	var full_page = page._layout in ["inventory", "altar", "talent", "support", "route", "outcome", "character", "weapon", "settings", "tree", "awakening", "buildings", "prepare", "shop", "commission", "guild", "dialogue"]
 	full_page = full_page or (modal_open and page.page_context.get("camp", false))
 	full_page = full_page or page._layout == "unclaimed"
@@ -405,6 +458,22 @@ func _layout() -> void:
 		var factor = minf(1.0, minf(screen.x / 1280.0, screen.y / 720.0))
 		page.scale = Vector2.ONE * factor
 		page.size = screen / factor
+
+func _layout_interaction(ui_scale: float) -> void:
+	# Share the skill anchor so mobile safe-area shifts keep the gap intact.
+	primary.position = skill_cluster.position + INTERACTION_OFFSET * ui_scale
+	var margin := 16.0 * ui_scale
+	primary.position.x = clampf(primary.position.x, margin, root.size.x - primary.size.x * ui_scale - margin)
+	primary.position.y = clampf(primary.position.y, margin, root.size.y - primary.size.y * ui_scale - margin)
+
+func _layout_camp_button() -> void:
+	if not is_instance_valid(camp_button): return
+	var ui_scale := counters.scale.y
+	camp_button.position.y = maxf(198.0 * ui_scale, counters.position.y + (counters.get_combined_minimum_size().y + 14.0) * ui_scale)
+
+static func skill_safe_insets(viewport_size: Vector2, window_size: Vector2, safe_area: Rect2) -> Vector2:
+	if window_size.x <= 0 or window_size.y <= 0 or not safe_area.has_area(): return Vector2.ZERO
+	return (window_size - safe_area.end).max(Vector2.ZERO) * viewport_size / window_size
 
 func toast(text: String) -> void:
 	message_label.text = text
@@ -466,17 +535,14 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 		charge_segments[i].modulate = Color.WHITE
 
 func update_counters(systems: RefCounted, difficulty: int) -> void:
-	var ids = [101, 102] if adventure_mode else [101, 501, 90002]
 	for index in counter_values.size():
-		counter_buttons[index].visible = index < ids.size()
-		if index >= ids.size(): continue
-		var id = int(ids[index])
-		if int(counter_buttons[index].get_meta("resource_id")) != id:
-			counter_buttons[index].set_meta("resource_id", id)
-			counter_icons[index].texture = DungeonStyle.texture("material:" + str(id))
+		var id = int(RESOURCE_IDS[index])
 		counter_buttons[index].disabled = adventure_mode
-		counter_buttons[index].tooltip_text = DungeonCatalog.clean(systems.material_name(id))
-		counter_values[index].text = "%d   +%d" % [systems.material(id), int(systems.profile.data.run.materials.get(str(id), 0))] if adventure_mode else "%s  %d" % [DungeonCatalog.clean(systems.material_name(id)), systems.material(id)]
+		counter_buttons[index].tooltip_text = "探索点" if id == 12101 else DungeonCatalog.clean(systems.material_name(id))
+		var amount: int = systems.search_point_count() if id == 12101 else systems.material(id)
+		var caption := "%d/%d" % [amount, systems.search_point_max()] if id == 12101 else ""
+		# Search uses the source's first-display string path, without numeric popups.
+		counter_buttons[index].update_amount(amount, caption, id != 12101)
 	title_label.text = "难度 %d" % difficulty
 
 func show_pickup(entry: Dictionary, systems: RefCounted, modal: bool) -> void:

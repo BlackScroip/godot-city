@@ -20,6 +20,12 @@ var column_width := 310.0
 var node_size := Vector2(180, 88)
 var _graph_margin := 36.0
 var map_switch: Button
+var selection_detail: Label
+var _selection_submitted := false
+var _scroll_initialized := false
+var _scroll_view_width := 0.0
+var _last_layout_scroll := 0
+var _preserve_browsing := false
 var _opening_started := false
 var _opening_tween: Tween
 var _opening_alpha := 0.0:
@@ -82,6 +88,10 @@ void fragment() {
 	header.add_child(counters)
 	_counter(counters, "魔力精华", str(context.get("magic", 0)), Color("4898ee"))
 	_counter(counters, "刻印圣典", "%d/%d" % [int(context.get("search", 0)), int(context.get("search_max", 3))], Color("7fdf6a"))
+	selection_detail = DungeonStyle.label("", 16)
+	selection_detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	selection_detail.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(selection_detail)
 	scroll = ScrollContainer.new()
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
@@ -105,10 +115,8 @@ void fragment() {
 		key.visited = bool(row.get("visited", false))
 		if row.get("is_anchor", false):
 			key.portrait = origin.portrait
-		key.disabled = not key.available and not is_world_map()
-		key.pressed.connect(func():
-			if is_world_map() and not key.available: command.emit("region_info", int(row.node_id), 0)
-			else: _select(int(row.node_id), int(row.layer_index)))
+		key.disabled = not _can_select(row)
+		key.pressed.connect(func(): _select(int(row.node_id), int(row.layer_index)))
 		key.focus_entered.connect(func(): scroll.ensure_control_visible(key))
 		graph.add_child(key)
 		key.prepare_reveal()
@@ -153,15 +161,10 @@ void fragment() {
 	var trailing = Control.new()
 	trailing.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(trailing)
-	confirm.visible = not context.get("preview", false) and not is_world_map()
+	confirm.visible = false
 	automatic.visible = not context.get("preview", false)
 	resized.connect(_layout)
 	_layout.call_deferred()
-	if not is_world_map():
-		for row in rows:
-			if row.get("available", false):
-				_select(int(row.node_id))
-				break
 
 func _counter(parent: Control, caption: String, value: String, color: Color) -> void:
 	var bar = PanelContainer.new()
@@ -183,6 +186,8 @@ func _counter(parent: Control, caption: String, value: String, color: Color) -> 
 
 func _layout() -> void:
 	if not is_instance_valid(scroll): return
+	var browsing = _scroll_initialized and (_preserve_browsing or scroll.scroll_horizontal != _last_layout_scroll)
+	var center_column = (scroll.scroll_horizontal + _scroll_view_width * 0.5 - _graph_margin - node_size.x * 0.5) / column_width if browsing else NAN
 	header.position = Vector2(30, 20)
 	header.size = Vector2(maxf(0, size.x - 60), 74)
 	footer.size = footer.get_combined_minimum_size().max(Vector2(size.x - 48, 56))
@@ -192,9 +197,12 @@ func _layout() -> void:
 	footer.get_child(0).custom_minimum_size.x = automatic.get_combined_minimum_size().x + 24 if size.x >= 1100 else 0
 	footer.position = Vector2(24, size.y - 82)
 	footer.size.x = maxf(0, size.x - 48)
-	scroll.position = Vector2(24, 112)
-	scroll.size = Vector2(maxf(0, size.x - 48), maxf(160, size.y - 220))
-	var height = maxf(160, scroll.size.y - 20)
+	selection_detail.position = Vector2(30, 96)
+	selection_detail.size = Vector2(maxf(0, size.x - 60), 24)
+	scroll.position = Vector2(24, 126)
+	scroll.size = Vector2(maxf(0, size.x - 48), maxf(160, size.y - 234))
+	_scroll_view_width = scroll.size.x
+	var height = maxf(120, scroll.size.y - 20)
 	var card_height = clampf(height * (0.29 if is_world_map() else 0.20), 80 if is_world_map() else 40, 170 if is_world_map() else 132)
 	node_size = Vector2(maxf(100, card_height * (1.15 if is_world_map() else 2.15)), card_height)
 	var frame_margin = node_size * (DungeonRouteNode.SELECTED_FRAME_SIZE * DungeonRouteNode.SELECTION_PEAK_SCALE - Vector2.ONE) * 0.5 if not is_world_map() else Vector2.ZERO
@@ -228,7 +236,7 @@ func _layout() -> void:
 			var other = int(row.layer_index) * 100000000 + int(neighbor)
 			if int(row.node_id) < int(neighbor) and by_id.has(other): _add_edge(nodes[index], by_id[other], true)
 	graph.queue_redraw()
-	_scroll_to_current.call_deferred()
+	_restore_scroll.call_deferred(center_column)
 	if not _opening_started: _play_opening.call_deferred()
 
 func _play_opening() -> void:
@@ -245,12 +253,32 @@ func _play_opening() -> void:
 		var lane = clampf(float(node.room.get("lane", 0)), 0, 2)
 		node.reveal(column * 0.07 + lane * 0.02)
 
+func _restore_scroll(center_column: float) -> void:
+	if not is_inside_tree(): return
+	if is_nan(center_column):
+		_scroll_to_current()
+	else:
+		_preserve_browsing = true
+		_set_scroll_center(_graph_margin + center_column * column_width + node_size.x * 0.5)
+	_scroll_initialized = true
+
+func _set_scroll_center(center: float) -> void:
+	var maximum = maxf(0, graph.size.x - scroll.size.x)
+	scroll.scroll_horizontal = roundi(clampf(center - scroll.size.x * 0.5, 0, maximum))
+	_last_layout_scroll = scroll.scroll_horizontal
+
 func _scroll_to_current() -> void:
+	_preserve_browsing = false
+	if not is_world_map():
+		for index in rows.size():
+			if rows[index].get("is_anchor", false):
+				_set_scroll_center(nodes[index].get_rect().get_center().x)
+				return
 	for index in rows.size():
-		var target = rows[index].get("is_anchor", false) if context.get("preview", false) else rows[index].get("available", false)
-		if target and int(rows[index].layer_index) == int(context.get("current_layer", 0)):
-			scroll.scroll_horizontal = maxi(0, int(nodes[index].position.x - column_width - _graph_margin))
+		if int(rows[index].layer_index) == int(context.get("current_layer", 0)):
+			_set_scroll_center(nodes[index].get_rect().get_center().x)
 			return
+	_set_scroll_center(0)
 
 func _draw_paths() -> void:
 	for edge in edges:
@@ -360,22 +388,36 @@ func _vertical_path_rects(edge: Dictionary) -> Array[Rect2]:
 		result.append(Rect2(middle + Vector2((-0.7 if index == 0 else 0.7) * dimensions.x, 0) - dimensions * 0.5, dimensions))
 	return result
 
+func _can_select(row: Dictionary) -> bool:
+	if context.get("preview", false): return false
+	return bool(row.get("selectable", row.get("available", false))) if is_world_map() else bool(row.get("available", false))
+
 func _select(id: int, layer := -1) -> void:
-	if context.get("preview", false): return
+	if context.get("preview", false) or _selection_submitted: return
+	var candidate := -1
 	for index in rows.size():
-		if int(rows[index].node_id) == id and rows[index].get("available", false) and (layer < 0 or int(rows[index].layer_index) == layer):
-			selected_id = id
-			selected_index = index
+		if int(rows[index].node_id) == id and _can_select(rows[index]) and (layer < 0 or int(rows[index].layer_index) == layer):
+			candidate = index
 			break
+	if candidate < 0: return
+	selected_id = id
+	selected_index = candidate
 	for index in nodes.size():
 		var key = nodes[index]
-		key.chosen = key.available and index == selected_index
+		key.chosen = index == selected_index
 		key.queue_redraw()
 		if key.chosen: confirm.text = "换路 · %d" % int(key.room.get("shift_cost", 1)) if key.room.get("vertical", false) else "选择"
-	confirm.disabled = selected_id == 0
-	if is_world_map(): confirm.visible = selected_id != 0
+	var row: Dictionary = rows[selected_index]
+	confirm.disabled = not bool(row.get("available", false))
+	confirm.visible = true
+	selection_detail.text = DungeonCatalog.clean(str(row.get("display_name", row.get("name", ""))))
+	if is_world_map() and confirm.disabled: selection_detail.text += "  " + DungeonCatalog.clean(str(row.get("lock_reason", "")))
+	selection_detail.tooltip_text = selection_detail.text
 
 func _confirm() -> void:
-	if selected_id == 0 or context.get("preview", false): return
+	if selected_index < 0 or context.get("preview", false) or _selection_submitted: return
+	var row: Dictionary = rows[selected_index]
+	if not _can_select(row) or not bool(row.get("available", false)): return
+	_selection_submitted = true
 	confirm.disabled = true
-	command.emit("select_region" if is_world_map() else "enter_node", selected_id, 0)
+	command.emit("select_region" if is_world_map() else "enter_node", selected_id, 0 if is_world_map() else {"layer_index": int(row.layer_index)})

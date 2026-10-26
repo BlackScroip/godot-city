@@ -39,6 +39,7 @@ func wait_transition() -> void:
 	game.world.player.set_physics_process(false)
 	game.hud.close_page()
 	game.world.snap_camera()
+	for frame in 2: await physics_frame
 
 func pending(id: int) -> int:
 	var result := 0
@@ -142,9 +143,8 @@ func capture_flight() -> void:
 	side.y = 0
 	side = side.normalized()
 	var forward := side.cross(Vector3.UP).normalized()
+	# Keep the fixture on the shop entrance floor; a navigation map may be empty after reload.
 	var point: Vector3 = game.world.player.position - side * 2.0 - forward * 3.0
-	var map: RID = game.world.get_world_3d().navigation_map
-	if map.is_valid(): point = NavigationServer3D.map_get_closest_point(map, point)
 	game.world.player.position = point
 	game.world.player.previous_position = point
 	game.world.player.reset_physics_interpolation()

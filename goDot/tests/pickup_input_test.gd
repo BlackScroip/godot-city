@@ -61,7 +61,7 @@ func _run() -> void:
 	check(game.systems.material(101) == gold_before, "Coins wait for attraction arrival")
 	var origin: Vector3 = drops.entries[0].position
 	for frame in 15: drops.advance_collection(1.0 / 60.0, point, game.systems)
-	check(drops.entries.size() == 1 and drops.entries[0].position.distance_to(point) < origin.distance_to(point), "Coin moves visibly toward player")
+	check(drops.entries.size() == 1 and not drops.entries[0].position.is_equal_approx(origin) and drops.entries[0].flight.phase == "scatter", "Coin scatters visibly before its pickup delay")
 	check(drops.entries[0].trail.size() == 3, "Attraction has visible trail")
 	var saved = JSON.parse_string(JSON.stringify(drops.snapshot()))
 	drops.restore(saved)

@@ -97,6 +97,7 @@ func _test_entitlements() -> void:
 
 func _test_node_transactions() -> void:
 	var p = Profile.new()
+	p.data.buildings["2"] = 1
 	var s = Systems.new(catalog, p)
 	s.grant_material(101, 200000)
 	s.grant_material(503, 100)
@@ -151,6 +152,7 @@ func _test_work_upgrade_claim() -> void:
 
 func _funded_systems():
 	var p = Profile.new()
+	p.data.buildings["2"] = 1
 	var s = Systems.new(catalog, p)
 	for id in range(1, 9):
 		p.data.character_levels[str(id)] = 1

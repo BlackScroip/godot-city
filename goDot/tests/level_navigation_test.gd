@@ -17,7 +17,10 @@ func _run() -> void:
 	await process_frame
 	var commands: Array[String] = []
 	hud.action.connect(func(kind, _id, _extra): commands.append(kind))
-	check(hud.navigation.get_children().filter(func(key): return key.visible).size() == 5, "Camp retains five navigation commands")
+	var profile = DungeonProfile.new()
+	var systems = DungeonSystems.new(DungeonCatalog.new(), profile)
+	hud.update_navigation(systems)
+	check(hud.navigation.get_children().filter(func(key): return key.visible).size() == 3, "Camp initially exposes store, character and settings")
 	hud.set_adventure_mode(true)
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
 		canvas.size = dimensions
@@ -38,9 +41,14 @@ func _run() -> void:
 	check(hud.navigation.get_children().filter(func(key): return key.visible).size() == 3, "Closing page preserves level navigation")
 	hud.set_adventure_mode(false)
 	await process_frame
-	check(hud.navigation.get_children().filter(func(key): return key.visible).size() == 5, "Returning to camp restores all five commands")
+	check(hud.navigation.get_children().filter(func(key): return key.visible).size() == 3, "Returning without a victory preserves the initial camp commands")
+	profile.data.stats["wins"] = 1
+	hud.update_navigation(systems)
+	await process_frame
+	check(hud.navigation.get_children().filter(func(key): return key.visible).size() == 6, "First victory unlocks quick start, comment and cloud entries")
 	hud.adventure_button.pressed.emit()
-	check(commands.back() == "primary" and hud.adventure_caption.text == "开始冒险", "Camp restores start adventure action and caption")
+	check(commands.back() == "quick_start" and hud.adventure_caption.text == "开始冒险", "Unlocked camp entry dispatches quick start with its source caption")
+	systems.decorations = null
 	canvas.queue_free()
 	await process_frame
 	print("LEVEL NAVIGATION ", "PASS" if failures.is_empty() else "FAIL ", failures)

@@ -7,7 +7,8 @@ const CASES = {
 }
 
 func _run() -> void:
-	root.size = Vector2i(960, 540)
+	var viewport := _arg("viewport", "960x540").split("x")
+	root.size = Vector2i(int(viewport[0]), int(viewport[1]))
 	world = DungeonWorld.new()
 	root.add_child(world)
 	world.set_process(false)
@@ -25,8 +26,8 @@ func _run() -> void:
 		for id in CASES:
 			if _arg("boss", "") != "" and int(_arg("boss", "0")) != int(id): continue
 			await _cast(int(id), str(CASES[id]), low)
-	var report = {"shots": rows, "failures": failures, "passed": failures.is_empty(), "rendered": DisplayServer.get_name() != "headless", "scope": "Selected available Boss models cast recovered skills with real world projectile, summon, hit and warning paths; rows record tested actors and quality. Tiger 33002 has no packaged model and is excluded. Desktop rendering and scripted simulation timings; no mobile device FPS claim."}
-	FileAccess.open("res://reports/boss-skill-visual.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
+	var report = {"shots": rows, "failures": failures, "passed": failures.is_empty(), "rendered": DisplayServer.get_name() != "headless", "viewport": str(root.size), "scope": "Selected available Boss models cast recovered skills with real world projectile, summon, hit and warning paths; rows record tested actors and quality. Tiger 33002 has no packaged model and is excluded. Desktop rendering and scripted simulation timings; no mobile device FPS claim."}
+	FileAccess.open("res://reports/boss-skill-visual-%s.json" % _arg("viewport", "960x540"), FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("BOSS_SKILL_VISUAL ", JSON.stringify(report))
 	world.queue_free()
 	await process_frame
@@ -34,6 +35,8 @@ func _run() -> void:
 
 func _cast(id: int, action: String, low: bool) -> void:
 	world.presentation.clear()
+	world.pending_attack_entities.clear()
+	world.active_attack_entities.clear()
 	for projectile in world.projectiles:
 		if is_instance_valid(projectile.visual): projectile.visual.queue_free()
 	world.projectiles.clear()
@@ -86,6 +89,7 @@ func _cast(id: int, action: String, low: bool) -> void:
 		var after_events = Time.get_ticks_usec()
 		for actor in world.actors: actor._physics_process(1.0 / HZ)
 		var after_actors = Time.get_ticks_usec()
+		world._tick_attack_entities(1.0 / HZ)
 		world._tick_projectiles(1.0 / HZ)
 		world._tick_summons(1.0 / HZ)
 		var after_transients = Time.get_ticks_usec()
@@ -103,7 +107,7 @@ func _cast(id: int, action: String, low: bool) -> void:
 		await process_frame
 		if frame in [35, 75, 165] and DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
-			root.get_texture().get_image().save_png("res://reports/boss-skill-%d-%s-%d.png" % [id, "low" if low else "full", frame])
+			root.get_texture().get_image().save_png("res://reports/boss-skill-%d-%s-%s-%d.png" % [id, _arg("viewport", "960x540"), "low" if low else "full", frame])
 	timings.sort()
 	var new_builds: int = world.presentation.authored_builds - before_builds
 	if world.presentation.spawned <= before_spawned: failures.append("No effects in boss skill %d (%s)" % [id, low])

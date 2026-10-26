@@ -58,6 +58,8 @@ func _run() -> void:
 	# The source entrance is between two raised walls; use its adjacent open floor.
 	var open_point := point - side * 2.0 - forward * 3.0
 	var map: RID = game.world.get_world_3d().navigation_map
+	for frame in 2: await physics_frame
+	check(map.is_valid() and NavigationServer3D.map_get_iteration_id(map) > 0, "Room navigation synchronizes before choosing the visible pickup floor")
 	if map.is_valid(): open_point = NavigationServer3D.map_get_closest_point(map, open_point)
 	game.world.player.position = open_point
 	game.world.player.previous_position = open_point
@@ -80,20 +82,25 @@ func _run() -> void:
 		drops.spawn(101, point - side * 1.2 - forward * 3.3, 12, true)
 		drops.spawn(102, point - forward * 3.3, 9, true)
 		drops.spawn(103, point + side * 1.2 - forward * 3.3, 2, true)
+		var expected_count: int = drops.entries.size()
 		game._process(0)
 		for frame in 5: await process_frame
 		var card = game.hud.pickup_panel
 		var suffix := "%dx%d" % [dimensions.x, dimensions.y]
 		check(card.visible and game.hud.pickup_name.text == "迅捷之靴", "Actual HUD shows nearby boots description: " + suffix)
 		check(game.hud.primary.visible and game.hud.primary.text == "拾取", "Actual HUD exposes manual pickup command: " + suffix)
+		var frame = game.hud.primary.get_theme_stylebox("normal") as StyleBoxTexture
+		var source_frame = DungeonStyle.texture("interaction_frame")
+		check(frame != null and frame.texture == source_frame, "Pickup preserves the supplied source frame: " + suffix)
+		check(is_equal_approx(game.hud.primary.size.aspect(), source_frame.get_size().aspect()), "Pickup frame preserves its source aspect ratio: " + suffix)
 		check(not game.hud.modal_open and not game.world.fighting, "Pickup remains a nonmodal room interaction: " + suffix)
-		check(drops.entries.size() == 6, "Visual fixture retains all six ground drops: " + suffix)
+		check(drops.entries.size() == expected_count and expected_count >= 6, "Visual fixture retains all items and currency portions: " + suffix)
 		var bounds := Rect2(Vector2.ZERO, Vector2(dimensions))
 		check(bounds.encloses(card.get_global_rect()), "Pickup description fits actual viewport: " + suffix)
 		check(bounds.encloses(game.hud.primary.get_global_rect()), "Pickup command fits actual viewport: " + suffix)
 		check(bounds.encloses(card.close_button.get_global_rect()), "Close command fits actual viewport: " + suffix)
 		check(not card.get_global_rect().intersects(game.hud.primary.get_global_rect()), "Pickup description and command do not overlap: " + suffix)
-		for button in game.hud.skill_buttons:
+		for button in game.hud.skill_buttons + [game.hud.attack_mode_button]:
 			if not button.is_visible_in_tree(): continue
 			check(not card.get_global_rect().intersects(button.get_global_rect()), "Pickup description avoids skill control %s: %s" % [button.name, suffix])
 			check(not game.hud.primary.get_global_rect().intersects(button.get_global_rect()), "Pickup command avoids skill control %s: %s" % [button.name, suffix])
@@ -119,10 +126,10 @@ func _run() -> void:
 		await process_frame
 		check(not card.visible, "Physical close stays dismissed through main update: " + suffix)
 		check(game.hud.primary.visible and game.hud.primary.text == "拾取", "Closing description keeps actual pickup command: " + suffix)
-		check(drops.entries.size() == 6 and int(game.profile.data.run.inventory.get("20105", 0)) == before, "Closing description grants no item and deletes no drop: " + suffix)
+		check(drops.entries.size() == expected_count and int(game.profile.data.run.inventory.get("20105", 0)) == before, "Closing description grants no item and deletes no drop: " + suffix)
 		check(game.hud.joystick.finger == -1 and game.hud.joystick.value == Vector2.ZERO, "Closing description leaves movement untouched: " + suffix)
 		await _click(game.hud.primary.get_global_rect().get_center())
-		check(drops.entries.size() == 5 and int(game.profile.data.run.inventory.get("20105", 0)) == before + 1, "Actual pickup button still grants boots exactly once after dismiss: " + suffix)
+		check(drops.entries.size() == expected_count - 1 and int(game.profile.data.run.inventory.get("20105", 0)) == before + 1, "Actual pickup button still grants boots exactly once after dismiss: " + suffix)
 	var report := {"checks": checks, "passed": failures.is_empty(), "failures": failures,
 		"room_node": node_id, "captures": captures, "renderer": DisplayServer.get_name()}
 	var output := FileAccess.open("res://reports/pickup-world-visual-tests.json", FileAccess.WRITE)

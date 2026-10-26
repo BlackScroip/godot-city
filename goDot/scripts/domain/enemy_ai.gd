@@ -119,6 +119,17 @@ func _configure_native_runtime() -> void:
 		_native_runner = runner
 
 func _prepare_node(node: Dictionary) -> Dictionary:
+	# Keep P1 requests out of the flower's P2 entrance and re-arm its EX stun.
+	# These narrow runtime repairs leave the packaged graph unchanged.
+	if graph_name == "EnemyAIBT_MoJieHua":
+		var compatibility: Array = {"1": ["P2Attack", "roar"], "30": ["Dizziness", "Dizziness_EX"]}.get(str(node.get("$id", "")), [])
+		var condition: Dictionary = node.get("_condition", {})
+		if compatibility.size() == 2 and _type(condition) == "CheckString" and condition.get("valueA", {}).get("_name", "") == "IP_CurAction" and condition.get("valueB", {}).get("_value", "") == compatibility[0]:
+			var compatible = node.duplicate(true)
+			var alternate = condition.duplicate(true)
+			alternate.valueB = {"_value": compatibility[1]}
+			compatible._condition = {"$type": "NodeCanvas.Framework.ConditionList", "checkMode": 1, "conditions": [condition, alternate]}
+			return _prepare_value(compatible)
 	return _prepare_value(node)
 
 func _prepare_value(value: Variant) -> Variant:

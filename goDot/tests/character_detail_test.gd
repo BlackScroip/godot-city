@@ -12,6 +12,7 @@ class FixtureGame extends Node:
 	var hud: DungeonHud
 	var world = FixtureWorld.new()
 	var selected_character = 1
+	var resource_audio = null
 
 var failures: Array[String] = []
 var assertions := 0
@@ -51,7 +52,7 @@ func _run() -> void:
 		navigation_actions.append(kind)
 		if kind.begins_with("page:"): menus.open(kind.trim_prefix("page:"), int(id)))
 	game.hud.set_adventure_mode(true)
-	game.hud.navigation.get_child(3).pressed.emit()
+	game.hud.navigation.get_node("menu_character").pressed.emit()
 	check(navigation_actions == ["page:characters"] and menus.current_page == "characters", "Maze HUD character button opens character detail")
 	check(game.hud.page._rows.size() == 1, "Maze detail only shows the active character")
 	var row: Dictionary = game.hud.page._rows[0]
@@ -67,18 +68,17 @@ func _run() -> void:
 		canvas.size = dimensions
 		for step in 8: await process_frame
 		var page = game.hud.page
-		var view = page.special
+		var view = page.character_view
 		check(Rect2(Vector2.ZERO, Vector2(dimensions)).encloses(page.get_rect()), "Character page fits " + str(dimensions))
 		check(view.showcase.size.x > 100, "Hero art retains width " + str(dimensions))
-		check(view.showcase.get_rect().end.x <= view.detail.get_parent().position.x, "Hero and attributes do not overlap " + str(dimensions))
-		check(page.resource_bar.get_global_rect().end.x <= page.get_global_rect().end.x, "Resources fit " + str(dimensions))
+		check(view.showcase.get_global_rect().end.x <= view.detail_scroll.get_global_rect().position.x, "Hero and attributes do not overlap " + str(dimensions))
+		check(view.resource_bar.get_global_rect().end.x <= page.get_global_rect().end.x, "Resources fit " + str(dimensions))
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
 			canvas.get_texture().get_image().save_png("res://reports/character-detail-%dx%d.png" % [dimensions.x, dimensions.y])
-	game.hud.page.special.use_model = true
-	game.hud.page.special._select_showcase(0)
+	game.hud.page.character_view.model_button.pressed.emit()
 	for step in 8: await process_frame
-	check(game.hud.page.special.showcase.get_child(0) is DungeonModelPreview, "3D toggle shows the real character model")
+	check(game.hud.page.character_view.showcase.get_child(0) is DungeonModelPreview, "3D toggle shows the real character model")
 	check(Rect2(Vector2.ZERO, Vector2(canvas.size)).encloses(game.hud.page.get_rect()), "3D detail fits phone landscape")
 	menus.open("storage")
 	check(game.hud.page.title_label.text == "仓库", "Storage tab opens actual persistent materials")

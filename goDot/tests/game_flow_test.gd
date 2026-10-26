@@ -60,6 +60,28 @@ func _die() -> void:
 	game.world._die(game.world.player)
 	check(game._death_pending and game._flow_locked(), "Death locks flow immediately")
 
+func _seed_run_items() -> void:
+	game.profile.data.run.inventory["11001"] = 1
+	game.profile.data.run.talents["101"] = 1
+	game.profile.data.run["region_rewards"] = [{"AttributeType": "AtkAddFixed", "Value": 10}]
+	game.systems.grant_material(102, 27)
+	game.systems.grant_material(103, 3)
+	game.systems.grant_material(801, 1)
+
+func _check_camp_cleanup(vouchers: int, minerals: int) -> void:
+	check(game.profile.data.run == DungeonProfile.new_run(), "Return to camp clears temporary items, talents, counters, route and battle")
+	check(game.systems.material(102) == 0, "Return to camp clears remaining magic")
+	check(game.systems.material(501) == vouchers and game.systems.material(103) == minerals, "Return to camp preserves vouchers and collected minerals")
+	game.menus.open("inventory")
+	check(game.hud.page._rows.all(func(row): return int(row.get("loot_id", 0)) == 0), "Camp inventory has no previous adventure relics")
+	check(game.hud.page._rows.any(func(row): return int(row.get("material_id", 0)) == 801), "Camp inventory retains permanent material boxes")
+	game._close_page()
+	var saved: Dictionary = game.save_store.load_profile()
+	check(not saved.is_empty() and saved.run.inventory.is_empty() and saved.run.talents.is_empty() and saved.run.battle.is_empty() and int(saved.materials.get("102", 0)) == 0, "Camp cleanup is persisted to disk")
+	game.profile.data = saved
+	game._restore_flow()
+	check(game.profile.data.run == DungeonProfile.new_run() and not game.hud.modal_open, "Camp reload keeps temporary inventory empty")
+
 func _verify_blocked_close(message: String) -> void:
 	game._action("close_page", 0, 0)
 	check(game.hud.modal_open, message + " ignores close action")
@@ -158,6 +180,7 @@ func _run() -> void:
 	check(not game._flow_locked() and not game.hud.modal_open and not game.world.paused, "Revival final delay resumes room")
 	check(int(game.profile.data.run.counters.get("revivals:used", 0)) == 1, "Repeated timer tick cannot consume extra revival")
 	game.profile.data.run.counters["run:total_depth"] = 4
+	_seed_run_items()
 	var player_key = str(game.world.player.combat.actor_key)
 	game._record_run_impact({"source_key": player_key, "receiver_key": "enemy:settlement", "resolved_accepted": true, "resolved_damage": 1200})
 	game.battle_tally.reset()
@@ -187,6 +210,7 @@ func _run() -> void:
 	check(vouchers > 0, "Settlement fixture earns vouchers")
 	game._action("result_next", 0, 0)
 	check(game.profile.data.run.outcome.stage == "rewards", "Summary continues to rewards")
+	check(not game.profile.data.run.inventory.is_empty() and game.systems.material(102) == 27, "Temporary items remain available during reward conversion")
 	check(game.systems.material(501) == vouchers_before + vouchers, "Summary grants expected vouchers")
 	game._action("result_next", 0, 0)
 	check(game.systems.material(501) == vouchers_before + vouchers, "Repeated next cannot duplicate vouchers")
@@ -195,14 +219,17 @@ func _run() -> void:
 	check(game.profile.data.run.outcome.stage == "rewards" and game.hud.modal_open, "Settlement reload retains rewards stage")
 	game._action("result_next", 0, 0)
 	check(game.systems.material(501) == vouchers_before + vouchers and game.profile.data.run.outcome.experience_claimed, "Settlement reload cannot regrant vouchers")
+	var minerals_before: int = game.systems.material(103)
 	game._action("result_camp", 0, 0)
 	check(not game.profile.data.run.active and not game._flow_locked() and not game.hud.modal_open, "Rewards return to playable camp")
+	_check_camp_cleanup(vouchers_before + vouchers, minerals_before)
 	await _start()
 	game.profile.data.run.route = {"version": 1, "phase": "room", "layers": []}
 	game._restore_flow()
 	check(not game.profile.data.run.active and not game.hud.modal_open, "Invalid route returns to camp")
 	await _start()
 	game.profile.data.run.counters["run:total_depth"] = 35
+	_seed_run_items()
 	game._finish_run(true)
 	check(game.profile.data.run.outcome.stage == "share", "Victory first shows share stage")
 	_verify_blocked_close("Victory share")
@@ -213,8 +240,13 @@ func _run() -> void:
 	check(game.systems.material(501) == vouchers_before, "Victory share does not grant vouchers early")
 	game._action("result_next", 0, 0)
 	check(game.profile.data.run.outcome.stage == "rewards" and game.systems.material(501) == vouchers_before + vouchers, "Victory summary grants vouchers once")
+	minerals_before = game.systems.material(103)
 	game._action("result_camp", 0, 0)
 	check(not game._flow_locked() and not game.profile.data.run.active, "Victory rewards return to camp")
+	_check_camp_cleanup(vouchers_before + vouchers, minerals_before)
+	_seed_run_items()
+	game._restore_flow()
+	check(game.profile.data.run == DungeonProfile.new_run() and game.systems.material(102) == 0, "Loading an old camp save clears leftover temporary items")
 	_finish()
 
 func _finish() -> void:
