@@ -71,10 +71,15 @@ func _run() -> void:
 	var report := {"apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505", "checks": checks, "failures": failures, "boss_projectiles": projectile_cases, "spirit_damage_definitions": spirit_cases, "delayed_entities": delayed_cases, "preloaded_effect_dependencies": preload_effects, "preloaded_sound_dependencies": preload_sounds, "scope": "Recovered source dispatch, projectile/end scaling, creation versus activation effects, nested range Buff styles, impact payloads, attack-ID-scoped style replacements with creation-time snapshots and all 33 spirit ability media closures. Headless checks do not establish Unity shader equivalence or device FPS."}
 	FileAccess.open("res://reports/source-skill-presentation-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t") + "\n")
 	print("SOURCE_SKILL_PRESENTATION ", JSON.stringify(report))
-	presentation.free()
-	actor.free()
-	target.free()
-	visual.free()
+	# Let particle work finish before the SceneTree destroys its renderer resources.
+	presentation.clear()
+	await process_frame
+	presentation.queue_free()
+	actor.queue_free()
+	target.queue_free()
+	visual.queue_free()
+	await process_frame
+	await process_frame
 	quit(0 if failures.is_empty() else 1)
 
 func _projectile(presentation: Node3D, actor: DungeonActor, visual: Node3D, definition: Dictionary, label: String, summon_id := "") -> void:

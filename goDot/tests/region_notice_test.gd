@@ -18,7 +18,9 @@ func wait_loading() -> void:
 	game.world.set_physics_process(false)
 	game.world.set_process(true)
 	var deadline := Time.get_ticks_msec() + 60000
-	while game._transitioning and Time.get_ticks_msec() < deadline: await process_frame
+	while game._transitioning and Time.get_ticks_msec() < deadline:
+		game.world._background = false
+		await process_frame
 	check(not game._transitioning, "Room loading and transfer complete")
 	game.set_process(false)
 	game.world.set_process(false)
@@ -99,6 +101,7 @@ func _run() -> void:
 	game._select_region(1, true)
 	await wait_loading()
 	check(notice.visible and notice.title_label.text == "翠灵岛", "Alternate region uses its own actual name")
+	game._process(0.0)
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]:
 		canvas.size = dimensions
 		for frame in 3: await process_frame
@@ -112,8 +115,10 @@ func _run() -> void:
 		check(bounds.encloses(notice.banner.get_global_rect()), "Banner fits " + str(dimensions))
 		check(bounds.encloses(notice.title_label.get_global_rect()), "Title fits " + str(dimensions))
 		check(notice.banner.get_global_rect().end.y < dimensions.y * 0.4, "Banner stays near the top at " + str(dimensions))
+		check(game.hud.message_label.get_global_rect().position.y >= notice.banner.get_global_rect().end.y, "Ordinary toast sits below the banner at " + str(dimensions))
 		await capture(dimensions, "title")
 		notice.advance(1.7)
+		check(is_equal_approx(game.hud.message_label.position.y, 140.0 * game.hud.message_label.scale.y), "Toast returns to its normal position after the banner")
 		await capture(dimensions, "hidden")
 	game._camp()
 	check(not notice.visible and notice.entry_key.is_empty() and game._pending_region_notice.is_empty(), "Return to camp cancels entry presentation")
@@ -121,6 +126,8 @@ func _run() -> void:
 	game.queue_free()
 	await process_frame
 	canvas.queue_free()
+	await process_frame
+	for child in root.get_children(): child.queue_free()
 	await process_frame
 	var report := {"checks": checks, "passed": failures.is_empty(), "failures": failures}
 	FileAccess.open("res://reports/region-notice-test.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))

@@ -12,7 +12,7 @@ when the current interface language is unfamiliar.
 | Japanese | 日本語 | `ja` |
 | Korean | 한국어 | `ko` |
 | Indonesian | Bahasa Indonesia | `id` |
-| Thai | ไทย | `th` |
+| Thai | ภาษาไทย | `th` |
 | Vietnamese | Tiếng Việt | `vi` |
 | German | Deutsch | `de` |
 | French | Français | `fr` |
@@ -59,3 +59,5 @@ flowing option buttons, a scrollable navigation rail, and vertical rows on narro
 screens. Check all 13 languages at desktop, wide desktop, and `844 x 390` before
 shipping. Include German, French, Portuguese, Russian, Thai, and Vietnamese in
 font and overflow checks; verify every language selector still shows native names.
+The original logo artwork is retained for both Chinese locales. Other languages
+show the game's `Dungeon Chasers` brand name in the same frame.

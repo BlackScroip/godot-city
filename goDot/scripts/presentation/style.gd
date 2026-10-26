@@ -10,6 +10,7 @@ static var missing: Dictionary = {}
 static var options: Dictionary = {"quality": 1, "shadows": true, "fps": 60}
 static var _options_loaded := false
 static var _last_render_settings := ""
+static var _font: Font
 
 static func read_options() -> Dictionary:
 	if not _options_loaded:
@@ -97,10 +98,7 @@ static func artwork_box(key: String, margin: int, tint := Color.WHITE) -> StyleB
 static func theme() -> Theme:
 	var result = Theme.new()
 	result.default_font_size = 19
-	for path in ["res://assets/fonts/default.otf", "res://assets/fonts/default.ttf"]:
-		if ResourceLoader.exists(path):
-			result.default_font = load(path)
-			break
+	result.default_font = multilingual_font()
 	result.set_color("font_color", "Label", TEXT)
 	result.set_color("font_shadow_color", "Label", Color(0, 0, 0, 0.8))
 	result.set_constant("shadow_offset_x", "Label", 1)
@@ -119,6 +117,16 @@ static func theme() -> Theme:
 	result.set_stylebox("background", "ProgressBar", box(Color("1c2925")))
 	result.set_stylebox("fill", "ProgressBar", box(Color("77ba44")))
 	return result
+
+static func multilingual_font() -> Font:
+	if _font: return _font
+	var primary := load("res://assets/fonts/default.otf").duplicate() as FontFile
+	var korean := FontVariation.new()
+	korean.base_font = preload("res://assets/fonts/NotoSansKR.ttf")
+	korean.variation_opentype = {"wght": 400.0}
+	primary.fallbacks = [korean, preload("res://assets/fonts/NotoSansThai.ttf")]
+	_font = primary
+	return _font
 
 static func label(text: String, font_size := 19) -> Label:
 	var result = Label.new()

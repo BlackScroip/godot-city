@@ -162,6 +162,7 @@ func _ready() -> void:
 	region_notice = preload("res://scripts/presentation/region_notice.gd").new()
 	region_notice.z_index = 10
 	root.add_child(region_notice)
+	region_notice.visibility_changed.connect(_layout_toast)
 	joystick = DungeonJoystick.new()
 	root.add_child(joystick)
 	skill_cluster = Control.new()
@@ -433,6 +434,7 @@ func _layout() -> void:
 	for control in [navigation, message_label, skill_cluster, vitals, joystick, primary, pickup_panel, counters, title_label, camp_button]:
 		control.scale = Vector2.ONE * ui_scale
 		control.position *= ui_scale
+	_layout_toast()
 	if OS.has_feature("mobile"):
 		skill_cluster.position -= skill_safe_insets(screen, Vector2(DisplayServer.window_get_size()), Rect2(DisplayServer.get_display_safe_area()))
 	_layout_interaction(ui_scale)
@@ -479,7 +481,15 @@ func toast(text: String) -> void:
 	message_label.text = text
 	_toast_time = 4.0
 
+func _layout_toast() -> void:
+	if not is_instance_valid(message_label): return
+	var factor := message_label.scale.y
+	message_label.position.y = 140.0 * factor
+	if is_instance_valid(region_notice) and region_notice.visible:
+		message_label.position.y = maxf(message_label.position.y, region_notice.banner.get_global_rect().end.y + 12.0 * factor)
+
 func _process(delta: float) -> void:
+	_layout_toast()
 	_toast_time = maxf(0, _toast_time - delta)
 	if _toast_time <= 0: message_label.text = ""
 

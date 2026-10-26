@@ -415,6 +415,7 @@ func _settings_section(section: String) -> void:
 				var key = _command_button(option)
 				key.custom_minimum_size.x = 90
 				key.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				key.add_theme_stylebox_override("normal", DungeonStyle.box(Color("31484f"), Color("789193")))
 				if option.get("selected", false): key.add_theme_stylebox_override("normal", DungeonStyle.box(Color("475966"), DungeonStyle.GOLD))
 				options.add_child(key)
 		else:

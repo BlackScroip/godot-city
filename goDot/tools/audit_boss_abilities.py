@@ -96,12 +96,14 @@ def main():
         "missing_action_targets": missing_actions,
         "unmapped_ai_outputs": unmapped_outputs,
         "commands_after_action_duration": outside_timeline,
-        "fresh_source_parity": {key: parity[key] for key in ("apk_sha256", "action_count", "ai_graph_count", "closure_counts", "changed_counts", "changed_keys", "source_raw_differences")},
+        "fresh_source_parity": {key: parity[key] for key in ("apk_sha256", "action_count", "ai_graph_count", "closure_counts", "closure_ids", "changed_counts", "changed_keys", "source_raw_differences")},
         "scope": "Enabled events/hits in every Boss action, AI buff predicates/tasks and all cumulative Boss EX difficulty roots. References use the production format-aware importer. Missing action targets are explicitly retained source gaps. requested_by_ai denotes a serialized OP_AIAction producer; a helper route is not proof of an existing terminal attack. Missing targets retain their authored helper idle fallback.",
     }
     output = ROOT / "reports/boss-ability-source.json"
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({key: result[key] for key in ["passed", "actions", "reachable_counts", "missing_dependencies", "missing_action_targets", "unmapped_ai_outputs", "commands_after_action_duration", "fresh_source_parity"]}, indent=2))
+    summary = {key: result[key] for key in ["passed", "actions", "reachable_counts", "missing_dependencies", "missing_action_targets", "unmapped_ai_outputs", "commands_after_action_duration"]}
+    summary["fresh_source_parity"] = {key: value for key, value in result["fresh_source_parity"].items() if key != "closure_ids"}
+    print(json.dumps(summary, indent=2))
     raise SystemExit(0 if result["passed"] else 1)
 
 

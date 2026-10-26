@@ -30,6 +30,7 @@ static var _translation: Translation
 static var _placeholders: RegEx
 static var _han: RegEx
 static var _tags: RegEx
+static var _overrides: Dictionary = {}
 
 class DisplayTranslation extends Translation:
 	func _get_message(src_message: StringName, _context: StringName) -> StringName:
@@ -66,6 +67,7 @@ static func ensure_initialized() -> void:
 	_placeholders = RegEx.create_from_string("%%|%[-+0 #]*[0-9]*(?:\\.[0-9]+)?[sdifxXoc]")
 	_han = RegEx.create_from_string("[\\x{3400}-\\x{9fff}]")
 	_tags = RegEx.create_from_string("<[^>]*>")
+	_overrides = _read_json("res://assets/localization/overrides.json")
 	var config := ConfigFile.new()
 	var selected := OS.get_locale()
 	if config.load(settings_path) == OK:
@@ -109,6 +111,11 @@ static func _load_locale(code: String) -> void:
 	_templates.clear()
 	_messages = _read_json("res://assets/localization/original/" + code + ".json")
 	_messages.merge(_read_json("res://assets/localization/supplemental/" + code + ".json"), true)
+	var override_index: int = _overrides.get("locales", []).find(code)
+	if override_index >= 0:
+		for source in _overrides.get("messages", {}):
+			var translations: Array = _overrides.messages[source]
+			if override_index < translations.size(): _messages[source] = str(translations[override_index])
 	_keyed = _read_json("res://assets/localization/original/keyed_" + code + ".json")
 	# Controls keep their source text. This also translates values formatted before assignment.
 	var aliases: Dictionary = {}
@@ -187,8 +194,8 @@ static func _translate(source: String) -> String:
 	return result
 
 static func _translate_uncached(source: String) -> String:
-	if _messages.has(source) and not str(_messages[source]).is_empty(): return str(_messages[source])
 	if _han.search(source) == null: return source
+	if _messages.has(source) and not str(_messages[source]).is_empty(): return str(_messages[source])
 	for entry in _templates:
 		var matched: RegExMatch = entry.regex.search(source)
 		if matched == null: continue

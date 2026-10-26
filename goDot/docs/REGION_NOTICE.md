@@ -4,7 +4,8 @@ The HUD now presents the current area's name after a new room finishes loading
 and the player's arrival transfer completes. New rooms get a fresh animation;
 opening maps, restoring a saved room, practice fixtures and returning to camp do
 not replay it. Menus and camp cancel an active notice. Ordinary toasts remain
-independent and the notice does not capture input.
+independent, move below an active banner, and return to their usual position
+when it ends. The notice does not capture input.
 
 ## APK Evidence
 

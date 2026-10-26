@@ -1247,7 +1247,7 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 		var timers: Array = []
 		var delays: Array = []
 		var initial_cooldown = 0.0
-		for condition in definition.get("raw_data", {}).get("Conditions", []):
+		for condition in _spirit_conditions(definition.get("raw_data", {}).get("Conditions", []), _caster_for(id)):
 			if condition.get("ConditionType") == "ECT_CheckBuffCD" and bool(condition.get("InitResetCD", false)):
 				initial_cooldown = maxf(initial_cooldown, float(condition.get("ColdTime", 0)) / 1000.0)
 		for trigger in definition.get("triggers", []):
@@ -1283,7 +1283,7 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 			_dispose_status(definition, entry, depth + 1)
 		return true
 	if created:
-		for condition in definition.get("raw_data", {}).get("Conditions", []):
+		for condition in _spirit_conditions(definition.get("raw_data", {}).get("Conditions", []), _caster_for(id)):
 			if condition.get("ConditionType") == "ECT_CheckBuffCD" and bool(condition.get("InitResetCD", false)):
 				entry.raw_cooldown = maxf(float(entry.get("raw_cooldown", 0)), float(condition.get("ColdTime", 0)) / 1000.0)
 		for child in definition.get("initial", []):
@@ -1750,33 +1750,71 @@ func source_stop_frame_modifier(definition: Dictionary) -> float:
 	return value
 
 func _modified_attack_definition(definition: Dictionary) -> Dictionary:
+	if bool(definition.get("_entity_modifiers_resolved", false)): return definition
 	var modifiers: Array = []
 	for entry in statuses.values():
 		if _buff_index.get(entry.id, {}).get("type") == "EBT_ModifyAttackDef": modifiers.append(entry)
-	if modifiers.is_empty(): return definition
-	var raw = JSON.parse_string(str(definition.get("raw", "{}")))
-	if not raw is Dictionary or raw.get("EntityType", "") != "EET_Physical": return definition
+	var raw = _read_raw_json(str(definition.get("raw", "{}")))
+	if not raw is Dictionary: return definition
 	var attack_id = int(raw.get("Id", definition.get("damageId", 0)))
-	var changed = false
+	var entity: Dictionary = raw.get("EntityProperty", {})
+	var physical: bool = raw.get("EntityType", "") == "EET_Physical"
+	var size_add := 0.0
+	var count_add := 0
+	var interval_summons: Array = []
 	for entry in modifiers:
 		var buff: Dictionary = _buff_index.get(entry.id, {})
 		var settings = _settings(buff, _caster_for(str(entry.id)))
-		if not settings.get("AttackDefIdList", []).any(func(id): return int(id) == attack_id): continue
-		if not changed:
-			definition = definition.duplicate(true)
-			changed = true
-		var entity: Dictionary = raw.get("EntityProperty", {})
-		var factor = maxf(0.0, 1.0 + float(settings.get("ModifyEntity_PhysicEntitySizeAddPercent", 0)) * int(entry.layers) / 1000.0)
-		for key in ["ModelBoxColliderSize", "ModlePrefabSize"]:
-			var size: Dictionary = entity.get(key, {})
-			for axis in size: size[axis] = float(size[axis]) * factor
-		definition.width = float(definition.get("width", 1)) * factor
-		definition.length = float(definition.get("length", 1)) * factor
+		if attack_id == 0 or not settings.get("AttackDefIdList", []).any(func(id): return int(id) == attack_id): continue
+		size_add += float(settings.get("ModifyEntity_PhysicEntitySizeAddPercent" if physical else "ModifyEntity_RangePercent", 0)) * int(entry.layers) / 1000.0
+		count_add += int(settings.get("ModifyEmit_Num", 0)) * int(entry.layers)
+		if physical: interval_summons.append_array(settings.get("ModifyEntity_PhysicEntityIntervalAddSummonUnitList", []))
+	for name in str(entity.get("ScaleModifyPropertyName", "")).split("|", false): size_add += attribute(name) / 1000.0
+	var factor := maxf(0.0, _spirit_apply(1.0 + size_add, entity.get("ScaleSpiritModifier", {}), self))
+	if is_equal_approx(factor, 1.0) and count_add == 0 and interval_summons.is_empty(): return definition
+	definition = definition.duplicate(true)
+	raw = raw.duplicate(true)
+	entity = raw.get("EntityProperty", {})
+	for key in ["ModelBoxColliderSize", "ModlePrefabSize"]:
+		if entity.get(key) is Dictionary: _scale_components(entity[key], factor)
+	for key in ["Radius", "Width", "Length", "Height"]:
+		if entity.has(key): entity[key] = float(entity[key]) * factor
+	for key in ["EffectTriggerDef", "EffectDelayTriggerDef"]:
+		var effect: Dictionary = entity.get(key, {})
+		if effect.get("Scale") is Dictionary: _scale_components(effect.Scale, factor)
+	definition.width = float(definition.get("width", 1)) * factor
+	definition.length = float(definition.get("length", 1)) * factor
+	if count_add != 0:
+		definition.count = maxi(1, int(definition.get("count", 1)) + count_add)
+		if raw.get("EmitProperty") is Dictionary: raw.EmitProperty.Num = definition.count
+	if not interval_summons.is_empty():
 		var intervals: Array = entity.get("IntervalCreateSummonUnitDefList", [])
-		intervals.append_array(settings.get("ModifyEntity_PhysicEntityIntervalAddSummonUnitList", []).duplicate(true))
+		intervals.append_array(interval_summons.duplicate(true))
 		entity["IntervalCreateSummonUnitDefList"] = intervals
-		raw["EntityProperty"] = entity
-	if changed: definition.raw = JSON.stringify(raw)
+	raw["EntityProperty"] = entity
+	definition.raw = JSON.stringify(raw)
+	definition["_entity_modifiers_resolved"] = true
+	return definition
+
+func _scale_components(value: Dictionary, factor: float) -> void:
+	for axis in ["x", "y", "z"]:
+		if value.has(axis): value[axis] = float(value[axis]) * factor
+
+func _effective_summon_definition(definition: Dictionary) -> Dictionary:
+	var raw: Dictionary = definition.get("raw_data", {})
+	var duration := _spirit_apply(float(raw.get("Duration", definition.get("lifetime", 0))), raw.get("DurationSpiritModifier", {}), self)
+	var scale := maxf(0.0, _spirit_apply(1.0, raw.get("PrefabScaleModifySpiritModifier", {}), self))
+	var hit := _modified_attack_definition(definition.get("hit", {}))
+	if is_equal_approx(duration, float(definition.get("lifetime", 0))) and is_equal_approx(scale, 1.0) and hit == definition.get("hit", {}): return definition
+	definition = definition.duplicate(true)
+	raw = definition.get("raw_data", {})
+	raw["Duration"] = duration
+	if raw.get("PrefabScale") is Dictionary: _scale_components(raw.PrefabScale, scale)
+	var effective_hit = _read_raw_json(str(hit.get("raw", "{}")))
+	if effective_hit is Dictionary: raw["EntityProperty"] = effective_hit.get("EntityProperty", {}).duplicate(true)
+	definition.hit = hit
+	definition.lifetime = duration
+	definition.raw = JSON.stringify({"SummonUnitType": definition.get("type", ""), "SummonUnitData": raw})
 	return definition
 
 func _execute(event: Dictionary) -> void:
@@ -1839,7 +1877,7 @@ func _execute(event: Dictionary) -> void:
 	_emit_event("command", {"command": command, "action": event.action, "slot": event.slot, "sequence": event.sequence, "speed": float(custom_properties.get("_feel_action_speed", 1.0))})
 
 func _emit_hit(event: Dictionary) -> void:
-	var definition: Dictionary = event.hit.duplicate()
+	var definition: Dictionary = _modified_attack_definition(event.hit).duplicate()
 	var damage_data = _damage_data(int(definition.get("damageId", 0)))
 	if not damage_data.is_empty():
 		definition.attribute = str(damage_data.get("DamageAttribType", definition.get("attribute", "None")))
@@ -1899,6 +1937,7 @@ func _spawn_summon(id: String, at: float, action_name: String, slot: int, offset
 	if summon.is_empty():
 		_report("Missing summon " + id)
 		return
+	summon = _effective_summon_definition(summon)
 	var motion: Dictionary = summon.get("raw_data", {}).get("MotionAnimatorProperty", {})
 	var lifetime_key = "LastingTime" if str(summon.get("raw_data", {}).get("MotionAnimatorType", "")) == "EMAT_RotateOwner" else "MaxLifetime"
 	var context_key = "LastingTimePropertyContextAdd" if lifetime_key == "LastingTime" else "PropertyContextAdd"
@@ -1921,7 +1960,9 @@ func _spawn_summon(id: String, at: float, action_name: String, slot: int, offset
 	var raw: Dictionary = summon.get("raw_data", {})
 	_apply_raw_buff(raw.get("BuffTrigger_Caster", {}), effective_attack_power(), depth + 1)
 	var phased_funnel = summon.get("type", "") == "ESUT_Funnel" and raw.get("TriggerBulletType", "") == "OnDurationTimeAuto" and (float(raw.get("FirstTriggerDelayTime", 0)) > 0 or float(raw.get("TriggerDelayTime", 0)) > 0 or not str(raw.get("TriggerEffectName_NoDelay", "")).is_empty() or not str(raw.get("TriggerEffectName_Delay", "")).is_empty())
-	if int(summon.get("hit", {}).get("damageId", 0)) > 0 or phased_funnel or (summon.get("type", "") == "ESUT_Funnel" and raw.get("EntityType", "") == "EET_Physical"):
+	var ending_id := str(raw.get("EntityProperty", {}).get("AddSummonUnitDefOnEnd", {}).get("AddSummonUnitId", ""))
+	var ending_carrier := ending_id not in ["", "0", "-1"]
+	if int(summon.get("hit", {}).get("damageId", 0)) > 0 or phased_funnel or ending_carrier or (summon.get("type", "") == "ESUT_Funnel" and raw.get("EntityType", "") == "EET_Physical"):
 		var summon_hit: Dictionary = summon.hit
 		if summon.get("type", "") == "ESUT_Funnel":
 			# Funnel emit intervals in the APK are already seconds; the legacy import divided them again.
@@ -2302,7 +2343,7 @@ func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
 		if definition.get("type") != "EBT_ConditionBuff" or not definition.get("triggers", []).is_empty() or int(entry.layers) <= 0 or float(entry.get("raw_cooldown", 0)) > 0 or bool(entry.get("raw_triggering", false)) or bool(entry.get("raw_instant_completed", false)):
 			continue
 		var raw: Dictionary = definition.get("raw_data", {})
-		var conditions: Array = raw.get("Conditions", [])
+		var conditions: Array = _spirit_conditions(raw.get("Conditions", []), _caster_for(str(entry.id)))
 		var passed = true
 		if not entry.has("condition_counters"):
 			entry.condition_counters = {}
@@ -2732,7 +2773,7 @@ func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack:
 				_report("Resource conversion needs system adapter: " + str(entry.id))
 		"EBT_ModifyAttackDef":
 			for key in settings:
-				if key in ["Level", "AttackDefIdList", "HitFeedBack_StopFrameAdd", "ModifyEntity_PhysicEntitySizeAddPercent", "ModifyEntity_PhysicEntityIntervalAddSummonUnitList", "DetectionEffectName", "ReplaceEffectName"]: continue
+				if key in ["Level", "AttackDefIdList", "HitFeedBack_StopFrameAdd", "ModifyEmit_Num", "ModifyEntity_RangePercent", "ModifyEntity_PhysicEntitySizeAddPercent", "ModifyEntity_PhysicEntityIntervalAddSummonUnitList", "DetectionEffectName", "ReplaceEffectName"]: continue
 				var value: Variant = settings[key]
 				if (value is int or value is float) and not is_zero_approx(float(value)) or value is String and not value.is_empty() or value is Array and not value.is_empty():
 					_report("Attack definition modifier requires adapter: %s %s" % [entry.id, key])
@@ -2885,6 +2926,46 @@ func _damage_value(definition: Dictionary, caster_attack: float) -> float:
 	var second = caster_attack if definition.get("DamageAttribType2") == "FinalAtk" else stat_value(str(definition.get("DamageAttribType2", "None")))
 	return basis * float(definition.get("DamageMulValue", 0)) / 1000.0 + second * float(definition.get("DamageMulValue2", 0)) / 1000.0 + float(definition.get("DamageFixValue", 0))
 
+func _spirit_apply(base: float, modifier: Dictionary, source: DungeonCombat = null) -> float:
+	if not bool(modifier.get("Enabled", false)): return base
+	var owner: DungeonCombat = source if source != null else self
+	var influences: Array = modifier.get("Influences", [])
+	if not modifier.has("Influences"):
+		var legacy := modifier.duplicate()
+		legacy["Attribute"] = "Spirit" + str(modifier.get("Parameter", "Trigger"))
+		influences = [legacy]
+	var value := base
+	for influence in influences:
+		if not influence is Dictionary or not bool(influence.get("Enabled", false)): continue
+		var name := str(influence.get("Attribute", "None"))
+		var weight := float(influence.get("PerMille", 0))
+		if name == "None" or not is_finite(weight) or is_zero_approx(weight): continue
+		var attribute_value := owner.attribute(name)
+		if not is_finite(attribute_value): continue
+		var spirit := name in ["SpiritTrigger", "SpiritEnhance", "SpiritRange", "SpiritDuration", "SpiritCount"]
+		var lower := float(influence.get("MinMultiplier", 0)) if spirit or bool(influence.get("UseMinMultiplier", false)) else -INF
+		var upper := float(influence.get("MaxMultiplier", 5)) if spirit or bool(influence.get("UseMaxMultiplier", false)) else INF
+		if is_nan(lower): lower = 0.0
+		if is_nan(upper): upper = 5.0
+		# Native Apply adds each weighted, bounded attribute to the supplied base.
+		value += weight * clampf(attribute_value / 1000.0, minf(lower, upper), maxf(lower, upper))
+	return value
+
+func _spirit_settings(settings: Dictionary, source: DungeonCombat = null) -> Dictionary:
+	var output := settings
+	for key in settings:
+		if not str(key).ends_with("SpiritModifier") or not settings[key] is Dictionary or not bool(settings[key].get("Enabled", false)): continue
+		var target := str(key).trim_suffix("SpiritModifier")
+		if not settings.get(target) is float and not settings.get(target) is int: continue
+		if output == settings: output = settings.duplicate(true)
+		output[target] = _spirit_apply(float(settings[target]), settings[key], source)
+	return output
+
+func _spirit_conditions(conditions: Array, source: DungeonCombat = null) -> Array:
+	var output: Array = []
+	for condition in conditions: output.append(_spirit_settings(condition, source))
+	return output
+
 func _settings(definition: Dictionary, source: DungeonCombat = null) -> Dictionary:
 	var settings: Array = definition.get("raw_data", {}).get("BuffSettingDataList", [])
 	var mode = str(definition.get("raw_data", {}).get("LevelSourceType", "Single"))
@@ -2895,13 +2976,13 @@ func _settings(definition: Dictionary, source: DungeonCombat = null) -> Dictiona
 			if int(row.get("Level", 0)) <= 1:
 				fallback = row
 			elif owner.buff_layers(str(int(row.get("Level", 0)))) > 0:
-				return row
-		return fallback
+				return _spirit_settings(row, source)
+		return _spirit_settings(fallback, source)
 	if mode == "RoleUnitType_1P2M":
 		for row in settings:
 			if int(row.get("Level", 0)) == (1 if not fighter.is_empty() else 2):
-				return row
-	return settings[0] if not settings.is_empty() and settings[0] is Dictionary else {}
+				return _spirit_settings(row, source)
+	return _spirit_settings(settings[0], source) if not settings.is_empty() and settings[0] is Dictionary else {}
 
 func _collect_initial(id: String, result: Dictionary) -> void:
 	if result.has(id):

@@ -40,6 +40,7 @@ func _ready() -> void:
 	stage.add_child(logo)
 	brand_label.text = "Dungeon Chasers"
 	brand_label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	brand_label.clip_text = true
 	brand_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	brand_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	brand_label.add_theme_color_override("font_color", Color("fff4cb"))
@@ -77,6 +78,11 @@ func _ready() -> void:
 		language_select.set_item_metadata(language_select.item_count - 1, str(language.code))
 	language_select.item_selected.connect(_select_language)
 	stage.add_child(language_select)
+	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		var select_style := language_select.get_theme_stylebox(state).duplicate()
+		select_style.set_content_margin(SIDE_TOP, 6)
+		select_style.set_content_margin(SIDE_BOTTOM, 6)
+		language_select.add_theme_stylebox_override(state, select_style)
 	version_label.text = "v" + str(ProjectSettings.get_setting("application/config/version", "0.1.0"))
 	version_label.add_theme_color_override("font_color", Color("a8b3ca"))
 	version_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
