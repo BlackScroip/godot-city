@@ -53,6 +53,11 @@ logger.stdout.on('data', data => {
     if (!line.startsWith('COMBAT_STRESS_READY ') || ready) continue;
     try { ready = JSON.parse(line.slice('COMBAT_STRESS_READY '.length)); }
     catch { continue; }
+    if ((args.driver && ready.driver !== args.driver) || (args.renderer && ready.renderer !== args.renderer)) {
+      failed = `Unexpected renderer: ${ready.renderer}/${ready.driver}`;
+      logger.kill();
+      continue;
+    }
     probe = spawn(process.execPath, [fileURLToPath(new URL('./android_frame_probe.mjs', import.meta.url)),
       `--adb=${adb}`, `--serial=${serial}`, `--package=${packageName}`, `--seconds=${seconds}`, `--output=${framePath}`],
     { stdio: ['ignore', 'inherit', 'inherit'] });
@@ -78,6 +83,9 @@ try {
 } finally {
   clearTimeout(timer);
   clearTimeout(screenshotTimer);
+}
+if (failed) {
+  try { runAdb(['shell', 'am', 'force-stop', packageName]); } catch { /* Preserve the capture failure. */ }
 }
 const readJson = path => { try { return JSON.parse(readFileSync(path, 'utf8')); } catch { return null; } };
 const log = readJson(logPath);

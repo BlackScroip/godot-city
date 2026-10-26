@@ -16,6 +16,7 @@ func _initialize() -> void:
 		for slot in range(5):
 			var actor = Combat.new()
 			actor.configure(null, null, int(character.id), 0, 123)
+			if slot == 3: actor.add_skill_charge(3, actor.skill_capacity(3))
 			if slot == 4 and int(character.id) == 4:
 				actor.add_buff(str(character.jp), 25)
 			if slot == 4 and int(character.id) == 3:
@@ -123,6 +124,7 @@ func _test_resources_and_restore() -> void:
 	_check(wand_copy.special_resource() == 6, "Water cooldown recovers")
 	var live = Combat.new()
 	live.configure(null, null, 5, 0, 701)
+	live.add_skill_charge(3, live.skill_capacity(3))
 	live.request_attack(3)
 	_advance(live, 0.78, false)
 	var resumed = Combat.new()
@@ -164,6 +166,7 @@ func _test_health_and_attributes() -> void:
 	_check(actor.receive(hit, 100) == 0, "Dodge invulnerability")
 	_advance(actor, 1.1, false)
 	_check(actor.receive(hit, 100) > 0, "Damage after invulnerability")
+	actor.add_skill_charge(3, actor.skill_capacity(3))
 	actor.request_attack(3)
 	actor.health = 0
 	_check(actor.revive(50), "Dead actor revives")
@@ -253,6 +256,7 @@ func _test_raw_conditions() -> void:
 	var actor = Combat.new()
 	actor.configure(null, null, 1)
 	actor.add_buff("103100")
+	actor.add_skill_charge(3, actor.skill_capacity(3))
 	_check(actor.request_attack(3).success, "Burst for raw action-end listener starts")
 	_check(actor.buff_layers("103101") == 0, "Overheat waits for burst end")
 	_advance(actor, actor.busy + 0.02, false)

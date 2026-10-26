@@ -1,0 +1,162 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+    "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+  },
+  "prefab": "Assets/[00002]Resource/Prefabs/ProjectAT/SubItem/ATSlot_RoadMapNode.prefab",
+  "controller_path_id": "-859858271999692329",
+  "increments": [
+    {
+      "id": 10000,
+      "kind": "mineral"
+    },
+    {
+      "id": 70001,
+      "kind": "gold"
+    },
+    {
+      "id": 70002,
+      "kind": "magic"
+    },
+    {
+      "id": 13006,
+      "kind": "partner"
+    },
+    {
+      "id": 13008,
+      "kind": "spirit"
+    }
+  ],
+  "layout": {
+    "m_CellSize": {
+      "x": 60.0,
+      "y": 60.0
+    },
+    "m_Spacing": {
+      "x": 185.0,
+      "y": 45.0
+    },
+    "m_StartCorner": 2,
+    "m_ChildAlignment": 7
+  },
+  "sprites": {
+    "mineral": {
+      "sprite_name": "icon_materialicon",
+      "sprite_path_id": "-3786927540215496959",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "dimensions": [
+        124,
+        114
+      ],
+      "png_sha256": "60e056924023a8360393ea9e95c10f634f00582826cd9ef919052bcc5375d182",
+      "alpha_bounds": [
+        2,
+        3,
+        122,
+        112
+      ]
+    },
+    "frame": {
+      "sprite_name": "技能详情类型_底框",
+      "sprite_path_id": "-7491145028482521941",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "dimensions": [
+        49,
+        52
+      ],
+      "png_sha256": "f7537fc343992119c5a66599937a1e2d27c1c9fe780c87bec009e330bef6a6d4",
+      "alpha_bounds": [
+        0,
+        0,
+        49,
+        52
+      ]
+    },
+    "gold": {
+      "sprite_name": "icon_gold",
+      "sprite_path_id": "-354578817330875833",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "dimensions": [
+        107,
+        93
+      ],
+      "png_sha256": "5338ff6af7f58e7cbc7cdb68f888aecae4fa24d98012da28b05325a92295ad6e",
+      "alpha_bounds": [
+        2,
+        2,
+        106,
+        91
+      ]
+    },
+    "magic": {
+      "sprite_name": "icon_materialpoint",
+      "sprite_path_id": "1387658022391728769",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "dimensions": [
+        105,
+        93
+      ],
+      "png_sha256": "b723cebf2ef78b4078f3307497bfa08c6a6a4acd7bd9250164882356aad96b9e",
+      "alpha_bounds": [
+        2,
+        2,
+        104,
+        90
+      ]
+    },
+    "partner": {
+      "sprite_name": "icon_MonsterPartnerSkillSelector",
+      "sprite_path_id": "5440518939519853885",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "dimensions": [
+        116,
+        114
+      ],
+      "png_sha256": "606024753e46e850012d51d6493ee51005d400aba75bce2c3528a6ccc7a0f606",
+      "alpha_bounds": [
+        3,
+        2,
+        114,
+        112
+      ]
+    },
+    "spirit": {
+      "sprite_name": "SpritesAltar",
+      "sprite_path_id": "-3526217163340320126",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "dimensions": [
+        256,
+        256
+      ],
+      "png_sha256": "fbdaf3af03fb8fffb8a0e688130069a15827db03c0bce74cdb0eeea066da68cb",
+      "alpha_bounds": [
+        22,
+        2,
+        232,
+        256
+      ]
+    }
+  },
+  "limitations": [
+    "Static packaged images and layout only; original APK was not executed."
+  ]
+}

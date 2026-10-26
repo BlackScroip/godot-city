@@ -49,7 +49,8 @@ func _run() -> void:
 			systems.complete_node(key, region * 1000000, region, true)
 			systems.claim_node_materials(key, region, true)
 	_claim_all()
-	systems.invest_shop(100000)
+	systems.set_record("shop:invested", 100000)
+	systems.set_record("shop:level", 10)
 	for id in [101, 102, 103, 90002]: systems.spend({str(id): 10000})
 	for pass_index in 4:
 		for row in catalog.rows("LootData"): systems.add_loot(Catalog.row_id(row), false)

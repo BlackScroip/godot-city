@@ -42,6 +42,7 @@ var _smoke := false
 var _smoke_clock := 0.0
 var _capture_path := ""
 var _room_key := ""
+var _room_shop_mode := "buy"
 var _binding_action := ""
 var _smoke_output := "res://reports"
 var _wall_start := 0
@@ -283,7 +284,7 @@ func _process(delta: float) -> void:
 		hud.primary.icon = DungeonStyle.texture("sprite_conversation_talk" if not profile.data.run.active or prompt[1] == "npc" else str(prompt[2]))
 		hud.primary.add_theme_color_override("font_color", Color("74d8ff") if nearby.marker.get("Type", "") == "EEUT_AbilityItemTreasureBox" else Color.WHITE)
 	hud.show_pickup(loot, systems, hud.modal_open)
-	hud.objective_guide.update_target(world, hud.modal_open or not profile.data.run.active or world.fighting)
+	hud.objective_guide.update_target(world, world.paused or world._background or not profile.data.run.active or world._camp_camera or world.fighting or world.player.dead)
 	world.update_event_markers(not profile.data.run.active)
 	hud.readiness_suspended = world.paused or world._background or hud.modal_open
 	hud.low_effects = world.low_effects
@@ -313,6 +314,7 @@ func _camp() -> void:
 	if profile.data.run.active:
 		world.player.combat.health = minf(world.player.combat.max_health, float(profile.data.run.health))
 		world.player.combat.armor = float(profile.data.run.armor)
+		world.player.combat.restore_skill_resources(profile.data.run.counters.get("player:skill_resources", {}))
 	_equip_visual()
 	hud.close_page()
 	hud.set_adventure_mode(profile.data.run.active)
@@ -497,6 +499,22 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"buy_room":
 			var result = systems.buy_room_offer(_room_key, int(id))
 			hud.toast(str(result.get("message", "")))
+			if result.success: resource_audio.play_event("reward_get")
+			_apply_growth()
+			_room_action()
+		"refresh_room_shop":
+			var result = systems.refresh_room_shop(_room_key)
+			hud.toast(str(result.get("message", "")))
+			_room_action()
+		"invest_room_shop":
+			var result = systems.invest_shop(int(id))
+			hud.toast(str(result.get("message", "")))
+			_room_action()
+		"room_shop_mode": _room_shop_mode = str(id)
+		"seal_room_loot":
+			var result = systems.seal_room_loot(_room_key, int(id))
+			hud.toast(str(result.get("message", "")))
+			_apply_growth()
 			_room_action()
 		"choose_loot":
 			var result = systems.choose_loot_reward(str(extra), int(id))
@@ -589,6 +607,7 @@ func _primary() -> void:
 		if not result.get("success", false):
 			hud.toast(str(result.get("message", "")))
 			return
+		profile.data.run.counters["player:skill_resources"] = combat.skill_resource_snapshot()
 		_route()
 		_save()
 	elif world.player.dead: _player_defeated()
@@ -753,6 +772,9 @@ func _load_room(resume := false) -> void:
 	_introduced_bosses.clear()
 	_loading = true
 	var room: Dictionary = campaign.current_room()
+	var carried_resources: Dictionary = profile.data.run.counters.get("player:skill_resources", {})
+	if not resume and is_instance_valid(world.player) and not world._camp_camera:
+		carried_resources = world.player.combat.skill_resource_snapshot()
 	_room_key = "%d:%d:%d" % [int(profile.data.run.seed), int(campaign.state.layer_index), int(room.node_id)]
 	systems.ensure_map_node_increments(campaign)
 	world.load_environment(int(room.get("environment_id", room.stage_id)))
@@ -762,7 +784,9 @@ func _load_room(resume := false) -> void:
 	var combat = _new_combat()
 	var previous_hp = float(profile.data.run.health)
 	if resume and not profile.data.run.battle.is_empty(): combat.restore(profile.data.run.battle.get("player", {}))
-	else: combat.health = minf(combat.max_health, previous_hp)
+	else:
+		combat.health = minf(combat.max_health, previous_hp)
+		combat.restore_skill_resources(carried_resources)
 	var actor = world.create_player(combat, selected_character, room.get("player_start", {}))
 	if str(room.flow) == "TreasureTrial": world.trial_room.configure(world, campaign)
 	world.interactions.apply_room_appearance(systems.room_environment_appearance(_room_key, room, world.interactions._items.values()))
@@ -884,9 +908,10 @@ func _update_battle_presentation(delta: float) -> void:
 		if profile.data.run.active and not world.paused and not _introduced_bosses.has(key):
 			_introduced_bosses[key] = true
 			boss_intro.begin(world, target, name_text)
-	battle_tally.advance(delta, world.fighting and not world.paused and not world._background)
+	var presentation_delta := delta * world.simulation_scale if not world.paused and not world._background else 0.0
+	battle_tally.advance(presentation_delta, world.fighting)
 	hud.battle_readout.visible = profile.data.run.active and not hud.modal_open and not _transitioning and not boss_intro.active and not _flow_locked()
-	hud.battle_readout.update_values(battle_tally, target, name_text)
+	hud.battle_readout.update_values(battle_tally, target, name_text, presentation_delta)
 	hud.battle_readout.update_enemies(world.actors, world.camera, delta if not world.paused else 0.0)
 
 func _enemy_defeated(enemy_id: int) -> void:
@@ -948,15 +973,19 @@ func _leave_room(confirmed := false) -> void:
 		_rewards()
 		return
 	if not confirmed:
-		var unclaimed = world.ground_loot.entries.filter(func(entry): return not entry.material).size()
+		var unclaimed = world.ground_loot.entries.filter(func(entry): return not entry.material and not entry.has("altar")).size()
+		var altars = world.ground_loot.entries.filter(func(entry): return entry.has("altar")).size()
+		for entry in world.ground_loot.source_altars:
+			if world.ground_loot._source_altar_available(entry): altars += 1
 		var unopened := 0
 		for item in world.interactions._items.values():
 			if str(item.marker.get("Type", "")) == "EEUT_AbilityItemTreasureBox" and int(item.data.get("TreasureId", 0)) == 1 and not item.state.opened: unopened += 1
-		if unclaimed > 0 or unopened > 0:
-			var details: PackedStringArray = []
-			if unclaimed > 0: details.append("还有 %d 件物品未拾取" % unclaimed)
-			if unopened > 0: details.append("还有 %d 个宝箱未开启" % unopened)
-			hud.show_page("确认离开", [menus.item("、".join(details), "离开后将无法返回拾取。", [menus.command("留在房间", "close_page"), menus.command("继续前进", "leave_unclaimed")])])
+		if unclaimed > 0 or unopened > 0 or altars > 0:
+			var details: Array = []
+			if unopened > 0: details.append({"title": "未开启的宝箱", "count": unopened, "icon": "sprite_conversation_gift"})
+			if altars > 0: details.append({"title": "精灵祭坛", "count": altars, "icon": world.ground_loot.ALTAR_EGG_TEXTURE})
+			if unclaimed > 0: details.append({"title": "未拾取的物品", "count": unclaimed, "icon": "sprite_conversation_get"})
+			hud.show_page("确认离开", details, "unclaimed")
 			return
 	_transitioning = true
 	world.paused = true
@@ -993,7 +1022,7 @@ func _talent_rewards() -> void:
 		var levels = DungeonCatalog.ids(talent.level_data_id_list)
 		var detail = catalog.find("CharTalentLevelData", int(levels[next_level - 1]))
 		var row = menus.item(menus.name_of(talent), menus.description(talent) + "\n\n" + menus.description(detail), [menus.command("选择", "choose_talent", id, str(reward.key))])
-		row.merge({"icon": str(talent.get("icon_name", "")), "grade": grade, "grade_color": color, "level_text": "Lv.%d → Lv.%d" % [old_level, next_level]})
+		row.merge({"icon": str(talent.get("icon_name", "")), "grade": grade, "grade_color": color, "rarity": {"Low": 2, "Normal": 4, "High": 5}.get(quality, 2), "level_text": "Lv.%d → Lv.%d" % [old_level, next_level]})
 		rows.append(row)
 	rows.append(menus.item("重选", "", [menus.command("重选", "refresh_talent", str(reward.key), 0, int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0)]))
 	rows.back()["presentation_role"] = "refresh"
@@ -1014,6 +1043,7 @@ func _rewards(preferred_key := "") -> void:
 			var ability = catalog.find("AbilityItems", int(row.get("ability_item_id", id)))
 			rows.append(menus.item(menus.loot_name(int(id)), menus.description(ability), [menus.command("选择", "choose_loot", int(id), str(reward.key))]))
 			rows.back()["icon"] = "loot:" + str(id)
+			rows.back()["rarity"] = int(ability.get("Rare", 1))
 		rows.append(menus.item("刷新", "", [menus.command("刷新", "refresh_loot", str(reward.key), 0, int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0)]))
 		rows.back()["presentation_role"] = "refresh"
 		break
@@ -1022,7 +1052,7 @@ func _rewards(preferred_key := "") -> void:
 		else: hud.close_page()
 		return
 	var altar = str(selected_reward.get("key", "")).begins_with("altar:")
-	hud.show_page("请选择一个精灵" if altar else "冒险奖励", rows, "altar" if altar else "grid")
+	hud.show_page("请选择一个精灵" if altar else "冒险奖励", rows, "altar" if altar else "support")
 
 func _room_action() -> void:
 	var room: Dictionary = campaign.current_room()
@@ -1049,10 +1079,8 @@ func _room_action() -> void:
 			for choice in view.get("choices", []):
 				rows.append(menus.item(str(choice.get("text", choice.get("name", "选择"))), "", [menus.command("选择", "event_choice", int(choice.get("id", 0)), 0, not choice.get("enabled", true))]))
 	elif flow == "Shop" and systems.has_method("get_room_shop"):
-		var shop = systems.get_room_shop(_room_key, int(room.get("progress_region", room.region)))
-		for offer in shop.get("offers", []):
-			rows.append(menus.item(menus.loot_name(int(offer.get("loot_id", 0))), "价格 %d 魔力" % int(offer.get("price", 0)), [menus.command("已售罄" if offer.get("sold", false) else "购买", "buy_room", int(offer.get("loot_id", 0)), 0, offer.get("sold", false))]))
-			rows.back()["icon"] = "loot:" + str(int(offer.get("loot_id", 0)))
+		_show_room_shop(room)
+		return
 	else:
 		if flow == "Rest" and not profile.data.run.counters.get("rest:" + _room_key, false):
 			world.player.combat.health = minf(world.player.combat.max_health, world.player.combat.health + world.player.combat.max_health * 0.3)
@@ -1063,6 +1091,29 @@ func _room_action() -> void:
 	rows.append(menus.item("前往下一房间", "", [menus.command("继续前进", "finish_noncombat")]))
 	rows.back()["presentation_role"] = "navigation"
 	hud.show_page(str(room.name), rows, "shop" if flow == "Shop" else "list")
+
+func _show_room_shop(room: Dictionary) -> void:
+	var shop = systems.get_room_shop(_room_key, int(room.get("progress_region", room.region)))
+	var rows: Array = []
+	var free = int(profile.data.run.counters.get("FreePurchaseAttempts", 0))
+	for offer in shop.get("offers", []):
+		var loot_id = int(offer.get("loot_id", 0))
+		var loot = catalog.find("LootData", loot_id)
+		var ability = catalog.find("AbilityItems", int(loot.get("ability_item_id", 0)))
+		var compatible = systems.can_add_loot(loot_id)
+		var affordable = free > 0 or systems.material(102) >= int(offer.price)
+		rows.append({"title": menus.loot_name(loot_id), "description": menus.description(ability), "icon": "loot:" + str(loot_id), "loot_id": loot_id,
+			"rarity": int(ability.get("Rare", 1)), "price": int(offer.price), "price_change": int(offer.get("price_change", 0)), "sold": bool(offer.get("sold", false)), "compatible": compatible, "affordable": affordable, "free": free > 0,
+			"action": "buy_room", "status": "已售罄" if offer.get("sold", false) else "已达上限" if not compatible else "魔力不足" if not affordable else ""})
+	var seal_rows: Array = []
+	for held in profile.data.run.inventory:
+		var quote = systems.shop_seal_quote(int(held))
+		if quote.is_empty(): continue
+		seal_rows.append({"title": menus.loot_name(int(held)), "description": menus.description(catalog.find("AbilityItems", int(catalog.find("LootData", int(held)).get("ability_item_id", 0)))),
+			"icon": "loot:" + str(held), "loot_id": int(held), "rarity": int(quote.rarity), "price": int(quote.magic), "count": int(quote.count), "action": "seal_room_loot"})
+	seal_rows.sort_custom(func(a, b): return int(a.loot_id) < int(b.loot_id))
+	hud.show_page("迷宫商店", rows, "room_shop", {"shop": systems.room_shop_status(_room_key), "magic": systems.material(102), "free": free, "seal_rows": seal_rows, "mode": _room_shop_mode})
+	_save()
 
 func _player_defeated() -> void:
 	if not profile.data.run.active or _flow_locked(): return
@@ -1316,11 +1367,7 @@ func _next_dialogue() -> void:
 	_apply_growth()
 	var row: Dictionary = catalog.find("NPCFunctionData", function_id)
 	if str(row.get("func_msg_name", "")) == "NpcSupportTalk" and result.success:
-		var rows: Array = []
-		for offer in systems.npc_support_offer(function_id).get("offers", []):
-			rows.append(menus.item(menus.loot_name(int(offer.loot_id)), "", [menus.command("选择", "op:claim_npc_support", function_id, int(offer.loot_id), offer.get("sold", false))]))
-			rows.back()["icon"] = "loot:" + str(int(offer.loot_id))
-		hud.show_page("冒险支援", rows)
+		_show_npc_support(function_id)
 	else:
 		var label = menus.clean(row.get("btn_name", ""))
 		if "再见" in label or "下次一定" in label:
@@ -1328,6 +1375,17 @@ func _next_dialogue() -> void:
 		else:
 			_show_npc_choices(int(row.get("npc_index", 0)), function_id, state.get("lines", []))
 	_save(true)
+
+func _show_npc_support(function_id: int) -> void:
+	var rows: Array = []
+	for offer in systems.npc_support_offer(function_id).get("offers", []):
+		var loot_id = int(offer.loot_id)
+		var loot = catalog.find("LootData", loot_id)
+		var ability = catalog.find("AbilityItems", int(loot.get("ability_item_id", loot_id)))
+		var row = menus.item(menus.loot_name(loot_id), menus.description(ability), [menus.command("选择", "op:claim_npc_support", function_id, loot_id, offer.get("sold", false))])
+		row.merge({"icon": "loot:" + str(loot_id), "rarity": int(ability.get("Rare", 1))})
+		rows.append(row)
+	hud.show_page("选择冒险家支援道具", rows, "support")
 
 func _npc_choices(npc_id: int, function_id: int) -> Array:
 	var choices: Array = []
@@ -1435,6 +1493,7 @@ func _build_save_snapshot() -> bool:
 			profile.data.run.health = maxf(0, actor.combat.health)
 			profile.data.run.max_health = actor.combat.max_health
 			profile.data.run.armor = actor.combat.armor
+			profile.data.run.counters["player:skill_resources"] = actor.combat.skill_resource_snapshot()
 			if campaign.state.get("phase", "") == "route": return true
 			var enemies: Array = []
 			for enemy in world.actors:

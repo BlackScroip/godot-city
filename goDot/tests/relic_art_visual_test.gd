@@ -53,7 +53,7 @@ func _run() -> void:
 	for index in samples.size():
 		game.world.ground_loot.spawn(samples[index], point + Vector3((index-2)*1.2,0,1.5))
 	for entry in game.world.ground_loot.entries:
-		if entry.visual.texture.resource_path != "res://assets/art_generated/relics/relic_%d.png" % int(entry.id):
+		if entry.visual.texture != DungeonItemArt.ground_texture(int(entry.id)):
 			failures.append("Ground image mismatch: " + str(entry.id))
 	game.world.camera.position = point + game.world._camera_offset
 	game.world.camera.look_at(point)

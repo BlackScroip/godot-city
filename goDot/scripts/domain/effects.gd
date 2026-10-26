@@ -29,9 +29,9 @@ func ability_attributes(id: int, count: int, target: Dictionary, path: Array = [
 		return
 	var next_path = path.duplicate()
 	next_path.append(id)
+	for i in range(1, 4):
+		_sum(target, row.get("ModifyAttributeType" + str(i), ""), float(row.get("ModifyAttributeValue" + str(i), 0)) * count)
 	if str(row.get("TriggerEventType", "")) in ["", "None"]:
-		for i in range(1, 4):
-			_sum(target, row.get("ModifyAttributeType" + str(i), ""), float(row.get("ModifyAttributeValue" + str(i), 0)) * count)
 		for buff in Catalog.ids(row.get("ModifyBuff", "")):
 			buff_attributes(buff, count, target)
 		for component in row.get("CombineDataList", []):
@@ -153,7 +153,7 @@ func dispatch(event: String, param1: String = "", param2: String = "", param3: S
 			if now < int(counters.get(key + ":next", 0)): continue
 			var used = int(counters.get(key + ":used", 0))
 			var maximum = int(data.get("MaxEffectCount", -1))
-			if maximum >= 0 and used >= maximum: continue
+			if (maximum > 0 if component.get("CombineDataType", "") == "RecordTrigger" else maximum >= 0) and used >= maximum: continue
 			if not _conditions(component.get("ConditionList", []), key): continue
 			var probability = float(data.get("TriggerPercent", 1.0))
 			if systems.next_random(1000000) >= int(clampf(probability, 0, 1) * 1000000): continue

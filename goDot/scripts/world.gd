@@ -1599,6 +1599,7 @@ func _tick_projectiles(delta: float) -> void:
 				contact_hit["contact"] = int(state.hits.get(key, 0))
 				contact_hit["ranged"] = state.motion_type not in ["EMAT_FollowOwner", "EMAT_RotateOwner"]
 				_apply_hit(source, target, contact_hit)
+				if contact_hit.get("skill_charge_attempted", false): state.hit["skill_charge_attempted"] = true
 				state.record_hit(key)
 				if state.finished: break
 		state.finished = state.finished or expires_now

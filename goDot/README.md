@@ -26,6 +26,8 @@ The camp portal and adventure button open preparation with character, weapon, di
 
 The completed portal/map/drop integration against `1061664.apk`, its verification results, screenshots and remaining source gaps are collected in [the adventure implementation report](reports/NEW_APK_ADVENTURE_IMPLEMENTATION.md).
 
+The room merchant now supports purchases, dynamic prices, refresh, investment and sealing. Ground pickups use 439 recovered item/material sprites and a dismissible description. The source exit indicator and vertical ultimate SP fill are connected, with JP kept separate and skill resources preserved across rooms and saves. See [the four-feature implementation and verification report](reports/LEVEL_FEATURES_IMPLEMENTATION_20261026.md) for source evidence, desktop/phone captures and Android acceptance limits.
+
 Monster interruption now follows the APK's per-monster tenacity, current-action stability and authored hit-action gates. Ordinary and elite deaths cannot drop equipment or equipment-selection bags; lords keep the source loot branches. See [the monster rules correction](reports/MONSTER_RULES_CORRECTION_20261026.md) for evidence, probabilities, verification and remaining motion limits.
 
 Boss entrances now execute their authored gameplay actions, including phase HP locks. Shared HP settlement covers damage, healing, DOT and HP costs; finite locks preserve remaining uses and deferred triggers through saves. Dragon recovery and lava-dragon shield decay follow the recovered configurations. See [Boss skills and HP lock implementation](reports/BOSS_SKILLS_HEALTH_LOCK_IMPLEMENTATION_20261026.md) for native evidence, verified phase chains, rendered skill checks and source gaps.

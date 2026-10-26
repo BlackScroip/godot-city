@@ -3,6 +3,10 @@ extends CanvasLayer
 
 signal action(kind: String, id: Variant, extra: Variant)
 signal skill(slot: int, pressed: bool)
+const SKILL_CLUSTER_SIZE := Vector2(400, 344)
+const SKILL_CLUSTER_MARGIN := Vector2(24, 24)
+const SKILL_POSITIONS := [Vector2(208, 152), Vector2(80, 212), Vector2(84, 52), Vector2(252, 12), Vector2(8, 148)]
+const SKILL_SIZES := [168, 112, 112, 112, 64]
 var root: Control
 var joystick: DungeonJoystick
 var title_label: Label
@@ -106,23 +110,11 @@ func _ready() -> void:
 	camp_button.add_theme_constant_override("icon_max_width", 28)
 	camp_button.tooltip_text = "营地设施与资源"
 	root.add_child(camp_button)
-	pickup_panel = PanelContainer.new()
-	pickup_panel.add_theme_stylebox_override("panel", DungeonStyle.artwork_box("gold_frame", 28, Color(0.75, 0.83, 0.88, 0.95)))
+	pickup_panel = preload("res://scripts/presentation/pickup_card.gd").new()
 	root.add_child(pickup_panel)
-	var pickup_stack = VBoxContainer.new()
-	pickup_panel.add_child(pickup_stack)
-	pickup_icon = DungeonStyle.picture("", Vector2(72, 72))
-	pickup_stack.add_child(pickup_icon)
-	pickup_name = label("", 22)
-	pickup_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	pickup_name.modulate = DungeonStyle.GOLD
-	pickup_stack.add_child(pickup_name)
-	pickup_stack.add_child(HSeparator.new())
-	pickup_description = label("", 18)
-	pickup_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	pickup_description.max_lines_visible = 5
-	pickup_stack.add_child(pickup_description)
-	pickup_panel.hide()
+	pickup_icon = pickup_panel.icon
+	pickup_name = pickup_panel.name_label
+	pickup_description = pickup_panel.description_label
 	navigation = HBoxContainer.new()
 	navigation.add_theme_constant_override("separation", 4)
 	root.add_child(navigation)
@@ -175,14 +167,12 @@ func _ready() -> void:
 	skill_cluster.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(skill_cluster)
 	# Combat slots stay stable; the former heavy button now selects automation.
-	var positions = [Vector2(222, 164), Vector2(106, 220), Vector2(128, 38), Vector2(300, 40), Vector2(26, 156)]
-	var sizes = [156, 116, 112, 104, 72]
-	var icons = ["skill_attack", "skill_dodge", "skill_sword_whirl", "skill_sword_slash", "res://assets/art_generated/heavy-v1.png"]
-	var names = ["攻击", "闪避", "战技", "爆发", "重击 / 蓄力"]
+	var icons = ["skill_attack", "skill_dodge", "skill_sword_whirl", "skill_sword_slash"]
+	var names = ["攻击", "闪避", "战技", "爆发"]
 	for slot in range(4):
 		var key = DungeonTouchButton.new()
-		key.position = positions[slot]
-		key.size = Vector2.ONE * sizes[slot]
+		key.position = SKILL_POSITIONS[slot]
+		key.size = Vector2.ONE * SKILL_SIZES[slot]
 		key.custom_minimum_size = key.size
 		key.tooltip_text = names[slot]
 		key.art = DungeonStyle.texture(icons[slot])
@@ -193,8 +183,8 @@ func _ready() -> void:
 		skill_buttons.append(key)
 		skill_by_slot[slot] = key
 	attack_mode_button = DungeonTouchButton.new()
-	attack_mode_button.position = positions[4]
-	attack_mode_button.size = Vector2.ONE * sizes[4]
+	attack_mode_button.position = SKILL_POSITIONS[4]
+	attack_mode_button.size = Vector2.ONE * SKILL_SIZES[4]
 	attack_mode_button.custom_minimum_size = attack_mode_button.size
 	attack_mode_button.ring = DungeonStyle.texture("skill_circle_small")
 	attack_mode_button.art = DungeonStyle.texture("skill_swap")
@@ -207,8 +197,8 @@ func _ready() -> void:
 	attack_mode_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	attack_mode_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	attack_mode_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	attack_mode_label.offset_top = 66
-	attack_mode_label.offset_bottom = 24
+	attack_mode_label.offset_top = 64
+	attack_mode_label.offset_bottom = 26
 	attack_mode_label.add_theme_font_size_override("font_size", 18)
 	attack_mode_button.add_child(attack_mode_label)
 	set_attack_mode(attack_mode)
@@ -267,6 +257,7 @@ func _ready() -> void:
 		primary.add_theme_stylebox_override(state, prompt_frame)
 	root.add_child(primary)
 	joystick.excluded_controls.assign([navigation, primary, skill_cluster])
+	joystick.excluded_controls.append(pickup_panel)
 	battle_readout = preload("res://scripts/presentation/battle_readout.gd").new()
 	root.add_child(battle_readout)
 	battle_readout.hide()
@@ -315,6 +306,7 @@ func update_intent(intent: RefCounted) -> void:
 
 func _bar(art: String, point: Vector2, dimensions: Vector2) -> TextureProgressBar:
 	var result = TextureProgressBar.new()
+	result.step = 0.0
 	result.texture_progress = DungeonStyle.texture(art)
 	result.nine_patch_stretch = true
 	result.position = point
@@ -333,7 +325,7 @@ func button(text: String, kind: String, id: Variant = 0, extra: Variant = 0) -> 
 	return result
 
 func show_page(title: String, rows: Array, layout := "list", context: Dictionary = {}) -> void:
-	message_label.visible = layout not in ["outcome", "dialogue"]
+	message_label.visible = layout not in ["outcome", "dialogue", "unclaimed"]
 	page.display(title, rows, layout, context)
 	page.show()
 	shade.visible = layout not in ["route", "dialogue"]
@@ -380,8 +372,11 @@ func _layout() -> void:
 	navigation.size = Vector2(navigation_width, 100)
 	message_label.position = Vector2(s.x * 0.25, 140)
 	message_label.size = Vector2(s.x * 0.5, 64)
-	skill_cluster.position = Vector2(s.x - 440, s.y - 340)
-	skill_cluster.size = Vector2(420, 330)
+	skill_cluster.position = s - SKILL_CLUSTER_SIZE - SKILL_CLUSTER_MARGIN
+	skill_cluster.size = SKILL_CLUSTER_SIZE
+	for key in skill_buttons: key.release(true)
+	attack_mode_button.release(true)
+	attack_mode_button.hit_padding = maxf(8.0, (48.0 / ui_scale - attack_mode_button.size.x) * 0.5)
 	vitals.position = Vector2(s.x * 0.5 - 122, s.y - 145)
 	vitals.size = Vector2(244, 80)
 	joystick.position = Vector2(0, s.y * 0.42)
@@ -390,13 +385,14 @@ func _layout() -> void:
 	joystick.queue_redraw()
 	primary.position = Vector2(s.x - 680, s.y - 308)
 	primary.size = Vector2(260, 48)
-	pickup_panel.position = Vector2(s.x - 490, maxf(145, s.y - 600))
-	pickup_panel.size = Vector2(300, 230)
+	pickup_panel.layout(s)
 	for control in [navigation, message_label, skill_cluster, vitals, joystick, primary, pickup_panel, counters, title_label, camp_button]:
 		control.scale = Vector2.ONE * ui_scale
 		control.position *= ui_scale
-	var full_page = page._layout in ["inventory", "altar", "talent", "route", "outcome", "character", "weapon", "settings", "tree", "awakening", "buildings", "prepare", "shop", "commission", "guild", "dialogue"]
+	var full_page = page._layout in ["inventory", "altar", "talent", "support", "route", "outcome", "character", "weapon", "settings", "tree", "awakening", "buildings", "prepare", "shop", "commission", "guild", "dialogue"]
 	full_page = full_page or (modal_open and page.page_context.get("camp", false))
+	full_page = full_page or page._layout == "unclaimed"
+	full_page = full_page or page._layout == "room_shop"
 	var page_margin = Vector2.ZERO if OS.has_feature("mobile") or (modal_open and full_page) else Vector2(40, 40)
 	page.position = page_margin
 	page.size = screen - page_margin * 2
@@ -440,7 +436,7 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 	var skills: Array = combat.fighter.skills
 	for slot in skill_by_slot:
 		var key = skill_by_slot[slot]
-		var before = [key.cooldown, key.stock, key.charging, key.charge_fraction, key.unavailable, key.recharge_remaining]
+		var before = [key.cooldown, key.stock, key.charging, key.charge_fraction, key.unavailable, key.recharge_remaining, key.resource_fraction, key.resource_color]
 		var capacity: float = combat.skill_capacity(slot)
 		var cost: float = combat.skill_cost(slot)
 		key.cooldown = float(combat.cooldowns[slot])
@@ -451,16 +447,16 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 		key.recharge_total = combat.dodge_recharge_duration() if slot == 1 else 1.0
 		key.charging = slot == 0 and combat.charging
 		key.charge_fraction = clampf(combat.charge_elapsed / 1.5, 0, 1) if key.charging else 0.0
+		key.resource_fraction = combat.skill_charge_fraction(slot, true) if slot == 3 else -1.0
+		key.resource_color = DungeonTouchButton.skill_resource_color(int(skills[slot].get("element", 0)))
 		key.readiness_suspended = readiness_suspended or modal_open
 		key.low_effects = low_effects
 		key.ready_full = DungeonTouchButton.has_full_skill_resource(slot, float(combat.energy[slot]), capacity, cost, key.cooldown, combat.health > 0)
-		if before != [key.cooldown, key.stock, key.charging, key.charge_fraction, key.unavailable, key.recharge_remaining]: key.queue_redraw()
+		if before != [key.cooldown, key.stock, key.charging, key.charge_fraction, key.unavailable, key.recharge_remaining, key.resource_fraction, key.resource_color]: key.queue_redraw()
 	charge.max_value = maxf(1, combat.skill_capacity(3))
 	charge.value = float(combat.energy[3])
-	var fraction = charge.value / charge.max_value
-	if reference_vitals.charge_fraction != fraction:
-		reference_vitals.charge_fraction = fraction
-		reference_vitals.queue_redraw()
+	var fraction: float = combat.special_resource_fraction()
+	reference_vitals.bind_resource(str(combat.fighter.get("jp", "")), fraction)
 	for i in charge_segments.size():
 		charge_segments[i].texture = DungeonStyle.texture("hud_charge_segment_full" if fraction >= (i + 1) / 5.0 else "hud_charge_segment")
 		charge_segments[i].modulate = Color.WHITE
@@ -480,15 +476,11 @@ func update_counters(systems: RefCounted, difficulty: int) -> void:
 	title_label.text = "难度 %d" % difficulty
 
 func show_pickup(entry: Dictionary, systems: RefCounted, modal: bool) -> void:
-	pickup_panel.visible = not modal and not entry.is_empty()
-	if not pickup_panel.visible: return
+	pickup_panel.bind(entry, systems, modal)
+	if modal or entry.is_empty(): return
 	primary.visible = true
 	primary.text = "拾取"
-	primary.icon = DungeonStyle.texture("interaction_quest")
-	pickup_icon.texture = DungeonStyle.texture(("material:" if entry.material else "loot:") + str(entry.id))
-	pickup_name.text = DungeonCatalog.clean(systems.material_name(entry.id) if entry.material else systems.loot_name(entry.id))
-	pickup_description.text = "数量：%d" % entry.amount if entry.material else DungeonCatalog.clean(systems.loot_description(entry.id))
+	primary.icon = DungeonStyle.texture("sprite_conversation_get")
+	primary.add_theme_color_override("font_color", Color("ffdb68"))
 	if entry.has("altar"):
 		primary.text = "精灵祭坛"
-		pickup_name.text = "精灵祭坛"
-		pickup_description.text = "选择一位同行的精灵"

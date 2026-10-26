@@ -1153,6 +1153,7 @@ func ability_sources(selected_character_id: int = 0) -> Dictionary:
 	var sources = {}
 	if d.run.active:
 		for key in d.run.inventory:
+			if is_shop_sealed(int(key)): continue
 			var row = catalog.find("LootData", int(key))
 			if int(d.run.inventory[key]) > 0: _add(sources, int(row.get("ability_item_id", 0)), int(d.run.inventory[key]))
 	for key in d.talents:
@@ -1182,6 +1183,7 @@ func attributes(selected_character_id: int = 0) -> Dictionary:
 	for id in sources:
 		effects.ability_attributes(int(id), int(sources[id]), result)
 	if d.run.active:
+		result["SealedLootCount"] = int(d.run.counters.get("SealedLootCount", 0))
 		var difficulty_modifiers = difficulty_attributes()
 		for attribute in difficulty_modifiers: result[attribute] = result.get(attribute, 0) + difficulty_modifiers[attribute]
 		for reward in d.run.get("region_rewards", []):
@@ -1424,6 +1426,7 @@ func follower_replacements(row: Dictionary) -> Array:
 	return result
 
 func can_add_loot(id: int) -> bool:
+	if is_shop_sealed(id): return false
 	var row = catalog.find("LootData", id)
 	var ability = catalog.find("AbilityItems", int(row.get("ability_item_id", 0)))
 	if row.is_empty() or ability.is_empty() or row.get("is_admin_only", false) or not is_unlocked(int(row.unlock_data_id)): return false
@@ -1640,7 +1643,7 @@ func _shop_float(value: float) -> float:
 	# IL2CPP prices truncate after single-precision arithmetic.
 	return PackedFloat32Array([value])[0]
 
-func _shop_base_price(rarity: int) -> int:
+func _shop_base_price(rarity: int, region: int = 0) -> int:
 	var cfg = catalog.config.get("GameShopCfg", {})
 	var prices = cfg.get("BaseRarePriceList", [])
 	var index = clampi(rarity, 1, 5) - 1
@@ -1649,7 +1652,7 @@ func _shop_base_price(rarity: int) -> int:
 	for row in cfg.get("PriceLevelIndexAddList", []):
 		if int(row.DifficultyLevel) - 1 > int(profile.data.run.difficulty): break
 		difficulty_factor = float(row.PriceFactor)
-	var depth = maxi(0, int(profile.data.run.region) - 1)
+	var depth = maxi(0, (region if region > 0 else int(profile.data.run.region)) - 1)
 	var depth_factor = _shop_float(_shop_float(float(cfg.get("PriceLevelIndexFactor", 0)) / 1000.0) * depth)
 	var factor = _shop_float(_shop_float(difficulty_factor / 1000.0) + _shop_float(1 + depth_factor))
 	return int(_shop_float(_shop_float(base_price * factor) + depth * int(cfg.get("PriceLevelIndexAdd", 0))))
@@ -1667,31 +1670,106 @@ func _shop_price_rate(rate: float) -> float:
 		discount = minf(0.5, _shop_float(_shop_float(band[1]) + _shop_float(excess * band[2])))
 	return _shop_float(-discount * 1000.0)
 
-func _shop_price(rarity: int, attrs: Dictionary) -> int:
-	var base_price = _shop_base_price(rarity)
+func _shop_price(rarity: int, attrs: Dictionary, change: int = 0, region: int = 0) -> int:
+	var base_price = _shop_base_price(rarity, region)
 	var base_factor = _shop_float(1 + _shop_float(int(attrs.get("ShopBasePriceAddRate", 0)) / 1000.0))
 	var discount_factor = _shop_float(1 + _shop_float(_shop_price_rate(float(attrs.get("ShopPriceAddRate", 0))) / 1000.0))
 	var price = _shop_float(_shop_float(base_price * base_factor) * discount_factor)
+	if change != 0: price = _shop_float(price * _shop_float(1 + _shop_float(change * _shop_float(0.001))))
 	return maxi(maxi(1, int(base_price / 2.0)), int(price))
 
-func _fill_shop(shop: Dictionary) -> void:
+func _shop_supply_price(loot_type: String, attrs: Dictionary) -> int:
+	var price_key = {"调查点数": "FixedCostItemPrice_SearchPoint", "生命药水": "FixedCostItemPrice_Potion", "护甲": "FixedCostItemPrice_Armor"}.get(loot_type, "")
+	var base_price = int(catalog.config.get("GameShopCfg", {}).get(price_key, 100))
+	var factor = _shop_float(1 + _shop_float(_shop_float(float(attrs.get("PotionPriceAddRate", 0))) / 1000.0))
+	var price = _shop_float(base_price * factor)
+	var floor_base = int(price) / int(factor) if int(factor) != 0 else 0
+	return maxi(maxi(1, int(floor_base / 2)), int(price))
+
+func _shop_is_supply(loot_id: int) -> bool:
+	return str(catalog.find("LootData", loot_id).get("loot_type", "")) in ["调查点数", "生命药水", "护甲"]
+
+func _reprice_shop(shop: Dictionary) -> void:
+	var attrs = _shop_attributes()
+	var markup = int(shop.get("buy_count", 0)) * int(attrs.get("NormalShopPriceIncreasePerBuy", 0))
+	for offer in shop.offers:
+		var loot = catalog.find("LootData", int(offer.loot_id))
+		if _shop_is_supply(int(offer.loot_id)):
+			offer["price_change"] = 0
+			offer.price = _shop_supply_price(str(loot.loot_type), attrs)
+		else:
+			offer["price_change"] = int(offer.get("offer_change", 0)) + markup
+			var rarity = int(catalog.find("AbilityItems", int(loot.get("ability_item_id", 0))).get("Rare", 1))
+			offer.price = _shop_price(rarity, attrs, int(offer.price_change), int(shop.get("region", profile.data.run.region)))
+
+func _roll_shop_offer_changes(shop: Dictionary) -> void:
+	var candidates: Array[int] = []
+	for i in shop.offers.size():
+		var offer: Dictionary = shop.offers[i]
+		offer["offer_change"] = 0
+		if not offer.sold and not _shop_is_supply(int(offer.loot_id)): candidates.append(i)
+	var cfg: Dictionary = catalog.config.get("GameShopCfg", {})
+	var minimum = int(cfg.get("NormalShopPriceChangePercentMin", 0))
+	var maximum = int(cfg.get("NormalShopPriceChangePercentMax", 0))
+	if maximum <= minimum: return
+	for change in [["ShopPriceIncreaseCount", 1], ["ShopPriceDecreaseCount", -1]]:
+		for _i in mini(maxi(0, int(profile.data.run.counters.get(change[0], 0))), candidates.size()):
+			var picked = next_random(candidates.size())
+			var slot = candidates[picked]
+			candidates.remove_at(picked)
+			shop.offers[slot]["offer_change"] = (minimum + next_random(maximum - minimum + 1)) * int(change[1])
+
+func _fill_shop(shop: Dictionary, reroll_changes: bool = true, replace_bought: bool = true) -> void:
 	var cfg = catalog.config.get("GameShopCfg", {})
 	var attrs = _shop_attributes()
 	var count = int(cfg.get("DefaultShopShowCount", 3)) + int(attrs.get("ShopShowCount", 0))
-	var ids = roll_pool(int(catalog.config.get("DefaultAbilityItemLootPoolId", 0)), count, 0, [], _shop_rarity_weights(attrs))
-	shop.offers.clear()
-	for id in ids:
-		var loot = catalog.find("LootData", id)
-		var ability = catalog.find("AbilityItems", int(loot.ability_item_id))
-		var rarity = int(ability.get("Rare", 1))
-		shop.offers.append({"loot_id": id, "price": _shop_price(rarity, attrs), "sold": false})
+	var old_offers: Array = shop.offers.duplicate(true)
+	var offers: Array = []
+	var supply_pools: Array = ["DefaultRecoverItemLootPoolId", "DefaultArmorItemLootPoolId", "DefaultSearchPointItemLootPoolId"] if shop.get("supplies", false) else []
+	if replace_bought:
+		for pool in supply_pools:
+			for id in roll_pool(int(catalog.config.get(pool, 0)), 1):
+				var slot = offers.size()
+				offers.append({"loot_id": id, "price": 0, "sold": false, "supply": true, "offer_change": int(old_offers[slot].get("offer_change", 0)) if slot < old_offers.size() else 0})
+		for id in roll_pool(int(catalog.config.get("DefaultAbilityItemLootPoolId", 0)), count, 0, [], _shop_rarity_weights(attrs)):
+			var slot = offers.size()
+			offers.append({"loot_id": id, "price": 0, "sold": false, "supply": false, "offer_change": int(old_offers[slot].get("offer_change", 0)) if slot < old_offers.size() else 0})
+		shop.offers = offers
+		if reroll_changes: _roll_shop_offer_changes(shop)
+		_reprice_shop(shop)
+		return
+	var total = old_offers.size()
+	var excluded: Array = []
+	for old in old_offers: excluded.append(int(old.loot_id))
+	for i in total:
+		var old: Dictionary = old_offers[i] if i < old_offers.size() else {}
+		if old.get("sold", false):
+			offers.append(old)
+			continue
+		excluded.erase(int(old.get("loot_id", 0)))
+		var is_supply = i < supply_pools.size()
+		var pool_id = int(catalog.config.get(supply_pools[i] if is_supply else "DefaultAbilityItemLootPoolId", 0))
+		var choices = roll_pool(pool_id, 1, 0, excluded, {} if is_supply else _shop_rarity_weights(attrs))
+		if choices.is_empty():
+			if not old.is_empty(): offers.append(old)
+			continue
+		var id = int(choices[0])
+		excluded.append(id)
+		offers.append({"loot_id": id, "price": 0, "sold": false, "supply": is_supply, "offer_change": int(old.get("offer_change", 0))})
+	shop.offers = offers
+	if reroll_changes: _roll_shop_offer_changes(shop)
+	_reprice_shop(shop)
 
 func get_room_shop(key: String, region: int = 0) -> Dictionary:
 	if not profile.data.run.active: return {}
 	if region > 0: profile.data.run.region = region
 	for shop in profile.data.run.shops:
-		if shop.key == key: return shop
-	var shop = {"key": key, "refreshes": 0, "offers": []}
+		if shop.key == key:
+			_reprice_shop(shop)
+			return shop
+	var shop = {"key": key, "refreshes": 0, "paid_refreshes": 0, "buy_count": 0, "offers": [], "supplies": true, "region": int(profile.data.run.region)}
+	profile.data.run.counters["ShopPriceIncreaseCount"] = 0
+	profile.data.run.counters["ShopPriceDecreaseCount"] = 0
 	effects.dispatch("EnterNewNormalShop", "0")
 	_fill_shop(shop)
 	profile.data.run.shops.append(shop)
@@ -1702,37 +1780,100 @@ func buy_room_offer(key: String, loot_id: int) -> Dictionary:
 	if not profile.data.run.active: return _fail("没有进行中的冒险")
 	for shop in profile.data.run.shops:
 		if shop.key != key: continue
+		_reprice_shop(shop)
 		for offer in shop.offers:
 			if int(offer.loot_id) != loot_id: continue
 			if offer.sold or not can_add_loot(loot_id): return _fail("商品已售罄或不兼容")
 			var free = int(profile.data.run.counters.get("FreePurchaseAttempts", 0)) > 0
 			if not free and not spend({"102": int(offer.price)}): return _fail("魔力不足")
 			if free: _add(profile.data.run.counters, "FreePurchaseAttempts", -1)
+			elif not _shop_is_supply(loot_id): shop["buy_count"] = int(shop.get("buy_count", 0)) + 1
 			offer.sold = true
+			offer["offer_change"] = 0
 			var result = add_loot(loot_id, false)
 			var rarity = int(catalog.find("AbilityItems", int(catalog.find("LootData", loot_id).get("ability_item_id", 0))).get("Rare", 0))
 			record_purification_event("BuyNormalShopItem", str(rarity), 1, "", false)
 			effects.dispatch("BuyNormalShopItem", str(rarity))
+			_reprice_shop(shop)
 			return _done(result.message, loot_id)
 	return _fail("商品不存在")
 
 func refresh_room_shop(key: String) -> Dictionary:
-	var maximum = int(catalog.config.get("GameShopCfg", {}).get("ShopRefreshTime", 0)) + int(_shop_attributes().get("ShopMaxRefreshTime", 0))
 	for shop in profile.data.run.shops:
 		if shop.key != key: continue
-		if not profile.data.run.active or int(shop.refreshes) >= maximum: return _fail("商店刷新次数不足")
+		var status = room_shop_status(key)
+		if not profile.data.run.active or not status.can_refresh: return _fail(str(status.refresh_reason))
+		if int(status.refresh_cost) > 0:
+			if not spend({"102": int(status.refresh_cost)}): return _fail("魔力不足")
+			shop["paid_refreshes"] = int(shop.get("paid_refreshes", 0)) + 1
 		shop.refreshes = int(shop.refreshes) + 1
-		_fill_shop(shop)
+		_fill_shop(shop, false, float(_shop_attributes().get("ShopRefreshReplaceBoughtItems", 0)) >= 1)
 		return _done("商店已刷新")
 	return _fail("商店不存在")
 
-func invest_shop(amount: int) -> Dictionary:
-	if amount <= 0 or not profile.data.run.active: return _fail("请在冒险中投资")
+func room_shop_status(key: String) -> Dictionary:
+	var cfg: Dictionary = catalog.config.get("GameShopCfg", {})
+	var level = maxi(1, stat("shop:level"))
+	var next: Dictionary = {}
+	var levels: Array = cfg.get("ShopLevelData", [])
+	for row in levels:
+		if int(row.Level) > level and (next.is_empty() or int(row.Level) < int(next.Level)): next = row
+	var deposit = int(_shop_float(_shop_float(float(next.get("NeedSaveResCount", 0)) * float(cfg.get("ShopSaveResOnceNeedCountPercent", 0))) / 1000.0))
+	var refreshes := 0
+	var paid_refreshes := 0
+	for shop in profile.data.run.shops:
+		if str(shop.key) == key:
+			refreshes = int(shop.get("refreshes", 0))
+			paid_refreshes = int(shop.get("paid_refreshes", 0))
+	var attrs = _shop_attributes()
+	var refresh_remaining = maxi(0, int(cfg.get("ShopRefreshTime", 0)) + int(attrs.get("ShopMaxRefreshTime", 0)) - refreshes)
+	var refresh_cost = maxi(0, int(attrs.get("ShopRefreshCostByMagicEssence", 0))) << paid_refreshes
+	var refresh_reason = "该效果禁止刷新商店" if float(attrs.get("DisableShopRefresh", 0)) >= 1 else "商店刷新次数不足" if refresh_remaining <= 0 else "魔力不足" if material(102) < refresh_cost else ""
+	return {"level": level, "invested": stat("shop:invested"), "next_needed": maxi(0, int(next.get("NeedSaveResCount", 0)) - stat("shop:invested")), "max_level": next.is_empty(), "deposit": deposit,
+		"remaining": maxi(0, int(cfg.get("ShopMaxSaveResTime", 5)) + int(attrs.get("ShopMaxSaveResTime", 0)) - int(profile.data.run.counters.get("shop:deposits", 0))),
+		"refresh_remaining": refresh_remaining, "refresh_cost": refresh_cost, "can_refresh": refresh_reason.is_empty(), "refresh_reason": refresh_reason, "levels": levels.duplicate(true)}
+
+func invest_shop(amount: int = 0) -> Dictionary:
+	if not profile.data.run.active: return _fail("请在冒险中存入")
+	var status = room_shop_status("")
+	if status.max_level: return _fail("商店已达最高等级")
+	if int(status.remaining) <= 0: return _fail("本次冒险存入次数已用完")
+	if amount == 0: amount = int(status.deposit)
+	if amount <= 0 or amount != int(status.deposit): return _fail("存入金额已变化，请重新打开商店")
 	if not spend({"102": amount}): return _fail("魔力不足")
+	_add(profile.data.run.counters, "shop:deposits", 1)
 	record("shop:invested", amount)
 	for row in catalog.config.get("GameShopCfg", {}).get("ShopLevelData", []):
 		if stat("shop:invested") >= int(row.NeedSaveResCount): set_record("shop:level", maxi(stat("shop:level"), int(row.Level)))
-	return _done("商店投资已保存")
+	return _done("商店升至 %d 级" % stat("shop:level") if stat("shop:level") > int(status.level) else "已存入 %d 魔力" % amount)
+
+func is_shop_sealed(loot_id: int) -> bool:
+	return int(profile.data.run.counters.get("shop:sealed:" + str(loot_id), 0)) > 0
+
+func shop_seal_quote(loot_id: int) -> Dictionary:
+	if not profile.data.run.active: return {}
+	var loot = catalog.find("LootData", loot_id)
+	if loot.get("loot_type", "") not in ["普通遗物", "套装遗物", "净化遗物", "强化遗物"] or rank(profile.data.run.inventory, loot_id) <= 0 or is_shop_sealed(loot_id): return {}
+	var ability = catalog.find("AbilityItems", int(loot.get("ability_item_id", 0)))
+	var rarity = clampi(int(ability.get("Rare", 1)), 1, 5)
+	var factors = str(catalog.config.get("GameShopCfg", {}).get("SealLootGetMagicPoint", "")).split("|", false)
+	if factors.is_empty(): return {}
+	var factor = int(factors[mini(rarity - 1, factors.size() - 1)])
+	var attrs = _shop_attributes()
+	var price = _shop_float(_shop_base_price(rarity) * _shop_float(1.0 + _shop_float(_shop_float(float(attrs.get("ShopBasePriceAddRate", 0))) / 1000.0)))
+	price = _shop_float(price * _shop_float(1.0 + _shop_float(_shop_float(float(attrs.get("ShopPriceAddRate", 0))) / 1000.0)))
+	var value = maxi(1, int(_shop_float(_shop_float(price * factor) / 1000.0)))
+	value += int(value * int(attrs.get("SealLootGetMagicPointBonusPercent", 0)) / 1000.0)
+	return {"loot_id": loot_id, "rarity": rarity, "magic": value, "count": rank(profile.data.run.inventory, loot_id)}
+
+func seal_room_loot(key: String, loot_id: int) -> Dictionary:
+	if not profile.data.run.shops.any(func(shop): return str(shop.key) == key): return _fail("请在商店中封印")
+	var quote = shop_seal_quote(loot_id)
+	if quote.is_empty(): return _fail("该遗物不能封印或已封印")
+	profile.data.run.counters["shop:sealed:" + str(loot_id)] = int(quote.count)
+	_add(profile.data.run.counters, "SealedLootCount", 1)
+	grant_material(102, int(quote.magic))
+	return _done("已封印%s，获得 %d 魔力" % [loot_name(loot_id), int(quote.magic)], loot_id)
 
 func _mall_reward_options(row: Dictionary) -> Array:
 	var result = []

@@ -589,6 +589,8 @@ func _changed(item: Dictionary) -> void:
 
 func _apply(item: Dictionary) -> void:
 	var active: bool = item.state.enabled and not item.state.broken and item.state.phase != "destroyed"
+	if str(item.marker.get("Type", "")) == "EEUT_AbilityItemTreasureBox" and item.state.opened:
+		active = false
 	if is_instance_valid(item.visual):
 		item.visual.visible = bool(item.visible) and active
 		item.visual.set_meta("interaction_opened", item.state.opened)

@@ -33,7 +33,7 @@ func configure(host: DungeonMenuPage, data: Array, layout: String) -> void:
 	add_theme_constant_override("separation", 28)
 	match mode:
 		"altar": _altar()
-		"talent":
+		"talent", "support":
 			var talent_selection = preload("res://scripts/presentation/talent_selection.gd").new()
 			add_child(talent_selection)
 			talent_selection.command.connect(func(kind, id, extra): command.emit(kind, id, extra))

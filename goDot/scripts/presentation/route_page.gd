@@ -18,7 +18,14 @@ var selected_index := -1
 var edges: Array = []
 var column_width := 310.0
 var node_size := Vector2(180, 88)
+var _graph_margin := 36.0
 var map_switch: Button
+var _opening_started := false
+var _opening_tween: Tween
+var _opening_alpha := 0.0:
+	set(value):
+		_opening_alpha = value
+		if is_instance_valid(graph): graph.queue_redraw()
 const PATH_ART = "res://assets/ui/route/connections/"
 
 func is_world_map() -> bool:
@@ -44,6 +51,7 @@ void fragment() {
 	background.material = material
 	add_child(background)
 	header = HBoxContainer.new()
+	header.modulate.a = 0.0
 	header.add_theme_constant_override("separation", 18)
 	add_child(header)
 	var back = Button.new()
@@ -89,6 +97,7 @@ void fragment() {
 	origin.visible = is_world_map()
 	if is_world_map() and int(context.get("current_layer", 1)) > 1: origin.portrait = null
 	graph.add_child(origin)
+	if origin.visible: origin.prepare_reveal()
 	for row in rows:
 		var key = DungeonRouteNode.new()
 		key.room = row
@@ -102,6 +111,7 @@ void fragment() {
 			else: _select(int(row.node_id), int(row.layer_index)))
 		key.focus_entered.connect(func(): scroll.ensure_control_visible(key))
 		graph.add_child(key)
+		key.prepare_reveal()
 		if row.get("current", false):
 			key.tooltip_text = str(row.get("name", "")) + "（当前位置）"
 			var marker = DungeonStyle.label("当前位置", 14)
@@ -114,6 +124,7 @@ void fragment() {
 			marker.offset_bottom = 22
 		nodes.append(key)
 	footer = HBoxContainer.new()
+	footer.modulate.a = 0.0
 	footer.add_theme_constant_override("separation", 24)
 	add_child(footer)
 	var filler = Control.new()
@@ -186,10 +197,12 @@ func _layout() -> void:
 	var height = maxf(160, scroll.size.y - 20)
 	var card_height = clampf(height * (0.29 if is_world_map() else 0.20), 80 if is_world_map() else 40, 170 if is_world_map() else 132)
 	node_size = Vector2(maxf(100, card_height * (1.15 if is_world_map() else 2.15)), card_height)
+	var frame_margin = node_size * (DungeonRouteNode.SELECTED_FRAME_SIZE * DungeonRouteNode.SELECTION_PEAK_SCALE - Vector2.ONE) * 0.5 if not is_world_map() else Vector2.ZERO
+	_graph_margin = maxf(36, frame_margin.x)
 	column_width = node_size.x + clampf(size.x * 0.1, 90, 220)
 	var first_column = int(context.get("first_layer", 0))
 	var last_column = first_column
-	origin.position = Vector2(36, height * 0.5 - node_size.y * 0.5)
+	origin.position = Vector2(_graph_margin, height * 0.5 - node_size.y * 0.5)
 	origin.size = node_size
 	for index in rows.size():
 		var row: Dictionary = rows[index]
@@ -199,9 +212,10 @@ func _layout() -> void:
 		var count = int(row.lane_count)
 		var margin = (0.25 if is_world_map() else 0.14) if compact else 0.18
 		var y = height * (0.5 if count == 1 else margin + (1.0 - margin * 2.0) * lane / maxf(1, count - 1))
-		nodes[index].position = Vector2(36 + (column - first_column + int(origin.visible)) * column_width, y - node_size.y * 0.5)
+		y = clampf(y, node_size.y * 0.5 + frame_margin.y, height - node_size.y * 0.5 - frame_margin.y)
+		nodes[index].position = Vector2(_graph_margin + (column - first_column + int(origin.visible)) * column_width, y - node_size.y * 0.5)
 		nodes[index].size = node_size
-	graph.custom_minimum_size = Vector2(72 + (last_column - first_column + int(origin.visible)) * column_width + node_size.x, height)
+	graph.custom_minimum_size = Vector2(_graph_margin * 2 + (last_column - first_column + int(origin.visible)) * column_width + node_size.x, height)
 	edges.clear()
 	var by_id: Dictionary = {}
 	for index in rows.size(): by_id[int(rows[index].config_id)] = nodes[index]
@@ -215,20 +229,37 @@ func _layout() -> void:
 			if int(row.node_id) < int(neighbor) and by_id.has(other): _add_edge(nodes[index], by_id[other], true)
 	graph.queue_redraw()
 	_scroll_to_current.call_deferred()
+	if not _opening_started: _play_opening.call_deferred()
+
+func _play_opening() -> void:
+	if _opening_started or not is_inside_tree(): return
+	_opening_started = true
+	_opening_tween = create_tween().set_parallel()
+	_opening_tween.tween_property(header, "modulate:a", 1.0, 0.18)
+	_opening_tween.tween_property(footer, "modulate:a", 1.0, 0.22).set_delay(0.14)
+	_opening_tween.tween_property(self, "_opening_alpha", 1.0, 0.72).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if origin.visible: origin.reveal(0.0)
+	for node in nodes:
+		# Start at the visible column, including when reopening a later route.
+		var column = clampf(floorf((node.position.x - scroll.scroll_horizontal) / column_width), 0, 4)
+		var lane = clampf(float(node.room.get("lane", 0)), 0, 2)
+		node.reveal(column * 0.07 + lane * 0.02)
 
 func _scroll_to_current() -> void:
 	for index in rows.size():
 		var target = rows[index].get("is_anchor", false) if context.get("preview", false) else rows[index].get("available", false)
 		if target and int(rows[index].layer_index) == int(context.get("current_layer", 0)):
-			scroll.scroll_horizontal = maxi(0, int(nodes[index].position.x - column_width - 36))
+			scroll.scroll_horizontal = maxi(0, int(nodes[index].position.x - column_width - _graph_margin))
 			return
 
 func _draw_paths() -> void:
 	for edge in edges:
+		var alpha = _opening_alpha * minf(edge.from.modulate.a, edge.to.modulate.a)
+		if alpha <= 0: continue
 		if edge.vertical:
-			_draw_vertical_path(edge)
+			_draw_vertical_path(edge, alpha)
 		else:
-			_draw_forward_path(_path_geometry(edge))
+			_draw_forward_path(_path_geometry(edge), alpha)
 
 func _add_edge(source: DungeonRouteNode, target: DungeonRouteNode, vertical := false) -> void:
 	var kind = "vertical" if vertical else "solid"
@@ -297,21 +328,22 @@ func _path_geometry(edge: Dictionary) -> Dictionary:
 func _world_center_y(node: DungeonRouteNode) -> float:
 	return maxf(14, minf(node.size.x * 0.44, (node.size.y - 24) * 0.5)) + 3
 
-func _draw_forward_path(path: Dictionary) -> void:
+func _draw_forward_path(path: Dictionary, alpha := 1.0) -> void:
 	var texture = DungeonStyle.texture(PATH_ART + str(path.sprite) + ".png")
 	if texture == null: return
 	var tint = Color.WHITE
 	if path.kind == "cross":
 		tint = Color(0.45, 0.44, 0.44) if path.state == "passed" else Color(0.85, 0.85, 0.85)
+	tint.a = alpha
 	graph.draw_set_transform(path.draw_position, path.draw_rotation, path.draw_scale)
 	graph.draw_texture_rect(texture, Rect2(Vector2.ZERO, path.draw_size), false, tint)
 	graph.draw_set_transform(Vector2.ZERO)
 
-func _draw_vertical_path(edge: Dictionary) -> void:
+func _draw_vertical_path(edge: Dictionary, alpha := 1.0) -> void:
 	var areas = _vertical_path_rects(edge)
 	for index in areas.size():
 		var texture = DungeonStyle.texture(PATH_ART + ("arrow_down.png" if index == 0 else "arrow_up.png"))
-		if texture: graph.draw_texture_rect(texture, areas[index], false)
+		if texture: graph.draw_texture_rect(texture, areas[index], false, Color(1, 1, 1, alpha))
 
 func _vertical_path_rects(edge: Dictionary) -> Array[Rect2]:
 	var source: DungeonRouteNode = edge.from
@@ -319,7 +351,7 @@ func _vertical_path_rects(edge: Dictionary) -> Array[Rect2]:
 	var top = source if source.position.y < target.position.y else target
 	var bottom = target if top == source else source
 	var gap = bottom.position.y - top.get_rect().end.y
-	var height = minf(node_size.y * 0.65, gap * 0.75)
+	var height = minf(gap, maxf(8, minf(node_size.y * 0.65, gap * 0.75)))
 	if height <= 0: return []
 	var dimensions = Vector2(height * 47.0 / 74.0, height)
 	var middle = Vector2(top.position.x + top.size.x * 0.5, top.get_rect().end.y + gap * 0.5)

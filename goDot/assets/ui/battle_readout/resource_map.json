@@ -1,0 +1,20 @@
+{
+  "连击进度条_背景_蒙版": "res://assets/ui/battle_readout/f1e6bcd08e86d635.png",
+  "6": "res://assets/ui/battle_readout/e7f6c011776e8db7.png",
+  "tail_hits_2": "res://assets/ui/battle_readout/07bff53e3d8b02ea.png",
+  "连击进度条_背景": "res://assets/ui/battle_readout/6eb56aabe391a64d.png",
+  "连击进度条_光点": "res://assets/ui/battle_readout/63131fb988ea0731.png",
+  "word_hits_4": "res://assets/ui/battle_readout/8d719d6d64e72587.png",
+  "bar_hits_2": "res://assets/ui/battle_readout/674bc62b8f2c39b8.png",
+  "战斗图标": "res://assets/ui/battle_readout/da335108756127be.png",
+  "时间的图案": "res://assets/ui/battle_readout/8b81fd8bcf1de4a3.png",
+  "bar_hits_4": "res://assets/ui/battle_readout/a003a18e73b0af03.png",
+  "bar_hits_3": "res://assets/ui/battle_readout/d027d98643fdd4b4.png",
+  "tail_hits_3": "res://assets/ui/battle_readout/f034b22fd8fc5196.png",
+  "bar_hits_1": "res://assets/ui/battle_readout/2dd5176186c4dc52.png",
+  "word_hits_1": "res://assets/ui/battle_readout/224688027bfea04d.png",
+  "word_hits_3": "res://assets/ui/battle_readout/96b70754896e01fe.png",
+  "tail_hits_1": "res://assets/ui/battle_readout/436173521da6dc59.png",
+  "word_hits_2": "res://assets/ui/battle_readout/032bc982aa65db0f.png",
+  "tail_hits_4": "res://assets/ui/battle_readout/28251c2224441026.png"
+}

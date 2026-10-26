@@ -131,6 +131,11 @@ var _enemy_speed_windows: Array = []
 var _enemy_interrupts: Array = []
 var _enemy_interrupt_program: Array[EnemyInterrupt] = []
 var _enemy_timing_cache: Dictionary = {}
+var _navigation_cached := false
+var _navigation_name := ""
+var _navigation_definition: Dictionary = {}
+var _navigation_windows := PackedFloat64Array()
+var _navigation_fallback := false
 
 func apply_hit_stop(duration: float, compensate := false) -> bool:
 	if not FEEL.impact_enabled or health <= 0: return false
@@ -216,7 +221,7 @@ func configure(catalog_value: Variant = null, _systems: Variant = null, char_id:
 	max_health = float(fighter.hp)
 	health = max_health
 	for index in range(mini(5, fighter.skills.size())):
-		energy[index] = skill_capacity(index)
+		energy[index] = 0.0 if index == 3 else skill_capacity(index)
 	for id in fighter.get("passives", []):
 		add_buff(str(id), 1)
 	return _result(true, "Character ready", char_id)
@@ -320,11 +325,24 @@ func enemy_navigation_requested() -> bool:
 	if enemy.is_empty() or health <= 0: return false
 	var elapsed = action_elapsed * maxf(0.01, float(custom_properties.get("_feel_action_speed", 1)))
 	var definition = _action(str(enemy.group), current_action)
-	for command in definition.get("events", []):
-		if not command.get("enabled", false) or command.get("type", "") != "EET_Navigation": continue
-		var start = float(command.get("time", 0))
-		if elapsed >= start and elapsed < start + float(command.get("duration", 0)): return true
-	return current_action.to_lower() in ["run", "forward", "dash", "running", "meaninglessrun"]
+	# Cache immutable windows; action time, speed and definition identity stay live.
+	if not _navigation_cached or _navigation_name != current_action or not is_same(_navigation_definition, definition):
+		_navigation_cached = true
+		_navigation_name = current_action
+		_navigation_definition = definition
+		_navigation_fallback = current_action.to_lower() in ["run", "forward", "dash", "running", "meaninglessrun"]
+		_navigation_windows = PackedFloat64Array()
+		for command in definition.get("events", []):
+			if not command.get("enabled", false) or command.get("type", "") != "EET_Navigation": continue
+			var start = float(command.get("time", 0))
+			_navigation_windows.append(start)
+			_navigation_windows.append(start + float(command.get("duration", 0)))
+	if _navigation_fallback: return true
+	var index := 0
+	while index < _navigation_windows.size():
+		if elapsed >= _navigation_windows[index] and elapsed < _navigation_windows[index + 1]: return true
+		index += 2
+	return false
 
 func begin_enemy_death() -> bool:
 	if enemy.is_empty() or health > 0 or custom_properties.get("_enemy_death_started", false): return false
@@ -528,6 +546,35 @@ func skill_cost(slot: int) -> float:
 	var rate = 0.0
 	if slot in [2, 3]: rate = attribute(("SkillActive1" if slot == 2 else "SkillActive2") + "CostSpAddRate")
 	return maxf(0.0, float(fighter.skills[slot].sp) * (1.0 + rate / 1000.0))
+
+func skill_charge_fraction(slot: int, use_cost := false) -> float:
+	var maximum = skill_cost(slot) if use_cost else skill_capacity(slot)
+	if maximum <= 0: return 1.0 if use_cost else 0.0
+	return clampf(float(energy[slot]) / maximum, 0.0, 1.0)
+
+func skill_resource_snapshot() -> Dictionary:
+	return {"character_id": character_id, "energy": energy.duplicate(), "cooldowns": cooldowns.duplicate(), "round_uses": skill_round_uses.duplicate()}
+
+func restore_skill_resources(saved: Dictionary) -> bool:
+	if int(saved.get("character_id", 0)) != character_id: return false
+	for field in ["energy", "cooldowns", "round_uses"]:
+		if not saved.get(field) is Array or saved[field].size() != 5: return false
+		for value in saved[field]:
+			if not (value is int or value is float) or not is_finite(float(value)) or float(value) < 0: return false
+	for slot in range(5):
+		energy[slot] = minf(skill_capacity(slot), float(saved.energy[slot]))
+		cooldowns[slot] = float(saved.cooldowns[slot])
+		skill_round_uses[slot] = int(saved.round_uses[slot])
+	return true
+
+func add_skill_charge(slot: int, amount: float) -> float:
+	if fighter.is_empty() or slot < 0 or slot >= energy.size() or amount <= 0: return 0.0
+	if slot == 3:
+		var speed = maxf(0.0, attribute("SkillActive2ChargeSpeed"))
+		amount *= 1.0 + 4.0 * speed / (3.0 * speed + 5000.0)
+	var previous = minf(float(energy[slot]), skill_capacity(slot))
+	energy[slot] = minf(skill_capacity(slot), previous + amount)
+	return float(energy[slot]) - previous
 
 func skill_available_uses(slot: int) -> int:
 	# GetCurRealCanUseCount includes stored casts remaining in the current cooldown round.
@@ -954,16 +1001,31 @@ func _tick_segment(delta: float) -> void:
 func confirm_hit(hit: Dictionary) -> void:
 	if not fighter.is_empty():
 		var definition: Dictionary = hit.get("definition", {})
-		energy[3] = minf(skill_capacity(3), float(energy[3]) + maxf(1.0, float(definition.get("charge", 0))))
+		_recover_ultimate_from_hit(hit)
 		for application in definition.get("ownerBuffs", []):
 			add_buff(str(application.id), int(application.layers))
 	_confirm_status_hit(hit)
+
+func _recover_ultimate_from_hit(hit: Dictionary) -> void:
+	if not bool(hit.get("resolved_accepted", false)) or bool(hit.get("skill_charge_attempted", false)): return
+	# The APK latches the AttackHit instance before damage, chance and full-SP checks.
+	hit["skill_charge_attempted"] = true
+	var definition: Dictionary = hit.get("definition", {})
+	var raw: Variant = definition.get("raw", {})
+	if raw is String: raw = _read_raw_json(raw)
+	if not raw is Dictionary: raw = {}
+	var amount = float(raw.get("RecoverSkillCharge", definition.get("charge", 0)))
+	if float(hit.get("resolved_calculated_damage", 0)) < 1.0 or amount <= 0 or health <= 0 or skill_charge_fraction(3) >= 1.0: return
+	var chance = int(raw.get("RecoverSkillChargeChance", definition.get("chargeChance", 0)))
+	if int(_random() * 1001.0) > chance: return
+	add_skill_charge(3, amount)
 
 func receive(hit: Dictionary, caster_attack: float = 0.0) -> float:
 	hit["receiver_key"] = actor_key
 	var hit_source = hit.get("source")
 	hit["source_key"] = hit_source.actor_key if hit_source is DungeonCombat else str(hit.get("source_key", ""))
 	hit["resolved_damage"] = 0.0
+	hit["resolved_calculated_damage"] = 0.0
 	hit["resolved_absorbed"] = 0.0
 	hit["resolved_critical"] = false
 	hit["resolved_accepted"] = false
@@ -994,6 +1056,7 @@ func receive(hit: Dictionary, caster_attack: float = 0.0) -> float:
 	value *= maxf(0.0, 1.0 - attribute(element + "Resist") / 1000.0)
 	value = clampf(value + float(context.final_add), float(context.min_damage), float(context.max_damage))
 	value = maxf(0.0, value)
+	hit["resolved_calculated_damage"] = value
 	var absorbed = minf(shield, value)
 	var total_absorbed = absorbed
 	shield -= absorbed
@@ -1192,7 +1255,7 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 		entry.layers = maxi(0, int(entry.layers) - int(raw.get("ReduceLayerWhenLayerMax", 0)))
 	if type == "EBT_NumericalBuff":
 		for stat in definition.get("stats", []):
-			if not SUPPORTED_ATTRIBUTES.has(str(stat.attribute)) and not HIT_REACTION_ATTRIBUTES.has(str(stat.attribute)):
+			if not SUPPORTED_ATTRIBUTES.has(str(stat.attribute)) and not HIT_REACTION_ATTRIBUTES.has(str(stat.attribute)) and str(stat.attribute) != "SkillActive2ChargeSpeed":
 				_report("Attribute needs system adapter: %s buff %s" % [stat.attribute, id])
 	elif type == "Unknown" or (type != "EBT_ConditionBuff" and not str(definition.get("unsupported", "")).is_empty()):
 		_report("Buff rule requires review: %s %s %s" % [id, type, definition.get("unsupported", "")])
@@ -1209,6 +1272,10 @@ func remove_buff(id: String) -> void:
 
 func special_resource() -> int:
 	return buff_layers(str(fighter.get("jp", "")))
+
+func special_resource_fraction() -> float:
+	var maximum := maxi(1, int(_buff_index.get(str(fighter.get("jp", "")), {}).get("maxLayers", 1)))
+	return clampf(float(special_resource()) / maximum, 0, 1)
 
 func charge_stage() -> int:
 	return 3 if buff_layers("700003") > 0 else 2 if buff_layers("700002") > 0 else 1 if buff_layers("700001") > 0 else 0
@@ -2518,10 +2585,14 @@ func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack:
 		"EBT_SpecialBuffLockHp":
 			_refresh_health_lock(entry, settings)
 		"EBT_SpecialBuffChargeSkillSp":
-			var slot = 2 if raw.get("AttackType") == "SubSkill" else 3
-			if not fighter.is_empty():
-				var maximum = skill_capacity(slot)
-				energy[slot] = minf(maximum, float(energy[slot]) + float(settings.get("ChargeCount", 0)) / 1000.0 + maximum * float(settings.get("ChargePercent", 0)) / 1000.0)
+			var slot := int({"MainSkill": 3, "SubSkill": 2, "Dodge": 1}.get(str(raw.get("AttackType", "")), -1))
+			if slot < 0:
+				_report("Skill charge requires system adapter: %s %s" % [entry.id, raw.get("AttackType", "")])
+			elif not fighter.is_empty():
+				var amount := float(settings.get("ChargeCount", 0)) / 1000.0 + skill_cost(slot) * float(settings.get("ChargePercent", 0)) / 1000.0
+				add_skill_charge(slot, amount)
+				var reduction := float(settings.get("ReduceCooldown", 0)) / 1000.0 + float(fighter.skills[slot].cooldown) * float(settings.get("ReduceCooldownPercent", 0)) / 1000.0
+				cooldowns[slot] = maxf(0, float(cooldowns[slot]) - reduction)
 		"EBT_SpecialRandomBuffTrigger":
 			var rows: Array = raw.get("RandomDataList", [])
 			var total = 0.0
@@ -2852,6 +2923,11 @@ func _reset() -> void:
 	_enemy_interrupts = []
 	_enemy_interrupt_program = []
 	_enemy_timing_cache.clear()
+	_navigation_cached = false
+	_navigation_name = ""
+	_navigation_definition = {}
+	_navigation_windows = PackedFloat64Array()
+	_navigation_fallback = false
 	action_elapsed = 0.0
 	action_step = -1.0
 	fighter = {}

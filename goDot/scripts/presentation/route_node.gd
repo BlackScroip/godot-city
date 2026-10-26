@@ -3,10 +3,28 @@ extends Button
 
 var room: Dictionary = {}
 var available := false
-var chosen := false
+var chosen := false:
+	set(value):
+		if chosen == value: return
+		chosen = value
+		if is_node_ready(): _animate_selection()
+		queue_redraw()
 var visited := false
 var portrait: Texture2D
 const GOLD = Color("dcc58b")
+# The selected sprite includes glow padding around its visible outline.
+const SELECTED_FRAME_SIZE = Vector2(1.32, 1.50)
+const SELECTION_PEAK_SCALE = 1.05
+var _selection_scale := 1.0:
+	set(value):
+		_selection_scale = value
+		queue_redraw()
+var _reveal_scale := 1.0:
+	set(value):
+		_reveal_scale = value
+		queue_redraw()
+var _selection_tween: Tween
+var _reveal_tween: Tween
 static var icons: Array[AtlasTexture] = []
 
 func _ready() -> void:
@@ -22,8 +40,45 @@ func _ready() -> void:
 	if room.get("vertical", false): tooltip_text += "（换路消耗 %d 点刻印圣典）" % int(room.get("shift_cost", 1))
 	if not available and portrait == null: tooltip_text += "（已通过）" if visited else "（后续路线）"
 	resized.connect(queue_redraw)
+	visibility_changed.connect(_animate_selection)
+	if chosen: _animate_selection()
+
+func _animate_selection() -> void:
+	if _selection_tween: _selection_tween.kill()
+	_selection_scale = 1.0
+	if not chosen or not is_visible_in_tree() or room.get("map_mode", "rooms") == "world": return
+	_selection_scale = 0.96
+	_selection_tween = create_tween()
+	_selection_tween.tween_property(self, "_selection_scale", SELECTION_PEAK_SCALE, 0.16).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_selection_tween.tween_property(self, "_selection_scale", 1.0, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_selection_tween.finished.connect(_pulse_selection)
+
+func _pulse_selection() -> void:
+	if not chosen or not is_visible_in_tree(): return
+	_selection_tween = create_tween().set_loops()
+	_selection_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_selection_tween.tween_property(self, "_selection_scale", 1.025, 0.75)
+	_selection_tween.tween_property(self, "_selection_scale", 1.0, 0.75)
+
+func prepare_reveal() -> void:
+	modulate.a = 0.0
+	_reveal_scale = 0.86
+
+func reveal(delay: float) -> void:
+	if _reveal_tween: _reveal_tween.kill()
+	_reveal_tween = create_tween().set_parallel()
+	_reveal_tween.tween_property(self, "modulate:a", 1.0, 0.22).set_delay(delay)
+	_reveal_tween.tween_property(self, "_reveal_scale", 1.0, 0.34).set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+func _reveal_transform() -> Transform2D:
+	return Transform2D(0, Vector2.ONE * _reveal_scale, 0, size * (1.0 - _reveal_scale) * 0.5)
+
+func _selected_frame_rect() -> Rect2:
+	var dimensions = size * SELECTED_FRAME_SIZE * (_selection_scale if chosen else 1.0)
+	return Rect2((size - dimensions) * 0.5, dimensions)
 
 func _draw() -> void:
+	draw_set_transform_matrix(_reveal_transform())
 	if room.get("map_mode", "rooms") != "world":
 		_draw_room()
 		return
@@ -75,7 +130,7 @@ func _draw_room() -> void:
 	_badges()
 	if chosen or (available and (is_hovered() or has_focus())):
 		var selected = DungeonStyle.texture("res://assets/ui/route/node_selected_frame.png")
-		if selected: draw_texture_rect(selected, Rect2(Vector2(-3, -3), size + Vector2(6, 6)), false)
+		if selected: draw_texture_rect(selected, _selected_frame_rect(), false)
 
 func _frame(fill: Color, border: Color, width: int) -> StyleBoxFlat:
 	var style = StyleBoxFlat.new()
@@ -112,9 +167,9 @@ func _badges() -> void:
 		var point = Vector2(radius if index < 2 else size.x - radius, radius * 0.7 if index % 2 == 0 else size.y - radius * 0.7)
 		draw_circle(point, radius, Color("554633"))
 		draw_arc(point, radius, 0, TAU, 32, Color("c6b99a"), 1.5, true)
-		draw_set_transform(point, 0, Vector2.ONE)
+		draw_set_transform_matrix(_reveal_transform().translated_local(point))
 		_crystal(Vector2.ZERO, {"magic": Color("ad93ed"), "mineral": Color("80cee9"), "gold": Color("ebd16e"), "spirit": Color("73d5ac"), "partner": Color("e09a78")}[types[index]], radius * 0.66)
-		draw_set_transform(Vector2.ZERO)
+		draw_set_transform_matrix(_reveal_transform())
 
 func _badge_types() -> Array[String]:
 	var types: Array[String] = []

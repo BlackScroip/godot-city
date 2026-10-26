@@ -5,6 +5,8 @@ signal altar_requested(key: String, marker_id: String)
 const ALTAR_BUTTON_KEY := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
 const ALTAR_EGG_NAME := "sprite_abilityitemicon_14104"
 const ALTAR_EGG_TEXTURE := "res://assets/environment_effects/spirit_altar_egg.png"
+const PICKUP_GLOW_TEXTURE := "res://assets/combat_presentation/texture_36b152e75a0b0427f8a4.png"
+const RARITY_COLORS := [Color("d6dfd6"), Color("7bc765"), Color("70c8ee"), Color("bc86e7"), Color("f4ce70"), Color("ee777c")]
 
 var entries: Array[Dictionary] = []
 var source_altars: Array[Dictionary] = []
@@ -21,7 +23,7 @@ func is_automatic(entry: Dictionary) -> bool:
 func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appearance := true) -> void:
 	if id <= 0 or amount <= 0: return
 	var sprite = Sprite3D.new()
-	sprite.texture = DungeonStyle.texture(("material:" if material else "loot:") + str(id))
+	sprite.texture = DungeonItemArt.ground_texture(id, material)
 	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	sprite.shaded = false
 	# Keep pickup size stable across source icons with different resolutions.
@@ -45,7 +47,32 @@ func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appea
 		entry["trail"] = trail
 	entry["replay_appearance"] = replay_appearance
 	entries.append(entry)
+	_add_pickup_glow(entry)
 	_bind_pickup_effect(entry)
+
+func _add_pickup_glow(entry: Dictionary) -> void:
+	if entry.material: return
+	var texture := DungeonStyle.texture(PICKUP_GLOW_TEXTURE)
+	if texture == null: return
+	var rarity := int(DungeonItemArt.relic_info(int(entry.id)).get("rarity", 0))
+	var world := get_parent()
+	if is_instance_valid(world) and world.get("systems") != null:
+		var systems: RefCounted = world.get("systems")
+		var loot: Dictionary = systems.catalog.find("LootData", int(entry.id))
+		var ability: Dictionary = systems.catalog.find("AbilityItems", int(loot.get("ability_item_id", entry.id)))
+		rarity = int(ability.get("Rare", rarity))
+	var color: Color = RARITY_COLORS[clampi(rarity, 0, RARITY_COLORS.size() - 1)]
+	var glow := Sprite3D.new()
+	glow.name = "ItemRarityGlow"
+	glow.texture = texture
+	glow.pixel_size = 1.45 / maxf(1.0, texture.get_width())
+	glow.rotation_degrees.x = -90
+	glow.shaded = false
+	glow.modulate = Color(color, 0.64)
+	glow.position = entry.position + Vector3.UP * 0.055
+	add_child(glow)
+	entry["rarity_glow"] = glow
+	entry["rarity_color"] = color
 
 func nearest(point: Vector3) -> Dictionary:
 	var result: Dictionary = {}
@@ -63,6 +90,9 @@ func spawn_altar(point: Vector3, key: String) -> void:
 		if str(entry.get("altar", "")) == key: return
 	spawn(20250, point)
 	entries.back()["altar"] = key
+	if is_instance_valid(entries.back().get("rarity_glow")):
+		entries.back().rarity_glow.queue_free()
+		entries.back().erase("rarity_glow")
 	var egg := DungeonStyle.texture(ALTAR_EGG_TEXTURE)
 	if egg:
 		entries.back().visual.texture = egg
@@ -267,6 +297,10 @@ func pickup(point: Vector3, systems: RefCounted) -> Dictionary:
 	else:
 		result = systems.add_loot(entry.id)
 	if result.success:
+		# A configured stack remains on the ground until every copy is granted.
+		if not entry.material and int(entry.amount) > 1:
+			entry.amount = int(entry.amount) - 1
+			return result
 		_release_visual(entry)
 		entries.erase(entry)
 	return result
@@ -281,6 +315,7 @@ func _release_visual(entry: Dictionary) -> void:
 	_release_altar_pointer(entry)
 	entry.visual.queue_free()
 	for echo in entry.get("trail", []): echo.queue_free()
+	if is_instance_valid(entry.get("rarity_glow")): entry.rarity_glow.queue_free()
 	if is_instance_valid(entry.get("effect_controller")):
 		entry.effect_controller.remove_binding(entry.get("effect_binding", {}))
 	if is_instance_valid(entry.get("effect_anchor")): entry.effect_anchor.queue_free()

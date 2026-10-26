@@ -94,7 +94,7 @@ func _initialize() -> void:
 	var saved = saved_shop.duplicate(true)
 	systems.extra_attributes.ShopItemQualityIncrease = 5000
 	check(systems.get_room_shop("shop-persistence") == saved, "Reopening shop preserves generated offers, prices and sold slots")
-	check(systems.refresh_room_shop("shop-persistence").success and not saved_shop.offers[0].sold, "Authorized refresh generates fresh offers with current modifiers")
+	check(systems.refresh_room_shop("shop-persistence").success and saved_shop.offers[0].sold, "Ordinary refresh preserves sold slots and replaces unsold stock with current modifiers")
 	check(not systems.refresh_room_shop("shop-persistence").success, "Refresh still respects investment limit")
 
 	systems.extra_attributes.clear()
