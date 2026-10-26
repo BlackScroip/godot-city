@@ -2,14 +2,22 @@
   "version": 1,
   "tables": {
     "AbilityItems": {
-      "rows": 1020,
-      "sha256": "ec90c445a24eacaf7b136049d17364c026424ece58ad068f71dbc1a0d3dfee87",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/AbilityItems.json"
+      "rows": 1091,
+      "sha256": "f726571d976e494b3009060d120ed52599bbbee7c2aa8997b56481dee453a0f5",
+      "source": "APK 1061664: missing supplementary loot and source dependency merge",
+      "evidence": {
+        "report": "reports/supplementary-october-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "AchieveData": {
-      "rows": 62,
-      "sha256": "6f08eba8fbd2f48d93e450a761941a2063e46efbe33fcb4acfb3134e69b152a6",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/AchieveData.json"
+      "rows": 68,
+      "sha256": "dde2be1b921698d04f755a6c6f2526560787d9e90ba5879257b40e2be3f13783",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": "all"
+      }
     },
     "AdvantureEventData": {
       "rows": 65,
@@ -17,9 +25,13 @@
       "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/AdvantureEventData.json"
     },
     "Buffs": {
-      "rows": 3130,
-      "sha256": "1db83663003715b0b37b98ce8eff20fb58195b36bb006f955a92150e8cc3de80",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/Buffs.json"
+      "rows": 3354,
+      "sha256": "7e12de9bc2846aa9a9c35b4a46e4d99202a4dfc5f9f8fa88509ea00b8118c740",
+      "source": "APK 1061664: missing supplementary loot and source dependency merge",
+      "evidence": {
+        "report": "reports/supplementary-october-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "CatMealData": {
       "rows": 12,
@@ -28,8 +40,18 @@
     },
     "CharData": {
       "rows": 8,
-      "sha256": "553949926795e171afb8c9954bca72f7bb3f19b2b6f12676b8237f41cf658aba",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharData.json"
+      "sha256": "680db9be89742a9f0dfb86305f71a68c0222dd3ad70102f486ac52518e94434b",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": [
+          "available_state",
+          "is_cash_only_unlock",
+          "need_unlock_materials",
+          "no_discount_origin_price",
+          "unlock_data_id"
+        ]
+      }
     },
     "CharTalentData": {
       "rows": 147,
@@ -42,34 +64,61 @@
       "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharTalentLevelData.json"
     },
     "CharaTalentAwakeTreeData": {
-      "rows": 75,
-      "sha256": "d0b76a78cd2a9f6fd7b44ec3bf5ee154165ba22545a70ffbe1e69813e35a8bb6",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/CharaTalentAwakeTreeData.json"
+      "rows": 120,
+      "sha256": "9b3153d4f9f7b02aa5caefaaba6b2d541bdf9fba588d543a8a12762276c672ea",
+      "source": "APK 1061664: bounded awakening nodes and missing dependency merge",
+      "evidence": {
+        "report": "reports/new-apk-awakening-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "DamageValues": {
-      "rows": 597,
-      "sha256": "be76909548920ef78ac45910913b6d6eefe1714b280ea36c7c0fe59d35a4bc8f",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/DamageValues.json"
+      "rows": 634,
+      "sha256": "f762087ae21beef69b3ea2fedf75aa08fc2407f1454cce2a57333102e5c167d9",
+      "source": "APK 1061664: missing supplementary loot and source dependency merge",
+      "evidence": {
+        "report": "reports/supplementary-october-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "EnemyData": {
-      "rows": 39,
-      "sha256": "7b30e305d70e1f5dacab4eb86cd8b2df0622165dd67c714a51cf44d92b6069a2",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/EnemyData.json"
+      "rows": 60,
+      "sha256": "6942b36ac97293fbcaa20c5334c0ccf0982d758d71d1728aa68b052b82e487df",
+      "source": "APK:assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes:EnemyData",
+      "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "apk_source": {
+        "path": "/private/tmp/city-new-map-evidence/EnemyData.json",
+        "member": "assets/yoo/DefaultPackage/9688f7e4f49c90ce4119c9758d061ae5.bundle",
+        "sha256": "7e7b2b9cf5f01ae13c870b0e8b8540d682caca51a378a3e13a08ca499370c45e",
+        "path_id": "-4632228739569859074"
+      }
     },
     "ItemPoolData": {
       "rows": 21,
-      "sha256": "3849fd159efe118bd76afaea6ddb0e48a346acd11576b29b57fd2f55a8c85b88",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/ItemPoolData.json"
+      "sha256": "ee3602be2d5905de0e834c27ccef5fce84c43e18c582846d06cb4cddbcd79828",
+      "source": "APK 1061664: missing supplementary loot and source dependency merge",
+      "evidence": {
+        "report": "reports/supplementary-october-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "ItemPoolSubData": {
-      "rows": 302,
-      "sha256": "744fb955da13a5140a0ead79d763bc314a62fdd8dbdbf98553cc669b93da8fc8",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/ItemPoolSubData.json"
+      "rows": 319,
+      "sha256": "a037824000d44aabe1bc9a1df5032d3256cf1a60a45be3d3c60dd400cddd8f67",
+      "source": "APK 1061664: missing supplementary loot and source dependency merge",
+      "evidence": {
+        "report": "reports/supplementary-october-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "LootData": {
-      "rows": 358,
-      "sha256": "bdda7923faf6c293c44cc187e2716683e1b2228338bdbaef749588828ae08cbd",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/LootData.json"
+      "rows": 384,
+      "sha256": "f36095d3c3a0929fd7a72126f7e012d7402cce76bdb963419668fbdc00732f39",
+      "source": "APK 1061664: missing supplementary loot and source dependency merge",
+      "evidence": {
+        "report": "reports/supplementary-october-import.json",
+        "preserve_existing_dependencies": true
+      }
     },
     "MallTradeData": {
       "rows": 38,
@@ -83,18 +132,35 @@
     },
     "MaterialData": {
       "rows": 44,
-      "sha256": "177adce53bbb348c9114ee93351184e1508c7c1790e1e6ea449719a5dfd073d5",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MaterialData.json"
+      "sha256": "db7ac4510c214c208421a098eb009b96664c17c02fde108752899bb194adfc7f",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": [
+          "504/description"
+        ]
+      }
     },
     "MonsterPartnerData": {
       "rows": 39,
-      "sha256": "61323c221c13f4005564717b5bb3a110b41a4d7061ea5faf405e3cfeece673bd",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MonsterPartnerData.json"
+      "sha256": "a636a51fd30f28250e98db7cfd5df2d5ab99fb81fa0a95519671991aa6341817",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": [
+          "is_admin_only",
+          "unlock_need_kill_count"
+        ]
+      }
     },
     "MonsterWorkData": {
       "rows": 16,
-      "sha256": "b08d0e45e030cc1a6f75eaad382dea62301c2dd9e7009d0aa1b991f746797b8e",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/MonsterWorkData.json"
+      "sha256": "db24751e652fca69a4cad702a742a971d01bd65049ff2de210b6220a25f46368",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": "all"
+      }
     },
     "NPCData": {
       "rows": 16,
@@ -118,8 +184,17 @@
     },
     "RogueConfigData": {
       "rows": 1,
-      "sha256": "685ccc7e9d6f11b312df6d46b56b49e28d2a78317d9acd2495cf2782934d2383",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/RogueConfigData.json"
+      "sha256": "610f166354bba75fdb7d0356f8f7134a8eb3d43c460ed18fd197b2bec9592111",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": [
+          "LootInactiveUpgradeCost",
+          "MainCityDecorationDataList",
+          "MainCityDecorationSlotList",
+          "MaxLootInactiveLimit"
+        ]
+      }
     },
     "ShopTreasureBoxData": {
       "rows": 6,
@@ -127,9 +202,13 @@
       "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/ShopTreasureBoxData.json"
     },
     "SubAchieveData": {
-      "rows": 241,
-      "sha256": "7cb9d2c66caf8530fb2e5cdfbbbe45e241d96cd5626f3cf37a9007785a1d9e86",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/SubAchieveData.json"
+      "rows": 271,
+      "sha256": "97c6336a3cb7f0f81d6d503d10fe8fe9dbb0e1a6d17a38c1f0de4a053c769f75",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": "all"
+      }
     },
     "TalentTreeData": {
       "rows": 61,
@@ -142,14 +221,41 @@
       "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/TalentTreeLevelData.json"
     },
     "UnlockData": {
-      "rows": 630,
-      "sha256": "01cac3493665c6f79ee33fb1551a15b0c9a2e9a71e2e9b08fd649a9f2a05e69d",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/UnlockData.json"
+      "rows": 691,
+      "sha256": "81835c66c463f6804b4132a55ca1995ec95c4bb7a276937c2b1b9b7b767bfe8e",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": "all"
+      }
     },
     "WeaponData": {
       "rows": 40,
-      "sha256": "43404be3a0da39fa578974f861ef73ec2a89e9dd6f79e90736ad46f5dfaeb393",
-      "source": "OfflineUnity/Assets/Systems/Resources/SystemsData/WeaponData.json"
+      "sha256": "a534526c71abc8e426e8f59f8567c84e6b6d2bdfd7d96fa698797640e1554c5c",
+      "source": "APK 1061664 (ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505): camp/economy audit",
+      "evidence": {
+        "report": "reports/new-apk-camp-config-evidence.json",
+        "fields": [
+          "unlock_mineral_mat_count"
+        ]
+      }
+    },
+    "RogueLevelDifficultyInfluencerData": {
+      "rows": 101,
+      "sha256": "421c26db8bac142a99dc42bf786b42a2295a5fe8f9cdd11d8f714ec6d8445778",
+      "source": "DungeonChasers-2026-10-09/SystemsData/RogueLevelDifficultyInfluencerData.json"
+    },
+    "EnemyNumericalConfigData": {
+      "rows": 1,
+      "sha256": "5ebf280683887a9cbecafb53ecf2966435d349fbdf6bd3e9357fdcddcf995e29",
+      "source": "APK:assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes:EnemyNumericalConfigData",
+      "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "apk_source": {
+        "path": "/private/tmp/city-new-map-evidence/EnemyNumericalConfigData.json",
+        "member": "assets/yoo/DefaultPackage/517900f07af21b7f276f5d299117cdd8.bundle",
+        "sha256": "ebcbb1043bcc182436c81a78b70b4f887c4540cb74056492f6e8fcbfda868291",
+        "path_id": "9150148711238673864"
+      }
     }
   }
 }

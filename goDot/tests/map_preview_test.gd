@@ -69,7 +69,7 @@ func _run() -> void:
 	check(hud.adventure_caption.text == "难度", "Adventure HUD shows difficulty entry")
 	hud.set_adventure_mode(false)
 	hud.adventure_button.pressed.emit()
-	check(actions == ["primary", "page:difficulty", "primary"], "Navigation dispatch follows current adventure state")
+	check(actions == ["page:difficulty", "page:difficulty", "page:difficulty"], "Adventure entry opens preparation in camp and difficulty details during a run")
 	check(hud.adventure_caption.text == "开始冒险", "Camp restores adventure caption")
 	hud.queue_free()
 	await process_frame

@@ -27,6 +27,13 @@ static func environment(world: Node3D, region: int, camp: bool) -> void:
 			child.shadow_bias = 0.08
 			child.shadow_normal_bias = 1.5
 	apply_models(world.environment_root, camp)
+	if world.environment_root.get_child_count() > 0:
+		preload("res://scripts/presentation/environment_render_modes.gd").apply(world, world.environment_root.get_child(0))
+	if not camp and world.environment_root.get_child_count() > 0:
+		var static_batch = preload("res://scripts/presentation/static_environment_batch.gd").new()
+		static_batch.name = "StaticEnvironmentBatch"
+		world.environment_root.add_child(static_batch)
+		static_batch.configure(world, world.environment_root.get_child(0))
 	var room_props = preload("res://scripts/presentation/room_props.gd").new()
 	room_props.name = "RoomProps"
 	world.environment_root.add_child(room_props)

@@ -30,7 +30,7 @@ func update_actors(actors: Array, camera: Camera3D, delta: float) -> void:
 		var bar: Control = bars[key]
 		bar.update_health(actor.combat.health, actor.combat.max_health, actor.combat.shield, delta)
 		var bounds: AABB = actor.impact_bounds
-		var head: Vector3 = actor.to_global(Vector3(bounds.get_center().x, bounds.end.y + 0.2, bounds.get_center().z))
+		var head: Vector3 = actor.get_global_transform_interpolated() * Vector3(bounds.get_center().x, bounds.end.y + 0.2, bounds.get_center().z)
 		bar.visible = not camera.is_position_behind(head)
 		if not bar.visible: continue
 		var projected := camera.unproject_position(head) * size / screen

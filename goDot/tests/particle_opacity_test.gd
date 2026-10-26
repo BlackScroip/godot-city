@@ -7,7 +7,7 @@ const CASES = [
 	{"effect": "24091101_fx_orb_satk_launch", "layer": "24091101_launch_diffusion", "edges": [Vector2(0.5, 0.01), Vector2(0.5, 0.99), Vector2(0.99, 0.5)]},
 	{"effect": "24091101_fx_orb_satk_launch", "layer": "24091101_launch_flash", "edges": [Vector2(0.01, 0.01), Vector2(0.99, 0.99)]},
 	{"effect": "24091101_fx_orb_satk_accumulation", "layer": "24091101_accumulation_line", "edges": [Vector2(0.5, 0.01)]},
-	{"effect": "24091101_fx_orb_satk_accumulation", "layer": "24091101_accumulation_shrinkring", "edges": [Vector2(0.01, 0.01), Vector2(0.99, 0.99)]},
+	{"effect": "24091101_fx_orb_satk_accumulation", "layer": "24091101_accumulation_shrinkring", "inactive": true, "edges": [Vector2(0.01, 0.01), Vector2(0.99, 0.99)]},
 	{"effect": "24091101_fx_orb_satk_accumulation", "layer": "24091101_accumulation_prickring", "edges": [Vector2(0.01, 0.01), Vector2(0.99, 0.99)]},
 	{"effect": "24091101_fx_orb_satk_blackholemobile", "layer": "24091101_blackholemobile_helix", "edges": [Vector2(0.5, 0.01), Vector2(0.5, 0.99)]},
 	{"effect": "24091101_fx_orb_satk_around", "layer": "24091101_around_airwave", "soft_boundary": true, "edges": [Vector2(0.5, 0.01), Vector2(0.5, 0.99)]},
@@ -63,6 +63,16 @@ func run() -> void:
 			if str(emitter.node.get_parent().get_meta("source_layer", "")) == str(test.layer):
 				selected = emitter.node.material_override.duplicate()
 				break
+		if test.get("inactive", false):
+			var source_layer: Dictionary = {}
+			for layer in media.effects[test.effect].layers:
+				if str(layer.get("name", "")) == str(test.layer):
+					source_layer = layer
+					break
+			check(not source_layer.is_empty() and source_layer.get("active", true) == false, "%s remains disabled in the authored source" % test.layer)
+			check(selected == null, "%s does not create a renderer for its disabled source layer" % test.layer)
+			effect.free()
+			continue
 		check(selected != null, "%s retains an authored source material" % test.layer)
 		if selected == null:
 			effect.free()

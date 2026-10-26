@@ -17,6 +17,7 @@ var animations: Array[String] = []
 var animation_aliases: Dictionary = {}
 var visual_base_y := 0.0
 var suspended := false
+var simulation_scale := 1.0
 var impulse := Vector3.ZERO
 var weapon: Node3D
 var visual_loaded := false
@@ -30,6 +31,7 @@ var dodge_vector := Vector3.ZERO
 var action_speed := 1.0
 var flash_material: StandardMaterial3D
 var flash_meshes: Array[MeshInstance3D] = []
+var _flash_visible := false
 var action_motion: Array[Dictionary] = []
 const ACTION_MOTION = preload("res://scripts/action_motion.gd")
 var action_timeline_duration := 0.0
@@ -92,6 +94,7 @@ func flash_hit() -> void:
 
 func _ready() -> void:
 	set_physics_process(false)
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 	collision_layer = 2 if is_player else 4
 	collision_mask = 1 | (4 if is_player else 2)
 	var shape = CollisionShape3D.new()
@@ -144,6 +147,9 @@ func set_visual(path: String, metadata: Dictionary = {}, prepared_scene: PackedS
 		mesh.material_override = material
 		visual.add_child(mesh)
 	add_child(visual)
+	# Position follows the physics body; facing still updates at render frequency.
+	visual.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	_flash_visible = false
 	flash_meshes.clear()
 	for mesh in visual.find_children("*", "MeshInstance3D", true, false): flash_meshes.append(mesh)
 	var bounds_found := false
@@ -439,6 +445,7 @@ func clear_impact_state() -> void:
 	if combat: combat.clear_impact_state()
 	for mesh in flash_meshes:
 		if is_instance_valid(mesh): mesh.material_overlay = null
+	_flash_visible = false
 
 static func knockback_progress(t: float) -> float:
 	t = clampf(t, 0, 1)
@@ -462,16 +469,20 @@ func hit_flash(duration := 0.08) -> void:
 
 func _process(delta: float) -> void:
 	if suspended: return
+	delta *= simulation_scale
 	hurt_timer = maxf(0.0, hurt_timer - delta)
-	for mesh in flash_meshes:
-		if is_instance_valid(mesh): mesh.material_overlay = flash_material if hurt_timer > 0 else null
+	var flashing := hurt_timer > 0
+	if flashing != _flash_visible:
+		_flash_visible = flashing
+		for mesh in flash_meshes:
+			if is_instance_valid(mesh): mesh.material_overlay = flash_material if flashing else null
 	if visual: visual.rotation.y = lerp_angle(visual.rotation.y, atan2(facing.x, facing.z), 1.0 - exp(-FEEL.turn_response * delta))
 	if direction_indicator:
 		direction_indicator.visible = not dead
 		direction_indicator.rotation.y = visual.rotation.y if visual else atan2(facing.x, facing.z)
 
 func _physics_process(delta: float) -> void:
-	if suspended: return
+	if suspended or simulation_scale <= 0: return
 	invulnerability = maxf(0, invulnerability - delta)
 	var step = combat.action_step if combat and combat.action_step >= 0 else delta
 	var paused_pose = combat != null and combat.impact_pause > 0
@@ -514,7 +525,10 @@ func _physics_process(delta: float) -> void:
 	# Source collisionless point moves stay on their starting plane.
 	if is_on_floor() or _motion_ignores_world:
 		velocity.y = 0
+	# CharacterBody3D integrates with the engine tick, while battle time is local.
+	velocity *= simulation_scale
 	move_and_slide()
+	velocity /= simulation_scale
 	if knockback_elapsed >= 0:
 		for index in get_slide_collision_count():
 			if get_slide_collision(index).get_normal().dot(knockback_direction) < -0.25:

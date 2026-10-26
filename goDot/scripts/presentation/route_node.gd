@@ -86,6 +86,7 @@ func _frame(fill: Color, border: Color, width: int) -> StyleBoxFlat:
 	return style
 
 func _artwork() -> Texture2D:
+	if bool(room.get("is_hidden", false)): return DungeonStyle.texture("res://assets/ui/route/room_unknown.png")
 	if icons.is_empty():
 		var atlas = DungeonStyle.texture("res://assets/art_generated/route-icons-v2.png")
 		if not atlas: return null
@@ -105,17 +106,21 @@ func _crystal(center: Vector2, color: Color, height: float) -> void:
 	draw_line(points[0], center, color.lightened(0.6), 2, true)
 
 func _badges() -> void:
-	var rewards = str(room.get("IncrementOptions", ""))
-	var types: Array[String] = []
-	if "MagicpointLode" in rewards: types.append("magic")
-	if "CollectingMaterials" in rewards: types.append("mineral")
-	if "GoldLode" in rewards: types.append("gold")
-	if "SpritesAltar" in rewards: types.append("spirit")
-	for index in mini(types.size(), 3):
+	var types := _badge_types()
+	for index in types.size():
 		var radius = clampf(size.y * 0.15, 5, 16)
-		var point = Vector2(radius if index < 2 else size.x - radius, radius * 0.7 if index == 0 else size.y - radius * 0.7)
+		var point = Vector2(radius if index < 2 else size.x - radius, radius * 0.7 if index % 2 == 0 else size.y - radius * 0.7)
 		draw_circle(point, radius, Color("554633"))
 		draw_arc(point, radius, 0, TAU, 32, Color("c6b99a"), 1.5, true)
 		draw_set_transform(point, 0, Vector2.ONE)
-		_crystal(Vector2.ZERO, {"magic": Color("ad93ed"), "mineral": Color("80cee9"), "gold": Color("ebd16e"), "spirit": Color("73d5ac")}[types[index]], radius * 0.66)
+		_crystal(Vector2.ZERO, {"magic": Color("ad93ed"), "mineral": Color("80cee9"), "gold": Color("ebd16e"), "spirit": Color("73d5ac"), "partner": Color("e09a78")}[types[index]], radius * 0.66)
 		draw_set_transform(Vector2.ZERO)
+
+func _badge_types() -> Array[String]:
+	var types: Array[String] = []
+	if bool(room.get("is_hidden", false)): return types
+	var rewards: Dictionary = room.get("NodeIncrementData", {})
+	var names := {"70002": "magic", "10000": "mineral", "70001": "gold", "13008": "spirit", "13006": "partner"}
+	for key in rewards:
+		if names.has(str(key)): types.append(names[str(key)])
+	return types

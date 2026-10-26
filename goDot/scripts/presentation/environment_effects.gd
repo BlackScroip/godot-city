@@ -4,6 +4,8 @@ const AUTHORED = preload("res://scripts/presentation/authored_effect.gd")
 const WATER = preload("res://scripts/presentation/recovered_environment.gd")
 const CATALOG = "res://assets/environment_effects/catalog.json"
 const CAMP_HANDLED = ["24111405_fx_env_campfire", "23042001_fx_env_forestleafatmosphere", "23051502_fx_env_firefly", "25050801_fx_env_steam", "24061801_fx_env_waterfall"]
+const PRIORITY_REFRESH_INTERVAL := 0.2
+const PRIORITY_FOCUS_DISTANCE_SQUARED := 1.0
 var bindings: Array[Dictionary] = []
 var effects: Dictionary = {}
 var texture_cache: Dictionary = {}
@@ -13,6 +15,8 @@ var _world: Node3D
 var _low_quality := false
 var _quality_refresh := 0.0
 var _event_effects: Dictionary = {}
+var _priority_refresh := 0.0
+var _priority_focus := Vector3.INF
 
 func configure(world: Node3D, camp := false) -> void:
 	_world = world
@@ -86,6 +90,7 @@ func register_anchor(anchor: Node3D, address: String, autoplay := true) -> Dicti
 	for layer in definition.layers:
 		if bool(layer.get("active", true)) and bool(layer.get("looping", false)): entry.loop = true
 	bindings.append(entry)
+	_priority_refresh = 0.0
 	return entry
 
 func trigger_at(address: String, point: Vector3, parent: Node3D = null) -> Dictionary:
@@ -117,6 +122,14 @@ func _focus() -> Vector3:
 	var camera := get_viewport().get_camera_3d()
 	return camera.global_position if camera else _world.global_position
 
+func _refresh_priorities(focus: Vector3) -> void:
+	if _priority_refresh > 0.0 and focus.distance_squared_to(_priority_focus) < PRIORITY_FOCUS_DISTANCE_SQUARED: return
+	_priority_refresh = PRIORITY_REFRESH_INTERVAL
+	_priority_focus = focus
+	for entry in bindings:
+		entry["priority_distance"] = entry.anchor.global_position.distance_squared_to(focus) if is_instance_valid(entry.anchor) else INF
+	bindings.sort_custom(func(a, b): return a.priority_distance < b.priority_distance)
+
 func _process(delta: float) -> void:
 	if not is_instance_valid(_world): return
 	_quality_refresh -= delta
@@ -131,13 +144,15 @@ func _process(delta: float) -> void:
 	var budget := 720 if _low_quality else 2304
 	var distance_limit := 26.0 if _low_quality else 38.0
 	active_particle_count = 0
-	bindings.sort_custom(func(a, b):
-		if not is_instance_valid(a.anchor): return false
-		if not is_instance_valid(b.anchor): return true
-		return a.anchor.global_position.distance_squared_to(focus) < b.anchor.global_position.distance_squared_to(focus))
-	for entry in bindings.duplicate():
+	_priority_refresh -= delta
+	if not paused: _refresh_priorities(focus)
+	var index := 0
+	while index < bindings.size():
+		var entry := bindings[index]
+		index += 1
 		if not is_instance_valid(entry.anchor):
-			bindings.erase(entry)
+			bindings.remove_at(index - 1)
+			index -= 1
 			continue
 		var source_active := _source_active(entry.anchor)
 		if not source_active:
@@ -159,7 +174,9 @@ func _process(delta: float) -> void:
 				else:
 					entry.effect.hide()
 					entry.effect.advance(0, true)
-			if entry.transient: _remove(entry)
+			if entry.transient:
+				_remove(entry)
+				index -= 1
 			continue
 		if not is_instance_valid(entry.effect):
 			var visual = AUTHORED.new()
@@ -181,7 +198,9 @@ func _process(delta: float) -> void:
 		if not entry.loop and entry.effect.age >= entry.effect.lifetime:
 			entry.effect.stop()
 			entry.finished = true
-			if entry.transient: _remove(entry)
+			if entry.transient:
+				_remove(entry)
+				index -= 1
 
 func _remove(entry: Dictionary) -> void:
 	bindings.erase(entry)

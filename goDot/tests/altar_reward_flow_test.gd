@@ -81,11 +81,18 @@ func _run() -> void:
 	game.campaign.complete_room()
 	game.campaign.advance()
 	game.campaign.state.layers[1].node_ids = [1010104]
+	game.campaign.state.layers[1].hide_rolls = {"1010104": 0}
 	game.campaign._build_connections()
 	check(game.campaign.enter(1010104).success, "The source LevelMap_1010104 room can be entered")
 	game.campaign.state.waves_cleared = int(game.campaign.state.wave_count)
 	game.campaign.complete_room()
+	game.catalog.config.EnvUnitRandomAppearChanceDic.NodeIncrementSpritesAltarAppearChance = 1000
 	game._load_room()
+	for frame in 600:
+		if not game._transitioning: break
+		game.world.player_transfer.advance(1.0 / 60.0)
+		await process_frame
+	check(not game._transitioning and not game.room_loading.visible, "Authored room finishes loading and its arrival lifecycle before receiving a pickup click")
 	game.world.set_physics_process(false)
 	game.world.paused = false
 	game.world.fighting = false
@@ -173,7 +180,7 @@ func _run() -> void:
 	check(game.world.spirit_followers.entries.has(spirit), "The acquired spirit is installed in the active follower controller")
 	if game.world.spirit_followers.entries.has(spirit):
 		var follower: Dictionary = game.world.spirit_followers.entries[spirit]
-		check(follower.visual.texture == DungeonStyle.texture("loot:" + str(spirit)), "The acquired follower displays its actual item image")
+		check(not follower.visual.emitters.is_empty() and game.world.spirit_followers.handles_prefab(follower.prefab), "The acquired follower displays its recovered APK particle prefab")
 		var before: Vector3 = follower.position
 		game.world.player.position += Vector3(3, 0, 0)
 		game.world.spirit_followers.advance(0.1, game.world.player)

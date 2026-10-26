@@ -70,20 +70,54 @@ func _run() -> void:
 	check(not entry.active, "Source inactive flag respected")
 	anchor.set_meta("unityActive", true)
 	var one_shot: Dictionary = controller.trigger_at("test", Vector3.ZERO)
+	var second_shot: Dictionary = controller.trigger_at("test", Vector3.ZERO)
+	var third_shot: Dictionary = controller.trigger_at("test", Vector3.ZERO)
 	controller._process(3.0)
-	check(not controller.bindings.has(one_shot), "Triggered effect expires including looping source layers")
+	check(not controller.bindings.has(one_shot) and not controller.bindings.has(second_shot) and not controller.bindings.has(third_shot), "Adjacent triggered effects all expire without skipping bindings")
+	var invalid_anchor := Node3D.new()
+	world.environment_root.add_child(invalid_anchor)
+	controller.register_anchor(invalid_anchor, "test")
 	anchor.free()
+	invalid_anchor.free()
 	controller._process(0.1)
-	check(controller.bindings.is_empty(), "Deleted external anchors release bindings")
+	check(controller.bindings.is_empty(), "Adjacent deleted external anchors release all bindings")
 	controller.effects.test.layers[0].emission.rateOverTime.scalar = 96
 	world.low_effects = true
 	controller.set_low_quality(true)
 	for i in 40:
 		var budget_anchor := Node3D.new()
 		world.environment_root.add_child(budget_anchor)
+		budget_anchor.position.x = i * 0.5
 		controller.register_anchor(budget_anchor, "test")
 	controller._process(0.1)
 	check(controller.active_particle_count <= 720 and controller.active_particle_count > 0, "Low quality scene budget enforced")
+	var nearest: Node3D = controller.bindings[0].anchor
+	world.player.position.x = 0.4
+	controller._process(0.01)
+	check(controller.bindings[0].anchor == nearest, "Small focus movement reuses priorities within the refresh interval")
+	controller._process(0.2)
+	check(is_equal_approx(controller.bindings[0].anchor.position.x, 0.5), "Priority refresh selects the new nearest source within a bounded interval")
+	world.player.position.x = 19.5
+	controller._process(0.01)
+	check(is_equal_approx(controller.bindings[0].anchor.position.x, 19.5), "Large focus movement refreshes priorities immediately")
+	check(controller.bindings[0].effect.visible and not controller.bindings.back().effect.visible and controller.active_particle_count <= 720, "Nearest sources retain the particle budget after reprioritizing")
+	world.player.position.x = 19.9
+	var new_anchor := Node3D.new()
+	world.environment_root.add_child(new_anchor)
+	new_anchor.position = world.player.position
+	var new_entry: Dictionary = controller.register_anchor(new_anchor, "test")
+	controller._process(0.001)
+	check(controller.bindings[0] == new_entry and new_entry.effect.visible, "New sources receive an immediate priority and budget check")
+	new_anchor.hide()
+	controller._process(0.001)
+	check(not new_entry.active and not new_entry.effect.visible, "Hidden sources stop immediately between priority refreshes")
+	new_anchor.show()
+	controller._process(0.001)
+	var age: float = new_entry.effect.age
+	world.paused = true
+	controller._process(0.001)
+	check(is_equal_approx(new_entry.effect.age, age) and new_entry.effect.emitters[0].node.speed_scale == 0, "Pause freezes active emitters immediately between priority refreshes")
+	world.paused = false
 	var existing = controller.bindings[0].effect
 	controller.set_low_quality(false)
 	check(controller.bindings[0].effect == null and existing.is_queued_for_deletion(), "Quality change rebuilds looping effect budgets")

@@ -18,8 +18,9 @@ const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_Abili
 const PASSIVE := ["EEUT_AreaInfoMarker", "EEUT_Door", "EEUT_CloseArea"]
 const PHASES := ["idle", "starting", "active", "ending", "finished", "destroyed"]
 const SPRITES_ALTAR := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
+const CURSE_ALTAR := "EnvUnit_MonoData_BtnDisplayName_CurseAltar"
 const ALTAR_EGG := "sprite_abilityitemicon_14104"
-const ROOM_ACTIONS := {"EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent": "冒险事件", "EnvUnit_MonoData_BtnDisplayName_OldDayAltar": "旧日祭坛"}
+const ROOM_ACTIONS := {"EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent": "冒险事件", "EnvUnit_MonoData_BtnDisplayName_OldDayAltar": "旧日祭坛", CURSE_ALTAR: "诅咒祭坛"}
 
 var diagnostics: Array[Dictionary] = []
 var scene := ""
@@ -76,10 +77,16 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		if str(marker.get("Type", "")) == "EEUT_ProtectTarget": item.state.enabled = false
 		item["effect_states"] = {}
 		item["altar_eggs"] = []
+		item["curse_parts"] = []
 		if is_instance_valid(item.visual) and _is_sprites_altar(item):
 			for node in item.visual.find_children("*", "Node3D", true, false):
 				if str(node.name) == ALTAR_EGG or str(node.name).begins_with(ALTAR_EGG + "_u") or str(node.name).begins_with(ALTAR_EGG + "__u"):
 					item.altar_eggs.append({"node": node, "visible": node.visible})
+		if is_instance_valid(item.visual) and _is_curse_altar(item):
+			for node in item.visual.find_children("*", "Node3D", true, false):
+				for part in ["Box_BillBoard", "Box_Effect", "Box_TiggerEnter"]:
+					if str(node.name) == part or str(node.name).begins_with(part + "_u") or str(node.name).begins_with(part + "__u"):
+						item.curse_parts.append({"node": node, "visible": node.visible})
 		if is_instance_valid(item.visual) and str(marker.get("Type", "")) == "EEUT_DoorController":
 			for node in item.visual.find_children("*", "Node3D", true, false):
 				for address in ["24040301_fx_env_switch_on", "24040301_fx_env_switch_off"]:
@@ -229,6 +236,7 @@ func interact(marker_id: String) -> Dictionary:
 		"EEUT_BillBoard": message_requested.emit(str(data.get("Text", "")), context)
 		"EEUT_UIInteractable":
 			if ROOM_ACTIONS.has(str(data.get("UIBtnName", ""))):
+				if _is_curse_altar(item) and item.state.used: return {"success": false, "reason": "already_used"}
 				message_requested.emit("room_action", context)
 				return {"success": true, "context": context}
 			if _is_sprites_altar(item):
@@ -440,6 +448,16 @@ func _finish_break(item: Dictionary) -> void:
 static func _is_sprites_altar(item: Dictionary) -> bool:
 	return str(item.get("marker", {}).get("Type", "")) == "EEUT_UIInteractable" and str(item.get("data", {}).get("UIBtnName", "")) == SPRITES_ALTAR
 
+static func _is_curse_altar(item: Dictionary) -> bool:
+	return str(item.get("marker", {}).get("Type", "")) == "EEUT_UIInteractable" and str(item.get("data", {}).get("UIBtnName", "")) == CURSE_ALTAR
+
+func set_curse_altar_consumed(marker_id: String) -> bool:
+	var item: Dictionary = _items.get(marker_id, {})
+	if item.is_empty() or not _is_curse_altar(item) or item.state.used: return false
+	item.state.used = true
+	_changed(item)
+	return true
+
 func set_altar_consumed(marker_id: String) -> bool:
 	var item: Dictionary = _items.get(marker_id, {})
 	if item.is_empty() or not _is_sprites_altar(item) or item.state.used: return false
@@ -486,7 +504,47 @@ func set_exit_enabled(active: bool) -> void:
 func set_completion_chests_enabled(active: bool) -> void:
 	for item in _items.values():
 		if str(item.marker.get("Type", "")) != "EEUT_AbilityItemTreasureBox" or int(item.data.get("TreasureId", 0)) != 1: continue
+		if item.data.has("TrialChestIndex"): continue
 		item.state.enabled = active
+		_changed(item)
+
+func setup_trial_chests(side_offset: float) -> Vector3:
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_AbilityItemTreasureBox" or int(item.data.get("TreasureId", 0)) != 1: continue
+		item.data["TrialChestIndex"] = 1
+		item.data["TreasureType"] = "Unusual"
+		for index in [0, 2]:
+			var copy: Dictionary = item.duplicate(true)
+			copy.id = str(item.id) + ":trial:" + str(index)
+			copy.data["TrialChestIndex"] = index
+			copy.data["TreasureType"] = "Normal" if index == 0 else "Luxury"
+			copy.position = item.position + Vector3.RIGHT * side_offset * (index - 1)
+			copy.colliders = []
+			copy.bodies = []
+			if is_instance_valid(item.visual):
+				copy.visual = item.visual.duplicate()
+				item.visual.get_parent().add_child(copy.visual)
+				copy.visual.global_position = _world_position(copy.position)
+			_items[copy.id] = copy
+			_changed(copy)
+		_changed(item)
+		return _world_position(item.position)
+	return Vector3.INF
+
+func sync_trial_chests(chest_index: int) -> void:
+	for item in _items.values():
+		if not item.data.has("TrialChestIndex"): continue
+		var selected = int(item.data.TrialChestIndex) == chest_index
+		if item.state.enabled == (chest_index == -1 or selected) and item.state.opened == selected: continue
+		item.state.enabled = chest_index == -1 or selected
+		item.state.opened = selected
+		_changed(item)
+
+func apply_room_appearance(decisions: Dictionary) -> void:
+	for id in decisions:
+		if not _items.has(str(id)) or not decisions[id] is bool: continue
+		var item: Dictionary = _items[str(id)]
+		item.state.enabled = bool(item.state.enabled) and bool(decisions[id])
 		_changed(item)
 
 func snapshot() -> Dictionary:
@@ -552,6 +610,8 @@ func _apply(item: Dictionary) -> void:
 	for egg in item.get("altar_eggs", []):
 		if is_instance_valid(egg.node):
 			_set_source_active(egg.node, active and not item.state.used and bool(egg.visible))
+	for part in item.get("curse_parts", []):
+		if is_instance_valid(part.node): _set_source_active(part.node, active and not item.state.used and bool(part.visible))
 	for address in item.get("effect_states", {}):
 		var on: bool = address == "24040301_fx_env_switch_on"
 		_set_source_active(item.effect_states[address], active and (bool(item.state.used) == on))

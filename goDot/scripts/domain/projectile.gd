@@ -17,6 +17,7 @@ var motion: Dictionary = {}
 var hit: Dictionary = {}
 var hits: Dictionary = {}
 var last_hit_times: Dictionary = {}
+var interval_summon_times: Dictionary = {}
 var hit_interval := 0.0
 var hit_limit := 999999
 var passed := 0
@@ -27,6 +28,29 @@ var source_player := true
 var radius := 0.13
 var owner_offset := Vector3.ZERO
 var diagnostics: Array[String] = []
+
+var _acceleration := 0.0
+var _maximum_speed := INF
+var _trace_target := false
+var _trace_delay := 0.0
+var _trace_end := 99.0
+var _trace_distance := INF
+var _trace_angle := PI
+var _trace_turn := 0.02
+var _rotate_radius := 1.0
+var _radius_delta_speed := 0.0
+var _rotate_follow_owner := true
+var _rotate_offset := Vector3.ZERO
+var _rotate_angle_speed := deg_to_rad(120.0)
+var _curve_height := 0.0
+var _collider_offset := Vector3.ZERO
+var _collider_size := Vector3.ZERO
+var _sphere_collider := true
+var _check_role_collider := true
+var _collision_delay := 0.0
+var _max_collision_count := 1
+var _max_passes := 0
+var _bounce_wall := false
 
 func reset() -> void:
 	position = Vector3.ZERO
@@ -46,6 +70,7 @@ func reset() -> void:
 	hit = {}
 	hits = {}
 	last_hit_times = {}
+	interval_summon_times = {}
 	hit_interval = 0.0
 	hit_limit = 999999
 	passed = 0
@@ -55,6 +80,28 @@ func reset() -> void:
 	source_player = true
 	radius = 0.13
 	diagnostics.clear()
+	_acceleration = 0.0
+	_maximum_speed = INF
+	_trace_target = false
+	_trace_delay = 0.0
+	_trace_end = 99.0
+	_trace_distance = INF
+	_trace_angle = PI
+	_trace_turn = 0.02
+	_rotate_radius = 1.0
+	_radius_delta_speed = 0.0
+	_rotate_follow_owner = true
+	_rotate_offset = Vector3.ZERO
+	_rotate_angle_speed = deg_to_rad(120.0)
+	_curve_height = 0.0
+	_collider_offset = Vector3.ZERO
+	_collider_size = Vector3.ZERO
+	_sphere_collider = true
+	_check_role_collider = true
+	_collision_delay = 0.0
+	_max_collision_count = 1
+	_max_passes = 0
+	_bounce_wall = false
 
 static func emission_facing(raw: Dictionary, index: int, facing: Vector3, toward: Vector3) -> Vector3:
 	if str(raw.get("EmitType", "")) != "EET_ARC": return facing
@@ -119,6 +166,37 @@ func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vecto
 		lifetime = maxf(0.01, float(motion.get("LastingTime", 1000)) / 1000.0)
 	if motion_type not in ["EMAT_Line", "EMAT_Fixed", "EMAT_None", "EMAT_FollowOwner", "EMAT_Curve", "EMAT_Parabola", "EMAT_RotateOwner"]:
 		diagnostics.append("Unmapped projectile motion: " + motion_type)
+	_compile_properties()
+
+func _compile_properties() -> void:
+	# Source dictionaries remain intact for snapshots and presentation consumers.
+	# Only immutable configuration is compiled; simulation state stays live.
+	_collider_offset = DungeonWorld.vector(entity.get("ModelBoxColliderCenterOffset", {}))
+	_collider_size = DungeonWorld.vector(entity.get("ModelBoxColliderSize", {}))
+	_sphere_collider = str(entity.get("ColliderType", "Cube")) == "Sphere" or _collider_size.length_squared() < 0.001
+	_check_role_collider = bool(entity.get("IsCheckRoleUnitCollider", true))
+	_collision_delay = float(entity.get("EnableGlobalCollisionDelayTime", 0))
+	_max_collision_count = maxi(1, int(entity.get("MaxCollisionCountPerTarget", 1)))
+	_max_passes = int(entity.get("MaxPassNum", 0))
+	_bounce_wall = bool(entity.get("CanBounceWall", false))
+	match motion_type:
+		"EMAT_Line":
+			_acceleration = float(motion.get("Acc", 0))
+			_maximum_speed = maxf(0, float(motion.get("MaxSpeed", INF)))
+			_trace_target = bool(motion.get("TraceTarget", false))
+			_trace_delay = float(motion.get("TraceDelayTime", 0))
+			_trace_end = _trace_delay + float(motion.get("TraceMaxKeepTime", 99))
+			_trace_distance = float(motion.get("TraceMaxDis", INF))
+			_trace_angle = deg_to_rad(float(motion.get("TraceMaxAngle", 180)))
+			_trace_turn = maxf(0, float(motion.get("TraceAngelRotateIndentity", 0.02)))
+		"EMAT_RotateOwner":
+			_rotate_radius = float(motion.get("RotateRadius", 1))
+			_radius_delta_speed = float(motion.get("RadiusDeltaSpeed", 0))
+			_rotate_follow_owner = bool(motion.get("IsFollowOwner", true))
+			_rotate_offset = DungeonWorld.vector(motion.get("FollowOwnerRotatePointOffset", {}))
+			_rotate_angle_speed = deg_to_rad(float(motion.get("RotateAngleSpeed", 120)))
+		"EMAT_Curve", "EMAT_Parabola":
+			_curve_height = float(motion.get("YDis", origin.distance_to(destination) * float(motion.get("CurveHeightCoeff", 0.3))))
 
 func advance(delta: float, owner_position: Vector3, owner_facing: Vector3, target: Vector3 = Vector3.INF) -> void:
 	if finished: return
@@ -127,26 +205,25 @@ func advance(delta: float, owner_position: Vector3, owner_facing: Vector3, targe
 	age += delta
 	match motion_type:
 		"EMAT_Line":
-			if bool(motion.get("TraceTarget", false)) and target.is_finite() and age >= float(motion.get("TraceDelayTime", 0)) and age <= float(motion.get("TraceDelayTime", 0)) + float(motion.get("TraceMaxKeepTime", 99)):
+			if _trace_target and target.is_finite() and age >= _trace_delay and age <= _trace_end:
 				var difference = target - position
 				difference.y = 0
 				var desired = difference.normalized()
-				if difference.length() <= float(motion.get("TraceMaxDis", INF)) and absf(direction.signed_angle_to(desired, Vector3.UP)) <= deg_to_rad(float(motion.get("TraceMaxAngle", 180))):
+				if difference.length() <= _trace_distance and absf(direction.signed_angle_to(desired, Vector3.UP)) <= _trace_angle:
 					# Original sensitivity units are unverified; this uses radians per 50 Hz step.
-					var turn = maxf(0, float(motion.get("TraceAngelRotateIndentity", 0.02))) * 50 * delta
+					var turn = _trace_turn * 50 * delta
 					direction = direction.rotated(Vector3.UP, clampf(direction.signed_angle_to(desired, Vector3.UP), -turn, turn)).normalized()
-			speed = clampf(speed + float(motion.get("Acc", 0)) * delta, 0, maxf(0, float(motion.get("MaxSpeed", INF))))
+			speed = clampf(speed + _acceleration * delta, 0, _maximum_speed)
 			position += direction * speed * delta
 		"EMAT_FollowOwner":
 			position = owner_position + owner_offset
 		"EMAT_RotateOwner":
-			var radius_value = maxf(0, float(motion.get("RotateRadius", 1)) + age * float(motion.get("RadiusDeltaSpeed", 0)))
-			var center = owner_position if motion.get("IsFollowOwner", true) else origin
-			position = center + orient(DungeonWorld.vector(motion.get("FollowOwnerRotatePointOffset", {})), owner_facing) + direction.rotated(Vector3.UP, deg_to_rad(float(motion.get("RotateAngleSpeed", 120))) * age) * radius_value
+			var radius_value = maxf(0, _rotate_radius + age * _radius_delta_speed)
+			var center = owner_position if _rotate_follow_owner else origin
+			position = center + orient(_rotate_offset, owner_facing) + direction.rotated(Vector3.UP, _rotate_angle_speed * age) * radius_value
 		"EMAT_Curve", "EMAT_Parabola":
 			var progress = minf(1, age / lifetime)
-			var height = float(motion.get("YDis", origin.distance_to(destination) * float(motion.get("CurveHeightCoeff", 0.3))))
-			position = origin.lerp(destination, progress) + Vector3.UP * 4 * height * progress * (1 - progress)
+			position = origin.lerp(destination, progress) + Vector3.UP * 4 * _curve_height * progress * (1 - progress)
 	var travelled := previous.distance_to(position)
 	if travelled > 0 and distance + travelled > max_distance:
 		travelled = maxf(0, max_distance - distance)
@@ -154,39 +231,52 @@ func advance(delta: float, owner_position: Vector3, owner_facing: Vector3, targe
 	distance += travelled
 	if age >= lifetime or distance >= max_distance: finished = true
 
+func drain_interval_summons() -> Array:
+	var result: Array = []
+	var definitions: Array = entity.get("IntervalCreateSummonUnitDefList", [])
+	for index in definitions.size():
+		var rule: Dictionary = definitions[index]
+		var interval = float(rule.get("Duration", 0))
+		if interval <= 0: continue
+		var next = float(interval_summon_times.get(str(index), maxf(0, float(rule.get("DelayTime", 0)))))
+		while next <= age + 0.000001 and next < lifetime - 0.000001 and result.size() < 100:
+			result.append(rule.get("SummonUnitDef", {}).duplicate(true))
+			next += interval
+		interval_summon_times[str(index)] = next
+	return result
+
 func can_hit(key: String) -> bool:
-	return not finished and bool(entity.get("IsCheckRoleUnitCollider", true)) and age >= float(entity.get("EnableGlobalCollisionDelayTime", 0)) and int(hits.get(key, 0)) < mini(hit_limit, maxi(1, int(entity.get("MaxCollisionCountPerTarget", 1)))) and age + 0.000001 >= float(last_hit_times.get(key, -INF)) + hit_interval
+	return not finished and _check_role_collider and age >= _collision_delay and int(hits.get(key, 0)) < mini(hit_limit, _max_collision_count) and age + 0.000001 >= float(last_hit_times.get(key, -INF)) + hit_interval
 
 func record_hit(key: String) -> void:
 	hits[key] = int(hits.get(key, 0)) + 1
 	last_hit_times[key] = age
 	passed += 1
-	if passed > int(entity.get("MaxPassNum", 0)): finished = true
+	if passed > _max_passes: finished = true
 
 func intersects(center: Vector3) -> bool:
-	var offset = orient(DungeonWorld.vector(entity.get("ModelBoxColliderCenterOffset", {})), direction)
+	var offset = orient(_collider_offset, direction)
 	var from = previous + offset
 	var to = position + offset
-	var closest = Geometry3D.get_closest_point_to_segment(center, from, to)
-	var size = DungeonWorld.vector(entity.get("ModelBoxColliderSize", {}))
-	if str(entity.get("ColliderType", "Cube")) == "Sphere" or size.length_squared() < 0.001:
+	if _sphere_collider:
 		# Use the same standing hurt volume as box attacks, including upper-body
 		# contacts. A point at waist height made authored high shots miss entirely.
 		var contacts = Geometry3D.get_closest_points_between_segments(from, to, center - Vector3.UP * 0.75, center + Vector3.UP * 0.75)
 		return contacts[0].distance_squared_to(contacts[1]) <= (radius + 0.35) * (radius + 0.35)
+	var closest = Geometry3D.get_closest_point_to_segment(center, from, to)
 	var difference = center - closest
-	return absf(difference.y) <= size.y * 0.5 + 0.75 and absf(difference.dot(direction)) <= size.z * 0.5 + 0.35 and absf(difference.dot(Vector3(direction.z, 0, -direction.x))) <= size.x * 0.5 + 0.35
+	return absf(difference.y) <= _collider_size.y * 0.5 + 0.75 and absf(difference.dot(direction)) <= _collider_size.z * 0.5 + 0.35 and absf(difference.dot(Vector3(direction.z, 0, -direction.x))) <= _collider_size.x * 0.5 + 0.35
 
 func wall_collision(point: Vector3, normal: Vector3) -> void:
 	position = point + normal * 0.02
-	if entity.get("CanBounceWall", false): direction = direction.bounce(normal).normalized()
+	if _bounce_wall: direction = direction.bounce(normal).normalized()
 	else: finished = true
 
 static func orient(offset: Vector3, forward: Vector3) -> Vector3:
 	return Vector3(forward.z, 0, -forward.x) * offset.x + Vector3.UP * offset.y + forward * offset.z
 
 func snapshot() -> Dictionary:
-	return {"position": _array(position), "previous": _array(previous), "direction": _array(direction), "origin": _array(origin), "destination": _array(destination), "owner_offset": _array(owner_offset), "speed": speed, "age": age, "distance": distance, "lifetime": lifetime, "max_distance": max_distance if is_finite(max_distance) else -1, "motion_type": motion_type, "entity": entity.duplicate(true), "motion": motion.duplicate(true), "hit": hit.duplicate(true), "hits": hits.duplicate(), "last_hit_times": last_hit_times.duplicate(), "passed": passed, "source_key": source_key, "target_key": target_key, "source_player": source_player, "radius": radius}
+	return {"position": _array(position), "previous": _array(previous), "direction": _array(direction), "origin": _array(origin), "destination": _array(destination), "owner_offset": _array(owner_offset), "speed": speed, "age": age, "distance": distance, "lifetime": lifetime, "max_distance": max_distance if is_finite(max_distance) else -1, "motion_type": motion_type, "entity": entity.duplicate(true), "motion": motion.duplicate(true), "hit": hit.duplicate(true), "hits": hits.duplicate(), "last_hit_times": last_hit_times.duplicate(), "interval_summon_times": interval_summon_times.duplicate(), "passed": passed, "source_key": source_key, "target_key": target_key, "source_player": source_player, "radius": radius}
 
 func restore(data: Dictionary) -> void:
 	reset()
@@ -200,6 +290,13 @@ func restore(data: Dictionary) -> void:
 	hit_interval = maxf(0, float(raw.get("EffectActiveIntervalToEachUnit", 0)))
 	hit_limit = maxi(1, int(raw.get("EffectActiveTotalCountToEachUnit", 999999)))
 	last_hit_times = data.get("last_hit_times", {}).duplicate()
+	interval_summon_times = data.get("interval_summon_times", {}).duplicate()
+	if not data.has("interval_summon_times"):
+		for index in entity.get("IntervalCreateSummonUnitDefList", []).size():
+			var rule: Dictionary = entity.IntervalCreateSummonUnitDefList[index]
+			var interval = float(rule.get("Duration", 0))
+			var delay = maxf(0, float(rule.get("DelayTime", 0)))
+			if interval > 0: interval_summon_times[str(index)] = delay + maxf(0, floor((age - delay) / interval) + 1) * interval
 	if not data.has("last_hit_times"):
 		for key in hits: last_hit_times[key] = age
 	if motion_type in ["EMAT_FollowOwner", "EMAT_Fixed", "EMAT_None"] and motion.has("LastTime"):
@@ -207,6 +304,7 @@ func restore(data: Dictionary) -> void:
 		finished = age >= lifetime
 	passed = int(data.get("passed", 0))
 	source_player = bool(data.get("source_player", true))
+	_compile_properties()
 
 static func _array(value: Vector3) -> Array:
 	return [value.x, value.y, value.z]

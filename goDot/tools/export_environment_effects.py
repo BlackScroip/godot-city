@@ -41,22 +41,34 @@ def properties(value):
 
 
 def main():
+    global OUT
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apk", type=Path, default=ROOT / "com.teamelo.dungeonchasers.apk")
     parser.add_argument("--manifest", type=Path, default=Path("/private/tmp/city-charge-assets/manifest.json"))
+    parser.add_argument("--asset-list", type=Path, help="Explicit exact APK addresses to export instead of environment selection")
+    parser.add_argument("--output-directory", type=Path, default=OUT)
+    parser.add_argument("--merge-catalog", action="store_true", help="Preserve existing catalog definitions outside the selected addresses")
+    parser.add_argument("--shared-materials", action="store_true", help="Store complete source material records once per source object")
+    parser.add_argument("--include-root-transform", action="store_true", help="Preserve source prefab root TRS for action effects")
+    parser.add_argument("--report", type=Path, default=ROOT / "goDot/reports/environment-effects-extraction.json")
     args = parser.parse_args()
+    OUT = args.output_directory
     manifest = json.loads(args.manifest.read_text())
     additional = {"23121501_fx_other_propblue", "23122101_fx_other_treasureboxyellow", "23121501_fx_other_proppurple", "23121501_fx_other_proppurpleappear", "23122101_fx_other_treasureboxcurse", "23122101_fx_other_treasureboxcurseopen", "25020601_fx_other_liulangshangren"}
-    assets = [a for a in manifest["assets"] if "/FX/Env/" in a["path"] or a["address"] in additional]
+    selected = {str(name).lower() for name in json.loads(args.asset_list.read_text())} if args.asset_list else None
+    assets = [a for a in manifest["assets"] if a["address"].lower() in selected] if selected is not None else [a for a in manifest["assets"] if "/FX/Env/" in a["path"] or a["address"] in additional]
+    if selected is not None and selected != {a["address"].lower() for a in assets}:
+        raise ValueError("An explicit selected address is absent from the supplied manifest")
     embedded = {"envunit_destoryable_lode_gold": "25021101_fx_env_lodegold_aura",
                 "envunit_destoryable_lode_magicpoint": "25021102_fx_env_lodemagicpoint_aura",
                 "envunit_destoryable_mine_material1": "25021201_fx_env_moonstone_aura",
                 "envunit_destoryable_mine_material2": "25021202_fx_env_topaz_aura"}
-    for asset in manifest["assets"]:
+    for asset in manifest["assets"] if selected is None else []:
         if asset["address"].lower() in embedded:
             assets.append(dict(asset, address=embedded[asset["address"].lower()], subroot=embedded[asset["address"].lower()]))
     indices = sorted({i for a in assets for i in [a["bundle"], *a["deps"]]})
     OUT.mkdir(parents=True, exist_ok=True)
+    resource_prefix = "res://" + str(OUT.relative_to(ROOT / "goDot")) + "/"
     env = UnityPy.Environment()
     bundles, files_by_bundle = {}, {}
     with zipfile.ZipFile(args.apk) as archive:
@@ -93,7 +105,7 @@ def main():
         try:
             data = obj.read()
             data.image.save(OUT / filename)
-            textures[ident] = {"name": data.m_Name, "resource": "res://assets/environment_effects/" + filename,
+            textures[ident] = {"name": data.m_Name, "resource": resource_prefix + filename,
                                "sha256": hashlib.sha256((OUT / filename).read_bytes()).hexdigest()}
             return textures[ident]["resource"]
         except Exception as exc:
@@ -159,7 +171,7 @@ def main():
             for triangles in handler.get_triangles():
                 lines += ["f " + " ".join(face(i) for i in tri) for tri in triangles]
             (OUT / filename).write_text("\n".join(lines) + "\n")
-            meshes[ident] = "res://assets/environment_effects/" + filename
+            meshes[ident] = resource_prefix + filename
         except Exception as exc:
             errors.append({"source": ident, "type": "mesh", "error": str(exc)})
             meshes[ident] = ""
@@ -189,7 +201,7 @@ def main():
             by_type = {c.type.name: c for c in components if c}
             transform = by_type.get("Transform")
             tr = tree(transform)
-            if not is_root:
+            if not is_root or args.include_root_transform:
                 chain = chain + [{"position": tr.get("m_LocalPosition", {}), "rotation": tr.get("m_LocalRotation", {}), "scale": tr.get("m_LocalScale", {})}]
             ps = by_type.get("ParticleSystem")
             renderer_obj = by_type.get("ParticleSystemRenderer")
@@ -226,17 +238,36 @@ def main():
         walk(root, [], True, True)
         effects[asset["address"].lower()] = {"source": asset["path"], "source_sha256": bundles[asset["bundle"]]["sha256"],
             "source_root": source(root), "particle_systems": len(layers), "layers": layers,
-            "textures": sorted({m["texture"] for layer in layers for m in layer["materials"] if m["texture"]}),
+            "textures": sorted({t["texture"] for layer in layers for m in layer["materials"] for t in m["textures"]}),
             "unsupported": sorted(unsupported), "mode": "APK Unity particle data; Godot runtime approximation"}
         print(asset["address"], len(layers), flush=True)
     identity = hashlib.sha256(args.apk.read_bytes()).hexdigest()
-    catalog = {"apk_sha256": identity, "coordinate_convention": "native numeric XYZ, prefab root transform excluded", "effects": effects}
+    catalog_path = OUT / "catalog.json"
+    catalog = json.loads(catalog_path.read_text()) if args.merge_catalog and catalog_path.exists() else {}
+    if args.shared_materials:
+        library_path = OUT / "materials.json"
+        library = json.loads(library_path.read_text()) if args.merge_catalog and library_path.exists() else {}
+        library.update(materials)
+        library_path.write_text(json.dumps(finite_json(library), separators=(",", ":"), allow_nan=False) + "\n")
+        for name, effect in effects.items():
+            effect["material_library"] = resource_prefix + "materials.json"
+            for layer in effect["layers"]:
+                layer["materials"] = [{"reference": value["source"]} for value in layer["materials"]]
+    for name, effect in effects.items():
+        previous = catalog.get("effects", {}).get(name, {})
+        if previous.get("models"): effect["models"] = previous["models"]
+    catalog.setdefault("effects", {}).update(effects)
+    convention = "native numeric XYZ, prefab root transform " + ("included" if args.include_root_transform else "excluded")
+    catalog.update({"apk_sha256": identity, "coordinate_convention": convention})
+    if args.merge_catalog:
+        catalog["requested_effects"] = sorted(set(catalog.get("requested_effects", [])) | set(effects))
+        catalog["missing_effects"] = [name for name in catalog.get("missing_effects", []) if name not in effects]
     (OUT / "catalog.json").write_text(json.dumps(finite_json(catalog), separators=(",", ":"), allow_nan=False) + "\n")
     evidence = {"apk": str(args.apk), "apk_sha256": identity, "manifest_sha256": hashlib.sha256(args.manifest.read_bytes()).hexdigest(),
                 "bundles": bundles, "textures": textures, "meshes": meshes, "materials": materials, "errors": errors,
                 "effect_count": len(effects), "particle_layer_count": sum(len(e["layers"]) for e in effects.values()),
-                "limitations": ["Static extraction, not runtime observation", "Custom Unity shaders, scripts and unsupported particle modules are not exact runtime equivalents", "Nonfinite Unity curve tangents normalized to zero for strict JSON and finite runtime interpolation", "Particle prefab roots excluded because scene anchors already carry their transforms", "Mesh coordinates preserve native numeric XYZ"]}
-    report = ROOT / "goDot/reports/environment-effects-extraction.json"
+                "limitations": ["Static extraction, not runtime observation", "Custom Unity shaders, scripts and unsupported particle modules are not exact runtime equivalents", "Nonfinite Unity curve tangents normalized to zero for strict JSON and finite runtime interpolation", convention, "Mesh coordinates preserve native numeric XYZ"]}
+    report = args.report
     report.write_text(json.dumps(finite_json(evidence), indent=2, allow_nan=False) + "\n")
     print(json.dumps({k: evidence[k] for k in ("effect_count", "particle_layer_count", "errors")}))
 

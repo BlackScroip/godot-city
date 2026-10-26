@@ -132,7 +132,19 @@ func _initialize() -> void:
 				var key := str(marker.SceneName) + ":" + str(marker.SourceGameObjectId)
 				_check(bindings.has(key), "Exact source ResId binding exists")
 				if bindings.has(key): exact_bindings += 1
-	_check(marker_count == 3999 and exact_bindings == 2681, "All 3999 semantics and 2681 rule-bound objects accounted for")
+	var expected_markers := 3999
+	var expected_bindings := 2681
+	var recovery_path := "res://reports/region-environment-recovery.json"
+	if FileAccess.file_exists(recovery_path):
+		var recovery: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(recovery_path))
+		var baseline: Dictionary = recovery.get("baseline", {})
+		_check(int(baseline.get("semantic_markers", 0)) == expected_markers and int(baseline.get("rule_bindings", 0)) == expected_bindings, "Original 3999 semantics and 2681 bindings remain the recovery baseline")
+		for replaced in baseline.get("replaced_scenes", {}).values():
+			expected_markers -= int(replaced.get("semantic_markers", 0))
+			expected_bindings -= int(replaced.get("rule_bindings", 0))
+		expected_markers += recovery.get("interaction_bindings", []).size()
+		expected_bindings += recovery.get("interaction_bindings", []).filter(func(binding): return binding.get("Type", "") in ["EEUT_DestoryableItem", "EEUT_TriggerTrap"]).size()
+	_check(marker_count == expected_markers and exact_bindings == expected_bindings, "Original plus new APK semantics and exact rule-bound objects accounted for")
 	var report := {"assertions": assertions, "failures": failures, "semantic_markers": marker_count, "exact_rule_bindings": exact_bindings, "rule_definitions": source_rules.Definitions.size()}
 	var file := FileAccess.open("res://reports/world_interactions_test.json", FileAccess.WRITE)
 	if file: file.store_string(JSON.stringify(report, "\t"))

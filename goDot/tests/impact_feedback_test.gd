@@ -124,8 +124,8 @@ func _run() -> void:
 		var victim = Combat.new()
 		victim.configure_enemy(11001)
 		victim.request_enemy_attack()
-		victim.apply_stagger(0.18, true)
-		check(victim.busy == 0 and not victim.request_enemy_attack().success, "Interrupted enemy cannot immediately restart")
+		var before_sequence: int = victim._cast_sequence
+		check(not victim.apply_stagger(0.18, true) and victim.busy > 0 and victim._cast_sequence == before_sequence, "Generic presentation stagger cannot cancel a monster's source action")
 	for rank in ["Normal", "Elite", "Boss"]:
 		var fighter = Combat.new()
 		fighter.configure_enemy(11001)
@@ -172,8 +172,8 @@ func _run() -> void:
 		explosion.merge({"impact_category": "explosion", "impact_origin": [0, 0, 0], "impact_radius": 4.0})
 		world._apply_hit(player, enemy, explosion)
 	check(received.size() == 3 and world._seen_blasts.size() == 1 and world._camera_impulses.size() == 1, "One explosion gives three contacts and one camera impulse")
-	check(world.actors[1].knockback_direction.length() > 0.99, "Zero-distance explosion has finite fallback direction")
-	check(world.actors[2].knockback_distance > world.actors[3].knockback_distance, "Explosion strength falls with distance")
+	check(world.actors[1].knockback_elapsed < 0 and world.actors[1].combat.stagger_remaining == 0, "Explosion presentation alone cannot invent monster knockback or stagger")
+	check(world.actors[2].knockback_elapsed < 0 and world.actors[3].knockback_elapsed < 0, "Explosion radius does not bypass source monster hit admission")
 	var before = received.size()
 	var immune: DungeonActor = world.actors[1]
 	immune.combat.invincible = 1
@@ -186,7 +186,8 @@ func _run() -> void:
 	var pull = packet(92)
 	pull.merge({"action": "orb_satk_loop_1", "slot": 4, "definition": {"damageId": 210001, "raw": JSON.stringify({"FeedbackList": [{"FeedbackType": "EHT_HitAction", "PushPower": -20, "AttackDirIsAttackerForwardOrHitPointDir": true}]})}}, true)
 	world._apply_hit(player, immune, pull)
-	check(immune.knockback_direction.dot(Vector3.FORWARD) > 0.99 and is_equal_approx(immune.knockback_distance, 0.08), "High-frequency orb accumulation retains weak inward pull")
+	check(immune.knockback_elapsed < 0 and is_zero_approx(immune.combat.stagger_remaining) and is_zero_approx(immune.combat.impact_pause), "Source orb accumulation does not add a hand-authored pull, stagger or hit pause")
+	check(Profiles.resolve(pull, source).source_only and is_zero_approx(Profiles.resolve(pull, source).distance) and Profiles.resolve(pull, source).source_feedback.hit_actions[0].push_power == -20, "Source orb push power remains unconverted without a hand-authored distance override")
 	check(Profiles.resolve(pull, source).stop == 0 and Profiles.resolve(pull, source).amplitude == 0, "Orb pull does not spam hit stop or camera shake")
 	var environmental = received.size()
 	immune.combat._buff_index = immune.combat._buff_index.duplicate()
@@ -271,7 +272,7 @@ func _run() -> void:
 	world._tick_projectiles(0.12)
 	check(not gated.finished and gated.hits.is_empty(), "Source collision protection does not consume a passing projectile")
 	check(received.size() == contacts_before, "Protected projectile intersection emits no impact")
-	immune.combat.busy = 0
+	immune.combat._start(immune.combat._action(str(immune.combat.enemy.group), "idle"), 0)
 	immune.position = gated.position + Vector3.BACK * 0.2 - Vector3.UP * 0.75
 	world._tick_projectiles(0.02)
 	check(world.projectiles.is_empty() and received.size() == contacts_before + 1 and immune.combat.health < immune.combat.max_health, "Projectile can contact again after action protection ends and is recycled")

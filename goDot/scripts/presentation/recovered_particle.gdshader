@@ -161,8 +161,14 @@ vec2 source_distortion(vec2 uv, sampler2D noise, vec4 st, vec2 scroll, float amo
 
 vec4 source_shape(vec4 sample_value, vec4 color, bool color_mode, vec2 contrast) {
     // Exact SHAPESHAPECOLOR variants store opacity in red and color in a uniform.
-    vec4 adjusted = max(vec4(0.0), (sample_value - vec4(0.5)) * contrast.x + vec4(0.5 + contrast.y));
-    return color_mode ? vec4(color.rgb, adjusted.r) : adjusted * color;
+    if (color_mode) {
+        float opacity = max(0.0, (sample_value.r - 0.5) * contrast.x + 0.5 + contrast.y);
+        return vec4(color.rgb, opacity);
+    }
+    vec4 adjusted = sample_value * color;
+    // Source RGBA variants grade RGB after tinting and preserve texture alpha.
+    adjusted.rgb = max(vec3(0.0), (adjusted.rgb - vec3(0.5)) * contrast.x + vec3(0.5 + contrast.y));
+    return adjusted;
 }
 
 vec2 sample_custom(sampler2D map, float phase) {

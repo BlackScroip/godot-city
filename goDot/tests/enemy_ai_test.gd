@@ -1,6 +1,8 @@
 extends SceneTree
 
 const EnemyAI = preload("res://scripts/domain/enemy_ai.gd")
+const Combat = preload("res://scripts/domain/combat.gd")
+const KNOWN_SOURCE_OUTPUT_GAPS = ["ActGroup_juchifeiyao/meaninglessrunaway", "ActGroup_kuangyamolang/attack3", "ActGroup_kuangyamolangzhaoze/attack3"]
 var assertions := 0
 var failures: Array = []
 var catalog: Dictionary = {}
@@ -9,11 +11,13 @@ var cases: Array = []
 func _initialize() -> void:
 	catalog = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/combat.json"))
 	_test_source_distances_and_cooldowns()
+	_test_wolf_source_output_gaps()
+	_test_decimal_timer_roundtrip()
 	_test_phase_and_reward_rules()
 	_test_shark_cohort()
 	_test_catalog_sweep()
 	var file = FileAccess.open("res://reports/enemy-ai-test.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify({"schema": 1, "assertions": assertions, "failures": failures, "cases": cases, "evidence": "Serialized APK NodeCanvas graphs plus packaged node constructors and enum metadata. Tests execute the Godot interpreter; they do not establish APK runtime parity."}, "\t"))
+	file.store_string(JSON.stringify({"schema": 1, "assertions": assertions, "failures": failures, "cases": cases, "known_source_output_gaps": KNOWN_SOURCE_OUTPUT_GAPS, "evidence": "Serialized APK NodeCanvas graphs plus packaged node constructors and enum metadata. Tests execute the Godot interpreter; they do not establish APK runtime parity."}, "\t"))
 	print("ENEMY AI TEST: %s assertions, %s failures" % [assertions, failures.size()])
 	for failure in failures: printerr(failure)
 	quit(0 if failures.is_empty() else 1)
@@ -23,9 +27,9 @@ func _test_source_distances_and_cooldowns() -> void:
 	var context = _context(2.5)
 	_check(wolf.tick(0.1, context).action in ["runaway", "waitattack"], "Wolf keeps distance before source three second cooldown")
 	wolf.blackboard.BB_AttackCDTimer = 3.0
-	_check(wolf.tick(0.0, context).action == "attack", "Wolf chooses near attack below three meters")
+	_check(wolf.tick(0.0, context).action in ["attack", "attack2", "attack3"], "Current source wolf graph chooses among three equal weight attacks within five meters")
 	context.distance = 4.0
-	_check(wolf.tick(0.0, context).action == "attack2", "Wolf chooses authored leap between three and five meters")
+	_check(wolf.tick(0.0, context).action in ["attack", "attack2", "attack3"], "Current source wolf graph keeps the same attack set between three and five meters")
 	context.distance = 5.01
 	_check(wolf.tick(0.0, context).action == "run", "Wolf closes beyond source five meter attack range")
 	wolf.notify_action_started("attack2")
@@ -57,6 +61,35 @@ func _test_source_distances_and_cooldowns() -> void:
 		lizard.tick(1.0 / 60.0, _context(3.0))
 	_check(lizard.diagnostics.is_empty(), "Lizard cooldown filters keep valid fallback selection")
 	_check(int(lizard.blackboard.BB_NextAttackId) >= 0, "Lizard chooses source next attack id rather than action round robin")
+
+func _test_wolf_source_output_gaps() -> void:
+	var ai = _ai(11001)
+	var selector: Dictionary = ai._nodes["7"]
+	var source_outputs = ai._children["7"].map(func(id): return ai._nodes[id]._action.valueB._value)
+	_check(source_outputs == ["attack", "attack2", "attack3"], "Packaged shared wolf graph retains all three authored outputs")
+	_check(selector.childWeights.size() == 3 and selector.childWeights.all(func(weight): return is_equal_approx(float(weight._value), 1.0)), "Packaged shared wolf graph gives all three attack branches equal weight")
+	for id in [11001, 110011, 110012]:
+		var combat = Combat.new()
+		_check(combat.configure_enemy(id, 55).success, "Wolf source output fixture configures %d" % id)
+		var has_attack3 = not combat._action(str(combat.enemy.group), "attack3").is_empty()
+		_check(has_attack3 == (id == 110012), "Only the packaged island wolf action group defines attack3: %d" % id)
+		combat.enemy_ai_enabled = true
+		combat.custom_properties.OP_AIAction = "attack3"
+		combat._start(combat._action(str(combat.enemy.group), "sys_checkatk"), 0)
+		combat._tick_enemy_interrupts()
+		_check(combat.current_action == ("attack3" if id == 110012 else "idle"), "Source attack dispatcher preserves unmapped output idle fallback: %d" % id)
+		_check(combat.diagnostics.is_empty(), "Source wolf output fallback needs no invented action: %d" % id)
+
+func _test_decimal_timer_roundtrip() -> void:
+	var original = _ai(21002)
+	original.blackboard.BB_AttackCDTimer = 4.999999
+	_check(original.tick(0.0, _context(3.0)).action in ["runaway", "waitattack"], "Archer remains gated one microsecond before its authored interval")
+	original.blackboard.BB_AttackCDTimer = 4.999999999999996
+	var restored = _ai(21002)
+	_check(restored.restore(JSON.parse_string(JSON.stringify(original.snapshot()))), "Archer timer boundary survives a decimal JSON snapshot")
+	var expected: Dictionary = original.tick(0.0, _context(3.0))
+	var actual: Dictionary = restored.tick(0.0, _context(3.0))
+	_check(expected.action == "attack" and actual.action == expected.action, "Decimal timer roundoff does not shift the actual source attack gate by a frame")
 
 func _test_phase_and_reward_rules() -> void:
 	var bee = _ai(41002)
@@ -146,8 +179,8 @@ func _test_catalog_sweep() -> void:
 		_check(ai.diagnostics.is_empty(), "All tasks supported for enemy %s: %s" % [definition.id, ai.diagnostics])
 		_check(assignments > 0, "Enemy graph evaluates state assignments %s" % definition.id)
 		_check(not emitted.is_empty(), "Enemy graph produces actions %s" % definition.id)
-		var expected_missing = ["ActGroup_juchifeiyao/meaninglessrunaway"]
-		_check(missing.all(func(key): return expected_missing.has(key)), "No unexpected unmapped AI outputs %s: %s" % [definition.id, missing])
+		# APK_WOLF_ACTION_OUTPUTS.md records the package-level gaps and idle fallback.
+		_check(missing.all(func(key): return KNOWN_SOURCE_OUTPUT_GAPS.has(key)), "No unexpected unmapped AI outputs %s: %s" % [definition.id, missing])
 		var snapshot: Dictionary = JSON.parse_string(JSON.stringify(ai.snapshot()))
 		var copy = _ai(int(definition.id), 999)
 		_check(copy.restore(snapshot), "Enemy graph restores matching state %s" % definition.id)

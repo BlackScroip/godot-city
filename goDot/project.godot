@@ -13,7 +13,10 @@ config_version=5
 config/name="Dungeon Chasers"
 config/description="Dungeon Chasers offline Godot migration"
 config/version="0.1.0"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/startup.tscn"
+boot_splash/image="res://assets/ui/startup/30e884e8e45f1d6f.png"
+boot_splash/fullsize=true
+boot_splash/bg_color=Color(0.04, 0.07, 0.14, 1)
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]
@@ -33,14 +36,16 @@ window/handheld/orientation=4
 [physics]
 
 common/physics_ticks_per_second=60
+common/physics_interpolation=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dungeon_ads/plugin.cfg")
+enabled=PackedStringArray("res://addons/dungeon_ads/plugin.cfg", "res://addons/combat_ai/plugin.cfg")
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 lights_and_shadows/directional_shadow/size=2048
 environment/defaults/default_clear_color=Color(0.045, 0.065, 0.055, 1)

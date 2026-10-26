@@ -163,7 +163,17 @@ func _enter(campaign: RefCounted) -> bool:
 
 func _complete(campaign: RefCounted) -> void:
 	if campaign.current_room().combat:
+		for wave in range(1, int(campaign.state.wave_count) + 1):
+			var spawns = campaign.wave_spawns(wave)
+			check(not spawns.is_empty(), "Selected-area combat wave has enemies: node %d wave %d" % [int(campaign.current_room().node_id), wave])
+			check(spawns.all(func(spawn): return int(spawn.get("enemy_id", 0)) > 0 and spawn.get("position") is Dictionary), "Selected-area spawn plans contain valid enemies and positions")
 		while not campaign.room_ready(): campaign.clear_wave()
+	elif str(campaign.current_room().flow) == "TreasureTrial":
+		check(campaign.start_trial(1, {}).success, "Trial chest starts its authored waves")
+		for step in 20:
+			if campaign.trial_status().phase == "complete": break
+			campaign.tick_trial(100, false)
+		check(campaign.claim_trial_reward().success, "Trial reward resolves after its waves")
 	else: campaign.resolve_action()
 	check(campaign.complete_room().success, "Room objective completes")
 	check(campaign.advance().success, "Room completion advances once")

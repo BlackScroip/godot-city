@@ -25,9 +25,10 @@ func _initialize() -> void:
 				_check(campaign.state.phase == "route", "Route reachable after reward")
 				if campaign.state.get("region_selection", false):
 					var regions = campaign.region_choices()
-					_check(regions.size() == 1, "Next region is selected on the world map")
+					_check(not regions.is_empty(), "Next region is selected on the world map")
 					if regions.is_empty(): break
-					_check(campaign.select_region(int(regions[0].node_id)).success, "Select reachable region")
+					var normal_slots = [2, 4, 6, 8, 9]
+					_check(campaign.select_region(normal_slots[campaign.current_module_index()]).success, "Select reachable ordinary region")
 				var choices = campaign.choices()
 				_check(not choices.is_empty(), "Each layer has choices")
 				if choices.is_empty():

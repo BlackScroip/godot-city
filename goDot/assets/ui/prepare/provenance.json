@@ -1,0 +1,2914 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+    "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+  },
+  "prefabs": [
+    {
+      "address": "ATPanel_RogueLevelDifficulty",
+      "source_asset": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/ATPanel_RogueLevelDifficulty.prefab",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/3f87afe7092b708c03e4a3f29cdba1a8.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_panel_atpanel_rogueleveldifficulty.bundle",
+        "bundle_hash": "3f87afe7092b708c03e4a3f29cdba1a8",
+        "sha256": "bb8fbcf6bc6dc00ef2e65a624fcb62bf25e7cb4110427b46e19f44325c11e33e"
+      },
+      "image_count": 843
+    },
+    {
+      "address": "ATBox_RogueDifficultyHeat",
+      "source_asset": "Assets/[00002]Resource/Prefabs/ProjectAT/SubItem/ATBox_RogueDifficultyHeat.prefab",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19d33dec8d86a10fd59125f570d5c17e.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_subitem_atbox_roguedifficultyheat.bundle",
+        "bundle_hash": "19d33dec8d86a10fd59125f570d5c17e",
+        "sha256": "4ce3ad20053402ca1bac6eb4d5ad05b3d4b9c686ffc511c1e9313248d6721c08"
+      },
+      "image_count": 4
+    }
+  ],
+  "sprites": [
+    {
+      "name": "ChallegeDifficultyLevelBg",
+      "path": "res://assets/ui/prepare/challegedifficultylevelbg.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-7881122977892563023",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "a03db82e5a35bb7aae751054c833b7d85c921ef6bf42ed8c94a1a1f4fe508d7b",
+      "alpha_bounds": [
+        4,
+        4,
+        124,
+        125
+      ]
+    },
+    {
+      "name": "白星标",
+      "path": "res://assets/ui/prepare/sprite_45d48c752b3b.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpop_vip.bundle",
+        "bundle_hash": "c60856f6fe8d3b9c49cfd930577cb50d",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      "sprite_path_id": "-347511828128864971",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 64.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 38,
+      "height": 38,
+      "png_sha256": "8699c7d9416095c140cd356e50cca62a8b6d0006700a47d9e89b784591193c44",
+      "alpha_bounds": [
+        2,
+        2,
+        36,
+        36
+      ]
+    },
+    {
+      "name": "货币_底",
+      "path": "res://assets/ui/prepare/sprite_a5692cce8c43.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "8416506778996739775",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 249.0,
+        "height": 51.0
+      },
+      "border": {
+        "x": 125.0,
+        "y": 25.0,
+        "z": 124.0,
+        "w": 26.0
+      },
+      "width": 249,
+      "height": 51,
+      "png_sha256": "8637e4e85bc5cf905943031f7a48c503dab670432b5148fe5e811e285ff0381a",
+      "alpha_bounds": [
+        0,
+        0,
+        249,
+        51
+      ]
+    },
+    {
+      "name": "星星大",
+      "path": "res://assets/ui/prepare/sprite_d1b367e11c20.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-814199833485362129",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 50.0,
+        "height": 47.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 50,
+      "height": 47,
+      "png_sha256": "80ca89571820afb240f77a814f60a9ce420533c9b661bd5ff55329ba8257c8e2",
+      "alpha_bounds": [
+        2,
+        1,
+        48,
+        46
+      ]
+    },
+    {
+      "name": "AwakenSkillBg_1",
+      "path": "res://assets/ui/prepare/awakenskillbg_1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "3839955108537925876",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 126.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 125,
+      "height": 126,
+      "png_sha256": "7473d0fdf4409bdb562d7fd69c707027af9b869a38a8ce24c31789cc31b26d40",
+      "alpha_bounds": [
+        6,
+        6,
+        119,
+        120
+      ]
+    },
+    {
+      "name": "装饰花纹w",
+      "path": "res://assets/ui/prepare/sprite_48e4d20dc670.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "sprite_path_id": "3544653402676557892",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 254,
+      "height": 50,
+      "png_sha256": "3f74bc4d984106dbbf302c8f03879ca0f5fd8d9f6016a1ce62b22e8eaa9ebeea",
+      "alpha_bounds": [
+        2,
+        2,
+        252,
+        48
+      ]
+    },
+    {
+      "name": "sprite_materialicon_90001",
+      "path": "res://assets/ui/prepare/sprite_materialicon_90001.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-8314781698419631035",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "a4af50f4bcedee204c3fcc7ada6d5d21f6181d799e6068a54a24765b4ca2e2ed",
+      "alpha_bounds": [
+        0,
+        32,
+        256,
+        236
+      ]
+    },
+    {
+      "name": "提示点",
+      "path": "res://assets/ui/prepare/sprite_e75be5f55ff0.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projecttina_common.bundle",
+        "bundle_hash": "2bcd3e513d666d5b16999288d558b077",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "sprite_path_id": "3080528424784802588",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 26.0,
+        "height": 26.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 26,
+      "height": 26,
+      "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57",
+      "alpha_bounds": [
+        0,
+        0,
+        26,
+        26
+      ]
+    },
+    {
+      "name": "几何ui-白左渐变圆角矩形框",
+      "path": "res://assets/ui/prepare/sprite_ec991289c666.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "1901392561431533984",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 108.0,
+        "height": 108.0
+      },
+      "border": {
+        "x": 43.0,
+        "y": 47.0,
+        "z": 48.0,
+        "w": 43.0
+      },
+      "width": 102,
+      "height": 108,
+      "png_sha256": "88f409a22794c63ef4568f8c08a672ce4c7c75c9b95a151d8f610dffe85eee4d",
+      "alpha_bounds": [
+        2,
+        0,
+        94,
+        108
+      ]
+    },
+    {
+      "name": "星星底",
+      "path": "res://assets/ui/prepare/sprite_db6e5bd6e33b.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-2772862117838662624",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 24.0,
+        "height": 24.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 24,
+      "height": 24,
+      "png_sha256": "dd19a5a0c3905816165f8445505fedd1dd74dcd85ae1f019f5e4c6952debe730",
+      "alpha_bounds": [
+        0,
+        2,
+        23,
+        23
+      ]
+    },
+    {
+      "name": "减号按钮",
+      "path": "res://assets/ui/prepare/sprite_54b659420ffa.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projecttina_common.bundle",
+        "bundle_hash": "2bcd3e513d666d5b16999288d558b077",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "sprite_path_id": "-2453844321401970427",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 42.0,
+        "height": 44.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 42,
+      "height": 44,
+      "png_sha256": "65ed6919ed6c49f78e047df66ba7a874b61cf5bca8c84db1b21979baeaab13ed",
+      "alpha_bounds": [
+        0,
+        2,
+        42,
+        44
+      ]
+    },
+    {
+      "name": "当前节点图标",
+      "path": "res://assets/ui/prepare/sprite_f85a08361460.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/afef7f48dff2163d01e537b32bcce69f.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projecttina_panel_panel_battlestorychapterpage_关卡详情.bundle",
+        "bundle_hash": "afef7f48dff2163d01e537b32bcce69f",
+        "sha256": "b2d2c8819cb75182662c7b55cfd9ad33ec3254e6eb2e0d52e9186e36e3f64794"
+      },
+      "sprite_path_id": "2966294314087296909",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 80.0,
+        "height": 80.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 80,
+      "height": 80,
+      "png_sha256": "dec07d70a9afcd1de14ecc26e3711797b8311231ca19f3f53a4a97dc7e206478",
+      "alpha_bounds": [
+        1,
+        1,
+        79,
+        79
+      ]
+    },
+    {
+      "name": "24",
+      "path": "res://assets/ui/prepare/24.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "5985676854447024116",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 145.0,
+        "height": 30.0
+      },
+      "border": {
+        "x": 40.0,
+        "y": 20.0,
+        "z": 40.0,
+        "w": 5.0
+      },
+      "width": 145,
+      "height": 30,
+      "png_sha256": "9ab8cf6f9f3fbdf02ca35bd227ab20d9def27c9ee0f3c78e5e5d8f06fd35643b",
+      "alpha_bounds": [
+        0,
+        0,
+        145,
+        30
+      ]
+    },
+    {
+      "name": "几何ui-白左渐变圆角矩形",
+      "path": "res://assets/ui/prepare/sprite_c5e87178a664.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "-474771377498333912",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 108.0,
+        "height": 108.0
+      },
+      "border": {
+        "x": 42.0,
+        "y": 40.0,
+        "z": 0.0,
+        "w": 39.0
+      },
+      "width": 102,
+      "height": 108,
+      "png_sha256": "670d38ec97a7f466ddd22b257059897e8a55636fc9ffa0f6ee591dbddeb9806a",
+      "alpha_bounds": [
+        0,
+        0,
+        96,
+        108
+      ]
+    },
+    {
+      "name": "装饰花纹 1",
+      "path": "res://assets/ui/prepare/sprite_1ee01401efa5.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "sprite_path_id": "6207561443359159708",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 32,
+      "height": 32,
+      "png_sha256": "ecb4bac6ab810f8b3a53607fb8655fd189f99cb41eea6278be25d5da8da6aae3",
+      "alpha_bounds": [
+        1,
+        0,
+        30,
+        30
+      ]
+    },
+    {
+      "name": "箭头_上",
+      "path": "res://assets/ui/prepare/sprite_3ee38af55146.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "ee9ece7880db73803095bfb4da47ad8d",
+        "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+      },
+      "sprite_path_id": "5218427736472422516",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 47.0,
+        "height": 74.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 47,
+      "height": 74,
+      "png_sha256": "ebcbb9a5eab9a2b97f4acbc9882780edefb3785b6338a566fb8b92bfa01d3261",
+      "alpha_bounds": [
+        0,
+        0,
+        47,
+        73
+      ]
+    },
+    {
+      "name": "箭头白发光",
+      "path": "res://assets/ui/prepare/sprite_4d6ce6aca875.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "sprite_path_id": "5381921241034518698",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 64.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 59,
+      "height": 59,
+      "png_sha256": "ccd2b7c6aad0a8186b0df08e9bd79e66ee17a2f091b0000665a42b0a983f09a5",
+      "alpha_bounds": [
+        1,
+        2,
+        57,
+        58
+      ]
+    },
+    {
+      "name": "信息框底2",
+      "path": "res://assets/ui/prepare/sprite_489467949339.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "434496613652898986",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 63.999996185302734,
+        "height": 63.999996185302734
+      },
+      "border": {
+        "x": 30.504671096801758,
+        "y": 31.102802276611328,
+        "z": 30.504671096801758,
+        "w": 31.102802276611328
+      },
+      "width": 64,
+      "height": 64,
+      "png_sha256": "0ece1cba8ad3353540081c828a0fd94215cb1297768a3505e8d83028f39acf21",
+      "alpha_bounds": [
+        2,
+        4,
+        62,
+        61
+      ]
+    },
+    {
+      "name": "完成",
+      "path": "res://assets/ui/prepare/sprite_c0b3fbff51cc.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e3760e23149852091a866c8382071b42.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_extrachallenge.bundle",
+        "bundle_hash": "e3760e23149852091a866c8382071b42",
+        "sha256": "b9654304bf6c20b63862b52691255b56dc099532a21ee1f754e20ce116057d37"
+      },
+      "sprite_path_id": "-7272504214878431250",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 127,
+      "png_sha256": "27578878c84e5288484d0b0bb07e2920deb08ca41e26bc33e2b6fe2e98426420",
+      "alpha_bounds": [
+        2,
+        2,
+        128,
+        125
+      ]
+    },
+    {
+      "name": "slotfg_rare_square_1_v2",
+      "path": "res://assets/ui/prepare/slotfg_rare_square_1_v2.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/85405f110074a3b101657bdb61c1d6db.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_panel_runtimeload.bundle",
+        "bundle_hash": "85405f110074a3b101657bdb61c1d6db",
+        "sha256": "a323a3191169a5ac8988ad8f182858d6ffcec9e30fcba6403d60580b3981b5e1"
+      },
+      "sprite_path_id": "-6259846521885095785",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 63.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 31.70063591003418,
+        "y": 32.0,
+        "z": 31.299362182617188,
+        "w": 32.0
+      },
+      "width": 63,
+      "height": 64,
+      "png_sha256": "ea25eb974cf764e25759aaf26017256dd9608112741bef921f9d6d4e76bbe711",
+      "alpha_bounds": [
+        0,
+        0,
+        63,
+        64
+      ]
+    },
+    {
+      "name": "星标(进度条)",
+      "path": "res://assets/ui/prepare/sprite_414bbfe18510.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "3168469685674810874",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 46.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 254,
+      "height": 38,
+      "png_sha256": "f8bed4d537d30fa38642838a657e0ab177914ea834218803577288364f45d386",
+      "alpha_bounds": [
+        7,
+        7,
+        248,
+        31
+      ]
+    },
+    {
+      "name": "Reword_btn_1",
+      "path": "res://assets/ui/prepare/reword_btn_1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "3689479814978730895",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "e594ca03efd49320404e4670d6e4c56078c295fc44c1dc7494496a97ac4eecd0",
+      "alpha_bounds": [
+        1,
+        1,
+        127,
+        127
+      ]
+    },
+    {
+      "name": "sprite_icon_heatchallenge",
+      "path": "res://assets/ui/prepare/sprite_icon_heatchallenge.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_system.bundle",
+        "bundle_hash": "e05a616ef0b7ba19af3ea033eec31f2f",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "sprite_path_id": "-875024106612785826",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 248,
+      "height": 248,
+      "png_sha256": "fd711053ec24dfd744d2d21c0704ee72c4aefbe28e1781abc69e37e514b602c9",
+      "alpha_bounds": [
+        0,
+        0,
+        248,
+        248
+      ]
+    },
+    {
+      "name": "锁",
+      "path": "res://assets/ui/prepare/sprite_4f62f920d67e.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-7779187746478388713",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 41.0,
+        "height": 49.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 41,
+      "height": 49,
+      "png_sha256": "3fb84b5a85985397eda324f9b51823ce209cc82cee9db5b8e21502625b4d358f",
+      "alpha_bounds": [
+        0,
+        0,
+        41,
+        49
+      ]
+    },
+    {
+      "name": "热度底框",
+      "path": "res://assets/ui/prepare/sprite_6101e3d396ee.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-6126996271170055129",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 50.0,
+        "y": 50.0,
+        "z": 50.0,
+        "w": 50.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "04e9ba177a4af471db3477f1dfa9b7d4a8ffe705f97a4a3540bac8680fd2c4a5",
+      "alpha_bounds": [
+        0,
+        4,
+        127,
+        124
+      ]
+    },
+    {
+      "name": "sprite_abilityitemicon_15101",
+      "path": "res://assets/ui/prepare/sprite_abilityitemicon_15101.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "4722616278204564780",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "4f29ad319730261e525c403835a003e1a95f1fe1765804bb7dfdaae1b7640201",
+      "alpha_bounds": [
+        14,
+        12,
+        118,
+        120
+      ]
+    },
+    {
+      "name": "顶部",
+      "path": "res://assets/ui/prepare/sprite_6f2a4a02e60e.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-7954782238467266710",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 16.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 16,
+      "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf",
+      "alpha_bounds": [
+        0,
+        0,
+        256,
+        16
+      ]
+    },
+    {
+      "name": "锁定遮罩",
+      "path": "res://assets/ui/prepare/sprite_c317ca990820.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "918722314435250836",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 145.0,
+        "height": 145.0
+      },
+      "border": {
+        "x": 73.0,
+        "y": 72.0,
+        "z": 72.0,
+        "w": 73.0
+      },
+      "width": 145,
+      "height": 145,
+      "png_sha256": "e9018db60457de8ec82fb160b917594540512dab2aba5a6f634bddecaa633dae",
+      "alpha_bounds": [
+        0,
+        0,
+        145,
+        145
+      ]
+    },
+    {
+      "name": "道具分类名_底",
+      "path": "res://assets/ui/prepare/sprite_a5edb6ff97a7.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-7332168551532663191",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 150.0,
+        "height": 71.0
+      },
+      "border": {
+        "x": 56.0,
+        "y": 24.0,
+        "z": 56.0,
+        "w": 24.0
+      },
+      "width": 150,
+      "height": 71,
+      "png_sha256": "ee09a20273cb69e3c1515be3b525d0c4b9fa313d15cade9c616fc2afb87faec6",
+      "alpha_bounds": [
+        0,
+        0,
+        150,
+        71
+      ]
+    },
+    {
+      "name": "几何ui-白圆角矩形",
+      "path": "res://assets/ui/prepare/sprite_083f833001c7.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "6661574081893680522",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 108.0,
+        "height": 108.0
+      },
+      "border": {
+        "x": 38.0,
+        "y": 40.0,
+        "z": 38.0,
+        "w": 38.0
+      },
+      "width": 108,
+      "height": 108,
+      "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb",
+      "alpha_bounds": [
+        1,
+        0,
+        108,
+        108
+      ]
+    },
+    {
+      "name": "sprite_attackicon_300033",
+      "path": "res://assets/ui/prepare/sprite_attackicon_300033.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_skill.bundle",
+        "bundle_hash": "19753c31c80244111fe133e60d62d274",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-3686439076997110730",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 112,
+      "height": 118,
+      "png_sha256": "59b4146cce65c2fc9656817c79e6ca71dd713761d99fcba3a6b12f4d4e7f07fc",
+      "alpha_bounds": [
+        2,
+        2,
+        110,
+        115
+      ]
+    },
+    {
+      "name": "sprite_abilityitemicon_11103",
+      "path": "res://assets/ui/prepare/sprite_abilityitemicon_11103.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-4976625060333819487",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "483c0299f3cc6c6ab1da18e1f71ae16f0ea629c104e630da97dc16d44d32ecee",
+      "alpha_bounds": [
+        12,
+        12,
+        118,
+        116
+      ]
+    },
+    {
+      "name": "选择高亮",
+      "path": "res://assets/ui/prepare/sprite_8efb0fde4e71.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-495095694787399995",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 68.0,
+        "height": 68.0
+      },
+      "border": {
+        "x": 34.0,
+        "y": 34.0,
+        "z": 34.0,
+        "w": 34.0
+      },
+      "width": 68,
+      "height": 68,
+      "png_sha256": "55a4c26025a481768918b2b33f150438542010d4ac8855ee612bfe5db418e069",
+      "alpha_bounds": [
+        0,
+        0,
+        68,
+        68
+      ]
+    },
+    {
+      "name": "sprite_materialicon_40001",
+      "path": "res://assets/ui/prepare/sprite_materialicon_40001.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-7693951651999609644",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "66ca2f57e43c0dd1e4620f7b1e73920cef2d5281459724c04067a056550a9c08",
+      "alpha_bounds": [
+        2,
+        28,
+        254,
+        236
+      ]
+    },
+    {
+      "name": "箭头白",
+      "path": "res://assets/ui/prepare/sprite_edaacdc6ade3.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "sprite_path_id": "4384636787489496816",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 64.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 38,
+      "height": 36,
+      "png_sha256": "1124b0ed0aab6f9f98061806580865cfb44c5750f81e7315f48d9a33c7a56033",
+      "alpha_bounds": [
+        2,
+        2,
+        36,
+        34
+      ]
+    },
+    {
+      "name": "6_1",
+      "path": "res://assets/ui/prepare/6_1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_maincitydeveloper.bundle",
+        "bundle_hash": "fc7f9165dae70798b7466648f17d7426",
+        "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+      },
+      "sprite_path_id": "8957735846151656560",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 174.0,
+        "height": 53.0
+      },
+      "border": {
+        "x": 85.0,
+        "y": 0.0,
+        "z": 85.0,
+        "w": 0.0
+      },
+      "width": 174,
+      "height": 53,
+      "png_sha256": "134f2be59d4b2519331edf04d5edbac8234a89c335f9f7dcb397a4ddcbbedcc7",
+      "alpha_bounds": [
+        0,
+        0,
+        174,
+        53
+      ]
+    },
+    {
+      "name": "sprite_cardicon_square_jiannan",
+      "path": "res://assets/ui/prepare/sprite_cardicon_square_jiannan.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_chara.bundle",
+        "bundle_hash": "20ec76d0422cb1686d2b0d38d3f8014f",
+        "sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810"
+      },
+      "sprite_path_id": "-2265790994389019107",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "5bf060a81d3a3ef6edd7aeaeb080f200bf01e6477f8e84d95ffc557ab3e42370",
+      "alpha_bounds": [
+        0,
+        0,
+        256,
+        256
+      ]
+    },
+    {
+      "name": "sprite_materialicon_101",
+      "path": "res://assets/ui/prepare/sprite_materialicon_101.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-4929560618279763517",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "6bad02912188f5aca0b14de5cbf6be37ac6343105118a48437d866c025cf3f93",
+      "alpha_bounds": [
+        38,
+        34,
+        218,
+        222
+      ]
+    },
+    {
+      "name": "分割线-框内",
+      "path": "res://assets/ui/prepare/sprite_cfccdbee8c3d.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-2960675743438711179",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 2.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 2,
+      "height": 256,
+      "png_sha256": "b35c356a0b6d4110da5b321ffa33fbe0cbc4aca74f074a31db0b59a7653ff266",
+      "alpha_bounds": [
+        0,
+        7,
+        2,
+        243
+      ]
+    },
+    {
+      "name": "难度选择框",
+      "path": "res://assets/ui/prepare/sprite_214105a502f0.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-3907856849102261423",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 64,
+      "png_sha256": "c838df3a389f74f43db604b25fc6bd3aec44bda6aae063985d6e8b4fb5907013",
+      "alpha_bounds": [
+        2,
+        0,
+        124,
+        64
+      ]
+    },
+    {
+      "name": "sprite_rect_128x128",
+      "path": "res://assets/ui/prepare/sprite_rect_128x128.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+        "bundle_name": "assets_[00002]resource_texture_commonassets.bundle",
+        "bundle_hash": "47edbdb630b0fa1128f2f17a41738187",
+        "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+      },
+      "sprite_path_id": "3483957996699903255",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 13.0,
+        "y": 13.0,
+        "z": 13.0,
+        "w": 13.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "77085affe7ed4ae748996e56e57aec088d5b4a996a3060829b41925cc8383fcc",
+      "alpha_bounds": [
+        0,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "icon_addnum",
+      "path": "res://assets/ui/prepare/icon_addnum.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-1575747556048610155",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 40.0,
+        "height": 40.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 40,
+      "height": 40,
+      "png_sha256": "48eb7cd4c25eef2504ab06ffccb3b0d5788312021cc42ee0cbc5b181447ab564",
+      "alpha_bounds": [
+        2,
+        1,
+        38,
+        37
+      ]
+    },
+    {
+      "name": "38_1",
+      "path": "res://assets/ui/prepare/38_1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "2964628028117731727",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 126.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 126,
+      "height": 128,
+      "png_sha256": "37a555bc76cc5cd0ad4a251ad03bed6859f057ff10daa481691c4458059098e8",
+      "alpha_bounds": [
+        0,
+        0,
+        126,
+        128
+      ]
+    },
+    {
+      "name": "sprite_abilityitemicon_13103",
+      "path": "res://assets/ui/prepare/sprite_abilityitemicon_13103.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-3162654979087943034",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "0b9205f33d9cd59e4555be25a9ef73745856935e39527a8ac03e414af52e2f43",
+      "alpha_bounds": [
+        8,
+        19,
+        116,
+        117
+      ]
+    },
+    {
+      "name": "内容纸",
+      "path": "res://assets/ui/prepare/sprite_3a9aff16f3e3.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e3760e23149852091a866c8382071b42.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_extrachallenge.bundle",
+        "bundle_hash": "e3760e23149852091a866c8382071b42",
+        "sha256": "b9654304bf6c20b63862b52691255b56dc099532a21ee1f754e20ce116057d37"
+      },
+      "sprite_path_id": "-9197537726922637157",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 37.5,
+        "y": 46.0,
+        "z": 36.0,
+        "w": 33.0
+      },
+      "width": 120,
+      "height": 112,
+      "png_sha256": "46fc6b8cacdc93b35ab501e5f0843b9fd4f8383df655e0e462b48508c98c2433",
+      "alpha_bounds": [
+        2,
+        3,
+        118,
+        112
+      ]
+    },
+    {
+      "name": "传送门背景",
+      "path": "res://assets/ui/prepare/sprite_642546df298d.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/dd01b7ed17ef95572ae71526f27bae78.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_bigimage.bundle",
+        "bundle_hash": "dd01b7ed17ef95572ae71526f27bae78",
+        "sha256": "c9b0e70879ca8e66761df0e47a11dd9ecd2d0514de28541de420d8f9f0006539"
+      },
+      "sprite_path_id": "-668527000085035521",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1024.0,
+        "height": 512.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 1024,
+      "height": 512,
+      "png_sha256": "9efec307b906de324ab1eb6b57dfcc8671725efbbe88f52788077629b4f967f9",
+      "alpha_bounds": [
+        0,
+        0,
+        1024,
+        512
+      ]
+    },
+    {
+      "name": "装饰树_左",
+      "path": "res://assets/ui/prepare/sprite_f9d9dd0acf6d.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "3990832297706230822",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 411.0,
+        "height": 387.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 411,
+      "height": 387,
+      "png_sha256": "991ac0981f56bb042352ff480e34dcc27588a564b8ab7905db78da83468d4c75",
+      "alpha_bounds": [
+        0,
+        0,
+        411,
+        387
+      ]
+    },
+    {
+      "name": "几何ui-椭圆白色按钮",
+      "path": "res://assets/ui/prepare/sprite_39ebe9c97d61.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "-1055889953380836409",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 81.0
+      },
+      "border": {
+        "x": 71.40135955810547,
+        "y": 0.0,
+        "z": 75.7551040649414,
+        "w": 0.0
+      },
+      "width": 250,
+      "height": 75,
+      "png_sha256": "d557dbc1e6c5ad718194dd315e1d878c464f3becac81c087d2c3892985f4dacf",
+      "alpha_bounds": [
+        5,
+        3,
+        245,
+        70
+      ]
+    },
+    {
+      "name": "左右箭头按钮",
+      "path": "res://assets/ui/prepare/sprite_ca6063f176c1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/cd41f8b7a01a6531ea295eea73485523.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projecttina_panel_panel_carddetail_角色详情_基本信息.bundle",
+        "bundle_hash": "cd41f8b7a01a6531ea295eea73485523",
+        "sha256": "0148939aee6e614928e65f8fb90fd336f5b52d94c5513d07862ca29114f903d9"
+      },
+      "sprite_path_id": "8284727392428173768",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 96,
+      "height": 96,
+      "png_sha256": "7c7355499467a969fcb67a38744847d7bcc6b7e4f2c645fd5c0f5f3047ba013a",
+      "alpha_bounds": [
+        0,
+        0,
+        96,
+        96
+      ]
+    },
+    {
+      "name": "冒险图标",
+      "path": "res://assets/ui/prepare/sprite_cfc786757674.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/b816c12384753616557043b1a65f4ae8.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projecttina_panel_panel_mainmenu.bundle",
+        "bundle_hash": "b816c12384753616557043b1a65f4ae8",
+        "sha256": "53220220b7f9192f659a84131d1d3bebb19aa880b9787856d09651e7bbe43b7b"
+      },
+      "sprite_path_id": "7140192286176565542",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 194.0,
+        "height": 194.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 194,
+      "height": 194,
+      "png_sha256": "93c0cf5aa1b66873a70aad643b1e0962ecc3db008af8743a2c6e33e6b0cfa9e5",
+      "alpha_bounds": [
+        1,
+        2,
+        194,
+        192
+      ]
+    },
+    {
+      "name": "38_2",
+      "path": "res://assets/ui/prepare/38_2.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "8826406547448468071",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 126.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 126,
+      "height": 128,
+      "png_sha256": "b6205b28bb6883cd14e5f690e816189ad8f4f146008d50ce335f63b34192ceb6",
+      "alpha_bounds": [
+        0,
+        0,
+        126,
+        128
+      ]
+    },
+    {
+      "name": "已领取图标 1",
+      "path": "res://assets/ui/prepare/sprite_de8e5fbf819a.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-1192198455143402225",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 106.0,
+        "height": 108.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 106,
+      "height": 108,
+      "png_sha256": "7e91a99dc9873a0be95d2ca6d121df47eeda057adc60f96a9dc3cff70f005d0a",
+      "alpha_bounds": [
+        0,
+        0,
+        106,
+        108
+      ]
+    },
+    {
+      "name": "几何ui-异形白色按钮",
+      "path": "res://assets/ui/prepare/sprite_680182ff8037.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "-8412021753276499210",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 294.0,
+        "height": 93.0
+      },
+      "border": {
+        "x": 89.0,
+        "y": 0.0,
+        "z": 92.0,
+        "w": 0.0
+      },
+      "width": 294,
+      "height": 86,
+      "png_sha256": "dda85949bced6235bddc464855b8659aa427f9c9a767d63fb498f01ea4a5aa0d",
+      "alpha_bounds": [
+        2,
+        2,
+        293,
+        84
+      ]
+    },
+    {
+      "name": "分类选中",
+      "path": "res://assets/ui/prepare/sprite_ee3dc408b490.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "2801027422704194543",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 78.0
+      },
+      "border": {
+        "x": 128.0,
+        "y": 39.0,
+        "z": 128.0,
+        "w": 39.0
+      },
+      "width": 256,
+      "height": 78,
+      "png_sha256": "a65eee0a03fbc75e37e51ef708ee00f5156f41e0e5903f2c380f44f3bb1e2d98",
+      "alpha_bounds": [
+        4,
+        0,
+        252,
+        78
+      ]
+    },
+    {
+      "name": "35",
+      "path": "res://assets/ui/prepare/35.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "3255351583719715302",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 64.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 32.0,
+        "y": 32.0,
+        "z": 32.0,
+        "w": 32.0
+      },
+      "width": 64,
+      "height": 64,
+      "png_sha256": "a1c7bf70efb857852d40994c7e9e68c4d7154fa713c696124a5ee6c6fbdd51a8",
+      "alpha_bounds": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "sprite_materialicon_90002",
+      "path": "res://assets/ui/prepare/sprite_materialicon_90002.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "6651430658684800665",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "df45ad6d7354fae2868550eeb052f03d09fdc25ad59745c7b289cb1619c73148",
+      "alpha_bounds": [
+        52,
+        0,
+        196,
+        256
+      ]
+    },
+    {
+      "name": "Button_Refresh_1",
+      "path": "res://assets/ui/prepare/button_refresh_1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "8665111779992228352",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 126.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 126,
+      "height": 128,
+      "png_sha256": "22c91482890dcaa7ade9e10552c2ef8751dae6a99b2650e028118944692fdc2a",
+      "alpha_bounds": [
+        0,
+        0,
+        126,
+        128
+      ]
+    },
+    {
+      "name": "底框_木元素",
+      "path": "res://assets/ui/prepare/sprite_71dcb813eec6.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "-1039078803416556759",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 76.0
+      },
+      "border": {
+        "x": 64.61341857910156,
+        "y": 31.277976989746094,
+        "z": 81.78913879394531,
+        "w": 28.25992774963379
+      },
+      "width": 256,
+      "height": 76,
+      "png_sha256": "4f86f6f01f787531c849f1347ef0e2d193150249057e51f0fa11b3cbeb8ec00b",
+      "alpha_bounds": [
+        0,
+        0,
+        256,
+        76
+      ]
+    },
+    {
+      "name": "UISprite",
+      "path": "res://assets/ui/prepare/uisprite.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/3f87afe7092b708c03e4a3f29cdba1a8.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_panel_atpanel_rogueleveldifficulty.bundle",
+        "bundle_hash": "3f87afe7092b708c03e4a3f29cdba1a8",
+        "sha256": "bb8fbcf6bc6dc00ef2e65a624fcb62bf25e7cb4110427b46e19f44325c11e33e"
+      },
+      "sprite_path_id": "5837791642106728268",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "width": 32,
+      "height": 32,
+      "png_sha256": "9e2b539b7c88fe4464525abc282c724b964852950a0b8aa1df13414014b5f33c",
+      "alpha_bounds": [
+        2,
+        2,
+        30,
+        30
+      ]
+    },
+    {
+      "name": "战绩",
+      "path": "res://assets/ui/prepare/sprite_f7ae19fb9867.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "4782194988089159150",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 98,
+      "height": 104,
+      "png_sha256": "c56343fb3791a3f49973d3aa60f2d1092e8c7f350ab97f38b799229f8827f42c",
+      "alpha_bounds": [
+        6,
+        6,
+        92,
+        98
+      ]
+    },
+    {
+      "name": "主城建造离开按钮",
+      "path": "res://assets/ui/prepare/sprite_fcde123c50ee.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_maincitydeveloper.bundle",
+        "bundle_hash": "fc7f9165dae70798b7466648f17d7426",
+        "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+      },
+      "sprite_path_id": "3892142574738822647",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 360.0,
+        "height": 121.0
+      },
+      "border": {
+        "x": 120.0,
+        "y": 0.0,
+        "z": 120.0,
+        "w": 0.0
+      },
+      "width": 360,
+      "height": 121,
+      "png_sha256": "2595f3dff86c2d9c9f265bbe5ad3ac357de1ef28cf291204e68f52c2771632fa",
+      "alpha_bounds": [
+        0,
+        0,
+        360,
+        121
+      ]
+    },
+    {
+      "name": "Button_ClaimReward",
+      "path": "res://assets/ui/prepare/button_claimreward.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_panel_battleplayerctrl.bundle",
+        "bundle_hash": "bdd8ac4c1cf487c16c92c6ee0a504b17",
+        "sha256": "03596ac9627ac23fecb9ee6240f868f50a8dd144773f170fff7be1e137d2eaa3"
+      },
+      "sprite_path_id": "-5060642477995613079",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 101,
+      "png_sha256": "917a0b1c801e026d269787cc66e085c36d375068653ad6b47b1d5190dcd8305b",
+      "alpha_bounds": [
+        2,
+        2,
+        127,
+        99
+      ]
+    },
+    {
+      "name": "sprite_materialicon_55000007",
+      "path": "res://assets/ui/prepare/sprite_materialicon_55000007.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/1e3d23a4fab0f94320c8d38dde91759a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projecttina_icon_materialicon.bundle",
+        "bundle_hash": "1e3d23a4fab0f94320c8d38dde91759a",
+        "sha256": "0a7ac40a912fd82704be16189f35e66c6bb788eea127286bcaae8d9bee730691"
+      },
+      "sprite_path_id": "-278758081483342376",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 512.0,
+        "height": 512.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 363,
+      "height": 361,
+      "png_sha256": "7686c27bfe55cbdbdf9ca9474e7781b6aad3099912ab640c054c8b0c6e40c79d",
+      "alpha_bounds": [
+        1,
+        2,
+        361,
+        359
+      ]
+    },
+    {
+      "name": "锁头",
+      "path": "res://assets/ui/prepare/sprite_eb52231830be.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-3531569690072326385",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 73.0,
+        "height": 84.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 73,
+      "height": 84,
+      "png_sha256": "c18da33ddfde777db7987ed972d054035bcb0e690b2659455f2a2be78c4b0a2d",
+      "alpha_bounds": [
+        1,
+        1,
+        71,
+        83
+      ]
+    },
+    {
+      "name": "白色花纹",
+      "path": "res://assets/ui/prepare/sprite_f548b6b1c481.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-4871935527926868590",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 120,
+      "height": 99,
+      "png_sha256": "3ba99bfae4f15fd0175a68f4a9e3036057b3b5bab725841a8833d1a0452b5c7b",
+      "alpha_bounds": [
+        6,
+        6,
+        114,
+        93
+      ]
+    },
+    {
+      "name": "52",
+      "path": "res://assets/ui/prepare/52.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "9192043696030654485",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 50.0,
+        "height": 30.0
+      },
+      "border": {
+        "x": 17.0,
+        "y": 0.0,
+        "z": 27.0,
+        "w": 0.0
+      },
+      "width": 50,
+      "height": 30,
+      "png_sha256": "686106712274c962a3c19dce391f269303bb1207b7a8404125959225dbe99a0b",
+      "alpha_bounds": [
+        2,
+        3,
+        47,
+        26
+      ]
+    },
+    {
+      "name": "sprite_materialicon_108",
+      "path": "res://assets/ui/prepare/sprite_materialicon_108.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-6886311129609553285",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "98887778f026ffc2dc812e953514433d58a4cce7c117d7d97bb24e25f9cb42cb",
+      "alpha_bounds": [
+        42,
+        18,
+        202,
+        242
+      ]
+    },
+    {
+      "name": "bg装饰",
+      "path": "res://assets/ui/prepare/sprite_effdc594aa0c.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "sprite_path_id": "478666742663739318",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 236,
+      "height": 236,
+      "png_sha256": "8d693263c6d5dad7b897f9e2aa4aac9acb10c9fda7895efdd38522e1dfb7cef6",
+      "alpha_bounds": [
+        3,
+        2,
+        234,
+        234
+      ]
+    },
+    {
+      "name": "冒险准备",
+      "path": "res://assets/ui/prepare/sprite_c9b9738ccc0c.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_title.bundle",
+        "bundle_hash": "422a764f3207c84b49cba942f6ee255a",
+        "sha256": "43247ca44a5d54cf0dcc6cd4272251155a71fa6af48e60c070e2ead9bac77488"
+      },
+      "sprite_path_id": "6033893015741947995",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 299.0,
+        "height": 90.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 299,
+      "height": 88,
+      "png_sha256": "09548c772b0a7a4813c70b589e9290384ef5729bfc3de43b43498228ca1fd705",
+      "alpha_bounds": [
+        0,
+        2,
+        299,
+        88
+      ]
+    },
+    {
+      "name": "悬赏委托按钮",
+      "path": "res://assets/ui/prepare/sprite_e90d60f55d96.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-4689441038224483880",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 295.0,
+        "height": 94.0
+      },
+      "border": {
+        "x": 87.0,
+        "y": 0.0,
+        "z": 91.0,
+        "w": 0.0
+      },
+      "width": 295,
+      "height": 94,
+      "png_sha256": "7a26509a7b3e44f8d9dd855a8ea9dde17641c618e5fa3f2f47e79e6931e074e3",
+      "alpha_bounds": [
+        0,
+        1,
+        295,
+        93
+      ]
+    },
+    {
+      "name": "角落花纹",
+      "path": "res://assets/ui/prepare/sprite_ea110d5a22c3.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-1444747061177180976",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 222.0,
+        "height": 222.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 222,
+      "height": 222,
+      "png_sha256": "213f4b8964cbc96abafdac950bf4593bb88ef5c4e3e687aadfe2ff9f7e7a1004",
+      "alpha_bounds": [
+        0,
+        0,
+        222,
+        222
+      ]
+    },
+    {
+      "name": "须知",
+      "path": "res://assets/ui/prepare/sprite_31950388649a.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "sprite_path_id": "-3264226760608914741",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 64.0,
+        "height": 64.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 50,
+      "height": 50,
+      "png_sha256": "1605d616392871b7965873cf67b90c8248e174ca98f4084676cc0fcd27701eb5",
+      "alpha_bounds": [
+        2,
+        2,
+        48,
+        48
+      ]
+    },
+    {
+      "name": "几何ui-暗圆角矩形",
+      "path": "res://assets/ui/prepare/sprite_b937919bba0f.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "-5329703775576750254",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 108.0,
+        "height": 108.0
+      },
+      "border": {
+        "x": 38.0,
+        "y": 39.0,
+        "z": 38.0,
+        "w": 39.0
+      },
+      "width": 108,
+      "height": 108,
+      "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4",
+      "alpha_bounds": [
+        0,
+        0,
+        108,
+        108
+      ]
+    },
+    {
+      "name": "sprite_materialicon_102",
+      "path": "res://assets/ui/prepare/sprite_materialicon_102.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "3894177138201564098",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "8c0e26cdfc8d76be9762019a6b3a2f82e7f8f4b1aa42f3d1bdb9bd714b84a37d",
+      "alpha_bounds": [
+        66,
+        64,
+        198,
+        195
+      ]
+    },
+    {
+      "name": "heatchallengepaper_2",
+      "path": "res://assets/ui/prepare/heatchallengepaper_2.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/1da5aadb6033cb59b6d0163a9c8a0196.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_selectheatchallenge.bundle",
+        "bundle_hash": "1da5aadb6033cb59b6d0163a9c8a0196",
+        "sha256": "e6ac8660143746795271e02b44d39f03312ea2848ac2c6acbbcae05bc0539ba3"
+      },
+      "sprite_path_id": "-5915949694122345483",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 512.0,
+        "height": 512.0
+      },
+      "border": {
+        "x": 167.0,
+        "y": 189.0,
+        "z": 152.0,
+        "w": 188.0
+      },
+      "width": 512,
+      "height": 507,
+      "png_sha256": "177a6a53566f543edd0a6950aa427fb98f94575903a815fbf682dac746a62f19",
+      "alpha_bounds": [
+        0,
+        2,
+        512,
+        505
+      ]
+    },
+    {
+      "name": "sprite_conversation_gift",
+      "path": "res://assets/ui/prepare/sprite_conversation_gift.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_system.bundle",
+        "bundle_hash": "e05a616ef0b7ba19af3ea033eec31f2f",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "sprite_path_id": "1758540359052893790",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 110,
+      "height": 112,
+      "png_sha256": "e693e1c01aba5ba76299065338a93e060f036c8023a3e0dd5062cbc71d7ceffe",
+      "alpha_bounds": [
+        2,
+        2,
+        108,
+        110
+      ]
+    },
+    {
+      "name": "UIMask",
+      "path": "res://assets/ui/prepare/uimask.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/3f87afe7092b708c03e4a3f29cdba1a8.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_panel_atpanel_rogueleveldifficulty.bundle",
+        "bundle_hash": "3f87afe7092b708c03e4a3f29cdba1a8",
+        "sha256": "bb8fbcf6bc6dc00ef2e65a624fcb62bf25e7cb4110427b46e19f44325c11e33e"
+      },
+      "sprite_path_id": "-426171492875694260",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "width": 28,
+      "height": 28,
+      "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969",
+      "alpha_bounds": [
+        2,
+        2,
+        26,
+        26
+      ]
+    },
+    {
+      "name": "石头元素底框",
+      "path": "res://assets/ui/prepare/sprite_77059913c851.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "sprite_path_id": "731158016775993117",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 512.0,
+        "height": 512.0
+      },
+      "border": {
+        "x": 235.5,
+        "y": 264.0,
+        "z": 274.0,
+        "w": 242.0
+      },
+      "width": 443,
+      "height": 489,
+      "png_sha256": "aec8f6a3a570f3f463ab3d53089e7afa0f0eda24feecbb0d14b03a5512fd0cb5",
+      "alpha_bounds": [
+        3,
+        1,
+        441,
+        488
+      ]
+    },
+    {
+      "name": "bg装饰",
+      "path": "res://assets/ui/prepare/sprite_effdc594aa0c_c9f86dc9.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+        "bundle_name": "assets_[00002]resource_texture_battlesys.bundle",
+        "bundle_hash": "08f6ff0f18bf1e8dbc6aa4c60efe523c",
+        "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+      },
+      "sprite_path_id": "5221211053828565629",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 236,
+      "height": 236,
+      "png_sha256": "734f70f54f13a54884d56b5aca385f66f19f8253750f9999ce7c4caa4781a640",
+      "alpha_bounds": [
+        2,
+        2,
+        234,
+        236
+      ]
+    },
+    {
+      "name": "sprite_materialicon_103",
+      "path": "res://assets/ui/prepare/sprite_materialicon_103.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-2847287226865223873",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "3064adbcecaa556b27161d2369a5ed3ba6d0f41aa6c5f330765e671750300c32",
+      "alpha_bounds": [
+        72,
+        0,
+        192,
+        212
+      ]
+    },
+    {
+      "name": "sprite_materialicon_502",
+      "path": "res://assets/ui/prepare/sprite_materialicon_502.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "8462504211962514845",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 256,
+      "png_sha256": "64517341db825a02ab7a4fb297a8a7941cd6ae0e5bde7cfab5fb9d5f01b304a3",
+      "alpha_bounds": [
+        4,
+        36,
+        256,
+        220
+      ]
+    },
+    {
+      "name": "6",
+      "path": "res://assets/ui/prepare/6.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_maincitydeveloper.bundle",
+        "bundle_hash": "fc7f9165dae70798b7466648f17d7426",
+        "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+      },
+      "sprite_path_id": "-8645510521729199701",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 174.0,
+        "height": 53.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 174,
+      "height": 53,
+      "png_sha256": "48a03a5e1e597bda26b305f21b82c046bfc9d856998e3167d683cd0c01204814",
+      "alpha_bounds": [
+        0,
+        0,
+        174,
+        53
+      ]
+    },
+    {
+      "name": "Adventure_Level_5",
+      "path": "res://assets/ui/prepare/adventure_level_5.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/aaa53f878be5ff5e6e55525fbf39fa02.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_charalevel.bundle",
+        "bundle_hash": "aaa53f878be5ff5e6e55525fbf39fa02",
+        "sha256": "bd628ccc0bf01caa83dc183947c00993da6bd808434e75d566f901fb83553c36"
+      },
+      "sprite_path_id": "12160901144888178",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 124,
+      "height": 124,
+      "png_sha256": "3739f6b31109e2bb4bb49d17c724aca51292429c14b6fb9d87a049297a72b4f3",
+      "alpha_bounds": [
+        2,
+        2,
+        122,
+        122
+      ]
+    },
+    {
+      "name": "箭头_下",
+      "path": "res://assets/ui/prepare/sprite_725447f90db1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_roadmapselect.bundle",
+        "bundle_hash": "ee9ece7880db73803095bfb4da47ad8d",
+        "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+      },
+      "sprite_path_id": "-8350808524587598484",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 47.0,
+        "height": 74.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 47,
+      "height": 74,
+      "png_sha256": "a482b775a4f350532a7757ebd301d5ccc4cde930b6f6c196bf0871de4595746a",
+      "alpha_bounds": [
+        1,
+        0,
+        47,
+        74
+      ]
+    },
+    {
+      "name": "Background",
+      "path": "res://assets/ui/prepare/background.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/3f87afe7092b708c03e4a3f29cdba1a8.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_panel_atpanel_rogueleveldifficulty.bundle",
+        "bundle_hash": "3f87afe7092b708c03e4a3f29cdba1a8",
+        "sha256": "bb8fbcf6bc6dc00ef2e65a624fcb62bf25e7cb4110427b46e19f44325c11e33e"
+      },
+      "sprite_path_id": "1660267235368898380",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 32.0,
+        "height": 32.0
+      },
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "width": 32,
+      "height": 32,
+      "png_sha256": "46e2a8c6759bf24681f9f3f6073973ca65ac95e8d1ed8b8e025137819857fb2d",
+      "alpha_bounds": [
+        2,
+        2,
+        30,
+        30
+      ]
+    },
+    {
+      "name": "heatchallengepaper_1",
+      "path": "res://assets/ui/prepare/heatchallengepaper_1.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/1da5aadb6033cb59b6d0163a9c8a0196.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_selectheatchallenge.bundle",
+        "bundle_hash": "1da5aadb6033cb59b6d0163a9c8a0196",
+        "sha256": "e6ac8660143746795271e02b44d39f03312ea2848ac2c6acbbcae05bc0539ba3"
+      },
+      "sprite_path_id": "-6298301367268202904",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 352.0,
+        "height": 890.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 352,
+      "height": 890,
+      "png_sha256": "eff7fb5201cbbb6e882c0313235fe37bfd53712a9f169e70253127f62a81763b",
+      "alpha_bounds": [
+        0,
+        0,
+        352,
+        890
+      ]
+    },
+    {
+      "name": "sprite_abilityitemicon_11203",
+      "path": "res://assets/ui/prepare/sprite_abilityitemicon_11203.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-5113652685900730153",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "8742bd2ff741d170278be7dbc9543f34c4a7a8b110ce595ac3d7baa26b2e3332",
+      "alpha_bounds": [
+        0,
+        4,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "sprite_abilityitemicon_11003",
+      "path": "res://assets/ui/prepare/sprite_abilityitemicon_11003.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "7195858746736884098",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 128,
+      "height": 128,
+      "png_sha256": "a38f8278c3c20eedda35050542fc1d7cfeecfc9a9506e1e9186684306196a220",
+      "alpha_bounds": [
+        0,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "ArtLineDown_white",
+      "path": "res://assets/ui/prepare/artlinedown_white.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-8762395212316568769",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 255.99998474121094,
+        "height": 7.000000476837158
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 256,
+      "height": 7,
+      "png_sha256": "ad073dae820b19d415c1f4b587eb8ea5ee7580101c987f1be6cfc2ec2a21e402",
+      "alpha_bounds": [
+        0,
+        0,
+        256,
+        7
+      ]
+    },
+    {
+      "name": "退出按钮",
+      "path": "res://assets/ui/prepare/sprite_395376c50fe4.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "sprite_path_id": "-7962153020995228324",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 91.0,
+        "height": 79.0
+      },
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "width": 91,
+      "height": 79,
+      "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007",
+      "alpha_bounds": [
+        0,
+        0,
+        91,
+        79
+      ]
+    }
+  ],
+  "limits": "Raw prefab-referenced sprites. Runtime text, portraits and selected weapon icons can be assigned dynamically."
+}

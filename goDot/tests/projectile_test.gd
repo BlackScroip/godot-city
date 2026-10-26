@@ -67,7 +67,7 @@ func _initialize() -> void:
 			value.advance(0.016, Vector3.ZERO, Vector3(0, 0, 1), Vector3(0, 0, 6))
 			check(value.position.is_finite() and value.diagnostics.is_empty(), "Physical definition finite: " + str(action.key))
 			physical_count += 1
-	check(physical_count == 321, "All 321 original physical attack definitions exercised")
+	check(physical_count >= 321, "Expanded catalog retains at least the original 321 physical attack definitions")
 	var report = {"assertions": assertions, "failures": failures, "passed": failures.is_empty(), "physical_definitions": physical_count, "limits": ["Trace sensitivity, curve interpolation and push units are documented reconstructions", "Does not validate original effect prefab appearance"]}
 	FileAccess.open("res://reports/projectile-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("PROJECTILE_TESTS ", JSON.stringify(report))

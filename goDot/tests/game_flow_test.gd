@@ -79,7 +79,7 @@ func _render_outcome() -> void:
 		var outcome = game.hud.page.outcome_view
 		check(is_instance_valid(outcome), "Outcome view exists at %s" % dimensions)
 		if not is_instance_valid(outcome): continue
-		check(Rect2(Vector2.ZERO, Vector2(dimensions)).encloses(outcome.content.get_global_rect()), "Outcome content fits %s" % dimensions)
+		check(Rect2(Vector2.ZERO, Vector2(dimensions)).encloses(outcome.stage.get_global_rect()), "Outcome content fits %s" % dimensions)
 		check(outcome.confirm.get_global_rect().end.y <= dimensions.y, "Outcome confirmation fits %s" % dimensions)
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
@@ -158,6 +158,13 @@ func _run() -> void:
 	check(not game._flow_locked() and not game.hud.modal_open and not game.world.paused, "Revival final delay resumes room")
 	check(int(game.profile.data.run.counters.get("revivals:used", 0)) == 1, "Repeated timer tick cannot consume extra revival")
 	game.profile.data.run.counters["run:total_depth"] = 4
+	var player_key = str(game.world.player.combat.actor_key)
+	game._record_run_impact({"source_key": player_key, "receiver_key": "enemy:settlement", "resolved_accepted": true, "resolved_damage": 1200})
+	game.battle_tally.reset()
+	game._record_run_impact({"source_key": player_key, "receiver_key": "enemy:settlement", "resolved_accepted": true, "resolved_damage": 800})
+	game._record_run_impact({"source_key": "enemy:other", "receiver_key": "enemy:settlement", "resolved_accepted": true, "resolved_damage": 9999})
+	game._record_run_impact({"source_key": player_key, "receiver_key": "enemy:settlement", "resolved_accepted": false, "resolved_damage": 9999})
+	check(game.profile.data.run.counters["run:damage"] == 2000 and game.profile.data.run.counters["run:max_damage"] == 1200, "Run damage survives room tally reset and excludes rejected or foreign impacts")
 	_die()
 	game._save(true)
 	saved = game.save_store.load_profile()
@@ -170,6 +177,7 @@ func _run() -> void:
 	_verify_blocked_close("Death")
 	game._tick_death(2.0)
 	check(not game.profile.data.run.active and game.profile.data.run.get("outcome", {}).get("stage") == "summary", "No revivals enters summary after two seconds")
+	check(game.profile.data.run.outcome.damage == 2000 and game.profile.data.run.outcome.max_damage == 1200, "Settlement retains damage after save and restore")
 	_verify_blocked_close("Result summary")
 	await _render_outcome()
 	game._action("result_camp", 0, 0)

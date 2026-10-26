@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c8mob74nmixoc"
+path="res://.godot/imported/mesh_98ea3978b1d3ab328c8a.obj-b5023ab5e2375e2212fbb1279d86c7ce.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_98ea3978b1d3ab328c8a.obj-b5023ab5e2375e2212fbb1279d86c7ce.mesh"]
+
+source_file="res://assets/combat_presentation/mesh_98ea3978b1d3ab328c8a.obj"
+dest_files=["res://.godot/imported/mesh_98ea3978b1d3ab328c8a.obj-b5023ab5e2375e2212fbb1279d86c7ce.mesh", "res://.godot/imported/mesh_98ea3978b1d3ab328c8a.obj-b5023ab5e2375e2212fbb1279d86c7ce.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -41,5 +41,6 @@
   "未选路径（斜）_2": "res://assets/ui/route/world_path_cross.png",
   "场景ui底纹_active": "res://assets/ui/route/world_node_frame_active.png",
   "走过路径（斜）_1": "res://assets/ui/route/world_path_dotted_passed.png",
-  "buff_LockHP": "res://assets/ui/route/world_unopen.png"
+  "buff_LockHP": "res://assets/ui/route/world_unopen.png",
+  "icon_stagerewardtypeicon_Unknown": "res://assets/ui/route/room_unknown.png"
 }

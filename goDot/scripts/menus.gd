@@ -53,7 +53,7 @@ func tick(delta: float) -> void:
 	var states: Array = []
 	for order in profile.data.work:
 		var status = systems.work_status(int(order.work_id))
-		states.append([order.work_id, maxi(0, ceili(float(status.get("next_claim_seconds", status.remaining_seconds)) / 60.0)), status.get("claimable_quantity", 0)])
+		states.append([order.work_id, maxi(0, ceili(float(status.get("next_claim_seconds", status.remaining_seconds)) / 60.0)), status.get("claimable_quantity", 0), status.completed_quantity, status.daily_remaining])
 	var signature = str(states)
 	if signature == _work_signature: return
 	_work_signature = signature
@@ -73,7 +73,7 @@ func _camp_entry(label: String, destination: String) -> Dictionary:
 	if destination == "work":
 		var ready = 0
 		for order in profile.data.work:
-			if int(order.due_utc) <= int(systems.utc_now.call()): ready += 1
+			if systems.work_status(int(order.work_id)).ready: ready += 1
 		detail += "\n派遣中 %d · 可领取 %d" % [profile.data.work.size() - ready, ready]
 	return item(label, detail.strip_edges(), buttons)
 
@@ -101,10 +101,10 @@ func open(page: String, id: int = 0) -> void:
 	match page:
 		"camp":
 			title = "冒险者营地"
-			var entries = [["营地建设", "buildings"], ["资源与凭证", "resources"], ["角色", "characters"], ["武器", "weapons"], ["公会天赋", "talents"], ["伙伴", "partners"], ["伙伴派遣", "work"], ["猫饭料理", "meals"], ["居民与支援", "npcs"], ["觉醒", "awakening"], ["信物", "tokens"], ["增幅", "amplifiers"], ["委托任务", "tasks"], ["成就", "achievements"], ["战利品图鉴", "archive"], ["本地商城", "mall"], ["冒险难度", "difficulty"]]
+			var entries = [["营地建设", "buildings"], ["主城装饰", "decorations"], ["资源与凭证", "resources"], ["角色", "characters"], ["武器", "weapons"], ["公会天赋", "talents"], ["伙伴", "partners"], ["伙伴派遣", "work"], ["猫饭料理", "meals"], ["居民与支援", "npcs"], ["觉醒", "awakening"], ["信物", "tokens"], ["增幅", "amplifiers"], ["委托任务", "tasks"], ["成就", "achievements"], ["战利品图鉴", "archive"], ["本地商城", "mall"], ["冒险难度", "difficulty"]]
 			for entry in entries:
 				rows.append(_camp_entry(entry[0], entry[1]))
-			rows.push_front(item("继续冒险" if profile.data.run.active else "新的冒险", "", [command("继续" if profile.data.run.active else "出发", "primary")]))
+			rows.push_front(item("继续冒险" if profile.data.run.active else "新的冒险", "", [command("继续" if profile.data.run.active else "出发", "primary" if profile.data.run.active else "page:difficulty")]))
 		"resources", "resource":
 			title = "资源与凭证"
 			for resource in systems.resource_summary():
@@ -177,14 +177,15 @@ func open(page: String, id: int = 0) -> void:
 			title = "伙伴派遣"
 			for row in catalog.rows("MonsterWorkData"):
 				var state = systems.work_status(int(row.id))
-				var progress = "%s\n奖励：%s ×%d\n耗时 %d 分钟" % [description(row), clean(systems.material_name(int(state.reward.id))), int(state.reward.amount), ceili(state.duration_seconds / 60.0)]
-				var buttons = [command("选择伙伴", "page:dispatch", int(row.id), 0, not state.can_start), command("领取", "op:collect_work", int(row.id), 0, not state.ready), command("升级", "op:upgrade_work", int(row.id), 0, not state.can_upgrade)]
+				var progress = "%s\n每次产出：%s ×%d\n耗时 %d 分钟 · 领取消耗：%s\n今日剩余 %d / %d 次" % [description(row), clean(systems.material_name(int(state.reward.id))), int(state.reward.amount), ceili(state.duration_seconds / 60.0), price_text(state.price), int(state.daily_remaining), int(state.daily_limit)]
+				var buttons = [command("开始工作", "op:start_work", int(row.id), 0, not state.can_start), command("领取 %d 次" % int(state.claimable_quantity), "op:collect_work", int(row.id), 0, not state.ready), command("升级", "op:upgrade_work", int(row.id), 0, not state.can_upgrade)]
 				if not state.order.is_empty():
-					progress += "\n%s · %s" % [partner_name(int(state.order.get("partner_id", 0))), "可领取 %d 次" % int(state.get("claimable_quantity", 1)) if state.ready else "下次产出 %d 分钟" % ceili(float(state.get("next_claim_seconds", state.remaining_seconds)) / 60.0)]
-					progress += "\n储存上限 %d 次" % int(state.get("quantity", 1))
+					progress += "\n已储存 %d / %d 次" % [int(state.completed_quantity), int(state.queue_max)]
+					if state.ready: progress += "\n本次领取消耗：" + price_text(state.claim_price)
+					elif state.completed_quantity > 0: progress += "\n" + clean(state.claim_reason)
+					else: progress += "\n下次产出 %d 分钟" % ceili(float(state.next_claim_seconds) / 60.0)
 					buttons.append(command("停止派遣", "confirm_stop_work", int(row.id), 0, state.ready))
 				else:
-					progress += "\n派遣消耗：" + price_text(state.price)
 					if not state.can_start: progress += "\n" + clean(state.reason)
 				if state.level + 1 < state.max_level:
 					progress += "\n升级消耗：" + price_text(state.upgrade_price)
@@ -196,29 +197,53 @@ func open(page: String, id: int = 0) -> void:
 					if game.ad_rewards.free_skips() > 0: buttons.append(command("免广告加速 30 分钟", "ad_skip:work", int(row.id)))
 				rows.append(item(name_of(row) + "  Lv.%d / %d" % [state.level + 1, state.max_level], progress, buttons))
 				rows.back()["commands_first"] = true
+		"decorations":
+			title = "主城装饰"
+			var gate = systems.decorations.global_status()
+			if not gate.available: rows.append(item("主城装饰尚未开放", gate.reason, [command("营地建设", "page:buildings")]))
+			for slot in systems.decorations.slots():
+				for option in slot.options:
+					var text = str(option.row.get("description", ""))
+					if option.selected: text += "\n使用中"
+					elif not option.owned: text += "\n解锁消耗：" + price_text(option.price)
+					if not str(option.reason).is_empty(): text += "\n" + str(option.reason)
+					var buttons: Array = [command("使用中" if option.selected else "选用", "op:equip_camp_decoration", int(slot.slot_id), int(option.id), not option.can_equip or option.selected)] if option.owned else [command("解锁", "op:unlock_camp_decoration", int(option.id), 0, not option.can_unlock)]
+					rows.append(item(str(option.row.get("name", "")), text, buttons))
+					rows.back()["icon"] = str(option.row.get("icon_name", ""))
 		"dispatch":
-			title = "选择派遣伙伴"
+			title = "伙伴派遣"
 			var state = systems.work_status(id)
-			rows.append(item(state.name, "奖励：%s ×%d\n消耗：%s" % [clean(systems.material_name(int(state.reward.id))), state.reward.amount, price_text(state.price)], [command("返回派遣", "page:work")]))
-			for row in catalog.rows("MonsterPartnerData"):
-				if int(profile.data.partners.get(str(int(row.id)), 0)) <= 0: continue
-				var available = int(row.id) in state.available_partners
-				rows.append(item(partner_name(int(row.id)), "可派遣" if available else "正在出战或执行派遣", [command("派遣", "op:start_work", id, int(row.id), not available or not state.can_start)]))
-				rows.back().description += "\n最多储存 %d 次产出" % int(state.get("queue_max", 1))
-			if state.available_partners.is_empty(): rows.append(item("暂无空闲伙伴", "", [command("管理伙伴", "page:partners")]))
+			rows.append(item(state.name, "每次产出：%s ×%d\n领取消耗：%s\n储存上限 %d 次" % [clean(systems.material_name(int(state.reward.id))), state.reward.amount, price_text(state.price), int(state.queue_max)], [command("开始工作", "op:start_work", id, 0, not state.can_start), command("返回派遣", "page:work")]))
 		"meals":
 			title = "猫饭料理"
+			var order = systems.meal_order_status()
+			var order_lines: Array[String] = []
+			for key in order.meals:
+				order_lines.append("%s Lv.%d" % [name_of(catalog.find("CatMealData", int(key))), int(order.meals[key])])
+			rows.append(item("本次餐单 %d / %d" % [int(order.count), int(order.limit)], "\n".join(order_lines) + "\n合计：" + price_text(order.price) + "\n" + clean(order.reason), [command("点餐", "op:buy_meal", 0, 0, not order.can_buy)]))
+			rows.back()["icon"] = "icon_maincitybulid_restaurant"
+			var last_order = systems.meal_order_status(true)
+			if not last_order.meals.is_empty():
+				var last_lines: Array[String] = []
+				for key in last_order.meals:
+					last_lines.append("%s Lv.%d" % [name_of(catalog.find("CatMealData", int(key))), int(last_order.meals[key])])
+				var buttons = [command("金币复购", "op:recook_meal", 0, 0, not last_order.can_buy)]
+				var ad_quote = game.ad_rewards.quote({"kind": "meal", "id": 0})
+				if game.ads.available(): buttons.append(command("看广告复购", "ad:meal", 0, 0, not ad_quote.success))
+				if game.ad_rewards.free_skips() > 0: buttons.append(command("免广告复购", "ad_skip:meal", 0, 0, not ad_quote.success))
+				rows.append(item("上次餐单", "\n".join(last_lines) + "\n" + price_text(last_order.price) + "\n" + clean(last_order.reason), buttons))
+				rows.back()["icon"] = "icon_maincitybulid_restaurant"
 			for row in catalog.rows("CatMealData"):
-				var buttons: Array = []
-				var details = description(row)
+				var meal_id = DungeonCatalog.row_id(row)
+				var research = systems.meal_status(meal_id)
+				var buttons: Array = [command("研究 Lv.%d" % (int(research.researched_level) + 1) if int(research.researched_level) < int(research.max_level) else "研究已满级", "op:research_meal", meal_id, 0, not research.can_research)]
+				var details = "研究 Lv.%d / %d\n%s\n%s" % [int(research.researched_level), int(research.max_level), price_text(research.research_price), clean(research.research_reason)]
 				for level in range(1, str(row.get("AbilityItemId", "")).split("|").size() + 1):
-					var quote = systems.meal_status(DungeonCatalog.row_id(row), level)
-					buttons.append(command("料理 Lv.%d" % level, "op:cook_meal", DungeonCatalog.row_id(row), level, not quote.can_cook))
-					details += "\nLv.%d：%s%s\n%s" % [level, price_text(quote.price), " · 已点餐" if quote.selected else "", clean(quote.reason)]
-					if systems.rank(profile.data.recipes, DungeonCatalog.row_id(row)) >= level:
-						if game.ads.available(): buttons.append(command("看广告点餐 Lv.%d" % level, "ad:meal", DungeonCatalog.row_id(row), level))
-						if game.ad_rewards.free_skips() > 0: buttons.append(command("免广告点餐 Lv.%d" % level, "ad_skip:meal", DungeonCatalog.row_id(row), level))
+					var quote = systems.meal_status(meal_id, level)
+					buttons.append(command(("移出" if quote.selected else "选择") + " Lv.%d" % level, "op:select_meal", meal_id, level, not quote.can_select))
+					details += "\nLv.%d：%s%s\n%s" % [level, price_text(quote.price), " · 已生效" if quote.purchased else " · 餐单已选" if quote.selected else "", clean(quote.description)]
 				rows.append(item(name_of(row), details, buttons))
+				rows.back()["icon"] = str(row.get("IconName", ""))
 		"buildings":
 			title = "营地建设"
 			var buildings = catalog.rows("Buildings").duplicate()
@@ -252,12 +277,13 @@ func open(page: String, id: int = 0) -> void:
 				rows.append(item(str(row.get("btn_name", name_of(row))), description(row), [command("交谈", "op:execute_npc_function", int(row.id))]))
 		"awakening":
 			title = "角色觉醒"
-			rows.append(item("觉醒等级", "", [command("提升", "op:upgrade_awakening_level", game.selected_character)]))
+			var awake = systems.awakening_progress()
+			rows.append(item("觉醒等级", "", [command("混沌奖励", "page:difficulty", 10)]))
 			rows.back()["presentation_role"] = "awakening_summary"
-			rows.back()["description"] = "Lv.%d" % systems.stat("awake:level:" + str(game.selected_character))
+			rows.back()["description"] = "Lv.%d · 潜能点 %d\n觉醒结晶 %d · 下一级 %d / %d" % [int(awake.level), int(awake.points), int(awake.total), int(awake.progress), int(awake.required)]
 			for row in catalog.rows("CharaTalentAwakeTreeData"):
 				var owner = int(row.get("chara_id", row.get("character_id", game.selected_character)))
-				if owner != game.selected_character: continue
+				if owner != game.selected_character or bool(row.get("is_admin_mode", false)): continue
 				rows.append(item(name_of(row), description(row), [command("解锁", "op:unlock_awakening", int(row.id)), command("激活 / 停用", "op:toggle_awakening", int(row.id))]))
 		"tokens":
 			title = "信物"
@@ -328,7 +354,10 @@ func open(page: String, id: int = 0) -> void:
 				rows.append(item(name_of(row), description(row) + "\n" + price, [command("兑换", "op:buy_mall", offer_id, 0, not quote.get("success", false))]))
 		"difficulty":
 			title = "冒险难度"
-			for level in range(11): rows.append(item("难度 %d" % level, "", [command("已选择" if game.difficulty == level else "选择", "difficulty", level, 0, profile.data.run.active)]))
+			for level in range(11):
+				var status = systems.difficulty_status(level)
+				rows.append(item(status.name, status.description, [command("已选择" if game.difficulty == level else "选择" if status.unlocked else "未解锁", "difficulty", level, 0, not status.unlocked or profile.data.run.active)]))
+				rows.back()["difficulty_status"] = status
 		"settings":
 			title = "设置"
 			if game.ads.available(): rows.append(item("广告隐私", "", [command("隐私选项", "privacy_ads")]))
@@ -380,10 +409,14 @@ func open(page: String, id: int = 0) -> void:
 	if page == "difficulty":
 		context["in_run"] = profile.data.run.active
 		context["difficulty"] = game.difficulty
+		context["preparation"] = systems.adventure_preparation_status(game.difficulty)
+		context["systems"] = systems
+		context["catalog"] = catalog
 	if page in ["inventory", "characters", "weapons", "storage"]:
 		context["resources"] = [["material:101", str(systems.material(101))], ["material:102", str(systems.material(102))], ["loot:12101", "%d/%d" % [systems.search_point_count(), systems.search_point_max()]], ["material:10501", str(systems.material(10501))]]
 	if not profile.data.run.active:
 		context["resources"] = [["sprite_materialicon_101", str(systems.material(101))], ["sprite_materialicon_501", str(systems.material(501))], ["sprite_materialicon_90002", str(systems.material(90002))]]
+		if page == "difficulty": context["resources"] = [["sprite_materialicon_101", str(systems.material(101))], ["sprite_materialicon_90002", str(systems.material(90002))]]
 	hud.show_page(title, rows, layout, context)
 
 func _enrich(page: String, rows: Array) -> void:
@@ -417,13 +450,13 @@ func _enrich(page: String, rows: Array) -> void:
 		if page == "settings":
 			var title = str(row.title)
 			row["section"] = "声音" if title in ["声音", "音量"] else "画面" if title in ["战斗表现", "画面质量", "帧率上限", "显示阴影"] else "存档" if title == "冒险" else "指南" if title in ["操作配置", "左移", "右移", "前进", "后退", "战技", "闪避", "爆发", "重击", "交互", "暂停"] else "游戏性"
-		row["icon"] = "menu_adventure"
+		row["icon"] = str(row.get("icon", "menu_adventure"))
 		if page in ["inventory", "archive"] and not source.is_empty(): row.icon = "loot:" + str(id)
 		if page == "work":
 			var material_id = int(source.get("materia_id", 0))
 			row.icon = "sprite_mosterwork_%d" % (0 if material_id <= 9999 else int((material_id % 10000) / 100))
 		if row.has("material_id"): row.icon = "material:" + str(row.material_id)
-		for field in ["square_icon_name", "icon_name", "icon", "Icon", "sprite_name"]:
+		for field in ["square_icon_name", "icon_name", "icon", "Icon", "IconName", "sprite_name"]:
 			var key = str(source.get(field, ""))
 			if page == "buildings": key = systems._part(key, mini(int(profile.data.buildings.get(str(id), 0)), maxi(0, int(source.get("max_level", 1)) - 1)))
 			if not key.is_empty() and DungeonStyle.texture(key):

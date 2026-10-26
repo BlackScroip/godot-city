@@ -13,6 +13,7 @@ static func hp(base_hp: float, rank: String, difficulty: int, stage: int = 1, ch
 static func hp_multiplier(rank: String, difficulty: int, stage: int = 1, chaos: int = 0) -> float:
 	if _entries.is_empty():
 		var data = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
+		if data is Array and data.size() == 1: data = data[0]
 		if data is Dictionary: _entries = data.get("entries", [])
 	var key = 100 + chaos if difficulty == 10 and chaos > 0 else difficulty
 	var index = clampi(stage, 1, 5) - 1

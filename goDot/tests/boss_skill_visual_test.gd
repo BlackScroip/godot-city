@@ -2,7 +2,8 @@ extends "res://tests/impact_visual_test.gd"
 
 const CASES = {
 	13001: "Attack_EX1", 23001: "attack7", 33001: "EX_Attack3",
-	43001: "EX_Attack3", 52001: "attack6", 52003: "ComboAttack2", 53001: "attack5"
+	43001: "EX_Attack3", 52001: "attack6", 52003: "ComboAttack2", 53001: "attack5",
+	13002: "Attack_EX1", 23002: "attack3_EX"
 }
 
 func _run() -> void:
@@ -24,7 +25,7 @@ func _run() -> void:
 		for id in CASES:
 			if _arg("boss", "") != "" and int(_arg("boss", "0")) != int(id): continue
 			await _cast(int(id), str(CASES[id]), low)
-	var report = {"shots": rows, "failures": failures, "passed": failures.is_empty(), "rendered": DisplayServer.get_name() != "headless", "scope": "Seven bosses cast recovered skills in full/reduced quality with real world projectile, summon, hit and warning paths. Desktop rendering and scripted simulation timings; no mobile device FPS claim."}
+	var report = {"shots": rows, "failures": failures, "passed": failures.is_empty(), "rendered": DisplayServer.get_name() != "headless", "scope": "Selected available Boss models cast recovered skills with real world projectile, summon, hit and warning paths; rows record tested actors and quality. Tiger 33002 has no packaged model and is excluded. Desktop rendering and scripted simulation timings; no mobile device FPS claim."}
 	FileAccess.open("res://reports/boss-skill-visual.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("BOSS_SKILL_VISUAL ", JSON.stringify(report))
 	world.queue_free()
@@ -62,6 +63,8 @@ func _cast(id: int, action: String, low: bool) -> void:
 		return
 	var before_builds: int = world.presentation.authored_builds
 	var before_spawned: int = world.presentation.spawned
+	var prepared_templates: Array = world.presentation._authored_templates.keys()
+	var runtime_templates: Dictionary = {}
 	boss.combat._start(definition, 0)
 	var timings: Array[float] = []
 	var max_emitters := 0
@@ -87,6 +90,9 @@ func _cast(id: int, action: String, low: bool) -> void:
 		world._tick_summons(1.0 / HZ)
 		var after_transients = Time.get_ticks_usec()
 		world.presentation._process(1.0 / HZ)
+		if world.presentation.authored_builds > before_builds:
+			for key in world.presentation._authored_templates:
+				if not prepared_templates.has(key): runtime_templates[key] = true
 		world.camera.position = boss.position + Vector3(10, 14, -18)
 		world.camera.look_at(boss.position + Vector3(0, 0, 1))
 		timings.append((Time.get_ticks_usec() - started) / 1000.0)
@@ -103,4 +109,4 @@ func _cast(id: int, action: String, low: bool) -> void:
 	if world.presentation.spawned <= before_spawned: failures.append("No effects in boss skill %d (%s)" % [id, low])
 	if new_builds > 0: failures.append("Boss %d builds %d unprepared effects during casting (%s)" % [id, new_builds, low])
 	if max_particles > (world.FEEL.low_particle_budget if low else world.FEEL.particle_budget) or max_emitters > (world.FEEL.low_emitter_budget if low else world.FEEL.emitter_budget): failures.append("Boss %d exceeds effect budget (%s)" % [id, low])
-	rows.append({"boss": id, "action": action, "low_quality": low, "effects": world.presentation.spawned - before_spawned, "peak_emitters": max_emitters, "peak_particles": max_particles, "peak_warnings": max_warnings, "runtime_effect_builds": new_builds, "simulation_p95_ms": timings[int(frames * 0.95)], "simulation_max_ms": timings.back(), "slow_frames": slow_frames})
+	rows.append({"boss": id, "action": action, "low_quality": low, "effects": world.presentation.spawned - before_spawned, "peak_emitters": max_emitters, "peak_particles": max_particles, "peak_warnings": max_warnings, "runtime_effect_builds": new_builds, "runtime_templates": runtime_templates.keys(), "simulation_p95_ms": timings[int(frames * 0.95)], "simulation_max_ms": timings.back(), "slow_frames": slow_frames})

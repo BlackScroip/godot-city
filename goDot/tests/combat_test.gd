@@ -10,8 +10,8 @@ var effect_checks: Dictionary = {}
 func _initialize() -> void:
 	var baseline = Combat.new()
 	_check(baseline.configure().success, "Combat catalog loads")
-	_check(baseline.catalog.characters.size() == 7, "7 characters")
-	_check(baseline.catalog.enemies.size() == 39, "39 enemies")
+	_check(baseline.catalog.characters.size() == 8, "8 characters")
+	_check(baseline.catalog.enemies.size() == 60, "60 recovered enemies")
 	for character in baseline.catalog.characters:
 		for slot in range(5):
 			var actor = Combat.new()
@@ -20,6 +20,9 @@ func _initialize() -> void:
 				actor.add_buff(str(character.jp), 25)
 			if slot == 4 and int(character.id) == 3:
 				actor.add_buff(str(character.jp), 5)
+			if slot == 4 and int(character.id) == 8:
+				actor.add_buff(str(character.jp), 15)
+				_advance(actor, 0.11, false)
 			_check(actor.request_attack(slot).success, "Character %s slot %s casts" % [character.id, slot])
 			var result = _advance(actor, 20.0, true)
 			_check(is_finite(result.damage), "Character damage finite")
@@ -420,6 +423,9 @@ func _test_enemy_phases_and_world_contracts() -> void:
 	_check(summon_events.size() == 1 and summon_events[0].target_key == dragon.actor_key and summon_events[0].origin.OriginType == "bornpos", "Summon creation retains original origin and receiver")
 	player.tick(0.01)
 	var hits = player.drain_events().filter(func(event): return event.type == "hit")
+	_check(hits.is_empty(), "Summon respects source half-second first trigger delay")
+	player.tick(0.49)
+	hits = player.drain_events().filter(func(event): return event.type == "hit")
 	_check(not hits.is_empty() and hits[0].target_key == dragon.actor_key and hits[0].origin.InitPosOffset.x == 2, "Summon damage retains placement context")
 	_collect(player)
 	_collect(griffin)

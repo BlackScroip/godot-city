@@ -1,0 +1,4921 @@
+{
+  "terrain": {
+    "LevelMap_1070001_Terrain_1 Splatmap": {
+      "source": "CAB-e932ac4b6317cbc6bb9622500a184a31:-8446405717897571388",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_52101aa224a6bb36643e.png",
+          "name": "LevelMap_1070001_Terrain_1 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-e932ac4b6317cbc6bb9622500a184a31:-7937454712539009490",
+          "sha256": "1c8747826427617e76c4f45e8aafd30aa9538868dd329e8fa811fab7d6577724"
+        }
+      ]
+    },
+    "LevelMap_1070001_Terrain Splatmap": {
+      "source": "CAB-9edbff0b881c4fbb090120b530fae7df:5898844905833239399",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_ee524bc654f155d74817.png",
+          "name": "LevelMap_1070001_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-9edbff0b881c4fbb090120b530fae7df:3723124989701892822",
+          "sha256": "43418e3bc57bcb7c9155f6b68bbba0dfde175fb8d8d8c788e716d29e19bee054"
+        }
+      ]
+    },
+    "LevelMap_1070101_Terrain (1) Splatmap": {
+      "source": "CAB-42bfdf872e522b91da61bf094f623621:756119183494758687",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_9681d6765df3a77a2cfd.png",
+          "name": "LevelMap_1070101_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-42bfdf872e522b91da61bf094f623621:-9068713807188191661",
+          "sha256": "c238fedc73b3e4132dececfc84d611bf98e47782ae338ee5f59df936f51a7141"
+        }
+      ]
+    },
+    "New Terrain 2 Splatmap": {
+      "source": "CAB-e63d3b85587546fd89b97a3c393c61e9:-4165883667114500716",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_75297e5f82ac89ef0aac.png",
+          "name": "New Terrain 2 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-e63d3b85587546fd89b97a3c393c61e9:-566532286245574421",
+          "sha256": "ee2cf09ec06eaf5b2803472ec8f9523fb617345a41f31d58025114dff3dfc60a"
+        }
+      ]
+    },
+    "LevelMap_1070102_Terrain Splatmap": {
+      "source": "CAB-a0bba40ed0e587747e7ed8733ede942c:-5168773545581530186",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_14220ab42f5e2b698618.png",
+          "name": "LevelMap_1070102_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-a0bba40ed0e587747e7ed8733ede942c:-1299727983235591284",
+          "sha256": "5f98a435f39d02b90d0e4bf22a52d66dbc16c2b501d3972024db9be97a5feb52"
+        }
+      ]
+    },
+    "LevelMap_1070102_Terrain (1) Splatmap": {
+      "source": "CAB-bec246607f5d6cf3a7dfb5a80342f78d:-1623472056103912926",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_c4e714ed870d0d0c4ae3.png",
+          "name": "LevelMap_1070102_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-bec246607f5d6cf3a7dfb5a80342f78d:1373749368921157593",
+          "sha256": "d45bf53cdc75a5951c59507e8bd9ed3b232c196be0dea9a4e702c82865422f4c"
+        }
+      ]
+    },
+    "New Terrain 3 Splatmap": {
+      "source": "CAB-b4eaa18bfc146e6969c926a0370a071c:-3109175647239280284",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_fcda89e93efdacae7a0a.png",
+          "name": "New Terrain 3 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-b4eaa18bfc146e6969c926a0370a071c:-7443931312196993934",
+          "sha256": "e881c1bba8dbf3332da1ae8b9aae777c1531105d9c88b99f483f947077d77916"
+        }
+      ]
+    },
+    "LevelMap_1070106_Terrain (1) Splatmap": {
+      "source": "CAB-a35e85e081e222ab37387c55c46d98f2:-2628365597588570222",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_e1b2c969e697e4b3d26e.png",
+          "name": "LevelMap_1070106_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-a35e85e081e222ab37387c55c46d98f2:4330910675770864999",
+          "sha256": "541c580dca79d80caf35f1aacb905c151b28819837bd4043791bc7b8ea747aae"
+        }
+      ]
+    },
+    "LevelMap_1070106_Terrain Splatmap": {
+      "source": "CAB-e1948ff4c026198e9786fa288e00b88c:6312688665361888446",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_5a59c2d3276e5f3e7cb2.png",
+          "name": "LevelMap_1070106_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-e1948ff4c026198e9786fa288e00b88c:-5203120259312404959",
+          "sha256": "3a119b46864b0141cc0aa0a1854f815e0f8c48ee209b69cd001719afdec599c1"
+        }
+      ]
+    },
+    "LevelMap_1070107_Terrain Splatmap": {
+      "source": "CAB-a1a0e5cbf68a7348f4dbe526d36d5185:8174934442011288278",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_d9706d794bcc973679df.png",
+          "name": "LevelMap_1070107_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-a1a0e5cbf68a7348f4dbe526d36d5185:4802801207295804033",
+          "sha256": "df8b8052454fe1c873f41acfeb5edc901bed65718d6bf8187e1dc2e3a0f064f9"
+        }
+      ]
+    },
+    "LevelMap_1070107_Terrain (1) Splatmap": {
+      "source": "CAB-2b280fe543f145b38adf8470c4c41ff9:-7228020926096340961",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_3ebbad9cbdefc41bac78.png",
+          "name": "LevelMap_1070107_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-2b280fe543f145b38adf8470c4c41ff9:3201698886298728422",
+          "sha256": "1570271536d96cd69ee73eea5f0450bcfc8067cf4522624f1f9a0def8e4437d2"
+        }
+      ]
+    },
+    "LevelMap_1070108_Terrain Splatmap": {
+      "source": "CAB-e1f708dd0ba3dfab29e1bf6bd1fdbcaa:8343845844221196515",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_393894b31094480a224a.png",
+          "name": "LevelMap_1070108_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-e1f708dd0ba3dfab29e1bf6bd1fdbcaa:6791724646386463329",
+          "sha256": "20baa31e6f654fc540b85cb4051b9a07ad6c5132920a8e04c293b61b388363fe"
+        }
+      ]
+    },
+    "LevelMap_1070108_Terrain (1) Splatmap": {
+      "source": "CAB-ee9fd2e5082a28b2caf108cae3bd04cc:8899248162686617443",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_cdeb2f9ceddc06073630.png",
+          "name": "LevelMap_1070108_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-ee9fd2e5082a28b2caf108cae3bd04cc:6228183549667336056",
+          "sha256": "c5ec5de702b6b0b1d95180af6ca771f5dd8f9bd73cdef134f9cc25fbd39d0028"
+        }
+      ]
+    },
+    "LevelMap_1070109_Terrain (1) Splatmap": {
+      "source": "CAB-55473f1fdbe151afdf6816c9b257c10d:-2129856676291243834",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_9a67d2830f3ea589fec0.png",
+          "name": "LevelMap_1070109_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-55473f1fdbe151afdf6816c9b257c10d:7574839157603431770",
+          "sha256": "e9db450acf2b14af33f6916507ae57c41da4b31c29d11645add3ae19a72c7e8e"
+        }
+      ]
+    },
+    "LevelMap_1070109_Terrain Splatmap": {
+      "source": "CAB-a16704e87c38c53ce03159673bb9f9d6:2555713942299659510",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_117b9aae05bf586fe970.png",
+          "name": "LevelMap_1070109_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-a16704e87c38c53ce03159673bb9f9d6:-228868150500596937",
+          "sha256": "749c599d914353ba35e23e823d80a0cab2307db63a8bd8b1236b2a5929ec6ce8"
+        }
+      ]
+    },
+    "LevelMap_1070110_Terrain (2) Splatmap": {
+      "source": "CAB-70550b9d361eeccb57601adb9d87ef2a:-537675500817482327",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_5d3a6888e6f888ba442f.png",
+          "name": "LevelMap_1070110_Terrain (2) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-70550b9d361eeccb57601adb9d87ef2a:2515329763511016225",
+          "sha256": "ec7aa24139eaca610a358a31ffd06e826d52f981e910020ab9e2a5e9fdc91e9d"
+        }
+      ]
+    },
+    "LevelMap_1070110_Terrain Splatmap": {
+      "source": "CAB-52790e914103fd8ac1983ed512718ccd:5272183334828286429",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_bb18ce6be0dfe2f56f2a.png",
+          "name": "LevelMap_1070110_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-52790e914103fd8ac1983ed512718ccd:-3384872858913298894",
+          "sha256": "16b23a35463725b25824b785182c2ab9e490d5fbdaec983549c4998532be4b3b"
+        }
+      ]
+    },
+    "LevelMap_1070110_Terrain (1) Splatmap": {
+      "source": "CAB-1a8804e1d07c70e108fe494fb6488944:-6494752991945631506",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            3.3333332538604736,
+            0.0,
+            -2.3333332538604736
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_9d939e5f12fd4b917a20.png",
+          "name": "LevelMap_1070110_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-1a8804e1d07c70e108fe494fb6488944:-2946043584337683076",
+          "sha256": "3e4692509491607ee27e9d1ffbc0fbcb10df1be06a2961667811f19ae71653b8"
+        }
+      ]
+    },
+    "LevelMap_1070201_Terrain Splatmap": {
+      "source": "CAB-967c34efc870be525b2a984dac3c9f6e:8102684808155576201",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_c53248b3266ec8484b0c.png",
+          "name": "LevelMap_1070201_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-967c34efc870be525b2a984dac3c9f6e:-8082210014954359264",
+          "sha256": "7d7c31a301fcfbc14da4de275946dfe121c7f4e7cdf873c4bdda0c7594e3155e"
+        }
+      ]
+    },
+    "LevelMap_1070301_Terrain Splatmap": {
+      "source": "CAB-0fbd4abcf97e7f2dfc79b1090b6cc6c2:-6397123369212730446",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.3333332538604736,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.3333332538604736,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_d87941441a45fbd558a5.png",
+          "name": "LevelMap_1070301_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-0fbd4abcf97e7f2dfc79b1090b6cc6c2:2036452777234232988",
+          "sha256": "569728e810b6e874ee0c5fae2b67cfd07a3eec2cd207c878f199cb9d050d3c0c"
+        }
+      ]
+    },
+    "LevelMap_1070401_Terrain_1 Splatmap": {
+      "source": "CAB-3d0c71508c8587c83eb246627a0313d9:-5984550244057923638",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_0da84ee7bf91d33190b9.png",
+          "name": "LevelMap_1070401_Terrain_1 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-3d0c71508c8587c83eb246627a0313d9:-3911090844871343183",
+          "sha256": "b079a43764d42144ab7aac889048776aa5d711932d14279eb6e2c96cb260c38b"
+        }
+      ]
+    },
+    "LevelMap_1070401_Terrain Splatmap": {
+      "source": "CAB-97cf501c76bc8d910e00ff01321ec48d:6460138475210718239",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_9c4cdf998b0a1cf4f45f.png",
+          "name": "LevelMap_1070401_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-97cf501c76bc8d910e00ff01321ec48d:-3141433158479077954",
+          "sha256": "c8ab4156db4ea85d3ac7f0202eaa19daf741110bb11ccaa3d100c276f1827f89"
+        }
+      ]
+    },
+    "LevelMap_1070501_Terrain_1 Splatmap": {
+      "source": "CAB-f9a1f5625827745f6e7d62f8ca117bf8:4519030493164009618",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_3a5daa30c9c8efdaf234.png",
+          "name": "LevelMap_1070501_Terrain_1 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-f9a1f5625827745f6e7d62f8ca117bf8:-6778463280053774852",
+          "sha256": "6b21ecc4f129ad2078a26ee1e67bd4164eeb7004a34bf593893440e05da520ab"
+        }
+      ]
+    },
+    "LevelMap_1070501_Terrain Splatmap": {
+      "source": "CAB-358fc8e2ed3229ed4fa6730ade519707:-1271443568665646272",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_a3e1bb6c5153e8931408.png",
+          "name": "LevelMap_1070501_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-358fc8e2ed3229ed4fa6730ade519707:7018517563656194747",
+          "sha256": "bc642a2d0248506cefebc25aa73a75bfb4c8cc3e4b2edb3bda8a8fb7a1f1d976"
+        }
+      ]
+    },
+    "LevelMap_1070601_Terrain_1 Splatmap": {
+      "source": "CAB-29fed874b4726f47d42e8dee18021303:-1432742652432498863",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_1f101935516a670ef384.png",
+          "name": "LevelMap_1070601_Terrain_1 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-29fed874b4726f47d42e8dee18021303:9039612725335141174",
+          "sha256": "03455e0fa70ad7aca666f3d4d4aca414f116d15f3da1d08223d700116618406a"
+        }
+      ]
+    },
+    "LevelMap_1070601_Terrain Splatmap": {
+      "source": "CAB-82fc16599c8aee17a0f3fd439fd0b788:8431923501333917644",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_508325305b546a417f47.png",
+          "name": "LevelMap_1070601_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-82fc16599c8aee17a0f3fd439fd0b788:-2776657954662873748",
+          "sha256": "076f635752a079c2782a93af401e8d39c5134b4ce09d55a0c102a612e47ec952"
+        }
+      ]
+    },
+    "LevelMap_1070701_Terrain Splatmap": {
+      "source": "CAB-94bd17b0f6b54729a761d9115af38414:-7658932212974767688",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_bc2584b8b5170804421b.png",
+          "name": "LevelMap_1070701_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-94bd17b0f6b54729a761d9115af38414:2996405941178833542",
+          "sha256": "9cc8568d8a0ed9a41babe32a2927a497cbb77f05b509bfebcc4622c7b41a0933"
+        }
+      ]
+    },
+    "LevelMap_1070801_Terrain Splatmap": {
+      "source": "CAB-23b15f963158ae0d1ef7be951e0925bb:3305773772641997504",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_6feea34864b66eff8966.png",
+          "name": "LevelMap_1070801_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-23b15f963158ae0d1ef7be951e0925bb:7298422549137455212",
+          "sha256": "b7ac2b9eee79ec8c28e220d69d9cb96bd032033c264575a54e6e3106a7e8f18b"
+        }
+      ]
+    },
+    "LevelMap_1070901_Terrain Splatmap": {
+      "source": "CAB-7b61e26c88d20984beab8e5ffe38bcd6:981789292321796523",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.166666507720947,
+            4.166666507720947,
+            0.0,
+            -3.1666665077209473
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.25,
+            6.25,
+            0.0,
+            -5.25
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.125,
+            3.125,
+            0.0,
+            -2.125
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_8caa22783bb9b54ffd84.png",
+          "name": "LevelMap_1070901_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-7b61e26c88d20984beab8e5ffe38bcd6:6857584078848530891",
+          "sha256": "7e0fb7af575674f2ea2ac9dc896eaf64254d81a45ab04138208472ef1add2e05"
+        }
+      ]
+    },
+    "LevelMap_1079101_Terrain Splatmap": {
+      "source": "CAB-7fdb86eec6cd562b2eecfd7d209aea74:5388950637124653323",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            6.666666507720947,
+            6.666666507720947,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            6.666666507720947,
+            6.666666507720947,
+            0.0,
+            -5.666666507720947
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            10.0,
+            10.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            10.0,
+            10.0,
+            0.0,
+            -9.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_84abdda7c7892ee4eee8.png",
+          "name": "LevelMap_1079101_Terrain Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-7fdb86eec6cd562b2eecfd7d209aea74:-1479698582975865397",
+          "sha256": "835633636342ca6e65470f7313f71c47a22dce5dd5ba1c6ecb9f5d5b7add6772"
+        }
+      ]
+    },
+    "LevelMap_1079101_Terrain (1) Splatmap": {
+      "source": "CAB-6e495cdbade3c12836bcb66edddcdbf2:1001652244966808032",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+            "name": "Env_Cavern_[Cracked]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+            "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+            "name": "Env_Cavern_[Fissure]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+            "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            7.5,
+            7.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            7.5,
+            7.5,
+            0.0,
+            -6.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+            "name": "Env_Cavern_[Lava]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+            "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            3.75,
+            3.75,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            3.75,
+            3.75,
+            0.0,
+            -2.75
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_7328a3467fd7c60cfa4e.png",
+          "name": "LevelMap_1079101_Terrain (1) Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-6e495cdbade3c12836bcb66edddcdbf2:-3069804000627782141",
+          "sha256": "71d9782c48e5185d8b78ab04f7e0b804e371267fac6505fc16c14656511898bd"
+        }
+      ]
+    },
+    "LevelMap_1060801_TerrainPiece-2508010 Splatmap": {
+      "source": "CAB-23ddadbb5f851bbe34d50f474eca39b0:9098990722013179334",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_8b78f5b9eb3992177027.png",
+          "name": "LevelMap_1060801_TerrainPiece-2508010 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-23ddadbb5f851bbe34d50f474eca39b0:-9122104849246789797",
+          "sha256": "2516a0c0273f3dcdd84a99be7084567ef755331acb40a5c8791bdb83ef4b9071"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2764390 Splatmap": {
+      "source": "CAB-1993449505565d5b287dd918263cd642:8029860477076300330",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_18eab80eb58bced9138f.png",
+          "name": "LevelMap_1069101_TerrainPiece-2764390 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-1993449505565d5b287dd918263cd642:491521178911539357",
+          "sha256": "fa0a4fb8b48f34e46f6e1b23dc2a1fb45578045cd976bfd8c1bd030b3f0463d8"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2763942 Splatmap": {
+      "source": "CAB-9984b12f8c921ceaeef2e6fa00e10fa5:-6599887058496744033",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_ad17a802430e160f278c.png",
+          "name": "LevelMap_1069101_TerrainPiece-2763942 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-9984b12f8c921ceaeef2e6fa00e10fa5:9189606011184297194",
+          "sha256": "be7b47815d3606ead1f3136a175f015f79ba1451a7f329c7d10fbbdf02370ca8"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2771040 Splatmap": {
+      "source": "CAB-f0493df4998764b61887ef92b5379298:1192862808246212369",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_f4c10c5ad0ca567f3136.png",
+          "name": "LevelMap_1069101_TerrainPiece-2771040 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-f0493df4998764b61887ef92b5379298:6754746550202395076",
+          "sha256": "03d9bacd8fcf40a2a1f00e348f716e3ec979447defc07ce2b4281c105d308991"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2764176 Splatmap": {
+      "source": "CAB-dbddfc91e1b20ed80f342b41c47513a9:-6225415031698442187",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_803fc120ad27fb8278f7.png",
+          "name": "LevelMap_1069101_TerrainPiece-2764176 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-dbddfc91e1b20ed80f342b41c47513a9:-355514742362227278",
+          "sha256": "2d8cc15e56d914bb72cb9b7487d2f46586c5ea038b48ccb9a48fb7096070803f"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2763510 Splatmap": {
+      "source": "CAB-b6cf631cde4a3f17c503d832eca1a04a:739886970927843397",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_06e2aa7e3c431a2a82d5.png",
+          "name": "LevelMap_1069101_TerrainPiece-2763510 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-b6cf631cde4a3f17c503d832eca1a04a:-1777216859396150156",
+          "sha256": "1441b13579713077d3009f36976b2cfc24615ed4d5e3ea3392f713f346e22e53"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2764616 Splatmap": {
+      "source": "CAB-7c7b2b53078ff501e8ab3d6fcf96e2d7:-8084100169710157243",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_29b4eae466a67a02d4e3.png",
+          "name": "LevelMap_1069101_TerrainPiece-2764616 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-7c7b2b53078ff501e8ab3d6fcf96e2d7:5144170642843038650",
+          "sha256": "2613e8313845033997bcce013d247b505e058715d0a107e4a34807e6454e67f4"
+        }
+      ]
+    },
+    "LevelMap_1069101_TerrainPiece-2771288 Splatmap": {
+      "source": "CAB-67cd8e2689524830b9c545d2bcb12eeb:-255530745244962426",
+      "layer_count": 3,
+      "height_blend": 0.0,
+      "layers": [
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+            "name": "Env_FloatingIsland_[Grass]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+            "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            2.5,
+            2.5,
+            0.0,
+            -1.5
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+            "name": "Env_FloatingIsland_[Soil]",
+            "width": 512,
+            "height": 512,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+            "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            4.0,
+            4.0,
+            0.0,
+            -3.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        },
+        {
+          "diffuse": {
+            "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+            "name": "Env_FloatingIsland_[Stone]",
+            "width": 1024,
+            "height": 1024,
+            "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+            "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+          },
+          "normal": null,
+          "unity_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            0.0
+          ],
+          "godot_uv_scale_offset": [
+            5.0,
+            5.0,
+            0.0,
+            -4.0
+          ],
+          "tint": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "normal_scale": 1.0
+        }
+      ],
+      "controls": [
+        {
+          "path": "res://assets/environment_recovered/region/texture_ad5682405a94d5f8eb97.png",
+          "name": "LevelMap_1069101_TerrainPiece-2771288 Splatmap 0",
+          "width": 512,
+          "height": 512,
+          "source": "CAB-67cd8e2689524830b9c545d2bcb12eeb:-7179947740534762019",
+          "sha256": "8714144fc7f5a315fd49ca3e4e190924089129cc688e0c1d2e9e4c29345740b3"
+        }
+      ]
+    }
+  },
+  "water": {
+    "EnvCavern_Detail_[lava]": {
+      "source": "CAB-5c05dfb9f850a0095972b05b956c8527:-3070829406175959952",
+      "colors": {
+        "_CausticsSpeed": {
+          "r": -0.10000000149011612,
+          "g": 0.05000000074505806,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_ColorDeep": {
+          "r": 0.0,
+          "g": 0.17464745044708252,
+          "b": 0.24620139598846436,
+          "a": 0.6941176652908325
+        },
+        "_ColorShallow": {
+          "r": 0.0,
+          "g": 0.7758224606513977,
+          "b": 1.0,
+          "a": 0.4627451002597809
+        },
+        "_FlowSpeed": {
+          "r": 0.30000001192092896,
+          "g": 0.20000000298023224,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FoamColor": {
+          "r": 2.118499994277954,
+          "g": 2.118499994277954,
+          "b": 2.118499994277954,
+          "a": 1.0
+        },
+        "_FoamSubColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_HorizonColor": {
+          "r": 5.179327964782715,
+          "g": 4.040192127227783,
+          "b": 17.148372650146484,
+          "a": 1.0
+        },
+        "_IntersectionColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_RippleColor": {
+          "r": 0.2800000011920929,
+          "g": 0.6000000238418579,
+          "b": 0.7200000286102295,
+          "a": 1.0
+        },
+        "_WaterColor": {
+          "r": 1.0,
+          "g": 0.9198113083839417,
+          "b": 0.9198113083839417,
+          "a": 0.9599999785423279
+        },
+        "_WaveASpeed": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaveBSpeed": {
+          "r": 0.5,
+          "g": 0.800000011920929,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "_BumpScale": 1.0,
+        "_BumpTiling": 1.0,
+        "_CausticsBrightness": 4.829999923706055,
+        "_CausticsEnable": 0.0,
+        "_CausticsIntensity": 0.5,
+        "_CausticsScale": 5.0,
+        "_CausticsSpeed": 0.10000000149011612,
+        "_CausticsTiling": 0.5,
+        "_CloudReflectionEnable": 1.0,
+        "_CloudSpeed": 0.007000000216066837,
+        "_DepthExp": 0.0,
+        "_DepthHorizontal": 0.7099999785423279,
+        "_DepthRange": 0.10000000149011612,
+        "_DepthTransition": 1.0,
+        "_DepthVertical": 5.889999866485596,
+        "_DisableDepthTexture": 0.0,
+        "_DistortionStrength": 0.30000001192092896,
+        "_EdgeFade": 7.369999885559082,
+        "_FoamBaseAmount": 1.0,
+        "_FoamBlur": 0.15000000596046448,
+        "_FoamClipping": 0.6970000267028809,
+        "_FoamDistortion": 0.16500000655651093,
+        "_FoamEnable": 0.0,
+        "_FoamIntensity": 1.0,
+        "_FoamNoiseScale": 8.0,
+        "_FoamNoiseSpeed": 0.20000000298023224,
+        "_FoamSpeed": 0.029999999329447746,
+        "_FoamSubSpeed": -0.25,
+        "_FoamSubTiling": 0.5,
+        "_FoamTiling": -0.17000000178813934,
+        "_FoamWaveAmount": 0.0,
+        "_FoamWidth": 0.4000000059604645,
+        "_GerstnerEnable": 0.0,
+        "_HorizonDistance": 7.599999904632568,
+        "_IntersectionClipping": 0.5289999842643738,
+        "_IntersectionEnable": 1.0,
+        "_IntersectionFalloff": 1.0,
+        "_IntersectionLength": 1.7899999618530273,
+        "_IntersectionRippleDist": 64.0,
+        "_IntersectionRippleStrength": 0.35499998927116394,
+        "_IntersectionSpeed": 0.05999999865889549,
+        "_IntersectionTiling": 1.0,
+        "_NormalMapEnable": 1.0,
+        "_NormalSpeed": 0.07000000029802322,
+        "_NormalStrength": 5.0,
+        "_NormalSubSpeed": -0.5,
+        "_NormalSubTiling": 0.5099999904632568,
+        "_NormalTiling": 0.1599999964237213,
+        "_Opacity": 0.8500000238418579,
+        "_RandomRippleEnable": 1.0,
+        "_ReflectionDistortion": 0.014999999664723873,
+        "_ReflectionFresnel": 0.550000011920929,
+        "_ReflectionStrength": 1.0,
+        "_RefractionChromaticAberration": 0.0,
+        "_RefractionOn": 0.0,
+        "_RefractionStrength": 0.2669999897480011,
+        "_RippleColorStrength": 0.4000000059604645,
+        "_RippleDensity": 0.25,
+        "_RippleDisturbWidth": 5.0,
+        "_RippleDoubleRing": 0.5,
+        "_RippleFoamDistortion": 1.0,
+        "_RippleFoamStrength": 0.20000000298023224,
+        "_RippleGridScale": 0.6000000238418579,
+        "_RippleHardEdge": 0.0,
+        "_RippleMaxRadius": 0.699999988079071,
+        "_RippleNormalStrength": 0.800000011920929,
+        "_RipplePeriod": 2.0,
+        "_RippleReflectionStrength": 0.25,
+        "_RippleRingWidth": 0.03500000014901161,
+        "_RippleShadowStrength": 0.10000000149011612,
+        "_RippleShoreFade": 1.0,
+        "_RippleSpecularDistortion": 0.800000011920929,
+        "_RippleSpecularSize": 200.0,
+        "_RippleSpecularStrength": 0.3499999940395355,
+        "_RippleWaveDecay": 2.0,
+        "_RippleWaveFreq": 8.0,
+        "_ShadowDistortion": 0.6299999952316284,
+        "_SunReflectionDistortion": 0.49000000953674316,
+        "_SunReflectionSize": 0.5,
+        "_SunReflectionStrength": 10.0,
+        "_WaveALength": 20.0,
+        "_WaveASteepness": 0.5,
+        "_WaveBLength": 10.0,
+        "_WaveBSteepness": 0.30000001192092896,
+        "_WaveHeight": 0.0,
+        "_WaveSpeed": 1.0,
+        "_WaveSteepness": 0.0,
+        "_WavesEnable": 0.0,
+        "_WorldSpaceUV": 1.0
+      }
+    },
+    "EnvFloatingIsland_Detail_[Water]": {
+      "source": "CAB-5c05dfb9f850a0095972b05b956c8527:-3631036806886996913",
+      "colors": {
+        "_CausticsSpeed": {
+          "r": -0.10000000149011612,
+          "g": 0.05000000074505806,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_ColorDeep": {
+          "r": 0.0,
+          "g": 0.08865560591220856,
+          "b": 0.28314879536628723,
+          "a": 1.0
+        },
+        "_ColorShallow": {
+          "r": 0.016509443521499634,
+          "g": 0.30770745873451233,
+          "b": 0.5,
+          "a": 0.3959999978542328
+        },
+        "_FlowSpeed": {
+          "r": 0.30000001192092896,
+          "g": 0.20000000298023224,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_FoamColor": {
+          "r": 0.9581528902053833,
+          "g": 1.5576950311660767,
+          "b": 2.23218035697937,
+          "a": 1.0
+        },
+        "_FoamSubColor": {
+          "r": 0.3820754885673523,
+          "g": 0.6530347466468811,
+          "b": 1.0,
+          "a": 0.8313725590705872
+        },
+        "_HorizonColor": {
+          "r": 0.23499999940395355,
+          "g": 0.9049999713897705,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_IntersectionColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_RippleColor": {
+          "r": 0.35826805233955383,
+          "g": 0.7623366117477417,
+          "b": 0.9150943160057068,
+          "a": 1.0
+        },
+        "_WaterColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.9599999785423279
+        },
+        "_WaveASpeed": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaveBSpeed": {
+          "r": 0.5,
+          "g": 0.800000011920929,
+          "b": 0.0,
+          "a": 0.0
+        }
+      },
+      "floats": {
+        "_BumpScale": 1.0,
+        "_BumpTiling": 1.0,
+        "_CausticsBrightness": 4.829999923706055,
+        "_CausticsEnable": 0.0,
+        "_CausticsIntensity": 0.5,
+        "_CausticsScale": 5.0,
+        "_CausticsSpeed": 0.10000000149011612,
+        "_CausticsTiling": 0.5,
+        "_CloudReflectionEnable": 1.0,
+        "_CloudSpeed": 0.009999999776482582,
+        "_DepthExp": 0.0,
+        "_DepthHorizontal": 0.009999999776482582,
+        "_DepthRange": 0.10000000149011612,
+        "_DepthTransition": 1.0,
+        "_DepthVertical": 5.889999866485596,
+        "_DisableDepthTexture": 0.0,
+        "_DistortionStrength": 0.30000001192092896,
+        "_EdgeFade": 7.369999885559082,
+        "_FoamBaseAmount": 1.0,
+        "_FoamBlur": 0.15000000596046448,
+        "_FoamClipping": 0.8999999761581421,
+        "_FoamDistortion": 0.15000000596046448,
+        "_FoamEnable": 1.0,
+        "_FoamIntensity": 1.0,
+        "_FoamNoiseScale": 8.0,
+        "_FoamNoiseSpeed": 0.20000000298023224,
+        "_FoamSpeed": 0.029999999329447746,
+        "_FoamSubSpeed": -0.25,
+        "_FoamSubTiling": 0.5,
+        "_FoamTiling": -0.17000000178813934,
+        "_FoamWaveAmount": 0.0,
+        "_FoamWidth": 0.4000000059604645,
+        "_GerstnerEnable": 0.0,
+        "_HorizonDistance": 7.599999904632568,
+        "_IntersectionClipping": 0.5289999842643738,
+        "_IntersectionEnable": 1.0,
+        "_IntersectionFalloff": 1.0,
+        "_IntersectionLength": 1.7899999618530273,
+        "_IntersectionRippleDist": 64.0,
+        "_IntersectionRippleStrength": 0.35499998927116394,
+        "_IntersectionSpeed": 0.05999999865889549,
+        "_IntersectionTiling": 1.0,
+        "_NormalMapEnable": 1.0,
+        "_NormalSpeed": 0.20000000298023224,
+        "_NormalStrength": 1.0,
+        "_NormalSubSpeed": -0.5,
+        "_NormalSubTiling": 0.5,
+        "_NormalTiling": 0.4099999964237213,
+        "_Opacity": 0.8500000238418579,
+        "_RandomRippleEnable": 1.0,
+        "_ReflectionBrightness": 1.0,
+        "_ReflectionContrast": 1.0,
+        "_ReflectionDistortion": 0.00800000037997961,
+        "_ReflectionFresnel": 0.9399999976158142,
+        "_ReflectionSoftness": 0.0,
+        "_ReflectionStrength": 1.0,
+        "_RefractionChromaticAberration": 0.0,
+        "_RefractionOn": 0.0,
+        "_RefractionStrength": 0.2669999897480011,
+        "_RippleColorStrength": 0.4000000059604645,
+        "_RippleDensity": 0.25,
+        "_RippleDisturbWidth": 5.0,
+        "_RippleDoubleRing": 0.5,
+        "_RippleFoamDistortion": 1.0,
+        "_RippleFoamStrength": 0.20000000298023224,
+        "_RippleGridScale": 0.6000000238418579,
+        "_RippleHardEdge": 0.0,
+        "_RippleMaxRadius": 0.5899999737739563,
+        "_RippleNormalStrength": 0.800000011920929,
+        "_RipplePeriod": 2.0,
+        "_RippleReflectionStrength": 0.25,
+        "_RippleRingWidth": 0.03500000014901161,
+        "_RippleShadowStrength": 0.10000000149011612,
+        "_RippleShoreFade": 1.0,
+        "_RippleSpecularDistortion": 0.800000011920929,
+        "_RippleSpecularSize": 200.0,
+        "_RippleSpecularStrength": 0.3499999940395355,
+        "_RippleWaveDecay": 2.0,
+        "_RippleWaveFreq": 8.0,
+        "_ShadowDistortion": 0.6000000238418579,
+        "_SunReflectionDistortion": 0.5099999904632568,
+        "_SunReflectionSize": 0.0,
+        "_SunReflectionStrength": 10.0,
+        "_WaveALength": 20.0,
+        "_WaveASteepness": 0.5,
+        "_WaveBLength": 10.0,
+        "_WaveBSteepness": 0.30000001192092896,
+        "_WaveHeight": 0.0,
+        "_WaveSpeed": 1.0,
+        "_WaveSteepness": 0.0,
+        "_WavesEnable": 0.0,
+        "_WorldSpaceUV": 1.0
+      }
+    }
+  },
+  "textures": {
+    "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532": {
+      "path": "res://assets/environment_recovered/region/texture_79b7b697a515bd7ad4d4.png",
+      "name": "Env_Cavern_[Cracked]",
+      "width": 1024,
+      "height": 1024,
+      "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-8638326368266874532",
+      "sha256": "0ce99cf6c2b0e98817b359b2c06e2c614545acfe521ccfc5ca29349f6b008833"
+    },
+    "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587": {
+      "path": "res://assets/environment_recovered/region/texture_5cf2c702211c84021640.png",
+      "name": "Env_Cavern_[Fissure]",
+      "width": 1024,
+      "height": 1024,
+      "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:3808471064787227587",
+      "sha256": "b55bb8a5060e71799f257bb680855a2c3ed722234fa7ccba2acd9a57d044f759"
+    },
+    "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863": {
+      "path": "res://assets/environment_recovered/region/texture_4e48ec7fb610ee9c37a5.png",
+      "name": "Env_Cavern_[Lava]",
+      "width": 1024,
+      "height": 1024,
+      "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2084072979656085863",
+      "sha256": "32e84fb5d12de3c4f89ee29f45392301dd74fe61224cc781150c7fc9dfba925b"
+    },
+    "CAB-e932ac4b6317cbc6bb9622500a184a31:-7937454712539009490": {
+      "path": "res://assets/environment_recovered/region/texture_52101aa224a6bb36643e.png",
+      "name": "LevelMap_1070001_Terrain_1 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-e932ac4b6317cbc6bb9622500a184a31:-7937454712539009490",
+      "sha256": "1c8747826427617e76c4f45e8aafd30aa9538868dd329e8fa811fab7d6577724"
+    },
+    "CAB-9edbff0b881c4fbb090120b530fae7df:3723124989701892822": {
+      "path": "res://assets/environment_recovered/region/texture_ee524bc654f155d74817.png",
+      "name": "LevelMap_1070001_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-9edbff0b881c4fbb090120b530fae7df:3723124989701892822",
+      "sha256": "43418e3bc57bcb7c9155f6b68bbba0dfde175fb8d8d8c788e716d29e19bee054"
+    },
+    "CAB-42bfdf872e522b91da61bf094f623621:-9068713807188191661": {
+      "path": "res://assets/environment_recovered/region/texture_9681d6765df3a77a2cfd.png",
+      "name": "LevelMap_1070101_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-42bfdf872e522b91da61bf094f623621:-9068713807188191661",
+      "sha256": "c238fedc73b3e4132dececfc84d611bf98e47782ae338ee5f59df936f51a7141"
+    },
+    "CAB-70134b75fd282b9c8b81ee0afabd6e46:-6771138508780390940": {
+      "path": "res://assets/environment_recovered/region/texture_4bc518ab1934e0abeeae.png",
+      "name": "New Terrain 2 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-70134b75fd282b9c8b81ee0afabd6e46:-6771138508780390940",
+      "sha256": "d6549cac39026d84c8a11ab95e0b55d4e7caa088e79ab5cfc10608c2fffbcd78"
+    },
+    "CAB-a0bba40ed0e587747e7ed8733ede942c:-1299727983235591284": {
+      "path": "res://assets/environment_recovered/region/texture_14220ab42f5e2b698618.png",
+      "name": "LevelMap_1070102_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-a0bba40ed0e587747e7ed8733ede942c:-1299727983235591284",
+      "sha256": "5f98a435f39d02b90d0e4bf22a52d66dbc16c2b501d3972024db9be97a5feb52"
+    },
+    "CAB-bec246607f5d6cf3a7dfb5a80342f78d:1373749368921157593": {
+      "path": "res://assets/environment_recovered/region/texture_c4e714ed870d0d0c4ae3.png",
+      "name": "LevelMap_1070102_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-bec246607f5d6cf3a7dfb5a80342f78d:1373749368921157593",
+      "sha256": "d45bf53cdc75a5951c59507e8bd9ed3b232c196be0dea9a4e702c82865422f4c"
+    },
+    "CAB-679248a863e74706769ddd1d84e38b8d:-6249121098125057314": {
+      "path": "res://assets/environment_recovered/region/texture_014001449121998041f9.png",
+      "name": "New Terrain 3 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-679248a863e74706769ddd1d84e38b8d:-6249121098125057314",
+      "sha256": "58c31b85740fe4e179f1907c557019779a06f3fc12f89f5de4a7b71622c41453"
+    },
+    "CAB-d81a7be422dc297d4c6215d08ae6660d:-7643108401232815013": {
+      "path": "res://assets/environment_recovered/region/texture_80f5e1026633d90b2bac.png",
+      "name": "New Terrain 2 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-d81a7be422dc297d4c6215d08ae6660d:-7643108401232815013",
+      "sha256": "d18a1b424f0c880b8044455532723e8d913c9fa9080b35b3d190763aabc48153"
+    },
+    "CAB-ccc9a9e66e8722663846f6e1752fdeb7:-4582140650171115513": {
+      "path": "res://assets/environment_recovered/region/texture_b8ded9f3bee57e6ab348.png",
+      "name": "New Terrain 2 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-ccc9a9e66e8722663846f6e1752fdeb7:-4582140650171115513",
+      "sha256": "2757cf9320159af03a5df7c4cb04e200ad820fb56c382e8c0b3a6b06409cb1f9"
+    },
+    "CAB-885f96585c54bcfb5697bfdc7e0e0494:158916852823521836": {
+      "path": "res://assets/environment_recovered/region/texture_6235fa001e496063945b.png",
+      "name": "New Terrain 3 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-885f96585c54bcfb5697bfdc7e0e0494:158916852823521836",
+      "sha256": "6de578d64699beb83689aca15a512135c9184a9c985a426655afb74eee81e768"
+    },
+    "CAB-e63d3b85587546fd89b97a3c393c61e9:-566532286245574421": {
+      "path": "res://assets/environment_recovered/region/texture_75297e5f82ac89ef0aac.png",
+      "name": "New Terrain 2 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-e63d3b85587546fd89b97a3c393c61e9:-566532286245574421",
+      "sha256": "ee2cf09ec06eaf5b2803472ec8f9523fb617345a41f31d58025114dff3dfc60a"
+    },
+    "CAB-b4eaa18bfc146e6969c926a0370a071c:-7443931312196993934": {
+      "path": "res://assets/environment_recovered/region/texture_fcda89e93efdacae7a0a.png",
+      "name": "New Terrain 3 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-b4eaa18bfc146e6969c926a0370a071c:-7443931312196993934",
+      "sha256": "e881c1bba8dbf3332da1ae8b9aae777c1531105d9c88b99f483f947077d77916"
+    },
+    "CAB-a35e85e081e222ab37387c55c46d98f2:4330910675770864999": {
+      "path": "res://assets/environment_recovered/region/texture_e1b2c969e697e4b3d26e.png",
+      "name": "LevelMap_1070106_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-a35e85e081e222ab37387c55c46d98f2:4330910675770864999",
+      "sha256": "541c580dca79d80caf35f1aacb905c151b28819837bd4043791bc7b8ea747aae"
+    },
+    "CAB-e1948ff4c026198e9786fa288e00b88c:-5203120259312404959": {
+      "path": "res://assets/environment_recovered/region/texture_5a59c2d3276e5f3e7cb2.png",
+      "name": "LevelMap_1070106_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-e1948ff4c026198e9786fa288e00b88c:-5203120259312404959",
+      "sha256": "3a119b46864b0141cc0aa0a1854f815e0f8c48ee209b69cd001719afdec599c1"
+    },
+    "CAB-a1a0e5cbf68a7348f4dbe526d36d5185:4802801207295804033": {
+      "path": "res://assets/environment_recovered/region/texture_d9706d794bcc973679df.png",
+      "name": "LevelMap_1070107_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-a1a0e5cbf68a7348f4dbe526d36d5185:4802801207295804033",
+      "sha256": "df8b8052454fe1c873f41acfeb5edc901bed65718d6bf8187e1dc2e3a0f064f9"
+    },
+    "CAB-2b280fe543f145b38adf8470c4c41ff9:3201698886298728422": {
+      "path": "res://assets/environment_recovered/region/texture_3ebbad9cbdefc41bac78.png",
+      "name": "LevelMap_1070107_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-2b280fe543f145b38adf8470c4c41ff9:3201698886298728422",
+      "sha256": "1570271536d96cd69ee73eea5f0450bcfc8067cf4522624f1f9a0def8e4437d2"
+    },
+    "CAB-e1f708dd0ba3dfab29e1bf6bd1fdbcaa:6791724646386463329": {
+      "path": "res://assets/environment_recovered/region/texture_393894b31094480a224a.png",
+      "name": "LevelMap_1070108_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-e1f708dd0ba3dfab29e1bf6bd1fdbcaa:6791724646386463329",
+      "sha256": "20baa31e6f654fc540b85cb4051b9a07ad6c5132920a8e04c293b61b388363fe"
+    },
+    "CAB-ee9fd2e5082a28b2caf108cae3bd04cc:6228183549667336056": {
+      "path": "res://assets/environment_recovered/region/texture_cdeb2f9ceddc06073630.png",
+      "name": "LevelMap_1070108_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-ee9fd2e5082a28b2caf108cae3bd04cc:6228183549667336056",
+      "sha256": "c5ec5de702b6b0b1d95180af6ca771f5dd8f9bd73cdef134f9cc25fbd39d0028"
+    },
+    "CAB-55473f1fdbe151afdf6816c9b257c10d:7574839157603431770": {
+      "path": "res://assets/environment_recovered/region/texture_9a67d2830f3ea589fec0.png",
+      "name": "LevelMap_1070109_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-55473f1fdbe151afdf6816c9b257c10d:7574839157603431770",
+      "sha256": "e9db450acf2b14af33f6916507ae57c41da4b31c29d11645add3ae19a72c7e8e"
+    },
+    "CAB-a16704e87c38c53ce03159673bb9f9d6:-228868150500596937": {
+      "path": "res://assets/environment_recovered/region/texture_117b9aae05bf586fe970.png",
+      "name": "LevelMap_1070109_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-a16704e87c38c53ce03159673bb9f9d6:-228868150500596937",
+      "sha256": "749c599d914353ba35e23e823d80a0cab2307db63a8bd8b1236b2a5929ec6ce8"
+    },
+    "CAB-70550b9d361eeccb57601adb9d87ef2a:2515329763511016225": {
+      "path": "res://assets/environment_recovered/region/texture_5d3a6888e6f888ba442f.png",
+      "name": "LevelMap_1070110_Terrain (2) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-70550b9d361eeccb57601adb9d87ef2a:2515329763511016225",
+      "sha256": "ec7aa24139eaca610a358a31ffd06e826d52f981e910020ab9e2a5e9fdc91e9d"
+    },
+    "CAB-52790e914103fd8ac1983ed512718ccd:-3384872858913298894": {
+      "path": "res://assets/environment_recovered/region/texture_bb18ce6be0dfe2f56f2a.png",
+      "name": "LevelMap_1070110_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-52790e914103fd8ac1983ed512718ccd:-3384872858913298894",
+      "sha256": "16b23a35463725b25824b785182c2ab9e490d5fbdaec983549c4998532be4b3b"
+    },
+    "CAB-1a8804e1d07c70e108fe494fb6488944:-2946043584337683076": {
+      "path": "res://assets/environment_recovered/region/texture_9d939e5f12fd4b917a20.png",
+      "name": "LevelMap_1070110_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-1a8804e1d07c70e108fe494fb6488944:-2946043584337683076",
+      "sha256": "3e4692509491607ee27e9d1ffbc0fbcb10df1be06a2961667811f19ae71653b8"
+    },
+    "CAB-967c34efc870be525b2a984dac3c9f6e:-8082210014954359264": {
+      "path": "res://assets/environment_recovered/region/texture_c53248b3266ec8484b0c.png",
+      "name": "LevelMap_1070201_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-967c34efc870be525b2a984dac3c9f6e:-8082210014954359264",
+      "sha256": "7d7c31a301fcfbc14da4de275946dfe121c7f4e7cdf873c4bdda0c7594e3155e"
+    },
+    "CAB-0fbd4abcf97e7f2dfc79b1090b6cc6c2:2036452777234232988": {
+      "path": "res://assets/environment_recovered/region/texture_d87941441a45fbd558a5.png",
+      "name": "LevelMap_1070301_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-0fbd4abcf97e7f2dfc79b1090b6cc6c2:2036452777234232988",
+      "sha256": "569728e810b6e874ee0c5fae2b67cfd07a3eec2cd207c878f199cb9d050d3c0c"
+    },
+    "CAB-3d0c71508c8587c83eb246627a0313d9:-3911090844871343183": {
+      "path": "res://assets/environment_recovered/region/texture_0da84ee7bf91d33190b9.png",
+      "name": "LevelMap_1070401_Terrain_1 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-3d0c71508c8587c83eb246627a0313d9:-3911090844871343183",
+      "sha256": "b079a43764d42144ab7aac889048776aa5d711932d14279eb6e2c96cb260c38b"
+    },
+    "CAB-97cf501c76bc8d910e00ff01321ec48d:-3141433158479077954": {
+      "path": "res://assets/environment_recovered/region/texture_9c4cdf998b0a1cf4f45f.png",
+      "name": "LevelMap_1070401_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-97cf501c76bc8d910e00ff01321ec48d:-3141433158479077954",
+      "sha256": "c8ab4156db4ea85d3ac7f0202eaa19daf741110bb11ccaa3d100c276f1827f89"
+    },
+    "CAB-f9a1f5625827745f6e7d62f8ca117bf8:-6778463280053774852": {
+      "path": "res://assets/environment_recovered/region/texture_3a5daa30c9c8efdaf234.png",
+      "name": "LevelMap_1070501_Terrain_1 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-f9a1f5625827745f6e7d62f8ca117bf8:-6778463280053774852",
+      "sha256": "6b21ecc4f129ad2078a26ee1e67bd4164eeb7004a34bf593893440e05da520ab"
+    },
+    "CAB-358fc8e2ed3229ed4fa6730ade519707:7018517563656194747": {
+      "path": "res://assets/environment_recovered/region/texture_a3e1bb6c5153e8931408.png",
+      "name": "LevelMap_1070501_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-358fc8e2ed3229ed4fa6730ade519707:7018517563656194747",
+      "sha256": "bc642a2d0248506cefebc25aa73a75bfb4c8cc3e4b2edb3bda8a8fb7a1f1d976"
+    },
+    "CAB-29fed874b4726f47d42e8dee18021303:9039612725335141174": {
+      "path": "res://assets/environment_recovered/region/texture_1f101935516a670ef384.png",
+      "name": "LevelMap_1070601_Terrain_1 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-29fed874b4726f47d42e8dee18021303:9039612725335141174",
+      "sha256": "03455e0fa70ad7aca666f3d4d4aca414f116d15f3da1d08223d700116618406a"
+    },
+    "CAB-82fc16599c8aee17a0f3fd439fd0b788:-2776657954662873748": {
+      "path": "res://assets/environment_recovered/region/texture_508325305b546a417f47.png",
+      "name": "LevelMap_1070601_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-82fc16599c8aee17a0f3fd439fd0b788:-2776657954662873748",
+      "sha256": "076f635752a079c2782a93af401e8d39c5134b4ce09d55a0c102a612e47ec952"
+    },
+    "CAB-94bd17b0f6b54729a761d9115af38414:2996405941178833542": {
+      "path": "res://assets/environment_recovered/region/texture_bc2584b8b5170804421b.png",
+      "name": "LevelMap_1070701_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-94bd17b0f6b54729a761d9115af38414:2996405941178833542",
+      "sha256": "9cc8568d8a0ed9a41babe32a2927a497cbb77f05b509bfebcc4622c7b41a0933"
+    },
+    "CAB-23b15f963158ae0d1ef7be951e0925bb:7298422549137455212": {
+      "path": "res://assets/environment_recovered/region/texture_6feea34864b66eff8966.png",
+      "name": "LevelMap_1070801_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-23b15f963158ae0d1ef7be951e0925bb:7298422549137455212",
+      "sha256": "b7ac2b9eee79ec8c28e220d69d9cb96bd032033c264575a54e6e3106a7e8f18b"
+    },
+    "CAB-7b61e26c88d20984beab8e5ffe38bcd6:6857584078848530891": {
+      "path": "res://assets/environment_recovered/region/texture_8caa22783bb9b54ffd84.png",
+      "name": "LevelMap_1070901_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-7b61e26c88d20984beab8e5ffe38bcd6:6857584078848530891",
+      "sha256": "7e0fb7af575674f2ea2ac9dc896eaf64254d81a45ab04138208472ef1add2e05"
+    },
+    "CAB-7fdb86eec6cd562b2eecfd7d209aea74:-1479698582975865397": {
+      "path": "res://assets/environment_recovered/region/texture_84abdda7c7892ee4eee8.png",
+      "name": "LevelMap_1079101_Terrain Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-7fdb86eec6cd562b2eecfd7d209aea74:-1479698582975865397",
+      "sha256": "835633636342ca6e65470f7313f71c47a22dce5dd5ba1c6ecb9f5d5b7add6772"
+    },
+    "CAB-6e495cdbade3c12836bcb66edddcdbf2:-3069804000627782141": {
+      "path": "res://assets/environment_recovered/region/texture_7328a3467fd7c60cfa4e.png",
+      "name": "LevelMap_1079101_Terrain (1) Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-6e495cdbade3c12836bcb66edddcdbf2:-3069804000627782141",
+      "sha256": "71d9782c48e5185d8b78ab04f7e0b804e371267fac6505fc16c14656511898bd"
+    },
+    "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900": {
+      "path": "res://assets/environment_recovered/region/texture_88f4545970522d271747.png",
+      "name": "Env_FloatingIsland_[Grass]",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:4245853311368991900",
+      "sha256": "d7494faf695dd933adc1ec72168b9f0e7ac4d75698560f568f978e424612d801"
+    },
+    "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314": {
+      "path": "res://assets/environment_recovered/region/texture_148be9ad0d9bccc67316.png",
+      "name": "Env_FloatingIsland_[Soil]",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-3753610204467565314",
+      "sha256": "1df74561f9448083c42a3da6e309eae25ecb38c99352c5ac8c97b03268a2d69f"
+    },
+    "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779": {
+      "path": "res://assets/environment_recovered/region/texture_d068266fc716bc127ea0.png",
+      "name": "Env_FloatingIsland_[Stone]",
+      "width": 1024,
+      "height": 1024,
+      "source": "CAB-5b7696d8ee30066a51fb57471f7fdd9e:-2482223048505638779",
+      "sha256": "8c26b181b626aa949a7495e595d38ac6118f68e107c040d52f93677d2d6a90a7"
+    },
+    "CAB-23ddadbb5f851bbe34d50f474eca39b0:-9122104849246789797": {
+      "path": "res://assets/environment_recovered/region/texture_8b78f5b9eb3992177027.png",
+      "name": "LevelMap_1060801_TerrainPiece-2508010 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-23ddadbb5f851bbe34d50f474eca39b0:-9122104849246789797",
+      "sha256": "2516a0c0273f3dcdd84a99be7084567ef755331acb40a5c8791bdb83ef4b9071"
+    },
+    "CAB-1993449505565d5b287dd918263cd642:491521178911539357": {
+      "path": "res://assets/environment_recovered/region/texture_18eab80eb58bced9138f.png",
+      "name": "LevelMap_1069101_TerrainPiece-2764390 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-1993449505565d5b287dd918263cd642:491521178911539357",
+      "sha256": "fa0a4fb8b48f34e46f6e1b23dc2a1fb45578045cd976bfd8c1bd030b3f0463d8"
+    },
+    "CAB-9984b12f8c921ceaeef2e6fa00e10fa5:9189606011184297194": {
+      "path": "res://assets/environment_recovered/region/texture_ad17a802430e160f278c.png",
+      "name": "LevelMap_1069101_TerrainPiece-2763942 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-9984b12f8c921ceaeef2e6fa00e10fa5:9189606011184297194",
+      "sha256": "be7b47815d3606ead1f3136a175f015f79ba1451a7f329c7d10fbbdf02370ca8"
+    },
+    "CAB-f0493df4998764b61887ef92b5379298:6754746550202395076": {
+      "path": "res://assets/environment_recovered/region/texture_f4c10c5ad0ca567f3136.png",
+      "name": "LevelMap_1069101_TerrainPiece-2771040 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-f0493df4998764b61887ef92b5379298:6754746550202395076",
+      "sha256": "03d9bacd8fcf40a2a1f00e348f716e3ec979447defc07ce2b4281c105d308991"
+    },
+    "CAB-dbddfc91e1b20ed80f342b41c47513a9:-355514742362227278": {
+      "path": "res://assets/environment_recovered/region/texture_803fc120ad27fb8278f7.png",
+      "name": "LevelMap_1069101_TerrainPiece-2764176 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-dbddfc91e1b20ed80f342b41c47513a9:-355514742362227278",
+      "sha256": "2d8cc15e56d914bb72cb9b7487d2f46586c5ea038b48ccb9a48fb7096070803f"
+    },
+    "CAB-b6cf631cde4a3f17c503d832eca1a04a:-1777216859396150156": {
+      "path": "res://assets/environment_recovered/region/texture_06e2aa7e3c431a2a82d5.png",
+      "name": "LevelMap_1069101_TerrainPiece-2763510 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-b6cf631cde4a3f17c503d832eca1a04a:-1777216859396150156",
+      "sha256": "1441b13579713077d3009f36976b2cfc24615ed4d5e3ea3392f713f346e22e53"
+    },
+    "CAB-7c7b2b53078ff501e8ab3d6fcf96e2d7:5144170642843038650": {
+      "path": "res://assets/environment_recovered/region/texture_29b4eae466a67a02d4e3.png",
+      "name": "LevelMap_1069101_TerrainPiece-2764616 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-7c7b2b53078ff501e8ab3d6fcf96e2d7:5144170642843038650",
+      "sha256": "2613e8313845033997bcce013d247b505e058715d0a107e4a34807e6454e67f4"
+    },
+    "CAB-67cd8e2689524830b9c545d2bcb12eeb:-7179947740534762019": {
+      "path": "res://assets/environment_recovered/region/texture_ad5682405a94d5f8eb97.png",
+      "name": "LevelMap_1069101_TerrainPiece-2771288 Splatmap 0",
+      "width": 512,
+      "height": 512,
+      "source": "CAB-67cd8e2689524830b9c545d2bcb12eeb:-7179947740534762019",
+      "sha256": "8714144fc7f5a315fd49ca3e4e190924089129cc688e0c1d2e9e4c29345740b3"
+    }
+  },
+  "source_apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505"
+}

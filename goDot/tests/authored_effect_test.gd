@@ -36,6 +36,7 @@ func run() -> void:
 	check(not EFFECT._uses_reconstructed_water_shell({"renderer": {"render_mode": 4}}, {"source": "original/mat_fx_smoke.mat", "blend": "alpha"}), "Unrelated mesh materials keep source rendering")
 	check(EFFECT._uses_reconstructed_water_splash({"source": "original/mat_fx_23110201_hit_prick.mat", "blend": "alpha"}), "Overlapping water contact spikes retain target visibility")
 	check(not EFFECT._uses_reconstructed_water_splash({"source": "original/mat_fx_smoke.mat", "blend": "alpha"}), "Water contact correction excludes smoke")
+	_check_burst_lifecycle()
 	var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/combat_presentation/catalog.json"))
 	var textures: Dictionary = {}
 	for path in catalog.get("texture_sources", {}):
@@ -87,3 +88,51 @@ func any_word(value: String, words: Array) -> bool:
 	for word in words:
 		if word in value: return true
 	return false
+
+func _check_burst_lifecycle() -> void:
+	var layer := {
+		"duration": 0.3, "looping": true, "simulation_speed": 2.0,
+		"start_delay": {"scalar": 0.1}, "initial": {"startLifetime": {"scalar": 0.05}},
+		"materials": [{"blend": "alpha"}],
+		"emission": {"rateOverTime": {"scalar": 0.0}, "m_Bursts": [
+			{"time": 0.0, "countCurve": {"scalar": 1.0}, "cycleCount": 2, "repeatInterval": 0.1}
+		]}
+	}
+	var effect := EFFECT.new()
+	root.add_child(effect)
+	effect.configure({"layers": [layer]}, false, {})
+	check(effect.emitters.size() == 2, "Each authored burst retains its own schedule")
+	effect.restart()
+	effect.advance(0.04, false)
+	check(not effect.emitters[0].started, "Looping bursts respect scaled start delay")
+	effect.advance(0.02, false)
+	check(effect.emitters[0].started and not effect.emitters[1].started, "Looping bursts retain scaled cycle offsets")
+	effect.advance(0.05, false)
+	check(effect.emitters[1].started, "Later burst starts at its own offset")
+	for emitter in effect.emitters: emitter.node.emitting = false
+	effect.advance(0.5, true)
+	check(is_equal_approx(effect.age, 0.11) and not effect.emitters[0].node.emitting, "Pause freezes looping burst schedule")
+	effect.advance(0.1, false)
+	check(effect.emitters[0].node.emitting and not effect.emitters[1].node.emitting, "Only the due burst repeats at source duration divided by simulation speed")
+	effect.advance(0.05, false)
+	check(effect.emitters[1].node.emitting, "Later bursts repeat with their original offset")
+	effect.advance(1.0, false)
+	for emitter in effect.emitters:
+		check(float(emitter.next_burst) > effect.age, "Long steps skip elapsed burst cycles without a catch-up backlog")
+	effect.restart()
+	effect.advance(0.06, false)
+	check(is_equal_approx(effect.emitters[0].next_burst, 0.2), "Restart resets looping burst schedule")
+	effect.free()
+	layer.looping = false
+	effect = EFFECT.new()
+	root.add_child(effect)
+	effect.configure({"layers": [layer]}, false, {})
+	effect.restart()
+	effect.advance(0.11, false)
+	effect.advance(0.5, false)
+	for emitter in effect.emitters:
+		check(not emitter.loop and not emitter.has("next_burst") and not emitter.node.emitting, "One-shot combat bursts expire without scheduling another cycle")
+	effect.advance(1.0, false)
+	for emitter in effect.emitters:
+		check(not emitter.node.emitting, "Expired one-shot combat bursts stay stopped")
+	effect.free()

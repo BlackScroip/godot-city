@@ -2,6 +2,47 @@ extends Node
 
 const Metrics = preload("res://scripts/combat_metrics.gd")
 const SEED := 731
+
+class MeasuredWorld:
+	extends DungeonWorld
+	var cpu_scopes: Dictionary = {}
+
+	func _record_scope(key: String, before: int) -> void:
+		var elapsed := Time.get_ticks_usec() - before
+		if not cpu_scopes.has(key): cpu_scopes[key] = {"calls": 0, "total_us": 0, "max_us": 0}
+		var entry: Dictionary = cpu_scopes[key]
+		entry.calls += 1
+		entry.total_us += elapsed
+		entry.max_us = maxi(entry.max_us, elapsed)
+
+	func _physics_process(delta: float) -> void:
+		var before := Time.get_ticks_usec()
+		super._physics_process(delta)
+		_record_scope("world_tick", before)
+
+	func _tick_projectiles(delta: float) -> void:
+		var before := Time.get_ticks_usec()
+		super._tick_projectiles(delta)
+		_record_scope("projectiles", before)
+
+	func _tick_summons(delta: float) -> void:
+		var before := Time.get_ticks_usec()
+		super._tick_summons(delta)
+		_record_scope("summons", before)
+
+	func _consume(actor: DungeonActor, event: Dictionary) -> void:
+		var before := Time.get_ticks_usec()
+		super._consume(actor, event)
+		_record_scope("event_dispatch", before)
+
+	func timing_report() -> Dictionary:
+		var result := {}
+		for key in cpu_scopes:
+			var row: Dictionary = cpu_scopes[key]
+			result[key] = {"calls": row.calls, "total_ms": row.total_us / 1000.0,
+				"mean_ms": float(row.total_us) / maxi(1, row.calls) / 1000.0, "max_ms": row.max_us / 1000.0}
+		return result
+
 var world: DungeonWorld
 var hud: DungeonHud
 var profile := DungeonProfile.new()
@@ -21,7 +62,9 @@ var startup_ms := 0.0
 
 func _ready() -> void:
 	var startup := Time.get_ticks_usec()
-	barrage = OS.has_feature("combat_stress")
+	barrage = OS.has_feature("combat_stress") and not OS.has_feature("combat_source_crowd")
+	if OS.has_feature("combat_stress_short"): seconds = 45.0
+	if OS.has_feature("combat_source_crowd"): output = "user://combat-source-crowd.json"
 	for action in ["move_left", "move_right", "move_up", "move_down"]:
 		if not InputMap.has_action(action): InputMap.add_action(action)
 	for argument in OS.get_cmdline_user_args():
@@ -29,10 +72,12 @@ func _ready() -> void:
 		if argument.begins_with("--output="): output = argument.trim_prefix("--output=")
 		if argument == "--low-effects": low = true
 		if argument == "--barrage": barrage = true
+		if argument == "--no-barrage": barrage = false
 	seed(SEED)
 	Engine.physics_ticks_per_second = 60
-	world = DungeonWorld.new()
+	world = MeasuredWorld.new() if OS.has_feature("combat_stress_short") or "--profile-cpu" in OS.get_cmdline_user_args() else DungeonWorld.new()
 	add_child(world)
+	DungeonStyle.apply_options(world)
 	world.paused = true
 	world.low_effects = low
 	world.presentation.audio_enabled = false
@@ -79,7 +124,21 @@ func _ready() -> void:
 	world.paused = false
 	startup_ms = (Time.get_ticks_usec() - startup) / 1000.0
 	metrics = Metrics.new()
+	metrics.measure_rendering(get_viewport())
+	if world is MeasuredWorld: world.cpu_scopes.clear()
 	ready_to_run = true
+	print("COMBAT_STRESS_READY ", JSON.stringify({"seconds": seconds, "actors": world.actors.size(),
+		"renderer": RenderingServer.get_current_rendering_method(), "driver": RenderingServer.get_current_rendering_driver_name(), "scale_3d": get_viewport().scaling_3d_scale,
+		"fps_cap": Engine.max_fps, "barrage": barrage, "ai_backends": _ai_backends()}))
+
+func _ai_backends() -> Dictionary:
+	var result: Dictionary = {}
+	for actor in world.actors:
+		if not is_instance_valid(actor) or actor.combat.enemy_ai == null: continue
+		var ai: RefCounted = actor.combat.enemy_ai
+		var backend := str(ai.backend_name()) if ai.has_method("backend_name") else "gdscript"
+		result[backend] = int(result.get(backend, 0)) + 1
+	return result
 
 func _spawn(count: int) -> void:
 	var batch: Array = []
@@ -170,7 +229,14 @@ func _finish() -> void:
 	result["startup_preparation_ms"] = startup_ms
 	result["simulation_seconds"] = ticks / 60.0
 	result["quality"] = "low" if low else "full"
+	result["renderer_method"] = RenderingServer.get_current_rendering_method()
+	result["renderer_driver"] = RenderingServer.get_current_rendering_driver_name()
+	result["render_scale"] = get_viewport().scaling_3d_scale
+	result["fps_cap"] = Engine.max_fps
+	result["ai_backends"] = _ai_backends()
+	if world.has_method("timing_report"): result["cpu_scopes"] = world.timing_report()
 	result["fixture"] = "extended-barrage" if barrage else "initial-baseline"
+	if OS.has_feature("combat_source_crowd") or "--no-barrage" in OS.get_cmdline_user_args(): result["fixture"] = "source-crowd"
 	result["save_error"] = store.warning
 	result["viewport"] = [get_viewport().get_visible_rect().size.x, get_viewport().get_visible_rect().size.y]
 	result["scope"] = "Fixed physics-tick combat workload, rendered wall frame times. Headless results are CPU diagnostics only. Device thermal state must be recorded externally."
@@ -178,7 +244,9 @@ func _finish() -> void:
 	if file: file.store_string(JSON.stringify(result, "\t"))
 	print("COMBAT_STRESS ", JSON.stringify({"output": output, "summary": result.all, "headless": result.headless}))
 	print("COMBAT_STRESS_PHASES ", JSON.stringify({"cold": result.cold, "warm": result.warm}))
-	print("COMBAT_STRESS_DEVICE ", JSON.stringify({"device": result.device, "platform": result.platform, "os_version": result.os_version, "renderer": result.renderer, "debug": result.debug, "fixture": result.fixture, "quality": result.quality, "startup_preparation_ms": startup_ms, "save_error": store.warning}))
+	if result.has("cpu_scopes"): print("COMBAT_STRESS_CPU ", JSON.stringify(result.cpu_scopes))
+	print("COMBAT_STRESS_RENDER ", JSON.stringify(result.render_timing))
+	print("COMBAT_STRESS_DEVICE ", JSON.stringify({"device": result.device, "platform": result.platform, "os_version": result.os_version, "renderer": result.renderer, "renderer_method": result.renderer_method, "renderer_driver": result.renderer_driver, "debug": result.debug, "fixture": result.fixture, "quality": result.quality, "startup_preparation_ms": startup_ms, "save_error": store.warning, "ai_backends": result.ai_backends}))
 	get_tree().quit(0 if file else 1)
 
 func _exit_tree() -> void:

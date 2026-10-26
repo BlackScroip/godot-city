@@ -357,6 +357,57 @@ def recover_world_widgets(archive, assets, bundles, manifest, output):
     return resources, records, previews, prefab
 
 
+def recover_hidden_node(apk, output):
+    name = 'icon_stagerewardtypeicon_Unknown'
+    output.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(apk) as archive:
+        manifest_name = next(n for n in archive.namelist() if n.startswith(
+            'assets/yoo/DefaultPackage/DefaultPackage_') and n.endswith('.bytes'))
+        manifest = archive.read(manifest_name)
+        assets, bundles = manifest_records(manifest)
+        asset = next(asset for asset in assets if asset['address'] == name)
+        direct, edges = package_dependencies(manifest, name)
+        pending, seen = [asset['bundle'], *direct], set()
+        env, sources = UnityPy.Environment(), {}
+        while pending:
+            index = pending.pop()
+            if index in seen:
+                continue
+            seen.add(index)
+            pending.extend(edges[index])
+            bundle = bundles[index]
+            member = 'assets/yoo/DefaultPackage/' + bundle['hash'] + '.bundle'
+            payload = archive.read(member)
+            loaded = env.load_file(payload)
+            for cab in loaded.files.values():
+                if hasattr(cab, 'objects'):
+                    sources[cab.name] = {'member': member, 'bundle_name': bundle['name'],
+                                         'bundle_hash': bundle['hash'], 'sha256': sha(payload)}
+        obj = next(obj for obj in env.objects if obj.type.name == 'Sprite' and obj.peek_name() == name)
+        picture = obj.read().image.convert('RGBA')
+        target = output / 'room_unknown.png'
+        picture.save(target)
+        path = 'res://assets/ui/route/room_unknown.png'
+        record = {'name': name, 'path': path, 'source_asset': asset['path'],
+                  'source': sources[obj.assets_file.name], 'sprite_path_id': str(obj.path_id),
+                  'sprite_rect': obj.read_typetree()['m_Rect'],
+                  'width': picture.width, 'height': picture.height,
+                  'png_sha256': sha(target.read_bytes()),
+                  'alpha_bounds': picture.getchannel('A').getbbox()}
+    provenance_path = output / 'provenance.json'
+    provenance = json.loads(provenance_path.read_text()) if provenance_path.exists() else {}
+    provenance['hidden_room'] = {'apk_sha256': hashlib.file_digest(apk.open('rb'), 'sha256').hexdigest(),
+                                'manifest': {'member': manifest_name, 'sha256': sha(manifest)},
+                                'sprite': record,
+                                'limits': 'Exact sprite named by RoadMapNodeData.GetStageTypeIconName; static extraction.'}
+    provenance_path.write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + '\n')
+    mapping_path = output / 'resource_map.json'
+    mapping = json.loads(mapping_path.read_text()) if mapping_path.exists() else {}
+    mapping[name] = path
+    mapping_path.write_text(json.dumps(mapping, ensure_ascii=False, indent=2) + '\n')
+    print(json.dumps(record))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apk', type=Path, required=True)
@@ -364,8 +415,12 @@ if __name__ == '__main__':
                         default=Path(__file__).resolve().parents[1] / 'assets/ui/route')
     parser.add_argument('--world-only', action='store_true',
                         help='Add world icons and backgrounds without replacing existing route art')
+    parser.add_argument('--hidden-only', action='store_true',
+                        help='Add the exact unknown room icon named by the hidden-node logic')
     args = parser.parse_args()
-    if args.world_only:
+    if args.hidden_only:
+        recover_hidden_node(args.apk, args.output)
+    elif args.world_only:
         recover_world(args.apk, args.output)
     else:
         recover(args.apk, args.output)

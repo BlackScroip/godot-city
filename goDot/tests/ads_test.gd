@@ -67,31 +67,44 @@ func run() -> void:
 	assert(not rewards.claim(offer, "two").success)
 	assert(profile.data.materials == snapshot)
 	var meal = {"kind": "meal", "id": 70101000, "level": 1}
-	for index in 3: assert(rewards.claim(meal, "skip-" + str(index), true).success)
+	assert(not rewards.quote(meal).success)
+	profile.data.buildings["7"] = 1
+	for resource in [101, 10101, 10102]: systems.grant_material(resource, 1000)
+	assert(systems.rank(profile.data.recipes, 70101000) == 1)
+	assert(systems.buy_meal(70101000).success)
+	snapshot = profile.data.materials.duplicate(true)
+	for index in 3:
+		systems.clear_invalid_meals("CompleteRegion")
+		assert(rewards.claim(meal, "skip-" + str(index), true).success)
+	systems.clear_invalid_meals("CompleteRegion")
 	assert(not rewards.claim(meal, "skip-4", true).success)
 	assert(rewards.free_skips() == 0)
 	assert(profile.data.materials == snapshot)
-	assert(not rewards.claim({"kind": "meal", "id": 70101000, "level": 99}, "bad").success)
+	var whole_order = rewards.quote({"kind": "meal", "id": 999, "level": 99})
+	assert(whole_order.success and whole_order.meals == {"70101000": 1})
 	profile.data.run.active = true
+	profile.data.meal_purchased = true
 	assert(not rewards.claim(meal, "battle").success)
 	profile.data.run.active = false
 	now[0] += 86400
 	assert(rewards.free_skips() == 3 and rewards.quote(offer).success)
-	for index in 100: assert(rewards.claim(meal, "meal-" + str(index)).success)
+	for index in 100:
+		systems.clear_invalid_meals("CompleteRegion")
+		assert(rewards.claim(meal, "meal-" + str(index)).success)
+	systems.clear_invalid_meals("CompleteRegion")
 	assert(not rewards.claim(meal, "meal-limit").success)
 	var work = {"kind": "work", "id": 101}
 	assert(not rewards.quote(work).success)
-	profile.data.work = [{"work_id": 101, "partner_id": 11001, "started_utc": now[0], "due_utc": now[0] + 3600, "material_id": 101, "reward": 500}]
-	assert(rewards.claim(work, "work-1").success)
-	assert(profile.data.work[0].due_utc == now[0] + 1800)
-	assert(not rewards.claim(work, "work-1").success)
-	assert(rewards.claim(work, "work-2").success)
-	assert(profile.data.work[0].due_utc == now[0] and not rewards.quote(work).success)
-	for index in range(2, 10):
-		profile.data.work[0].due_utc = now[0] + 10
-		assert(rewards.claim(work, "work-more-" + str(index)).success)
-		assert(profile.data.work[0].due_utc == now[0])
-	profile.data.work[0].due_utc = now[0] + 10
+	profile.data.buildings["6"] = 1
+	assert(systems.start_work(101).success)
+	for index in 10:
+		assert(rewards.claim(work, "work-" + str(index)).success)
+		assert(not rewards.claim(work, "work-" + str(index)).success)
+		var state = systems.work_status(101)
+		assert(state.completed_quantity == 3 if index % 2 == 0 else state.completed_quantity == 6)
+		if state.completed_quantity == state.queue_max:
+			assert(not rewards.quote(work).success)
+			assert(systems.collect_work(101).success)
 	assert(not rewards.claim(work, "work-limit").success)
 	assert(profile.validate())
 	ads.queue_free()

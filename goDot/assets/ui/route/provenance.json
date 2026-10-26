@@ -1420,5 +1420,40 @@
       ]
     },
     "limits": "Static raw world-region sprites and region preview backgrounds from the October package."
+  },
+  "hidden_room": {
+    "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+    "manifest": {
+      "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+      "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+    },
+    "sprite": {
+      "name": "icon_stagerewardtypeicon_Unknown",
+      "path": "res://assets/ui/route/room_unknown.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/System/icon_stagerewardtypeicon_Unknown.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_system.bundle",
+        "bundle_hash": "e05a616ef0b7ba19af3ea033eec31f2f",
+        "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+      },
+      "sprite_path_id": "-4246740753710542625",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "width": 243,
+      "height": 227,
+      "png_sha256": "6fedd8f8df627f2de63ddb8be0bf5f1cc7cfbde6ac2839d86dbf8b6f0c57580e",
+      "alpha_bounds": [
+        0,
+        2,
+        241,
+        225
+      ]
+    },
+    "limits": "Exact sprite named by RoadMapNodeData.GetStageTypeIconName; static extraction."
   }
 }

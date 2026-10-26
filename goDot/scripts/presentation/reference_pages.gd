@@ -399,10 +399,22 @@ func _settings_section(section: String) -> void:
 func _tree() -> void:
 	var tree_rows: Array = rows.filter(func(row): return row.get("presentation_role", "") != "awakening_summary")
 	if mode == "awakening": tree_rows.sort_custom(func(a, b): return int(a.get("node_level", 0)) < int(b.get("node_level", 0)))
+	var left = VBoxContainer.new()
+	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	left.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	add_child(left)
+	if mode == "awakening":
+		for row in rows:
+			if row.get("presentation_role", "") != "awakening_summary": continue
+			var summary = VBoxContainer.new()
+			summary.name = "AwakeningSummary"
+			left.add_child(summary)
+			summary.add_child(DungeonStyle.label(str(row.get("description", "")), 18))
+			for entry in row.get("buttons", []): summary.add_child(_command_button(entry))
 	var scroll = ScrollContainer.new()
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	add_child(scroll)
+	left.add_child(scroll)
 	var graph = Control.new()
 	graph.custom_minimum_size = Vector2(610, 560) if mode == "awakening" else Vector2(570, 460)
 	scroll.add_child(graph)
@@ -412,13 +424,6 @@ func _tree() -> void:
 		emblem.size = Vector2(350, 425)
 		emblem.modulate = Color(1, 0.85, 0.6, 0.55)
 		graph.add_child(emblem)
-		for row in rows:
-			if row.get("presentation_role", "") != "awakening_summary": continue
-			var summary = VBoxContainer.new()
-			summary.position = Vector2(10, 10)
-			graph.add_child(summary)
-			summary.add_child(DungeonStyle.label(str(row.get("description", "")), 24))
-			for entry in row.get("buttons", []): summary.add_child(_command_button(entry))
 	detail = _scroll(self, 275, false)
 	var points: Dictionary = {}
 	var depth: Dictionary = {}
@@ -441,7 +446,8 @@ func _tree() -> void:
 		layers[d] = lane + 1
 		var point = Vector2(30 + d * 190, 30 + lane * 150)
 		if mode == "awakening" and tree_rows.size() > 1:
-			point = Vector2(245, 240) + Vector2.from_angle(-PI / 2 + TAU * i / tree_rows.size()) * 205
+			var radius = maxf(205, tree_rows.size() * 92.0 / TAU)
+			point = Vector2(radius + 30, radius + 30) + Vector2.from_angle(-PI / 2 + TAU * i / tree_rows.size()) * radius
 		elif mode == "buildings": point = Vector2(30 + (i % 2) * 260, 30 + (i / 2) * 155)
 		points[id] = point
 		var dimensions = Vector2(88, 88) if mode == "awakening" else Vector2(128, 110)

@@ -9,6 +9,7 @@ static var _map: Dictionary = {}
 static var missing: Dictionary = {}
 static var options: Dictionary = {"quality": 1, "shadows": true, "fps": 60}
 static var _options_loaded := false
+static var _last_render_settings := ""
 
 static func read_options() -> Dictionary:
 	if not _options_loaded:
@@ -29,9 +30,25 @@ static func set_option(key: String, value: Variant) -> void:
 static func apply_options(world: Node3D) -> void:
 	var settings = read_options()
 	Engine.max_fps = clampi(int(settings.fps), 0, 120)
-	world.get_viewport().msaa_3d = Viewport.MSAA_DISABLED if int(settings.quality) == 0 else Viewport.MSAA_2X if int(settings.quality) == 1 else Viewport.MSAA_4X
+	var viewport := world.get_viewport()
+	viewport.msaa_3d = Viewport.MSAA_DISABLED if int(settings.quality) == 0 else Viewport.MSAA_2X if int(settings.quality) == 1 else Viewport.MSAA_4X
+	viewport.scaling_3d_scale = render_scale(DisplayServer.window_get_size(), int(settings.quality), OS.has_feature("mobile"))
 	for node in world.get_children():
 		if node is DirectionalLight3D: node.shadow_enabled = bool(settings.shadows)
+	if OS.is_debug_build():
+		var applied := JSON.stringify({"renderer": RenderingServer.get_current_rendering_method(),
+			"window": [DisplayServer.window_get_size().x, DisplayServer.window_get_size().y],
+			"scale_3d": viewport.scaling_3d_scale, "msaa_3d": viewport.msaa_3d,
+			"quality": settings.quality, "shadows": settings.shadows, "fps_cap": Engine.max_fps})
+		if applied != _last_render_settings:
+			_last_render_settings = applied
+			print("DUNGEON_RENDER_SETTINGS ", applied)
+
+static func render_scale(dimensions: Vector2i, quality: int, mobile: bool) -> float:
+	if not mobile or quality >= 2: return 1.0
+	# Limit only 3D fill cost on high-resolution phones; the HUD stays native.
+	var limit := 1280.0 if quality == 0 else 1600.0
+	return clampf(limit / maxf(1.0, maxf(dimensions.x, dimensions.y)), 0.5, 1.0)
 
 static func texture(key: String) -> Texture2D:
 	if key.is_empty(): return null

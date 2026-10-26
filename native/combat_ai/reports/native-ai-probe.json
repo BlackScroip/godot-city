@@ -1,0 +1,61 @@
+{
+	"benchmark": {
+		"all_source_graphs": {
+			"actors": 42,
+			"median_us_per_tick": {
+				"baseline": 1966.98194444444,
+				"native": 963.954166666667
+			},
+			"native_ratio": 0.490067623340044,
+			"samples_us": {
+				"baseline": [
+					1943.18333333333,
+					1946.60555555556,
+					1965.51944444444,
+					1968.44444444444,
+					1972.51944444444,
+					2019.97777777778
+				],
+				"native": [
+					960.930555555556,
+					961.391666666667,
+					962.308333333333,
+					965.6,
+					986.233333333333,
+					998.055555555556
+				]
+			}
+		},
+		"stress_24": {
+			"actors": 24,
+			"median_us_per_tick": {
+				"baseline": 826.061111111111,
+				"native": 405.861111111111
+			},
+			"native_ratio": 0.49132092729217,
+			"samples_us": {
+				"baseline": [
+					819.283333333333,
+					819.511111111111,
+					825.380555555556,
+					826.741666666667,
+					831.738888888889,
+					838.15
+				],
+				"native": [
+					403.038888888889,
+					404.905555555556,
+					404.905555555556,
+					406.816666666667,
+					407.5,
+					408.483333333333
+				]
+			}
+		}
+	},
+	"checks": 149043,
+	"failures": [],
+	"graphs_checked": 47,
+	"passed": true,
+	"scope": "Production optional native C++ path versus forced original GDScript. Exact outputs, trace/visited ordering, snapshots, RNG and JSON/frequent restore over all source graphs plus edge fixtures; desktop CPU timings, not Android FPS."
+}

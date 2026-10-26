@@ -42,6 +42,10 @@ func configure(is_elite: bool) -> void:
 	queue_redraw()
 
 func update_health(current: float, maximum: float, shield: float, delta: float) -> void:
+	var previous_fraction := fraction
+	var previous_follow := follow_fraction
+	var previous_shield := shield_fraction
+	var first_update := not _initialized
 	var next := clampf(current / maxf(1.0, maximum), 0, 1)
 	if not _initialized or next > fraction:
 		follow_fraction = next
@@ -54,8 +58,9 @@ func update_health(current: float, maximum: float, shield: float, delta: float) 
 	if _hold <= 0: follow_fraction = move_toward(follow_fraction, fraction, maxf(0, delta) * 0.9)
 	shield_fraction = clampf(shield / maxf(1.0, maximum), 0, 1)
 	# A living unit with fractional HP must never display a misleading zero.
-	value_label.text = "%d / %d" % [ceili(maxf(0, current)), ceili(maxf(1, maximum))]
-	queue_redraw()
+	if elite: value_label.text = "%d / %d" % [ceili(maxf(0, current)), ceili(maxf(1, maximum))]
+	if first_update or fraction != previous_fraction or follow_fraction != previous_follow or shield_fraction != previous_shield:
+		queue_redraw()
 
 func _draw() -> void:
 	if _frame == null: return

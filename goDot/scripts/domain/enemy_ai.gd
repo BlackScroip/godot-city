@@ -7,14 +7,21 @@ const SUCCESS := 1
 const RUNNING := 2
 const RESTING := 3
 const OPTIONAL := 5
+const NUMERIC_EPSILON := 0.000000001
 const NODE_TYPES := ["Parallel", "BinarySelector", "ActionNode", "ProbabilitySelector", "ConditionalEvaluator", "Filter", "Switch", "Selector", "Merge", "FlipSelector", "StepIterator", "WaitUntil", "Sequencer", "Repeater"]
 const CONDITION_TYPES := ["ConditionList", "CheckString", "CheckNull", "CheckFloat", "CheckVectorDistance", "NCCondition_CheckTargetLineCollisionWall", "CheckInt", "CheckBoolean", "NCCondition_RoleUnit_CheckAttribute", "NCCondition_RoleUnit_CheckBuffExist"]
 const TASK_TYPES := ["ActionList", "SetFloat", "SetInt", "SetVariable", "SetBoolean", "NCTask_RefreshMonsterIndex", "NCTask_AddBuffToUnit", "NCTask_RoleUnit_SetCustomPropertyFloat", "NCTask_MessageCenter_Send"]
+const RUNTIME_TYPE := "__dungeon_ai_type"
+const RUNTIME_PARAMETER_NAME := "__dungeon_ai_parameter_name"
+const NATIVE_DESCRIPTOR := "res://addons/combat_ai/runtime/combat_ai.cfg"
+
+static var _native_load_attempted := false
 
 var blackboard: Dictionary = {}
 var diagnostics: Array = []
 var graph_name := ""
 var source := ""
+var trace_enabled := true
 var _nodes: Dictionary = {}
 var _children: Dictionary = {}
 var _variables: Dictionary = {}
@@ -32,8 +39,11 @@ var _stack: Array = []
 var _visited: Dictionary = {}
 var _repeat := true
 var _type_cache: Dictionary = {}
+var _native_runner: RefCounted
+var _native_timing: Dictionary = {}
 
 func configure(definition: Dictionary, graph: Dictionary, seed_value: int = 1) -> bool:
+	_native_runner = null
 	blackboard.clear()
 	diagnostics.clear()
 	_nodes.clear()
@@ -54,7 +64,7 @@ func configure(definition: Dictionary, graph: Dictionary, seed_value: int = 1) -
 		# Serialized nodes without an id have no graph connections and are editor leftovers.
 		if not node.has("$id"): continue
 		var id = str(node["$id"])
-		_nodes[id] = node
+		_nodes[id] = _prepare_node(node)
 		_children[id] = []
 		_states[id] = {"status": RESTING}
 	var incoming: Dictionary = {}
@@ -74,7 +84,57 @@ func configure(definition: Dictionary, graph: Dictionary, seed_value: int = 1) -
 		_report("Missing behavior tree root")
 		return false
 	_audit(_root, {})
+	_configure_native_runtime()
 	return diagnostics.is_empty()
+
+func _native_runtime_allowed() -> bool:
+	return true
+
+func backend_name() -> String:
+	return "native" if _native_runner != null else "gdscript"
+
+static func _native_platform_supported(platform: String, arm64: bool) -> bool:
+	return arm64 and platform in ["Android", "macOS"]
+
+static func _load_native_runtime() -> bool:
+	if not _native_platform_supported(OS.get_name(), OS.has_feature("arm64")): return false
+	if ClassDB.class_exists("CombatAIProbe"): return true
+	if _native_load_attempted: return false
+	_native_load_attempted = true
+	if not FileAccess.file_exists(NATIVE_DESCRIPTOR): return false
+	# Android libraries live in the APK's native library directory after export.
+	if OS.has_feature("macos"):
+		var configuration := "debug" if OS.has_feature("debug") else "release"
+		var library_name := "libcombat_ai.macos.%s.arm64.dylib" % configuration
+		var framework_path := OS.get_executable_path().get_base_dir().path_join("../Frameworks").path_join(library_name)
+		if not FileAccess.file_exists(NATIVE_DESCRIPTOR.get_base_dir().path_join(library_name)) and not FileAccess.file_exists(framework_path): return false
+	var status := GDExtensionManager.load_extension(NATIVE_DESCRIPTOR)
+	return status in [GDExtensionManager.LOAD_STATUS_OK, GDExtensionManager.LOAD_STATUS_ALREADY_LOADED] and ClassDB.class_exists("CombatAIProbe")
+
+func _configure_native_runtime() -> void:
+	if not _native_runtime_allowed() or not _load_native_runtime(): return
+	var runner = ClassDB.instantiate("CombatAIProbe")
+	_native_timing = {"clock": _clock, "random_state": _random_state}
+	if runner.configure({"nodes": _nodes, "children": _children, "states": _states, "blackboard": blackboard, "variables": _variables, "diagnostics": diagnostics, "root": _root, "repeat": _repeat, "timing": _native_timing}):
+		_native_runner = runner
+
+func _prepare_node(node: Dictionary) -> Dictionary:
+	return _prepare_value(node)
+
+func _prepare_value(value: Variant) -> Variant:
+	if value is Array:
+		var result: Array = []
+		for item in value: result.append(_prepare_value(item))
+		return result
+	if not value is Dictionary: return value
+	var result: Dictionary = {}
+	for key in value:
+		# Parameter values remain the original data; only serialized bindings compile.
+		result[key] = value[key] if key == "_value" else _prepare_value(value[key])
+	if value.has("$type"): result[RUNTIME_TYPE] = _type(value)
+	if value.has("_targetVariableID") or value.has("_name") or value.has("_value"):
+		result[RUNTIME_PARAMETER_NAME] = _name(value)
+	return result
 
 func notify_action_started(action_name: String) -> void:
 	blackboard["IP_ActionBeforeChanged"] = blackboard.get("IP_CurAction", "")
@@ -87,12 +147,17 @@ func notify_action_ended(action_name: String) -> void:
 	blackboard["IP_CurActionEnded"] = action_name
 
 func tick(delta: float, context: Dictionary = {}) -> Dictionary:
+	if _native_runner != null:
+		var result: Dictionary = _native_runner.tick(delta, context, trace_enabled)
+		_clock = float(_native_timing.clock)
+		_random_state = int(_native_timing.random_state)
+		return result
 	_properties = {}
 	_buffs = []
 	_messages = []
-	_trace = []
+	if trace_enabled or not _trace.is_empty(): _trace = []
 	_stack = []
-	_visited = {}
+	if trace_enabled or not _visited.is_empty(): _visited = {}
 	if _root.is_empty() or not is_finite(delta) or delta < 0:
 		return _result(FAILURE)
 	_delta = delta
@@ -129,6 +194,7 @@ func restore(value: Dictionary) -> bool:
 			_states[id] = value.states[id].duplicate(true)
 			if _states[id].has("failed"):
 				_states[id].failed = _states[id].failed.map(func(index): return int(index))
+	if _native_runner != null: _native_runner.sync_timing(_clock, _random_state)
 	return true
 
 func _result(status: int) -> Dictionary:
@@ -143,7 +209,7 @@ func _tick_node(id: String) -> int:
 	var status = int(state.get("status", RESTING))
 	if status not in [RESTING, RUNNING]: return status
 	_stack.append(id)
-	_visited[id] = true
+	if trace_enabled: _visited[id] = true
 	status = _execute_node(id, _nodes[id], state, _children[id])
 	_states[id].status = status
 	_stack.pop_back()
@@ -178,7 +244,8 @@ func _execute_node(id: String, node: Dictionary, state: Dictionary, children: Ar
 		"Filter":
 			if children.is_empty(): return OPTIONAL
 			var mode = int(node.get("filterMode", 1))
-			var limited = int(state.get("count", 0)) >= int(_value(node.get("maxCount", {}), 1)) if mode == 0 else _clock < float(state.get("ready_at", 0.0))
+			# Decimal JSON roundoff must not shift a cooldown by a whole frame.
+			var limited = int(state.get("count", 0)) >= int(_value(node.get("maxCount", {}), 1)) if mode == 0 else _clock + NUMERIC_EPSILON < float(state.get("ready_at", 0.0))
 			if limited: return OPTIONAL if bool(node.get("inactiveWhenLimited", true)) else FAILURE
 			var result = _tick_node(str(children[0]))
 			if result in [SUCCESS, FAILURE]:
@@ -201,7 +268,7 @@ func _execute_node(id: String, node: Dictionary, state: Dictionary, children: Ar
 		"ProbabilitySelector":
 			return _probability(node, state, children)
 		"Selector", "FlipSelector", "Sequencer":
-			var order: Array = state.get("order", children.duplicate())
+			var order: Array = state.order if state.has("order") else children.duplicate()
 			if not state.has("order"): state.order = order
 			var start = 0 if bool(node.get("dynamic", false)) else int(state.get("cursor", 0))
 			for index in range(start, order.size()):
@@ -350,7 +417,7 @@ func _assign(parameter: Dictionary, value: Variant, node_id: String) -> void:
 	var name = _name(parameter)
 	if name.is_empty(): return
 	blackboard[name] = value
-	_trace.append({"node": node_id, "variable": name, "value": value})
+	if trace_enabled: _trace.append({"node": node_id, "variable": name, "value": value})
 
 func _value(parameter: Dictionary, fallback: Variant = 0.0) -> Variant:
 	var name = _name(parameter)
@@ -358,6 +425,7 @@ func _value(parameter: Dictionary, fallback: Variant = 0.0) -> Variant:
 	return parameter.get("_value", fallback)
 
 func _name(parameter: Dictionary) -> String:
+	if parameter.has(RUNTIME_PARAMETER_NAME): return parameter[RUNTIME_PARAMETER_NAME]
 	return str(_variables.get(str(parameter.get("_targetVariableID", "")), parameter.get("_name", "")))
 
 func _default_variable(variable: Dictionary) -> Variant:
@@ -374,10 +442,10 @@ func _typed_default(type: String) -> Variant:
 func _compare(a: float, b: float, method: int, threshold := 0.0) -> bool:
 	match method:
 		0: return absf(a - b) <= threshold
-		1: return a > b
-		2: return a < b
-		3: return a >= b
-		4: return a <= b
+		1: return a - b > NUMERIC_EPSILON
+		2: return b - a > NUMERIC_EPSILON
+		3: return a - b >= -NUMERIC_EPSILON
+		4: return b - a >= -NUMERIC_EPSILON
 	return false
 
 func _reset_node(id: String, visited: Dictionary) -> void:
@@ -414,6 +482,7 @@ func _random() -> float:
 	return float(_random_state) / 4294967296.0
 
 func _type(value: Dictionary) -> String:
+	if value.has(RUNTIME_TYPE): return value[RUNTIME_TYPE]
 	var encoded := str(value.get("$type", ""))
 	if _type_cache.has(encoded): return _type_cache[encoded]
 	var qualified := encoded.get_slice("`", 0)

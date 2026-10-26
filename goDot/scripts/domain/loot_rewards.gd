@@ -11,6 +11,11 @@ func _init(owner, random_source: Callable = Callable()) -> void:
 func _roll(limit: int) -> int:
 	return int(random.call(maxi(1, limit)))
 
+func _round_even(value: float) -> int:
+	var lower := floori(value)
+	if is_equal_approx(value - lower, 0.5): return lower if lower % 2 == 0 else lower + 1
+	return roundi(value)
+
 func resource_amount(data: Dictionary, depth: int) -> int:
 	var spread := float(data.get("DropRandomFactor", 0)) / 1000.0
 	var multiplier := 1.0 - spread + 2.0 * spread * _roll(1000001) / 1000000.0
@@ -55,27 +60,53 @@ func _resources(result: Array, pool: Dictionary, depth: int, attrs: Dictionary, 
 		if _roll(1001) < chance and amount > 0 and id > 0:
 			result.append({"id": id, "amount": amount, "material": true})
 
-func monster(rate: String, depth: int, attrs: Dictionary) -> Array:
+func monster(rate: String, depth: int, attrs: Dictionary, mohua: bool = false) -> Array:
 	var result: Array = []
 	var index := ["Normal", "Elite", "Boss"].find(rate)
 	if index < 0: return result
 	var cfg: Dictionary = systems.catalog.config
 	var resource_key := "DefaultBossDropResPoolData" if rate == "Boss" else "DefaultEliteDropResPoolData" if rate == "Elite" else "DefaultEnemyDropResPoolData"
 	_resources(result, cfg.get(resource_key, {}), depth, attrs, rate)
-	if rate == "Elite" and int(attrs.get("EliteDropExtraRelicBag", 0)) >= 1:
-		_item(result, int(cfg.get("AbilityItem_SelectLootItem_Low", 0)))
-	if rate == "Boss" and _roll(1001) <= int(attrs.get("BossDropExtraChance", 0)):
-		_pool(result, "DefaultAbilityItemLootPoolId", 1 + int(attrs.get("BossDropCount", 0)))
-	var chances: Array = cfg.get("EnemyExtraDropLowRareAbilityItemChanceArray", [])
-	var counts: Array = cfg.get("EnemyExtraDropLowRareAbilityItemMaxCountArray", [])
-	var chance := int(chances[index]) if index < chances.size() else 0
-	chance += int(attrs.get("EnemyDropLowAbilityChance_" + rate, 0))
-	if rate == "Normal": chance = maxi(100, chance)
-	for attempt in maxi(0, int(counts[index]) if index < counts.size() else 0):
-		if _roll(1001) <= chance: _pool(result, "LowRareAbilityItemLootPoolId")
+	if mohua and rate in ["Normal", "Elite"]:
+		var essence_counts := str(cfg.get("MohuaEnemyDropMonsterEssence", "1|4|10")).split("|", false)
+		if essence_counts.size() != 3: essence_counts = PackedStringArray(["1", "4", "10"])
+		result.append({"id": 107, "amount": int(essence_counts[index]), "material": true})
+	var token_counts := str(cfg.get("EnemyDropRelationshipTokenUpgradeItem_ByDifficulty", {}).get(str(int(systems.profile.data.run.difficulty)), "")).split("|", false)
+	if token_counts.size() == 3 and int(token_counts[index]) > 0:
+		result.append({"id": 108, "amount": int(token_counts[index]), "material": true})
+	# Equipment and selection bags are restricted to lords by the current game rule.
+	if rate == "Boss":
+		var extra := int(attrs.get("BossDropExtraChance", 0))
+		var guaranteed := int(extra / 1000.0)
+		var count := guaranteed + (1 if _roll(1001) <= extra - guaranteed * 1000 else 0)
+		if count > 0: _pool(result, "DefaultAbilityItemLootPoolId", count)
+		var chances: Array = cfg.get("EnemyExtraDropLowRareAbilityItemChanceArray", [])
+		var counts: Array = cfg.get("EnemyExtraDropLowRareAbilityItemMaxCountArray", [])
+		var chance := int(chances[index]) if index < chances.size() else 0
+		# Native multiplies the chance, rounds to even, and caps lords at 1000.
+		chance = mini(1000, _round_even(chance * (1.0 + int(attrs.get("EnemyDropLowAbilityChance_Boss", 0)) / 1000.0)))
+		for attempt in maxi(0, int(counts[index]) if index < counts.size() else 0):
+			var roll := _roll(1001)
+			if chance > 0 and roll <= chance: _pool(result, "LowRareAbilityItemLootPoolId")
 	var recover := int(attrs.get("EnemyDropRecoverRate" if rate == "Normal" else "EliteEnemyDropRecoverRate", 0)) if rate != "Boss" else 0
 	if 1 + _roll(1000) <= recover: _pool(result, "DefaultRecoverItemLootPoolId")
+	_amplifiers(result, index, attrs)
 	return result
+
+func _amplifiers(result: Array, rank: int, attrs: Dictionary) -> void:
+	var run: Dictionary = systems.profile.data.run
+	var level := int(run.difficulty)
+	var encoded := str(systems.catalog.config.get("AmplifyDropByTierAndDifficulty", {}).get(str(level), ""))
+	if level < 6 or encoded.is_empty(): return
+	var rates := encoded.split("|", false)
+	for tier_index in int(rates.size() / 3.0):
+		var chance := int(rates[tier_index * 3 + rank])
+		chance = int(chance * systems.chaos_drop_rate_multiplier())
+		chance = int(chance * maxf(0.0, 1.0 + float(attrs.get("BlessingPlusAmplifyDropRateMulti", 0)) / 1000.0))
+		if chance < 1 or 1 + _roll(1000) > chance: continue
+		var tier := "Tier" + str(tier_index + 1)
+		var options: Array = systems.catalog.rows("RelationshipAmplifyData").filter(func(row): return str(row.rare) == tier)
+		if not options.is_empty(): result.append({"id": int(options[_roll(options.size())].id), "amount": 1, "material": true})
 
 func treasure(quality: String, treasure_id: int, first_node: bool, first_region: bool, depth: int, attrs: Dictionary) -> Array:
 	var result: Array = []

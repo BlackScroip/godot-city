@@ -6,6 +6,7 @@ var checks := 0
 var failures: Array[String] = []
 var rows: Array = []
 var clock_rows: Array = []
+var source_gap_rows: Array = []
 
 func _initialize() -> void:
 	_run.call_deferred()
@@ -23,7 +24,8 @@ func _run() -> void:
 	_movement_cases(fixture)
 	await _physical_point_cases()
 	_generation_cases()
-	var report = {"passed": failures.is_empty(), "checks": checks, "failures": failures, "behavior": rows, "segment_clocks": clock_rows, "scope": "All 39 source behavior graphs integrated with authored interrupt windows. All 39 enabled segment speed windows at 30/60/120Hz, point movement, collision flags, summon counts and snapshot replay. Static reconstruction tested locally; original APK runtime and mobile devices were not executed."}
+	_source_fallback_cases()
+	var report = {"passed": failures.is_empty(), "checks": checks, "failures": failures, "behavior": rows, "segment_clocks": clock_rows, "known_source_gaps": source_gap_rows, "scope": "All 42 source behavior graphs integrated with authored interrupt windows. All 43 enabled enemy segment speed windows at 30/60/120Hz, point movement, collision flags, summon counts and snapshot replay. Exact known missing packaged references are retained separately; no replacement damage or action is invented. Static reconstruction tested locally; original APK runtime and mobile devices were not executed."}
 	FileAccess.open("res://reports/monster-combat.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("MONSTER_COMBAT ", JSON.stringify({"passed": failures.is_empty(), "checks": checks, "failures": failures, "enemies": rows.size(), "segment_actions": clock_rows.size()}))
 	quit(0 if failures.is_empty() else 1)
@@ -33,12 +35,15 @@ func _behavior(enemy: Dictionary) -> void:
 	check(combat.configure_enemy(int(enemy.id), 731).success, "Enemy %d configures" % int(enemy.id))
 	var actions: Dictionary = {}
 	var hits := 0
+	var max_transitions := 0
 	for frame in 3600:
 		var distance = [12.0, 2.0, 6.0, 1.0][mini(3, frame / 900)]
 		combat.health = combat.max_health * (1.0 if frame < 1800 else 0.25)
 		combat.custom_properties["EnemyDistances"] = [distance]
+		var before_sequence: int = combat._cast_sequence
 		combat.tick_enemy_ai(1.0 / 60, {"target_available": true, "distance": distance, "line_blocked": false, "battle_time": float(frame) / 60, "monster_index": 0, "target_buffs": []})
 		combat.tick(1.0 / 60)
+		max_transitions = maxi(max_transitions, combat._cast_sequence - before_sequence)
 		for event in combat.drain_events():
 			if event.type == "action_started": actions[event.action] = true
 			if event.type in ["hit", "projectile", "summon_spawned"]: hits += 1
@@ -59,9 +64,15 @@ func _behavior(enemy: Dictionary) -> void:
 	check(not actions.is_empty(), "Enemy %d enters source actions" % int(enemy.id))
 	if int(enemy.id) < 90000: check(hits > 0, "Enemy %d reaches an actual attack through source AI and interrupts" % int(enemy.id))
 	var unresolved = combat.diagnostics.filter(func(message): return not str(message).begins_with("Summon behavior requires world adapter:") or not str(message).ends_with(" ESUT_Funnel"))
+	if int(enemy.id) == 410031 and unresolved.has("Missing damage 444100311"):
+		var source_report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://reports/region-combat-import.json"))
+		check(source_report.apk_sha256 == "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505" and source_report.known_source_gaps.damage == ["444100311"] and combat._damage_data(444100311).is_empty(), "Lava mage missing coefficient is the exact retained packaged-source gap")
+		source_gap_rows.append({"enemy": 410031, "damage_id": "444100311", "status": "missing in supplied APK; no fabricated coefficient"})
+		unresolved.erase("Missing damage 444100311")
 	check(unresolved.is_empty(), "Enemy %d has no unresolved combat diagnostics: %s" % [int(enemy.id), unresolved])
 	check(combat.enemy_ai.diagnostics.is_empty(), "Enemy %d graph has no unsupported tasks" % int(enemy.id))
-	rows.append({"enemy": enemy.id, "actions": actions.keys(), "attack_events": hits})
+	check(max_transitions < 12, "Enemy %d never burns the per-tick transition budget" % int(enemy.id))
+	rows.append({"enemy": enemy.id, "actions": actions.keys(), "attack_events": hits, "max_action_transitions_per_tick": max_transitions})
 	# An AI decision must not bypass an attack's authored cancel gate.
 	if enemy.get("actions", []).is_empty(): return
 	var attack = combat._action(str(enemy.group), str(enemy.actions[0]))
@@ -77,6 +88,26 @@ func _behavior(enemy: Dictionary) -> void:
 		healthy._tick_enemy_interrupts()
 		var allows_run = healthy._enemy_interrupts.any(func(command): return command.get("target", "") == "run" and float(command.get("time", 0)) <= 0.001)
 		if not allows_run: check(healthy._cast_sequence == sequence, "Enemy %d preserves attack windup when AI requests run" % int(enemy.id))
+
+func _source_fallback_cases() -> void:
+	var actor = Combat.new()
+	actor.configure_enemy(33002, 731)
+	actor.enemy_ai_enabled = true
+	for requested in ["attack1_EX", "attack3_EX", "attack7_EX"]:
+		check(actor._action(str(actor.enemy.group), requested).is_empty(), "Supplied tiger source contains no invented EX action %s" % requested)
+		actor._start(actor._action(str(actor.enemy.group), "idle"), 0)
+		actor.custom_properties.OP_AIAction = requested
+		actor.drain_events()
+		var before: int = actor._cast_sequence
+		actor._tick_enemy_interrupts()
+		var starts: Array = actor.drain_events().filter(func(event): return event.type == "action_started")
+		check(actor.current_action == "idle" and actor._cast_sequence - before == 2 and starts.map(func(event): return event.action) == ["sys_checkatk", "idle"], "Unavailable EX follows exact helper/fallback once without same-update recursion %s" % requested)
+		check(actor.diagnostics.is_empty(), "Source fallback has no transition budget exhaustion %s" % requested)
+		source_gap_rows.append({"enemy": 33002, "action": requested, "status": "referenced by source interrupts but absent from supplied manifest; authored helper fallback retained"})
+	actor.custom_properties.OP_AIAction = "attack1"
+	actor._tick_enemy_interrupts()
+	check(actor.current_action == "attack1", "Later supported AI decision still traverses source helper normally")
+	actor.drain_events()
 
 func _clock_matrix(fixture: RefCounted) -> void:
 	var windows := 0
@@ -105,7 +136,7 @@ func _clock_matrix(fixture: RefCounted) -> void:
 				check(absf(elapsed - expected) <= 1.0 / hz + 0.00001, "%d %s segment clock %dHz %.6f expected %.6f" % [int(enemy.id), action.id, hz, elapsed, expected])
 				samples.append({"hz": hz, "seconds": elapsed})
 			clock_rows.append({"enemy": enemy.id, "action": action.id, "expected_seconds": expected, "samples": samples})
-	check(windows == 39, "All 39 enabled enemy segment speed events covered")
+	check(windows == 43, "All 43 enabled enemy segment speed events covered, including four new region windows")
 
 func _movement_cases(fixture: RefCounted) -> void:
 	check(not Motion.source_bool("False") and Motion.source_bool("True"), "Source string booleans do not enable collisions accidentally")

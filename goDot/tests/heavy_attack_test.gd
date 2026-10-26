@@ -180,11 +180,16 @@ func _test_input_and_damage_gates() -> void:
 	combat.request_attack(4)
 	for frame in 10: combat.tick(0.01)
 	intent.request(combat, 4, false)
-	for frame in 65: combat.tick(0.01)
+	for frame in 100:
+		if combat.current_action == "sword_satk_normal_attack" and combat.action_elapsed >= 0.30: break
+		combat.tick(0.01)
+	var repeat_sequence = combat._cast_sequence
 	check(intent.request(combat, 4, true).success and combat.custom_properties.InputAttack, "Heavy re-press updates held input during strike")
-	for frame in 15: combat.tick(0.01)
-	check(combat.current_action == "sword_satk_normal_attack" and combat.action_elapsed < 0.1, "Re-press is consumed by the original repeat window")
-	for frame in 37: combat.tick(0.01)
+	for frame in 30:
+		combat.tick(0.01)
+		if combat._cast_sequence != repeat_sequence: break
+	check(combat.current_action == "sword_satk_normal_attack" and combat._cast_sequence != repeat_sequence and combat.action_elapsed < 0.02, "Re-press is consumed by the October source repeat window")
+	for frame in 43: combat.tick(0.01)
 	check(intent.request(combat, 0, true).success, "Normal attack fits recovery input buffer")
 	check(combat.custom_properties.AttackModeStr == "normal", "Buffered normal input changes mode before repeat can steal it")
 	var taken := 0

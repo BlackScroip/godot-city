@@ -130,7 +130,7 @@ func _ready() -> void:
 		var key = Button.new() if entry[1] == "primary" else button("", entry[1])
 		if entry[1] == "primary":
 			adventure_button = key
-			key.pressed.connect(func(): action.emit("page:difficulty" if adventure_mode else "primary", 0, 0))
+			key.pressed.connect(func(): action.emit("page:difficulty", 0, 0))
 		key.name = entry[2]
 		key.custom_minimum_size = Vector2(88, 100)
 		key.tooltip_text = entry[0]
@@ -441,19 +441,21 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 	for slot in skill_by_slot:
 		var key = skill_by_slot[slot]
 		var before = [key.cooldown, key.stock, key.charging, key.charge_fraction, key.unavailable, key.recharge_remaining]
+		var capacity: float = combat.skill_capacity(slot)
+		var cost: float = combat.skill_cost(slot)
 		key.cooldown = float(combat.cooldowns[slot])
 		key.cooldown_total = maxf(0.01, float(skills[slot].cooldown))
-		key.unavailable = combat.health <= 0 or float(combat.energy[slot]) + 0.001 < float(skills[slot].sp)
-		key.stock = int((float(combat.energy[slot]) + 0.001) / float(skills[slot].sp)) if float(skills[slot].sp) > 0 and combat.skill_capacity(slot) > float(skills[slot].sp) else -1
+		key.unavailable = combat.health <= 0 or float(combat.energy[slot]) + 0.001 < cost
+		key.stock = int((float(combat.energy[slot]) + 0.001) / cost) if cost > 0 and capacity > cost else -1
 		key.recharge_remaining = combat.dodge_recharge_remaining() if slot == 1 else 0.0
 		key.recharge_total = combat.dodge_recharge_duration() if slot == 1 else 1.0
 		key.charging = slot == 0 and combat.charging
 		key.charge_fraction = clampf(combat.charge_elapsed / 1.5, 0, 1) if key.charging else 0.0
 		key.readiness_suspended = readiness_suspended or modal_open
 		key.low_effects = low_effects
-		key.ready_full = DungeonTouchButton.has_full_skill_resource(slot, float(combat.energy[slot]), float(skills[slot].maxSp), float(skills[slot].sp), key.cooldown, combat.health > 0)
+		key.ready_full = DungeonTouchButton.has_full_skill_resource(slot, float(combat.energy[slot]), capacity, cost, key.cooldown, combat.health > 0)
 		if before != [key.cooldown, key.stock, key.charging, key.charge_fraction, key.unavailable, key.recharge_remaining]: key.queue_redraw()
-	charge.max_value = maxf(1, float(skills[3].maxSp))
+	charge.max_value = maxf(1, combat.skill_capacity(3))
 	charge.value = float(combat.energy[3])
 	var fraction = charge.value / charge.max_value
 	if reference_vitals.charge_fraction != fraction:

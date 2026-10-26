@@ -76,6 +76,8 @@ func _run() -> void:
 	game.campaign.generate(12345, 0)
 	var regions: Array = game.campaign.region_choices()
 	check(not regions.is_empty() and game.campaign.select_region(int(regions[0].node_id)).success, "Room map fixture confirms a reachable world slot")
+	var branch: Dictionary = game.campaign.state.layers[1]
+	branch.vertical_links = [[int(branch.node_ids[1]), int(branch.node_ids[2])]]
 	game._route()
 	for step in 8: await process_frame
 	check(game.hud.page._layout == "route", "Adventure opens route map")
@@ -149,7 +151,7 @@ func _check_lane_change() -> void:
 	game._route()
 	for step in 8: await process_frame
 	var destinations: Array = game.campaign.vertical_choices()
-	check(destinations.size() == 1, "Completed lower lane exposes the authored upper neighbor")
+	check(destinations.size() == 1, "Completed lower lane exposes the fixture's connected upper neighbor")
 	if destinations.is_empty(): return
 	var target = int(destinations[0].node_id)
 	var before: Dictionary = game.campaign.snapshot()

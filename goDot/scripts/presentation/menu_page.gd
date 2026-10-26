@@ -25,6 +25,7 @@ var building_view: Control
 var commission_view: Control
 var guild_view: Control
 var dialogue_view: Control
+var prepare_view: Control
 var page_context: Dictionary = {}
 
 func _ready() -> void:
@@ -117,7 +118,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	_choices.clear()
 	_clear(rows_host)
 	_clear(detail)
-	for view in [building_view, commission_view, guild_view, dialogue_view]:
+	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view]:
 		if is_instance_valid(view):
 			stack.remove_child(view)
 			view.queue_free()
@@ -125,6 +126,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	commission_view = null
 	guild_view = null
 	dialogue_view = null
+	prepare_view = null
 	if is_instance_valid(outcome_view):
 		stack.remove_child(outcome_view)
 		outcome_view.queue_free()
@@ -137,22 +139,25 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.remove_child(special)
 		special.queue_free()
 		special = null
-	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue"]
-	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue"]
+	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare"]
+	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare"]
 	stack.add_theme_constant_override("separation", 0 if layout in ["route", "outcome"] else 16)
-	if layout in ["buildings", "commission", "guild", "dialogue"]:
+	if layout in ["buildings", "commission", "guild", "dialogue", "prepare"]:
 		backdrop.hide()
 		body.hide()
-		var paths = {"buildings": "building_page", "commission": "commission_board", "guild": "guild_page", "dialogue": "dialogue_page"}
+		var paths = {"buildings": "building_page", "commission": "commission_board", "guild": "guild_page", "dialogue": "dialogue_page", "prepare": "adventure_prepare"}
 		var view = load("res://scripts/presentation/" + paths[layout] + ".gd").new()
 		match layout:
 			"buildings": building_view = view
 			"commission": commission_view = view
 			"guild": guild_view = view
 			"dialogue": dialogue_view = view
+			"prepare":
+				prepare_view = view
+				view.closed.connect(func(): closed.emit())
 		stack.add_child(view)
 		view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
-		if layout in ["buildings", "dialogue"]:
+		if layout in ["buildings", "dialogue", "prepare"]:
 			add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 			stack.add_theme_constant_override("separation", 0)
 		else:

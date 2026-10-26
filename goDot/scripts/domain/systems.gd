@@ -7,18 +7,22 @@ signal gameplay_event(event: Dictionary)
 const Catalog = preload("res://scripts/domain/catalog.gd")
 const Profile = preload("res://scripts/domain/profile.gd")
 const Effects = preload("res://scripts/domain/effects.gd")
+const CampDecorations = preload("res://scripts/domain/camp_decorations.gd")
 var catalog
 var profile
 var effects
+var decorations
 var diagnostics: Array = []
 var utc_now: Callable = func(): return int(Time.get_unix_time_from_system())
 var _depth = 0
+var _collecting_work = false
 
 func _init(source, state) -> void:
 	catalog = source
 	profile = state
 	profile.normalize_ids()
 	effects = Effects.new(self)
+	decorations = CampDecorations.new(self)
 
 func _ok(message = "完成", id = 0) -> Dictionary:
 	return {"success": true, "message": str(message), "id": int(id)}
@@ -36,6 +40,7 @@ func diagnose(message: String) -> void:
 		diagnostics.append(message)
 
 func material(id: int) -> int:
+	if id == 504: return int(awakening_progress().total)
 	return int(profile.data.materials.get(str(id), 0))
 
 func material_name(id: int) -> String:
@@ -61,7 +66,7 @@ func _add(values: Dictionary, key, amount) -> void:
 func grant_material(id: int, amount: int) -> void:
 	if amount <= 0:
 		return
-	_add(profile.data.materials, id, amount)
+	if id != 504: _add(profile.data.materials, id, amount)
 	record("get:" + str(id), amount)
 	if profile.data.run.active:
 		_add(profile.data.run.materials, id, amount)
@@ -100,6 +105,7 @@ func _normalized_costs(values: Dictionary) -> Dictionary:
 func can_afford(values: Dictionary) -> bool:
 	var normalized = _normalized_costs(values)
 	if normalized.has("invalid"): return false
+	if int(normalized.get("504", 0)) > 0: return false
 	for key in normalized:
 		if material(int(key)) < int(normalized[key]): return false
 	return true
@@ -150,20 +156,25 @@ func _alias(id: int) -> int:
 func is_unlocked(id: int, visiting: Array = []) -> bool:
 	if id == 0:
 		return true
-	if visiting.has(id):
-		diagnose("Circular unlock " + str(id))
-		return false
 	var row = catalog.find("UnlockData", id)
 	if row.is_empty():
 		diagnose("Missing unlock " + str(id))
 		return false
+	return _unlock_condition_complete(row, visiting)
+
+func _unlock_condition_complete(row: Dictionary, visiting: Array = []) -> bool:
+	if row.is_empty(): return false
+	var id = int(row.get("id", 0))
+	if id != 0 and visiting.has(id):
+		diagnose("Circular unlock " + str(id))
+		return false
 	var path = visiting.duplicate()
-	path.append(id)
-	var a = int(row.unlock_param1)
-	var b = int(row.unlock_param2)
-	var c = int(row.unlock_param3)
+	if id != 0: path.append(id)
+	var a = int(row.get("unlock_param1", 0))
+	var b = int(row.get("unlock_param2", 0))
+	var c = int(row.get("unlock_param3", 0))
 	var d = profile.data
-	match int(row.unlock_condition_type):
+	match int(row.get("unlock_condition_type", -1)):
 		0: return true
 		10: return stat("runs") >= a
 		11: return stat("wins") >= a
@@ -171,7 +182,8 @@ func is_unlocked(id: int, visiting: Array = []) -> bool:
 		13: return stat("region:" + str(a)) >= b
 		20: return stat("kill:" + str(a)) >= b
 		21: return d.talents.values().filter(func(x): return x > 0).size() >= a
-		30: return stat("get:" + str(_alias(a))) >= b
+		23: return _kill_count_by_enemy_type(a) >= b
+		30: return _total_resource_acquired(a) >= b
 		31: return stat("spent:" + str(_alias(a))) >= b
 		40: return d.discovered_loot.has(a)
 		41: return d.discovered_loot.size() >= a
@@ -201,6 +213,9 @@ func is_unlocked(id: int, visiting: Array = []) -> bool:
 		1040: return stat("hard:losses") >= a
 		1051: return rank(d.talents, a) > 0
 		1052: return rank(d.talents, a) == 0
+		1053: return int(d.run.difficulty) >= a
+		1055: return chaos_cleared_level() >= a
+		1056: return selected_chaos_level() >= a
 		1061: return stat("meal:research") >= a
 		1062: return stat("meal:upgraded") >= a
 		9001: return is_unlocked(a, path) and is_unlocked(b, path) and is_unlocked(c, path)
@@ -215,25 +230,43 @@ func is_unlocked(id: int, visiting: Array = []) -> bool:
 	diagnose("Unsupported unlock " + str(id))
 	return false
 
+func _kill_count_by_enemy_type(enemy_type: int) -> int:
+	var total = 0
+	var rates = ["Normal", "Elite", "Boss"]
+	if enemy_type < 0 or enemy_type >= rates.size(): return total
+	for enemy in catalog.rows("EnemyData"):
+		if str(enemy.get("enemy_rate", "")) == rates[enemy_type]:
+			total += stat("kill:" + str(int(enemy.id)))
+	return total
+
+func _total_resource_acquired(resource: int) -> int:
+	# Native selector 1 reads settlement gold history, excluding camp payouts.
+	return stat("adventure:get:101") if resource == 1 else stat("get:" + str(_alias(resource)))
+
 func unlock_progress(id: int) -> Dictionary:
 	var row = catalog.find("UnlockData", id)
 	if id == 0:
 		return {"current": 1, "required": 1, "complete": true, "description": ""}
+	return _unlock_condition_progress(row)
+
+func _unlock_condition_progress(row: Dictionary) -> Dictionary:
 	if row.is_empty():
 		return {"current": 0, "required": 1, "complete": false, "description": "未知条件"}
-	var a = int(row.unlock_param1)
-	var b = int(row.unlock_param2)
+	var id = int(row.get("id", 0))
+	var a = int(row.get("unlock_param1", 0))
+	var b = int(row.get("unlock_param2", 0))
 	var current = 0
 	var required = maxi(1, a)
 	var d = profile.data
-	match int(row.unlock_condition_type):
+	match int(row.get("unlock_condition_type", -1)):
 		10: current = stat("runs")
 		11: current = stat("wins")
 		12: current = stat("losses")
 		13: current = stat("region:" + str(a)); required = b
 		20: current = stat("kill:" + str(a)); required = b
 		21: current = d.talents.values().filter(func(x): return x > 0).size()
-		30: current = stat("get:" + str(_alias(a))); required = b
+		23: current = _kill_count_by_enemy_type(a); required = b
+		30: current = _total_resource_acquired(a); required = b
 		31: current = stat("spent:" + str(_alias(a))); required = b
 		41: current = d.discovered_loot.size()
 		51: current = stat("work:finished")
@@ -254,6 +287,9 @@ func unlock_progress(id: int) -> Dictionary:
 		1021: current = stat("boss-rating:" + str(a)); required = b
 		1030: current = stat("max-region" if a == 0 else "character-region:" + str(a)); required = b
 		1040: current = stat("hard:losses")
+		1053: current = int(d.run.difficulty)
+		1055: current = chaos_cleared_level()
+		1056: current = selected_chaos_level()
 		1061: current = stat("meal:research")
 		1062: current = stat("meal:upgraded")
 		9999:
@@ -262,11 +298,11 @@ func unlock_progress(id: int) -> Dictionary:
 			elif id == 50002: current = stat("get:102")
 			elif id >= 50003 and id <= 50007: current = stat("kill:" + str(a))
 			elif id >= 50022 and id <= 50027: current = stat("character-region:" + str(a))
-			else: current = required if is_unlocked(id) else 0
+			else: current = required if _unlock_condition_complete(row) else 0
 		_:
 			required = 1
-			current = 1 if is_unlocked(id) else 0
-	return {"current": current, "required": required, "complete": is_unlocked(id), "description": row.unlock_desc}
+			current = 1 if _unlock_condition_complete(row) else 0
+	return {"current": current, "required": required, "complete": _unlock_condition_complete(row), "description": str(row.get("unlock_desc", ""))}
 
 func _all_unlocked(expression) -> bool:
 	for id in Catalog.ids(expression):
@@ -277,7 +313,10 @@ func task_status(id: int) -> Dictionary:
 	var row = catalog.find("SubAchieveData", id)
 	if row.is_empty(): return {"available": false, "claimed": false, "complete": false}
 	var group = catalog.find("AchieveData", int(row.group_id))
-	var result = unlock_progress(int(row.unlock_data_id))
+	var condition = row.get("unlock_data", null)
+	var result = _unlock_condition_progress({})
+	if condition is Dictionary: result = _unlock_condition_progress(condition)
+	elif row.has("unlock_data_id"): result = unlock_progress(int(row.unlock_data_id))
 	result["available"] = _all_unlocked(group.get("unlock_group_id", ""))
 	result["claimed"] = profile.data.claimed_tasks.has(id)
 	return result
@@ -589,55 +628,113 @@ func work_status(id: int) -> Dictionary:
 	if reason.is_empty():
 		if not order.is_empty(): reason = "派遣进行中" if int(order.due_utc) > int(utc_now.call()) else "请先领取派遣奖励"
 		elif not profile.data.work.is_empty(): reason = "已有派遣进行中，请先领取奖励并停止当前派遣"
-		elif available.is_empty(): reason = "没有可派遣的空闲伙伴"
-		elif not can_afford(price): reason = "派遣材料不足"
 	if upgrade_reason.is_empty():
 		if upgrade_gold.is_empty() or level + 1 >= rewards.size(): upgrade_reason = "派遣已满级"
-		elif not order.is_empty(): upgrade_reason = "请先完成并领取当前派遣"
 		elif not can_afford(upgrade_price): upgrade_reason = "派遣升级材料不足"
-	var remaining = maxi(0, int(order.get("due_utc", 0)) - int(utc_now.call()))
-	var duration = maxi(1, int(row.get("cost_time", 1))) * (30 if stat("blessing") > 0 else 60)
+	var duration = _work_duration(row)
 	var queue = _work_queue_progress(order)
-	return {"id": id, "exists": not row.is_empty(), "level": level, "max_level": rewards.size(), "name": Catalog.row_name(row), "description": Catalog.clean(Catalog.description(row)), "price": price, "upgrade_price": upgrade_price, "reward": {"id": int(row.get("materia_id", 0)), "amount": int(rewards[level]) if level >= 0 and level < rewards.size() else 0}, "duration_seconds": duration, "queue_max": 5 if stat("blessing") == 2 else 1, "quantity": queue.quantity, "completed_quantity": queue.completed, "claimable_quantity": queue.claimable, "next_claim_seconds": queue.next_claim_seconds, "order": order, "remaining_seconds": remaining, "ready": queue.claimable > 0, "unlocked": unlocked, "can_start": reason.is_empty(), "can_upgrade": upgrade_reason.is_empty(), "reason": reason, "upgrade_reason": upgrade_reason, "available_partners": available}
+	var daily = _work_daily_status()
+	var prepaid = int(order.get("prepaid_quantity", 1 if not order.is_empty() and not order.has("economy_version") else 0))
+	var claimable = mini(int(queue.completed), int(daily.remaining))
+	for key in price:
+		if int(price[key]) > 0: claimable = mini(claimable, prepaid + int(material(int(key)) / int(price[key])))
+	var claim_price: Dictionary = {}
+	for key in price: claim_price[key] = int(price[key]) * maxi(0, claimable - prepaid)
+	var claim_reason = ""
+	if profile.data.run.active: claim_reason = "请返回营地领取派遣奖励"
+	elif queue.completed == 0: claim_reason = "派遣尚未完成"
+	elif daily.remaining == 0: claim_reason = "今日派遣领取次数已用完"
+	elif claimable == 0: claim_reason = "领取材料不足"
+	return {"id": id, "exists": not row.is_empty(), "level": level, "max_level": rewards.size(), "name": Catalog.row_name(row), "description": Catalog.clean(Catalog.description(row)), "price": price, "claim_price": claim_price, "upgrade_price": upgrade_price, "reward": {"id": int(row.get("materia_id", 0)), "amount": int(rewards[level]) if level >= 0 and level < rewards.size() else 0}, "duration_seconds": duration, "queue_max": _work_queue_max(), "quantity": queue.quantity, "completed_quantity": queue.completed, "claimable_quantity": claimable, "daily_limit": daily.limit, "daily_remaining": daily.remaining, "next_claim_seconds": queue.next_claim_seconds, "order": order, "remaining_seconds": queue.next_claim_seconds, "ready": claimable > 0 and claim_reason.is_empty(), "claim_reason": claim_reason, "unlocked": unlocked, "can_start": reason.is_empty(), "can_upgrade": upgrade_reason.is_empty(), "reason": reason, "upgrade_reason": upgrade_reason, "available_partners": available}
+
+func _work_duration(row: Dictionary) -> int:
+	var minutes = maxi(1, int(row.get("cost_time", 1)))
+	return maxi(1, int(minutes / 2) if stat("blessing") > 0 else minutes) * 60
+
+func unlock_camp_decoration(id: int) -> Dictionary:
+	return decorations.unlock(id)
+
+func equip_camp_decoration(slot_id: int, id: int) -> Dictionary:
+	return decorations.equip(slot_id, id)
+
+func _work_queue_max() -> int:
+	return 24 if stat("blessing") == 2 else 6
+
+func _work_daily_status() -> Dictionary:
+	# The package resets daily data at 22:00 UTC (06:00 in China).
+	var day = floori((float(utc_now.call()) - 22 * 3600) / 86400.0)
+	var saved: Dictionary = profile.data.get("work_claims", {})
+	var saved_day = int(saved.get("day", day))
+	var count = 0 if day > saved_day else int(saved.get("count", 0))
+	var limit = 48 if stat("blessing") == 2 else 30
+	return {"day": maxi(day, saved_day), "count": count, "limit": limit, "remaining": maxi(0, limit - count)}
 
 func _work_queue_progress(order: Dictionary) -> Dictionary:
-	if order.is_empty(): return {"quantity": 0, "completed": 0, "claimable": 0, "next_claim_seconds": 0}
-	var quantity = maxi(1, int(order.get("quantity", 1)))
+	if order.is_empty(): return {"quantity": 0, "completed": 0, "claimable": 0, "next_claim_seconds": 0, "seconds": 0, "duration": 0}
+	var old_quantity = maxi(1, int(order.get("quantity", 1)))
 	var remaining = maxi(0, int(order.due_utc) - int(utc_now.call()))
-	var duration = maxi(1, int(order.get("cycle_seconds", int(order.due_utc) - int(order.started_utc))))
-	var completed = clampi(quantity - ceili(float(remaining) / duration), 0, quantity)
-	var claimed = int(order.get("claimed_quantity", 0))
-	return {"quantity": quantity, "completed": completed, "claimable": maxi(0, completed - claimed), "next_claim_seconds": maxi(0, remaining - maxi(0, quantity - completed - 1) * duration)}
+	var old_duration = maxi(1, int(order.get("cycle_seconds", int(order.due_utc) - int(order.started_utc))))
+	var progress = clampi(old_quantity * old_duration - remaining, 0, old_quantity * old_duration)
+	progress = maxi(0, progress - int(order.get("claimed_quantity", 0)) * old_duration)
+	progress = int(progress / 60) * 60
+	var duration = _work_duration(catalog.find("MonsterWorkData", int(order.work_id)))
+	var quantity = _work_queue_max()
+	progress = mini(progress, quantity * duration)
+	var completed = int(progress / duration)
+	return {"quantity": quantity, "completed": completed, "claimable": completed, "seconds": progress, "duration": duration, "next_claim_seconds": 0 if completed == quantity else duration - progress % duration}
 
-func start_work(id: int, partner_id: int, quantity: int = 0) -> Dictionary:
+func _store_work_progress(order: Dictionary, seconds: int, queue: Dictionary) -> void:
+	var now = int(utc_now.call())
+	order["started_utc"] = now
+	order["due_utc"] = now + int(queue.quantity) * int(queue.duration) - clampi(seconds, 0, int(queue.quantity) * int(queue.duration))
+	order["cycle_seconds"] = int(queue.duration)
+	order["quantity"] = int(queue.quantity)
+	order["claimed_quantity"] = 0
+	order["economy_version"] = 2
+
+func add_work_progress(id: int, seconds: int) -> bool:
+	if seconds <= 0: return false
+	for order in profile.data.work:
+		if int(order.work_id) != id: continue
+		var queue = _work_queue_progress(order)
+		var progress = mini(int(queue.quantity) * int(queue.duration), int(queue.seconds) + seconds)
+		if progress == int(queue.seconds): return false
+		if not order.has("economy_version"): order["prepaid_quantity"] = 1
+		_store_work_progress(order, progress, queue)
+		return true
+	return false
+
+func start_work(id: int, _partner_id: int = 0, quantity: int = 0) -> Dictionary:
 	var status = work_status(id)
 	if not status.can_start: return _fail(status.reason)
-	if not status.available_partners.has(partner_id): return _fail("伙伴不可派遣")
-	if quantity == 0: quantity = int(status.queue_max)
-	if quantity < 1 or quantity > int(status.queue_max): return _fail("派遣队列数量超过当前上限")
-	if not spend(status.price): return _fail("派遣材料不足")
+	if quantity < 0 or quantity > int(status.queue_max): return _fail("派遣队列数量超过当前上限")
+	quantity = int(status.queue_max)
 	var now = int(utc_now.call())
-	profile.data.work.append({"work_id": id, "partner_id": partner_id, "started_utc": now, "due_utc": now + int(status.duration_seconds) * quantity, "material_id": int(status.reward.id), "reward": int(status.reward.amount), "level": int(status.level), "quantity": quantity, "claimed_quantity": 0, "cycle_seconds": int(status.duration_seconds)})
-	gameplay_event.emit({"type": "work_started", "id": id, "partner_id": partner_id, "quantity": quantity})
+	profile.data.work.append({"work_id": id, "partner_id": 0, "started_utc": now, "due_utc": now + int(status.duration_seconds) * quantity, "material_id": int(status.reward.id), "reward": int(status.reward.amount), "level": int(status.level), "quantity": quantity, "claimed_quantity": 0, "cycle_seconds": int(status.duration_seconds), "economy_version": 2, "prepaid_quantity": 0})
+	gameplay_event.emit({"type": "work_started", "id": id, "quantity": quantity})
 	return _done("派遣已开始", id)
 
 func collect_work(id: int) -> Dictionary:
 	if profile.data.run.active: return _fail("请返回营地领取派遣奖励")
+	if _collecting_work: return _fail("派遣奖励正在领取")
 	for order in profile.data.work:
 		if int(order.work_id) == id:
+			var status = work_status(id)
+			if not status.ready: return _fail(status.claim_reason)
 			var queue = _work_queue_progress(order)
-			if int(queue.claimable) <= 0: return _fail("派遣尚未完成")
-			var reward = int(order.reward) * int(queue.claimable)
-			# Native collection resets stored progress but keeps the assignment active.
-			var duration = int(order.get("cycle_seconds", maxi(1, int(catalog.find("MonsterWorkData", id).get("cost_time", 1))) * 60))
-			order["started_utc"] = int(utc_now.call())
-			order["due_utc"] = int(order.started_utc) + duration * int(queue.quantity)
-			order["cycle_seconds"] = duration
-			order["quantity"] = int(queue.quantity)
-			order["claimed_quantity"] = 0
-			record("work:finished", int(queue.claimable))
-			grant_material(int(order.material_id), reward)
-			gameplay_event.emit({"type": "work_collected", "id": id, "material_id": int(order.material_id), "amount": reward, "quantity": int(queue.claimable)})
+			var count = int(status.claimable_quantity)
+			if not spend(status.claim_price): return _fail("领取材料不足")
+			_collecting_work = true
+			var prepaid = int(order.get("prepaid_quantity", 1 if not order.has("economy_version") else 0))
+			order["prepaid_quantity"] = maxi(0, prepaid - count)
+			_store_work_progress(order, int(queue.seconds) - count * int(queue.duration), queue)
+			var daily = _work_daily_status()
+			profile.data["work_claims"] = {"day": daily.day, "count": int(daily.count) + count}
+			var reward = int(status.reward.amount) * count
+			record("work:finished", count)
+			grant_material(int(status.reward.id), reward)
+			gameplay_event.emit({"type": "work_collected", "id": id, "material_id": int(status.reward.id), "amount": reward, "quantity": count})
+			_collecting_work = false
 			return _done("派遣奖励已领取", id)
 	return _fail("没有该派遣订单")
 
@@ -645,10 +742,9 @@ func stop_work(id: int) -> Dictionary:
 	if profile.data.run.active: return _fail("请返回营地后操作")
 	for order in profile.data.work:
 		if int(order.work_id) != id: continue
-		if int(_work_queue_progress(order).claimable) > 0: return _fail("请先领取已完成的派遣奖励")
 		profile.data.work.erase(order)
 		gameplay_event.emit({"type": "work_stopped", "id": id, "partner_id": int(order.partner_id)})
-		return _done("派遣已停止，伙伴返回营地", id)
+		return _done("派遣已停止", id)
 	return _fail("没有该派遣订单")
 
 func advance_work_from_adventure(total_depth: int, region: int, is_final_level: bool, once_key: String) -> Dictionary:
@@ -657,17 +753,19 @@ func advance_work_from_adventure(total_depth: int, region: int, is_final_level: 
 	# One settlement per run, including retries with a different caller key.
 	if run.counters.has("work:settlement_progress"): return _fail("冒险派遣进度已结算")
 	var minutes = 0
-	if total_depth >= 2:
+	if total_depth >= 2 and not profile.data.work.is_empty():
 		minutes = total_depth * maxi(0, int(catalog.config.get("MonsterWork_CaculateProccess_PerRoom", 1)))
 		minutes += maxi(0, region - (0 if is_final_level else 1)) * maxi(0, int(catalog.config.get("MonsterWork_CaculateProccess_PerLevel", 5)))
 	run.counters["work:settlement_progress"] = once_key
 	run.counters["work:bonus_minutes"] = minutes
-	var now = int(utc_now.call())
 	var affected: Array = []
 	for order in profile.data.work:
-		var previous = int(order.due_utc)
-		order.due_utc = maxi(now, previous - minutes * 60)
-		if previous > int(order.due_utc): affected.append({"id": int(order.work_id), "seconds": previous - int(order.due_utc)})
+		var queue = _work_queue_progress(order)
+		var progress = mini(int(queue.quantity) * int(queue.duration), int(queue.seconds) + minutes * 60)
+		# Legacy assignments prepaid one output when they started.
+		if not order.has("economy_version"): order["prepaid_quantity"] = 1
+		_store_work_progress(order, progress, queue)
+		if progress > int(queue.seconds): affected.append({"id": int(order.work_id), "seconds": progress - int(queue.seconds)})
 	var result = _done("冒险为派遣增加 %d 分钟进度" % minutes)
 	result["minutes"] = minutes
 	result["affected"] = affected
@@ -682,36 +780,260 @@ func upgrade_work(id: int) -> Dictionary:
 	return _done("派遣已升级", id)
 
 func meal_status(id: int, level: int = 1) -> Dictionary:
-	var reason = _camp_action_reason("meals")
 	var row = catalog.find("CatMealData", id)
 	var maximum = Catalog.ids(row.get("AbilityItemId", "")).size()
+	var researched = rank(profile.data.recipes, id)
+	var reason = _meal_reason(row, level)
+	var price = _meal_price(row, level) if level > 0 and level <= maximum else {}
+	var selected = rank(profile.data.get("meal_selection", {}), id) == level
+	var select_reason = reason
+	if select_reason.is_empty() and level > researched: select_reason = "请先研究该料理等级"
+	if select_reason.is_empty() and not selected and not profile.data.get("meal_selection", {}).has(str(id)) and profile.data.get("meal_selection", {}).size() >= meal_order_limit(): select_reason = "餐单最多选择 %d 道料理" % meal_order_limit()
+	var research_reason = _meal_reason(row, researched + 1)
+	var research_price = _meal_price(row, researched + 1) if researched < maximum else {}
+	if researched >= maximum: research_reason = "料理研究已满级"
+	if research_reason.is_empty() and not can_afford(research_price): research_reason = "料理研究材料不足"
+	var buy_reason = reason
+	if buy_reason.is_empty() and level > researched: buy_reason = "请先研究该料理等级"
+	if buy_reason.is_empty() and not can_afford(price): buy_reason = "料理材料不足"
+	return {"id": id, "level": level, "max_level": maximum, "researched_level": researched, "selected": selected, "purchased": rank(purchased_meals(), id) == level, "price": price, "can_cook": buy_reason.is_empty(), "can_select": select_reason.is_empty(), "select_reason": select_reason, "reason": buy_reason, "can_research": research_reason.is_empty(), "research_reason": research_reason, "research_price": research_price, "description": Catalog.clean(_part(row.get("Description", ""), level - 1))}
+
+func meal_order_limit() -> int:
+	return 3 if rank(profile.data.buildings, 7) > 2 else 2
+
+func _meal_price(row: Dictionary, level: int) -> Dictionary:
+	var materials = str(row.get("NeedMaterials", "")).split(";")
+	var gold = str(row.get("NeedGold", "")).split("|")
+	var price = costs(materials[clampi(level - 1, 0, materials.size() - 1)])
+	_add(price, 101, int(gold[clampi(level - 1, 0, gold.size() - 1)]))
+	return price
+
+func _meal_reason(row: Dictionary, level: int, recook: bool = false) -> String:
+	var reason = str(camp_feature_status("meals").reason) if recook else _camp_action_reason("meals")
+	if not reason.is_empty(): return reason
+	if row.is_empty() or level < 1 or level > Catalog.ids(row.get("AbilityItemId", "")).size(): return "料理等级不存在"
+	for gate in Catalog.ids(row.get("UnlockDataId", "")):
+		if gate > 0 and not is_unlocked(gate): return unlock_reason(gate)
+	return ""
+
+func purchased_meals() -> Dictionary:
+	if profile.data.has("purchased_meals"): return profile.data.purchased_meals
+	# Older saves stored the one purchased dish in these two fields.
+	var id = int(profile.data.get("selected_meal", 0))
+	var level = int(profile.data.get("meal_rank", 0))
+	return {str(id): level} if id > 0 and level > 0 else {}
+
+func research_meal(id: int) -> Dictionary:
+	var status = meal_status(id)
+	if not status.can_research: return _fail(status.research_reason)
+	if not spend(status.research_price): return _fail("料理研究材料不足")
+	var previous = int(status.researched_level)
+	profile.data.recipes[str(id)] = previous + 1
+	record("meal:research" if previous == 0 else "meal:upgraded")
+	profile.data.meal_selection = {str(id): previous + 1}
+	profile.data.last_meals = profile.data.meal_selection.duplicate()
+	return _done("料理研究至 Lv.%d" % (previous + 1), id)
+
+func select_meal(id: int, level: int = 1) -> Dictionary:
+	var status = meal_status(id, level)
+	if not status.can_select: return _fail(status.select_reason)
+	var selection: Dictionary = profile.data.get("meal_selection", {}).duplicate()
+	if status.selected: selection.erase(str(id))
+	else: selection[str(id)] = level
+	profile.data.meal_selection = selection
+	profile.data.last_meals = selection.duplicate()
+	return _done("已更新餐单", id)
+
+func _meal_recook_order() -> Dictionary:
+	var restored: Dictionary = {}
+	for key in profile.data.get("last_meals", {}):
+		var row = catalog.find("CatMealData", int(key))
+		var maximum = mini(rank(profile.data.recipes, key), Catalog.ids(row.get("AbilityItemId", "")).size())
+		if maximum < 1 or not _meal_reason(row, 1, true).is_empty(): continue
+		restored[str(int(key))] = clampi(int(profile.data.last_meals[key]), 1, maximum)
+		if restored.size() >= meal_order_limit(): break
+	return restored
+
+func meal_order_status(recook: bool = false, order: Dictionary = {}) -> Dictionary:
+	var meals: Dictionary = _meal_recook_order() if recook else order.duplicate() if not order.is_empty() else profile.data.get("meal_selection", {}).duplicate()
+	var reason = ""
 	var price: Dictionary = {}
-	if row.is_empty() or level < 1 or level > maximum: reason = "料理等级不存在"
-	else:
-		var gates = Catalog.ids(row.get("UnlockDataId", ""))
-		if not gates.is_empty() and not is_unlocked(gates[mini(level - 1, gates.size() - 1)]): reason = unlock_reason(gates[mini(level - 1, gates.size() - 1)])
-		price = costs(_part(row.get("NeedMaterials", ""), level - 1, ";"))
-		_add(price, 101, int(_part(row.get("NeedGold", ""), 0)))
-		if reason.is_empty() and not can_afford(price): reason = "料理材料不足"
-	return {"id": id, "level": level, "max_level": maximum, "researched_level": rank(profile.data.recipes, id), "selected": int(profile.data.selected_meal) == id and int(profile.data.meal_rank) == level, "price": price, "can_cook": reason.is_empty(), "reason": reason, "description": Catalog.clean(_part(row.get("Description", ""), level - 1))}
+	if meals.is_empty(): reason = "没有可复购的餐单" if recook else "请先选择料理"
+	elif meals.size() > meal_order_limit(): reason = "餐单最多选择 %d 道料理" % meal_order_limit()
+	elif recook and bool(profile.data.get("meal_purchased", not purchased_meals().is_empty())): reason = "本区域已享用料理"
+	for key in meals:
+		var id = int(key)
+		var level = int(meals[key])
+		var row = catalog.find("CatMealData", id)
+		var meal_reason = _meal_reason(row, level, recook)
+		if meal_reason.is_empty() and level > rank(profile.data.recipes, id): meal_reason = "请先研究该料理等级"
+		if reason.is_empty() and not meal_reason.is_empty(): reason = meal_reason
+		if row.is_empty() or level < 1: continue
+		var meal_price = _meal_price(row, level)
+		for resource in meal_price: _add(price, int(resource), int(meal_price[resource]))
+	var buy_reason = reason
+	if buy_reason.is_empty() and not can_afford(price): buy_reason = "料理材料不足"
+	return {"meals": meals, "price": price, "count": meals.size(), "limit": meal_order_limit(), "can_buy": buy_reason.is_empty(), "reason": buy_reason, "can_ad": reason.is_empty(), "ad_reason": reason}
+
+func _complete_meal_purchase(meals: Dictionary) -> void:
+	var purchased = purchased_meals().duplicate()
+	for key in meals: purchased[str(key)] = int(meals[key])
+	profile.data.purchased_meals = purchased
+	profile.data.last_meals = meals.duplicate()
+	profile.data.meal_selection = {}
+	profile.data.meal_purchased = true
+	profile.data.selected_meal = 0
+	profile.data.meal_rank = 0
+
+func buy_meal(id: int = 0, level: int = 1) -> Dictionary:
+	var status = meal_order_status(false, {str(id): level} if id > 0 else {})
+	if not status.can_buy: return _fail(status.reason)
+	if not spend(status.price): return _fail("料理材料不足")
+	_complete_meal_purchase(status.meals)
+	return _done("已享用 %d 道料理" % int(status.count))
+
+func recook_meal(_id: int = 0) -> Dictionary:
+	var status = meal_order_status(true)
+	if not status.can_buy: return _fail(status.reason)
+	if not spend(status.price): return _fail("料理材料不足")
+	_complete_meal_purchase(status.meals)
+	return _done("已复购上次餐单")
+
+func clear_invalid_meals(event: String) -> void:
+	var purchased = purchased_meals().duplicate()
+	if not profile.data.has("last_meals") and not purchased.is_empty(): profile.data.last_meals = purchased.duplicate()
+	for key in purchased.keys():
+		if event == "CompleteRun" or (event == "CompleteRegion" and int(catalog.find("CatMealData", int(key)).get("EffectType", 1)) == 1): purchased.erase(key)
+	profile.data.purchased_meals = purchased
+	profile.data.meal_purchased = false
+	profile.data.selected_meal = 0
+	profile.data.meal_rank = 0
+	if event == "CompleteRun": profile.data.meal_selection = {}
 
 func cook_meal(id: int, level: int = 1) -> Dictionary:
-	var status = meal_status(id, level)
-	if not status.can_cook: return _fail(status.reason)
-	if not spend(status.price): return _fail("料理材料不足")
-	var previous = rank(profile.data.recipes, id)
-	if previous == 0: record("meal:research")
-	elif level > previous: record("meal:upgraded")
-	profile.data.recipes[str(id)] = maxi(level, previous)
-	profile.data.selected_meal = id
-	profile.data.meal_rank = level
-	return _done(Catalog.row_name(catalog.find("CatMealData", id)), id)
+	return buy_meal(id, level)
+
+func difficulty_unlocked(level: int) -> bool:
+	return level >= 0 and level <= 10 and (level == 0 or stat("difficulty:win:" + str(level - 1)) > 0 or (level == 1 and stat("wins") > 0))
+
+func chaos_max_level() -> int:
+	var maximum = 1
+	for key in catalog.config.get("ChaosLevelRewardDict", {}): maximum = maxi(maximum, int(key))
+	return maximum
+
+func chaos_cleared_level(character: int = 0) -> int:
+	return clampi(stat("chaos:clear:" + str(_selected_character(character))), 0, chaos_max_level())
+
+func selected_chaos_level(character: int = 0) -> int:
+	var id = _selected_character(character)
+	var maximum = mini(chaos_max_level(), chaos_cleared_level(id) + 1)
+	var stored = stat("chaos:selected:" + str(id)) if profile.data.stats.has("chaos:selected:" + str(id)) else maximum
+	return clampi(stored, 1, maximum)
+
+func chaos_drop_rate_multiplier(layer: int = -1) -> float:
+	if layer < 0:
+		if not profile.data.run.active or int(profile.data.run.difficulty) != 10: return 1.0
+		layer = int(profile.data.run.counters.get("chaos_level", 1))
+	return float(catalog.config.get("ChaosLevelDropRateMulti", {}).get(str(layer), 1.0))
+
+func select_chaos_level(level: int, character: int = 0) -> Dictionary:
+	var id = _selected_character(character)
+	if profile.data.run.active: return _fail("请返回营地后选择混沌层数")
+	if not difficulty_unlocked(10): return _fail("通关难度 9 后解锁混沌模式")
+	if rank(profile.data.character_levels, id) == 0 or level < 1 or level > mini(chaos_max_level(), chaos_cleared_level(id) + 1): return _fail("混沌层数尚未解锁")
+	set_record("chaos:selected:" + str(id), level)
+	return _done("已选择混沌 %d 层" % level, level)
+
+func _difficulty_rows(level: int, rewards_only: bool = false) -> Array:
+	var result: Array = []
+	for row in catalog.rows("RogueLevelDifficultyInfluencerData"):
+		if bool(row.get("IsDisable", false)): continue
+		var category = str(row.get("DifficultyCategory", "Normal"))
+		var tier = int(row.get("Tier", 0))
+		if category == "Heat" or (category == "Chaos" and level != 10): continue
+		if category == "Normal" and tier > mini(level, 9): continue
+		if category == "Chaos" and tier > 1: continue
+		if rewards_only and (str(row.get("DifficultyType", "")) != "Reward" or category != ("Chaos" if level == 10 else "Normal") or tier != (1 if level == 10 else level)): continue
+		result.append(row)
+	return result
+
+func difficulty_attributes(level: int = -1) -> Dictionary:
+	if level < 0: level = int(profile.data.run.difficulty)
+	var result: Dictionary = {}
+	var chosen: Dictionary = {}
+	for row in _difficulty_rows(level):
+		var attribute = str(row.get("AttributeType", "None"))
+		if attribute in ["", "None"]: continue
+		var priority = int(row.get("Tier", 0)) + (100 if row.get("DifficultyCategory", "Normal") == "Chaos" else 0)
+		if chosen.has(attribute) and int(chosen[attribute]) > priority: continue
+		chosen[attribute] = priority
+		result[attribute] = int(row.get("Value", 0))
+	return result
+
+func difficulty_status(level: int, character: int = 0) -> Dictionary:
+	var id = _selected_character(character)
+	var unlocked = difficulty_unlocked(level)
+	var reason = "" if unlocked else "通关难度 %d 后解锁" % maxi(0, level - 1)
+	if level < 0 or level > 10: reason = "难度不存在"
+	var rewards: Array = []
+	for row in _difficulty_rows(level, true):
+		rewards.append({"id": Catalog.row_id(row), "attribute": str(row.AttributeType), "value": int(row.Value), "description": Catalog.clean(row.get("Description", ""))})
+	var descriptions: Array[String] = []
+	for row in _difficulty_rows(level):
+		if str(row.get("DifficultyType", "")) == "Reward" or not bool(row.get("EnableShowUI", true)): continue
+		var text = Catalog.clean(row.get("Description", ""))
+		if not text.is_empty() and not text.begins_with("RogueLevelDifficulty_"): descriptions.append(text)
+	var can_start = unlocked and not profile.data.run.active and profile.data.run.get("outcome", {}).is_empty() and rank(profile.data.character_levels, id) > 0
+	if unlocked and profile.data.run.active: reason = "冒险中无法更改难度"
+	elif unlocked and not profile.data.run.get("outcome", {}).is_empty(): reason = "请先完成冒险结算"
+	elif unlocked and rank(profile.data.character_levels, id) == 0: reason = "角色尚未解锁"
+	var chaos_rewards: Array = []
+	var unclaimed: Dictionary = {}
+	var cleared = chaos_cleared_level(id)
+	var claimed = stat("chaos:claimed:" + str(id))
+	for layer in range(1, chaos_max_level() + 1):
+		var reward = costs(catalog.config.get("ChaosLevelRewardDict", {}).get(str(layer), ""))
+		var available = layer <= cleared and layer > claimed
+		chaos_rewards.append({"level": layer, "rewards": reward, "claimed": layer <= claimed, "available": available, "unlocked": layer <= mini(chaos_max_level(), cleared + 1)})
+		if available:
+			for key in reward: _add(unclaimed, key, int(reward[key]))
+	return {"difficulty": level, "name": "混沌模式" if level == 10 else "难度 %d" % level, "category": "Chaos" if level == 10 else "Normal", "tier": 1 if level == 10 else level, "unlocked": unlocked, "can_start": can_start, "reason": reason, "description": "\n".join(descriptions), "rewards": rewards, "win_count": stat("difficulty:win:" + str(level)), "chaos_level": selected_chaos_level(id), "chaos_cleared": cleared, "chaos_max": chaos_max_level(), "chaos_rewards": chaos_rewards, "unclaimed_chaos_rewards": unclaimed}
+
+func adventure_preparation_status(level: int, character: int = 0) -> Dictionary:
+	var status = difficulty_status(level, character)
+	status["chaos_drop_multiplier"] = chaos_drop_rate_multiplier(int(status.chaos_level)) if level == 10 else 1.0
+	var owned_tokens: Array = []
+	for row in catalog.rows("RelationshipTokenData"):
+		var id = int(row.get("material_id", 0))
+		if stat("token:" + str(id)) > 0 and not owned_tokens.has(id): owned_tokens.append(id)
+	status["tokens_unlocked"] = not owned_tokens.is_empty()
+	status["tokens_reason"] = "" if not owned_tokens.is_empty() else "获得信物后解锁"
+	status["token_count"] = profile.data.equipped_tokens.size()
+	status["extra_challenge_unlocked"] = rank(profile.data.buildings, 5) >= 2
+	status["extra_challenge_reason"] = "" if status.extra_challenge_unlocked else "委托设施达到 2 级后解锁"
+	status["selected_weapon"] = int(profile.data.selected_weapon)
+	return status
+
+func claim_chaos_rewards(character: int = 0) -> Dictionary:
+	var id = _selected_character(character)
+	if profile.data.run.active: return _fail("请返回营地后领取混沌奖励")
+	if rank(profile.data.character_levels, id) == 0: return _fail("角色尚未解锁")
+	var status = difficulty_status(10, id)
+	var rewards: Dictionary = status.unclaimed_chaos_rewards
+	if rewards.is_empty(): return _fail("没有可领取的混沌奖励")
+	set_record("chaos:claimed:" + str(id), int(status.chaos_cleared))
+	for key in rewards: grant_material(int(key), int(rewards[key]))
+	var result = _done("混沌首通奖励已领取", id)
+	result["rewards"] = rewards
+	return result
 
 func begin_run(seed_value: int, character: int, health_value: float, difficulty: int = 0) -> Dictionary:
 	if profile.data.run.active or not profile.data.run.get("outcome", {}).is_empty() or rank(profile.data.character_levels, character) == 0 or health_value <= 0: return _fail("无法开始冒险")
+	if not difficulty_unlocked(difficulty): return _fail(str(difficulty_status(difficulty, character).reason))
 	profile.data.run = Profile.new_run(seed_value, character, health_value)
 	profile.data.run.active = true
 	profile.data.run.difficulty = difficulty
+	if difficulty == 10: profile.data.run.counters["chaos_level"] = selected_chaos_level(character)
 	profile.data.materials["102"] = 0
 	set_record("talent:choices", 0)
 	record("runs")
@@ -754,17 +1076,25 @@ func complete_node(occurrence_key, node_id: int, region: int, region_complete: b
 		for loot in run.inventory:
 			if int(run.inventory[loot]) > 0: set_record("loot-region:" + str(loot), maxi(region, stat("loot-region:" + str(loot))))
 		record_purification_event("CompleteRegion", str(region), 1, "", false)
+		clear_invalid_meals("CompleteRegion")
 		effects.dispatch("CompleteRegion", str(region))
 	effects.dispatch("CompleteNode", node_type)
 	return _done("房间已结算", node_id)
 
 func end_run(victory: bool) -> Dictionary:
 	if not profile.data.run.active: return _fail("没有进行中的冒险")
+	if victory:
+		var level = int(profile.data.run.difficulty)
+		record("difficulty:win:" + str(level))
+		if level == 10:
+			var character = int(profile.data.run.character_id)
+			var cleared = chaos_cleared_level(character)
+			var completed = int(profile.data.run.counters.get("chaos_level", 1))
+			if completed == mini(chaos_max_level(), cleared + 1) and cleared < chaos_max_level(): set_record("chaos:clear:" + str(character), cleared + 1)
 	if not victory and int(profile.data.run.difficulty) > 0: record("hard:losses")
 	profile.data.run.active = false
 	record("wins" if victory else "losses")
-	profile.data.selected_meal = 0
-	profile.data.meal_rank = 0
+	clear_invalid_meals("CompleteRun")
 	return _done("冒险胜利" if victory else "返回营地")
 
 func settlement_experience(total_depth: int, region: int, kills: int) -> Dictionary:
@@ -831,9 +1161,10 @@ func ability_sources(selected_character_id: int = 0) -> Dictionary:
 		var level = int(d.talents[key])
 		if level > 0 and level <= ids.size():
 			_add(sources, int(catalog.find("TalentTreeLevelData", ids[level - 1]).get("ability_item_id", 0)), 1)
-	var meal = catalog.find("CatMealData", int(d.selected_meal))
-	var ids = Catalog.ids(meal.get("AbilityItemId", ""))
-	if int(d.meal_rank) > 0 and int(d.meal_rank) <= ids.size(): _add(sources, ids[int(d.meal_rank) - 1], 1)
+	for key in purchased_meals():
+		var ids = Catalog.ids(catalog.find("CatMealData", int(key)).get("AbilityItemId", ""))
+		var level = rank(purchased_meals(), key)
+		if level > 0 and level <= ids.size(): _add(sources, ids[level - 1], 1)
 	for id in persistent_ability_ids(selected_character_id): _add(sources, id, 1)
 	return sources
 
@@ -851,6 +1182,8 @@ func attributes(selected_character_id: int = 0) -> Dictionary:
 	for id in sources:
 		effects.ability_attributes(int(id), int(sources[id]), result)
 	if d.run.active:
+		var difficulty_modifiers = difficulty_attributes()
+		for attribute in difficulty_modifiers: result[attribute] = result.get(attribute, 0) + difficulty_modifiers[attribute]
 		for reward in d.run.get("region_rewards", []):
 			var attribute_name = str(reward.get("AttributeType", ""))
 			if not attribute_name.is_empty(): result[attribute_name] = result.get(attribute_name, 0) + int(reward.get("Value", 0))
@@ -912,17 +1245,30 @@ func _gather_buffs(value, count: int, roots: Dictionary, counted: Array) -> void
 
 func upgrade_awakening_level(character_id: int) -> Dictionary:
 	if rank(profile.data.character_levels, character_id) == 0 or profile.data.run.active: return _fail("请在营地升级已拥有角色")
-	var level = stat("awake:level:" + str(character_id))
-	var prices = Catalog.ids(catalog.config.get("AwakeTreeGlobalData", {}).get("level_to_material_count_str", ""))
-	if level >= prices.size(): return _fail("觉醒已满级")
-	if not spend({"504": prices[level]}): return _fail("觉醒结晶不足")
-	set_record("awake:level:" + str(character_id), level + 1)
-	return _done("觉醒等级 " + str(level + 1), character_id)
+	return _ok("领取混沌首通奖励后自动提升觉醒等级", character_id)
+
+func awakening_progress() -> Dictionary:
+	var total = 0
+	for key in profile.data.stats:
+		if not str(key).begins_with("chaos:claimed:"): continue
+		for layer in range(1, mini(chaos_max_level(), stat(key)) + 1):
+			total += int(costs(catalog.config.get("ChaosLevelRewardDict", {}).get(str(layer), "")).get("504", 0))
+	if stat("purchase:2019:never") > 0 or stat("entitlement:awake_pack") > 0: total += 1000
+	var thresholds = Catalog.ids(catalog.config.get("AwakeTreeGlobalData", {}).get("level_to_material_count_str", ""))
+	var remaining = total
+	var level = 0
+	for threshold in thresholds:
+		if threshold <= 0 or remaining < threshold: break
+		remaining -= threshold
+		level += 1
+	var points = level + (5 if stat("entitlement:blessing_plus") > 0 else 0) + (5 if stat("entitlement:blessing_ultra") > 0 else 0)
+	return {"total": total, "level": level, "points": points, "progress": remaining, "required": int(thresholds[level]) if level < thresholds.size() else 0, "maximum": thresholds.size()}
 
 func unlock_awakening(id: int) -> Dictionary:
 	var row = catalog.find("CharaTalentAwakeTreeData", id)
-	if row.is_empty() or not row.is_enabled or stat("awake:unlocked:" + str(id)) > 0: return _fail("觉醒不可解锁")
-	if profile.data.run.active or stat("awake:level:" + str(int(row.chara_id))) < int(row.unlock_awake_tree_level): return _fail("觉醒等级不足")
+	if row.is_empty() or bool(row.get("is_admin_mode", false)) or not bool(row.get("is_enabled", true)) or stat("awake:unlocked:" + str(id)) > 0: return _fail("觉醒不可解锁")
+	if rank(profile.data.character_levels, int(row.chara_id)) == 0: return _fail("角色尚未解锁")
+	if profile.data.run.active or int(awakening_progress().level) < int(row.unlock_awake_tree_level): return _fail("觉醒等级不足")
 	if not spend(costs(row.unlock_need_material_list)): return _fail("觉醒材料不足")
 	set_record("awake:unlocked:" + str(id), 1)
 	return _done(Catalog.row_name(row), id)
@@ -937,7 +1283,7 @@ func toggle_awakening(id: int) -> Dictionary:
 	for active_id in profile.data.active_awakenings:
 		var active = catalog.find("CharaTalentAwakeTreeData", int(active_id))
 		if int(active.get("chara_id", 0)) == int(row.chara_id): used += int(active.active_need_awake_point)
-	if used + int(row.active_need_awake_point) > stat("awake:level:" + str(int(row.chara_id))): return _fail("觉醒点不足")
+	if used + int(row.active_need_awake_point) > int(awakening_progress().points): return _fail("觉醒点不足")
 	profile.data.active_awakenings.append(id)
 	return _done("觉醒已激活", id)
 
@@ -1002,7 +1348,13 @@ func equip_token(id: int) -> Dictionary:
 
 func set_blessing_mode(mode: int) -> Dictionary:
 	if profile.data.run.active or mode < 0 or mode > 2: return _fail("请在营地选择祝福")
+	var progress: Array = []
+	for order in profile.data.work: progress.append(_work_queue_progress(order))
 	set_record("blessing", mode)
+	for index in profile.data.work.size():
+		var order: Dictionary = profile.data.work[index]
+		if not order.has("economy_version"): order["prepaid_quantity"] = 1
+		_store_work_progress(order, int(progress[index].seconds), {"quantity": _work_queue_max(), "duration": _work_duration(catalog.find("MonsterWorkData", int(order.work_id)))})
 	while profile.data.equipped_tokens.size() > token_slots(): profile.data.equipped_tokens.pop_back()
 	return _done("已选择祝福 " + str(mode))
 
@@ -1110,6 +1462,7 @@ func loot_description(id: int) -> String:
 
 func _pool_candidates(pool_id: int, green_rate: float = 0, rarity_weights: Dictionary = {}) -> Array:
 	var result = []
+	var base_weights: Dictionary = {}
 	var pool = catalog.find("ItemPoolData", pool_id)
 	for sub_id in Catalog.ids(pool.get("sub_data_id_list", "")):
 		var sub = catalog.find("ItemPoolSubData", sub_id)
@@ -1120,12 +1473,19 @@ func _pool_candidates(pool_id: int, green_rate: float = 0, rarity_weights: Dicti
 		var weights = Catalog.ids(sub.weight_list_str)
 		for i in ids.size():
 			if not can_add_loot(ids[i]): continue
-			var weight = float(weights[mini(i, weights.size() - 1)] if not weights.is_empty() else 1)
-			var loot = catalog.find("LootData", ids[i])
-			var rare = int(catalog.find("AbilityItems", int(loot.get("ability_item_id", ids[i]))).get("Rare", 0))
-			weight += float(rarity_weights.get(rare, 0))
-			if catalog.find("LootData", ids[i]).get("loot_type", "") == "生命宝石": weight *= maxf(0, 1 + green_rate / 1000.0)
-			result.append({"id": ids[i], "weight": maxi(0, int(weight * 1000))})
+			base_weights[ids[i]] = float(base_weights.get(ids[i], 0)) + float(weights[mini(i, weights.size() - 1)] if not weights.is_empty() else 1)
+	var attrs = attributes()
+	for id in base_weights:
+		var loot = catalog.find("LootData", id)
+		var rare = int(catalog.find("AbilityItems", int(loot.get("ability_item_id", id))).get("Rare", 0))
+		var modifier := 0
+		if rare >= 1 and rare <= 5:
+			modifier += int(attrs.get("Star%dItemExtraWeightAddPercent" % rare, 0))
+			if loot.get("loot_type", "") in ["攻击宝石", "防御宝石", "生命宝石"]:
+				modifier += int(attrs.get("GemExtraWeightRare%dAddPercent" % rare, 0))
+		var weight := (float(base_weights[id]) + float(rarity_weights.get(rare, 0))) * (1.0 + modifier / 1000.0)
+		if loot.get("loot_type", "") == "生命宝石" and 1 + green_rate / 1000.0 > 0: weight *= 1 + green_rate / 1000.0
+		result.append({"id": id, "weight": maxf(0, weight)})
 	return result
 
 func roll_pool(pool_id: int, count: int, green_rate: float = 0, excluded: Array = [], rarity_weights: Dictionary = {}) -> Array:
@@ -1133,37 +1493,100 @@ func roll_pool(pool_id: int, count: int, green_rate: float = 0, excluded: Array 
 	if not profile.data.run.active or count < 1: return result
 	var candidates = _pool_candidates(pool_id, green_rate, rarity_weights).filter(func(entry): return not excluded.has(int(entry.id)))
 	while result.size() < mini(20, count) and not candidates.is_empty():
-		var total = candidates.reduce(func(value, entry): return value + int(entry.weight), 0)
+		var total = candidates.reduce(func(value, entry): return value + float(entry.weight), 0.0)
 		if total <= 0: break
-		var rolled = next_random(total)
+		var rolled: float = total * next_random(16777217) / 16777216.0
+		var cumulative := 0.0
 		for entry in candidates:
-			rolled -= int(entry.weight)
-			if rolled < 0:
+			if float(entry.weight) <= 0: continue
+			cumulative += float(entry.weight)
+			if cumulative >= rolled:
 				result.append(int(entry.id))
 				candidates = candidates.filter(func(x): return int(x.id) != int(entry.id))
 				break
 	return result
 
-func monster_drops(enemy_id: int) -> Array:
+func ensure_map_node_increments(campaign) -> void:
+	preload("res://scripts/domain/room_appearance.gd").new(self).ensure_map(campaign)
+
+func room_node_increments(key: String, room: Dictionary) -> Dictionary:
+	return preload("res://scripts/domain/room_appearance.gd").new(self).node_increments(key, room)
+
+func room_environment_appearance(key: String, room: Dictionary, items: Array) -> Dictionary:
+	return preload("res://scripts/domain/room_appearance.gd").new(self).environment_decisions(key, room, items)
+
+func enemy_enhancements(enemy_id: int) -> Array:
+	if not profile.data.run.active: return []
+	return preload("res://scripts/domain/enemy_enhancements.gd").new(self).for_enemy(enemy_id)
+
+func enemy_creation_buffs(enemy_id: int) -> Array:
+	if not profile.data.run.active: return []
+	return preload("res://scripts/domain/enemy_enhancements.gd").new(self).creation_buffs(enemy_id)
+
+func monster_drops(enemy_id: int, mohua: bool = false) -> Array:
 	if not profile.data.run.active: return []
 	var row = catalog.find("EnemyData", enemy_id)
-	return preload("res://scripts/domain/loot_rewards.gd").new(self).monster(str(row.get("enemy_rate", "")), int(profile.data.run.counters.get("run:total_depth", 0)), attributes())
+	return preload("res://scripts/domain/loot_rewards.gd").new(self).monster(str(row.get("enemy_rate", "")), int(profile.data.run.counters.get("run:total_depth", 0)), attributes(), mohua)
 
 func treasure_drops(quality: String, treasure_id: int, first_node: bool) -> Array:
 	if not profile.data.run.active: return []
 	return preload("res://scripts/domain/loot_rewards.gd").new(self).treasure(quality, treasure_id, first_node, int(profile.data.run.region) == 1, int(profile.data.run.counters.get("run:total_depth", 0)), attributes())
 
+func start_chest_trial(campaign, chest_index: int) -> Dictionary:
+	if not profile.data.run.active or profile.data.run.health <= 0 or int(campaign.state.get("seed", -1)) != int(profile.data.run.seed): return _fail("试炼不可开始")
+	return campaign.start_trial(chest_index, profile.data.run.inventory)
+
+func claim_chest_trial_reward(campaign) -> Dictionary:
+	var run: Dictionary = profile.data.run
+	var trial: Dictionary = campaign.trial_status()
+	if not run.active or run.health <= 0 or int(campaign.state.get("seed", -1)) != int(run.seed) or trial.is_empty() or trial.phase != "complete" or trial.reward_claimed: return _fail("试炼尚未完成或奖励已领取")
+	var key = "trial_reward:%d:%d:%d" % [int(run.seed), int(campaign.state.layer_index), int(campaign.state.current_node_id)]
+	if not campaign.claim_trial_reward().success: return _fail("试炼奖励不可领取")
+	var drops: Array = []
+	if not run.counters.get(key, false):
+		run.counters[key] = true
+		drops = treasure_drops(str(trial.quality), 1, false)
+	var result = _ok("试炼完成", int(campaign.state.current_node_id))
+	result["drops"] = drops
+	result["quality"] = str(trial.quality)
+	return result
+
 func queue_loot_reward(rarity: String, count: int) -> void:
 	var field = {"Curse": "AbilityItemLootPoolId_Curse", "OldDay": "AbilityItemLootPoolId_OldDay", "Reward": "AbilityItemLootPoolId_Reward", "Sprites": "AbilityItemLootPoolId_Sprites"}.get(rarity, "DefaultAbilityItemLootPoolId")
 	var weights: Dictionary = {"Low": {1: 50, 2: 50, 3: 50, 4: 0, 5: -1000}, "Middle": {1: -1000, 2: 50, 3: 50, 4: 50, 5: 0}, "High": {1: -1000, 2: -1000, 3: -5, 4: 50, 5: 200}}.get(rarity, {})
 	var fallback = "AbilityItemLootGuaranteedPoolId_" + ({"Low": "LowRare", "Middle": "MiddleRare", "High": "HighRare"}.get(rarity, rarity))
+	var excluded = _reward_pure_group_exclusions()
 	for i in mini(99, count):
 		var pool = int(catalog.config.get(field, 0))
-		var choices = roll_pool(pool, 3, 0, [], weights)
+		var choices = roll_pool(pool, 3, 0, excluded, weights)
+		_replace_normal_reward_with_curse(choices, rarity)
 		if choices.is_empty():
 			pool = int(catalog.config.get(fallback, 0))
-			choices = roll_pool(pool, 3)
+			choices = roll_pool(pool, 3, 0, excluded)
 		profile.data.run.rewards.append({"key": "reward-" + str(profile.data.run.random_step) + "-" + str(profile.data.run.rewards.size()), "pool_id": pool, "quality": rarity, "choices": choices})
+
+func _reward_pure_group_exclusions() -> Array:
+	var groups = {"诅咒遗物": {}, "净化遗物": {}}
+	for key in profile.data.run.inventory:
+		if int(profile.data.run.inventory[key]) <= 0: continue
+		var held = catalog.find("LootData", int(key))
+		var type = str(held.get("loot_type", ""))
+		var group = int(held.get("pure_group_id", 0))
+		if groups.has(type) and group > 0: groups[type][group] = true
+	var excluded: Array = []
+	if groups["诅咒遗物"].is_empty() and groups["净化遗物"].is_empty(): return excluded
+	for loot in catalog.rows("LootData"):
+		var type = str(loot.get("loot_type", ""))
+		var opposite = {"诅咒遗物": "净化遗物", "净化遗物": "诅咒遗物"}.get(type, "")
+		if not opposite.is_empty() and groups[opposite].has(int(loot.get("pure_group_id", 0))): excluded.append(Catalog.row_id(loot))
+	return excluded
+
+func _replace_normal_reward_with_curse(choices: Array, rarity: String) -> void:
+	if rarity not in ["Low", "Middle", "High"] or choices.is_empty(): return
+	var chance = int(attributes().get("CurseRelicInNormalPool", 0))
+	if chance <= 0 or next_random(1000) + 1 > chance: return
+	var curse = roll_pool(int(catalog.config.get("AbilityItemLootPoolId_Curse", 0)), 1, 0, _reward_pure_group_exclusions())
+	if not curse.is_empty(): choices[next_random(choices.size())] = curse[0]
 
 func choose_loot_reward(key: String, id: int) -> Dictionary:
 	for reward in profile.data.run.rewards:
@@ -1179,28 +1602,19 @@ func refresh_loot_reward(key: String) -> Dictionary:
 	if int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0: return _fail("重选次数不足")
 	for reward in profile.data.run.rewards:
 		if reward.key != key: continue
-		var choices = roll_pool(int(reward.pool_id), 3)
+		var choices = roll_pool(int(reward.pool_id), 3, 0, _reward_pure_group_exclusions())
 		if choices.is_empty(): return _fail("没有可选物品")
 		_add(profile.data.run.counters, "SelectRefreshTime", -1)
 		reward.choices = choices
 		return _done("奖励已重选")
 	return _fail("奖励不存在")
 
-func claim_node_materials(key: String, region: int, boss: bool) -> Dictionary:
+func claim_node_materials(key: String, _region: int, _boss: bool) -> Dictionary:
 	var run = profile.data.run
 	if not run.active or not run.completed_occurrences.has(key) or int(run.counters.get("harvest:" + key, 0)) > 0: return _fail("材料已领取或房间未完成")
-	var first = 10000 + clampi(region, 1, 5) * 100 + 1
-	if not catalog.find("MaterialData", first).is_empty():
-		grant_material(first, 3 if boss else 1)
-	if not catalog.find("MaterialData", first + 1).is_empty():
-		grant_material(first + 1, 3 if boss else 1)
-	if boss:
-		var offline_growth_drops = {103: 2, 107: 2, 501: 2, 502: 1, 90002: 20, 503: 1, 504: 10, 108: 20, 106: 1}
-		for id in offline_growth_drops: grant_material(id, offline_growth_drops[id])
-		var amplifiers = catalog.rows("RelationshipAmplifyData").filter(func(row): return row.rare == "Tier1")
-		if not amplifiers.is_empty(): grant_material(Catalog.row_id(amplifiers[next_random(amplifiers.size())]), 1)
+	# World loot already pays on pickup. Room completion records delivery only.
 	run.counters["harvest:" + key] = 1
-	return _done("区域材料已领取")
+	return _done("房间奖励已记录")
 
 func create_loot_reward(pool_id: int, key: String, count: int = 3) -> Array:
 	if not profile.data.run.active: return []
@@ -1213,26 +1627,64 @@ func create_loot_reward(pool_id: int, key: String, count: int = 3) -> Array:
 	return choices.duplicate()
 
 func _shop_attributes() -> Dictionary:
-	var result = {}
+	var result = attributes().duplicate()
 	for row in catalog.config.get("GameShopCfg", {}).get("ShopLevelData", []):
 		if int(row.Level) <= maxi(1, stat("shop:level")): effects.ability_attributes(int(row.AbilityItemId), 1, result)
 	return result
+
+func _shop_rarity_weights(attrs: Dictionary) -> Dictionary:
+	var quality = _shop_float(_shop_float(float(attrs.get("ShopItemQualityIncrease", 0))) / 1000.0)
+	return {1: 0, 2: 0, 3: 50, 4: 40 + int(_shop_float(40 * quality)), 5: 30 + int(_shop_float(30 * quality))}
+
+func _shop_float(value: float) -> float:
+	# IL2CPP prices truncate after single-precision arithmetic.
+	return PackedFloat32Array([value])[0]
+
+func _shop_base_price(rarity: int) -> int:
+	var cfg = catalog.config.get("GameShopCfg", {})
+	var prices = cfg.get("BaseRarePriceList", [])
+	var index = clampi(rarity, 1, 5) - 1
+	var base_price = float(prices[index]) if index < prices.size() else 100.0
+	var difficulty_factor := 0.0
+	for row in cfg.get("PriceLevelIndexAddList", []):
+		if int(row.DifficultyLevel) - 1 > int(profile.data.run.difficulty): break
+		difficulty_factor = float(row.PriceFactor)
+	var depth = maxi(0, int(profile.data.run.region) - 1)
+	var depth_factor = _shop_float(_shop_float(float(cfg.get("PriceLevelIndexFactor", 0)) / 1000.0) * depth)
+	var factor = _shop_float(_shop_float(difficulty_factor / 1000.0) + _shop_float(1 + depth_factor))
+	return int(_shop_float(_shop_float(base_price * factor) + depth * int(cfg.get("PriceLevelIndexAdd", 0))))
+
+func _shop_price_rate(rate: float) -> float:
+	rate = _shop_float(rate)
+	if rate >= 0: return rate
+	var discount = _shop_float(-rate / 1000.0)
+	if discount > _shop_float(0.3):
+		var band = [0.3, 0.3, 0.5]
+		if discount > _shop_float(0.8): band = [0.8, 0.45, 0.25]
+		elif discount > _shop_float(0.6): band = [0.6, 0.4, 0.25]
+		elif discount > _shop_float(0.4): band = [0.4, 0.35, 0.25]
+		var excess = _shop_float(discount - _shop_float(band[0]))
+		discount = minf(0.5, _shop_float(_shop_float(band[1]) + _shop_float(excess * band[2])))
+	return _shop_float(-discount * 1000.0)
+
+func _shop_price(rarity: int, attrs: Dictionary) -> int:
+	var base_price = _shop_base_price(rarity)
+	var base_factor = _shop_float(1 + _shop_float(int(attrs.get("ShopBasePriceAddRate", 0)) / 1000.0))
+	var discount_factor = _shop_float(1 + _shop_float(_shop_price_rate(float(attrs.get("ShopPriceAddRate", 0))) / 1000.0))
+	var price = _shop_float(_shop_float(base_price * base_factor) * discount_factor)
+	return maxi(maxi(1, int(base_price / 2.0)), int(price))
 
 func _fill_shop(shop: Dictionary) -> void:
 	var cfg = catalog.config.get("GameShopCfg", {})
 	var attrs = _shop_attributes()
 	var count = int(cfg.get("DefaultShopShowCount", 3)) + int(attrs.get("ShopShowCount", 0))
-	var ids = roll_pool(int(catalog.config.get("DefaultAbilityItemLootPoolId", 0)), count)
-	var prices = cfg.get("BaseRarePriceList", [])
+	var ids = roll_pool(int(catalog.config.get("DefaultAbilityItemLootPoolId", 0)), count, 0, [], _shop_rarity_weights(attrs))
 	shop.offers.clear()
 	for id in ids:
 		var loot = catalog.find("LootData", id)
 		var ability = catalog.find("AbilityItems", int(loot.ability_item_id))
 		var rarity = int(ability.get("Rare", 1))
-		var base_price = int(prices[clampi(rarity - 1, 0, prices.size() - 1)]) if not prices.is_empty() else 100
-		var depth = maxi(0, int(profile.data.run.region) - 1)
-		var price = maxi(1, int(round(base_price * (1 + float(attrs.get("ShopBasePriceAddRate", 0)) / 1000.0) * (1 + depth * float(cfg.get("PriceLevelIndexFactor", 0)) / 1000.0))) + depth * int(cfg.get("PriceLevelIndexAdd", 0)))
-		shop.offers.append({"loot_id": id, "price": price, "sold": false})
+		shop.offers.append({"loot_id": id, "price": _shop_price(rarity, attrs), "sold": false})
 
 func get_room_shop(key: String, region: int = 0) -> Dictionary:
 	if not profile.data.run.active: return {}

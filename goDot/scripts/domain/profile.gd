@@ -46,17 +46,41 @@ func validate() -> bool:
 		if not job is Dictionary: return false
 		for key in ["work_id", "partner_id", "started_utc", "due_utc", "material_id", "reward"]:
 			if not _number(job.get(key)) or job[key] < 0 or float(job[key]) != floor(float(job[key])): return false
-		if job.work_id <= 0 or job.partner_id <= 0 or job.material_id <= 0 or job.reward <= 0: return false
-		if int(job.work_id) in assigned_work or int(job.partner_id) in assigned_partners: return false
+		if job.work_id <= 0 or job.material_id <= 0 or job.reward <= 0: return false
+		if int(job.partner_id) == 0 and int(job.get("economy_version", 0)) != 2: return false
+		if int(job.work_id) in assigned_work or (int(job.partner_id) > 0 and int(job.partner_id) in assigned_partners): return false
 		if job.has("level") and (not _number(job.level) or job.level < 0 or float(job.level) != floor(float(job.level))): return false
-		for key in ["quantity", "claimed_quantity", "cycle_seconds"]:
+		for key in ["quantity", "claimed_quantity", "cycle_seconds", "economy_version", "prepaid_quantity"]:
 			if job.has(key) and (not _number(job[key]) or job[key] < 0 or float(job[key]) != floor(float(job[key]))): return false
-		if int(job.get("quantity", 1)) < 1 or int(job.get("quantity", 1)) > 5: return false
+		if int(job.get("quantity", 1)) < 1 or int(job.get("quantity", 1)) > 24: return false
+		if int(job.get("economy_version", 0)) not in [0, 2] or int(job.get("prepaid_quantity", 0)) > 1: return false
 		if int(job.get("claimed_quantity", 0)) >= int(job.get("quantity", 1)): return false
 		if job.has("cycle_seconds") and int(job.cycle_seconds) < 1: return false
 		if int(job.get("quantity", 1)) > 1 and not job.has("cycle_seconds"): return false
 		assigned_work.append(int(job.work_id))
 		assigned_partners.append(int(job.partner_id))
+	if data.has("work_claims"):
+		if not data.work_claims is Dictionary: return false
+		for key in ["day", "count"]:
+			if not _number(data.work_claims.get(key)) or float(data.work_claims[key]) != floor(float(data.work_claims[key])): return false
+		if data.work_claims.count < 0: return false
+	for field in ["meal_selection", "purchased_meals", "last_meals"]:
+		if not data.has(field): continue
+		if not data[field] is Dictionary: return false
+		if field != "purchased_meals" and data[field].size() > 3: return false
+		for key in data[field]:
+			if not str(key).is_valid_int() or int(key) < 1: return false
+			var level = data[field][key]
+			if not _number(level) or level < 1 or float(level) != floor(float(level)): return false
+	if data.has("meal_purchased") and not data.meal_purchased is bool: return false
+	if data.has("unlocked_camp_decorations"):
+		if not data.unlocked_camp_decorations is Array or not _ids(data.unlocked_camp_decorations): return false
+	if data.has("camp_decorations"):
+		if not data.camp_decorations is Dictionary: return false
+		for slot_id in data.camp_decorations:
+			var decoration = data.camp_decorations[slot_id]
+			if not str(slot_id).is_valid_int() or int(slot_id) <= 0: return false
+			if not _number(decoration) or decoration <= 0 or float(decoration) != floor(float(decoration)): return false
 	var run = data.run
 	var defaults = new_run()
 	for key in defaults:
@@ -87,8 +111,13 @@ func validate() -> bool:
 			if not outcome.get("materials") is Dictionary: return false
 			for amount in outcome.materials.values():
 				if not _number(amount) or amount < 0: return false
-			for key in ["experience", "effective_experience", "vouchers"]:
+			for key in ["experience", "effective_experience", "vouchers", "elapsed", "kills", "damage", "max_damage"]:
 				if outcome.has(key) and (not _number(outcome[key]) or outcome[key] < 0): return false
+			for key in ["talents", "inventory"]:
+				if not outcome.has(key): continue
+				if not outcome[key] is Dictionary: return false
+				for amount in outcome[key].values():
+					if not _number(amount) or amount < 0: return false
 	return run.health >= 0 and run.max_health >= run.health and int(run.random_step) >= 0
 
 static func _number(value: Variant) -> bool:
@@ -114,11 +143,15 @@ static func attack_mode(value: Dictionary) -> String:
 	return str(mode) if mode in ["normal", "heavy", "off"] else "normal"
 
 func normalize_ids() -> void:
+	for field in ["meal_selection", "purchased_meals", "last_meals"]:
+		if not data.has(field): continue
+		for key in data[field]: data[field][key] = int(data[field][key])
 	for key in ["claimed_tasks", "claimed_achievements", "discovered_loot", "equipped_partners", "active_awakenings", "equipped_tokens", "equipped_amplifiers"]:
 		data[key] = data[key].map(func(value): return int(value))
+	if data.has("unlocked_camp_decorations"): data.unlocked_camp_decorations = data.unlocked_camp_decorations.map(func(value): return int(value))
 	data.run.completed_nodes = data.run.completed_nodes.map(func(value): return int(value))
 	for reward in data.run.rewards:
 		reward.choices = reward.choices.map(func(value): return int(value))
 	for job in data.work:
-		for key in ["work_id", "partner_id", "started_utc", "due_utc", "material_id", "reward", "level", "quantity", "claimed_quantity", "cycle_seconds"]:
+		for key in ["work_id", "partner_id", "started_utc", "due_utc", "material_id", "reward", "level", "quantity", "claimed_quantity", "cycle_seconds", "economy_version", "prepaid_quantity"]:
 			if job.has(key): job[key] = int(job[key])

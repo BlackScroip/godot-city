@@ -36,7 +36,7 @@ func _test_born_action_gate() -> void:
 	_check(wolf.current_action == "born", "Wolf remains born before the source one second gate")
 	wolf.tick(0.001)
 	wolf.tick_enemy_ai(0.0, context)
-	_check(wolf.current_action == "attack", "Ready wolf attacks only after the authored one second born gate")
+	_check(wolf.current_action in ["attack", "attack2"], "Ready wolf starts a source attack only after the authored one second born gate")
 	var far_wolf = _combat(11001)
 	context.distance = 9.0
 	far_wolf.tick_enemy_ai(0.0, context)

@@ -68,10 +68,15 @@ func _summon_check() -> void:
 	presentation.clear()
 	var point = Vector3(3, 0.4, 7)
 	var raw: Dictionary = actor.combat._summon_index["115101"].raw_data
+	var source_model: Dictionary = actor.combat._summon_index["1194001"].raw_data
+	check(not source_model.PrefabIsEffect, "The APK sword soul is a non-effect prefab with source model geometry")
+	var model_token: int = presentation.summon_started(actor, source_model, point)
+	check(model_token > 0 and presentation.active.size() == 1 and presentation.active.back().authored.find_children("*", "MeshInstance3D", true, false).size() > 0, "Recovered non-effect source prefab renders its actual model")
+	presentation.summon_ended(model_token)
+	check(presentation.active.is_empty(), "World disposal releases the source model prefab")
+	var unavailable: Dictionary = actor.combat._summon_index["11001"].raw_data
+	check(presentation.summon_started(actor, unavailable, point) == 0 and presentation.active.is_empty(), "An exact prefab absent from the APK does not create a fabricated lease")
 	var ignored = raw.duplicate(true)
-	ignored.PrefabIsEffect = false
-	check(presentation.summon_started(actor, ignored, point) == 0 and presentation.active.is_empty(), "Model summons do not create an effect lease")
-	ignored = raw.duplicate(true)
 	ignored.Prefab = ""
 	check(presentation.summon_started(actor, ignored, point) == 0 and presentation.active.is_empty(), "Missing summon prefab does not create a lease")
 	var token: int = presentation.summon_started(actor, raw, point, Vector3.RIGHT)

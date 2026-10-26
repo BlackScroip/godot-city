@@ -31,7 +31,7 @@ func _run() -> void:
 	systems = Systems.new(catalog, profile)
 	systems.utc_now = func(): return now
 	check(systems.material(101) == 100 and profile.data.character_levels == {"1": 1}, "fresh profile has 100 gold and character one")
-	check(catalog.rows("AchieveData").size() == 62 and catalog.rows("SubAchieveData").size() == 241, "complete original achievements catalog")
+	check(catalog.rows("AchieveData").size() == 68 and catalog.rows("SubAchieveData").size() == 271, "new APK achievement and commission catalogs")
 	var before = JSON.stringify(profile.data)
 	check(not systems.upgrade_global_talent(102).success and JSON.stringify(profile.data) == before, "failed prerequisites preserve profile")
 	for row in catalog.rows("SubAchieveData"):
@@ -77,7 +77,7 @@ func _run() -> void:
 		for row in catalog.rows("NPCFunctionData"):
 			if row.get("func_msg_name", "") == "": systems.execute_npc_function(Catalog.row_id(row))
 		for row in catalog.rows("CatMealData"):
-			for level in range(1, 4): systems.cook_meal(Catalog.row_id(row), level)
+			for level in range(1, 4): systems.research_meal(Catalog.row_id(row))
 		for row in catalog.rows("MonsterWorkData"):
 			for level in 4: systems.upgrade_work(Catalog.row_id(row))
 		for dispatch_index in 12:
@@ -101,8 +101,8 @@ func _run() -> void:
 	var unclaimed = []
 	for row in catalog.rows("SubAchieveData"):
 		if not profile.data.claimed_tasks.has(int(row.id)): unclaimed.append({"id": int(row.id), "name": row.name, "group": int(row.group_id), "status": systems.task_status(int(row.id))})
-	check(profile.data.claimed_tasks.size() == 241, "all 241 tasks reached through public gameplay operations")
-	check(profile.data.claimed_achievements.size() == 62, "all 62 achievement groups reached and rewarded")
+	check(profile.data.claimed_tasks.size() == 271, "all 271 tasks reached through public gameplay operations")
+	check(profile.data.claimed_achievements.size() == 68, "all 68 achievement groups reached and rewarded")
 	_test_events()
 	_test_transactions()
 	_test_purification()
@@ -129,7 +129,7 @@ func _run() -> void:
 	var output = FileAccess.open("res://reports/systems-tests.json", FileAccess.WRITE)
 	output.store_string(JSON.stringify(report, "\t"))
 	output.close()
-	print("SYSTEMS ", assertions, " assertions, ", failures.size(), " failures; tasks ", profile.data.claimed_tasks.size(), "/241, groups ", profile.data.claimed_achievements.size(), "/62")
+	print("SYSTEMS ", assertions, " assertions, ", failures.size(), " failures; tasks ", profile.data.claimed_tasks.size(), "/271, groups ", profile.data.claimed_achievements.size(), "/68")
 	quit(0 if failures.is_empty() else 1)
 
 func _claim_all() -> void:
@@ -159,7 +159,7 @@ func _test_dispatch_costs() -> void:
 	_prepare_facilities(s)
 	s.begin_run(98123, 1, 500)
 	for region in range(1, 6): s.complete_node("dispatch-unlock-" + str(region), region * 1000000, region, true)
-	s.record_kill(11001, 1)
+	for kill_index in 10: s.record_kill(11001, 1)
 	s.end_run(true)
 	s.unlock_partner(11001)
 	for row in catalog.rows("MaterialData"): s.grant_material(Catalog.row_id(row), 100000)
@@ -170,19 +170,21 @@ func _test_dispatch_costs() -> void:
 		var gold = str(row.level_up_need_gold).split("|")
 		var rewards = str(row.finish_get_materials).split("|")
 		for level in 3:
+			clock.utc += 86400
 			var expected = Systems.costs(starts[level] if level < starts.size() else "")
 			var before = p.data.materials.duplicate(true)
 			check(s.start_work(id, 11001).success, "dispatch starts at configured level " + str(id) + ":" + str(level))
 			for material_id in before:
-				check(int(before[material_id]) - s.material(int(material_id)) == int(expected.get(material_id, 0)), "dispatch exact single-level start cost " + str(id) + ":" + str(level) + ":" + material_id)
-			check(not s.equip_partner(11001).success and not s.start_work(id, 11001).success, "dispatch busy partner and duplicate order rejected " + str(id))
+				check(int(before[material_id]) == s.material(int(material_id)), "dispatch starts without charging claim materials " + str(id) + ":" + str(level) + ":" + material_id)
+			check(s.equip_partner(11001).success and not s.start_work(id).success, "work does not reserve a battle partner and duplicate orders are rejected " + str(id))
+			s.unequip_partner(11001)
 			clock.utc += int(row.cost_time) * 60 - 1
 			var early = JSON.stringify(p.data)
 			check(not s.collect_work(id).success and JSON.stringify(p.data) == early, "dispatch rejects one second early without mutation " + str(id))
 			clock.utc += 1
 			var material_id = int(row.materia_id)
 			var previous = s.material(material_id)
-			check(s.collect_work(id).success and s.material(material_id) - previous == int(rewards[level]), "dispatch exact level reward at due time " + str(id) + ":" + str(level))
+			check(s.collect_work(id).success and s.material(material_id) - previous == int(rewards[level]) - int(expected.get(str(material_id), 0)), "dispatch exact net payout after per-output claim cost " + str(id) + ":" + str(level))
 			var claimed = JSON.stringify(p.data)
 			check(not s.collect_work(id).success and JSON.stringify(p.data) == claimed, "dispatch reward cannot repeat " + str(id))
 			check(s.stop_work(id).success, "dispatch can return partner after collection " + str(id))
@@ -322,35 +324,19 @@ func _test_growth_drops() -> void:
 	var p = Profile.new()
 	var s = Systems.new(catalog, p)
 	s.begin_run(668, 1, 100)
-	check(not s.claim_node_materials("growth-room", 5, true).success, "growth drops require completed room")
-	s.complete_node("growth-room", 5050000, 5, true, "2")
-	check(s.claim_node_materials("growth-room", 5, true).success and s.material(502) == 1 and s.material(10501) == 3, "offline boss supplies recruitment and actual region five material")
-	check(not p.data.materials.has("10502"), "harvest never invents nonexistent region five material")
+	check(not s.claim_node_materials("growth-room", 5, true).success, "room delivery requires a completed room")
+	s.grant_material(103, 4)
+	s.grant_material(10501, 2)
 	var snapshot = JSON.stringify(p.data.materials)
-	check(not s.claim_node_materials("growth-room", 5, true).success and JSON.stringify(p.data.materials) == snapshot, "growth drop pays once")
+	s.complete_node("growth-room", 5050000, 5, true, "2")
+	check(s.claim_node_materials("growth-room", 5, true).success and JSON.stringify(p.data.materials) == snapshot, "boss completion preserves pickups without an invented growth bundle")
+	check(s.material(501) == 0 and s.material(502) == 0 and s.material(504) == 0 and not p.data.materials.has("10502"), "room completion invents no vouchers, recruitment tokens, awakening rewards or absent materials")
+	check(not s.claim_node_materials("growth-room", 5, true).success and JSON.stringify(p.data.materials) == snapshot, "room delivery cannot repeat")
 	var restored = Profile.new()
-	check(restored.restore(JSON.parse_string(JSON.stringify(p.data))), "growth drop save restores")
+	check(restored.restore(JSON.parse_string(JSON.stringify(p.data))), "room delivery save restores")
 	var resumed = Systems.new(catalog, restored)
 	var restored_materials = JSON.stringify(restored.data.materials)
-	check(not resumed.claim_node_materials("growth-room", 5, true).success and JSON.stringify(restored.data.materials) == restored_materials and resumed.material(502) == 1, "growth drop stays paid after reload")
-	var natural_profile = Profile.new()
-	var natural = Systems.new(catalog, natural_profile)
-	var amplifier_ids = {}
-	for adventure in 70:
-		natural.begin_run(7000 + adventure, 1, 100)
-		for killed in 10: natural.record_kill(11001, 5)
-		natural.record_kill(11009, 5)
-		var key = "natural-" + str(adventure)
-		natural.complete_node(key, 1010000, 1, true, "2")
-		natural.claim_node_materials(key, 1, true)
-		natural.end_run(false)
-	check(natural.upgrade_building(1).success, "natural adventure gold repairs recruitment facility")
-	for row in catalog.rows("CharData"):
-		if row.available_state == "Normal" and int(row.id) != 1: check(natural.unlock_character(int(row.id)).success, "all seven characters have non-grant resource route " + str(int(row.id)))
-	for row in catalog.rows("RelationshipAmplifyData"):
-		if row.rare == "Tier1" and natural.material(Catalog.row_id(row)) > 0: amplifier_ids[Catalog.row_id(row)] = true
-	check(amplifier_ids.size() > 1, "boss source can supply multiple tier one amplifier types")
-	check(natural_profile.data.character_levels.size() == 7 and not natural_profile.data.character_levels.has("8"), "natural domain route recruits seven original playable characters")
+	check(not resumed.claim_node_materials("growth-room", 5, true).success and JSON.stringify(restored.data.materials) == restored_materials, "recorded delivery survives reload without another payout")
 
 func _test_offline_mall() -> void:
 	var p = Profile.new()

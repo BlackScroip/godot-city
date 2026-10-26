@@ -3,12 +3,15 @@ extends RefCounted
 
 var tables: Dictionary = {}
 var config: Dictionary = {}
+var configurations: Dictionary = {}
 var errors: Array = []
 var _indices: Dictionary = {}
 static var _display_terms: Dictionary = {}
+static var _cleanup_regexes: Array[RegEx] = []
 
 func load_all() -> bool:
 	tables.clear()
+	configurations.clear()
 	_indices.clear()
 	errors.clear()
 	var manifest = _read("manifest")
@@ -16,8 +19,12 @@ func load_all() -> bool:
 		return false
 	for table in manifest.get("tables", {}):
 		var value = _read(table)
+		if table == "EnemyNumericalConfigData" and value is Array and value.size() == 1:
+			value = value[0]
 		if table == "RogueConfigData":
 			config = value if value is Dictionary else {}
+		elif table == "EnemyNumericalConfigData" and value is Dictionary:
+			configurations[table] = value
 		elif value is Array:
 			tables[table] = value
 			var index = {}
@@ -71,29 +78,30 @@ static func description(row: Dictionary) -> String:
 	return ""
 
 static func clean(value: Variant) -> String:
-	var text = str(value).replace("<br>", "\n").replace("<br/>", "\n")
+	var text = str(value)
+	if not text.contains("<"): return text
+	text = text.replace("<br>", "\n").replace("<br/>", "\n")
 	if _display_terms.is_empty():
 		var parsed = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/DisplayTerms.json"))
 		if parsed is Dictionary: _display_terms = parsed
-	var regex = RegEx.new()
-	regex.compile("<#specinfo=[\"']?([^>\"']+)[\"']?>")
-	for matched in regex.search_all(text):
+	if _cleanup_regexes.is_empty():
+		for pattern in ["<#specinfo=[\"']?([^>\"']+)[\"']?>", "(?s)<#LocalizationId=[\"']?([^>\"']+)[\"']?>(.*?)</LocalizationId>", "<#LocalizationId=[\"']?([^>\"']+)[\"']?>", "<#([^>]+)>", "<[^>]*>"]:
+			var regex = RegEx.new()
+			regex.compile(pattern)
+			_cleanup_regexes.append(regex)
+	for matched in _cleanup_regexes[0].search_all(text):
 		var key = matched.get_string(1)
 		text = text.replace(matched.get_string(), str(_display_terms.get("specinfo", {}).get(key, "【术语：" + key + "】")))
 	# Inline localization carries authored fallback text; keep it when present.
-	regex.compile("(?s)<#LocalizationId=[\"']?([^>\"']+)[\"']?>(.*?)</LocalizationId>")
-	for matched in regex.search_all(text):
+	for matched in _cleanup_regexes[1].search_all(text):
 		var fallback = matched.get_string(2)
 		var key = matched.get_string(1)
 		text = text.replace(matched.get_string(), fallback if not fallback.is_empty() else str(_display_terms.get("localization", {}).get(key, "【文本：" + key + "】")))
-	regex.compile("<#LocalizationId=[\"']?([^>\"']+)[\"']?>")
-	for matched in regex.search_all(text):
+	for matched in _cleanup_regexes[2].search_all(text):
 		var key = matched.get_string(1)
 		text = text.replace(matched.get_string(), str(_display_terms.get("localization", {}).get(key, "【文本：" + key + "】")))
-	regex.compile("<#([^>]+)>")
-	for matched in regex.search_all(text): text = text.replace(matched.get_string(), "【" + matched.get_string(1) + "】")
-	regex.compile("<[^>]*>")
-	return regex.sub(text, "", true)
+	for matched in _cleanup_regexes[3].search_all(text): text = text.replace(matched.get_string(), "【" + matched.get_string(1) + "】")
+	return _cleanup_regexes[4].sub(text, "", true)
 
 static func ids(value) -> Array:
 	if value is Array:

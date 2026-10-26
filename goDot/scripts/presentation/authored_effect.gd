@@ -1,11 +1,16 @@
 extends Node3D
 
 var emitters: Array[Dictionary] = []
+var model_players: Array[Dictionary] = []
+var model_styles: Array[Dictionary] = []
+const ModelMaterialAnimation = preload("res://scripts/presentation/model_material_animation.gd")
+const Descriptors = preload("res://scripts/presentation/effect_descriptors.gd")
 var age := 0.0
 var lifetime := 0.0
 var unsupported: Array = []
 var _running := false
 static var _additive_shader: Shader
+static var _material_libraries: Dictionary = {}
 const CURVE_SAMPLES := 48
 const FULL_PARTICLE_BUDGET := 384
 const LOW_PARTICLE_BUDGET := 144
@@ -123,11 +128,39 @@ static func _uses_reconstructed_ribbon(layer: Dictionary, source: Dictionary) ->
 
 static func _uses_reconstructed_water_shell(layer: Dictionary, source: Dictionary) -> bool:
 	if int(layer.get("renderer", {}).get("render_mode", 0)) != 4 or source.get("blend", "") != "alpha": return false
-	return str(source.get("source", "")).get_file() in ["mat_fx_23102601_bomb.mat", "mat_fx_23102601_bomblight.mat"]
+	return _material_name(source) in ["mat_fx_23102601_bomb.mat", "mat_fx_23102601_bomblight.mat"]
 
 static func _uses_reconstructed_water_splash(source: Dictionary) -> bool:
 	if source.get("blend", "") != "alpha": return false
-	return str(source.get("source", "")).get_file() in ["mat_fx_23110201_hit_prick.mat", "mat_fx_23102601_explode_prick.mat"]
+	return _material_name(source) in ["mat_fx_23110201_hit_prick.mat", "mat_fx_23102601_explode_prick.mat"]
+
+static func _material_name(source: Dictionary) -> String:
+	var name = str(source.get("name", ""))
+	return name + ("" if name.ends_with(".mat") else ".mat") if not name.is_empty() else str(source.get("source", "")).get_file()
+
+static func material_library(definition: Dictionary) -> Dictionary:
+	definition = Descriptors.resolve(definition)
+	var path = str(definition.get("material_library", ""))
+	if path.is_empty(): return {}
+	if Descriptors.handles_materials(path): return Descriptors.materials_for(definition)
+	if not _material_libraries.has(path):
+		var parsed = JSON.parse_string(FileAccess.get_file_as_string(path))
+		_material_libraries[path] = parsed if parsed is Dictionary else {}
+	return _material_libraries[path]
+
+static func resolved_layers(definition: Dictionary) -> Array:
+	definition = Descriptors.resolve(definition)
+	var library = material_library(definition)
+	var result: Array = []
+	for source in definition.get("layers", []):
+		var layer: Dictionary = source.duplicate()
+		var materials: Array = []
+		for value in source.get("materials", []):
+			var material: Dictionary = library.get(str(value.get("reference", "")), {}) if value.has("reference") else value
+			if not material.is_empty(): materials.append(material)
+		layer["materials"] = materials
+		result.append(layer)
+	return result
 
 static func gradient(value: Dictionary) -> Gradient:
 	var raw: Dictionary = value.get("maxGradient", value.get("gradient", {}))
@@ -184,8 +217,28 @@ static func gradient(value: Dictionary) -> Gradient:
 	return result
 
 func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, suppressed_layers: Array = []) -> void:
+	definition = Descriptors.resolve(definition)
 	unsupported = definition.get("unsupported", [])
-	var layers: Array = definition.get("layers", []).duplicate()
+	for model in definition.get("models", []):
+		var path = str(model.get("scene", ""))
+		if not ResourceLoader.exists(path): continue
+		var packed = load(path)
+		if not packed is PackedScene: continue
+		var visual: Node3D = packed.instantiate()
+		add_child(visual)
+		if model.has("material_animation"):
+			var runtime = ModelMaterialAnimation.new()
+			runtime.configure(visual, model.material_animation, textures)
+			model_styles.append({"path": get_path_to(visual), "definition": model.material_animation, "runtime": runtime})
+		lifetime = maxf(lifetime, float(model.get("duration", 0.5)))
+		for player: AnimationPlayer in visual.find_children("*", "AnimationPlayer", true, false):
+			player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
+			for clip in model.get("animations", []):
+				for name in player.get_animation_list():
+					if str(name).get_file() == str(clip.get("name", "")):
+						player.get_animation(name).loop_mode = Animation.LOOP_LINEAR if clip.get("loop", false) else Animation.LOOP_NONE
+			model_players.append({"node": player, "path": get_path_to(player), "default": str(model.get("default_animation", "")), "aliases": model.get("aliases", {})})
+	var layers: Array = resolved_layers(definition)
 	layers.sort_custom(func(left: Dictionary, right: Dictionary) -> bool: return _layer_priority(left) > _layer_priority(right))
 	var budget = LOW_PARTICLE_BUDGET if low_quality else FULL_PARTICLE_BUDGET
 	for layer in layers:
@@ -193,6 +246,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		if not layer.get("active", true): continue
 		if layer.get("materials", []).is_empty() or not layer.get("renderer", {}).get("enabled", true): continue
 		if int(layer.get("renderer", {}).get("render_mode", 0)) == 5: continue
+		if int(layer.get("renderer", {}).get("render_mode", 0)) == 4 and str(layer.get("mesh", "")).is_empty(): continue
 		if emitters.size() >= (8 if low_quality else 18): break
 		if particle_count >= budget: break
 		var emission: Dictionary = layer.get("emission", {})
@@ -308,7 +362,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		material.vertex_color_use_as_albedo = true
 		material.cull_mode = BaseMaterial3D.CULL_DISABLED
 		var materials: Array = layer.get("materials", [])
-		var ground_fade: bool = not materials.is_empty() and str(materials[0].get("source", "")).get_file() == "mat_fx_25011001_slash_fog.mat"
+		var ground_fade: bool = not materials.is_empty() and _material_name(materials[0]) == "mat_fx_25011001_slash_fog.mat"
 		if not materials.is_empty():
 			var source: Dictionary = materials[0]
 			material.albedo_texture = textures.get(str(source.get("texture", "")))
@@ -365,7 +419,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			recovered.set_shader_parameter("luminance_alpha", bool(source.get("alpha_from_luminance", false)))
 			recovered.set_shader_parameter("shape_alpha_weight", clampf(float(source.get("shape_alpha_weight", 1)), 0, 2))
 			recovered.set_shader_parameter("shape_brightness", float(source.get("shape_brightness", 0)))
-			var opacity_mask: Dictionary = MATERIAL_MASKS.get(str(source.get("source", "")).get_file(), {})
+			var opacity_mask: Dictionary = MATERIAL_MASKS.get(_material_name(source), {})
 			if not opacity_mask.is_empty():
 				var mask_path = str(opacity_mask.texture)
 				recovered.set_shader_parameter("opacity_mask", textures[mask_path] if textures.has(mask_path) else load(mask_path))
@@ -374,7 +428,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 				recovered.set_shader_parameter("mask_uv_offset", opacity_mask.get("offset", Vector2.ZERO))
 				recovered.set_shader_parameter("mask_power", float(opacity_mask.get("power", 1)))
 			# The original custom-stream erosion is unavailable on these recovered smoke meshes.
-			recovered.set_shader_parameter("edge_feather", SOFT_BOUNDARY_MATERIALS.get(str(source.get("source", "")).get_file(), Vector2.ZERO))
+			recovered.set_shader_parameter("edge_feather", SOFT_BOUNDARY_MATERIALS.get(_material_name(source), Vector2.ZERO))
 			recovered.set_shader_parameter("ground_feather", 0.5 if ground_fade else 0.0)
 			# Original erosion controllers are unavailable; keep broad slash meshes translucent.
 			recovered.set_shader_parameter("reconstructed_ribbon", _uses_reconstructed_ribbon(layer, source))
@@ -415,6 +469,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		var delay = maxf(0, scalar(layer.get("start_delay", {})))
 		var duration = maxf(particle.lifetime, float(layer.get("duration", particle.lifetime)))
 		var speed_scale = maxf(0.01, float(layer.get("simulation_speed", 1)))
+		var burst_period = maxf(0.02, float(layer.get("duration", particle.lifetime))) / speed_scale if bool(layer.get("looping", false)) else 0.0
 		var bursts: Array = emission.get("m_Bursts", [])
 		if not bursts.is_empty() and rate <= 0:
 			var first := true
@@ -431,7 +486,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 					particle_count += instance.amount
 					instance.explosiveness = 1.0
 					var at = delay + float(burst.get("time", 0)) + cycle * float(burst.get("repeatInterval", 0))
-					emitters.append({"node": instance, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": false, "duration": duration / speed_scale, "ground_fade": ground_fade})
+					emitters.append({"node": instance, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": burst_period > 0.0, "burst_period": burst_period, "duration": duration / speed_scale, "ground_fade": ground_fade})
 					lifetime = maxf(lifetime, (at + instance.lifetime) / speed_scale)
 		else:
 			particle.one_shot = false
@@ -452,6 +507,14 @@ func instantiate_effect() -> Node3D:
 	instance.particle_count = particle_count
 	instance.unsupported = unsupported
 	for child in get_children(): instance.add_child(child.duplicate(0))
+	for source in model_players:
+		var entry = source.duplicate()
+		entry.node = instance.get_node(source.path)
+		instance.model_players.append(entry)
+	for source in model_styles:
+		var runtime = ModelMaterialAnimation.new()
+		runtime.configure(instance.get_node(source.path), source.definition, {})
+		instance.model_styles.append({"path": source.path, "definition": source.definition, "runtime": runtime})
 	for emitter in emitters:
 		var entry = emitter.duplicate()
 		var particle: CPUParticles3D = instance.get_child(emitter.node.get_parent().get_index()).get_child(emitter.node.get_index())
@@ -464,8 +527,10 @@ func restart() -> void:
 	age = 0
 	_running = true
 	show()
+	play_model_animation("")
 	for emitter in emitters:
 		emitter.started = false
+		emitter.erase("next_burst")
 		emitter.erase("last_speed")
 		emitter.erase("last_basis")
 		emitter.node.emitting = false
@@ -473,6 +538,9 @@ func restart() -> void:
 		emitter.node.emitting = false
 
 func advance(delta: float, paused: bool, playback_rate := 1.0) -> void:
+	if not paused and _running:
+		for entry in model_players: entry.node.advance(delta)
+		for entry in model_styles: entry.runtime.advance(delta)
 	for emitter in emitters:
 		var speed = 0.0 if paused else emitter.speed * maxf(0, playback_rate)
 		if emitter.get("last_speed", -1.0) != speed:
@@ -488,13 +556,28 @@ func advance(delta: float, paused: bool, playback_rate := 1.0) -> void:
 	if paused or not _running: return
 	age += delta
 	for emitter in emitters:
-		if not emitter.started and age >= float(emitter.delay):
+		if (not emitter.started and age >= float(emitter.delay)) or (emitter.has("next_burst") and age >= float(emitter.next_burst)):
 			emitter.started = true
 			emitter.node.restart()
 			emitter.node.emitting = true
+			var period := float(emitter.get("burst_period", 0.0))
+			if period > 0.0:
+				# Burst-only layers still repeat on each authored system cycle.
+				emitter.next_burst = float(emitter.delay) + (floorf((age - float(emitter.delay)) / period) + 1.0) * period
 		if emitter.started and not emitter.loop and age > float(emitter.delay) + float(emitter.duration): emitter.node.emitting = false
 
 func stop() -> void:
 	_running = false
 	hide()
 	for emitter in emitters: emitter.node.emitting = false
+	for entry in model_players: entry.node.stop()
+
+func play_model_animation(source_name: String) -> void:
+	for entry in model_styles: entry.runtime.play(source_name)
+	for entry in model_players:
+		var wanted = str(entry.aliases.get(source_name.to_lower(), source_name)) if not source_name.is_empty() else str(entry.default)
+		for name in entry.node.get_animation_list():
+			if str(name).get_file() == wanted:
+				entry.node.play(name)
+				entry.node.advance(0)
+				break

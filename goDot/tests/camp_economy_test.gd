@@ -84,36 +84,34 @@ func _test_dispatch() -> void:
 	var p = Profile.new()
 	var s = Systems.new(catalog, p)
 	s.utc_now = func(): return now
-	s.grant_material(101, 100000)
-	s.record_kill(11001)
-	for index in 5:
-		s.begin_run(600 + index, 1, 100)
-		s.complete_node("camp-job-unlock-" + str(index), 2010000, 2, true)
-		s.end_run(false)
-	for stage in 2: s.upgrade_building(4)
-	check(s.unlock_partner(11001).success, "monster defeat and stone altar unlock partner")
-	s.record_kill(11002)
-	check(s.unlock_partner(11002).success, "second partner is available for global assignment regression")
 	var before = JSON.stringify(p.data)
-	check(not s.start_work(101, 11001).success and JSON.stringify(p.data) == before, "dispatch requires repaired rune stone")
-	s.upgrade_building(6)
+	check(not s.start_work(101).success and JSON.stringify(p.data) == before, "dispatch requires repaired rune stone")
+	p.data.buildings["6"] = 1
 	check(s.work_status(101).can_start and not s.work_status(107).can_start, "normal rune stone locks advanced voucher expedition")
-	s.upgrade_building(6)
+	p.data.buildings["6"] = 2
+	s.begin_run(600, 1, 100)
+	s.complete_node("new-apk-work-unlock", 2010000, 2, true)
+	s.end_run(false)
+	p.data.materials["101"] = 0
 	var quote = s.work_status(107)
-	check(quote.price == {"101": 50} and quote.reward == {"id": 501, "amount": 3} and quote.duration_seconds == 1200, "voucher expedition quote uses source currency reward and minutes")
-	var gold = s.material(101)
-	check(s.start_work(107, 11001).success and s.material(101) == gold - 50, "voucher expedition spends exactly fifty gold")
+	check(quote.price == {"101": 50} and quote.reward == {"id": 501, "amount": 3} and quote.duration_seconds == 1200 and quote.queue_max == 6, "new APK voucher expedition has six stored cycles and fifty gold per claim")
+	check(s.start_work(107).success and s.material(101) == 0 and p.data.partners.is_empty(), "work starts without materials or an owned idle partner")
 	before = JSON.stringify(p.data)
-	check(not s.start_work(101, 11002).success and JSON.stringify(p.data) == before, "native single active assignment blocks another available partner")
-	check(not s.start_work(101, 11001).success and not s.upgrade_work(107).success and JSON.stringify(p.data) == before, "busy partner and in-flight upgrade are atomic failures")
-	now += 1199
-	check(not s.collect_work(107).success and s.work_status(107).remaining_seconds == 1, "reward cannot be collected before timer")
+	check(not s.start_work(101).success and not s.start_work(107).success and JSON.stringify(p.data) == before, "only one global assignment can run")
+	now += 59
+	check(s.work_status(107).next_claim_seconds == 1200, "offline work accrues only complete source minutes")
+	now += 1
+	check(s.work_status(107).next_claim_seconds == 1140, "a completed minute advances work once")
+	now += 1140
+	before = JSON.stringify(p.data)
+	check(s.work_status(107).completed_quantity == 1 and not s.collect_work(107).success and JSON.stringify(p.data) == before, "completed work waits for claim materials without losing progress")
+	s.grant_material(101, 150)
+	now += 1500
 	var restored = Profile.new()
 	check(restored.restore(JSON.parse_string(JSON.stringify(p.data))), "dispatch order survives JSON reload")
 	var resumed = Systems.new(catalog, restored)
 	resumed.utc_now = func(): return now
-	now += 1
-	check(resumed.work_status(107).ready and int(restored.data.work[0].reward) == 3, "offline due time and snapshotted payout survive reload")
+	check(resumed.work_status(107).claimable_quantity == 2 and resumed.work_status(107).next_claim_seconds == 900, "offline progress retains two outputs and five partial minutes")
 	resumed.begin_run(999, 1, 100)
 	before = JSON.stringify(restored.data)
 	check(not resumed.collect_work(107).success and JSON.stringify(restored.data) == before, "camp rewards cannot leak into adventure collection statistics")
@@ -122,14 +120,20 @@ func _test_dispatch() -> void:
 	var listener = func(event):
 		if event.type == "resource_gained": replay.success = resumed.collect_work(107).success
 	resumed.gameplay_event.connect(listener)
-	check(resumed.collect_work(107).success and resumed.material(501) == 3 and not replay.success, "dispatch pays once even when reward listeners reenter collection")
+	check(resumed.collect_work(107).success and resumed.material(501) == 6 and resumed.material(101) == 50 and not replay.success, "claim deducts cost for both outputs and rejects reentrant delivery")
 	resumed.gameplay_event.disconnect(listener)
-	check(not resumed.collect_work(107).success and resumed.stat("work:finished") == 1, "completed order cannot be replayed")
-	check(not resumed.work_status(107).order.is_empty() and resumed.work_status(107).remaining_seconds == 1200, "collection retains assignment and restarts progress without another charge")
-	check(resumed.upgrade_character(1).success and resumed.material(501) == 2, "collected dispatch vouchers immediately upgrade owned character")
-	check(resumed.stop_work(107).success, "stopping collected assignment releases partner")
-	check(resumed.upgrade_work(107).success and resumed.work_status(107).reward.amount == 5, "job upgrade improves next payout")
-	check(resumed.start_work(107, 11001).success, "freed partner can be sent again")
+	check(not resumed.collect_work(107).success and resumed.stat("work:finished") == 2, "completed outputs cannot be replayed")
+	check(not resumed.work_status(107).order.is_empty() and resumed.work_status(107).next_claim_seconds == 900, "claim keeps assignment and fractional progress")
+	check(resumed.upgrade_character(1).success and resumed.material(501) == 5, "collected vouchers fund permanent character growth")
+	now += 900
+	resumed.grant_material(101, 10000)
+	resumed.grant_material(107, 10000)
+	check(resumed.upgrade_work(107).success and resumed.work_status(107).reward.amount == 5, "active work can upgrade before accumulated outputs are claimed")
+	var vouchers = resumed.material(501)
+	var gold = resumed.material(101)
+	check(resumed.collect_work(107).success and resumed.material(501) == vouchers + 5 and resumed.material(101) == gold - 100, "stored work uses current upgraded reward and claim cost")
+	check(resumed.stop_work(107).success, "collected work can stop")
+	check(resumed.start_work(107).success, "another assignment can start")
 	var corrupt = restored.data.duplicate(true)
 	corrupt.work.append(corrupt.work[0].duplicate(true))
 	check(not Profile.new().restore(corrupt), "duplicate saved orders are rejected")
@@ -142,17 +146,21 @@ func _test_dispatch() -> void:
 	resumed.stop_work(107)
 	resumed.set_blessing_mode(2)
 	quote = resumed.work_status(107)
-	check(quote.duration_seconds == 600 and quote.queue_max == 5, "native blessing halves work time and ultra stores five results")
+	check(quote.duration_seconds == 600 and quote.queue_max == 24 and quote.daily_limit == 48, "Ultra halves duration, stores twenty-four outputs and permits forty-eight daily claims")
 	gold = resumed.material(101)
-	check(resumed.start_work(107, 11001).success and resumed.material(101) == gold - 100 and resumed.work_status(107).quantity == 5, "ultra assignment automatically stores five results and pays start materials once")
-	now += 1200
-	check(resumed.work_status(107).claimable_quantity == 2 and resumed.work_status(107).ready, "two completed cycles are claimable before five-result storage fills")
-	check(not resumed.stop_work(107).success, "stop cannot discard completed unclaimed rewards")
-	var vouchers = resumed.material(501)
-	check(resumed.collect_work(107).success and resumed.material(501) == vouchers + 10 and resumed.work_status(107).remaining_seconds == 3000, "partial queue claim pays completed cycles and restarts native accumulation")
+	check(resumed.start_work(107).success and resumed.material(101) == gold and resumed.work_status(107).quantity == 24, "Ultra work also starts without a fee")
+	now += 1500
+	check(resumed.work_status(107).claimable_quantity == 2 and resumed.work_status(107).next_claim_seconds == 300, "partial Ultra cycles are available before storage fills")
+	var discarded = Profile.new()
+	check(discarded.restore(JSON.parse_string(JSON.stringify(restored.data))), "completed assignment snapshot restores")
+	var discarded_systems = Systems.new(catalog, discarded)
+	discarded_systems.utc_now = func(): return now
+	check(discarded_systems.stop_work(107).success and discarded.data.work.is_empty() and discarded_systems.material(501) == resumed.material(501), "confirmed stop discards completed and fractional progress without paying rewards")
+	vouchers = resumed.material(501)
+	check(resumed.collect_work(107).success and resumed.material(501) == vouchers + 10 and resumed.work_status(107).next_claim_seconds == 300, "partial claim preserves five remaining progress minutes")
 	resumed.begin_run(1001, 1, 100)
 	var bonus = resumed.advance_work_from_adventure(3, 2, false, "run-one")
-	check(bonus.success and bonus.minutes == 8 and resumed.work_status(107).next_claim_seconds == 120, "loss settlement uses depth plus completed-region minutes")
+	check(bonus.success and bonus.minutes == 8 and resumed.work_status(107).completed_quantity == 1 and resumed.work_status(107).next_claim_seconds == 420, "loss settlement adds depth plus completed-region minutes to remaining work")
 	before = JSON.stringify(restored.data)
 	check(not resumed.advance_work_from_adventure(3, 2, false, "run-one-retry").success and JSON.stringify(restored.data) == before, "settlement acceleration cannot repeat under another caller key")
 	resumed.end_run(false)
@@ -161,11 +169,37 @@ func _test_dispatch() -> void:
 	check(bonus.success and bonus.minutes == 27, "victory settlement includes final region work progress")
 	resumed.end_run(true)
 	var queued_restore = Profile.new()
-	check(queued_restore.restore(JSON.parse_string(JSON.stringify(restored.data))) and int(queued_restore.data.work[0].quantity) == 5, "queued assignment and settlement guard survive reload")
+	check(queued_restore.restore(JSON.parse_string(JSON.stringify(restored.data))) and int(queued_restore.data.work[0].quantity) == 24, "new queue and daily counters survive reload")
 	now += 1000000
-	check(resumed.work_status(107).claimable_quantity == 5, "long offline time is capped to five stored outputs")
+	check(resumed.work_status(107).claimable_quantity == 24, "long offline time is capped to twenty-four stored outputs")
 	vouchers = resumed.material(501)
-	check(resumed.collect_work(107).success and resumed.material(501) == vouchers + 25, "offline queue payout is capped and uses snapshotted upgraded reward")
+	check(resumed.collect_work(107).success and resumed.material(501) == vouchers + 120 and resumed.work_status(107).completed_quantity == 0, "capped payout discards overflow time instead of refilling storage immediately")
+	resumed.add_work_progress(107, 24000)
+	check(resumed.collect_work(107).success and resumed.work_status(107).daily_remaining == 0, "second full Ultra batch reaches forty-eight global daily outputs")
+	resumed.add_work_progress(107, 24000)
+	before = JSON.stringify(restored.data)
+	check(not resumed.collect_work(107).success and JSON.stringify(restored.data) == before and resumed.work_status(107).completed_quantity == 24, "daily cap preserves stored outputs without mutating wallet")
+	var saved_day = int(restored.data.work_claims.day)
+	now = (saved_day + 1) * 86400 + 22 * 3600 - 1
+	check(resumed.work_status(107).daily_remaining == 0, "daily claims remain exhausted one second before 22:00 UTC")
+	now += 1
+	check(resumed.work_status(107).daily_remaining == 48 and resumed.collect_work(107).success, "22:00 UTC resets the daily limit while retaining stored output")
+	now -= 86400
+	check(resumed.work_status(107).daily_remaining == 24, "clock rollback cannot restore a spent daily quota")
+	var invalid = restored.data.duplicate(true)
+	invalid.work_claims.count = -1
+	check(not Profile.new().restore(invalid), "negative saved daily claims are rejected")
+	var legacy = Profile.new()
+	legacy.data.buildings["6"] = 2
+	legacy.data.materials["101"] = 0
+	legacy.data.work = [{"work_id": 107, "partner_id": 11001, "started_utc": now - 1200, "due_utc": now, "material_id": 501, "reward": 3}]
+	check(Profile.new().restore(JSON.parse_string(JSON.stringify(legacy.data))), "old prepaid single-output save remains readable")
+	var migrated = Systems.new(catalog, legacy)
+	migrated.utc_now = func(): return now
+	check(migrated.collect_work(107).success and migrated.material(501) == 3 and migrated.material(101) == 0 and legacy.data.work[0].economy_version == 2, "legacy prepaid first output is credited without charging twice")
+	migrated.begin_run(9999, 1, 100)
+	legacy.data.work.clear()
+	check(migrated.advance_work_from_adventure(10, 5, true, "no-work").minutes == 0, "settlement cannot report work acceleration without an assignment")
 
 func _test_currency_transactions() -> void:
 	var p = Profile.new()

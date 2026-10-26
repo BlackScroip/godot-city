@@ -9,9 +9,15 @@ class DropProbe extends RefCounted:
 	var profile := {"data": {"run": {"active": true, "inventory": {}}}}
 	var drop_calls := 0
 	var grants: Dictionary = {}
-	func monster_drops(_enemy_id: int) -> Array[Dictionary]:
+	func monster_drops(_enemy_id: int, _mohua: bool = false) -> Array[Dictionary]:
 		drop_calls += 1
 		return [{"id": 101, "amount": 7, "material": true}]
+
+	func enemy_creation_buffs(_enemy_id: int) -> Array:
+		return []
+
+	func enemy_enhancements(_enemy_id: int) -> Array:
+		return []
 
 	func grant_material(id: int, amount: int) -> void:
 		grants[id] = int(grants.get(id, 0)) + amount

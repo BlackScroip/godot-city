@@ -1,0 +1,2276 @@
+{
+  "source_apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest_member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+  "coordinate_space": "Unity native numeric xyz; same convention as the existing camp GLB",
+  "world_matrix_layout": "row-major; matrix times column vector",
+  "scene_placement": {
+    "source_asset": {
+      "address": "EnvDesignMap_MainCity",
+      "path": "Assets/[00100]Scenes/LevelMap/EnvDesignMap_MainCity.unity",
+      "bundle": 5519
+    },
+    "member": "assets/yoo/DefaultPackage/9c50cdd661d0347f8f62498999f88dc1.bundle",
+    "bundle_sha256": "0d5df86769a8aa6218d2627f4cd4437c49f497d8430bc250295e5da508bd95c4",
+    "slots": {
+      "1": {
+        "slot_id": 1,
+        "name": "居所",
+        "icon_name": "icon_maincitybulid_camp",
+        "container": "居所Container",
+        "locked_decoration_id": 1000,
+        "unlock_develop_type": 1,
+        "unlock_level": 1,
+        "default_decoration_id": 1001,
+        "source_transform_id": "3986",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "居所Container"
+        ],
+        "world_matrix": [
+          0.8224667615477017,
+          0.0,
+          -0.5688131633802698,
+          105.45999908447266,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5688131633802698,
+          0.0,
+          0.8224667615477017,
+          -51.380001068115234,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          105.45999908447266,
+          0.0,
+          -51.380001068115234
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000005802",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000005802"
+          ],
+          "replace_children": [
+            "Node__u4000000000005324",
+            "Node__u4000000000007444"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "居所废墟",
+              "exported_node_name": "Node__u4000000000005324",
+              "bounds": {
+                "min": [
+                  13.556770037587901,
+                  -1.023531548546917,
+                  43.43270323387987
+                ],
+                "max": [
+                  23.148192882089752,
+                  4.749608013901672,
+                  53.4273849169863
+                ],
+                "center": [
+                  18.352481459838828,
+                  1.8630382326773776,
+                  48.43004407543309
+                ],
+                "renderers": 26
+              }
+            },
+            {
+              "name": "居所",
+              "exported_node_name": "Node__u4000000000007444",
+              "bounds": {
+                "min": [
+                  12.758611352615713,
+                  -0.3272566285620962,
+                  44.157814251478825
+                ],
+                "max": [
+                  21.617399196538592,
+                  5.99738980366623,
+                  53.827790677973084
+                ],
+                "center": [
+                  17.18800527457715,
+                  2.835066587552067,
+                  48.992802464725955
+                ],
+                "renderers": 23
+              }
+            }
+          ]
+        }
+      },
+      "2": {
+        "slot_id": 2,
+        "name": "铁匠铺",
+        "icon_name": "icon_maincitybulid_blacksmith",
+        "container": "铁匠铺Container",
+        "locked_decoration_id": 2000,
+        "unlock_develop_type": 3,
+        "unlock_level": 1,
+        "default_decoration_id": 2001,
+        "source_transform_id": "4014",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "铁匠铺Container"
+        ],
+        "world_matrix": [
+          0.8819383801314569,
+          0.0,
+          0.47136471786955525,
+          54.43000030517578,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -0.47136471786955525,
+          0.0,
+          0.8819383801314569,
+          22.5,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          54.43000030517578,
+          0.0,
+          22.5
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000005840",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000005840"
+          ],
+          "replace_children": [
+            "Node__u4000000000005754",
+            "Node__u4000000000005947"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "铁匠铺废墟",
+              "exported_node_name": "Node__u4000000000005754",
+              "bounds": {
+                "min": [
+                  12.292007556676017,
+                  -1.904046458625785,
+                  50.80640751405538
+                ],
+                "max": [
+                  33.747356082472386,
+                  4.278451642053223,
+                  74.42165913568643
+                ],
+                "center": [
+                  23.019681819574203,
+                  1.1872025917137188,
+                  62.6140333248709
+                ],
+                "renderers": 64
+              }
+            },
+            {
+              "name": "铁匠铺",
+              "exported_node_name": "Node__u4000000000005947",
+              "bounds": {
+                "min": [
+                  14.318356312103395,
+                  -1.1469244978332425,
+                  52.74013815586609
+                ],
+                "max": [
+                  34.91701092983067,
+                  4.278447185261917,
+                  72.41327889568363
+                ],
+                "center": [
+                  24.617683620967032,
+                  1.5657613437143372,
+                  62.57670852577486
+                ],
+                "renderers": 71
+              }
+            }
+          ]
+        }
+      },
+      "3": {
+        "slot_id": 3,
+        "name": "怪物伙伴",
+        "icon_name": "icon_maincitybulid_monster",
+        "container": "怪物伙伴Container",
+        "locked_decoration_id": 3000,
+        "unlock_develop_type": 4,
+        "unlock_level": 2,
+        "default_decoration_id": 3001,
+        "source_transform_id": "3529",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "怪物伙伴Container"
+        ],
+        "world_matrix": [
+          0.9531364660878978,
+          0.0,
+          0.3025407219589056,
+          -16.94510269165039,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -0.3025407219589056,
+          0.0,
+          0.9531364660878978,
+          15.752960205078125,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          -16.94510269165039,
+          0.0,
+          15.752960205078125
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000005153",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000005153"
+          ],
+          "replace_children": [
+            "Node__u4000000000004003",
+            "Node__u4000000000005133"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "怪物伙伴",
+              "exported_node_name": "Node__u4000000000004003",
+              "bounds": {
+                "min": [
+                  33.968898259810366,
+                  -0.18013224601745606,
+                  68.01469684053752
+                ],
+                "max": [
+                  38.51494484750871,
+                  1.5140474746501447,
+                  71.11095622867079
+                ],
+                "center": [
+                  36.24192155365954,
+                  0.6669576143163443,
+                  69.56282653460416
+                ],
+                "renderers": 6
+              }
+            },
+            {
+              "name": "怪物伙伴废墟",
+              "exported_node_name": "Node__u4000000000005133",
+              "bounds": null
+            }
+          ]
+        }
+      },
+      "4": {
+        "slot_id": 4,
+        "name": "冒险者协会",
+        "icon_name": "icon_maincitybulid_Talent tree",
+        "container": "冒险者协会Container",
+        "locked_decoration_id": 4000,
+        "unlock_develop_type": 2,
+        "unlock_level": 1,
+        "default_decoration_id": 4001,
+        "source_transform_id": "2869",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "冒险者协会Container"
+        ],
+        "world_matrix": [
+          0.8022731746216252,
+          0.0,
+          -0.5969570572441896,
+          74.1500015258789,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5969570572441896,
+          0.0,
+          0.8022731746216252,
+          54.06999969482422,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          74.1500015258789,
+          0.0,
+          54.06999969482422
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000004250",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000004250"
+          ],
+          "replace_children": [
+            "Node__u4000000000004143",
+            "Node__u4000000000005854"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "冒险者协会废墟",
+              "exported_node_name": "Node__u4000000000004143",
+              "bounds": {
+                "min": [
+                  27.550178457119546,
+                  -2.3728352279412017,
+                  41.555982355271475
+                ],
+                "max": [
+                  35.18406189642193,
+                  4.288761735801697,
+                  50.05937384365158
+                ],
+                "center": [
+                  31.36712017677074,
+                  0.9579632539302476,
+                  45.807678099461526
+                ],
+                "renderers": 41
+              }
+            },
+            {
+              "name": "冒险者协会",
+              "exported_node_name": "Node__u4000000000005854",
+              "bounds": {
+                "min": [
+                  26.465634378622116,
+                  -0.14890288769952598,
+                  32.19035890959027
+                ],
+                "max": [
+                  37.74570078993427,
+                  5.363180832167968,
+                  51.000437250381296
+                ],
+                "center": [
+                  32.105667584278194,
+                  2.607138972234221,
+                  41.595398079985785
+                ],
+                "renderers": 32
+              }
+            }
+          ]
+        }
+      },
+      "5": {
+        "slot_id": 5,
+        "name": "建造者",
+        "icon_name": "icon_stagerewardtypeicon_heal",
+        "container": "建造者Container",
+        "locked_decoration_id": 5000,
+        "unlock_develop_type": 0,
+        "unlock_level": 1,
+        "default_decoration_id": 5001,
+        "source_transform_id": "4384",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "建造者Container"
+        ],
+        "world_matrix": [
+          0.9724584109792147,
+          0.0,
+          0.2330764693384424,
+          42.70000076293945,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -0.2330764693384424,
+          0.0,
+          0.9724584109792147,
+          -27.889999389648438,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          42.70000076293945,
+          0.0,
+          -27.889999389648438
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000006415",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000006415"
+          ],
+          "replace_children": [
+            "Node__u4000000000006174",
+            "Node__u4000000000007064"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "建造者废墟",
+              "exported_node_name": "Node__u4000000000006174",
+              "bounds": null
+            },
+            {
+              "name": "建造者",
+              "exported_node_name": "Node__u4000000000007064",
+              "bounds": {
+                "min": [
+                  17.125431120169097,
+                  -0.3560687790214596,
+                  36.88254718691539
+                ],
+                "max": [
+                  24.298810533405128,
+                  2.4395709013531492,
+                  45.133358489719996
+                ],
+                "center": [
+                  20.712120826787114,
+                  1.041751061165845,
+                  41.00795283831769
+                ],
+                "renderers": 77
+              }
+            }
+          ]
+        }
+      },
+      "6": {
+        "slot_id": 6,
+        "name": "任务板",
+        "icon_name": "icon_maincitybulid_task",
+        "container": "任务板Container",
+        "locked_decoration_id": 6000,
+        "unlock_develop_type": 5,
+        "unlock_level": 1,
+        "default_decoration_id": 6001,
+        "source_transform_id": "3933",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "任务板Container"
+        ],
+        "world_matrix": [
+          0.7976800195060605,
+          0.0,
+          -0.6030809030364708,
+          96.54000091552734,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.6030809030364708,
+          0.0,
+          0.7976800195060605,
+          -22.239999771118164,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          96.54000091552734,
+          0.0,
+          -22.239999771118164
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000005736",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000005736"
+          ],
+          "replace_children": [
+            "Node__u4000000000007259",
+            "Node__u4000000000007347"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "任务板",
+              "exported_node_name": "Node__u4000000000007259",
+              "bounds": {
+                "min": [
+                  14.612798434660132,
+                  -0.40347797498871846,
+                  26.62099328876591
+                ],
+                "max": [
+                  25.527472072126198,
+                  7.250505292646181,
+                  37.53338934401045
+                ],
+                "center": [
+                  20.070135253393165,
+                  3.423513658828731,
+                  32.07719131638818
+                ],
+                "renderers": 39
+              }
+            },
+            {
+              "name": "任务板废墟",
+              "exported_node_name": "Node__u4000000000007347",
+              "bounds": {
+                "min": [
+                  12.14002944107692,
+                  -2.1985891610495085,
+                  25.057849686177587
+                ],
+                "max": [
+                  24.838013933130416,
+                  6.314933612232403,
+                  37.481775794637265
+                ],
+                "center": [
+                  18.489021687103666,
+                  2.0581722255914476,
+                  31.269812740407424
+                ],
+                "renderers": 22
+              }
+            }
+          ]
+        }
+      },
+      "7": {
+        "slot_id": 7,
+        "name": "遗物图鉴",
+        "icon_name": "icon_maincitybulid_research",
+        "container": "遗物图鉴Container",
+        "locked_decoration_id": 7000,
+        "unlock_develop_type": 4,
+        "unlock_level": 1,
+        "default_decoration_id": 7001,
+        "source_transform_id": "3623",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "遗物图鉴Container"
+        ],
+        "world_matrix": [
+          0.9992028159590123,
+          0.0,
+          0.03992158029208781,
+          -64.61000061035156,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -0.03992158029208781,
+          0.0,
+          0.9992028159590123,
+          -17.780000686645508,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          -64.61000061035156,
+          0.0,
+          -17.780000686645508
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000005298",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000005298"
+          ],
+          "replace_children": [
+            "Node__u4000000000004272",
+            "Node__u4000000000006825"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "遗物图鉴",
+              "exported_node_name": "Node__u4000000000004272",
+              "bounds": {
+                "min": [
+                  36.11612109577944,
+                  -0.6580001792460404,
+                  59.677593076425744
+                ],
+                "max": [
+                  43.30043724570994,
+                  4.605415632789207,
+                  71.19779116567247
+                ],
+                "center": [
+                  39.70827917074469,
+                  1.973707726771583,
+                  65.43769212104911
+                ],
+                "renderers": 68
+              }
+            },
+            {
+              "name": "遗物图鉴废墟",
+              "exported_node_name": "Node__u4000000000006825",
+              "bounds": {
+                "min": [
+                  33.68917884508692,
+                  -1.449695801157096,
+                  60.3637510643663
+                ],
+                "max": [
+                  45.126142165716686,
+                  3.585592412903706,
+                  69.96417717773072
+                ],
+                "center": [
+                  39.40766050540181,
+                  1.067948305873305,
+                  65.16396412104851
+                ],
+                "renderers": 83
+              }
+            }
+          ]
+        }
+      },
+      "8": {
+        "slot_id": 8,
+        "name": "怪物工作点",
+        "icon_name": "icon_maincitybulid_store",
+        "container": "怪物工作点Container",
+        "locked_decoration_id": 8000,
+        "unlock_develop_type": 6,
+        "unlock_level": 1,
+        "default_decoration_id": 8001,
+        "source_transform_id": "4088",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "怪物工作点Container"
+        ],
+        "world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          1.909999966621399,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          -0.20000000298023224,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          1.909999966621399,
+          0.0,
+          -0.20000000298023224
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000005955",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000005955"
+          ],
+          "replace_children": [
+            "Node__u4000000000004463",
+            "Node__u4000000000006770"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "怪物工作废墟",
+              "exported_node_name": "Node__u4000000000004463",
+              "bounds": {
+                "min": [
+                  21.362996949653173,
+                  -1.350873497430398,
+                  61.93273571779938
+                ],
+                "max": [
+                  28.200627015535787,
+                  2.744098176816643,
+                  70.16552719268363
+                ],
+                "center": [
+                  24.78181198259448,
+                  0.6966123396931224,
+                  66.04913145524151
+                ],
+                "renderers": 6
+              }
+            },
+            {
+              "name": "怪物工作",
+              "exported_node_name": "Node__u4000000000006770",
+              "bounds": {
+                "min": [
+                  21.637940625456896,
+                  -1.337648323770827,
+                  62.36537166726422
+                ],
+                "max": [
+                  28.511443344772957,
+                  1.2857156755315828,
+                  70.3791826855573
+                ],
+                "center": [
+                  25.074691985114924,
+                  -0.025966324119622075,
+                  66.37227717641076
+                ],
+                "renderers": 11
+              }
+            }
+          ]
+        }
+      },
+      "9": {
+        "slot_id": 9,
+        "name": "篝火酒馆",
+        "icon_name": "icon_maincitybulid_restaurant",
+        "container": "篝火酒馆Container",
+        "locked_decoration_id": 9000,
+        "unlock_develop_type": 7,
+        "unlock_level": 1,
+        "default_decoration_id": 9001,
+        "source_transform_id": "4883",
+        "source_path": [
+          "EnvRoot",
+          "ArtLayer",
+          "DetailContainer",
+          "DetailContainer_PrefabGroup",
+          "EnvFunc",
+          "篝火酒馆Container"
+        ],
+        "world_matrix": [
+          0.9861896051738697,
+          0.0,
+          0.16562024946750853,
+          41.209999084472656,
+          0.0,
+          1.0,
+          0.0,
+          1.0476750135421753,
+          -0.16562024946750853,
+          0.0,
+          0.9861896051738697,
+          48.529998779296875,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "world_position": [
+          41.209999084472656,
+          1.0476750135421753,
+          48.529998779296875
+        ],
+        "baseline": {
+          "exported_node_name": "Container__u4000000000007113",
+          "exported_node_path": [
+            "EnvDesignMap_MainCity__u4000000999999999",
+            "EnvRoot__u4000000000006871",
+            "ArtLayer__u4000000000005102",
+            "DetailContainer__u4000000000005677",
+            "DetailContainer_PrefabGroup__u4000000000006145",
+            "EnvFunc__u4000000000007419",
+            "Container__u4000000000007113"
+          ],
+          "replace_children": [
+            "Node__u4000000000005923",
+            "Node__u4000000000007428"
+          ],
+          "original_world_bounds": [
+            {
+              "name": "篝火酒馆废墟",
+              "exported_node_name": "Node__u4000000000005923",
+              "bounds": {
+                "min": [
+                  39.32246111967909,
+                  -2.1682663096181107,
+                  40.574901405240794
+                ],
+                "max": [
+                  51.664257531854545,
+                  2.860511180420088,
+                  55.414751418698685
+                ],
+                "center": [
+                  45.49335932576682,
+                  0.34612243540098864,
+                  47.99482641196974
+                ],
+                "renderers": 32
+              }
+            },
+            {
+              "name": "篝火酒馆",
+              "exported_node_name": "Node__u4000000000007428",
+              "bounds": {
+                "min": [
+                  39.13650666196074,
+                  -0.2941277066892798,
+                  42.87759353903503
+                ],
+                "max": [
+                  49.25643446921465,
+                  5.977075426607666,
+                  56.14420292230129
+                ],
+                "center": [
+                  44.196470565587695,
+                  2.841473859959193,
+                  49.51089823066816
+                ],
+                "renderers": 101
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "decorations": {
+    "1000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Home_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -20.101070965792186,
+          -1.0235314801826516,
+          127.42084350596326
+        ],
+        "max": [
+          -9.895997102041411,
+          4.749608001560773,
+          137.5900239468494
+        ],
+        "size": [
+          10.205073863750775,
+          5.773139481743424,
+          10.169180440886151
+        ]
+      },
+      "meshes": 19,
+      "nodes": 37,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 4,
+        "active_ParticleSystem": 4,
+        "ParticleSystemRenderer": 4,
+        "active_ParticleSystemRenderer": 4
+      },
+      "bytes": 1509028,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Home_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Home_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Home_Ruins",
+      "world_bounds": {
+        "min": [
+          13.556767907216544,
+          -1.0235314801826516,
+          43.432713762997906
+        ],
+        "max": [
+          23.148178098895787,
+          4.749608001560773,
+          53.42736759235593
+        ],
+        "center": [
+          18.352473003056165,
+          1.8630382606890608,
+          48.430040677676914
+        ],
+        "renderers": 26
+      },
+      "id": 1000,
+      "slot_id": 1
+    },
+    "1001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Home_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -23.61744400536477,
+          -1.0231740346046185,
+          127.05579901662342
+        ],
+        "max": [
+          -9.513238926469944,
+          4.749608001560773,
+          137.5900239468494
+        ],
+        "size": [
+          14.104205078894827,
+          5.772782036165392,
+          10.534224930225989
+        ]
+      },
+      "meshes": 21,
+      "nodes": 43,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 4,
+        "active_ParticleSystem": 4,
+        "ParticleSystemRenderer": 4,
+        "active_ParticleSystemRenderer": 4
+      },
+      "bytes": 1776560,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Home_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Home_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Home_Tent",
+      "world_bounds": {
+        "min": [
+          12.728257344494036,
+          -1.0231740346046185,
+          40.055820526547954
+        ],
+        "max": [
+          23.148178098895787,
+          4.749608001560773,
+          53.70611179596028
+        ],
+        "center": [
+          17.93821772169491,
+          1.8632169834780772,
+          46.88096616125412
+        ],
+        "renderers": 32
+      },
+      "id": 1001,
+      "slot_id": 1
+    },
+    "1002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Home_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -19.817963933295026,
+          -0.29094325754859995,
+          128.59874787400116
+        ],
+        "max": [
+          -10.227775601594598,
+          7.033039290293243,
+          136.62142688183377
+        ],
+        "size": [
+          9.590188331700428,
+          7.323982547841843,
+          8.022679007832608
+        ]
+      },
+      "meshes": 6,
+      "nodes": 18,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 1901664,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Home_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Home_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Home_Town",
+      "world_bounds": {
+        "min": [
+          13.952028257067093,
+          -0.29094325754859995,
+          44.769157674033906
+        ],
+        "max": [
+          22.21370815340504,
+          7.033039290293243,
+          53.10899751088878
+        ],
+        "center": [
+          18.082868205236068,
+          3.3710480163723218,
+          48.939077592461345
+        ],
+        "renderers": 15
+      },
+      "id": 1002,
+      "slot_id": 1
+    },
+    "2000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Smith_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -56.89443777104325,
+          -1.9040466077670029,
+          6.621283275684897
+        ],
+        "max": [
+          -34.956512618127064,
+          4.278451515486694,
+          30.17811806242182
+        ],
+        "size": [
+          21.937925152916186,
+          6.182498123253697,
+          23.55683478673692
+        ]
+      },
+      "meshes": 31,
+      "nodes": 99,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 4,
+        "active_ParticleSystem": 4,
+        "ParticleSystemRenderer": 4,
+        "active_ParticleSystemRenderer": 2
+      },
+      "bytes": 4570820,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Smith_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Smith_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Smith_Ruins",
+      "world_bounds": {
+        "min": [
+          12.292007861673193,
+          -1.9040466077670029,
+          50.806407417605335
+        ],
+        "max": [
+          33.7473555747245,
+          4.278451515486694,
+          74.42165147505115
+        ],
+        "center": [
+          23.019681718198846,
+          1.1872024538598454,
+          62.614029446328246
+        ],
+        "renderers": 64
+      },
+      "id": 2000,
+      "slot_id": 2
+    },
+    "2001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Smith_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -52.79880253467037,
+          -1.1469246143979064,
+          9.731862610585079
+        ],
+        "max": [
+          -33.22843372108624,
+          5.471180848777294,
+          30.596930337264027
+        ],
+        "size": [
+          19.570368813584132,
+          6.6181054631752,
+          20.865067726678948
+        ]
+      },
+      "meshes": 37,
+      "nodes": 107,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 4,
+        "active_ParticleSystem": 4,
+        "ParticleSystemRenderer": 4,
+        "Light": 1,
+        "active_Light": 1,
+        "active_ParticleSystemRenderer": 2
+      },
+      "bytes": 4227320,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Smith_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Smith_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Smith_Tent",
+      "world_bounds": {
+        "min": [
+          14.318361207523596,
+          -1.1469246143979064,
+          52.740133587274414
+        ],
+        "max": [
+          34.91701016900271,
+          5.471180848777294,
+          72.41327288492067
+        ],
+        "center": [
+          24.61768568826315,
+          2.162128117189694,
+          62.57670323609754
+        ],
+        "renderers": 75
+      },
+      "id": 2001,
+      "slot_id": 2
+    },
+    "2002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Smith_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -52.34650166850198,
+          -1.2569245094937316,
+          9.731862610585079
+        ],
+        "max": [
+          -33.22843372108624,
+          5.12884521484375,
+          30.596930337264027
+        ],
+        "size": [
+          19.11806794741574,
+          6.385769724337481,
+          20.865067726678948
+        ]
+      },
+      "meshes": 34,
+      "nodes": 103,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystemRenderer": 4,
+        "Light": 1,
+        "active_Light": 1,
+        "ParticleSystem": 4,
+        "active_ParticleSystem": 4,
+        "active_ParticleSystemRenderer": 2
+      },
+      "bytes": 4544344,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Smith_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Smith_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Smith_Town",
+      "world_bounds": {
+        "min": [
+          14.318361207523596,
+          -1.2569245094937316,
+          52.740133587274414
+        ],
+        "max": [
+          34.91701016900271,
+          5.12884521484375,
+          72.41327288492067
+        ],
+        "center": [
+          24.61768568826315,
+          1.9359603526750093,
+          62.57670323609754
+        ],
+        "renderers": 72
+      },
+      "id": 2002,
+      "slot_id": 2
+    },
+    "3000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_MonsterPartner_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          32.77066044813188,
+          -0.3805746676923003,
+          63.88429807146264
+        ],
+        "max": [
+          36.71592974282829,
+          1.1502987617030784,
+          68.02663547857574
+        ],
+        "size": [
+          3.945269294696409,
+          1.5308734293953787,
+          4.142337407113104
+        ]
+      },
+      "meshes": 2,
+      "nodes": 7,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 277424,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_MonsterPartner_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_MonsterPartner_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_MonsterPartner_Ruins",
+      "world_bounds": {
+        "min": [
+          34.54594274513317,
+          -0.3805746676923003,
+          65.74324132108386
+        ],
+        "max": [
+          37.911289627289364,
+          1.1502987617030784,
+          70.43142886458064
+        ],
+        "center": [
+          36.22861618621127,
+          0.38486204700538906,
+          68.08733509283225
+        ],
+        "renderers": 3
+      },
+      "id": 3000,
+      "slot_id": 3
+    },
+    "3001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_MonsterPartner_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          32.5866584912675,
+          -0.18013224005699158,
+          63.71499758759842
+        ],
+        "max": [
+          36.66164611973916,
+          1.514047425640797,
+          67.84544892315186
+        ],
+        "size": [
+          4.074987628471661,
+          1.6941796656977886,
+          4.130451335553445
+        ]
+      },
+      "meshes": 3,
+      "nodes": 7,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 106556,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_MonsterPartner_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_MonsterPartner_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_MonsterPartner_Town",
+      "world_bounds": {
+        "min": [
+          34.31795129747161,
+          -0.18013224005699158,
+          65.62048501542696
+        ],
+        "max": [
+          37.60458740300803,
+          1.514047425640797,
+          70.32066607628462
+        ],
+        "center": [
+          35.96126935023982,
+          0.6669575927919027,
+          67.9705755458558
+        ],
+        "renderers": 6
+      },
+      "id": 3001,
+      "slot_id": 3
+    },
+    "4000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Guild_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -41.71065248570604,
+          -1.169603119783984,
+          13.184580414131709
+        ],
+        "max": [
+          -34.247220236911396,
+          4.288761944201269,
+          22.08663196159172
+        ],
+        "size": [
+          7.463432248794646,
+          5.458365063985253,
+          8.902051547460012
+        ]
+      },
+      "meshes": 23,
+      "nodes": 58,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 6,
+        "active_ParticleSystem": 6,
+        "ParticleSystemRenderer": 6,
+        "active_ParticleSystemRenderer": 6
+      },
+      "bytes": 2369812,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Guild_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Guild_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Guild_Ruins",
+      "world_bounds": {
+        "min": [
+          30.329066153445126,
+          -1.169603119783984,
+          41.52154609036533
+        ],
+        "max": [
+          36.01536130083475,
+          4.288761944201269,
+          49.69846300265281
+        ],
+        "center": [
+          33.17221372713993,
+          1.5595794122086426,
+          45.61000454650907
+        ],
+        "renderers": 43
+      },
+      "id": 4000,
+      "slot_id": 4
+    },
+    "4001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Guild_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -46.46674127136419,
+          -0.031067351305197166,
+          6.179606348809097
+        ],
+        "max": [
+          -33.903363647129595,
+          5.82803550362587,
+          22.766281014298038
+        ],
+        "size": [
+          12.563377624234597,
+          5.859102854931067,
+          16.586674665488943
+        ]
+      },
+      "meshes": 12,
+      "nodes": 22,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 860276,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Guild_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Guild_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Guild_Tent",
+      "world_bounds": {
+        "min": [
+          28.931395312634738,
+          -0.031067351305197166,
+          31.8765439443982
+        ],
+        "max": [
+          37.89118833382424,
+          5.82803550362587,
+          50.40343941823803
+        ],
+        "center": [
+          33.41129182322949,
+          2.898484076160336,
+          41.139991681318115
+        ],
+        "renderers": 16
+      },
+      "id": 4001,
+      "slot_id": 4
+    },
+    "4002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Guild_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -46.46674127136419,
+          -0.09508084225977839,
+          6.179606348809097
+        ],
+        "max": [
+          -34.55883415612339,
+          5.369665379815878,
+          21.655043524557698
+        ],
+        "size": [
+          11.907907115240803,
+          5.464746222075656,
+          15.475437175748601
+        ]
+      },
+      "meshes": 10,
+      "nodes": 35,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 5,
+        "active_ParticleSystem": 5,
+        "ParticleSystemRenderer": 5,
+        "active_ParticleSystemRenderer": 5
+      },
+      "bytes": 1417740,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Guild_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Guild_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Guild_Town",
+      "world_bounds": {
+        "min": [
+          30.46451308932162,
+          -0.09508084225977839,
+          31.8765439443982
+        ],
+        "max": [
+          37.89118833382424,
+          5.369665379815878,
+          49.31947812999889
+        ],
+        "center": [
+          34.17785071157293,
+          2.6372922687780496,
+          40.598011037198546
+        ],
+        "renderers": 23
+      },
+      "id": 4002,
+      "slot_id": 4
+    },
+    "5000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Builder_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -41.48511263906458,
+          -1.92100063022538,
+          57.788188476173055
+        ],
+        "max": [
+          -32.976481099938724,
+          2.9647908210754395,
+          66.46977721694104
+        ],
+        "size": [
+          8.508631539125858,
+          4.885791451300819,
+          8.681588740767985
+        ]
+      },
+      "meshes": 8,
+      "nodes": 21,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 1445112,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Builder_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Builder_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Builder_Ruins",
+      "world_bounds": {
+        "min": [
+          16.95514739140359,
+          -1.92100063022538,
+          36.94940413038723
+        ],
+        "max": [
+          24.863436625259926,
+          2.9647908210754395,
+          45.025703288135915
+        ],
+        "center": [
+          20.909292008331757,
+          0.5218950954250298,
+          40.987553709261576
+        ],
+        "renderers": 14
+      },
+      "id": 5000,
+      "slot_id": 5
+    },
+    "5001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Builder_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -44.0020190245422,
+          -0.33976999229590754,
+          56.78867721332677
+        ],
+        "max": [
+          -33.45490262666573,
+          7.0611348448965146,
+          66.24065792755214
+        ],
+        "size": [
+          10.547116397876472,
+          7.400904837192422,
+          9.451980714225364
+        ]
+      },
+      "meshes": 17,
+      "nodes": 63,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 1844356,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Builder_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Builder_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Builder_Tent",
+      "world_bounds": {
+        "min": [
+          14.073074800719024,
+          -0.33976999229590754,
+          35.67283925621877
+        ],
+        "max": [
+          25.29735696655423,
+          7.0611348448965146,
+          45.15857530805323
+        ],
+        "center": [
+          19.685215883636626,
+          3.3606824263003037,
+          40.415707282136
+        ],
+        "renderers": 53
+      },
+      "id": 5001,
+      "slot_id": 5
+    },
+    "5002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Builder_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -43.83644561651769,
+          -0.33976999229590754,
+          56.28166961444982
+        ],
+        "max": [
+          -33.45490262666573,
+          5.597947967554475,
+          66.24065792755214
+        ],
+        "size": [
+          10.381542989851965,
+          5.937717959850382,
+          9.958988313102317
+        ]
+      },
+      "meshes": 26,
+      "nodes": 114,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 3299460,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Builder_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Builder_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Builder_Town",
+      "world_bounds": {
+        "min": [
+          14.715935466755667,
+          -0.33976999229590754,
+          35.28537977571204
+        ],
+        "max": [
+          25.29735696655423,
+          5.597947967554475,
+          45.13336487081753
+        ],
+        "center": [
+          20.00664621665495,
+          2.629088987629284,
+          40.20937232326479
+        ],
+        "renderers": 101
+      },
+      "id": 5002,
+      "slot_id": 5
+    },
+    "6000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_QuestBoard_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -35.344565358660994,
+          -2.19858918213428,
+          83.68706641571443
+        ],
+        "max": [
+          -23.76038354679443,
+          6.31493336824643,
+          96.74229205682244
+        ],
+        "size": [
+          11.584181811866564,
+          8.51352255038071,
+          13.05522564110801
+        ]
+      },
+      "meshes": 13,
+      "nodes": 43,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 1944896,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_QuestBoard_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_QuestBoard_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_QuestBoard_Ruins",
+      "world_bounds": {
+        "min": [
+          12.14001910502417,
+          -2.19858918213428,
+          25.05785476514287
+        ],
+        "max": [
+          24.109982679482723,
+          6.31493336824643,
+          38.43468812658105
+        ],
+        "center": [
+          18.125000892253446,
+          2.0581720930560747,
+          31.74627144586196
+        ],
+        "renderers": 22
+      },
+      "id": 6000,
+      "slot_id": 6
+    },
+    "6002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_QuestBoard_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -31.910453555102258,
+          -0.07774968537367577,
+          85.07975409686323
+        ],
+        "max": [
+          -23.679277771599107,
+          5.277105120257017,
+          93.78569442391986
+        ],
+        "size": [
+          8.23117578350315,
+          5.354854805630693,
+          8.705940327056638
+        ]
+      },
+      "meshes": 13,
+      "nodes": 44,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 4093808,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_QuestBoard_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_QuestBoard_Town.markers.json",
+      "colliders": 1,
+      "prefab_name": "MainCityDecor_QuestBoard_Town",
+      "world_bounds": {
+        "min": [
+          17.2212282554974,
+          -0.07774968537367577,
+          26.62099958867793
+        ],
+        "max": [
+          24.097577506167607,
+          5.277105120257017,
+          35.99101135966288
+        ],
+        "center": [
+          20.659402880832502,
+          2.5996777174416708,
+          31.306005474170405
+        ],
+        "renderers": 37
+      },
+      "id": 6002,
+      "slot_id": 6
+    },
+    "6001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_QuestBoard_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -31.910453555102258,
+          -0.07774968537367577,
+          85.07975409686323
+        ],
+        "max": [
+          -23.670488233308014,
+          5.601180851459503,
+          93.76275996009521
+        ],
+        "size": [
+          8.239965321794244,
+          5.678930536833179,
+          8.683005863231983
+        ]
+      },
+      "meshes": 12,
+      "nodes": 40,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 879132,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_QuestBoard_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_QuestBoard_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_QuestBoard_Tent",
+      "world_bounds": {
+        "min": [
+          17.68398275802255,
+          -0.07774968537367577,
+          26.62099958867793
+        ],
+        "max": [
+          24.28942109059772,
+          5.601180851459503,
+          36.97465744142248
+        ],
+        "center": [
+          20.986701924310136,
+          2.7617155830429136,
+          31.797828515050206
+        ],
+        "renderers": 34
+      },
+      "id": 6001,
+      "slot_id": 6
+    },
+    "7000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Archive_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          94.93754375918691,
+          -1.4496958175177517,
+          82.35116204850262
+        ],
+        "max": [
+          106.24028275419305,
+          3.585592277690673,
+          91.94524604322918
+        ],
+        "size": [
+          11.302738995006138,
+          5.035288095208425,
+          9.59408399472656
+        ]
+      },
+      "meshes": 32,
+      "nodes": 102,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 2262824,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Archive_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Archive_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Archive_Ruins",
+      "world_bounds": {
+        "min": [
+          33.689179810996016,
+          -1.4496958175177517,
+          60.363754427186194
+        ],
+        "max": [
+          45.126134700909866,
+          3.585592277690673,
+          70.06348539183027
+        ],
+        "center": [
+          39.40765725595294,
+          1.0679482300864604,
+          65.21361990950822
+        ],
+        "renderers": 84
+      },
+      "id": 7000,
+      "slot_id": 7
+    },
+    "7001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Archive_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          96.27836947633055,
+          -0.6580004287662642,
+          81.60144107283816
+        ],
+        "max": [
+          106.15632284046897,
+          5.470180846750736,
+          92.8510292007558
+        ],
+        "size": [
+          9.87795336413842,
+          6.128181275517001,
+          11.249588127917647
+        ]
+      },
+      "meshes": 37,
+      "nodes": 92,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystemRenderer": 14,
+        "active_ParticleSystemRenderer": 12,
+        "ParticleSystem": 14,
+        "active_ParticleSystem": 14
+      },
+      "bytes": 2032064,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Archive_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Archive_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Archive_Tent",
+      "world_bounds": {
+        "min": [
+          35.25375365483286,
+          -0.6580004287662642,
+          59.67758900979101
+        ],
+        "max": [
+          44.91228829960982,
+          5.470180846750736,
+          71.0322693062723
+        ],
+        "center": [
+          40.08302097722134,
+          2.406090208992236,
+          65.35492915803165
+        ],
+        "renderers": 62
+      },
+      "id": 7001,
+      "slot_id": 7
+    },
+    "7002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Archive_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          97.9146815324239,
+          -0.543953231395913,
+          81.60144107283816
+        ],
+        "max": [
+          107.98748603872936,
+          4.753583908081055,
+          91.96731895738894
+        ],
+        "size": [
+          10.07280450630546,
+          5.297537139476968,
+          10.365877884550784
+        ]
+      },
+      "meshes": 19,
+      "nodes": 44,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 2458404,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Archive_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Archive_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Archive_Town",
+      "world_bounds": {
+        "min": [
+          36.56973614160585,
+          -0.543953231395913,
+          59.67758900979101
+        ],
+        "max": [
+          46.85180232017281,
+          4.753583908081055,
+          70.11084741733352
+        ],
+        "center": [
+          41.710769230889326,
+          2.1048153383425707,
+          64.89421821356227
+        ],
+        "renderers": 33
+      },
+      "id": 7002,
+      "slot_id": 7
+    },
+    "8000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_MonsterWork_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          19.45299581115401,
+          -1.3508734482406546,
+          62.1327334528754
+        ],
+        "max": [
+          26.290626944971763,
+          2.7440981768166437,
+          70.36552544830099
+        ],
+        "size": [
+          6.837631133817752,
+          4.0949716250572985,
+          8.232791995425586
+        ]
+      },
+      "meshes": 3,
+      "nodes": 12,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 480428,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_MonsterWork_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_MonsterWork_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_MonsterWork_Ruins",
+      "world_bounds": {
+        "min": [
+          21.36299577777541,
+          -1.3508734482406546,
+          61.93273344989517
+        ],
+        "max": [
+          28.20062691159316,
+          2.7440981768166437,
+          70.16552544532075
+        ],
+        "center": [
+          24.781811344684286,
+          0.6966123642879946,
+          66.04912944760795
+        ],
+        "renderers": 6
+      },
+      "id": 8000,
+      "slot_id": 8
+    },
+    "8001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_MonsterWork_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          19.727941375488243,
+          -1.3376484883910746,
+          62.565366560226714
+        ],
+        "max": [
+          26.601442609763318,
+          1.2857156020098528,
+          70.57918313450124
+        ],
+        "size": [
+          6.873501234275075,
+          2.623364090400927,
+          8.013816574274522
+        ]
+      },
+      "meshes": 5,
+      "nodes": 18,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 325608,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_MonsterWork_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_MonsterWork_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_MonsterWork_Town",
+      "world_bounds": {
+        "min": [
+          21.63794134210964,
+          -1.3376484883910746,
+          62.36536655724648
+        ],
+        "max": [
+          28.511442576384717,
+          1.2857156020098528,
+          70.379183131521
+        ],
+        "center": [
+          25.07469195924718,
+          -0.02596644319061092,
+          66.37227484438374
+        ],
+        "renderers": 11
+      },
+      "id": 8001,
+      "slot_id": 8
+    },
+    "9000": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Tavern_Ruins.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -1.1513756318685504,
+          -3.2159411165100726,
+          -7.199659676863047
+        ],
+        "max": [
+          10.415224558224073,
+          1.8128362422302366,
+          7.69152277956038
+        ],
+        "size": [
+          11.566600190092624,
+          5.028777358740309,
+          14.891182456423426
+        ]
+      },
+      "meshes": 19,
+      "nodes": 43,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 2419500,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Tavern_Ruins.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Tavern_Ruins.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Tavern_Ruins",
+      "world_bounds": {
+        "min": [
+          40.33052769071037,
+          -2.1682661029678973,
+          40.574900297170416
+        ],
+        "max": [
+          51.664256709646466,
+          2.860511255772412,
+          55.414750403398756
+        ],
+        "center": [
+          45.99739220017842,
+          0.3461225764022573,
+          47.994825350284586
+        ],
+        "renderers": 30
+      },
+      "id": 9000,
+      "slot_id": 9
+    },
+    "9002": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Tavern_Town.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -0.7896007180638505,
+          -2.098777338210991,
+          -5.474134096281363
+        ],
+        "max": [
+          11.004179993612302,
+          4.2875423645920705,
+          9.768886484322708
+        ],
+        "size": [
+          11.793780711676153,
+          6.386319702803061,
+          15.243020580604071
+        ]
+      },
+      "meshes": 36,
+      "nodes": 187,
+      "skins": 0,
+      "unsupported": {
+        "ParticleSystem": 3,
+        "active_ParticleSystem": 3,
+        "ParticleSystemRenderer": 3,
+        "active_ParticleSystemRenderer": 3
+      },
+      "bytes": 2977416,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Tavern_Town.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Tavern_Town.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Tavern_Town",
+      "world_bounds": {
+        "min": [
+          40.04518217739323,
+          -1.0511023246688156,
+          41.88388272916524
+        ],
+        "max": [
+          53.410952818902594,
+          5.335217378134246,
+          57.834829025643145
+        ],
+        "center": [
+          46.72806749814791,
+          2.142057526732715,
+          49.85935587740419
+        ],
+        "renderers": 175
+      },
+      "id": 9002,
+      "slot_id": 9
+    },
+    "9001": {
+      "path": "res://assets/environments/camp_decorations/MainCityDecor_Tavern_Tent.glb",
+      "animations": [],
+      "bounds": {
+        "min": [
+          -0.7896006165925877,
+          -2.098777166072172,
+          -5.978034782222911
+        ],
+        "max": [
+          11.314283515393443,
+          4.654204308986664,
+          7.138336613798814
+        ],
+        "size": [
+          12.103884131986032,
+          6.752981475058836,
+          13.116371396021727
+        ]
+      },
+      "meshes": 36,
+      "nodes": 183,
+      "skins": 0,
+      "unsupported": {},
+      "bytes": 2329424,
+      "source": "APK:Assets/[00002]Resource/Prefabs/BattleSys/Env/EnvDecorate/MainCityDecor_Tavern_Tent.prefab",
+      "source_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+      "default_animations": {},
+      "markers": "res://assets/environments/camp_decorations/MainCityDecor_Tavern_Tent.markers.json",
+      "colliders": 0,
+      "prefab_name": "MainCityDecor_Tavern_Tent",
+      "world_bounds": {
+        "min": [
+          40.045182192336455,
+          -1.0511021525299966,
+          40.97327632793625
+        ],
+        "max": [
+          52.286442520884265,
+          5.701879322528839,
+          55.207709316065674
+        ],
+        "center": [
+          46.16581235661036,
+          2.325388584999421,
+          48.09049282200096
+        ],
+        "renderers": 176
+      },
+      "id": 9001,
+      "slot_id": 9
+    }
+  },
+  "placement_validation": "Compare actual world_bounds to each slot baseline.original_world_bounds. Authored container pivots can be over 100 units from their geometry; distance to pivot is not a valid placement test.",
+  "limitations": [
+    "Static packaged geometry and authored placement only; no original runtime observed.",
+    "Custom Unity shaders use source base texture/color through glTF PBR.",
+    "Particle systems are counted in each conversion report and are not exported."
+  ]
+}

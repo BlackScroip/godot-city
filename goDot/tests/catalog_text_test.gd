@@ -14,10 +14,16 @@ func _initialize() -> void:
 	check(DungeonCatalog.clean("<#LocalizationId=\"keyword_chara\">") == "角色", "Bare localization resolves APK text")
 	check(DungeonCatalog.clean("<#LocalizationId=\"unknown_id\">") == "【文本：unknown_id】", "Unknown localization retains identifier")
 	check(DungeonCatalog.clean("<#futuretag=target>") == "【futuretag=target】", "Unknown semantic markup is not silently discarded")
+	check(DungeonCatalog.clean("金币 > 0\n资源") == "金币 > 0\n资源", "Plain multiline names preserve their text")
+	check(DungeonCatalog.clean(101) == "101" and DungeonCatalog.clean("") == "", "Plain variant and empty values retain string conversion")
+	check(DungeonCatalog.clean("<color=#e9aa2e>金币</color>") == "金币", "Repeated resource colors are removed")
+	check(DungeonCatalog.clean("<#LocalizationId='unknown_id'>第一行<br/>第二行</LocalizationId>") == "第一行\n第二行", "Multiline single-quoted fallback preserves authored content")
+	check(DungeonCatalog.clean("<#LocalizationId='keyword_chara'></LocalizationId>") == "角色", "Empty inline fallback resolves the current term")
+	check(DungeonCatalog.clean("<#specinfo='gongjili'>与<#specinfo=putonggongji>") == "攻击力与普通攻击", "Quoted and bare terms resolve together across repeated calls")
 	var regex = RegEx.new()
 	regex.compile("<#specinfo=([^>]+)>")
 	var terms: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/DisplayTerms.json"))
-	for table in ["CharTalentData", "CharTalentLevelData", "AbilityItems"]:
+	for table in ["CharTalentData", "CharTalentLevelData", "AbilityItems", "RogueLevelDifficultyInfluencerData"]:
 		for row in catalog.rows(table):
 			var raw = DungeonCatalog.description(row)
 			var cleaned = DungeonCatalog.clean(raw)

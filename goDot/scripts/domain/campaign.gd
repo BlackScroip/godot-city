@@ -3,22 +3,29 @@ extends RefCounted
 
 const DATA_PATH = "res://assets/data/campaign.json"
 const PHASES = ["route", "room", "reward", "won", "failed"]
+const CONNECTION_RULE_VERSION = 2
+const TYPE_HIDE_CHANCE_ATTRIBUTES = {
+	1: "HideRogueRoadMapNodeChance_Shop", 2: "HideRogueRoadMapNodeChance_Fight",
+	3: "HideRogueRoadMapNodeChance_Rest", 5: "HideRogueRoadMapNodeChance_OnlyReward",
+	11: "HideRogueRoadMapNodeChance_Event", 13: "HideRogueRoadMapNodeChance_OldDayRoom",
+	14: "HideRogueRoadMapNodeChance_ChestTrialRoom",
+}
+const HIDDEN_NODE_ICON = "icon_stagerewardtypeicon_Unknown"
 var database: Dictionary = {}
 var state: Dictionary = {}
 var diagnostics: Array = []
 var events: Array = []
 var _nodes: Dictionary = {}
 var _random_state: int = 1
-var route_rules: Dictionary = {}
 var _enemy_rows: Dictionary = {}
 var _spawn_settings: Dictionary = {}
 var world_map_data: Dictionary = {}
 var _areas: Dictionary = {}
 var _world_modules: Array = []
+var _trial_actions: Dictionary = {}
+var _road_map_attributes: Dictionary = {}
 
 func configure(data: Dictionary = {}) -> bool:
-	if FileAccess.file_exists("res://assets/data/route_rules.json"):
-		route_rules = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/route_rules.json"))
 	database = data
 	if database.is_empty() and FileAccess.file_exists(DATA_PATH):
 		var parsed = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
@@ -46,6 +53,11 @@ func configure(data: Dictionary = {}) -> bool:
 			_enemy_rows[int(row.id)] = row
 	if FileAccess.file_exists("res://assets/data/RogueConfigData.json"):
 		_spawn_settings = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/RogueConfigData.json"))
+	_trial_actions.clear()
+	if FileAccess.file_exists("res://assets/data/combat.json"):
+		var combat_data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/combat.json"))
+		for action in combat_data.get("actions", []):
+			if action.get("group", "") == "ActGroup_ChestTrialTrigger_test": _trial_actions[str(action.id)] = float(action.duration)
 	return not _nodes.is_empty()
 
 func generate(seed_value: int, difficulty: int) -> Dictionary:
@@ -64,6 +76,7 @@ func generate(seed_value: int, difficulty: int) -> Dictionary:
 		layers.append_array(generated)
 	state = {"version": 1, "seed": seed_value, "difficulty": difficulty, "layer_index": 0, "module_index": 0, "selected_slot": 0, "world_slots": _empty_world_slots(), "current_node_id": 0, "phase": "route", "region_selection": true, "waves_cleared": 0, "wave_count": 0, "last_rank": 0, "spawn_group": 0, "action_resolved": false, "is_practice": false, "layers": layers, "visited": []}
 	_build_connections()
+	_roll_missing_hide_values()
 	events.clear()
 	return _result(true, "Campaign generated")
 
@@ -114,7 +127,13 @@ func select_region(slot_id: int) -> Dictionary:
 		var replacement = _replacement_layers(int(selected.region), module_index)
 		if replacement.size() != _module_size(module_index): return _result(false, "Region has no complete route", slot_id)
 		for index in replacement.size(): state.layers[_module_start(module_index) + index] = replacement[index]
+		var start = _module_start(module_index)
+		if start > 0:
+			var previous: Dictionary = state.layers[start - 1]
+			for source in previous.connections: previous.connections[source] = state.layers[start].node_ids.duplicate()
 		_build_connections()
+		_sync_vertical_connections()
+		_roll_missing_hide_values()
 	state.region_selection = false
 	state.module_index = module_index
 	state.selected_slot = slot_id
@@ -139,6 +158,9 @@ func region_map() -> Array:
 			row.merge({"config_id": (module_index + 1) * 100000000 + id, "lane": lane, "lane_count": slots.size(), "parents": [], "vertical_neighbors": [], "visited": int(chosen[module_index]) == id and bool(state.layers[_module_start(module_index) + _module_size(module_index) - 1].complete), "current": not pending and module_index == current and int(chosen[module_index]) == id, "is_anchor": id == anchor_slot, "available": available.has(id), "unknown": not slot.get("IsOpen", false) and int(slot.NodeLevel) == 0, "locked": slot.get("IsOpen", false) and not _slot_unlocked(slot, int(state.difficulty))})
 			if module_index > 0:
 				for previous in _world_modules[module_index - 1].get("SlotList", []): row.parents.append(module_index * 100000000 + int(previous.Id))
+			row["passed_parents"] = []
+			if module_index > 0 and int(chosen[module_index]) == id and int(chosen[module_index - 1]) > 0:
+				row.passed_parents.append(module_index * 100000000 + int(chosen[module_index - 1]))
 			result.append(row)
 	return result
 
@@ -302,34 +324,142 @@ func vertical_choices() -> Array:
 func _build_connections() -> void:
 	for index in state.layers.size():
 		var layer: Dictionary = state.layers[index]
-		var module_index = int(layer.get("module_index", 0))
-		var default_area = int(database.Regions[module_index].Id) if module_index < database.get("Regions", []).size() else int(layer.region)
-		var rule: Dictionary = route_rules.get("regions", {}).get(str(int(layer.region)), route_rules.get("regions", {}).get(str(default_area), {}))
-		var ids: Array = layer.node_ids
-		layer["connections"] = {}
-		layer["vertical_links"] = []
 		if not layer.has("completed_ids"):
 			layer["completed_ids"] = [int(layer.selected_id)] if bool(layer.complete) and int(layer.selected_id) > 0 else []
-		for pair in rule.get("vertical", {}).get(str(int(layer.depth)), []):
-			if int(pair[0]) < ids.size() and int(pair[1]) < ids.size(): layer.vertical_links.append([int(ids[int(pair[0])]), int(ids[int(pair[1])])])
-		if index + 1 >= state.layers.size(): continue
+		if layer.has("connections") and layer.has("vertical_links"): continue
+		var generated = _generate_connections(index)
+		var missing_topology = not layer.has("connections") and not layer.has("vertical_links")
+		for field in ["connections", "vertical_links"]:
+			if not layer.has(field): layer[field] = generated[field]
+		if missing_topology:
+			layer["connection_version"] = CONNECTION_RULE_VERSION
+			for field in ["vertical_initial_roll", "vertical_initial_lane"]:
+				if generated.has(field): layer[field] = generated[field]
+
+func _generate_connections(index: int) -> Dictionary:
+	var layer: Dictionary = state.layers[index]
+	var ids: Array = layer.node_ids
+	var result = {"connections": {}, "vertical_links": []}
+	var previous_random_state = _random_state
+	# Topology has its own stream so replacing a region never changes other rooms or combat rolls.
+	_random_state = (int(state.seed) ^ int(layer.region) * 65537 ^ index * 397 ^ 0x524f4144) & 0xffffffff
+	if index + 1 < state.layers.size():
 		var next: Array = state.layers[index + 1].node_ids
-		for id in ids: layer.connections[str(int(id))] = []
-		if ids.size() == 1 or next.size() == 1:
-			for id in ids: layer.connections[str(int(id))] = next.duplicate()
-		else:
-			var forward: Array = rule.get("forward", [])
-			var pairs: Array = forward[int(layer.depth) - 1] if int(layer.depth) <= forward.size() else []
-			for pair in pairs:
-				if int(pair[0]) < ids.size() and int(pair[1]) < next.size(): layer.connections[str(int(ids[int(pair[0])]))].append(int(next[int(pair[1])]))
-			# Keep every lane playable if a region uses fewer rows than its authored pattern.
-			for lane in ids.size():
-				if layer.connections[str(int(ids[lane]))].is_empty(): layer.connections[str(int(ids[lane]))].append(int(next[mini(lane, next.size() - 1)]))
-			for lane in next.size():
-				var reachable = false
-				for targets in layer.connections.values():
-					if targets.has(int(next[lane])): reachable = true
-				if not reachable: layer.connections[str(int(ids[mini(lane, ids.size() - 1)]))].append(int(next[lane]))
+		for lane in ids.size():
+			var targets: Array = next.duplicate() if ids.size() == 1 or next.size() == 1 else [int(next[mini(lane, next.size() - 1)])]
+			if ids.size() > 1 and next.size() > 1:
+				for adjacent in [lane - 1, lane + 1]:
+					if adjacent >= 0 and adjacent < next.size() and _next_int(0, 100) < 50: targets.append(int(next[adjacent]))
+			result.connections[str(int(ids[lane]))] = targets
+		for lane in next.size():
+			if not result.connections.values().any(func(targets): return targets.has(int(next[lane]))):
+				result.connections[str(int(ids[mini(lane, ids.size() - 1)]))].append(int(next[lane]))
+	# The APK rolls one bidirectional center-to-neighbor link, including the last middle column.
+	if _can_generate_vertical(layer):
+		result["vertical_initial_roll"] = _next_int(0, 100)
+		result["vertical_initial_lane"] = 0 if _next_int(0, 2) == 0 else 2
+		if int(result.vertical_initial_roll) < 30: result.vertical_links.append([int(ids[1]), int(ids[int(result.vertical_initial_lane)])])
+	_random_state = previous_random_state
+	return result
+
+func _can_generate_vertical(layer: Dictionary) -> bool:
+	return layer.node_ids.size() == 3 and not bool(_nodes[int(layer.node_ids[1])].get("CanConnect", false))
+
+func _sync_vertical_connections() -> void:
+	if state.is_empty() or state.get("is_practice", false) or state.phase not in ["route", "room", "reward"]: return
+	var module_index = current_module_index()
+	if module_index < 0: return
+	var start = _module_start(module_index)
+	var end = start + _module_size(module_index)
+	var first: Dictionary = state.layers[start]
+	var attribute = int(_road_map_attributes.get("RoadMapVerticalMoveChanceIncrease", 0))
+	var chance = minf(30.0 + float(attribute) / 10.0, 100.0)
+	if not first.has("vertical_attribute"):
+		first["vertical_attribute"] = attribute
+		first["vertical_refresh_count"] = 0
+		var unstarted = state.layers.slice(start, end).all(func(layer): return int(layer.selected_id) == 0 and not layer.complete and layer.get("completed_ids", []).is_empty())
+		# Bind initial buffs to the saved first roll, before treating later changes as native refresh events.
+		for index in range(start, end):
+			var layer: Dictionary = state.layers[index]
+			if attribute == 0 or not _can_generate_vertical(layer) or not layer.has("vertical_initial_roll"): continue
+			if unstarted: layer.vertical_links = []
+			if layer.vertical_links.is_empty() and float(layer.vertical_initial_roll) < chance:
+				layer.vertical_links.append([int(layer.node_ids[1]), int(layer.node_ids[int(layer.vertical_initial_lane)])])
+		return
+	if int(first.vertical_attribute) == attribute: return
+	first.vertical_attribute = attribute
+	first.vertical_refresh_count = int(first.vertical_refresh_count) + 1
+	var previous_random_state = _random_state
+	for index in range(start, end):
+		var layer: Dictionary = state.layers[index]
+		if not _can_generate_vertical(layer) or not layer.vertical_links.is_empty(): continue
+		_random_state = (int(state.seed) ^ int(layer.region) * 65537 ^ index * 397 ^ int(first.vertical_refresh_count) * 104729 ^ 0x56525443) & 0xffffffff
+		if float(_next_int(0, 100)) < chance:
+			layer.vertical_links.append([int(layer.node_ids[1]), int(layer.node_ids[0 if _next_int(0, 2) == 0 else 2])])
+	_random_state = previous_random_state
+
+func _restore_connections(saved: Dictionary) -> bool:
+	for index in saved.layers.size():
+		var layer: Dictionary = saved.layers[index]
+		var ids: Array = layer.node_ids
+		if layer.has("connection_version") and (not _whole_number(layer.connection_version) or int(layer.connection_version) not in [1, CONNECTION_RULE_VERSION]): return false
+		if layer.has("vertical_initial_roll") != layer.has("vertical_initial_lane"): return false
+		if layer.has("vertical_initial_roll"):
+			if not _can_generate_vertical(layer) or not _whole_number(layer.vertical_initial_roll) or int(layer.vertical_initial_roll) < 0 or int(layer.vertical_initial_roll) >= 100: return false
+			if not _whole_number(layer.vertical_initial_lane) or int(layer.vertical_initial_lane) not in [0, 2]: return false
+			layer.vertical_initial_roll = int(layer.vertical_initial_roll)
+			layer.vertical_initial_lane = int(layer.vertical_initial_lane)
+		if layer.has("vertical_attribute") != layer.has("vertical_refresh_count"): return false
+		if layer.has("vertical_attribute"):
+			if not _whole_number(layer.vertical_attribute) or not _whole_number(layer.vertical_refresh_count) or int(layer.vertical_refresh_count) < 0 or int(layer.vertical_refresh_count) > 0x7fffffff: return false
+			if index != _module_start(int(layer.get("module_index", 0))): return false
+			layer.vertical_attribute = int(layer.vertical_attribute)
+			layer.vertical_refresh_count = int(layer.vertical_refresh_count)
+		if layer.has("connections"):
+			if not layer.connections is Dictionary: return false
+			var next: Array = saved.layers[index + 1].node_ids if index + 1 < saved.layers.size() else []
+			if layer.connections.size() != (ids.size() if not next.is_empty() else 0): return false
+			var incoming: Array = []
+			for source in layer.connections:
+				if str(int(source)) != str(source) or not ids.has(int(source)): return false
+				var targets = layer.connections[source]
+				if not targets is Array or targets.is_empty(): return false
+				var normalized: Array = []
+				for target in targets:
+					if not _whole_number(target) or not next.has(int(target)) or normalized.has(int(target)): return false
+					if ids.size() > 1 and next.size() > 1 and absi(ids.find(int(source)) - next.find(int(target))) > 1: return false
+					normalized.append(int(target))
+					incoming.append(int(target))
+				layer.connections[source] = normalized
+			if next.any(func(id): return not incoming.has(int(id))): return false
+		if layer.has("vertical_links"):
+			if not layer.vertical_links is Array: return false
+			var seen: Array = []
+			for pair in layer.vertical_links:
+				if not pair is Array or pair.size() != 2 or not _whole_number(pair[0]) or not _whole_number(pair[1]): return false
+				var first = ids.find(int(pair[0]))
+				var second = ids.find(int(pair[1]))
+				if first < 0 or second < 0 or absi(first - second) != 1: return false
+				var key = "%d:%d" % [mini(first, second), maxi(first, second)]
+				if seen.has(key): return false
+				seen.append(key)
+				pair[0] = int(pair[0])
+				pair[1] = int(pair[1])
+	return true
+
+func _passed_route_parents() -> Dictionary:
+	var result: Dictionary = {}
+	var previous = -1
+	for index in state.layers.size():
+		var completed: Array = state.layers[index].get("completed_ids", [])
+		for id in completed:
+			var identity = index * 100000000 + int(id)
+			if previous >= 0: result[identity] = [previous]
+			previous = identity
+	if state.phase in ["room", "reward"]:
+		var identity = int(state.layer_index) * 100000000 + int(state.current_node_id)
+		if previous >= 0 and previous != identity: result[identity] = [previous]
+	return result
 
 func route_map(all_regions := false) -> Array:
 	var result: Array = []
@@ -339,6 +469,7 @@ func route_map(all_regions := false) -> Array:
 	var region = int(state.layers[current].region)
 	var reachable = choices().map(func(room): return int(room.node_id))
 	var vertical = vertical_choices().map(func(room): return int(room.node_id))
+	var passed = _passed_route_parents()
 	var anchor = route_anchor()
 	if state.phase != "route":
 		anchor = {"layer_index": current, "node_id": int(state.current_node_id)}
@@ -355,15 +486,63 @@ func route_map(all_regions := false) -> Array:
 			room["visited"] = layer.get("completed_ids", []).has(int(room.node_id))
 			room["is_anchor"] = not anchor.is_empty() and index == int(anchor.layer_index) and int(room.node_id) == int(anchor.node_id)
 			room["current"] = state.phase != "route" and bool(room.is_anchor)
+			room["is_hidden"] = is_node_hidden(index, int(room.node_id))
+			room["hide_roll_value"] = int(layer.get("hide_rolls", {}).get(str(int(room.node_id)), 0))
+			room["display_name"] = "未知节点" if room.is_hidden else str(room.Name)
+			room["display_icon"] = HIDDEN_NODE_ICON if room.is_hidden else str(room.get("IconName", ""))
 			room["parents"] = []
+			room["passed_parents"] = passed.get(index * 100000000 + int(room.node_id), [])
 			if index > 0:
 				for source in state.layers[index - 1].get("connections", {}):
 					if state.layers[index - 1].connections[source].has(int(room.node_id)): room.parents.append((index - 1) * 100000000 + int(source))
+			room.parents.sort()
 			room["vertical_neighbors"] = []
 			for pair in layer.get("vertical_links", []):
 				if pair.has(int(room.node_id)): room.vertical_neighbors.append(int(pair[1]) if int(pair[0]) == int(room.node_id) else int(pair[0]))
+			room.vertical_neighbors.sort()
 			result.append(room)
 	return result
+
+func set_road_map_attributes(attributes: Dictionary) -> void:
+	_road_map_attributes = attributes.duplicate()
+	_sync_vertical_connections()
+
+func node_hide_chance(node_type: int) -> int:
+	var base = int(_road_map_attributes.get("RandomHideRogueRoadMapNodeChance", 0))
+	var attribute = str(TYPE_HIDE_CHANCE_ATTRIBUTES.get(node_type, ""))
+	return base + int(_road_map_attributes.get(attribute, 0)) if not attribute.is_empty() else base
+
+func is_node_hidden(layer_index: int, node_id: int) -> bool:
+	if state.is_empty() or layer_index < 0 or layer_index >= state.layers.size() or not _nodes.has(node_id): return false
+	var layer: Dictionary = state.layers[layer_index]
+	if not layer.node_ids.has(node_id): return false
+	var node: Dictionary = _nodes[node_id]
+	if int(node.get("FirstOrFinal", 0)) in [1, 2]: return false
+	if int(layer.get("selected_id", 0)) == node_id or layer.get("completed_ids", []).has(node_id): return false
+	return int(layer.get("hide_rolls", {}).get(str(node_id), 0)) < node_hide_chance(int(node.Type))
+
+func _roll_missing_hide_values() -> void:
+	var previous_random_state = _random_state
+	for index in state.get("layers", []).size():
+		var layer: Dictionary = state.layers[index]
+		# Use the port's deterministic RNG without changing room generation or combat rolls.
+		_random_state = (int(state.seed) ^ int(layer.region) * 65537 ^ index * 397 ^ 0x48494445) & 0xffffffff
+		if not layer.has("hide_rolls"): layer["hide_rolls"] = {}
+		for id in layer.node_ids:
+			var value = _next_int(0, 1000)
+			if not layer.hide_rolls.has(str(int(id))): layer.hide_rolls[str(int(id))] = value
+	_random_state = previous_random_state
+
+func _restore_hide_values(saved: Dictionary) -> bool:
+	for layer in saved.layers:
+		if not layer.has("hide_rolls"): continue
+		if not layer.hide_rolls is Dictionary: return false
+		for key in layer.hide_rolls:
+			if str(int(key)) != str(key) or not layer.node_ids.has(int(key)): return false
+			var value = layer.hide_rolls[key]
+			if not _whole_number(value) or int(value) < 0 or int(value) >= 1000: return false
+			layer.hide_rolls[key] = int(value)
+	return true
 
 func enter(node_id: int, allow_vertical := false) -> Dictionary:
 	if state.is_empty() or state.phase != "route" or state.get("region_selection", false):
@@ -378,6 +557,8 @@ func enter(node_id: int, allow_vertical := false) -> Dictionary:
 	state.layers[int(state.layer_index)].selected_id = node_id
 	state.waves_cleared = 0
 	state.action_resolved = false
+	state.erase("trial")
+	if room.Flow == "TreasureTrial": state["trial"] = _new_trial()
 	_random_state = (int(state.seed) ^ node_id ^ int(state.layer_index) * 397) & 0xffffffff
 	state.wave_count = _next_int(int(room.WaveMin), int(room.WaveMax) + 1) if _is_combat(room) and bool(room.RandomEnemies) else 0
 	var groups: Array = []
@@ -402,6 +583,10 @@ func current_room() -> Dictionary:
 	result.wave_count = state.wave_count
 	result.waves_cleared = state.waves_cleared
 	result.phase = state.phase
+	if result.flow == "TreasureTrial":
+		result["trial"] = trial_status()
+		result.wave_count = int(result.trial.wave_count)
+		result.waves_cleared = int(result.trial.wave_index)
 	result.enemies = wave_spawns(int(state.waves_cleared) + 1) if state.phase == "room" and _is_combat(result) and int(state.waves_cleared) < int(state.wave_count) else []
 	return result
 
@@ -412,6 +597,7 @@ func start_practice(node_id: int, seed_value: int = 1) -> Dictionary:
 		return _result(false, "Unknown node", node_id)
 	var node: Dictionary = _nodes[node_id]
 	state = {"version": 1, "seed": seed_value, "difficulty": int(node.MinDifficulty), "layer_index": 0, "module_index": 0, "selected_slot": 0, "world_slots": _empty_world_slots(), "current_node_id": 0, "phase": "route", "region_selection": false, "waves_cleared": 0, "wave_count": 0, "last_rank": 0, "spawn_group": 0, "action_resolved": false, "is_practice": true, "layers": [{"region": int(node.Region), "module_index": 0, "depth": maxi(1, int(node.MinDepth)), "node_ids": [node_id], "selected_id": 0, "complete": false}], "visited": []}
+	_roll_missing_hide_values()
 	return enter(node_id)
 
 func wave_spawns(wave: int) -> Array:
@@ -503,10 +689,76 @@ func clear_wave() -> Dictionary:
 	return _result(true, "Wave cleared", int(state.current_node_id))
 
 func resolve_action() -> Dictionary:
-	if state.is_empty() or state.phase != "room" or _is_combat(_nodes[int(state.current_node_id)]) or bool(state.action_resolved):
+	if state.is_empty() or state.phase != "room" or _nodes[int(state.current_node_id)].Flow == "TreasureTrial" or _is_combat(_nodes[int(state.current_node_id)]) or bool(state.action_resolved):
 		return _result(false, "Room action unavailable")
 	state.action_resolved = true
 	return _result(true, "Room action resolved", int(state.current_node_id))
+
+func _new_trial() -> Dictionary:
+	return {"phase": "choice", "chest_index": -1, "wave_index": 0, "remaining": 0.0, "skipped": false, "reward_claimed": false}
+
+func trial_status() -> Dictionary:
+	if state.is_empty() or int(state.get("current_node_id", 0)) == 0 or _nodes[int(state.current_node_id)].Flow != "TreasureTrial": return {}
+	var data: Dictionary = _nodes[int(state.current_node_id)].get("TrialData", {})
+	var result: Dictionary = state.get("trial", _new_trial()).duplicate(true)
+	var actions: Array = []
+	var index = int(result.chest_index)
+	var pipelines: Array = data.get("ChestWaveActionList", [])
+	if index >= 0 and index < pipelines.size():
+		for action in str(pipelines[index]).split("|", false):
+			if not action.strip_edges().is_empty(): actions.append(action.strip_edges())
+	result.merge({"actions": actions, "wave_count": actions.size(), "action": str(actions[int(result.wave_index)]) if int(result.wave_index) < actions.size() else "", "quality": ["Normal", "Unusual", "Luxury"][index] if index in [0, 1, 2] else "", "turret_id": int(data.get("TurretMonsterId", 0)), "skip_relic_id": int(data.get("SkipRelicId", 0)), "side_offset": float(data.get("ChestSideOffset", 2.5)), "skip_talk_id": int(data.get("SkipSimpleTalkId", 0)), "active": state.phase == "room" and result.phase in ["wave", "gap", "drain"]})
+	return result
+
+func start_trial(chest_index: int, inventory: Dictionary) -> Dictionary:
+	var trial = trial_status()
+	if trial.is_empty() or state.phase != "room" or trial.phase != "choice" or chest_index not in [0, 1, 2]: return _result(false, "Trial choice unavailable")
+	var candidate: Dictionary = state.trial.duplicate(true)
+	candidate.chest_index = chest_index
+	state.trial = candidate
+	trial = trial_status()
+	if trial.actions.is_empty() or int(trial.turret_id) <= 0 or trial.actions.any(func(action): return float(_trial_actions.get(str(action), 0)) <= 0):
+		state.trial = _new_trial()
+		return _result(false, "Missing recovered trial actions")
+	var skip = int(trial.skip_relic_id) > 0 and int(inventory.get(str(trial.skip_relic_id), inventory.get(int(trial.skip_relic_id), 0))) > 0
+	state.trial.skipped = skip
+	state.trial.phase = "complete" if skip else "wave"
+	state.trial.wave_index = trial.actions.size() if skip else 0
+	state.trial.remaining = 0.0 if skip else float(_trial_actions[trial.actions[0]])
+	events.append({"type": "trial_start", "id": int(state.current_node_id), "chest_index": chest_index, "skipped": skip})
+	return _result(true, "Trial started", int(state.current_node_id))
+
+func tick_trial(delta: float, attacks_alive := false) -> Dictionary:
+	var trial = trial_status()
+	if trial.is_empty() or not trial.active or not is_finite(delta) or delta < 0: return _result(false, "No active trial")
+	if trial.phase == "drain":
+		state.trial.remaining = minf(10.0, float(trial.remaining) + delta)
+		if not attacks_alive or float(state.trial.remaining) >= 10.0: state.trial.phase = "complete"
+	else:
+		state.trial.remaining = maxf(0.0, float(trial.remaining) - delta)
+		if float(state.trial.remaining) <= 0.000001:
+			if trial.phase == "wave":
+				state.trial.wave_index = int(trial.wave_index) + 1
+				state.trial.phase = "gap" if int(state.trial.wave_index) < trial.actions.size() else "drain"
+				state.trial.remaining = 1.0 if state.trial.phase == "gap" else 0.0
+			else:
+				state.trial.phase = "wave"
+				state.trial.remaining = float(_trial_actions[trial.actions[int(state.trial.wave_index)]])
+	return _result(true, "Trial advanced", int(state.current_node_id))
+
+func decline_trial() -> Dictionary:
+	var trial = trial_status()
+	if trial.is_empty() or state.phase != "room" or trial.phase != "choice": return _result(false, "Trial already started")
+	state.trial.phase = "declined"
+	state.action_resolved = true
+	return _result(true, "Trial declined", int(state.current_node_id))
+
+func claim_trial_reward() -> Dictionary:
+	var trial = trial_status()
+	if trial.is_empty() or state.phase != "room" or trial.phase != "complete" or trial.reward_claimed: return _result(false, "Trial reward unavailable")
+	state.trial.reward_claimed = true
+	state.action_resolved = true
+	return _result(true, "Trial reward claimed", int(state.current_node_id))
 
 func room_ready() -> bool:
 	if state.is_empty() or state.phase != "room":
@@ -613,17 +865,51 @@ func restore(saved: Dictionary) -> bool:
 			return false
 		if saved.phase == "reward" and ((_is_combat(node) and cleared != wave_count) or (not _is_combat(node) and not bool(saved.get("action_resolved", false)))):
 			return false
+		if node.Flow == "TreasureTrial" and not _restore_trial(saved, node): return false
 	elif saved.phase in ["room", "reward", "won"]:
 		return false
-	if not _restore_world_state(saved): return false
+	if not _restore_world_state(saved) or not _restore_hide_values(saved) or not _restore_connections(saved): return false
 	state = saved.duplicate(true)
 	if current != 0 and not state.has("spawn_plan"):
 		state["spawn_plan"] = _build_spawn_plan(_nodes[current])
 		state["spawn_plan_version"] = 2
 	_build_connections()
+	_roll_missing_hide_values()
 	state["visited"] = state.get("visited", [])
 	events.clear()
 	return true
+
+func _restore_trial(saved: Dictionary, node: Dictionary) -> bool:
+	if not saved.has("trial"):
+		saved["trial"] = _new_trial()
+		if saved.get("action_resolved", false): saved.trial.phase = "declined"
+	var trial = saved.trial
+	if not trial is Dictionary or trial.get("phase", "") not in ["choice", "wave", "gap", "drain", "complete", "declined"]: return false
+	for key in ["chest_index", "wave_index", "remaining"]:
+		var value = trial.get(key)
+		if not (value is int or value is float) or not is_finite(float(value)): return false
+		if key != "remaining" and float(value) != floor(float(value)): return false
+	for key in ["skipped", "reward_claimed"]:
+		if not trial.get(key) is bool: return false
+	if float(trial.remaining) < 0: return false
+	var index = int(trial.chest_index)
+	var wave = int(trial.wave_index)
+	if trial.phase in ["choice", "declined"]:
+		return index == -1 and wave == 0 and float(trial.remaining) == 0 and not trial.skipped and not trial.reward_claimed and bool(saved.get("action_resolved", false)) == (trial.phase == "declined")
+	var pipelines: Array = node.get("TrialData", {}).get("ChestWaveActionList", [])
+	if index < 0 or index > 2 or index >= pipelines.size(): return false
+	var actions: Array = []
+	for action in str(pipelines[index]).split("|", false):
+		if not action.strip_edges().is_empty(): actions.append(action.strip_edges())
+	if actions.is_empty() or actions.any(func(action): return float(_trial_actions.get(action, 0)) <= 0): return false
+	if wave < 0 or wave > actions.size(): return false
+	if trial.phase == "wave" and (wave >= actions.size() or float(trial.remaining) > float(_trial_actions[actions[wave]])): return false
+	if trial.phase == "gap" and (wave <= 0 or wave >= actions.size() or float(trial.remaining) > 1.0): return false
+	if trial.phase in ["drain", "complete"] and wave != actions.size(): return false
+	if trial.phase == "drain" and float(trial.remaining) > 10.0: return false
+	if trial.skipped and trial.phase != "complete": return false
+	if trial.reward_claimed and trial.phase != "complete": return false
+	return bool(saved.get("action_resolved", false)) == bool(trial.reward_claimed) and (saved.phase != "reward" or trial.reward_claimed)
 
 func drain_events() -> Array:
 	var result = events

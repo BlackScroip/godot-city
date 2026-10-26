@@ -20,6 +20,7 @@ func quote(context: Dictionary) -> Dictionary:
 	var kind = str(context.get("kind", ""))
 	var id = int(context.get("id", 0))
 	var point = ""
+	var meal_order: Dictionary = {}
 	if kind == "mall":
 		var row: Dictionary = systems.catalog.find("MallTradeData", id)
 		if not row.get("Enable", false) or row.get("GoodsPayType", "") != "Ad": return _fail("商品不可用")
@@ -30,22 +31,20 @@ func quote(context: Dictionary) -> Dictionary:
 		point = "Mall_" + str(id)
 		return {"success": true, "point": point, "purchase": purchase}
 	elif kind == "meal":
-		var row: Dictionary = systems.catalog.find("CatMealData", id)
-		var level = int(context.get("level", 1))
-		if systems.profile.data.run.active or row.is_empty() or level < 1: return _fail("请在营地点餐")
-		if level > systems.rank(systems.profile.data.recipes, id): return _fail("请先研究该料理等级")
-		if level > DungeonCatalog.ids(row.AbilityItemId).size(): return _fail("料理等级不可用")
+		var status = systems.meal_order_status(true)
+		if not status.can_ad: return _fail(status.ad_reason)
+		meal_order = status.meals
 		point = "CatMeal_FreeOrder"
 	elif kind == "work":
 		if systems.profile.data.run.active: return _fail("请在营地加速派遣")
-		var active = systems.profile.data.work.filter(func(order): return int(order.work_id) == id and int(order.due_utc) > int(systems.utc_now.call()))
-		if active.is_empty(): return _fail("没有需要加速的派遣")
+		var status = systems.work_status(id)
+		if status.order.is_empty() or int(status.completed_quantity) >= int(status.queue_max): return _fail("没有需要加速的派遣")
 		point = "MonsterWork_AdSpeedUp"
 	else:
 		return _fail("奖励入口不可用")
 	var maximum = int(systems.catalog.config.get("AdsDailyLimitConfig", {}).get(point, 0))
 	if maximum <= 0 or int(_state().counts.get(point, 0)) >= maximum: return _fail("今日次数已用完")
-	return {"success": true, "point": point}
+	return {"success": true, "point": point, "meals": meal_order}
 
 func claim(context: Dictionary, receipt: String, skip: bool = false) -> Dictionary:
 	var state = _state()
@@ -62,13 +61,9 @@ func claim(context: Dictionary, receipt: String, skip: bool = false) -> Dictiona
 				for draw in int(option.amount): systems.grant_material(int(option.ids[systems.next_random(option.ids.size())]), 1)
 		systems.record(str(check.purchase))
 	elif context.kind == "meal":
-		systems.profile.data.selected_meal = id
-		systems.profile.data.meal_rank = int(context.get("level", 1))
+		systems._complete_meal_purchase(check.meals)
 	elif context.kind == "work":
-		# APK stable-data default: 30 minutes. Existing dispatch uses UTC seconds.
-		for order in systems.profile.data.work:
-			if int(order.work_id) == id:
-				order.due_utc = maxi(int(systems.utc_now.call()), int(order.due_utc) - 30 * 60)
+		systems.add_work_progress(id, 30 * 60)
 	state.counts[check.point] = int(state.counts.get(check.point, 0)) + 1
 	if skip: state.skips += 1
 	state.receipts.append(receipt)

@@ -4,17 +4,46 @@ var samples: Array[Dictionary] = []
 var events: Array[Dictionary] = []
 var started := Time.get_ticks_usec()
 var previous := started
+var render_viewport := RID()
+var render_cpu_total := 0.0
+var render_setup_total := 0.0
+var render_gpu_total := 0.0
+var render_cpu_max := 0.0
+var render_gpu_max := 0.0
+var render_samples := 0
+var render_cpu_samples := 0
+var render_gpu_samples := 0
+
+func measure_rendering(viewport: Viewport) -> void:
+	if DisplayServer.get_name() == "headless": return
+	render_viewport = viewport.get_viewport_rid()
+	RenderingServer.viewport_set_measure_render_time(render_viewport, true)
 
 func mark(kind: String, details: Dictionary = {}) -> void:
 	events.append({"frame": samples.size(), "kind": kind, "details": details})
 
 func sample(world: Node, phase: String) -> void:
 	var now := Time.get_ticks_usec()
+	if render_viewport.is_valid():
+		var cpu := RenderingServer.viewport_get_measured_render_time_cpu(render_viewport)
+		var gpu := RenderingServer.viewport_get_measured_render_time_gpu(render_viewport)
+		if cpu > 0:
+			render_cpu_total += cpu
+			render_cpu_samples += 1
+		render_setup_total += RenderingServer.get_frame_setup_time_cpu()
+		if gpu > 0:
+			render_gpu_total += gpu
+			render_gpu_samples += 1
+		render_cpu_max = maxf(render_cpu_max, cpu)
+		render_gpu_max = maxf(render_gpu_max, gpu)
+		render_samples += 1
 	samples.append({"phase": phase, "frame_ms": (now - previous) / 1000.0,
 		"process_ms": Performance.get_monitor(Performance.TIME_PROCESS) * 1000,
 		"physics_ms": Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000,
 		"memory_bytes": OS.get_static_memory_usage(), "objects": Performance.get_monitor(Performance.OBJECT_COUNT),
 		"bodies": Performance.get_monitor(Performance.PHYSICS_3D_ACTIVE_OBJECTS),
+		"draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
+		"primitives": Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME),
 		"actors": world.actors.size(), "projectiles": world.projectiles.size(),
 		"particles": world.presentation._active_particles, "emitters": world.presentation._active_emitters})
 	previous = now
@@ -30,7 +59,7 @@ static func summarize(rows: Array) -> Dictionary:
 		sum += float(row.frame_ms)
 		for limit in slow:
 			if float(row.frame_ms) > float(limit): slow[limit] += 1
-		for key in ["process_ms", "physics_ms", "memory_bytes", "objects", "bodies", "actors", "projectiles", "particles", "emitters"]:
+		for key in ["process_ms", "physics_ms", "memory_bytes", "objects", "bodies", "actors", "projectiles", "particles", "emitters", "draw_calls", "primitives"]:
 			peaks[key] = maxf(float(peaks.get(key, 0)), float(row.get(key, 0)))
 	times.sort()
 	var worst_count := maxi(1, ceili(times.size() * 0.01))
@@ -47,5 +76,11 @@ func report() -> Dictionary:
 		"device": OS.get_model_name(), "renderer": RenderingServer.get_video_adapter_name(),
 		"headless": DisplayServer.get_name() == "headless", "debug": OS.is_debug_build(),
 		"physics_hz": Engine.physics_ticks_per_second, "elapsed_seconds": (Time.get_ticks_usec() - started) / 1000000.0,
+		"render_timing": {"samples": render_samples, "viewport_cpu_samples": render_cpu_samples, "viewport_gpu_samples": render_gpu_samples,
+			"viewport_cpu_mean_ms": render_cpu_total / maxi(1, render_cpu_samples),
+			"viewport_cpu_max_ms": render_cpu_max, "frame_setup_cpu_mean_ms": render_setup_total / maxi(1, render_samples),
+			"viewport_gpu_mean_ms": render_gpu_total / maxi(1, render_gpu_samples), "viewport_gpu_max_ms": render_gpu_max,
+			"gpu_timestamps_available": RenderingServer.get_current_rendering_driver_name() == "vulkan" and render_gpu_max > 0,
+			"scope": "Delayed viewport timestamps and latest frame setup CPU timestamps; not matched to individual gameplay frames. Zero startup viewport readings excluded. Excludes gameplay and physics. Native Android GLES GPU timestamps unavailable."},
 		"all": summarize(samples), "cold": summarize(samples.filter(func(row): return row.phase == "cold")),
 		"warm": summarize(samples.filter(func(row): return row.phase == "warm")), "samples": samples, "events": events}
