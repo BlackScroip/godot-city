@@ -7,7 +7,7 @@ func _init() -> void:
 	data = {
 		"version": 1, "saved_utc": 0,
 		"materials": {"101": 100}, "stats": {"weapon:101": 1},
-		"talents": {}, "character_levels": {"1": 1}, "partners": {},
+		"talents": {}, "marked_character_talents": [], "character_levels": {"1": 1}, "partners": {},
 		"work_levels": {}, "buildings": {}, "recipes": {"70101000": 1, "70101020": 1},
 		"equipped_partners": [], "claimed_tasks": [], "claimed_achievements": [],
 		"discovered_loot": [], "active_awakenings": [], "equipped_tokens": [],
@@ -29,6 +29,9 @@ static func new_run(seed_value: int = 0, character: int = 1, health_value: float
 func validate() -> bool:
 	if not _number(data.get("version")) or data.version != 1 or not data.get("run") is Dictionary:
 		return false
+	if not preload("res://scripts/domain/relationship_tokens.gd").validate_state(data): return false
+	if not preload("res://scripts/domain/camp_history.gd").validate(data): return false
+	if data.has("extra_challenges") and not preload("res://scripts/domain/extra_challenges.gd").validate_state(data.extra_challenges): return false
 	for key in ["materials", "stats", "talents", "character_levels", "partners", "work_levels", "buildings", "recipes"]:
 		if not data.get(key) is Dictionary:
 			return false
@@ -45,6 +48,17 @@ func validate() -> bool:
 		for key in data.selected_weapons:
 			var weapon = data.selected_weapons[key]
 			if not str(key).is_valid_int() or int(key) < 1 or not _number(weapon) or weapon < 1 or float(weapon) != floor(float(weapon)): return false
+	if data.has("fashion_owned"):
+		if not data.fashion_owned is Array or not _ids(data.fashion_owned): return false
+	if data.has("marked_character_talents"):
+		if not data.marked_character_talents is Array or not _ids(data.marked_character_talents): return false
+		for id in data.marked_character_talents:
+			if int(id) <= 0: return false
+	if data.has("fashion_equipped"):
+		if not data.fashion_equipped is Dictionary: return false
+		for key in data.fashion_equipped:
+			var fashion = data.fashion_equipped[key]
+			if not str(key).is_valid_int() or int(key) < 1 or not _number(fashion) or fashion < 1 or float(fashion) != floor(float(fashion)): return false
 	var assigned_partners: Array = []
 	var assigned_work: Array = []
 	for job in data.work:
@@ -105,6 +119,7 @@ func validate() -> bool:
 	for reward in run.rewards:
 		if not reward is Dictionary or not reward.get("key") is String or not reward.get("choices") is Array: return false
 		if not _ids(reward.choices): return false
+		if reward.has("locked_ids") and (not reward.locked_ids is Array or not _ids(reward.locked_ids)): return false
 	if run.armor < 0 or run.difficulty < 0 or run.difficulty > 10: return false
 	if run.has("outcome"):
 		if not run.outcome is Dictionary: return false
@@ -148,6 +163,14 @@ static func attack_mode(value: Dictionary) -> String:
 	return str(mode) if mode in ["normal", "heavy", "off"] else "normal"
 
 func normalize_ids() -> void:
+	preload("res://scripts/domain/relationship_tokens.gd").normalize_saved_ids(data)
+	var marks: Array = []
+	for id in data.get("marked_character_talents", []):
+		if not marks.has(int(id)): marks.append(int(id))
+	data["marked_character_talents"] = marks
+	if data.has("fashion_owned"): data.fashion_owned = data.fashion_owned.map(func(value): return int(value))
+	if data.has("fashion_equipped"):
+		for key in data.fashion_equipped: data.fashion_equipped[key] = int(data.fashion_equipped[key])
 	for field in ["meal_selection", "purchased_meals", "last_meals"]:
 		if not data.has(field): continue
 		for key in data[field]: data[field][key] = int(data[field][key])
@@ -157,6 +180,7 @@ func normalize_ids() -> void:
 	data.run.completed_nodes = data.run.completed_nodes.map(func(value): return int(value))
 	for reward in data.run.rewards:
 		reward.choices = reward.choices.map(func(value): return int(value))
+		if reward.has("locked_ids"): reward.locked_ids = reward.locked_ids.map(func(value): return int(value))
 	for job in data.work:
 		for key in ["work_id", "partner_id", "started_utc", "due_utc", "material_id", "reward", "level", "quantity", "claimed_quantity", "cycle_seconds", "economy_version", "prepaid_quantity"]:
 			if job.has(key): job[key] = int(job[key])

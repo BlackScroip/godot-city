@@ -46,9 +46,9 @@ var _room_key := ""
 var _pending_region_notice: Dictionary = {}
 var _room_shop_mode := "buy"
 var _binding_action := ""
-var _cloud_confirmation_pending := false
 var _comment_confirmation_pending := false
 var _open_external_url: Callable = OS.shell_open
+var _return_to_title: Callable = func(): get_tree().change_scene_to_file("res://scenes/startup.tscn")
 const COMMENT_URL := "https://l.taptap.cn/8RM32XK4?channel=rep-rep_vwyove61c0b_h5url8467"
 var _smoke_output := "res://reports"
 var _wall_start := 0
@@ -86,6 +86,7 @@ func _ready() -> void:
 	dialogue.load_all()
 	var saved = {} if _smoke else save_store.load_profile()
 	if not saved.is_empty(): profile.data = saved
+	DungeonSettings.migrate_legacy(profile.data)
 	_configure_input()
 	if startup_loading: await _initialization_step(0.25)
 	systems = load("res://scripts/domain/systems.gd").new(catalog, profile)
@@ -113,6 +114,10 @@ func _ready() -> void:
 	add_child(room_loading)
 	boss_intro = preload("res://scripts/presentation/boss_intro.gd").new()
 	add_child(boss_intro)
+	boss_intro.set_skip_preference(bool(profile.data.get("boss_show_skip", false)))
+	boss_intro.skip_changed.connect(func(enabled: bool):
+		profile.data["boss_show_skip"] = enabled
+		_save())
 	boss_intro.finished.connect(func(): world.paused = hud.modal_open or _transitioning or _flow_locked())
 	world.impact_confirmed.connect(_record_run_impact)
 	world.hud = hud
@@ -144,8 +149,7 @@ func _ready() -> void:
 				else: menus.open("difficulty")
 			else: menus.open(str(context.page))
 		elif message == "room_action":
-			if str(context.get("data", {}).get("UIBtnName", "")) == DungeonWorldInteractions.CURSE_ALTAR: _request_curse_altar(context)
-			else: _room_action()
+			_room_interaction(context)
 		elif message.begins_with("Keyword_MainCity_") and message.ends_with("_jusuobreak_woodsign") and not profile.data.run.active:
 			var facility = message.trim_prefix("Keyword_MainCity_").get_slice("_", 0)
 			if facility.is_valid_int() and int(facility) >= 1 and int(facility) <= 7: menus.open("buildings", int(facility))
@@ -180,19 +184,28 @@ func _configure_input() -> void:
 			InputMap.action_add_event(key, event)
 
 func _apply_settings() -> void:
+	var preferences := DungeonSettings.read_options()
 	var mode = DungeonProfile.attack_mode(profile.data)
 	world.set_attack_mode(mode)
 	hud.set_attack_mode(mode)
-	world.camera_shake_enabled = bool(profile.data.get("camera_shake", true))
 	world.low_effects = bool(profile.data.get("low_effects", false))
-	world.presentation.audio_enabled = bool(profile.data.get("audio_enabled", true))
-	resource_audio.enabled = world.presentation.audio_enabled
-	AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, float(profile.data.get("volume", 1.0)))))
-	audio.stream_paused = not profile.data.get("audio_enabled", true)
+	world.apply_settings(preferences)
+	DungeonStyle.apply_options(world)
+	resource_audio.apply_settings(preferences)
+	hud.apply_settings(preferences)
 
 func _input(event: InputEvent) -> void:
 	if startup_loading or _initializing or _transitioning: return
-	if _binding_action.is_empty() or not event is InputEventKey or not event.pressed or event.echo: return
+	if _binding_action.is_empty(): return
+	if not hud.modal_open or hud.page._layout != "settings" or not is_instance_valid(hud.page.special.settings_view) or hud.page.special.settings_view.section != "操作配置":
+		_binding_action = ""
+		return
+	if not event is InputEventKey or not event.pressed or event.echo: return
+	if event.physical_keycode == KEY_ESCAPE:
+		_binding_action = ""
+		hud.toast("已取消按键修改")
+		get_viewport().set_input_as_handled()
+		return
 	var bindings: Dictionary = profile.data.get("key_bindings", {})
 	bindings[_binding_action] = [int(event.physical_keycode)]
 	profile.data["key_bindings"] = bindings
@@ -209,13 +222,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("pause_game"):
+		if is_instance_valid(hud.touch_editor):
+			hud.cancel_touch_customization()
+			get_viewport().set_input_as_handled()
+			return
 		if ads.busy():
 			ads.cancel()
 			get_viewport().set_input_as_handled()
 			return
 		if hud.modal_open:
 			_exit_after_reward = false
-			_close_page()
+			if hud.page._layout == "settings" and is_instance_valid(hud.page.special) and is_instance_valid(hud.page.special.settings_view): hud.page.special.settings_view.go_back()
+			elif hud.page._layout == "buildings" and is_instance_valid(hud.page.building_view): hud.page.building_view.go_back()
+			else: _close_page()
 		else: menus.open("settings")
 		get_viewport().set_input_as_handled()
 		return
@@ -228,6 +247,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _interact() -> void:
 	if _transitioning or hud.modal_open or not world.interactions or not is_instance_valid(world.player): return
+	if profile.data.run.active and _resume_room_activity(): return
 	if not world.ground_loot.nearest(world.player.position).is_empty():
 		var entry = world.ground_loot.nearest(world.player.position)
 		if entry.has("altar"):
@@ -267,6 +287,44 @@ func _camp_interaction_failure(result: Dictionary) -> String:
 	var reason = str(result.get("reason", "unavailable"))
 	return {"out_of_range": "请靠近该设施后再交互", "unavailable": "当前设施尚不可用", "blocked": "请先关闭当前界面", "not_in_camp": "请返回主城后再交互"}.get(reason, "当前无法交互")
 
+func _interaction_prompts(candidates: Array) -> Array[Dictionary]:
+	var prompts: Array[Dictionary] = []
+	var bounty_index := -1
+	var board_index := -1
+	for candidate in candidates:
+		var source: Array = world.interactions.prompt_for(candidate)
+		var kind := str(candidate.marker.get("Type", ""))
+		var key := str(candidate.data.get("UIBtnName", ""))
+		var title := str(source[0])
+		var icon := str(candidate.data.get("UIBtnIcon", source[2]))
+		var color := Color("74d8ff") if kind == "EEUT_AbilityItemTreasureBox" else Color.WHITE
+		var badge = world._event_markers.get(str(candidate.id))
+		var pending: bool = not profile.data.run.active and is_instance_valid(badge) and badge.visible
+		if kind == "EEUT_NPC":
+			var npc_id := int(candidate.data.get("NpcId", 0))
+			title = str(catalog.find("NPCData", npc_id).get("name", "交谈"))
+			icon = "sprite_conversation_talk"
+			if not profile.data.run.active:
+				var entry := _npc_enter_function(npc_id)
+				icon = str(catalog.find("NPCFunctionData", entry).get("btn_icon", icon))
+				pending = systems.npc_function_status(entry).success and systems.stat("npc:finished:" + str(entry)) == 0 and systems.stat("talk:" + str(entry)) == 0
+		if key in ["Keyword_ExtraChallenge", "EnvUnit_MonoData_BtnDisplayName_Quest"]:
+			var task_badge = world._event_markers.get("camp:tasks")
+			pending = is_instance_valid(task_badge) and task_badge.visible
+			if key == "Keyword_ExtraChallenge":
+				bounty_index = prompts.size()
+				color = Color("ffcc55")
+			else:
+				board_index = prompts.size()
+				color = Color("b7ef62")
+		prompts.append({"id": str(candidate.id), "text": title, "icon": icon, "color": color, "pending": pending,
+			"action": "world_interact" if profile.data.run.active else "camp_interact"})
+	if board_index >= 0 and bounty_index > board_index:
+		var board := prompts[board_index]
+		prompts[board_index] = prompts[bounty_index]
+		prompts[bounty_index] = board
+	return prompts.slice(0, 2)
+
 func _process(delta: float) -> void:
 	if _initializing or not world or not world.player: return
 	menus.tick(delta)
@@ -279,7 +337,7 @@ func _process(delta: float) -> void:
 		_save_delay += delta
 		if _save_delay >= 0.25 and not save_store.is_saving(): _capture_save()
 	_tick_death(delta)
-	world.paused = startup_loading or hud.modal_open or _transitioning or _flow_locked() or boss_intro.active
+	world.paused = startup_loading or hud.modal_open or _transitioning or _flow_locked()
 	_update_battle_presentation(delta)
 	world.ground_loot.update_altar_pointer(world.camera, world.player.global_position, profile.data.run.active and not world.paused and not world._background)
 	hud.set_adventure_mode(profile.data.run.active)
@@ -308,23 +366,26 @@ func _process(delta: float) -> void:
 		primary = "路线" if campaign.state.phase == "route" else "领取奖励" if campaign.state.phase == "reward" else "继续前进" if campaign.room_ready() else "交互"
 	hud.update_state(title, combat.health, combat.max_health, status, resources, primary)
 	hud.update_counters(systems, difficulty)
-	var nearby: Dictionary = world.interactions.nearest_interaction(world.player.position) if world.interactions else {}
+	var nearby: Array = world.interactions.available_interactions(world.player.position) if world.interactions else []
 	var loot = world.ground_loot.nearest(world.player.position)
-	hud.primary.visible = not hud.modal_open and (not nearby.is_empty() or not loot.is_empty())
-	if not nearby.is_empty():
-		var prompt: Array = world.interactions.prompt_for(nearby)
-		hud.primary.text = str(prompt[0])
-		if nearby.marker.get("Type", "") == "EEUT_NPC":
-			var npc = catalog.find("NPCData", str(nearby.data.get("NpcId", "")))
-			hud.primary.text = str(npc.get("name", "交谈"))
-		hud.primary.icon = DungeonStyle.texture("sprite_conversation_talk" if not profile.data.run.active or prompt[1] == "npc" else str(prompt[2]))
-		hud.primary.add_theme_color_override("font_color", Color("74d8ff") if nearby.marker.get("Type", "") == "EEUT_AbilityItemTreasureBox" else Color.WHITE)
+	var pending_activity := _pending_room_activity()
+	hud.primary.visible = not hud.modal_open and (not pending_activity.is_empty() or not nearby.is_empty() or not loot.is_empty())
+	world.update_event_markers(not profile.data.run.active)
+	var interaction_prompts: Array = []
+	if not pending_activity.is_empty():
+		hud.primary.text = str(pending_activity.title)
+		hud.primary.icon = DungeonStyle.texture("sprite_conversation_get")
+		hud.primary.add_theme_color_override("font_color", Color.WHITE)
+	elif not nearby.is_empty():
+		if loot.is_empty(): interaction_prompts = _interaction_prompts(nearby)
+	hud.show_interaction_prompts(interaction_prompts)
 	hud.show_pickup(loot, systems, hud.modal_open)
 	hud.objective_guide.update_target(world, world.paused or world._background or not profile.data.run.active or world._camp_camera or world.fighting or world.player.dead)
-	world.update_event_markers(not profile.data.run.active)
 	hud.readiness_suspended = world.paused or world._background or hud.modal_open
 	hud.low_effects = world.low_effects
-	hud.update_combat(combat, not profile.data.run.active and not world.camp_training.active)
+	hud.update_room_timer(world.elapsed, bool(profile.data.run.active))
+	hud.update_combat(combat, world._camp_camera and not world.camp_training.active)
+	hud.update_partner_skills(world.partner_skill_state())
 	if world.camp_training.active: hud.title_label.hide()
 	camp_training_readout.update_state(world.camp_training_status(), hud.modal_open or _transitioning or startup_loading)
 	hud.update_intent(world.intent)
@@ -359,6 +420,7 @@ func _camp() -> void:
 	_equip_visual()
 	hud.close_page()
 	hud.set_adventure_mode(profile.data.run.active)
+	hud.update_combat(world.player.combat, true)
 	active_page = ""
 	_loading = false
 	_play_music(0, true)
@@ -378,10 +440,9 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			_result_camp()
 		return
 	if world.camp_training.active and (kind.begins_with("op:") or kind in ["select_character", "equip_weapon"]): world.end_camp_training()
-	if kind not in ["volume", "auto_route"] and not kind.begins_with("page:"):
+	if kind not in ["volume", "auto_route"] and not kind.begins_with("page:") and not kind.begins_with("setting:"):
 		resource_audio.play_event("ui_back" if kind == "close_page" else "ui_dialogue" if kind == "talk_next" else "ui_click")
 	if kind == "close_page":
-		_cloud_confirmation_pending = false
 		_comment_confirmation_pending = false
 		_exit_after_reward = false
 		if not profile.data.get("dialogue_state", {}).is_empty():
@@ -398,6 +459,19 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		return
 	if kind == "privacy_ads":
 		if ads.bridge != null: ads.bridge.call("privacy_options")
+		return
+	if kind.begins_with("setting:"):
+		if DungeonSettings.set_option(kind.trim_prefix("setting:"), id): _apply_settings()
+		else: hud.toast("设置保存失败，请重试")
+		return
+	if kind.begins_with("settings_"):
+		_settings_action(kind, id)
+		return
+	if kind == "customize_controls":
+		hud.begin_touch_customization()
+		return
+	if kind == "reset_touch_controls":
+		hud.reset_touch_customization()
 		return
 	if kind.begins_with("ad:") or kind.begins_with("ad_skip:"):
 		var context = {"kind": kind.get_slice(":", 1), "id": int(id), "level": int(extra)}
@@ -418,22 +492,24 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		return
 	if kind.begins_with("visual:"):
 		DungeonStyle.set_option(kind.trim_prefix("visual:"), id)
-		DungeonStyle.apply_options(world)
+		_apply_settings()
 		menus.open("settings")
 		return
 	if kind == "language":
 		if DungeonLocale.set_locale(str(id)):
 			hud.update_counters(systems, difficulty)
 			hud.update_navigation(systems)
-			menus.open("settings")
+		else:
+			hud.toast("语言设置保存失败，请重试")
+		menus.open("settings")
+		return
+	if kind == "talent_marks_changed":
+		_save(true)
 		return
 	if kind.begins_with("page:"):
 		if not profile.data.get("dialogue_state", {}).is_empty():
 			profile.data.dialogue_state = {}
 			_save(true)
-		if kind == "page:character_talents" and not systems.pending_character_talent_reward().is_empty():
-			_talent_rewards()
-			return
 		menus.open(kind.trim_prefix("page:"), int(id))
 		return
 	if kind.begins_with("op:"):
@@ -441,11 +517,19 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		if method == "execute_npc_function":
 			_start_dialogue(int(id))
 			return
-		var args: Array = [] if method in ["unlock_token_slot", "unlock_amplifier_slot", "reroll_amplifier", "refresh_tokens"] else [id]
+		if method == "give_npc_gift":
+			var gift = systems.npc_gift_status(int(id))
+			if gift.success: _start_dialogue(int(gift.function_id))
+			else: hud.toast(str(gift.message))
+			return
+		var args: Array = [] if method in ["unlock_token_slot", "reroll_amplifier", "refresh_tokens", "receive_extra_challenges"] else [id]
+		if method == "equip_amplifier" and extra is Dictionary:
+			args = [int(extra.get("character_id", selected_character)), int(extra.get("token_id", 0)), int(extra.get("slot_index", 0)), int(id)]
+		elif method in ["unlock_amplifier_slot", "unequip_amplifier"]: args.append(extra)
 		if method == "start_work" and extra is Dictionary:
 			args.append(int(extra.get("partner", 0)))
 			args.append(int(extra.get("quantity", 1)))
-		elif method in ["start_work", "cook_meal", "select_meal", "buy_room_offer", "choose_loot_reward", "resolve_event", "claim_npc_support", "equip_camp_decoration"]: args.append(extra)
+		elif method in ["start_work", "cook_meal", "select_meal", "buy_room_offer", "choose_loot_reward", "resolve_event", "claim_npc_support", "equip_camp_decoration", "unlock_character_fashion", "equip_character_fashion"]: args.append(extra)
 		if not systems.has_method(method):
 			push_error("Missing UI operation: " + method)
 			hud.toast("操作暂不可用")
@@ -468,10 +552,17 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			if method == "start_work":
 				menus.open("work")
 				return
+			if method in ["compose_amplifier_batch", "reroll_amplifier"]:
+				menus.open("amplifiers")
+				return
+			if method in ["receive_extra_challenges", "remove_extra_challenge", "claim_extra_challenge"]:
+				menus.open("extra_challenges")
+				return
 			if method == "equip_camp_decoration": world.refresh_camp_progression()
 		menus.open(menus.current_page, 0 if menus.current_page in ["tasks", "achievements", "talents"] else menus.current_id)
 		return
 	match kind:
+		"history_detail": _show_history_record(int(id))
 		"start_training":
 			_close_page()
 			var result = world.start_camp_training()
@@ -487,6 +578,9 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			_close_page()
 			var result = world.interact_camp_marker(str(id))
 			if not result.success: hud.toast(_camp_interaction_failure(result))
+		"world_interact":
+			if hud.modal_open or world.paused or not profile.data.run.active or not world.interactions or not is_instance_valid(world.player): return
+			if world.interactions.can_interact_at(str(id), world.player.position): world.interactions.interact(str(id))
 		"confirm_stop_work":
 			var state = systems.work_status(int(id))
 			if state.order.is_empty(): return
@@ -500,6 +594,9 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"map": _toggle_map()
 		"talk_next": _next_dialogue()
 		"talk_skip": _skip_dialogue()
+		"talk_reward_close":
+			if profile.data.get("dialogue_state", {}).is_empty(): _close_page()
+			else: _show_dialogue()
 		"camp", "achievements", "inventory", "settings": menus.open(kind)
 		"primary": _primary()
 		"interact": _interact()
@@ -511,14 +608,6 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 				_save(true)
 			hud.update_navigation(systems)
 			menus.open("difficulty")
-		"cloud_save":
-			hud.update_navigation(systems)
-			if profile.data.run.active or not hud.navigation_buttons.menu_cloud.visible: return
-			_cloud_confirmation_pending = true
-			hud.show_page("云存档", [menus.item("开启云存档", "为确保您的存档安全，建议使用云存档功能保存游戏进度，以防存档丢失。（在设置-账户里可以找到~）", [menus.command("取消", "close_page"), menus.command("确定", "confirm_cloud_save")])])
-		"confirm_cloud_save":
-			if not _cloud_confirmation_pending or profile.data.run.active: return
-			hud.show_page("云存档", [menus.item("云存档暂不可用", "当前版本尚未接入账号与云存档服务。", [menus.command("关闭", "close_page"), menus.command("重试", "confirm_cloud_save")])])
 		"go_comment":
 			hud.update_navigation(systems)
 			if profile.data.run.active or not hud.navigation_buttons.menu_comment.visible: return
@@ -547,7 +636,9 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			var changed_character = selected_character != int(profile.data.selected_character)
 			selected_character = int(profile.data.selected_character)
 			selected_weapon = int(profile.data.selected_weapon)
-			if changed_character: _camp()
+			if changed_character:
+				world.camp_visitors.preserve_once = true
+				_camp()
 			_save(true)
 			menus.open("characters", selected_character)
 		"equip_weapon":
@@ -562,7 +653,7 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"restore_purchases":
 			hud.toast("恢复购买暂不可用：尚未接入平台支付与凭证验证")
 		"customer_support":
-			hud.toast("当前版本尚未配置客服渠道")
+			_settings_action("settings_support", 0)
 		"difficulty":
 			if not profile.data.run.active:
 				var status = systems.difficulty_status(int(id), selected_character)
@@ -597,13 +688,66 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"room_action": _room_action()
 		"finish_noncombat": _finish_noncombat()
 		"event_choice":
-			var result = systems.resolve_event(_room_key, int(id))
+			var event_key: String = str(extra.get("key", _room_key)) if extra is Dictionary else _room_key
+			var marker_id: String = str(extra.get("marker_id", "")) if extra is Dictionary else ""
+			_sync_live_combat()
+			var result = systems.resolve_event(event_key, int(id))
 			hud.toast(str(result.get("message", "")))
 			if result.get("success", false):
 				_apply_growth()
-				var view = systems.event_for_node(int(campaign.current_room().node_id), int(profile.data.run.seed), _room_key)
-				if view.get("finished", true): _finish_noncombat()
-				else: _room_action()
+				if world.player.combat.health <= 0:
+					world._die(world.player)
+					return
+				var view = systems.event_for_node(int(campaign.current_room().node_id), int(profile.data.run.seed), event_key)
+				if view.get("finished", true):
+					if not marker_id.is_empty(): _consume_room_action(marker_id)
+					hud.close_page()
+					if str(campaign.current_room().get("flow", "")) == "Event" and campaign.state.phase == "room": _finish_noncombat()
+					_save()
+				else: _show_adventure_event({"marker_id": marker_id}, event_key)
+		"choose_sacrifice":
+			_sync_live_combat()
+			var result: Dictionary = _room_choices().choose_sacrifice(str(extra), int(id))
+			hud.toast(str(result.get("message", "")))
+			_apply_growth()
+			_show_sacrifice(str(extra))
+			_save()
+		"refresh_sacrifice":
+			var result: Dictionary = _room_choices().refresh_sacrifice(str(id))
+			hud.toast(str(result.get("message", "")))
+			_show_sacrifice(str(id))
+			_save()
+		"lock_sacrifice":
+			_room_choices().toggle_sacrifice_lock(str(extra), int(id))
+			_show_sacrifice(str(extra))
+			_save()
+		"finish_sacrifice":
+			var result: Dictionary = _room_choices().finish_sacrifice(str(id))
+			if result.get("success", false):
+				profile.data.run.counters.erase("pending-room-choice:" + _room_key)
+				hud.close_page()
+				_save()
+		"choose_partner_skill":
+			if not extra is Dictionary: return
+			_sync_live_combat()
+			var result: Dictionary = _room_choices().choose_partner(str(extra.key), int(id), int(extra.get("slot", 0)))
+			hud.toast(str(result.get("message", "")))
+			if result.get("success", false):
+				profile.data.run.counters.erase("pending-room-choice:" + _room_key)
+				_apply_growth()
+				hud.close_page()
+				_save()
+		"room_meal_select", "room_meal_buy":
+			if not extra is Dictionary: return
+			var context := {"marker_id": str(extra.get("marker_id", ""))}
+			if _room_interaction_item(context, DungeonWorldInteractions.MEAL_SHOP).is_empty(): return
+			_sync_live_combat()
+			var meals = preload("res://scripts/domain/room_meals.gd").new(systems)
+			var result: Dictionary = meals.select_meal(int(id), int(extra.get("level", 1))) if kind == "room_meal_select" else meals.buy()
+			hud.toast(str(result.get("message", "")))
+			_apply_growth()
+			_show_room_meals(context)
+			_save()
 		"buy_room":
 			var result = systems.buy_room_offer(_room_key, int(id))
 			hud.toast(str(result.get("message", "")))
@@ -630,8 +774,11 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			if result.success: resource_audio.play_event("reward_get")
 			_apply_growth()
 			if result.success and str(extra) == "old_day:" + _room_key:
+				profile.data.run.counters["SelectLootRemainCount_OldDay"] = maxi(0, int(profile.data.run.counters.get("SelectLootRemainCount_OldDay", 0)) - 1)
 				profile.data.run.counters["old_day:chosen:" + _room_key] = true
-				_finish_noncombat()
+				hud.close_page()
+				if str(campaign.current_room().get("flow", "")) == "Curse" and campaign.state.phase == "room": _finish_noncombat()
+				_save()
 			elif result.success and str(extra).begins_with("curse_altar:"):
 				profile.data.run.counters["SelectLootRemainCount_Curse"] = maxi(0, int(profile.data.run.counters.get("SelectLootRemainCount_Curse", 0)) - 1)
 				hud.close_page()
@@ -646,7 +793,12 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			else: _rewards()
 		"refresh_loot":
 			hud.toast(str(systems.refresh_loot_reward(str(id)).message))
-			_rewards()
+			_rewards(str(id))
+			_save()
+		"lock_loot":
+			hud.toast(str(systems.toggle_loot_reward_lock(str(extra), int(id)).message))
+			_rewards(str(extra))
+			_save()
 		"choose_talent":
 			var result = systems.choose_character_talent_reward(str(extra), int(id))
 			hud.toast(str(result.get("message", "")))
@@ -669,13 +821,13 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			hud.toast("进度已保存" if _save(true) else save_store.warning)
 		"toggle_audio":
 			profile.data["audio_enabled"] = not profile.data.get("audio_enabled", true)
-			audio.stream_paused = not profile.data.audio_enabled
-			world.presentation.audio_enabled = bool(profile.data.audio_enabled)
-			resource_audio.enabled = bool(profile.data.audio_enabled)
+			DungeonSettings.set_option("volume_master", 100 if profile.data.audio_enabled else 0)
+			_apply_settings()
 			_save()
 		"volume":
 			profile.data["volume"] = clampf(float(id), 0, 1)
-			AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, profile.data.volume)))
+			DungeonSettings.set_option("volume_master", roundi(profile.data.volume * 100))
+			_apply_settings()
 			_save()
 		"auto_attack":
 			_action("auto_attack_mode", "normal" if bool(id) else "off", 0)
@@ -693,6 +845,7 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			_binding_action = str(id)
 			hud.toast("按下新的按键")
 		"reset_keys":
+			_binding_action = ""
 			profile.data["key_bindings"] = {}
 			_configure_input()
 			_save()
@@ -700,6 +853,32 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"quit":
 			_save(true)
 			get_tree().quit()
+
+func _settings_action(kind: String, id: Variant) -> void:
+	var view: Control
+	if is_instance_valid(hud.page.special): view = hud.page.special.settings_view
+	if kind in ["settings_support", "settings_forum", "settings_group"]:
+		var names := {"settings_support": "URL_ContactService", "settings_forum": "URL_TapTap", "settings_group": "URL_QQGroup"}
+		var config: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/RogueConfigData.json"))
+		var url := str(config.get(names[kind], ""))
+		if FileAccess.file_exists("res://assets/ui/settings/community.json"):
+			var shipped: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/settings/community.json"))
+			url = str(shipped.get(names[kind], url))
+		if url.is_empty():
+			hud.toast("当前版本尚未配置此渠道")
+		elif _open_external_url.call(url) != OK:
+			hud.toast("无法打开页面，请稍后重试")
+		return
+	if kind == "settings_logout":
+		if not _save(true):
+			if is_instance_valid(view): view.set_dialog_status(save_store.warning)
+			return
+		_return_to_title.call_deferred()
+		return
+	if kind == "settings_redeem":
+		if is_instance_valid(view): view.set_dialog_status("请输入兑换码" if str(id).strip_edges().is_empty() else "兑换暂不可用：当前版本尚未接入兑换服务。")
+	elif kind == "settings_feedback":
+		if is_instance_valid(view): view.set_dialog_status("当前版本尚未接入反馈服务。可通过联系客服获取帮助。")
 
 func _primary() -> void:
 	if _flow_locked(): return
@@ -720,6 +899,7 @@ func _primary() -> void:
 		_save()
 	elif world.player.dead: _player_defeated()
 	elif campaign.state.phase == "route": _route()
+	elif _resume_room_activity(): return
 	elif campaign.state.phase == "reward": _leave_room()
 	elif campaign.room_ready(): _finish_room()
 	elif not campaign.current_room().get("combat", false): _room_action()
@@ -893,7 +1073,7 @@ func _load_room(resume := false) -> void:
 				_pending_region_notice = {"key": _room_key, "title": menus.clean(str(area.Name))}
 				break
 	systems.ensure_map_node_increments(campaign)
-	world.load_environment(int(room.get("environment_id", room.stage_id)))
+	world.load_environment(int(room.get("environment_id", room.stage_id)), false, systems.room_treasure_quality(_room_key, room))
 	world.room_fight_type = str(room.get("FightType", "Regular"))
 	world.room_spawn_points = room.get("SpawnPoints", []).duplicate(true)
 	world.enemy_stage_layer = clampi(int(room.get("progress_region", room.get("region", 1))), 1, 5)
@@ -920,6 +1100,7 @@ func _load_room(resume := false) -> void:
 		profile.data.run.counters["run:total_depth"] = int(profile.data.run.counters.get("run:total_depth", campaign.state.get("visited", []).size())) + 1
 	hud.close_page()
 	hud.set_adventure_mode(true)
+	hud.update_combat(combat, false)
 	if resume: actor.invulnerability = maxf(0, float(profile.data.run.battle.get("invulnerability", 0)))
 	if room.get("combat", false) and campaign.state.phase == "room":
 		if resume and profile.data.run.battle.has("enemies"):
@@ -949,6 +1130,7 @@ func _load_room(resume := false) -> void:
 		world.elapsed = float(profile.data.run.battle.get("elapsed", 0))
 		world.received_hits = int(profile.data.run.battle.get("received_hits", 0))
 	_restore_curse_altars()
+	_restore_room_actions()
 	world.ground_loot.sync_source_altars(world.interactions, _room_key)
 	world.interactions.set_exit_enabled(campaign.state.phase == "reward" or not room.get("combat", false))
 	world.interactions.set_completion_chests_enabled(campaign.state.phase == "reward" or not room.get("combat", false))
@@ -1004,6 +1186,7 @@ func _play_player_transfer(arrival: bool) -> void:
 func _skill(slot: int, pressed: bool) -> void:
 	if hud.modal_open or _transitioning or boss_intro.active: return
 	var result = world.use_skill(slot, pressed)
+	if slot in [5, 6] and pressed and result.get("success", false): _save()
 	if slot > 1 and pressed and not result.get("success", false):
 		resource_audio.play_event("skill_unavailable")
 		hud.toast(str(result.get("message", "能量不足或冷却中")))
@@ -1019,11 +1202,7 @@ func _record_run_impact(impact: Dictionary) -> void:
 	counters["run:max_damage"] = maxf(float(counters.get("run:max_damage", 0)), dealt)
 
 func _update_battle_presentation(delta: float) -> void:
-	var target: DungeonActor
-	for actor in world.actors:
-		if is_instance_valid(actor) and not actor.dead and actor.combat.enemy.get("rank", "") == "Boss":
-			target = actor
-			break
+	var target: DungeonActor = hud.battle_readout.boss.select_target(world.actors)
 	var name_text := ""
 	if target:
 		name_text = menus.name_of(catalog.find("EnemyData", target.actor_id))
@@ -1035,6 +1214,7 @@ func _update_battle_presentation(delta: float) -> void:
 	battle_tally.advance(presentation_delta, world.fighting)
 	hud.battle_readout.visible = profile.data.run.active and not hud.modal_open and not _transitioning and not boss_intro.active and not _flow_locked()
 	hud.battle_readout.update_values(battle_tally, target, name_text, presentation_delta)
+	if boss_intro.visible: hud.battle_readout.boss.hide()
 	hud.battle_readout.update_enemies(world.actors, world.camera, delta if not world.paused else 0.0)
 
 func _enemy_defeated(enemy_id: int) -> void:
@@ -1064,8 +1244,11 @@ func _finish_room() -> void:
 		world.room_stage = "open"
 		world.sync_room_gates()
 	world.interactions.set_exit_enabled(world.room_stage != "rewards")
+	var quality: String = systems.room_treasure_quality(_room_key, room, {"elapsed": world.elapsed, "hits": world.received_hits, "target_hp": 100.0, "kills": world.defeated_count})
+	world.interactions.set_completion_chest_quality(quality)
+	var props = world.environment_root.get_node_or_null("RoomProps")
+	if props: props.refresh_chests()
 	world.interactions.set_completion_chests_enabled(true)
-	if str(room.flow) == "Treasure" and not profile.data.run.counters.get("world_treasure:" + _room_key, false): _drop_treasure(world.player.position + Vector3(1.5, 0, 0))
 	systems.complete_node(_room_key, int(room.node_id), int(room.get("progress_region", room.region)), str(room.flow) == "Boss", str(room.node_type))
 	systems.claim_node_materials(_room_key, int(room.get("progress_region", room.region)), str(room.flow) == "Boss")
 	if world.ground_loot.source_altars.is_empty() and systems.room_node_increments(_room_key, room).has("13008"):
@@ -1089,6 +1272,7 @@ func _leave_room(confirmed := false) -> void:
 	if world.room_stage in ["entry", "protection", "fighting", "clearing", "rewards", "opening", "event_locked"]: return
 	if campaign.state.get("phase", "") != "reward": return
 	_exit_after_reward = true
+	if _resume_room_activity(): return
 	if not systems.pending_character_talent_reward().is_empty():
 		_talent_rewards()
 		return
@@ -1145,7 +1329,9 @@ func _talent_rewards() -> void:
 		var levels = DungeonCatalog.ids(talent.level_data_id_list)
 		var detail = catalog.find("CharTalentLevelData", int(levels[next_level - 1]))
 		var row = menus.item(menus.name_of(talent), menus.description(talent) + "\n\n" + menus.description(detail), [menus.command("选择", "choose_talent", id, str(reward.key))])
-		row.merge({"icon": str(talent.get("icon_name", "")), "grade": grade, "grade_color": color, "rarity": {"Low": 2, "Normal": 4, "High": 5}.get(quality, 2), "level_text": "Lv.%d → Lv.%d" % [old_level, next_level]})
+		row["config_id"] = id
+		row["marked"] = systems.is_character_talent_marked(id)
+		row.merge({"icon": str(talent.get("icon_name", "")), "grade": grade, "grade_color": color, "rarity": clampi(next_level + 2, 1, 5), "target_level": next_level, "level_text": "Lv.%d → Lv.%d" % [old_level, next_level], "effect_description": menus.description(talent), "level_description": menus.description(detail)})
 		rows.append(row)
 	rows.append(menus.item("重选", "", [menus.command("重选", "refresh_talent", str(reward.key), 0, int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0)]))
 	rows.back()["presentation_role"] = "refresh"
@@ -1167,6 +1353,19 @@ func _rewards(preferred_key := "") -> void:
 			rows.append(menus.item(menus.loot_name(int(id)), menus.description(ability), [menus.command("选择", "choose_loot", int(id), str(reward.key))]))
 			rows.back()["icon"] = "loot:" + str(id)
 			rows.back()["rarity"] = int(ability.get("Rare", 1))
+			rows.back()["loot_type"] = str(row.get("loot_type", ""))
+			rows.back()["loot_id"] = int(id)
+			rows.back()["ability_id"] = int(row.get("ability_item_id", id))
+			rows.back()["effect_tags"] = row.get("effect_tag_list", [])
+			rows.back()["source_description"] = str(ability.get("Description", ""))
+			rows.back()["show_collection_badge"] = int(id) not in profile.data.discovered_loot
+			rows.back()["lock_visible"] = systems.is_loot_lock_unlocked()
+			rows.back()["lock_command"] = menus.command("", "lock_loot", int(id), str(reward.key))
+			rows.back()["locked"] = reward.get("locked_ids", []).has(int(id))
+			var spirit: Dictionary = menus.spirit_skills.preview(int(id))
+			if not spirit.is_empty():
+				rows.back().merge({"grade": spirit.grade, "level_text": spirit.transition, "spirit_skill": spirit}, true)
+				rows.back().buttons[0].text = str(spirit.mode)
 		rows.append(menus.item("刷新", "", [menus.command("刷新", "refresh_loot", str(reward.key), 0, int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0)]))
 		rows.back()["presentation_role"] = "refresh"
 		break
@@ -1174,8 +1373,11 @@ func _rewards(preferred_key := "") -> void:
 		if _exit_after_reward: _leave_room()
 		else: hud.close_page()
 		return
-	var altar = str(selected_reward.get("key", "")).begins_with("altar:")
-	hud.show_page("请选择一个精灵" if altar else "冒险奖励", rows, "altar" if altar else "support")
+	var key := str(selected_reward.get("key", ""))
+	var spirit_altar := key.begins_with("altar:")
+	var collection_altar := spirit_altar or key.begins_with("curse_altar:") or key.begins_with("old_day:")
+	var title := "请选择一个精灵" if spirit_altar else ("选择遗物" if collection_altar else "冒险奖励")
+	hud.show_page(title, rows, "altar" if collection_altar else "support", {"altar_kind": "sprites" if spirit_altar else ("old_day" if key.begins_with("old_day:") else "curse")})
 
 func _room_action() -> void:
 	var room: Dictionary = campaign.current_room()
@@ -1190,26 +1392,22 @@ func _room_action() -> void:
 		hud.show_page(str(room.name), rows)
 		return
 	if flow == "Curse" and campaign.state.phase == "room":
-		var key = "old_day:" + _room_key
-		systems.create_loot_reward(int(catalog.config.get("AbilityItemLootPoolId_OldDay", 0)), key, 3)
-		_rewards(key)
-		_save()
+		var pending_key := "old_day:" + _room_key
+		if profile.data.run.rewards.any(func(reward): return str(reward.key) == pending_key):
+			_rewards(pending_key)
+		else:
+			for item in world.interactions._items.values():
+				if str(item.data.get("UIBtnName", "")) == DungeonWorldInteractions.OLD_DAY_ALTAR:
+					_request_old_day_altar(world.interactions._context(item))
+					return
 		return
 	if flow == "Event" and systems.has_method("event_for_node"):
-		var view = systems.event_for_node(int(room.node_id), int(profile.data.run.seed), _room_key)
-		if view is Dictionary:
-			rows.append(menus.item(str(view.get("name", room.name)), menus.clean(view.get("story", ""))))
-			for choice in view.get("choices", []):
-				rows.append(menus.item(str(choice.get("text", choice.get("name", "选择"))), "", [menus.command("选择", "event_choice", int(choice.get("id", 0)), 0, not choice.get("enabled", true))]))
+		_show_adventure_event()
+		return
 	elif flow == "Shop" and systems.has_method("get_room_shop"):
 		_show_room_shop(room)
 		return
 	else:
-		if flow == "Rest" and not profile.data.run.counters.get("rest:" + _room_key, false):
-			world.player.combat.health = minf(world.player.combat.max_health, world.player.combat.health + world.player.combat.max_health * 0.3)
-			profile.data.run.health = world.player.combat.health
-			profile.data.run.counters["rest:" + _room_key] = true
-			_save()
 		rows.append(menus.item(str(room.name), "", [menus.command("继续", "finish_noncombat")]))
 	rows.append(menus.item("前往下一房间", "", [menus.command("继续前进", "finish_noncombat")]))
 	rows.back()["presentation_role"] = "navigation"
@@ -1323,6 +1521,9 @@ func _finish_run(victory: bool, reason := "battle") -> void:
 	run.outcome.merge(systems.settlement_experience(total_depth, int(run.region), int(run.counters.get("run:kills", 0))))
 	if not victory: campaign.fail()
 	run.route = campaign.snapshot()
+	if victory and systems.get("extra_challenges") != null:
+		systems.extra_challenges.record_event("XChara_YWeapon_ZDifficulty", str(run.character_id), str(profile.data.get("selected_weapon", 101)), str(run.difficulty))
+	preload("res://scripts/domain/camp_history.gd").new(systems).capture(victory, reason)
 	systems.end_run(victory)
 	profile.data["dialogue_state"] = {}
 	_loading = false
@@ -1352,8 +1553,28 @@ func _show_result() -> void:
 	hud.show_page("冒险结算", [], "outcome", context)
 	world.paused = true
 
+func _show_history_record(record_id: int) -> void:
+	if not systems.camp_feature_status("history").available:
+		hud.toast(str(systems.camp_feature_status("history").reason))
+		return
+	var record: Dictionary = systems.history.detail(record_id)
+	if record.is_empty(): return
+	var character: Dictionary = catalog.find("CharData", int(record.character_id))
+	var context := {"title": "战斗胜利" if record.victory else "冒险结束" if record.get("reason", "") == "retreat" else "战斗失败",
+		"stage": "summary", "portrait": character.get("full_icon_name", ""), "victory": record.victory,
+		"button": "返回档案", "action": "page:history", "elapsed": record.elapsed,
+		"talents": _result_items(record.get("talents", {}), "talent"),
+		"relics": _result_items(record.get("inventory", {}), "relic"),
+		"rewards": _result_items(record.get("materials", {}), "material"),
+		"statistics": [["击败数量", str(int(record.kills))], ["总伤害", _result_number(float(record.damage))],
+			["最大伤害", _result_number(float(record.max_damage))], ["到达区域", str(int(record.region))],
+			["完成房间", str(int(record.rooms))], ["获得金苹果", str(int(record.gold_apples))]]}
+	menus.current_page = "history"
+	hud.show_page("冒险档案", [], "outcome", context)
+	world.paused = true
+
 func _result_number(value: float) -> String:
-	return "%.1f万" % (value / 10000.0) if value >= 10000 else str(int(value))
+	return DungeonLocale.compact_number(value)
 
 func _result_items(owned: Dictionary, kind: String) -> Array:
 	var items: Array = []
@@ -1387,11 +1608,26 @@ func _result_next() -> void:
 
 func _result_camp() -> void:
 	var result: Dictionary = profile.data.run.get("outcome", {})
-	if result.is_empty() or result.get("stage", "summary") != "rewards": return
+	if _transitioning or result.is_empty() or result.get("stage", "summary") != "rewards": return
+	_transitioning = true
+	world.paused = true
+	world.clear_input()
+	room_loading.begin("营地")
+	await get_tree().process_frame
+	if DisplayServer.get_name() != "headless": await RenderingServer.frame_post_draw
 	profile.data.run.erase("outcome")
 	_camp()
-	world.paused = false
+	room_loading.set_progress(0.85)
+	while world.presentation.has_pending_preparation():
+		world.presentation.prepare_step()
+		room_loading.set_progress(0.95)
+		await get_tree().process_frame
 	_save(true)
+	room_loading.set_progress(1.0)
+	await get_tree().process_frame
+	room_loading.finish()
+	_transitioning = false
+	world.paused = hud.modal_open
 
 func _toggle_map() -> void:
 	if not profile.data.run.active or _transitioning or _flow_locked(): return
@@ -1402,6 +1638,7 @@ func _toggle_map() -> void:
 
 func _close_page() -> void:
 	if _flow_locked(): return
+	_binding_action = ""
 	if not profile.data.get("dialogue_state", {}).is_empty():
 		profile.data.dialogue_state = {}
 		_save(true)
@@ -1434,8 +1671,7 @@ func _npc_entry(npc_id: int) -> int:
 			return int(row.id)
 	return 0
 
-func _open_npc(npc_id: int) -> void:
-	if catalog.find("NPCData", npc_id).is_empty(): return
+func _npc_enter_function(npc_id: int) -> int:
 	var entry = _npc_entry(npc_id)
 	var priority := 0
 	for candidate in catalog.rows("NPCFunctionData"):
@@ -1447,9 +1683,13 @@ func _open_npc(npc_id: int) -> void:
 		if not profile.data.run.active and int(candidate.get("entertalk_order", 0)) > priority and systems.npc_function_status(int(candidate.id)).success:
 			priority = int(candidate.entertalk_order)
 			entry = int(candidate.id)
+	return entry
+
+func _open_npc(npc_id: int) -> void:
+	if catalog.find("NPCData", npc_id).is_empty(): return
 	menus.current_page = "npc"
 	menus.current_id = npc_id
-	_start_dialogue(entry)
+	_start_dialogue(_npc_enter_function(npc_id))
 
 func _start_dialogue(function_id: int) -> void:
 	var status = systems.npc_function_status(function_id)
@@ -1465,13 +1705,28 @@ func _start_dialogue(function_id: int) -> void:
 		else: menus.open("mall")
 		return
 	var seed_value = int(profile.data.run.get("seed", 0)) + systems.stat("npc:executions:" + str(function_id)) + function_id
-	var lines = dialogue.read_story(str(row.get("talk_file_entry", "")), seed_value)
+	var story = str(row.get("talk_file_entry", ""))
+	if str(row.get("func_msg_name", "")) == "EnvUnit_NPC_GiveGift":
+		var gift = systems.npc_gift_status(int(row.npc_index))
+		if not gift.success:
+			hud.toast(str(gift.message))
+			if not profile.data.get("dialogue_state", {}).is_empty(): _show_dialogue()
+			return
+		story = str(gift.story)
+	var lines = dialogue.read_story(story, seed_value)
+	if str(row.get("func_msg_name", "")) == "EnvUnit_NPC_GiveGift" and lines.is_empty():
+		hud.toast("赠礼对话暂不可用")
+		if not profile.data.get("dialogue_state", {}).is_empty(): _show_dialogue()
+		return
 	profile.data["dialogue_state"] = {"function_id": function_id, "index": -1, "lines": lines, "stage": "story"}
 	_next_dialogue()
 
 func _skip_dialogue() -> void:
 	var state: Dictionary = profile.data.get("dialogue_state", {})
-	if state.is_empty() or state.get("stage", "story") != "story": return
+	if state.is_empty(): return
+	if state.get("stage", "story") == "choices":
+		return
+	if state.get("stage", "story") != "story": return
 	state.index = state.get("lines", []).size()
 	_next_dialogue()
 
@@ -1492,12 +1747,21 @@ func _next_dialogue() -> void:
 	if str(row.get("func_msg_name", "")) == "NpcSupportTalk" and result.success:
 		_show_npc_support(function_id)
 	else:
-		var label = menus.clean(row.get("btn_name", ""))
-		if "再见" in label or "下次一定" in label:
+		if not result.success or DungeonCatalog.ids(row.get("next_func_id_array", "")).is_empty():
 			_close_page()
 		else:
 			_show_npc_choices(int(row.get("npc_index", 0)), function_id, state.get("lines", []))
+	if result.success and not result.get("rewards", {}).is_empty():
+		_show_npc_rewards(result.rewards)
 	_save(true)
+
+func _show_npc_rewards(rewards: Dictionary) -> void:
+	var items: Array = []
+	for material_id in rewards:
+		items.append({"id": int(material_id), "name": menus.clean(systems.material_name(int(material_id))), "icon": "material:" + str(material_id), "count": int(rewards[material_id])})
+	hud.show_page("获得物品", [], "dialogue", {"rewards": items})
+	resource_audio.play_event("reward_get")
+	world.paused = true
 
 func _show_npc_support(function_id: int) -> void:
 	var rows: Array = []
@@ -1506,32 +1770,38 @@ func _show_npc_support(function_id: int) -> void:
 		var loot = catalog.find("LootData", loot_id)
 		var ability = catalog.find("AbilityItems", int(loot.get("ability_item_id", loot_id)))
 		var row = menus.item(menus.loot_name(loot_id), menus.description(ability), [menus.command("选择", "op:claim_npc_support", function_id, loot_id, offer.get("sold", false))])
-		row.merge({"icon": "loot:" + str(loot_id), "rarity": int(ability.get("Rare", 1))})
+		row.merge({"icon": "loot:" + str(loot_id), "rarity": int(ability.get("Rare", 1)), "loot_type": str(loot.get("loot_type", ""))})
 		rows.append(row)
 	hud.show_page("选择冒险家支援道具", rows, "support")
 
 func _npc_choices(npc_id: int, function_id: int) -> Array:
 	var choices: Array = []
-	var services = {1000: ["公会支援表", "talents"], 1100: ["打造武器", "weapons"], 1200: ["战利品图鉴", "archive"], 1300: ["委托板", "tasks"], 2200: ["据点建设", "buildings"]}
-	if not profile.data.run.active and services.has(npc_id):
-		var service: Array = services[npc_id]
-		choices.append(menus.command(service[0], "page:" + service[1]))
-		if npc_id == 1100: choices.append(menus.command("训练场", "page:training"))
 	var row: Dictionary = catalog.find("NPCFunctionData", function_id)
 	var next_ids = DungeonCatalog.ids(row.get("next_func_id_array", ""))
-	if next_ids.is_empty(): next_ids = DungeonCatalog.ids(catalog.find("NPCFunctionData", _npc_entry(npc_id)).get("next_func_id_array", ""))
 	for next_id in next_ids:
 		if not systems.npc_function_status(next_id).success: continue
 		var next = catalog.find("NPCFunctionData", next_id)
 		var label = menus.clean(next.get("btn_name", "交谈"))
-		if "再见" in label or "下次一定" in label: continue
+		var disabled := false
+		var reason := ""
+		if str(next.get("func_msg_name", "")) == "EnvUnit_NPC_GiveGift":
+			var apples = systems.material(106)
+			if apples == 0 and systems.rank(profile.data.buildings, 2) < 2: continue
+			label = "送礼(金苹果:%d)" % apples
+			disabled = apples <= 0
+			reason = "需要金苹果" if disabled else ""
 		var count = {"MainCityTreasureBoxGacha": 1, "MainCityTreasureBoxGacha5": 5, "MainCityTreasureBoxGacha50": 50, "MainCityTreasureBoxGacha300": 300}.get(next.get("func_msg_name", ""), 0)
 		if count > 0:
 			var box = catalog.find("ShopTreasureBoxData", int(catalog.config.get("StoreTreasureBoxId", 0)))
 			label = "开启%d次 · 金币%d" % [count, int(box.get("price", 0)) * count]
-		if "初次对话" in label: label = "初次见面"
-		choices.append(menus.command(label, "op:execute_npc_function", next_id))
-	choices.append(menus.command("再见", "close_page"))
+		var choice = menus.command(label, "op:execute_npc_function", next_id, 0, disabled)
+		choice["icon"] = str(next.get("btn_icon", "sprite_conversation_talk"))
+		choice["reason"] = reason
+		choices.append(choice)
+	if choices.is_empty():
+		var leave = menus.command("再见。", "close_page")
+		leave["icon"] = "sprite_conversation_talk"
+		choices.append(leave)
 	return choices
 
 func _show_npc_choices(npc_id: int, function_id: int, lines: Array = []) -> void:
@@ -1548,12 +1818,15 @@ func _show_dialogue() -> void:
 	var function_id = int(state.get("function_id", 0))
 	var npc_id = int(catalog.find("NPCFunctionData", function_id).get("npc_index", state.get("npc_id", 0)))
 	var npc = catalog.find("NPCData", npc_id)
+	if choosing:
+		var greeting = dialogue.read_story(str(catalog.find("NPCFunctionData", _npc_entry(npc_id)).get("talk_file_entry", "")), npc_id)
+		if not greeting.is_empty(): line = greeting[0]
 	var author = str(line.get("AuthorId", ""))
 	if author.is_empty() or DungeonStyle.texture("characterillustration_" + author + "_normal") == null:
 		var greeting = dialogue.read_story(str(catalog.find("NPCFunctionData", _npc_entry(npc_id)).get("talk_file_entry", "")), npc_id)
 		if not greeting.is_empty(): author = str(greeting[0].get("AuthorId", ""))
 	var choices = _npc_choices(npc_id, function_id) if choosing else []
-	var context = {"speaker": str(line.get("Speaker", npc.get("name", ""))), "text": menus.clean(line.get("Text", npc.get("title", ""))), "portrait": "characterillustration_" + author + "_normal", "npc_id": npc_id, "choices": choices, "can_skip": not choosing}
+	var context = {"speaker": str(line.get("Speaker", npc.get("name", ""))), "text": menus.clean(line.get("Text", npc.get("title", ""))), "portrait": "characterillustration_" + author + "_normal", "npc_id": npc_id, "choices": choices, "can_skip": true, "show_relationship": not profile.data.run.active and not str(npc.get("relationship_entryid", "")).is_empty(), "relationship": systems.stat("relationship:" + str(npc_id))}
 	hud.show_page(context.speaker, [], "dialogue", context)
 	world.paused = true
 
@@ -1717,6 +1990,236 @@ func _finish_chest_trial() -> void:
 	world.trial_room.finish()
 	_finish_room()
 
+func _room_interaction(context: Dictionary) -> void:
+	_sync_live_combat()
+	match str(context.get("data", {}).get("UIBtnName", "")):
+		DungeonWorldInteractions.CURSE_ALTAR: _request_curse_altar(context)
+		DungeonWorldInteractions.OLD_DAY_ALTAR: _request_old_day_altar(context)
+		DungeonWorldInteractions.ADVENTURE_EVENT, DungeonWorldInteractions.SPECIAL_EVENT: _show_adventure_event(context)
+		DungeonWorldInteractions.SPRING: _drink_spring(context)
+		DungeonWorldInteractions.SACRIFICIAL_ALTAR: _request_sacrificial_altar(context)
+		DungeonWorldInteractions.PARTNER_SELECTOR: _request_partner_selector(context)
+		DungeonWorldInteractions.MEAL_SHOP: _show_room_meals(context)
+
+func _show_room_meals(context: Dictionary) -> void:
+	var item := _room_interaction_item(context, DungeonWorldInteractions.MEAL_SHOP)
+	if item.is_empty(): return
+	var meals = preload("res://scripts/domain/room_meals.gd").new(systems)
+	var order: Dictionary = meals.order_status()
+	var lines: Array[String] = []
+	for key in order.meals:
+		lines.append("%s Lv.%d" % [menus.name_of(catalog.find("CatMealData", int(key))), int(order.meals[key])])
+	var rows: Array = [menus.item("本次餐单 %d / %d" % [int(order.count), int(order.limit)], "\n".join(lines) + "\n合计：" + menus.price_text(order.price) + "\n" + menus.clean(order.reason), [menus.command("点餐", "room_meal_buy", 0, {"marker_id": str(item.id)}, not order.can_buy)])]
+	rows[0]["icon"] = "icon_maincitybulid_restaurant"
+	rows[0]["commands_first"] = true
+	for row in catalog.rows("CatMealData"):
+		var id := DungeonCatalog.row_id(row)
+		var buttons: Array = []
+		var details := ""
+		for level in range(1, DungeonCatalog.ids(row.get("AbilityItemId", "")).size() + 1):
+			var quote: Dictionary = meals.meal_status(id, level)
+			buttons.append(menus.command(("移出" if quote.selected else "选择") + " Lv.%d" % level, "room_meal_select", id, {"marker_id": str(item.id), "level": level}, not quote.can_select))
+			details += "Lv.%d：%s%s\n%s\n" % [level, menus.price_text(quote.price), " · 已生效" if quote.purchased else " · 餐单已选" if quote.selected else "", quote.description]
+		rows.append(menus.item(menus.name_of(row), details, buttons))
+		rows.back()["icon"] = str(row.get("IconName", ""))
+		rows.back()["commands_first"] = true
+	hud.show_page("猫饭料理", rows, "grid", {"room_activity": true})
+
+func _room_interaction_item(context: Dictionary, button_key: String) -> Dictionary:
+	if not profile.data.run.active or _transitioning or _flow_locked() or not is_instance_valid(world.player) or world.player.dead: return {}
+	var item: Dictionary = world.interactions._items.get(str(context.get("marker_id", "")), {})
+	if item.is_empty() or not item.state.enabled or item.state.used or str(item.data.get("UIBtnName", "")) != button_key: return {}
+	return item
+
+func _sync_live_combat() -> void:
+	if not profile.data.run.active or not is_instance_valid(world.player): return
+	profile.data.run.health = maxf(0, world.player.combat.health)
+	profile.data.run.max_health = world.player.combat.max_health
+	profile.data.run.armor = world.player.combat.armor
+
+func _consume_room_action(marker_id: String) -> void:
+	if marker_id.is_empty(): return
+	profile.data.run.counters["room-action:" + _room_key + ":" + marker_id] = true
+	world.interactions.set_room_action_consumed(marker_id)
+
+func _restore_room_actions() -> void:
+	if not profile.data.run.active: return
+	for item in world.interactions._items.values():
+		if profile.data.run.counters.get("room-action:" + _room_key + ":" + str(item.id), false):
+			world.interactions.set_room_action_consumed(str(item.id))
+
+func _show_adventure_event(context: Dictionary = {}, event_key := "") -> void:
+	if not profile.data.run.active or _transitioning or _flow_locked() or world.player.dead: return
+	var marker_id := str(context.get("marker_id", ""))
+	var item: Dictionary = world.interactions._items.get(marker_id, {})
+	if marker_id.is_empty():
+		for candidate in world.interactions._items.values():
+			if str(candidate.data.get("UIBtnName", "")) in [DungeonWorldInteractions.ADVENTURE_EVENT, DungeonWorldInteractions.SPECIAL_EVENT] and candidate.state.enabled:
+				item = candidate
+				marker_id = str(item.id)
+				break
+	if not item.is_empty() and (not item.state.enabled or item.state.used): return
+	if event_key.is_empty():
+		event_key = "event:" + _room_key + ":" + marker_id if not marker_id.is_empty() else _room_key
+		if profile.data.run.events.any(func(encounter): return str(encounter.key) == _room_key): event_key = _room_key
+	var special := str(item.get("data", {}).get("UIBtnName", "")) == DungeonWorldInteractions.SPECIAL_EVENT
+	_sync_live_combat()
+	var view: Dictionary = systems.event_for_node(int(campaign.current_room().node_id), int(profile.data.run.seed), event_key, special)
+	if view.is_empty():
+		hud.toast("没有可触发的事件")
+		return
+	var rows: Array = [menus.item(str(view.get("name", "冒险事件")), menus.clean(view.get("story", "")))]
+	if not str(view.get("result", "")).is_empty(): rows.append(menus.item("", menus.clean(view.result)))
+	for choice in view.get("choices", []):
+		rows.append(menus.item(menus.clean(choice.get("text", "选择")), str(choice.get("reason", "")), [menus.command("选择", "event_choice", int(choice.get("id", 0)), {"key": event_key, "marker_id": marker_id}, not choice.get("enabled", true))]))
+		rows.back()["commands_first"] = true
+	hud.show_page(menus.clean(view.get("name", "冒险事件")), rows, "list", {"room_activity": true})
+	_save()
+
+func _request_old_day_altar(context: Dictionary) -> void:
+	var item := _room_interaction_item(context, DungeonWorldInteractions.OLD_DAY_ALTAR)
+	if item.is_empty(): return
+	var key := "old_day:" + _room_key
+	if profile.data.run.counters.get("old_day:created:" + _room_key, false): return
+	var index: int = profile.data.run.rewards.size()
+	systems.effects.instant({"AddAttribute1": "SelectLootRemainCount_OldDay", "AddAttributeValue1": 1})
+	if profile.data.run.rewards.size() <= index: return
+	var reward: Dictionary = profile.data.run.rewards[index]
+	if reward.choices.is_empty():
+		profile.data.run.rewards.remove_at(index)
+		hud.toast("没有可选的旧日遗物")
+		return
+	reward.key = key
+	profile.data.run.counters["old_day:created:" + _room_key] = true
+	profile.data.run.counters["SelectLootRemainCount_OldDay"] = int(profile.data.run.counters.get("SelectLootRemainCount_OldDay", 0)) + 1
+	_consume_room_action(str(item.id))
+	_save()
+	_rewards(key)
+
+func _drink_spring(context: Dictionary) -> void:
+	var item := _room_interaction_item(context, DungeonWorldInteractions.SPRING)
+	if item.is_empty(): return
+	var pool = load("res://scripts/domain/healing_pool.gd").new()
+	var attributes: Dictionary = systems.attributes()
+	var result: Dictionary = pool.drink(profile.data.run.counters, _room_key, world.player.combat.max_health, world.player.combat.health, 300 + float(attributes.get("SpringRecoverHpRatio", 0)))
+	if not result.get("success", false): return
+	world.player.combat.recover_health(float(result.amount))
+	profile.data.run.health = world.player.combat.health
+	_consume_room_action(str(item.id))
+	var red_roll: int = systems.next_random(1000) + 1 if int(attributes.get("DrinkSpringGetRedgemLv", 0)) > 0 else 1001
+	var green_roll: int = systems.next_random(1000) + 1 if int(attributes.get("DrinkSpringGetGreengemLv", 0)) > 0 else 1001
+	var rewards: Array = pool.reward_plan(attributes, red_roll, green_roll)
+	for loot_id in rewards: systems.add_loot(int(loot_id))
+	resource_audio.play_named("spring_drink")
+	world.interactions.effect_requested.emit({"address": str(catalog.config.get("DefaultDrinkSpringVfxName", "")), "position": world.player.global_position})
+	hud.toast("已饮用泉水")
+	_save()
+
+func _room_choices() -> RefCounted:
+	return load("res://scripts/domain/room_choices.gd").new(systems)
+
+func _pending_room_activity() -> Dictionary:
+	if not profile.data.run.active or _flow_locked() or world.player.dead: return {}
+	var pending: Dictionary = profile.data.run.counters.get("pending-room-choice:" + _room_key, {})
+	if not pending.is_empty():
+		return {"kind": str(pending.get("kind", "")), "key": str(pending.get("key", "")), "title": "继续献祭" if str(pending.get("kind", "")) == "sacrifice" else "选择伙伴技能"}
+	for reward in profile.data.run.rewards:
+		if reward.get("chosen", false) or reward.get("choices", []).is_empty(): continue
+		var key := str(reward.get("key", ""))
+		if key == "old_day:" + _room_key or key.begins_with("curse_altar:" + _room_key + ":"):
+			return {"kind": "reward", "key": key, "title": "选择旧日遗物" if key.begins_with("old_day:") else "选择诅咒遗物"}
+	return {}
+
+func _resume_room_activity() -> bool:
+	var pending := _pending_room_activity()
+	if pending.is_empty(): return false
+	if str(pending.kind) == "reward":
+		_rewards(str(pending.key))
+		return hud.modal_open
+	return _resume_room_choice()
+
+func _resume_room_choice() -> bool:
+	var pending: Dictionary = profile.data.run.counters.get("pending-room-choice:" + _room_key, {})
+	if pending.is_empty(): return false
+	if str(pending.get("kind", "")) == "sacrifice": _show_sacrifice(str(pending.key))
+	else: _show_partner_selector(str(pending.key))
+	return hud.modal_open
+
+func _request_sacrificial_altar(context: Dictionary) -> void:
+	var item := _room_interaction_item(context, DungeonWorldInteractions.SACRIFICIAL_ALTAR)
+	if item.is_empty(): return
+	var key := "sacrifice:" + _room_key + ":" + str(item.id)
+	var state: Dictionary = _room_choices().open_sacrifice(key, int(campaign.current_room().get("FirstOrFinal", 0)) == 1)
+	if not state.get("success", false): return
+	_consume_room_action(str(item.id))
+	profile.data.run.counters["pending-room-choice:" + _room_key] = {"kind": "sacrifice", "key": key}
+	_show_sacrifice(key)
+	_save()
+
+func _show_sacrifice(key: String) -> void:
+	var state: Dictionary = _room_choices().open_sacrifice(key)
+	if not state.get("success", false) or state.get("closed", false):
+		profile.data.run.counters.erase("pending-room-choice:" + _room_key)
+		hud.close_page()
+		return
+	var rows: Array = []
+	for option in state.get("options", []):
+		var id := int(option.id)
+		var row: Dictionary = catalog.find("LootData", id)
+		var ability: Dictionary = catalog.find("AbilityItems", int(row.get("ability_item_id", id)))
+		rows.append(menus.item(menus.loot_name(id), menus.description(ability), [menus.command("献祭", "choose_sacrifice", id, key, not bool(option.get("enabled", true)))]))
+		rows.back()["icon"] = "loot:" + str(id)
+		rows.back()["rarity"] = int(ability.get("Rare", 1))
+		rows.back()["loot_type"] = str(row.get("loot_type", ""))
+		rows.back()["loot_id"] = id
+		rows.back()["ability_id"] = int(row.get("ability_item_id", id))
+		rows.back()["effect_tags"] = row.get("effect_tag_list", [])
+		rows.back()["source_description"] = str(ability.get("Description", ""))
+		rows.back()["show_collection_badge"] = id not in profile.data.discovered_loot
+		rows.back()["hp_cost"] = int(option.get("hp_cost", 0))
+		rows.back()["level_text"] = "生命上限 -%d" % int(option.get("hp_cost", 0))
+		rows.back()["lock_command"] = menus.command("", "lock_sacrifice", id, key)
+		rows.back()["lock_visible"] = systems.is_loot_lock_unlocked()
+		rows.back()["locked"] = bool(option.get("locked", false))
+	var free_refresh := bool(state.get("free_refresh", false))
+	var controls := menus.item("", "", [menus.command("免费重选" if free_refresh else "重选", "refresh_sacrifice", key, 0, not free_refresh and int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0), menus.command("结束献祭", "finish_sacrifice", key)])
+	controls["presentation_role"] = "refresh"
+	rows.append(controls)
+	hud.show_page("献祭祭坛", rows, "altar", {"altar_kind": "sacrificial"})
+
+func _request_partner_selector(context: Dictionary) -> void:
+	var item := _room_interaction_item(context, DungeonWorldInteractions.PARTNER_SELECTOR)
+	if item.is_empty(): return
+	var key := "partner-skill:" + _room_key + ":" + str(item.id)
+	var state: Dictionary = _room_choices().open_partner(key)
+	if not state.get("success", false):
+		hud.toast(str(state.get("message", "")))
+		return
+	_consume_room_action(str(item.id))
+	profile.data.run.counters["pending-room-choice:" + _room_key] = {"kind": "partner", "key": key}
+	_show_partner_selector(key)
+	_save()
+
+func _show_partner_selector(key: String) -> void:
+	var state: Dictionary = _room_choices().open_partner(key)
+	if not state.get("success", false) or state.get("closed", false):
+		profile.data.run.counters.erase("pending-room-choice:" + _room_key)
+		hud.close_page()
+		return
+	var rows: Array = []
+	var options: Array = state.get("options", [])
+	for index in options.size():
+		var option: Dictionary = options[index]
+		var buttons: Array = []
+		if str(option.get("mode", "")) == "new" and state.get("slots", []).size() >= 2:
+			for slot in 2: buttons.append(menus.command("替换技能 %d" % (slot + 1), "choose_partner_skill", index, {"key": key, "slot": slot}))
+		else: buttons.append(menus.command("升级" if str(option.get("mode", "")) == "upgrade" else "选择", "choose_partner_skill", index, {"key": key, "slot": 0}))
+		rows.append(menus.item(menus.clean(option.get("name", "伙伴技能")), menus.clean(option.get("description", "")), buttons))
+		var icon := str(option.get("icon", ""))
+		rows.back()["icon"] = "res://assets/ui/partner_skills/" + icon + ".png" if icon.begins_with("sprite_mpskillicon_") else icon
+		rows.back()["commands_first"] = true
+	hud.show_page("选择伙伴技能", rows, "list", {"room_activity": true})
+
 func _restore_curse_altars() -> void:
 	if not profile.data.run.active: return
 	for item in world.interactions._items.values():
@@ -1774,6 +2277,7 @@ func _claim_destroyable(context: Dictionary) -> void:
 	var key := "destroyable:" + _room_key + ":" + str(context.get("marker_id", ""))
 	if profile.data.run.counters.get(key, false): return
 	profile.data.run.counters[key] = true
+	systems.effects.dispatch("DestroyDestroyableObject")
 	var drops: Array = preload("res://scripts/domain/breakable_rewards.gd").new(systems).destroyable(str(context.get("config_id", "")), systems.attributes())
 	var point := DungeonWorld.vector(context.get("position", world.player.position))
 	for index in drops.size():

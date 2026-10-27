@@ -72,18 +72,8 @@ func _run() -> void:
 	await process_frame
 	game.hud.close_page()
 	check(game.systems.begin_run(817024, game.selected_character, 100, 0).success, "Run begins for altar integration test")
-	check(game.campaign.generate(817024, 0).success, "A real campaign route is generated")
-	check(game.campaign.select_region(2).success, "The world map confirms the authored altar region")
 	# Enter an authored battle room with a real altar in a completed room state.
-	var entrance: Dictionary = game.campaign.choices()[0]
-	check(game.campaign.enter(int(entrance.node_id)).success, "Authored entrance can be entered")
-	game.campaign.resolve_action()
-	game.campaign.complete_room()
-	game.campaign.advance()
-	game.campaign.state.layers[1].node_ids = [1010104]
-	game.campaign.state.layers[1].hide_rolls = {"1010104": 0}
-	game.campaign._build_connections()
-	check(game.campaign.enter(1010104).success, "The source LevelMap_1010104 room can be entered")
+	check(game.campaign.start_practice(1010104, 817024).success, "The source LevelMap_1010104 room can be entered")
 	game.campaign.state.waves_cleared = int(game.campaign.state.wave_count)
 	game.campaign.complete_room()
 	game.catalog.config.EnvUnitRandomAppearChanceDic.NodeIncrementSpritesAltarAppearChance = 1000

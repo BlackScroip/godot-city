@@ -10,6 +10,8 @@ func check(value: bool, message: String) -> void:
 func combat() -> DungeonCombat:
 	var actor := DungeonCombat.new()
 	actor.configure(null, null, 1, 0, 541)
+	actor.max_health = 1000000
+	actor.health = actor.max_health
 	return actor
 
 func _initialize() -> void:
@@ -28,20 +30,20 @@ func _initialize() -> void:
 		check(enemy.drain_events().filter(func(event): return event.type == "summon").is_empty(), "Victim does not own hostile spirit summons")
 	var dark := combat()
 	dark.add_buff("50202600")
-	for frame in 199: dark.tick(0.1)
-	check(dark.buff_layers("50202601") == 0, "Dark spirit waits configured 20 seconds")
+	for frame in 299: dark.tick(0.1)
+	check(dark.buff_layers("50202601") == 0, "Dark spirit waits configured 30 seconds")
 	dark.tick(0.2)
 	check(dark.buff_layers("50202601") == 1, "Dark spirit applies timed buff")
 	check(is_equal_approx(dark.attribute("NormalAtkDamageRate"), 600.0), "Dark spirit increases normal damage by 60 percent")
 	for frame in 51: dark.tick(0.1)
 	check(dark.buff_layers("50202601") == 0, "Dark spirit burst expires after 5 seconds")
 	var water := combat()
+	var target := combat()
 	water.add_buff("50202200")
-	for hit in 7:
-		water.confirm_hit({"damage": 10.0, "definition": {"actType": "NormalAtk"}})
+	for hit in 12:
+		target.receive({"source": water, "damage": 10.0, "sequence": hit + 1, "emission": hit + 1, "definition": {"actType": "NormalAtk"}}, water.attack)
 		water.tick(0.11)
 	check(water.buff_layers("50202201") == 5, "Water spirit caps normal hit stacks at five")
-	var target := combat()
 	water.drain_events()
 	target.receive({"source": water, "damage": 10.0, "sequence": 2, "emission": 2, "definition": {"actType": "SpecAtk"}}, water.attack)
 	var shots := 0
@@ -51,13 +53,13 @@ func _initialize() -> void:
 	check(shots == 5 and water.buff_layers("50202201") == 0, "Heavy hit consumes five stacks and fires five water rays")
 	var upgraded_water := combat()
 	upgraded_water.add_buff("50202210")
-	for hit in 9:
-		upgraded_water.confirm_hit({"damage": 10.0, "definition": {"actType": "NormalAtk"}})
+	for hit in 16:
+		target.receive({"source": upgraded_water, "damage": 10.0, "sequence": hit + 1, "emission": hit + 1, "definition": {"actType": "NormalAtk"}}, upgraded_water.attack)
 		upgraded_water.tick(0.11)
 	check(upgraded_water.buff_layers("50202201") == 7, "Upgraded water raises stack cap to seven")
 	var upgraded_dark := combat()
 	upgraded_dark.add_buff("50202610")
-	for frame in 201: upgraded_dark.tick(0.1)
+	for frame in 301: upgraded_dark.tick(0.1)
 	check(upgraded_dark.buff_layers("50202601") == 1 and is_equal_approx(upgraded_dark.attribute("NormalAtkDamageRate"), 800.0), "Upgraded dark uses upgraded damage value")
 	for frame in 52: upgraded_dark.tick(0.1)
 	check(upgraded_dark.buff_layers("50202601") == 1, "Upgraded dark burst lasts six seconds")

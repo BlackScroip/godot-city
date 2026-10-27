@@ -1,0 +1,12 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "source_asset": {
+    "address": "RogueConfigData",
+    "path": "Assets/[00002]Resource/MasterCfg/ATData/RogueConfigData.json",
+    "bundle": 103
+  },
+  "source_member": "assets/yoo/DefaultPackage/517900f07af21b7f276f5d299117cdd8.bundle",
+  "bundle_sha256": "ebcbb1043bcc182436c81a78b70b4f887c4540cb74056492f6e8fcbfda868291",
+  "data_sha256": "0c3295c6ea53197284d0efbcb6e8178633979fe7c16edbaea7c556c9940f2d05",
+  "evidence_type": "Static packaged configuration, no URL was opened or fetched"
+}

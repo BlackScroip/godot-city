@@ -1,0 +1,1417 @@
+
+[
+    {
+        "id" : 1001,
+        "chara_id" : 1,
+        "name"     : "烈焰剑士",
+        "description" : "凯的冒险家服装，是他开始自己冒险之旅时收到的第一件礼物。",
+        "effect_description" : "CharaFashion_EffectDescription_1001",
+        "illustration_path"  : "sprite_illustration_jiannan",
+        "model_prefab_path"  : "myplayer_jiannan",
+        "model_simple_prefab_path" : "myplayer_jiannan_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "jiannan_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 11,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 1002,
+        "chara_id" : 1,
+        "name"     : "余烬",
+        "description" : "凯为夜晚冒险特意准备的冒险服，使用了火焰魔物身上的魔法矿石作为涂料。",
+        "effect_description" : "CharaFashion_EffectDescription_1002",
+        "illustration_path"  : "sprite_illustration_jiannan_fashion_black",
+        "model_prefab_path"  : "myplayer_jiannan_fashion_original_black",
+        "model_simple_prefab_path" : "myplayer_jiannan_fashion_original_black_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "jiannan_Fashion_color_black",
+        "default_unlock"           : false,
+        "suit_id"                  : 11,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 1003,
+        "chara_id" : 1,
+        "name"     : "华丽",
+        "description" : "小镇服装师安娜送给凯的礼物，以报答他协助自己去魔法森林采集黄金布料。",
+        "effect_description" : "CharaFashion_EffectDescription_1003",
+        "illustration_path"  : "sprite_illustration_jiannan_fashion_orange",
+        "model_prefab_path"  : "myplayer_jiannan_fashion_original_orange",
+        "model_simple_prefab_path" : "myplayer_jiannan_fashion_original_orange_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "jiannan_Fashion_color_orange",
+        "default_unlock"           : false,
+        "suit_id"                  : 11,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 1004,
+        "chara_id" : 1,
+        "name"     : "帝国红",
+        "description" : "帝国勋爵的配色，是冒险家潜入各种舞厅的合适伪装。",
+        "effect_description" : "CharaFashion_EffectDescription_1004",
+        "illustration_path"  : "sprite_illustration_jiannan_fashion_red",
+        "model_prefab_path"  : "myplayer_jiannan_fashion_original_red",
+        "model_simple_prefab_path" : "myplayer_jiannan_fashion_original_red_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "jiannan_Fashion_color_red",
+        "default_unlock"           : false,
+        "suit_id"                  : 11,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 1005,
+        "chara_id" : 1,
+        "name"     : "霜炎",
+        "description" : "凯为了击败一只四处破坏村庄的霜炎狮而在雪山上潜伏数月，战斗结束后很长一段时间，凯都保持这样的造型。",
+        "effect_description" : "CharaFashion_EffectDescription_1005",
+        "illustration_path"  : "sprite_illustration_jiannan_fashion_white",
+        "model_prefab_path"  : "myplayer_jiannan_fashion_original_white",
+        "model_simple_prefab_path" : "myplayer_jiannan_fashion_original_white_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "jiannan_Fashion_color_white",
+        "default_unlock"           : false,
+        "suit_id"                  : 11,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 2001,
+        "chara_id" : 2,
+        "name"     : "影之冒险家",
+        "description" : "妮洛使用第一笔委托报酬定制的冒险服装，轻便而耐用。",
+        "effect_description" : "CharaFashion_EffectDescription_2001",
+        "illustration_path"  : "sprite_illustration_liannv",
+        "model_prefab_path"  : "myplayer_maonv",
+        "model_simple_prefab_path" : "myplayer_maonv_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "liannv_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 21,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 2002,
+        "chara_id" : 2,
+        "name"     : "黑骑士",
+        "description" : "魔王军黑骑士的战斗服，妮洛对伙伴们说这只是她曾经的一件“战利品”。",
+        "effect_description" : "CharaFashion_EffectDescription_2002",
+        "illustration_path"  : "sprite_illustration_liannv_fashion_dark",
+        "model_prefab_path"  : "myplayer_maonv_fashion_original_purple",
+        "model_simple_prefab_path" : "myplayer_maonv_fashion_original_purple_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "liannv_Fashion_color_purple",
+        "default_unlock"           : false,
+        "suit_id"                  : 21,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 2003,
+        "chara_id" : 2,
+        "name"     : "光辉",
+        "description" : "光精灵为妮洛编织的一套冒险服，在保护她的同时丝毫不影响她继续使用暗灵之力。",
+        "effect_description" : "CharaFashion_EffectDescription_2003",
+        "illustration_path"  : "sprite_illustration_liannv_fashion_gold",
+        "model_prefab_path"  : "myplayer_maonv_fashion_original_gold",
+        "model_simple_prefab_path" : "myplayer_maonv_fashion_original_gold_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "liannv_Fashion_color_golden",
+        "default_unlock"           : false,
+        "suit_id"                  : 21,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 2004,
+        "chara_id" : 2,
+        "name"     : "英石蓝",
+        "description" : "妮洛在一次矿洞冒险中偶然获得了稀有蓝色英石，小镇服装师安娜将矿石磨碎后为她改良了冒险服，虽然穿上后并没有什么特别的感觉。",
+        "effect_description" : "CharaFashion_EffectDescription_2004",
+        "illustration_path"  : "sprite_illustration_liannv_fashion_blue",
+        "model_prefab_path"  : "myplayer_maonv_fashion_original_blue",
+        "model_simple_prefab_path" : "myplayer_maonv_fashion_original_blue_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "liannv_Fashion_color_blue",
+        "default_unlock"           : false,
+        "suit_id"                  : 21,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 2005,
+        "chara_id" : 2,
+        "name"     : "绯红",
+        "description" : "妮洛在黑岩火山冒险时火精灵与暗灵一起为她编制的冒险服，能帮助她安全通过火山的瘴气。",
+        "effect_description" : "CharaFashion_EffectDescription_2005",
+        "illustration_path"  : "sprite_illustration_liannv_fashion_red",
+        "model_prefab_path"  : "myplayer_maonv_fashion_original_red",
+        "model_simple_prefab_path" : "myplayer_maonv_fashion_original_red_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "liannv_Fashion_color_red",
+        "default_unlock"           : false,
+        "suit_id"                  : 21,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 3001,
+        "chara_id" : 3,
+        "name"     : "角斗士",
+        "description" : "阿克斯在帝国角斗场赢下的作战服，这件作战服曾经无数次帮助阿克斯挡下魔物的袭击。",
+        "effect_description" : "CharaFashion_EffectDescription_3001",
+        "illustration_path"  : "sprite_illustration_funan",
+        "model_prefab_path"  : "myplayer_funan",
+        "model_simple_prefab_path" : "myplayer_funan_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "funan_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 31,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 3002,
+        "chara_id" : 3,
+        "name"     : "黑曜战甲",
+        "description" : "阿克斯曾在角斗场赢下了一大袋黑曜矿石，与其卖掉不如改良自己的战甲不是吗？",
+        "effect_description" : "CharaFashion_EffectDescription_3002",
+        "illustration_path"  : "sprite_illustration_funan_fashion_black",
+        "model_prefab_path"  : "myplayer_funan_fashion_original_black",
+        "model_simple_prefab_path" : "myplayer_funan_fashion_original_black_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "funan_Fashion_color_black",
+        "default_unlock"           : false,
+        "suit_id"                  : 31,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 3003,
+        "chara_id" : 3,
+        "name"     : "守护者",
+        "description" : "阿克斯在离开角斗场后曾经代理过一小段时间的【王国守护者】，不过他们的工作太过无聊，所以阿克斯还是去到了冒险家公会。",
+        "effect_description" : "CharaFashion_EffectDescription_3003",
+        "illustration_path"  : "sprite_illustration_funan_fashion_blue",
+        "model_prefab_path"  : "myplayer_funan_fashion_original_blue",
+        "model_simple_prefab_path" : "myplayer_funan_fashion_original_blue_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "funan_Fashion_color_blue",
+        "default_unlock"           : false,
+        "suit_id"                  : 31,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 3004,
+        "chara_id" : 3,
+        "name"     : "黄金战甲",
+        "description" : "阿克斯的角斗场冠军战甲，是通过无数场战斗最终站在角斗场最顶层才有资格穿上的黄金战甲。",
+        "effect_description" : "CharaFashion_EffectDescription_3004",
+        "illustration_path"  : "sprite_illustration_funan_fashion_gold",
+        "model_prefab_path"  : "myplayer_funan_fashion_original_gold",
+        "model_simple_prefab_path" : "myplayer_funan_fashion_original_gold_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "funan_Fashion_color_gold",
+        "default_unlock"           : false,
+        "suit_id"                  : 31,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 3005,
+        "chara_id" : 3,
+        "name"     : "毒荧",
+        "description" : "阿克斯在一次冒险中将毒素化为闪电击退了所有伏击者并成功回到了小镇医院。<br>\"我的天哪！他还活着？\"——小镇医师",
+        "effect_description" : "CharaFashion_EffectDescription_3005",
+        "illustration_path"  : "sprite_illustration_funan_fashion_green",
+        "model_prefab_path"  : "myplayer_funan_fashion_original_green",
+        "model_simple_prefab_path" : "myplayer_funan_fashion_original_green_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "funan_Fashion_color_green",
+        "default_unlock"           : false,
+        "suit_id"                  : 31,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 4001,
+        "chara_id" : 4,
+        "name"     : "水魔法师",
+        "description" : "涅兹米的冒险家服装，是她的导师亲手为她缝制的。",
+        "effect_description" : "CharaFashion_EffectDescription_4001",
+        "illustration_path"  : "sprite_illustration_zhangnv",
+        "model_prefab_path"  : "myplayer_zhangnv",
+        "model_simple_prefab_path" : "myplayer_zhangnv_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "fazhang_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 41,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 4002,
+        "chara_id" : 4,
+        "name"     : "森林学徒",
+        "description" : "涅兹米在森精灵同学家做客时所穿的魔法袍，能帮她更好与其他森精灵们相处。",
+        "effect_description" : "CharaFashion_EffectDescription_4002",
+        "illustration_path"  : "sprite_illustration_zhangnv_fashion_green",
+        "model_prefab_path"  : "myplayer_zhangnv_fashion_original_green",
+        "model_simple_prefab_path" : "myplayer_zhangnv_fashion_original_green_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "fazhang_Fashion_color_green",
+        "default_unlock"           : false,
+        "suit_id"                  : 41,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 4003,
+        "chara_id" : 4,
+        "name"     : "魔女",
+        "description" : "涅兹米曾接触过魔女之书的腐蚀力量，这副身姿就是证据，虽然她自己并没有什么感觉。<br>“嗯？怎么会这样？”——魔女之书",
+        "effect_description" : "CharaFashion_EffectDescription_4003",
+        "illustration_path"  : "sprite_illustration_zhangnv_fashion_purple",
+        "model_prefab_path"  : "myplayer_zhangnv_fashion_original_purple",
+        "model_simple_prefab_path" : "myplayer_zhangnv_fashion_original_purple_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "fazhang_Fashion_color_purple",
+        "default_unlock"           : false,
+        "suit_id"                  : 41,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 4004,
+        "chara_id" : 4,
+        "name"     : "雪山考察",
+        "description" : "身为水魔法师学徒，涅兹米曾经在雪山上考察这些积雪能否成为水魔法师的力量。",
+        "effect_description" : "CharaFashion_EffectDescription_4004",
+        "illustration_path"  : "sprite_illustration_zhangnv_fashion_snow",
+        "model_prefab_path"  : "myplayer_zhangnv_fashion_original_snow",
+        "model_simple_prefab_path" : "myplayer_zhangnv_fashion_original_snow_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "fazhang_Fashion_color_snow",
+        "default_unlock"           : false,
+        "suit_id"                  : 41,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 4005,
+        "chara_id" : 4,
+        "name"     : "学院服",
+        "description" : "涅兹米的见习学生服，所有学院魔法师都要这样穿。",
+        "effect_description" : "CharaFashion_EffectDescription_4005",
+        "illustration_path"  : "sprite_illustration_zhangnv_fashion_white",
+        "model_prefab_path"  : "myplayer_zhangnv_fashion_original_white",
+        "model_simple_prefab_path" : "myplayer_zhangnv_fashion_original_white_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "fazhang_Fashion_color_white",
+        "default_unlock"           : false,
+        "suit_id"                  : 41,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 5001,
+        "chara_id" : 5,
+        "name"     : "游侠",
+        "description" : "乌玛的游侠冒险服，无论什么样的地形和天气都相当实用。",
+        "effect_description" : "CharaFashion_EffectDescription_5001",
+        "illustration_path"  : "sprite_illustration_gongnan",
+        "model_prefab_path"  : "myplayer_gongnan",
+        "model_simple_prefab_path" : "myplayer_gongnan_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "gongnan_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 51,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 5002,
+        "chara_id" : 5,
+        "name"     : "浪花弓手",
+        "description" : "不久之前的乌玛并没有投身冒险家行业，他以自己的方式在沿海各处城市击退魔物，伸张正义。",
+        "effect_description" : "CharaFashion_EffectDescription_5002",
+        "illustration_path"  : "sprite_illustration_gongnan_fashion_blue",
+        "model_prefab_path"  : "myplayer_gongnan_fashion_original_blue",
+        "model_simple_prefab_path" : "myplayer_gongnan_fashion_original_blue_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "gongnan_Fashion_color_blue",
+        "default_unlock"           : false,
+        "suit_id"                  : 51,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 5003,
+        "chara_id" : 5,
+        "name"     : "独当一面",
+        "description" : "乌玛通过了精英游侠训练的冒险服，他将这套衣服视为成长的标志，平时较少穿去战斗。",
+        "effect_description" : "CharaFashion_EffectDescription_5003",
+        "illustration_path"  : "sprite_illustration_gongnan_fashion_green",
+        "model_prefab_path"  : "myplayer_gongnan_fashion_original_green",
+        "model_simple_prefab_path" : "myplayer_gongnan_fashion_original_green_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "gongnan_Fashion_color_green",
+        "default_unlock"           : false,
+        "suit_id"                  : 51,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 5004,
+        "chara_id" : 5,
+        "name"     : "恶魔猎人",
+        "description" : "乌玛曾经接到清除恶魔小镇的魔物委托，为了完成任务他采购了大量恶魔精华涂在衣服上，以便他潜入恶魔小镇侦察情报。",
+        "effect_description" : "CharaFashion_EffectDescription_5004",
+        "illustration_path"  : "sprite_illustration_gongnan_fashion_purple",
+        "model_prefab_path"  : "myplayer_gongnan_fashion_original_purple",
+        "model_simple_prefab_path" : "myplayer_gongnan_fashion_original_purple_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "gongnan_Fashion_color_purple",
+        "default_unlock"           : false,
+        "suit_id"                  : 51,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 5005,
+        "chara_id" : 5,
+        "name"     : "血誓者",
+        "description" : "乌玛曾在危机关头领悟新力量，他以血为矢，贯穿了追击他的强敌。",
+        "effect_description" : "CharaFashion_EffectDescription_5005",
+        "illustration_path"  : "sprite_illustration_gongnan_fashion_red",
+        "model_prefab_path"  : "myplayer_gongnan_fashion_original_red",
+        "model_simple_prefab_path" : "myplayer_gongnan_fashion_original_red_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "gongnan_Fashion_color_red",
+        "default_unlock"           : false,
+        "suit_id"                  : 51,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 6001,
+        "chara_id" : 6,
+        "name"     : "祈礼牧师",
+        "description" : "教会牧师的制式服装，欧芭最开心的事，就是穿上牧师服为小镇的大家提供帮助。",
+        "effect_description" : "CharaFashion_EffectDescription_6001",
+        "illustration_path"  : "sprite_illustration_zhunv",
+        "model_prefab_path"  : "myplayer_zhunv",
+        "model_simple_prefab_path" : "myplayer_zhunv_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "zhunv_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 61,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 6002,
+        "chara_id" : 6,
+        "name"     : "大罪司教",
+        "description" : "大罪司教服、黑暗化身、小镇最讨厌的服装、欧芭的战利品之一，随你怎么叫它。",
+        "effect_description" : "CharaFashion_EffectDescription_6002",
+        "illustration_path"  : "sprite_illustration_zhunv_fashion_black",
+        "model_prefab_path"  : "myplayer_zhunv_fashion_original_black",
+        "model_simple_prefab_path" : "myplayer_zhunv_fashion_original_black_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "zhunv_Fashion_color_black",
+        "default_unlock"           : false,
+        "suit_id"                  : 61,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 6003,
+        "chara_id" : 6,
+        "name"     : "清泉牧师",
+        "description" : "欧芭在清泉节所穿的牧师服，这一天的小镇居民们会用水魔法制作游戏，欧芭也会和大家一起玩耍。",
+        "effect_description" : "CharaFashion_EffectDescription_6003",
+        "illustration_path"  : "sprite_illustration_zhunv_fashion_blue",
+        "model_prefab_path"  : "myplayer_zhunv_fashion_original_blue",
+        "model_simple_prefab_path" : "myplayer_zhunv_fashion_original_blue_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "zhunv_Fashion_color_blue",
+        "default_unlock"           : false,
+        "suit_id"                  : 61,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 6004,
+        "chara_id" : 6,
+        "name"     : "红衣教士",
+        "description" : "在魔王军袭击小镇时，欧芭与她的伙伴们会穿上这件象征力量的教士服合力击退他们。<br>“她真的只是牧师吗？快逃啊！”——魔王军士兵",
+        "effect_description" : "CharaFashion_EffectDescription_6004",
+        "illustration_path"  : "sprite_illustration_zhunv_fashion_red",
+        "model_prefab_path"  : "myplayer_zhunv_fashion_original_red",
+        "model_simple_prefab_path" : "myplayer_zhunv_fashion_original_red_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "zhunv_Fashion_color_red",
+        "default_unlock"           : false,
+        "suit_id"                  : 61,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 6005,
+        "chara_id" : 6,
+        "name"     : "太阳教士",
+        "description" : "欧芭在太阳之下午睡时，几只光精灵悄悄来到她身边，为她编制了这件受到太阳祝福的牧师服。",
+        "effect_description" : "CharaFashion_EffectDescription_6005",
+        "illustration_path"  : "sprite_illustration_zhunv_fashion_yellow",
+        "model_prefab_path"  : "myplayer_zhunv_fashion_original_yellow",
+        "model_simple_prefab_path" : "myplayer_zhunv_fashion_original_yellow_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "zhunv_Fashion_color_yellow",
+        "default_unlock"           : false,
+        "suit_id"                  : 61,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 10,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 7001,
+        "chara_id" : 7,
+        "name"     : "霜雪龙骑士",
+        "description" : "属于菲奥娜的霜雪龙骑士战甲，由龙鳞和冰甲制作而成，能抵御极端严寒天气和绝大多数入侵者的武器。",
+        "effect_description" : "",
+        "illustration_path"  : "sprite_illustration_binqiang",
+        "model_prefab_path"  : "myplayer_bingqiang",
+        "model_simple_prefab_path" : "myplayer_bingqiang_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "bingqiang_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 71,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 7002,
+        "chara_id" : 7,
+        "name"     : "雪公主",
+        "description" : "在魔王军的铁蹄踏入北方诸国前，菲奥娜曾是这里一小国的公主。",
+        "effect_description" : "CharaFashion_EffectDescription_7002",
+        "illustration_path"  : "sprite_illustration_binqiang_fashion_ice",
+        "model_prefab_path"  : "myplayer_bingqiang_fashion_original_ice",
+        "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_ice_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "bingqiang_Fashion_color_ice",
+        "default_unlock"           : false,
+        "suit_id"                  : 71,
+        "unlock_atk_add"           : 5,
+        "unlock_def_add"           : 5,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 7003,
+        "chara_id" : 7,
+        "name"     : "血之龙",
+        "description" : "敌人的血晶被菲奥娜的霜龙所吸收，成为了她新的力量。",
+        "effect_description" : "CharaFashion_EffectDescription_7003",
+        "illustration_path"  : "sprite_illustration_binqiang_fashion_black",
+        "model_prefab_path"  : "myplayer_bingqiang_fashion_original_black",
+        "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_black_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "bingqiang_Fashion_color_black",
+        "default_unlock"           : false,
+        "suit_id"                  : 71,
+        "unlock_atk_add"           : 5,
+        "unlock_def_add"           : 5,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 7004,
+        "chara_id" : 7,
+        "name"     : "松晶龙",
+        "description" : "龙骑士堡垒之下还有只松晶石巨龙，高傲的它似乎非常喜欢与菲奥娜并肩作战。",
+        "effect_description" : "CharaFashion_EffectDescription_7004",
+        "illustration_path"  : "sprite_illustration_binqiang_fashion_green",
+        "model_prefab_path"  : "myplayer_bingqiang_fashion_original_green",
+        "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_green_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "bingqiang_Fashion_color_green",
+        "default_unlock"           : false,
+        "suit_id"                  : 71,
+        "unlock_atk_add"           : 5,
+        "unlock_def_add"           : 5,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 7005,
+        "chara_id" : 7,
+        "name"     : "光御圣龙",
+        "description" : "受到光精灵祝福的姿态，连魔王军干部都畏惧这份强大。",
+        "effect_description" : "CharaFashion_EffectDescription_7005",
+        "illustration_path"  : "sprite_illustration_binqiang_fashion_golden",
+        "model_prefab_path"  : "myplayer_bingqiang_fashion_original_golden",
+        "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_golden_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "bingqiang_Fashion_color_golden",
+        "default_unlock"           : false,
+        "suit_id"                  : 71,
+        "unlock_atk_add"           : 5,
+        "unlock_def_add"           : 5,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+    "id" : 7201,
+    "chara_id" : 7,
+    "name"     : "海风与泡泡",
+    "description" : "“唔…请不要一直盯着看…”<br>菲奥娜发现你后，害羞地把身子转了过去，时不时还能发现她偷偷回头看你。",
+    "effect_description" : "攻击时能为敌人附加1层<#specinfo=chaoshi>，敌人身上的每层<#specinfo=chaoshi>能让菲奥娜对其造成伤害提高2%。",
+    "illustration_path"  : "sprite_illustration_binqiang_fashion_swimwear",
+    "model_prefab_path"  : "myplayer_bingqiang_fashion_original_summer",
+    "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_summer_simply",
+    "weapon_model_prefab_path" : "weapon_72001",
+    "weapon_res_id"            : "72001",
+    "slot_icon_path"           : "bingqiang_Fashion_color_swimwear",
+    "default_unlock"           : false,
+    "suit_id"                  : 72,
+    "is_admin_only"            : false,
+    "unlock_atk_add"           : 10,
+    "unlock_def_add"           : 10,
+    "unlock_hp_add"            : 10,
+    "unlock_criti_rate_add"    : 50,
+    "unlock_criti_mult_add"    : 50,
+    "unlock_buff_id_list"      : [
+        "26081701",
+        "26081702"
+    ],
+    "purchase_cost"            : [
+    ],
+    "is_cash_only_unlock"      : true,
+    "cash_unlock_local_product_id" : 7201,
+    "cash_unlock_product_id"       : "7201_260825",
+    "cash_unlock_price"            : 18,
+    "time_limit_discount_origin_price" : 28,
+    "auto_grant_fashion_ids"           : [
+        7202,
+        7203,
+        7204,
+        7205
+    ]
+},
+    {
+    "id" : 7202,
+    "chara_id" : 7,
+    "name"     : "落日气泡",
+    "description" : "“请吧，这是您的【落日气泡】，原材料取自翠灵岛夕阳果，请慢慢享用。”<br>——迷宫餐厅调饮师：斯特林。",
+    "effect_description" : "攻击时能为敌人附加1层<#specinfo=chaoshi>，敌人身上的每层<#specinfo=chaoshi>能让菲奥娜对其造成伤害提高2%。",
+    "illustration_path"  : "sprite_illustration_binqiang_fashion_swimwear_7202",
+    "model_prefab_path"  : "myplayer_bingqiang_fashion_original_summer_7202",
+    "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_summer_7202_simply",
+    "weapon_model_prefab_path" : "weapon_72002",
+    "weapon_res_id"            : "72002",
+    "slot_icon_path"           : "bingqiang_Fashion_color_swimwear_7202",
+    "default_unlock"           : false,
+    "suit_id"                  : 72,
+    "is_admin_only"            : false,
+    "unlock_atk_add"           : 0,
+    "unlock_def_add"           : 0,
+    "unlock_hp_add"            : 0,
+    "unlock_criti_rate_add"    : 0,
+    "unlock_criti_mult_add"    : 0,
+    "unlock_buff_id_list"      : [
+        "26081701",
+        "26081702"
+    ],
+    "purchase_cost"            : [
+    ],
+    "is_cash_only_unlock"      : false,
+    "cash_unlock_local_product_id" : 0,
+    "cash_unlock_product_id"       : "0",
+    "cash_unlock_price"            : 0,
+    "time_limit_discount_origin_price" : 0,
+    "auto_grant_fashion_ids"           : [
+    ]
+},
+    {
+    "id" : 7203,
+    "chara_id" : 7,
+    "name"     : "沁提夏日",
+    "description" : "“偶尔换换口味如何？就从现在开始！”<br>——小镇服装师·安娜从一杯翠灵岛特饮中得到了灵感。",
+    "effect_description" : "攻击时能为敌人附加1层<#specinfo=chaoshi>，敌人身上的每层<#specinfo=chaoshi>能让菲奥娜对其造成伤害提高2%。",
+    "illustration_path"  : "sprite_illustration_binqiang_fashion_swimwear_7203",
+    "model_prefab_path"  : "myplayer_bingqiang_fashion_original_summer_7203",
+    "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_summer_7203_simply",
+    "weapon_model_prefab_path" : "weapon_72003",
+    "weapon_res_id"            : "72003",
+    "slot_icon_path"           : "bingqiang_Fashion_color_swimwear_7203",
+    "default_unlock"           : false,
+    "suit_id"                  : 72,
+    "is_admin_only"            : false,
+    "unlock_atk_add"           : 0,
+    "unlock_def_add"           : 0,
+    "unlock_hp_add"            : 0,
+    "unlock_criti_rate_add"    : 0,
+    "unlock_criti_mult_add"    : 0,
+    "unlock_buff_id_list"      : [
+        "26081701",
+        "26081702"
+    ],
+    "purchase_cost"            : [
+    ],
+    "is_cash_only_unlock"      : false,
+    "cash_unlock_local_product_id" : 0,
+    "cash_unlock_product_id"       : "0",
+    "cash_unlock_price"            : 0,
+    "time_limit_discount_origin_price" : 0,
+    "auto_grant_fashion_ids"           : [
+    ]
+},
+    {
+    "id" : 7204,
+    "chara_id" : 7,
+    "name"     : "云朵奶昔",
+    "description" : "“轻盈如云、柔软似泡，穿上它，连海风都变得温柔。”<br>——服装广告词修改第十三版。",
+    "effect_description" : "攻击时能为敌人附加1层<#specinfo=chaoshi>，敌人身上的每层<#specinfo=chaoshi>能让菲奥娜对其造成伤害提高2%。",
+    "illustration_path"  : "sprite_illustration_binqiang_fashion_swimwear_7204",
+    "model_prefab_path"  : "myplayer_bingqiang_fashion_original_summer_7204",
+    "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_summer_7204_simply",
+    "weapon_model_prefab_path" : "weapon_72004",
+    "weapon_res_id"            : "72004",
+    "slot_icon_path"           : "bingqiang_Fashion_color_swimwear_7204",
+    "default_unlock"           : false,
+    "suit_id"                  : 72,
+    "is_admin_only"            : false,
+    "unlock_atk_add"           : 0,
+    "unlock_def_add"           : 0,
+    "unlock_hp_add"            : 0,
+    "unlock_criti_rate_add"    : 0,
+    "unlock_criti_mult_add"    : 0,
+    "unlock_buff_id_list"      : [
+        "26081701",
+        "26081702"
+    ],
+    "purchase_cost"            : [
+    ],
+    "is_cash_only_unlock"      : false,
+    "cash_unlock_local_product_id" : 0,
+    "cash_unlock_product_id"       : "0",
+    "cash_unlock_price"            : 0,
+    "time_limit_discount_origin_price" : 0,
+    "auto_grant_fashion_ids"           : [
+    ]
+},
+    {
+    "id" : 7205,
+    "chara_id" : 7,
+    "name"     : "柠檬海风",
+    "description" : "小镇服装师·安娜：“太棒了！菲奥娜女士！不介意的话请试试这件！”<br>菲奥娜：“唔…这已经是您第8次说这句话了…”。",
+    "effect_description" : "攻击时能为敌人附加1层<#specinfo=chaoshi>，敌人身上的每层<#specinfo=chaoshi>能让菲奥娜对其造成伤害提高2%。",
+    "illustration_path"  : "sprite_illustration_binqiang_fashion_swimwear_7205",
+    "model_prefab_path"  : "myplayer_bingqiang_fashion_original_summer_7205",
+    "model_simple_prefab_path" : "myplayer_bingqiang_fashion_original_summer_7205_simply",
+    "weapon_model_prefab_path" : "weapon_72005",
+    "weapon_res_id"            : "72005",
+    "slot_icon_path"           : "bingqiang_Fashion_color_swimwear_7205",
+    "default_unlock"           : false,
+    "suit_id"                  : 72,
+    "is_admin_only"            : false,
+    "unlock_atk_add"           : 0,
+    "unlock_def_add"           : 0,
+    "unlock_hp_add"            : 0,
+    "unlock_criti_rate_add"    : 0,
+    "unlock_criti_mult_add"    : 0,
+    "unlock_buff_id_list"      : [
+        "26081701",
+        "26081702"
+    ],
+    "purchase_cost"            : [
+    ],
+    "is_cash_only_unlock"      : false,
+    "cash_unlock_local_product_id" : 0,
+    "cash_unlock_product_id"       : "0",
+    "cash_unlock_price"            : 0,
+    "time_limit_discount_origin_price" : 0,
+    "auto_grant_fashion_ids"           : [
+    ]
+},
+    {
+        "id" : 8001,
+        "chara_id" : 8,
+        "name"     : "部落勇士",
+        "description" : "西部诸国部落中，只有获得【勇士】称号之人才能身穿战甲证明自己足以独当一面，佩特拉毫无疑问就是沙域部落的【勇士】之一。",
+        "effect_description" : "CharaFashion_EffectDescription_8001",
+        "illustration_path"  : "sprite_illustration_shuangdao",
+        "model_prefab_path"  : "myplayer_shuangdao",
+        "model_simple_prefab_path" : "myplayer_shuangdao_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "shuangdao_Fashion_color_initial",
+        "default_unlock"           : true,
+        "suit_id"                  : 81,
+        "unlock_atk_add"           : 0,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 0,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 8002,
+        "chara_id" : 8,
+        "name"     : "魔界猎手",
+        "description" : "佩特拉曾代表西北诸国的沙域部落参加了第二次【反魔王军】战争，虽然战争以失败告终，但她在战场上取得过不少战利品。",
+        "effect_description" : "CharaFashion_EffectDescription_8002",
+        "illustration_path"  : "sprite_illustration_shuangdao_fashion_purple",
+        "model_prefab_path"  : "myplayer_shuangdao_fashion_original_purple",
+        "model_simple_prefab_path" : "myplayer_shuangdao_fashion_original_purple_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "shuangdao_Fashion_color_purple",
+        "default_unlock"           : false,
+        "suit_id"                  : 81,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 8003,
+        "chara_id" : 8,
+        "name"     : "古迹斗士",
+        "description" : "佩特拉还不是冒险家时，就已经去往西北诸国各个遗迹迷宫磨练自己的技艺，她热衷于寻宝这一过程，或许这也是她成为冒险家的原因之一。",
+        "effect_description" : "CharaFashion_EffectDescription_8003",
+        "illustration_path"  : "sprite_illustration_shuangdao_fashion_black",
+        "model_prefab_path"  : "myplayer_shuangdao_fashion_original_black",
+        "model_simple_prefab_path" : "myplayer_shuangdao_fashion_original_black_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "shuangdao_Fashion_color_black",
+        "default_unlock"           : false,
+        "suit_id"                  : 81,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 8004,
+        "chara_id" : 8,
+        "name"     : "霜翼勇士",
+        "description" : "前往北方诸国讨伐强敌是佩特拉成为沙域部落勇士的成就之一，在北方诸国的这段时间，她还接受了一位龙骑士的力量，并与她结下了深厚的友谊。",
+        "effect_description" : "CharaFashion_EffectDescription_8004",
+        "illustration_path"  : "sprite_illustration_shuangdao_fashion_white",
+        "model_prefab_path"  : "myplayer_shuangdao_fashion_original_white",
+        "model_simple_prefab_path" : "myplayer_shuangdao_fashion_original_white_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "shuangdao_Fashion_color_white",
+        "default_unlock"           : false,
+        "suit_id"                  : 81,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    },
+    {
+        "id" : 8005,
+        "chara_id" : 8,
+        "name"     : "光域使者",
+        "description" : "“当沙域部落面临危机时，光之祖灵的力量会降临在最强勇士身上，我们不能与她正面对抗。”——蜥蜴部落对沙域部落的作战总结",
+        "effect_description" : "CharaFashion_EffectDescription_8005",
+        "illustration_path"  : "sprite_illustration_shuangdao_fashion_golden",
+        "model_prefab_path"  : "myplayer_shuangdao_fashion_original_golden",
+        "model_simple_prefab_path" : "myplayer_shuangdao_fashion_original_golden_simply",
+        "weapon_model_prefab_path" : "",
+        "slot_icon_path"           : "shuangdao_Fashion_color_golden",
+        "default_unlock"           : false,
+        "suit_id"                  : 81,
+        "unlock_atk_add"           : 10,
+        "unlock_def_add"           : 0,
+        "unlock_hp_add"            : 5,
+        "unlock_criti_rate_add"    : 0,
+        "unlock_criti_mult_add"    : 0,
+        "unlock_buff_id_list"      : [
+        ],
+        "purchase_cost"            : [
+            {
+                "item_id" : 502,
+                "get_num" : 20,
+                "show_info" : ""
+            }
+        ],
+        "is_cash_only_unlock"      : false,
+        "cash_unlock_local_product_id" : 0,
+        "cash_unlock_product_id"       : "",
+        "cash_unlock_price"            : 0
+    }
+]

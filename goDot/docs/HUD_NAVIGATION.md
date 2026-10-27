@@ -3,6 +3,8 @@
 Implemented against the supplied `1061664.apk` on 2026-10-26. This covers the
 interaction prompt, upper-left resource feedback, and upper-right entry flows.
 Skill input/image scaling is documented in [SKILL_CONTROLS.md](SKILL_CONTROLS.md).
+The camp combat controls, first-adventure entry and deferred cloud-saving
+behavior below were updated on 2026-10-27.
 
 ## Evidence
 
@@ -57,8 +59,8 @@ references, with hashes in `reports/hud-navigation-art-source.json`.
 
 | State | Entries |
 | --- | --- |
-| Camp, guide complete | Mall, character, settings |
-| Camp, at least one difficulty victory | Adds quick start, unread review and unread cloud prompts |
+| Camp, guide complete | Start adventure, mall, character, settings |
+| Camp, at least one difficulty victory | Adds the unread review prompt |
 | Adventure, guide complete | Difficulty, character, settings |
 | Adventure with purchased meals | Adds purchased meal effects |
 | Dialogue | Suppresses the top entries |
@@ -71,8 +73,9 @@ migration choice. The native shared visibility gate's exact singleton class
 is unresolved; mapping it to this project's dialogue state is an inference.
 Debug-only native attribute/damage entries are excluded from the normal HUD.
 
-Quick start acknowledges its red dot, saves, and opens selectable adventure
-preparation. It remains available afterwards. Adventure difficulty opens the
+Start adventure is available before the first victory. It acknowledges its
+red dot, saves, and opens selectable adventure preparation. It remains
+available afterwards. Adventure difficulty opens the
 same information in read-only mode. The meal entry displays actual purchased
 effects at their current ranks, with no research/purchase actions. Character
 and weapon operations validate ownership and reject camp changes during a run.
@@ -90,12 +93,17 @@ opener, so they never launch the user's browser or submit a review.
 Feedback reports its unconfigured support channel; a live customer-service
 integration is not implemented.
 
-Cloud uses the original first-use prompt. Opening/canceling preserves both
-the red dot and unread flag. The source writes that flag only after successful
-account-service initialization. This project has no cloud SDK or account
-backend, so confirmation reports unavailable and offers retry/close; it never
-pretends that local saving is cloud saving. Actual authentication, upload,
-download and conflict resolution remain unimplemented service dependencies.
+Cloud saving is deferred. The HUD and account settings omit its entry; local
+saving remains available.
+
+## Camp Combat Controls
+
+Attack, dodge and skill controls remain visible and usable in camp, including
+before a training session and after it ends. Touch and keyboard input use the
+same cooldown and energy rules as adventure input. Menus, transitions and
+background suspension still block input; closing a page or the touch layout
+editor restores the controls. Automatic attacks require a fight or an active
+training session, and inactive training dummies cannot take damage.
 
 Mall keeps original enabled offers and payment types. Direct currency trades
 use the actual wallet and recheck balance/quota at purchase. Rewarded ads use
@@ -113,12 +121,12 @@ automatic-attack switch, not just their visible images.
 
 ## Verification
 
-All checks below pass on the final source used for this HUD change:
+The original HUD verification covered the following checks:
 
 - `hud_navigation_test.gd`: resources, signed deltas, expiry, dynamic entries,
   legacy victories, dialogue, six viewport sizes and simulated safe insets.
 - `hud_actions_flow_test.gd`: actual main/menus/save store, quick start,
-  cloud cancel/retry, review launch failure/success/repeated confirmation,
+  camp attack and skill input, removed cloud entries, review launch failure/success/repeated confirmation,
   store, character, settings, read-only difficulty and purchased-meal effects.
 - `pickup_world_visual_test.gd`: 133 checks in an actual room, including
   physical clicks and nonblank image-region checks at 1600x900, 844x390,
@@ -130,6 +138,12 @@ All checks below pass on the final source used for this HUD change:
   `navigation_menu_rules_test.gd`: 195; rewarded-ad tests pass.
 - Existing camp, map preview, difficulty preparation, navigation and character
   detail regressions pass after adapting their obsolete fixed-menu assumptions.
+
+For the 2026-10-27 camp update, HUD navigation (246 checks), rendered HUD actions
+(61), live skill controls (59), game flow (111), camp training (45), skill
+controls (403), and settings HUD (50) pass. The separate navigation-menu fixture still fails in character talent
+navigation because its stub HUD has no character page; the integrated character
+entry in the HUD actions test passes.
 
 Graphical captures are under `reports/hud-camp-*.png`,
 `reports/pickup-world-*.png` and `reports/skill-controls-*.png`.

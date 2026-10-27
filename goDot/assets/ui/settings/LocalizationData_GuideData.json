@@ -1,0 +1,863 @@
+[
+  {
+    "key": "GuideData_TypeName_战斗",
+    "text_cn": "战斗",
+    "text_cht": "戰鬥",
+    "text_en": "fighting",
+    "text_jp": "ファインティング"
+  },
+  {
+    "key": "GuideData_TypeName_系统",
+    "text_cn": "系统",
+    "text_cht": "系統",
+    "text_en": "system",
+    "text_jp": "システム"
+  },
+  {
+    "key": "GuideData_TypeName_冒险",
+    "text_cn": "冒险",
+    "text_cht": "冒險",
+    "text_en": "adventure",
+    "text_jp": "アドベンチャー"
+  },
+  {
+    "key": "GuideData_Title_1",
+    "text_cn": "击败怪物！",
+    "text_cht": "擊敗怪物！",
+    "text_en": "Defeat the monsters!",
+    "text_jp": "モンスターを倒せ！"
+  },
+  {
+    "key": "GuideData_Title_2",
+    "text_cn": "提升等级吧！",
+    "text_cht": "提升等級吧！",
+    "text_en": "Level up!",
+    "text_jp": "レベルアップ！"
+  },
+  {
+    "key": "GuideData_Title_3",
+    "text_cn": "收集遗物吧！",
+    "text_cht": "收集遺物吧！",
+    "text_en": "Collect relics!",
+    "text_jp": "遺物を集めよう！"
+  },
+  {
+    "key": "GuideData_Title_4",
+    "text_cn": "我的精灵伙伴！",
+    "text_cht": "我的精靈夥伴！",
+    "text_en": "My elf friend!",
+    "text_jp": "私のエルフの友達！"
+  },
+  {
+    "key": "GuideData_Title_5",
+    "text_cn": "战斗天赋-派生攻击",
+    "text_cht": "戰鬥天賦-派生攻擊",
+    "text_en": "Combat Talent - Derivative Attack",
+    "text_jp": "戦闘タレント - 派生攻撃"
+  },
+  {
+    "key": "GuideData_Title_6",
+    "text_cn": "获取信物吧！",
+    "text_cht": "獲取信物吧！",
+    "text_en": "Get the token!",
+    "text_jp": "トークンを入手してください!"
+  },
+  {
+    "key": "GuideData_Title_7",
+    "text_cn": "特殊遗物！",
+    "text_cht": "特殊遺物！",
+    "text_en": "Special relic!",
+    "text_jp": "特別な遺物！"
+  },
+  {
+    "key": "GuideData_Title_8",
+    "text_cn": "保护自己！",
+    "text_cht": "保護自己！",
+    "text_en": "Protect yourself!",
+    "text_jp": "自分を守りましょう！"
+  },
+  {
+    "key": "GuideData_Title_9",
+    "text_cn": "召唤怪物支援技！",
+    "text_cht": "召喚怪物支援技！",
+    "text_en": "Summon monster support skills!",
+    "text_jp": "モンスターのサポートスキルを召喚せよ！"
+  },
+  {
+    "key": "GuideData_Title_10",
+    "text_cn": "当心脚下！",
+    "text_cht": "小心腳下！",
+    "text_en": "Watch your step!",
+    "text_jp": "足もと注意！"
+  },
+  {
+    "key": "GuideData_Title_11",
+    "text_cn": "异常状态",
+    "text_cht": "異常狀態",
+    "text_en": "Abnormal status",
+    "text_jp": "異常状態"
+  },
+  {
+    "key": "GuideData_Title_12",
+    "text_cn": "增幅状态",
+    "text_cht": "增幅狀態",
+    "text_en": "Amplification status",
+    "text_jp": "増幅状態"
+  },
+  {
+    "key": "GuideData_Title_13",
+    "text_cn": "魔化与强化词条",
+    "text_cht": "怪物強化",
+    "text_en": "Monster Enhancement",
+    "text_jp": "モンスター強化"
+  },
+  {
+    "key": "GuideData_Title_14",
+    "text_cn": "精英怪物！",
+    "text_cht": "精英怪物！",
+    "text_en": "Elite monster!",
+    "text_jp": "エリートモンスター！"
+  },
+  {
+    "key": "GuideData_Title_101",
+    "text_cn": "修复营地吧！",
+    "text_cht": "修復營地吧！",
+    "text_en": "Repair the camp!",
+    "text_jp": "キャンプを修復してください！"
+  },
+  {
+    "key": "GuideData_Title_102",
+    "text_cn": "冒险家公会-公会支援表",
+    "text_cht": "冒險家公會-公會支援表",
+    "text_en": "Adventurer's Guild - Guild Support Table",
+    "text_jp": "冒険者ギルド - ギルドサポートテーブル"
+  },
+  {
+    "key": "GuideData_Title_103",
+    "text_cn": "招募伙伴吧！",
+    "text_cht": "招募夥伴吧！",
+    "text_en": "Recruit partners!",
+    "text_jp": "パートナーを募集します！"
+  },
+  {
+    "key": "GuideData_Title_104",
+    "text_cn": "铁匠铺-解锁武器",
+    "text_cht": "鐵匠鋪-解鎖武器",
+    "text_en": "Blacksmith Shop - Unlock Weapons",
+    "text_jp": "鍛冶屋 - 武器のロックを解除"
+  },
+  {
+    "key": "GuideData_Title_105",
+    "text_cn": "铁匠铺-强化武器",
+    "text_cht": "鐵匠鋪-強化武器",
+    "text_en": "Blacksmith Shop - Enhanced Weapons",
+    "text_jp": "鍛冶屋 - 強化武器"
+  },
+  {
+    "key": "GuideData_Title_106",
+    "text_cn": "委托栏-冒险委托",
+    "text_cht": "委託欄-冒險委託",
+    "text_en": "Commission Column-Adventure Commission",
+    "text_jp": "委託コラム-冒険委託"
+  },
+  {
+    "key": "GuideData_Title_107",
+    "text_cn": "委托栏-悬赏委托",
+    "text_cht": "委託欄-懸賞委託",
+    "text_en": "Commission column-Reward commission",
+    "text_jp": "コミッションコラム - 報酬コミッション"
+  },
+  {
+    "key": "GuideData_Title_108",
+    "text_cn": "研究所-遗物图鉴",
+    "text_cht": "研究所-遺物圖鑑",
+    "text_en": "Research Institute-Relic Encyclopedia",
+    "text_jp": "研究所-遺物百科事典"
+  },
+  {
+    "key": "GuideData_Title_109",
+    "text_cn": "研究所-怪物石坛",
+    "text_cht": "研究所-怪獸祭壇",
+    "text_en": "Research Institute-Monster Altar",
+    "text_jp": "研究所-モンスターの祭壇"
+  },
+  {
+    "key": "GuideData_Title_110",
+    "text_cn": "符文巨石",
+    "text_cht": "符文巨石",
+    "text_en": "Runestone",
+    "text_jp": "ルーンストーン"
+  },
+  {
+    "key": "GuideData_Title_111",
+    "text_cn": "篝火餐厅-食谱",
+    "text_cht": "營火酒館-食譜",
+    "text_en": "Bonfire Tavern - Recipes",
+    "text_jp": "焚き火酒場 - レシピ"
+  },
+  {
+    "key": "GuideData_Title_112",
+    "text_cn": "篝火餐厅-烹饪",
+    "text_cht": "篝火酒館-烹飪",
+    "text_en": "Bonfire Tavern - Cooking",
+    "text_jp": "焚き火酒場 - 料理"
+  },
+  {
+    "key": "GuideData_Title_113",
+    "text_cn": "迷宫难度",
+    "text_cht": "迷宮難度",
+    "text_en": "Maze Difficulty",
+    "text_jp": "迷宮の難易度"
+  },
+  {
+    "key": "GuideData_Title_115",
+    "text_cn": "据点装饰",
+    "text_cht": "據點裝飾",
+    "text_en": "Stronghold Decorations",
+    "text_jp": "拠点装飾"
+  },
+  {
+    "key": "GuideData_HeadText_115",
+    "text_cn": "更换据点外观",
+    "text_cht": "更換據點外觀",
+    "text_en": "Change the stronghold appearance",
+    "text_jp": "拠点の外観を変更"
+  },
+  {
+    "key": "GuideData_TailText_115",
+    "text_cn": "当据点全部建筑达到最高等级后，将解锁据点装饰功能。选择左侧建筑，再选择想要使用的装饰方案，点击确认后即可完成更换。",
+    "text_cht": "當據點全部建築達到最高等級後，將解鎖據點裝飾功能。選擇左側建築，再選擇想要使用的裝飾方案，點擊確認後即可完成更換。",
+    "text_en": "Stronghold decorations unlock after every building reaches its maximum level. Select a building, choose a decoration, and press Confirm to apply it.",
+    "text_jp": "拠点内のすべての建物が最大レベルに達すると、拠点装飾が解放されます。建物と装飾を選択し、確認を押すと変更できます。"
+  },
+  {
+    "key": "GuideData_Title_201",
+    "text_cn": "探索迷宫吧！",
+    "text_cht": "探索迷宮吧！",
+    "text_en": "Explore the maze!",
+    "text_jp": "迷路を探検しよう！"
+  },
+  {
+    "key": "GuideData_Title_202",
+    "text_cn": "选择路线！",
+    "text_cht": "選擇路線！",
+    "text_en": "Choose your route!",
+    "text_jp": "ルートを選択してください！"
+  },
+  {
+    "key": "GuideData_Title_203",
+    "text_cn": "节点类型·其一",
+    "text_cht": "節點類型",
+    "text_en": "Node Type",
+    "text_jp": "ノードタイプ"
+  },
+  {
+    "key": "GuideData_Title_204",
+    "text_cn": "开始破坏吧！",
+    "text_cht": "開始破壞吧！",
+    "text_en": "Start destroying!",
+    "text_jp": "破壊を開始！"
+  },
+  {
+    "key": "GuideData_Title_205",
+    "text_cn": "节点类型·其二",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_2051",
+    "text_cn": "尽快击败敌人！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_2052",
+    "text_cn": "别被打中！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_2053",
+    "text_cn": "坚守基石！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_2054",
+    "text_cn": "寻找宝藏吧！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_206",
+    "text_cn": "节点增殖",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_1",
+    "text_cn": "普通攻击|\n闪避攻击|\n重击|\n强化重击|\n战技|\n爆发技",
+    "text_cht": "普通攻擊|\n閃避攻擊|\n重擊|\n強化重擊|\n戰技|\n爆發技",
+    "text_en": "Normal Attack |\nDodge Attack |\nHeavy Attack |\nEnhanced Heavy Attack |\nCombat Skill |\nBurst Skill",
+    "text_jp": "通常攻撃 |\n回避攻撃 |\n強攻撃 |\n強化強攻撃 |\n戦闘スキル |\nバーストスキル"
+  },
+  {
+    "key": "GuideData_HeadText_2",
+    "text_cn": "冒险家评级|\n解锁天赋！",
+    "text_cht": "冒險家評級|\n解鎖天賦！",
+    "text_en": "Adventurer Rating |\nUnlock Talents!",
+    "text_jp": "冒険者評価 |\n才能をアンロック！"
+  },
+  {
+    "key": "GuideData_HeadText_3",
+    "text_cn": "获取遗物|\n遗物等级|\n遗物合成",
+    "text_cht": "獲取遺物|\n遺物等級|\n遺物合成",
+    "text_en": "Obtain Relics |\nRelic Levels |\nRelic Synthesis",
+    "text_jp": "遺物入手 |\n遺物レベル |\n遺物の合成"
+  },
+  {
+    "key": "GuideData_HeadText_4",
+    "text_cn": "获取精灵吧！|\n升级精灵吧！|\n收集精灵吧！",
+    "text_cht": "獲取精靈吧！ |\n升級精靈吧！ |\n收集精靈吧！",
+    "text_en": "Get a Pokémon! |\nUpgrade a Pokémon! |\nCollect Pokémon!",
+    "text_jp": "ポケモンをゲット！ |\nポケモンをアップグレード！ |\nポケモンを集めよう！"
+  },
+  {
+    "key": "GuideData_HeadText_5",
+    "text_cn": "衔接招式吧！",
+    "text_cht": "銜接招式吧！",
+    "text_en": "Connect the moves!",
+    "text_jp": "動きをつなげよう！"
+  },
+  {
+    "key": "GuideData_HeadText_6",
+    "text_cn": "装备信物！|\n提升好感！",
+    "text_cht": "裝備信物！ |\n提升好感！",
+    "text_en": "Equip a token! |\nBoost your friendship!",
+    "text_jp": "トークンを装備しよう！ |\n友情を強化！"
+  },
+  {
+    "key": "GuideData_HeadText_7",
+    "text_cn": "黑暗遗物|\n净化遗物",
+    "text_cht": "詛咒遺物|\n淨化遺物",
+    "text_en": "Cursed Relic |\nPurified Relic",
+    "text_jp": "呪われた遺物 |\n浄化された遺物"
+  },
+  {
+    "key": "GuideData_HeadText_8",
+    "text_cn": "护甲|\n护盾",
+    "text_cht": "護甲|\n護盾",
+    "text_en": "Armor|\nShield",
+    "text_jp": "アーマー|\nシールド"
+  },
+  {
+    "key": "GuideData_HeadText_9",
+    "text_cn": "怪物石坛|\n怪物支援技|\n专属遗物|\n支援能量",
+    "text_cht": "怪物祭壇|\n怪物支援技|\n專屬遺物|\n支援能量",
+    "text_en": "Monster Altar |\nMonster Support Skill |\nExclusive Relic |\nSupport Energy",
+    "text_jp": "モンスター祭壇 |\nモンスターサポートスキル |\n限定レリック |\nサポートエネルギー"
+  },
+  {
+    "key": "GuideData_HeadText_10",
+    "text_cn": "攻击型陷阱|\n侵蚀型陷阱",
+    "text_cht": "攻擊陷阱|\n詛咒型陷阱",
+    "text_en": "Offensive Trap |\nCurse Trap",
+    "text_jp": "攻撃トラップ |\n呪いのトラップ"
+  },
+  {
+    "key": "GuideData_HeadText_11",
+    "text_cn": "灼烧|\n暗蚀|\n破甲|\n潮湿|\n标记|\n胆怯|\n吞噬标记",
+    "text_cht": "灼燒|\n暗蝕|\n破甲|\n潮濕|\n標記|\n膽怯|\n死神標記",
+    "text_en": "Burn |\nErosion |\nArmor Break |\nWet |\nMark |\nCowardly |\nDeath Mark",
+    "text_jp": "燃焼 |\n浸食 |\n装甲破壊 |\n濡れ |\n痕跡 |\n臆病 |\n死の痕跡"
+  },
+  {
+    "key": "GuideData_HeadText_12",
+    "text_cn": "剑心|\n坚毅|\n会心|\n强化攻击力|\n强化攻击速度|\n强化暴击率|\n强化暴击伤害|\n强化速度|\n强化防御力",
+    "text_cht": "劍心|\n堅毅|\n會心|\n強化攻擊力|\n強化攻擊速度|\n強化暴擊率|\n強化暴擊傷害|\n強化速度|\n強化防禦力",
+    "text_en": "Sword Heart |\nPerseverance |\nCritical Hit |\nBoost Attack Power |\nBoost Attack Speed |\nBoost Critical Chance |\nBoost Critical Damage |\nBoost Speed |\nBoost Defense",
+    "text_jp": "ソードハート |\n忍耐 |\nクリティカルヒット |\n攻撃力アップ |\n攻撃速度アップ |\nクリティカル率アップ |\nクリティカルダメージアップ |\n速度アップ |\n防御力アップ"
+  },
+  {
+    "key": "GuideData_HeadText_13",
+    "text_cn": "怪物魔化|\n不朽|\n魔盾|\n狂暴|\n侵蚀|\n同生|\n屏障|\n伏击|\n毒牙|\n嗜血|\n锋利|\n混沌|\n迟影|\n断脉|\n锁足",
+    "text_cht": "不朽|\n魔盾|\n狂暴|\n侵蝕|\n同生|\n屏障|\n伏擊|\n毒牙|\n嗜血|\n鋒利|\n混沌",
+    "text_en": "Immortal |\nShield |\nRage |\nCorrosion |\nSyngenesis |\nBarrier |\nAmbush |\nVenomous Fang |\nBloodlust |\nSharp |\nChaos",
+    "text_jp": "不滅 |\nシールド |\nレイジ |\n腐食 |\nシンジェネシス |\nバリア |\n待ち伏せ |\n毒牙 |\n血の渇望 |\nシャープ |\nカオス"
+  },
+  {
+    "key": "GuideData_HeadText_14",
+    "text_cn": "怪物护甲",
+    "text_cht": "怪物護甲",
+    "text_en": "Monster Armor",
+    "text_jp": "モンスターアーマー"
+  },
+  {
+    "key": "GuideData_HeadText_101",
+    "text_cn": "工程师",
+    "text_cht": "工程師",
+    "text_en": "engineer",
+    "text_jp": "エンジニア"
+  },
+  {
+    "key": "GuideData_HeadText_102",
+    "text_cn": "公会支援表",
+    "text_cht": "公會支援表",
+    "text_en": "Guild Support Table",
+    "text_jp": "ギルドサポートテーブル"
+  },
+  {
+    "key": "GuideData_HeadText_103",
+    "text_cn": "解锁伙伴",
+    "text_cht": "解鎖夥伴",
+    "text_en": "Unlock Partner",
+    "text_jp": "パートナーのロックを解除"
+  },
+  {
+    "key": "GuideData_HeadText_104",
+    "text_cn": "解锁武器",
+    "text_cht": "解鎖武器",
+    "text_en": "Unlock weapons",
+    "text_jp": "武器のロックを解除する"
+  },
+  {
+    "key": "GuideData_HeadText_105",
+    "text_cn": "强化武器",
+    "text_cht": "強化武器",
+    "text_en": "Enhanced weapons",
+    "text_jp": "強化された武器"
+  },
+  {
+    "key": "GuideData_HeadText_106",
+    "text_cn": "冒险委托栏",
+    "text_cht": "冒險委託欄",
+    "text_en": "Adventure Commission Column",
+    "text_jp": "冒険委員会コラム"
+  },
+  {
+    "key": "GuideData_HeadText_107",
+    "text_cn": "悬赏委托",
+    "text_cht": "懸賞委託",
+    "text_en": "Bounty Commission",
+    "text_jp": "賞金委員会"
+  },
+  {
+    "key": "GuideData_HeadText_108",
+    "text_cn": "检查遗物|\n祈愿遗物",
+    "text_cht": "檢查遺物|\n祈願遺物",
+    "text_en": "Examining Relics |\nPraying for Relics",
+    "text_jp": "聖遺物の調査 |\n聖遺物のために祈る"
+  },
+  {
+    "key": "GuideData_HeadText_109",
+    "text_cn": "怪物图鉴|\n怪物养成",
+    "text_cht": "怪物圖鑑|\n怪物養成",
+    "text_en": "Monster Encyclopedia |\nMonster Training",
+    "text_jp": "モンスター図鑑 |\nモンスタートレーニング"
+  },
+  {
+    "key": "GuideData_HeadText_110",
+    "text_cn": "怪物工作",
+    "text_cht": "怪物工作",
+    "text_en": "Monster Job",
+    "text_jp": "モンスタージョブ"
+  },
+  {
+    "key": "GuideData_HeadText_111",
+    "text_cn": "解锁食谱",
+    "text_cht": "解鎖食譜",
+    "text_en": "Unlock Recipes",
+    "text_jp": "レシピのロックを解除"
+  },
+  {
+    "key": "GuideData_HeadText_112",
+    "text_cn": "烹饪食物",
+    "text_cht": "烹調食物",
+    "text_en": "Cooking food",
+    "text_jp": "料理をする"
+  },
+  {
+    "key": "GuideData_HeadText_113",
+    "text_cn": "解锁难度|\n难度奖励",
+    "text_cht": "解鎖難度|難度獎勵",
+    "text_en": "Unlock Difficulty|Difficulty Rewards",
+    "text_jp": "難易度を解除|難易度報酬"
+  },
+  {
+    "key": "GuideData_HeadText_201",
+    "text_cn": "宝箱类型",
+    "text_cht": "寶箱型",
+    "text_en": "Treasure chest type",
+    "text_jp": "宝箱型"
+  },
+  {
+    "key": "GuideData_HeadText_202",
+    "text_cn": "节点增殖|\n迷宫宝珠",
+    "text_cht": "節點增殖|\n聖印光點",
+    "text_en": "Node Proliferation |\nSeal Point",
+    "text_jp": "ノード増殖 |\nシールポイント"
+  },
+  {
+    "key": "GuideData_HeadText_203",
+    "text_cn": "入口|\n遭遇战|\n危险遭遇战|\n迷宫商店|\n治愈泉水|\n寻宝|\n领主",
+    "text_cht": "入口|\n遭遇戰|\n危險遭遇戰|\n迷宮商店|\n治愈泉水|\n尋寶|\n領主",
+    "text_en": "Entrance |\nEncounter |\nDangerous Encounter |\nMaze Shop |\nHealing Fountain |\nTreasure Hunt |\nLord",
+    "text_jp": "入口 |\n遭遇 |\n危険な遭遇 |\n迷路ショップ |\n癒しの泉 |\n宝探し |\n領主"
+  },
+  {
+    "key": "GuideData_HeadText_204",
+    "text_cn": "可破坏物|\n区域素材|\n矿脉",
+    "text_cht": "可破壞物|\n區域素材|\n礦脈",
+    "text_en": "Destructible Objects |\nArea Materials |\nMineral Veins",
+    "text_jp": "破壊可能なオブジェクト |\nエリア素材 |\n鉱脈"
+  },
+  {
+    "key": "GuideData_HeadText_205",
+    "text_cn": "限时战斗|\n极限闪避|\n保护目标",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_2051",
+    "text_cn": "限时战斗",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_2052",
+    "text_cn": "极限闪避",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_2053",
+    "text_cn": "保护目标",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_2054",
+    "text_cn": "寻宝",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_206",
+    "text_cn": "素材增殖|\n魔力矿脉|\n黄金矿脉|\n精灵石坛|\n怪物石坛",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_1",
+    "text_cn": "轻按普通攻击按钮，实现能对敌人造成伤害的数次攻击。|\n闪避过程中轻按普通攻击键，角色将释放一次闪避攻击。|\n长按普通攻击键，角色将释放一次普通重击。|\n当重击能量满足时，长按攻击键，角色将释放一次更为强大的重击。|\n轻按战技按钮，释放独属于该角色的技能，释放后会进入冷却时间。|\n爆发技能量充满时，轻按爆发技按钮，释放独属于该角色的强大技能，释放后会清空爆发技能量。",
+    "text_cht": "輕按普通攻擊鈕，實現能對敵人造成傷害的數次攻擊。 |\n閃避過程中輕按普通攻擊鍵，角色將釋放一次閃避攻擊。 |\n長按普通攻擊鍵，角色將釋放一次普通重擊。 |\n當重擊能量滿足時，長按攻擊鍵，角色將釋放一次更強大的重擊。 |\n輕按戰技按鈕，釋放獨屬於該角色的技能，釋放後會進入冷卻時間。 |\n爆發技能量充滿時，輕按爆發技按鈕，釋放獨屬於該角色的強大技能，釋放後會清空爆發技能量。",
+    "text_en": "Tap the normal attack button to unleash a series of attacks that deal damage to the enemy. |\nTap the normal attack button while dodging to unleash a dodge attack. |\nPress and hold the normal attack button to unleash a normal heavy attack. |\nWhen the heavy attack energy is full, hold the attack button for an even more powerful heavy attack. |\nTap the skill button to unleash a skill unique to that character, which enters a cooldown period. |\nWhen the burst skill meter is full, tap the burst skill button to unleash a powerful skill unique to that character, which clears the burst skill meter.",
+    "text_jp": "通常攻撃ボタンをタップすると、敵にダメージを与える連続攻撃を繰り出します。 |\n回避中に通常攻撃ボタンをタップすると、回避攻撃を繰り出します。 |\n通常攻撃ボタンを長押しすると、通常の強攻撃を繰り出します。 |\n強攻撃エネルギーが満タンの状態で攻撃ボタンを長押しすると、さらに強力な強攻撃を繰り出します。 |\nスキルボタンをタップすると、そのキャラクター固有のスキルが発動します。スキル発動後、クールダウンが発生します。 |\nバーストスキルメーターが満タンの状態でバーストスキルボタンをタップすると、そのキャラクター固有の強力なスキルが発動します。スキル発動後、バーストスキルメーターがクリアされます。"
+  },
+  {
+    "key": "GuideData_TailText_2",
+    "text_cn": "每位角色拥有独立等级，分为古铜、黑铁、秘银、黄金、白金，每次提升等级都能增加该角色的生命、攻击力、防御力。|\n随着冒险家评级的提升，角色也将解锁更多天赋供冒险选择！",
+    "text_cht": "每位角色擁有獨立等級，分為古銅、黑鐵、秘銀、黃金、白金，每次提升等級都能增加該角色的生命、攻擊力、防禦力。 |\n隨著冒險家評級的提升，角色也將解鎖更多天賦供冒險選擇！",
+    "text_en": "Each character has a unique level, divided into Bronze, Iron, Mithril, Gold, and Platinum. Each level increase increases their health, attack power, and defense. |\nAs your Adventurer Rating increases, your character will unlock more talents for your adventures!",
+    "text_jp": "各キャラクターには独自のレベルがあり、ブロンズ、アイアン、ミスリル、ゴールド、プラチナの5段階に分かれています。レベルが上がるごとに、体力、攻撃力、防御力が向上します。|\n冒険者評価が上がると、キャラクターは冒険に役立つ新たな才能をアンロックします！"
+  },
+  {
+    "key": "GuideData_TailText_3",
+    "text_cn": "在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。|\n通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。|\n一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。",
+    "text_cht": "在迷宮內，玩家可以透過取得聖物布袋等方式，取得幫助玩家探索迷宮的特殊道具，這些道具僅在本次探索內生效。 |\n通常情況下每件遺物都擁有自己的等級，星級越高效果越強，取得難度也越高。 |\n有些遺物擁有自己的系列，集齊後將啟動一件效果更強的遺物。",
+    "text_en": "Within the maze, players can obtain special items to aid in exploration by obtaining Relic Bags and other methods. These items are only effective during that exploration. |\n\nEach relic typically has its own rank. Higher star ratings increase the power and difficulty of obtaining it. |\n\nSome relics have their own series. Collecting all of them will activate a more powerful relic.",
+    "text_jp": "迷路内では、遺物バッグなどを入手することで、探索を助ける特別なアイテムを入手できます。これらのアイテムは、その探索中のみ効果を発揮します。 |\n\n遺物には通常、ランクが設定されています。星の数が多いほど、その威力と入手難易度が上がります。 |\n\n遺物の中にはシリーズが存在するものもあり、全て集めるとより強力な遺物が発動します。"
+  },
+  {
+    "key": "GuideData_TailText_4",
+    "text_cn": "迷宫中会随机出现孵化精灵蛋的神秘石坛，在没有触发战斗时，玩家可以与其互动获得一种元素精灵的力量，精灵仅在本次冒险生效。|\n与精灵石坛互动时，如果已经持有精灵，则有概率能选择已拥有精灵的升级状态以提升该精灵的力量，每只精灵的最高等级为五星。|\n达成解锁条件，并集齐两只力量相衬的五星精灵后，再次开启精灵石坛将可以出现最强大的精灵融合形态！",
+    "text_cht": "迷宮中會隨機出現孵化精靈蛋的神秘祭壇，在沒有觸發戰鬥時，玩家可以與其互動獲得一種元素精靈的力量，精靈僅在本次冒險生效。 |\n與精靈祭壇互動時，如果已經持有精靈，則有機率能選擇已擁有精靈的升級狀態以提升該精靈的力量，每隻精靈的最高等級為五星。 |\n達成解鎖條件，並收集兩隻力量相襯的五星級精靈後，再次開啟精靈祭壇將可以出現最強大的精靈融合形態！",
+    "text_en": "Mysterious altars that hatch Pokémon eggs will randomly appear in the maze. When not in combat, players can interact with them to gain the power of an elemental Pokémon, valid only for this particular adventure. |\n\nWhen interacting with a Pokémon altar, if you already possess a Pokémon, there's a chance you'll be able to select an upgrade state for that Pokémon, increasing its power. The highest level for each Pokémon is five-star. |\n\nOnce you've met the unlocking requirements and collected two five-star Pokémon of matching power, opening the Pokémon altar again will reveal the most powerful Pokémon fusion form!",
+    "text_jp": "迷路には、ポケモンのタマゴを孵化させる不思議な祭壇がランダムに出現します。戦闘中でない時は、プレイヤーは祭壇に触れることで、その冒険限定で有効な属性ポケモンの力を得ることができます。 |\n\n祭壇に触れた際に、既にポケモンを所持している場合は、そのポケモンを強化状態にできる場合があります。強化状態とは、ポケモンの強さを上昇させる状態です。各ポケモンの最高レベルは星5です。 |\n\n解除条件を満たし、同じ強さの星5ポケモンを2匹集めると、祭壇を再び開けることで、最強のポケモンフュージョンフォームが出現します！"
+  },
+  {
+    "key": "GuideData_TailText_5",
+    "text_cn": "选择一些特殊天赋后，根据该天赋描述释放普通攻击、战技或重击后轻按普通攻击按钮，能够立即释放一次特殊攻击。",
+    "text_cht": "選擇一些特殊天賦後，根據該天賦描述釋放普通攻擊、戰技或重擊後輕按普通攻擊按鈕，能夠立即釋放一次特殊攻擊。",
+    "text_en": "After selecting some special talents, you can immediately release a special attack by releasing a normal attack, combat skill or heavy attack according to the talent description and then tapping the normal attack button.",
+    "text_jp": "いくつかの特別な才能を選択した後、才能の説明に従って通常攻撃、戦闘スキル、または強力な攻撃を放ち、通常攻撃ボタンをタップすることで、すぐに特別な攻撃を放つことができます。"
+  },
+  {
+    "key": "GuideData_TailText_6",
+    "text_cn": "玩家能够在信物列表装备角色们赠送的特殊信物，以获得额外的冒险助力。|\n向其他伙伴赠送礼物可以提高他们的好感度，或许还能获得他们的回礼噢。",
+    "text_cht": "玩家能夠在信物清單裝備角色們贈送的特殊信物，以獲得額外的冒險助力。 |\n向其他夥伴贈送禮物可以提高他們的好感度，或許還能獲得他們的回禮噢。",
+    "text_en": "Players can equip special tokens given by characters in their Token List to gain additional adventure support. |\nGiving gifts to other companions can increase their favorability and may even earn them a gift in return.",
+    "text_jp": "プレイヤーはトークンリスト内のキャラクターから贈られる特別なトークンを装備することで、冒険をさらにサポートすることができます。 |\n他の仲間に贈り物をすることで好感度が上がり、お返しに贈り物をもらえることもあります。"
+  },
+  {
+    "key": "GuideData_TailText_7",
+    "text_cn": "玩家可以在黑暗石坛获取被侵蚀的遗物，这些遗物会限制玩家的战斗力或强化其他怪物，满足它们的净化条件后，这些遗物就能恢复原来的模样。|\n完成黑暗遗物的净化条件可以获得净化遗物，净化遗物的效果往往比普通的遗物更加强大。",
+    "text_cht": "玩家可以在詛咒祭壇取得被詛咒的遺物，這些遺物會限制玩家的戰鬥力或強化其他怪物，滿足它們的淨化條件後，這些遺物就能恢復原來的模樣。 |\n完成詛咒遺物的淨化條件可以獲得淨化遺物，淨化遺物的效果往往比普通的遺物更強大。",
+    "text_en": "Players can obtain cursed relics at the Cursed Altar. These relics can restrict the player's combat power or strengthen other monsters. Once the purification conditions are met, these relics will return to their original form. |\nCompleting the purification conditions for a cursed relic will yield a Purified Relic, which is often more powerful than a normal relic.",
+    "text_jp": "プレイヤーは呪われた祭壇で呪われた遺物を手に入れることができます。これらの遺物はプレイヤーの戦闘力を制限したり、他のモンスターを強化したりすることがあります。浄化条件を満たすと、これらの遺物は元の姿に戻ります。|\n呪われた遺物の浄化条件を満たすと、浄化された遺物が得られます。浄化された遺物は、通常の遺物よりも強力な場合が多いです。"
+  },
+  {
+    "key": "GuideData_TailText_8",
+    "text_cn": "护甲能够代替生命值承受伤害，当护甲受到过量伤害而碎裂时也不会扣除生命值。|\n护盾能够代替生命值承受伤害，除非特别说明，否则护盾上限无法超过生命上限，也无法带入下一节点。",
+    "text_cht": "護甲能夠代替生命值承受傷害，當護甲受到過量傷害而碎裂時也不會扣除生命值。 |\n護盾存在時，能夠免疫受到的一切傷害。",
+    "text_en": "Armor absorbs damage in lieu of health, and even if armor shatters due to excessive damage, health is not lost. |\nWhile the shield is active, it provides immunity to all incoming damage.",
+    "text_jp": "アーマーは体力の代わりにダメージを吸収し、過度のダメージでアーマーが破壊されても体力は失われません。 |\nシールドが発動している間は、受けるダメージをすべて無効化します。"
+  },
+  {
+    "key": "GuideData_TailText_9",
+    "text_cn": "与节点中的怪物石坛互动可以获得迷宫怪物的力量，在支援能量足够的情况下可以随时召唤怪物为自己的战斗添加助力。|\n玩家可以选择一项怪物支援技能装备，玩家最多能够持有两种不同的怪物支援技能。|\n怪物支援石坛可以选择专属遗物，这些遗物能用于强化怪物支援技能，或使用怪物支援技能后为玩家带来强大增益。|\n选择怪物支援技能后，可以通过攻击怪物增加支援能量，涨满后获得1点支援能量点，玩家可以消耗对应数量的支援能量点召唤怪物支援技。",
+    "text_cht": "與節點中的怪物祭壇互動可以獲得怪物靈魂的力量，在支援能量足夠的情況下可以隨時召喚怪物為自己的戰鬥添加助力。 |\n玩家可以選擇一項怪物支援技能裝備，玩家最多能夠持有兩種不同的怪物支援技能。 |\n怪物支援祭壇可以選擇專屬遺物，這些聖物能用於強化怪物支援技能，或使用怪物支援技能後為玩家帶來強大增益。 |\n選擇怪物支援技能後，可以透過攻擊怪獸增加支援能量，漲滿後獲得1點支援能量點，玩家可以消耗對應數量的支援能量點召喚怪獸支援技。",
+    "text_en": "Interacting with the Monster Altar in a node grants the power of monster souls. When you have enough support energy, you can summon monsters to aid you in battle. |\nPlayers can select a monster support skill equipment item, and can possess up to two different monster support skills. |\nMonster Support Altars can select exclusive relics, which can be used to enhance monster support skills or grant powerful buffs to players after using them. |\nAfter selecting a monster support skill, attack monsters to increase support energy. When fully charged, you gain 1 support energy point, which you can then spend to summon the monster support skill.",
+    "text_jp": "ノード内のモンスター祭壇にインタラクトすると、モンスターの魂の力が与えられます。十分なサポートエネルギーが貯まると、戦闘を支援するモンスターを召喚できます。|\nプレイヤーはモンスターのサポートスキル装備アイテムを選択し、最大2種類のモンスターサポートスキルを所持できます。|\nモンスターサポート祭壇では専用の遺物を選択でき、モンスターのサポートスキルを強化したり、使用後にプレイヤーに強力なバフを付与したりできます。|\nモンスターのサポートスキルを選択後、モンスターを攻撃してサポートエネルギーを増加させます。完全にチャージされるとサポートエネルギーポイントを1ポイント獲得し、これを消費してモンスターのサポートスキルを召喚できます。"
+  },
+  {
+    "key": "GuideData_TailText_10",
+    "text_cn": "迷宫中有着各式各样的陷阱，攻击型陷阱能够对角色或怪物造成伤害。|\n侵蚀型陷阱能够对角色或怪物附加各种异常状态。",
+    "text_cht": "迷宮中有著各式各樣的陷阱，攻擊型陷阱能夠對角色或怪物造成傷害。 |\n詛咒型陷阱能夠對角色或怪物附加各種異常狀態。",
+    "text_en": "The maze is filled with various traps. Offensive traps can damage characters or monsters. |\nCurse traps can inflict various abnormal status effects on characters or monsters.",
+    "text_jp": "迷路には様々な罠が仕掛けられています。攻撃型の罠はキャラクターやモンスターにダメージを与えます。呪い型の罠はキャラクターやモンスターに様々な状態異常を与えます。"
+  },
+  {
+    "key": "GuideData_TailText_11",
+    "text_cn": "每秒造成15%攻击力+10的伤害，持续5秒。|\n造成的伤害降低5%，可叠加5层，持续4秒。|\n<color=#afdfe4>移动速度</color>降低20%，受到的伤害增加10%，持续5秒。|\n降低2%的移速,可叠加10层，持续5秒。|\n对该敌人的暴击率提升2%，持续10秒，可叠加10层。|\n降低攻击力20%，持续10秒。|\n持有标记后，生命值低于20%时会受到致命伤害，标记持续3秒。",
+    "text_cht": "每秒造成15%攻擊力+10的傷害，持續5秒。 |\n造成的傷害降低5%，可疊加5層，持續4秒。 |\n移動速度降低20%，受到的傷害增加10%，持續5秒。 |\n降低2%的移速,可疊加10層，持續5秒。 |\n對該敵人的爆擊率提升2%，持續10秒，可疊加10層。 |\n降低攻擊力20%，持續10秒。 |\n持有標記後，生命值低於20%時會受到致命傷害，標記持續3秒。",
+    "text_en": "Deals 15% of your attack damage + 10 damage per second for 5 seconds. |\nReduces damage dealt by 5%, stacks up to 5 times, lasts 4 seconds. |\nReduces movement speed by 20%, increases damage taken by 10%, lasts 5 seconds. |\nReduces movement speed by 2%, stacks up to 10 times, lasts 5 seconds. |\nIncreases critical strike chance against this enemy by 2%, lasts 10 seconds, stacks up to 10 times. |\nReduces attack damage by 20%, lasts 10 seconds. |\nWhile holding a mark, you will take critical damage if your health drops below 20%. The mark lasts for 3 seconds.",
+    "text_jp": "攻撃力の15% + 毎秒10ダメージを5秒間与えます。|\n与ダメージを5%軽減し、最大5回スタックし、4秒間持続します。|\n移動速度を20%低下させ、被ダメージを10%増加させ、5秒間持続します。|\n移動速度を2%低下させ、最大10回スタックし、5秒間持続します。|\nこの敵に対するクリティカルヒット率を2%増加させ、10秒間持続し、最大10回スタックします。|\n攻撃ダメージを20%軽減し、10秒間持続します。|\nマークを保持している間、体力が20%を下回るとクリティカルダメージを受けます。マークは3秒間持続します。"
+  },
+  {
+    "key": "GuideData_TailText_12",
+    "text_cn": "5秒内增加自身2%的暴击率与3%的暴击伤害，可叠加5层。|\n进入霸体状态并提高50%防御力，持续10秒。|\n自身暴击伤害提高4%，持续10秒，可叠加5层。|\n攻击力提高15%。|\n攻速提高5%。|\n暴击率提高5%。|\n暴击伤害提高5%。|\n移速提高10%。|\n防御力提高20%。",
+    "text_cht": "5秒內增加自身2%的暴擊率與3%的暴擊傷害，可疊加5層|\n進入霸體狀態並提高50%防禦力，持續10秒。 |\n自身暴擊傷害提高4%，持續10秒，可疊加5層|\n攻擊力提高15%|\n攻速提高5%。 |\n暴擊率提高5%。 |\n暴擊傷害提高5%。 |\n移速提高10%|\n防禦力提高20%。",
+    "text_en": "Increases critical strike chance by 2% and critical strike damage by 3% for 5 seconds, stacking up to 5 times.|\nEnters Super Armor and increases defense by 50% for 10 seconds.丨\nIncreases critical strike damage by 4% for 10 seconds, stacking up to 5 times.|\nIncreases attack power by 15%|\nIncreases attack speed by 5%.|\nIncreases critical strike chance by 5%.|\nIncreases critical strike damage by 5%.|\nIncreases movement speed by 10%.|\nIncreases defense by 20%.",
+    "text_jp": "クリティカル発生率が5秒間2%、クリティカルダメージが3%増加します。効果は最大5回までスタックします。 |\nスーパーアーマーを発動し、防御力が10秒間50%増加します。 |\nクリティカルダメージが10秒間4%増加します。効果は最大5回までスタックします。 |\n攻撃力が15%増加します。 |\n攻撃速度が5%増加します。 |\nクリティカル発生率が5%増加します。 |\nクリティカルダメージが5%増加します。 |\n移動速度が10%増加します。 |\n防御力が20%増加します。"
+  },
+  {
+    "key": "GuideData_TailText_13",
+    "text_cn": "受到【魔化】效果的怪物会获得若干强化词条，且自身招式与体型也会发生变化。|\n受到致命伤害时，将生命值锁定在20%，并在1秒内分四段恢复共40%最大生命值。|\n敌人获得等同于100%最大生命值的护甲；精英在护甲未破碎且未满时，每秒恢复1%最大生命值的护甲，最多60次。|\n生命值不高于50%时，攻击力提升50%，攻击间隔缩短50%。|\n被攻击时，有20%概率使20米范围内的冒险家治疗量降低50%，持续5秒。|\n每5秒治疗4米范围内除自己和领主外的友方魔物5%最大生命值。|\n常态更不容易被打断；普通攻击期间受到的伤害降低50%。|\n造成的伤害提升25%，触发后冷却3秒。|\n被怪物普通攻击命中后，每秒损失1点生命值，持续约5秒。|\n对冒险家造成伤害后，恢复自身10%最大生命值，冷却1秒。|\n攻击力提升30%，造成的伤害提升30%。|\n初始获得18层减伤，每层提供5%全元素抗性；每次受到冒险家伤害减少1层。|\n被怪物命中后，5秒内该冒险家<#specinfo=shanbi>冷却时间延长50%。|\n被怪物命中后，5秒内该冒险家<#specinfo=baofajinengliang>充能效率降低20%。|\n被怪物命中后，5秒内该冒险家<#specinfo=yidongsudu>降低20%。",
+    "text_cht": "怪物血量降低到10%時，無視傷害2秒，並逐漸恢復40%最大生命值的血量|\n獲得100%生命值的護甲，當怪物類型為精英時，如果當前護甲不為0，則每1秒恢復1%護甲|\n怪物血量低於50%時，獲得30%移速和更快的攻擊頻率|\n怪物處於侵蝕狀態時被攻擊會有20%機率給攻擊者附加持續3秒的禁療效果|\n怪物每5秒為附近（不包括自己）的友方恢復15%生命值|\n怪物處於霸體狀態，且攻擊狀態下免疫50%傷害|\n第一次造成的傷害提升至兩倍|\n每秒流失1點生命值，持續5秒|\n怪物每次攻擊都會恢復3%生命值|\n怪物獲得30%攻擊力加成和30%護甲穿透|\n獲得減傷效果，受到攻擊後會減弱",
+    "text_en": "When a monster's health drops to 10%, it ignores damage for 2 seconds and gradually heals 40% of its maximum health.|\n\nGives armor equal to 100% of its health. If the monster's current armor is not 0, it regenerates 1% armor every second.|\n\nWhen a monster's health drops below 50%, it gains 30% movement speed and attacks more frequently.|\n\nWhen a monster is in Corrosion mode, being attacked has a 20% chance to inflict a 3-second healing barrier on the attacker.|\n\nThe monster heals 15% of its health every 5 seconds for nearby allies (excluding itself).|\n\nThe monster is in Super Armor mode and is 50% immune to damage while attacking.|\n\nThe first damage dealt is doubled.|\n\n1 health point is lost per second for 5 seconds.|\n\nThe monster heals 3% of its health with each attack.|\n\nThe monster gains a 30% attack damage bonus and 30% armor penetration.|\n\nGains a damage reduction effect, weakening the monster after being attacked.|",
+    "text_jp": "モンスターの体力が10%まで低下すると、2秒間ダメージを受けなくなり、最大体力の40%を徐々に回復します。|\n\n体力の100%に相当するアーマーを付与します。モンスターの現在のアーマーが0でない場合、毎秒1%ずつアーマーが回復します。|\n\nモンスターの体力が50%を下回ると、移動速度が30%上昇し、攻撃頻度が上昇します。|\n\nモンスターが腐食モードの場合、攻撃を受けると20%の確率で攻撃者に3秒間の回復バリアを付与します。|\n\nモンスターは5秒ごとに、近くの味方（自身を除く）の体力を15%回復します。|\n\nモンスターはスーパーアーマーモードになり、攻撃中は50%のダメージ耐性を持ちます。|\n\n最初のダメージは2倍になります。|\n\n5秒間、毎秒1体力を失います。|\n\nモンスターは攻撃ごとに体力を3%回復します。|\n\nモンスターは攻撃力ボーナス30%と装甲貫通30%を獲得します。|\n\nダメージ軽減効果を獲得し、攻撃を受けたモンスターは弱体化します。|"
+  },
+  {
+    "key": "GuideData_TailText_14",
+    "text_cn": "精英敌人拥有自身100%生命上限的护甲，护甲可以代替生命值承受伤害，并且在持有护甲时自身抗打断能力大幅提升。",
+    "text_cht": "精英敵人擁有自身100%生命上限的護甲，護甲可以取代生命值承受傷害，並且在持有護甲時自身抗打斷能力大幅提升。",
+    "text_en": "Elite enemies have armor equal to 100% of their maximum health. The armor can absorb damage instead of health, and their resistance to interruption is greatly improved when holding the armor.",
+    "text_jp": "エリート敵は最大体力の100%に相当する装甲を持ちます。この装甲は体力の代わりにダメージを吸収し、装甲を装備している間は妨害に対する耐性が大幅に向上します。"
+  },
+  {
+    "key": "GuideData_TailText_101",
+    "text_cn": "为营地工程师阿尔托提供素材后，他能为您重建冒险营地中的各处建筑，并开放更多功能。",
+    "text_cht": "為營地工程師阿爾托提供素材後，他能為您重建冒險營地中的各處建築，並開放更多功能。",
+    "text_en": "After providing materials to the camp engineer Alto, he can rebuild various buildings in the adventure camp for you and unlock more functions.",
+    "text_jp": "キャンプエンジニアのアルトに資材を提供すると、冒険キャンプ内のさまざまな建物を再建し、より多くの機能をアンロックできるようになります。"
+  },
+  {
+    "key": "GuideData_TailText_102",
+    "text_cn": "公会支援表能够消耗各种素材激活帮助玩家冒险的各种辅助功能。",
+    "text_cht": "公會支援表能夠消耗各種素材來啟動幫助玩家冒險的各種輔助功能。",
+    "text_en": "The Guild Support Table can consume various materials to activate various auxiliary functions that help players in their adventures.",
+    "text_jp": "ギルドサポートテーブルは、さまざまな素材を消費して、プレイヤーの冒険を支援するさまざまな補助機能を有効にできます。"
+  },
+  {
+    "key": "GuideData_TailText_103",
+    "text_cn": "每位冒险伙伴都拥有各自的招募条件，达成后可以消耗招募之证解锁全新角色。",
+    "text_cht": "每位冒險夥伴都有各自的招募條件，達成後可以消耗招募之證解鎖全新角色。",
+    "text_en": "Each adventure partner has his or her own recruitment conditions. Once met, you can consume the recruitment certificate to unlock a new character.",
+    "text_jp": "冒険仲間にはそれぞれ募集条件があり、条件を満たすと募集証を消費して新しいキャラクターをアンロックできます。"
+  },
+  {
+    "key": "GuideData_TailText_104",
+    "text_cn": "每一位角色都有数种不同样式和能力的武器，达成解锁条件后，可以消耗矿石素材打造武器。|",
+    "text_cht": "每個角色都有數種不同樣式和能力的武器，達成解鎖條件後，可以消耗礦石素材打造武器。 |",
+    "text_en": "Each character has several weapons of different styles and abilities. After meeting the unlocking conditions, you can consume ore materials to craft weapons.",
+    "text_jp": "各キャラクターは、スタイルと能力が異なる複数の武器を持っています。アンロック条件を満たすと、鉱石素材を消費して武器をクラフトできるようになります。"
+  },
+  {
+    "key": "GuideData_TailText_105",
+    "text_cn": "解锁武器后，可以消耗更多矿石素材升级武器获得更强的力量。",
+    "text_cht": "解鎖武器後，可以消耗更多礦石素材升級武器以獲得更強的力量。",
+    "text_en": "After unlocking a weapon, you can consume more ore materials to upgrade the weapon to gain greater power.",
+    "text_jp": "武器のロックを解除した後、より多くの鉱石材料を消費して武器をアップグレードし、より大きなパワーを得ることができます。"
+  },
+  {
+    "key": "GuideData_TailText_106",
+    "text_cn": "由公会委托管理员洛蒂负责的冒险委托栏，玩家可以完成委托中的任务获取奖励。",
+    "text_cht": "由公會委託管理員洛蒂負責的冒險委託欄，玩家可以完成委託中的任務以獲取獎勵。",
+    "text_en": "The adventure commission column is managed by the guild commission administrator Lottie. Players can complete the tasks in the commission to obtain rewards.",
+    "text_jp": "冒険依頼欄はギルド依頼管理者のロッティによって管理されています。プレイヤーは依頼内のタスクを完了することで報酬を獲得できます。"
+  },
+  {
+    "key": "GuideData_TailText_107",
+    "text_cn": "消耗悬赏信件能够接取一些悬赏委托，完成后可以获得许多珍贵奖励。",
+    "text_cht": "消耗懸賞信件能夠接取一些懸賞委託，完成後可獲得許多珍貴獎勵。",
+    "text_en": "Consuming bounty letters allows you to accept some bounty commissions, and you can get many valuable rewards after completing them.",
+    "text_jp": "懸賞金状を消費すると、いくつかの懸賞金依頼を受け入れることができ、完了すると多くの貴重な報酬を獲得できます。"
+  },
+  {
+    "key": "GuideData_TailText_108",
+    "text_cn": "遗物图鉴中记录着在迷宫中见过的所有遗物。|\n玩家能够消耗祈愿点，选择一样已解锁的遗物提升它的出现概率。",
+    "text_cht": "遺物圖鑑中記錄著在迷宮中所見過的所有遺物。 |\n玩家能夠消耗祈願點，選擇一樣已解鎖的遺物提升它的出現機率。",
+    "text_en": "The Relic Guide lists all relics found in the dungeon. |\nPlayers can spend Wishing Points to select an unlocked relic to increase its chance of appearing.",
+    "text_jp": "遺物ガイドには、ダンジョン内で見つかるすべての遺物がリストされています。|\nプレイヤーはウィッシングポイントを消費してロック解除済みの遺物を選択し、出現確率を上げることができます。"
+  },
+  {
+    "key": "GuideData_TailText_109",
+    "text_cn": "怪物石坛记录着在迷宫中见过的所有怪物，这些怪物正等待着您使用迷宫中的怪物石坛召唤他们战斗。|\n消耗素材强化这些怪物，玩家能够获得全局的属性加成。",
+    "text_cht": "怪物祭壇記錄著在迷宮中見過的所有怪物，這些怪物的靈魂正等待著您使用迷宮中的怪物祭壇召喚他們戰鬥。 |\n消耗素材強化這些怪物，玩家能夠獲得全域的屬性加成。",
+    "text_en": "The Monster Altar records all monsters encountered in the dungeon. The spirits of these monsters await your summoning at the dungeon's Monster Altar. |\n\nBy consuming materials to strengthen these monsters, players gain global stat bonuses.",
+    "text_jp": "モンスター祭壇には、ダンジョン内で遭遇したすべてのモンスターが記録されます。これらのモンスターの魂は、ダンジョンのモンスター祭壇で召喚を待っています。|\n\n素材を消費してモンスターを強化することで、プレイヤーは全体的なステータスボーナスを獲得できます。|"
+  },
+  {
+    "key": "GuideData_TailText_110",
+    "text_cn": "与符文巨石互动，使用它力量能使用它让魔物们去别的地方探索，并收获一些素材。",
+    "text_cht": "與符文巨石互動，運用它力量能使用它讓魔物們去別的地方探索，並收穫一些素材。",
+    "text_en": "Interact with the Rune Stone and use its power to allow monsters to explore other places and harvest some materials.",
+    "text_jp": "ルーンストーンと相互作用し、その力を使用して、モンスターが他の場所を探索し、いくつかの材料を収穫できるようにします。"
+  },
+  {
+    "key": "GuideData_TailText_111",
+    "text_cn": "一些食谱需要达成解锁条件才能发现，发现该食谱后，需要消耗素材解锁。",
+    "text_cht": "有些食譜需要達成解鎖條件才能發現，發現食譜後，需要消耗素材解鎖。",
+    "text_en": "Some recipes require meeting unlocking conditions before they can be discovered. After discovering the recipe, you need to consume materials to unlock it.",
+    "text_jp": "一部のレシピは、発見前に解除条件を満たす必要があります。レシピを発見した後は、素材を消費して解除する必要があります。"
+  },
+  {
+    "key": "GuideData_TailText_112",
+    "text_cn": "在每层迷宫入口处，玩家可以消耗素材烹饪已解锁的食谱，以获得辅助冒险的特殊效果。",
+    "text_cht": "在每層迷宮入口處，玩家可以消耗素材烹飪已解鎖的食譜，以獲得輔助冒險的特殊效果。",
+    "text_en": "At the entrance to each maze, players can consume materials to cook unlocked recipes to obtain special effects to assist the adventure.",
+    "text_jp": "各迷路の入り口では、プレイヤーは材料を消費してロック解除されたレシピを調理し、冒険を助ける特殊効果を得ることができます。"
+  },
+  {
+    "key": "GuideData_TailText_113",
+    "text_cn": "迷宫拥有许多难度等级，攻略所选迷宫等级后即可解锁下一难度，随着难度提升，怪物们将会获得各种强化。|\n随着难度提升，冒险获得的奖励也将更加丰厚。",
+    "text_cht": "迷宮擁有許多難度等級，通關所選迷宮等級後即可解鎖下一難度，隨著難度提升，怪物們將會獲得各種強化。|隨著難度提升，冒險獲得的獎勵也將更加豐厚。",
+    "text_en": "Mazes have multiple difficulty tiers. Clearing the current tier unlocks the next. As difficulty increases, enemies gain various enhancements.|Higher difficulties yield richer adventure rewards.",
+    "text_jp": "迷宮には多くの難易度階級があり、選択した階級を攻略すると次の難易度が解放されます。難易度が上がるほど、敵はさまざまな強化を得ます。|難易度が上がるほど、冒険で得られる報酬もより豪華になります。"
+  },
+  {
+    "key": "GuideData_TailText_201",
+    "text_cn": "迷宫中的宝藏，分为普通木宝箱、精致铁宝箱、华丽金宝箱、领主宝箱，越高级的宝箱掉落奖励越珍贵，获取难度也越高。",
+    "text_cht": "迷宮中的寶藏，分為普通木寶箱、精緻鐵寶箱、華麗金寶箱、領主寶箱，越高級的寶箱掉落獎勵越珍貴，獲取難度也越高。",
+    "text_en": "The treasures in the maze are divided into ordinary wooden treasure chests, exquisite iron treasure chests, gorgeous gold treasure chests, and lord treasure chests. The higher the level of the treasure chest, the more precious the rewards dropped and the more difficult it is to obtain.",
+    "text_jp": "迷路内の宝物は、普通の木の宝箱、精巧な鉄の宝箱、豪華な金の宝箱、領主の宝箱に分かれています。宝箱のレベルが高いほど、ドロップする報酬はより貴重になり、入手も難しくなります。"
+  },
+  {
+    "key": "GuideData_TailText_202",
+    "text_cn": "一些房间会有增殖标识，这代表了该房间出现增殖标识的材料或道具的概率大大增加。|\n消耗迷宫宝珠能够在有标识的地方纵向移动。",
+    "text_cht": "有些房間會有增殖標識，這代表了該房間出現增殖標識的材料或道具的機率大大增加。 |\n消耗聖印光點能夠在有標識的地方縱向移動。",
+    "text_en": "Some rooms will have a proliferation symbol, indicating a significantly increased chance of containing the materials or items marked with the symbol. |\nThe consumed Seal light point can be moved vertically to the marked location.",
+    "text_jp": "一部の部屋には増殖シンボルが表示され、シンボルの付いた素材やアイテムが存在する可能性が大幅に高まっていることを示します。|\n消費されたシールの光点は、マークされた場所まで垂直に移動できます。"
+  },
+  {
+    "key": "GuideData_TailText_203",
+    "text_cn": "迷宫区域的入口，玩家可以这个节点休息，或与一些道具互动。|\n潜伏着一般怪物的节点，可以相信的是这个节点一定有宝藏。|\n情报显示这个节点有着强大的精英怪物，击败怪物后一定有更稀有的宝藏。|\n迷宫商人带着他的马车出现在迷宫各处安全的节点售卖着迷宫遗物。|\n该节点有着治愈伤势的泉水，神秘的史莱姆之王也常常出没在这里。|\n迷宫内生成的陷阱房间，在本节点中无法连续闪避，在一片陷阱后有着稀有宝藏。|\n迷宫的守层怪物，拥有极强的战力，只有击败它才能去往迷宫深处。",
+    "text_cht": "迷宮區域的入口，玩家可以這個節點休息，或與一些道具互動。 |\n潛伏著一般怪物的節點，可以相信的是這個節點一定有寶藏。 |\n情報顯示這個節點有著強大的精英怪物，擊敗怪物後一定有更稀有的寶藏。 |\n迷宮商人帶著他的馬車出現在迷宮各處安全的節點販售迷宮遺物。 |\n該節點有著治癒傷勢的神聖泉水，神秘的史萊姆之王也常常出沒在這裡。 |\n迷宮內生成的陷阱房間，在本節點中無法連續閃避，在一片陷阱後有著稀有寶藏。 |\n迷宮的守層怪物，擁有極強的戰力，只有擊敗它才能前往迷宮深處。",
+    "text_en": "The entrance to the maze area. Players can rest at this node or interact with items. |\nNodes lurking with common monsters are believed to contain treasure. |\nIntelligence indicates that this node contains powerful elite monsters. Defeating these monsters will reveal even rarer treasures. |\nThe Maze Merchant and his carriage appear at safe nodes throughout the maze, selling maze relics. |\nThis node contains a sacred spring that heals injuries, and the mysterious Slime King also frequently appears here. |\nThe trap rooms generated within the maze are impossible to dodge continuously in this node. Behind the traps lies a rare treasure. |\nThe maze's guard monsters are extremely powerful, and only by defeating them can you advance deeper into the maze.",
+    "text_jp": "迷路エリアへの入り口。プレイヤーはこのノードで休憩したり、アイテムに触れたりできます。 |\n一般的なモンスターが潜むノードには、宝物が隠されていると考えられています。 |\n情報によると、このノードには強力なエリートモンスターが潜んでいます。これらのモンスターを倒すと、さらに希少な宝物が出現します。 |\n迷路商人とその馬車は、迷路内の安全なノードに出現し、迷路の遺物を販売しています。 |\nこのノードには、傷を癒す聖なる泉があり、謎のスライムキングも頻繁に出現します。 |\nこのノードでは、迷路内に生成される罠部屋を継続的に回避することは不可能です。罠の背後には希少な宝物が隠されています。 |\n迷路のガードモンスターは非常に強力であり、それらを倒すことによってのみ、迷路の奥深くに進むことができます。"
+  },
+  {
+    "key": "GuideData_TailText_204",
+    "text_cn": "一些节点拥有可破坏障碍，这些障碍会阻挡远程攻击和移动，可以被攻击破坏。|\n每层迷宫都生长着区域素材，这些素材有概率出现在各个节点，需要被攻击采集。|\n节点内有概率出现黄金或魔力矿脉，击碎它们可以收集一些素材。",
+    "text_cht": "有些節點擁有可破壞障礙，這些障礙會阻擋遠程攻擊和移動，可以被攻擊破壞。 |\n每層迷宮都生長著區域素材，這些素材有機率出現在各個節點，需要被攻擊採集。 |\n節點內有機率出現黃金或魔力礦脈，擊碎它們可以收集一些素材。",
+    "text_en": "Some nodes contain destructible barriers that block ranged attacks and movement and can be destroyed. |\nEach level of the maze contains regional materials, which have a chance to appear at each node and need to be collected by attacking. |\nNodes have a chance to contain gold or mana veins; destroying them will collect some of these materials.",
+    "text_jp": "一部のノードには破壊可能な障壁があり、遠距離攻撃や移動をブロックします。これらは破壊可能です。|\n迷路の各レベルには地域特有の素材があり、各ノードで出現する可能性があり、攻撃することで収集する必要があります。|\nノードには金やマナの鉱脈が見つかる可能性があり、それらを破壊するとこれらの素材の一部を収集できます。"
+  },
+  {
+    "key": "GuideData_TailText_205",
+    "text_cn": "限时战斗节点需要玩家在限定的时间内击败所有怪物，花费时间越短奖励越丰厚。|\n极限闪避节点需要玩家在受到限定次数的伤害内击败所有怪物，被击中越少奖励越丰厚。|\n保护目标节点需要玩家在魔法基石被摧毁前击败所有怪物，魔法基石受到的伤害越少奖励越丰厚。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_2051",
+    "text_cn": "限时战斗挑战需要玩家在限定时间内击败所有怪物，上方的信息标明了当前挑战成功获得的奖励等级和剩余时间。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_2052",
+    "text_cn": "极限闪避挑战需要玩家在击败所有怪物的同时尽可能不受到任何伤害，上方的信息标明了当前挑战成功获得的奖励等级和剩余被击中的次数。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_2053",
+    "text_cn": "保护目标挑战需要玩家在击败所有怪物的同时保护魔法基石，上方的信息标明了当前挑战成功获得的奖励等级和魔法基石剩余的耐久度。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_2054",
+    "text_cn": "该节点标记了许多陷阱，玩家必须穿过这些陷阱才能找到最终的宝藏，成功穿过所有陷阱还有额外的宝箱奖励。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_206",
+    "text_cn": "素材增殖的节点标识代表了该节点生长着更多的迷宫素材。|\n魔力矿脉的节点标识代表了该节点有着许多储存魔力精华的矿石。|\n黄金矿脉的节点标识代表了该节点有着许多珍贵的黄金矿石。|\n精灵石坛的节点标识代表了该节点布置了可获取的元素精灵石坛。|\n怪物石坛的节点标识代表了该节点布置了可获取的怪物支援石坛。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_15",
+    "text_cn": "角色觉醒",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_15",
+    "text_cn": "觉醒等级与潜能结晶|\n觉醒天赋|\n觉醒点数",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_15",
+    "text_cn": "每名角色攻略每一级<color=#FF4040>混沌难度</color>都能在<color=#fdb933>难度选择处</color>领取<color=#c0b8ff>觉醒结晶</color>，使用<color=#c0b8ff>觉醒结晶</color>可以<color=#fdb933>提高</color>该角色的<color=#c0b8ff>觉醒等级</color>并获得<color=#c0b8ff>觉醒点数</color>。|\n<color=#c0b8ff>觉醒天赋</color>的<color=#fdb933>解锁</color>与<color=#c0b8ff>觉醒等级</color>相关，<color=#fdb933>提高</color><color=#c0b8ff>觉醒等级</color>才能够<color=#fdb933>解锁</color>更多<color=#c0b8ff>觉醒天赋</color>。|\n<color=#fdb933>解锁</color><color=#c0b8ff>觉醒天赋</color>后，在冒险之前<color=#fdb933>消耗</color>从<color=#c0b8ff>觉醒等级</color>获得的<color=#c0b8ff>觉醒点数</color><color=#fdb933>激活</color>该天赋，只有被<color=#fdb933>激活</color>的天赋才能够在冒险中<color=#fdb933>生效</color>。|",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_Title_114",
+    "text_cn": "迷宫契约",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_HeadText_114",
+    "text_cn": "契约等级|\n契约挑战|\n契约赐福",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "GuideData_TailText_114",
+    "text_cn": "迷宫契约等级与武器挑战进度相关，达成当前武器需求的挑战等级并攻略迷宫后会自动提升契约等级，提升契约等级可以解锁更多挑战词条与更多赐福词条|\n自定义搭配挑战提高冒险难度，需要注意的是当前武器到达需求的挑战等级后，超出的挑战等级并不能为这件武器解锁多项契约等级奖励。|\n自定义搭配挑战赐福，提高奖励或全新流派搭配，赐福等级需要小于或等于挑战等级才允许开始冒险。",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  }
+]

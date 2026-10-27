@@ -1,0 +1,206 @@
+{
+  "1": {
+    "id": 1,
+    "name": "攻击力",
+    "icon": "buff_gongjili",
+    "resource": "res://assets/ui/role_character/attribute_detail/buff_gongjili.png"
+  },
+  "2": {
+    "id": 2,
+    "name": "防御力",
+    "icon": "buff_fangyuli",
+    "resource": "res://assets/ui/role_character/fashion/buff_fangyuli.png"
+  },
+  "3": {
+    "id": 3,
+    "name": "生命值",
+    "icon": "buff_shengmingzhi",
+    "resource": "res://assets/ui/role_character/fashion/buff_shengmingzhi.png"
+  },
+  "4": {
+    "id": 4,
+    "name": "生命恢复",
+    "icon": "buff_shengminghuifu",
+    "resource": "res://assets/ui/talent_view/inline/buff_shengminghuifu.png"
+  },
+  "5": {
+    "id": 5,
+    "name": "暴击",
+    "icon": "buff_baojilv",
+    "resource": "res://assets/ui/role_character/fashion/buff_baojilv.png"
+  },
+  "6": {
+    "id": 6,
+    "name": "攻速",
+    "icon": "buff_gongjisudu",
+    "resource": "res://assets/ui/talent_view/inline/buff_gongjisudu.png"
+  },
+  "7": {
+    "id": 7,
+    "name": "移速",
+    "icon": "buff_yidongsudu",
+    "resource": "res://assets/ui/role_character/fashion/buff_yidongsudu.png"
+  },
+  "8": {
+    "id": 8,
+    "name": "护甲",
+    "icon": "icon_armor",
+    "resource": "res://assets/ui/talent_view/inline/icon_armor.png"
+  },
+  "9": {
+    "id": 9,
+    "name": "护盾",
+    "icon": "buff_hudun",
+    "resource": "res://assets/ui/talent_view/inline/buff_hudun.png"
+  },
+  "10": {
+    "id": 10,
+    "name": "闪避",
+    "icon": "buff_shanbi",
+    "resource": "res://assets/ui/talent_view/inline/buff_shanbi.png"
+  },
+  "11": {
+    "id": 11,
+    "name": "战技冷却",
+    "icon": "buff_lengque",
+    "resource": "res://assets/ui/talent_view/inline/buff_lengque.png"
+  },
+  "12": {
+    "id": 12,
+    "name": "灼烧",
+    "icon": "buff_zhuoshao",
+    "resource": "res://assets/ui/role_inventory/buff_zhuoshao.png"
+  },
+  "13": {
+    "id": 13,
+    "name": "潮湿",
+    "icon": "buff_chaoshi",
+    "resource": "res://assets/ui/talent_view/inline/buff_chaoshi.png"
+  },
+  "14": {
+    "id": 14,
+    "name": "标记",
+    "icon": "buff_biaoji",
+    "resource": "res://assets/ui/talent_view/inline/buff_biaoji.png"
+  },
+  "15": {
+    "id": 15,
+    "name": "追踪箭",
+    "icon": "buff_zhuizongjian",
+    "resource": "res://assets/ui/talent_view/inline/buff_zhuizongjian.png"
+  },
+  "16": {
+    "id": 16,
+    "name": "闪电",
+    "icon": "buff_shandian",
+    "resource": "res://assets/ui/talent_view/inline/buff_shandian.png"
+  },
+  "17": {
+    "id": 17,
+    "name": "惩戒",
+    "icon": "buff_chengjiebiaoji",
+    "resource": "res://assets/ui/talent_view/inline/buff_chengjiebiaoji.png"
+  },
+  "18": {
+    "id": 18,
+    "name": "破甲",
+    "icon": "buff_pojia",
+    "resource": "res://assets/ui/talent_view/inline/buff_pojia.png"
+  },
+  "19": {
+    "id": 19,
+    "name": "金币",
+    "icon": "buff_Gold",
+    "resource": "res://assets/ui/talent_view/inline/buff_Gold.png"
+  },
+  "20": {
+    "id": 20,
+    "name": "魔力精华",
+    "icon": "buff_MagicPoint",
+    "resource": "res://assets/ui/talent_view/inline/buff_MagicPoint.png"
+  },
+  "21": {
+    "id": 21,
+    "name": "吞噬标记",
+    "icon": "buff_sishengbiaoji",
+    "resource": "res://assets/ui/talent_view/inline/buff_sishengbiaoji.png"
+  },
+  "22": {
+    "id": 22,
+    "name": "普通攻击",
+    "icon": "buff_putonggongji",
+    "resource": "res://assets/ui/talent_view/inline/buff_putonggongji.png"
+  },
+  "23": {
+    "id": 23,
+    "name": "重击",
+    "icon": "buff_zhongji",
+    "resource": "res://assets/ui/talent_view/inline/buff_zhongji.png"
+  },
+  "24": {
+    "id": 24,
+    "name": "闪避攻击",
+    "icon": "buff_shanbigongji",
+    "resource": "res://assets/ui/talent_view/inline/buff_shanbigongji.png"
+  },
+  "25": {
+    "id": 25,
+    "name": "战技",
+    "icon": "buff_zhanji",
+    "resource": "res://assets/ui/talent_view/inline/buff_zhanji.png"
+  },
+  "26": {
+    "id": 26,
+    "name": "爆发技",
+    "icon": "buff_baofaji",
+    "resource": "res://assets/ui/talent_view/inline/buff_baofaji.png"
+  },
+  "27": {
+    "id": 27,
+    "name": "爆发技能量",
+    "icon": "buff_baofajinengliang",
+    "resource": "res://assets/ui/talent_view/inline/buff_baofajinengliang.png"
+  },
+  "28": {
+    "id": 28,
+    "name": "暴伤",
+    "icon": "buff_baojishang",
+    "resource": "res://assets/ui/role_character/fashion/buff_baojishang.png"
+  },
+  "29": {
+    "id": 29,
+    "name": "暗蚀",
+    "icon": "buff_anshi",
+    "resource": "res://assets/ui/talent_view/inline/buff_anshi.png"
+  },
+  "30": {
+    "id": 30,
+    "name": "光弹",
+    "icon": "buff_guangdan",
+    "resource": "res://assets/ui/talent_view/inline/buff_guangdan.png"
+  },
+  "31": {
+    "id": 31,
+    "name": "怪物支援",
+    "icon": "buff_guaiwuzhiyuan",
+    "resource": "res://assets/ui/talent_view/inline/buff_guaiwuzhiyuan.png"
+  },
+  "32": {
+    "id": 32,
+    "name": "精灵",
+    "icon": "buff_jingling",
+    "resource": "res://assets/ui/talent_view/inline/buff_jingling.png"
+  },
+  "33": {
+    "id": 33,
+    "name": "冻伤",
+    "icon": "buff_dongshang",
+    "resource": "res://assets/ui/talent_view/inline/buff_dongshang.png"
+  },
+  "34": {
+    "id": 34,
+    "name": "重伤",
+    "icon": "buff_zhongshang",
+    "resource": "res://assets/ui/talent_view/inline/buff_zhongshang.png"
+  }
+}

@@ -147,6 +147,8 @@ func _test_health_and_attributes() -> void:
 	actor.set_external_attributes({"HpAddRate": 500, "MoveSpeedRate": 200})
 	_check(actor.max_health == 150, "External HP modifier once")
 	_check(is_equal_approx(actor.move_multiplier(), 1.2), "External movement modifier")
+	actor.set_external_attributes({"BaseHp": 20, "HpAddRate": 500, "HpAddFixed": -40})
+	_check(actor.max_health == 140, "APK fixed health adjustment follows percentage growth")
 	actor.set_external_attributes({"MoveSpeedRate": 100})
 	actor.set_progression_buffs([{"id": "100100101", "layers": 1}], ["100100101"])
 	_check(is_equal_approx(actor.move_multiplier(), 1.1), "Numeric progression root no double counting")

@@ -37,16 +37,38 @@ func _initialize() -> void:
 		check(material_ids(at999.monster(rate, 1, {})).has(101) and material_ids(at1000.monster(rate, 1, {})).is_empty(), "Configured chance1000 retains1000/1001 boundary for " + rate)
 	var boss_resources := at999.monster("Boss", 20, {}).filter(func(row): return row.material)
 	check(boss_resources.size() == 2 and int(boss_resources[0].amount) == 100 and int(boss_resources[1].amount) == 100, "Boss gold and magic use source base50 with multiplicative depth growth")
+	for rate in ["Normal", "Elite", "Boss"]:
+		var coin_attr: String = "DropFreeCoinChanceAdd_" + rate
+		var coin_pass: Array = at149.monster(rate, 1, {coin_attr: 150, "DropFreeCoinFactor": 10000}).filter(func(row): return row.material and int(row.id) == 90002)
+		check(coin_pass.size() == 1 and int(coin_pass[0].amount) == 1, "Rank coin bonus drops exactly one, independently of free-coin quantity modifier: " + rate)
+		check(not material_ids(at150.monster(rate, 1, {coin_attr: 150})).has(90002), "Rank coin bonus uses strict threshold150: " + rate)
+		check(not material_ids(at149.monster(rate, 1, {coin_attr: 149.9})).has(90002), "Rank coin bonus truncates fractional chance: " + rate)
+		check(not material_ids(at1000.monster(rate, 1, {coin_attr: 1000})).has(90002), "Rank coin threshold1000 rejects roll1000: " + rate)
+		check(material_ids(at1000.monster(rate, 1, {coin_attr: 1001})).has(90002), "Rank coin threshold1001 accepts all source outcomes: " + rate)
+		var wrong_rank := "Elite" if rate == "Normal" else "Normal"
+		check(not material_ids(at149.monster(rate, 1, {"DropFreeCoinChanceAdd_" + wrong_rank: 1001})).has(90002), "Coin bonus does not leak between ranks: " + rate)
+		var mineral: Array = at149.monster(rate, 1, {"DropMineralMatChanceAdd_" + rate: 1001}).filter(func(row): return row.material and int(row.id) == 103)
+		check(mineral.size() == 1 and int(mineral[0].amount) == 2, "Monster mineral adds source initial count one to computed minimum one: " + rate)
 	for rate in ["Normal", "Elite", "Boss"]: catalog.config["Default" + ("Enemy" if rate == "Normal" else rate) + "DropResPoolData"] = {}
 	var zero = Rewards.new(systems, func(_limit): return 0)
 	for rate in ["Normal", "Elite"]:
-		check(item_ids(zero.monster(rate, 1, {})).is_empty(), "Requested lord-only equipment rule also blocks successful source rolls for " + rate)
-		var forced := {"EnemyDropLowAbilityChance_Normal": 100000, "EnemyDropLowAbilityChance_Elite": 100000, "EliteDropExtraRelicBag": 1, "BossDropExtraChance": 5000}
-		check(item_ids(zero.monster(rate, 1, forced)).is_empty(), "Attributes cannot restore equipment or bags for " + rate)
+		var attempts := 1 if rate == "Normal" else 3
+		check(item_ids(zero.monster(rate, 1, {})).size() == attempts, "Source rank uses all successful low-rarity attempts for " + rate)
 		var recovery := {"EnemyDropRecoverRate": 1, "EliteEnemyDropRecoverRate": 1}
 		var recovered: Array = item_ids(zero.monster(rate, 1, recovery))
-		check(recovered.size() == 1 and recovered.all(func(id): return str(catalog.find("LootData", id).loot_type) == "生命药水"), "Lord-only equipment restriction preserves source recovery items for " + rate)
-		check(item_ids(zero.monster(rate, 1, {"EnemyDropRecoverRate": 0, "EliteEnemyDropRecoverRate": 0})).is_empty(), "Zero recovery chance never succeeds for " + rate)
+		check(recovered.size() == attempts + 1 and recovered.filter(func(id): return str(catalog.find("LootData", id).loot_type) == "生命药水").size() == 1, "Source recovery item is independent of rank equipment for " + rate)
+		check(item_ids(zero.monster(rate, 1, {"EnemyDropRecoverRate": 0, "EliteEnemyDropRecoverRate": 0})).size() == attempts, "Zero recovery chance adds no recovery item for " + rate)
+		check(item_ids(zero.monster(rate, 1, {"EnemyDropLowAbilityChance_" + rate: -1000})).is_empty(), "Zero low-rarity chance rejects even roll zero for " + rate)
+	var at50 = Rewards.new(systems, func(limit): return mini(50, limit - 1))
+	var at51 = Rewards.new(systems, func(limit): return mini(51, limit - 1))
+	check(item_ids(at50.monster("Normal", 1, {})).size() == 1 and item_ids(at51.monster("Normal", 1, {})).is_empty(), "Ordinary low-rarity threshold50 includes50 and rejects51")
+	var at200 = Rewards.new(systems, func(limit): return mini(200, limit - 1))
+	var at201 = Rewards.new(systems, func(limit): return mini(201, limit - 1))
+	check(item_ids(at200.monster("Elite", 1, {})).size() == 3 and item_ids(at201.monster("Elite", 1, {})).is_empty(), "Elite low-rarity threshold200 includes200 and rejects201 on three attempts")
+	check(item_ids(at200.monster("Normal", 1, {"EnemyDropLowAbilityChance_Normal": 100000})).size() == 1 and item_ids(at201.monster("Normal", 1, {"EnemyDropLowAbilityChance_Normal": 100000})).is_empty(), "Ordinary modifier retains source chance cap200")
+	check(item_ids(at1000.monster("Elite", 1, {"EnemyDropLowAbilityChance_Elite": 100000})).size() == 3, "Elite modifier cap1000 includes endpoint1000")
+	check(item_ids(at499.monster("Elite", 1, {"EliteDropExtraRelicBag": 5})) == [14101], "Elite attribute adds one low bag even above one")
+	check(item_ids(zero.monster("Normal", 1, {"EliteDropExtraRelicBag": 1})).size() == 1, "Elite bag attribute cannot add a bag to ordinary enemies")
 	check(zero._round_even(50.5) == 50 and zero._round_even(51.5) == 52, "Native round-to-even ties remain exact")
 	var at350 = Rewards.new(systems, func(_limit): return 350)
 	check(item_ids(at350.monster("Boss", 1, {})).size() == 5, "Boss performs five low-rarity attempts")

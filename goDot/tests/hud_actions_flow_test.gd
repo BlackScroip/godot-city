@@ -35,29 +35,23 @@ func _run() -> void:
 		urls.append(url)
 		return launch_error
 	for frame in 5: await process_frame
-	game._action("quick_start", 0, 0)
-	check(not game.hud.modal_open, "Unavailable quick start cannot bypass the first-victory requirement")
-	game.systems.set_record("difficulty:win:0", 1)
-	game.hud.update_navigation(game.systems)
+	check(game.world._camp_camera and game.hud.skill_cluster.visible, "Fresh camp shows combat controls immediately")
+	check(game.hud.skill_by_slot.values().all(func(key): return not key.disabled) and not game.hud.attack_mode_button.disabled, "Camp enables attack, dodge, skills and the automatic attack switch")
+	_check_camp_combat()
+	check(game.systems.stat("wins") == 0 and game.hud.navigation_buttons.menu_adventure.visible, "Start adventure is visible before a first victory")
 	game.hud.navigation_buttons.menu_adventure.pressed.emit()
 	check(game.hud.modal_open and is_instance_valid(game.hud.page.prepare_view), "Actual quick-start button opens adventure preparation")
 	check(not game.hud.page.page_context.in_run and not game.profile.data.run.active, "Quick start waits for explicit preparation confirmation")
 	check(game.systems.stat("ui:read:Btn_QuickStart") == 1 and not game.hud._navigation_badges.menu_adventure.visible, "Quick-start acknowledgement persists and clears only its badge")
 	check(int(game.save_store.load_profile().stats.get("ui:read:Btn_QuickStart", 0)) == 1, "Quick-start acknowledgement is written to the real save store")
 	game._action("close_page", 0, 0)
-	game.hud.navigation_buttons.menu_cloud.pressed.emit()
-	check(game.hud.page_title.text == "云存档" and game._cloud_confirmation_pending, "Cloud entry opens its first-use confirmation")
-	check(game.systems.stat("ui:read:Btn_CloudSave") == 0 and game.hud._navigation_badges.menu_cloud.visible, "Opening cloud confirmation retains the native unread hint")
-	game._action("close_page", 0, 0)
-	check(not game._cloud_confirmation_pending and game.hud.navigation_buttons.menu_cloud.visible, "Cancel leaves the cloud entry available")
+	check(game.hud.skill_cluster.visible, "Closing adventure preparation restores camp combat controls")
+	check(not game.hud.navigation_buttons.has("menu_cloud"), "Camp navigation excludes cloud saving")
+	game._action("cloud_save", 0, 0)
 	game._action("confirm_cloud_save", 0, 0)
-	check(not game.hud.modal_open, "A canceled cloud confirmation cannot be replayed")
-	game.hud.navigation_buttons.menu_cloud.pressed.emit()
-	game._action("confirm_cloud_save", 0, 0)
-	check(game.hud.page._rows[0].title == "云存档暂不可用", "Missing cloud service reports an actual unavailable result")
-	game._action("confirm_cloud_save", 0, 0)
-	check(game.systems.stat("ui:read:Btn_CloudSave") == 0, "Cloud retry never falsely writes the successful-service read flag")
-	game._action("close_page", 0, 0)
+	check(not game.hud.modal_open, "Removed cloud commands cannot open a placeholder page")
+	game.systems.set_record("difficulty:win:0", 1)
+	game.hud.update_navigation(game.systems)
 	var currency_before: int = game.systems.material(90002)
 	game.hud.navigation_buttons.menu_comment.pressed.emit()
 	check(game.hud.page_title.text == "分享评价" and urls.is_empty(), "Review entry opens confirmation without launching externally")
@@ -87,9 +81,14 @@ func _run() -> void:
 	game._action("close_page", 0, 0)
 	game.hud.navigation_buttons.menu_settings.pressed.emit()
 	check(game.menus.current_page == "settings" and game.hud.page._layout == "settings", "Settings icon opens its settings page")
+	check(not game.hud.page._rows.any(func(row): return row.title == "云存档"), "Account settings omit cloud saving")
 	game._action("auto_attack_mode", "heavy", 0)
 	check(game.world.auto_attack_mode == "heavy" and game.hud.attack_mode == "heavy", "Actual settings command updates gameplay and the skill switch")
 	game._action("close_page", 0, 0)
+	check(game.hud.skill_cluster.visible and game.hud.joystick.visible, "Closing settings restores movement and camp combat controls")
+	game.hud.begin_touch_customization()
+	game.hud.cancel_touch_customization()
+	check(game.hud.skill_cluster.visible and game.hud.joystick.visible, "Canceling touch customization restores camp combat controls")
 	check(game.systems.begin_run(20261026, 1, 100, 0).success, "Integrated fixture starts a real run")
 	game.hud.set_adventure_mode(true)
 	game.hud.update_navigation(game.systems)
@@ -118,6 +117,41 @@ func _run() -> void:
 	await process_frame
 	quit(0 if failures.is_empty() else 1)
 
+func _check_camp_combat() -> void:
+	var combat: RefCounted = game.world.player.combat
+	var saved: Dictionary = combat.snapshot().duplicate(true)
+	game.world._background = false
+	game.world.paused = false
+	for slot in range(5):
+		game.world.clear_input()
+		combat.restore(saved)
+		for index in range(5):
+			combat.energy[index] = combat.skill_capacity(index)
+			combat.cooldowns[index] = 0.0
+		combat.drain_events()
+		if slot == 0:
+			var key: DungeonTouchButton = game.hud.skill_by_slot[0]
+			var event := InputEventScreenTouch.new()
+			event.index = 10
+			event.position = key.get_global_transform_with_canvas() * (key.size * 0.5)
+			event.pressed = true
+			key._input(event)
+			check(game.world.intent.attack_held, "Camp attack touch reaches the gameplay controller")
+			event.pressed = false
+			key._input(event)
+		else:
+			var event := InputEventAction.new()
+			event.action = ["", "dodge", "skill", "burst", "heavy"][slot]
+			event.pressed = true
+			game._unhandled_input(event)
+		check(int(game.world.intent.pending.get("slot", -1)) == slot, "Camp accepts buffered input for slot " + str(slot))
+		game.world._tick_player_input(1.0 / 60.0)
+		check(combat._current_slot == slot and not combat.current_action.is_empty(), "Camp executes the actual action for slot " + str(slot))
+	game.world.clear_input()
+	combat.restore(saved)
+	combat.drain_events()
+	game.hud.update_combat(combat, true)
+
 func _capture_hud_states() -> void:
 	if DisplayServer.get_name() == "headless": return
 	game.profile.data.run.active = false
@@ -133,6 +167,7 @@ func _capture_hud_states() -> void:
 			counter.set_process(false)
 			counter.advance(6)
 		await _capture("camp-hidden-%dx%d" % [dimensions.x, dimensions.y])
+		check(game.hud.skill_cluster.visible and game.hud.navigation_buttons.menu_adventure.visible, "Camp shows start adventure and combat controls at " + str(dimensions))
 		for id in [101, 102, 103, 90002, 108]: game.systems.grant_material(id, 1)
 		for counter in game.hud.counter_buttons: counter.advance(0.5)
 		await _capture("camp-resources-%dx%d" % [dimensions.x, dimensions.y])

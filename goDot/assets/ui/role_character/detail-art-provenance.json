@@ -1,0 +1,323 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "slot_icons": [
+    {
+      "name": "bingqiang_Fashion_color_black",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -7321442793028882415,
+      "png_sha256": "0eab8076fa446f72a1d1a9287649341e4c876d1658585ef05ab2d697bee2872a"
+    },
+    {
+      "name": "bingqiang_Fashion_color_golden",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 5982544736966948140,
+      "png_sha256": "a1701bb03310e99d8eafe6da94bfc6eb903fdd81d2c512f7260c38683e74094a"
+    },
+    {
+      "name": "bingqiang_Fashion_color_green",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -6821552580358891187,
+      "png_sha256": "3df13b1a2d58f969c9bfaa1e6cd79d537b89aaadf3190001fdc7b8005f08458b"
+    },
+    {
+      "name": "bingqiang_Fashion_color_ice",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -9167159336937922390,
+      "png_sha256": "9859e99146791d00f06273673db9be27c6e331c7a76116624db1cec6ce870d68"
+    },
+    {
+      "name": "bingqiang_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 7614541090700129331,
+      "png_sha256": "080dbab5a6c95ead2f684295872c6016268a594faa0c6c1c180eefa73adfa2d8"
+    },
+    {
+      "name": "bingqiang_Fashion_color_swimwear",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -340702832207523310,
+      "png_sha256": "302bc8893fab87bdf95f5425a3eff2eafb641a9fc2d19ae63a25fcf85118069c"
+    },
+    {
+      "name": "bingqiang_Fashion_color_swimwear_7202",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 7070273732290997523,
+      "png_sha256": "f974b7e78a2eab60bc1f7958f12ea10fd8af88c5a42b22f6de146568673b025d"
+    },
+    {
+      "name": "bingqiang_Fashion_color_swimwear_7203",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -4306322866506133561,
+      "png_sha256": "443d218f278fe4e4d4769d1010174faab794b7d1540c220176ce43a6e806f4f5"
+    },
+    {
+      "name": "bingqiang_Fashion_color_swimwear_7204",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 4126712174394740310,
+      "png_sha256": "ef3ec549e492c1e716c1064661ec500dd6a93d30fc91aae491d6e4f937780d8b"
+    },
+    {
+      "name": "bingqiang_Fashion_color_swimwear_7205",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -3910726661817096070,
+      "png_sha256": "e032ab5d02a604ed969dc3a197e42355934103f674429f098f37226400bff248"
+    },
+    {
+      "name": "fazhang_Fashion_color_green",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 3519416984331059731,
+      "png_sha256": "338920801d0ee01c5afa4348b9c97140b488b5142e6b07c838e382c5786a2d88"
+    },
+    {
+      "name": "fazhang_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -7848459490587876111,
+      "png_sha256": "f60643a4c1a96629013ba1d9c4d94078254069b67545b288a9537170af1089e4"
+    },
+    {
+      "name": "fazhang_Fashion_color_purple",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 2702891866578860417,
+      "png_sha256": "76f98ae4deca1d709d3b54a172b77700e884ac9e37ee0511f54f5ee8c6450bf1"
+    },
+    {
+      "name": "fazhang_Fashion_color_snow",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -6341987248386299798,
+      "png_sha256": "4b1b6dbc073f4103f34a17ea9f4b203ae432e6b1a85611f61c3537799396bcb4"
+    },
+    {
+      "name": "fazhang_Fashion_color_white",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 2335967953402196262,
+      "png_sha256": "509eb4b395cbea2a80921c0fa4204e8c4eb97b9f2131cece6a2430ef0ae94ff2"
+    },
+    {
+      "name": "funan_Fashion_color_black",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -4990203988061396435,
+      "png_sha256": "3a3a4aaa27ad2df254f1ba1d1a9282ef6ddcf288b879cd37dcaeb3fda8db5b03"
+    },
+    {
+      "name": "funan_Fashion_color_blue",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -2132278316479321929,
+      "png_sha256": "e84b091a6df3245bf34911f1ef54064cbcad89229579369afa26ede4a9c84f68"
+    },
+    {
+      "name": "funan_Fashion_color_gold",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 2080063629615674029,
+      "png_sha256": "78238a7bf30da225e6f872c0cedbfe44beb2706f278d7f91b7a314d113aabc1b"
+    },
+    {
+      "name": "funan_Fashion_color_green",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 5409213061673807721,
+      "png_sha256": "b8e20c9a25ecc6dde773909c4a92cea3b69660068dca1acb8cac61f4f8b3d6bf"
+    },
+    {
+      "name": "funan_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -6220642171621013904,
+      "png_sha256": "bae191abb810ab24e0e5a229392c6c7b80c5a756c0563ff201d98e1a1f9619ae"
+    },
+    {
+      "name": "gongnan_Fashion_color_blue",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -919680980696111407,
+      "png_sha256": "a0288a592708157ece21b21bd0467a2b09a09727de6f0ba3d1b745f531b2dedf"
+    },
+    {
+      "name": "gongnan_Fashion_color_green",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 8580297107732356833,
+      "png_sha256": "1591d253e8626060678497d8653416f06d7d5b3942abf87208a92ba526ee3ebc"
+    },
+    {
+      "name": "gongnan_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -6430972570539148089,
+      "png_sha256": "62b56b77282d3c256aba40ca0bbcf6a042247431809cf81b61dcda74ba2dd7e3"
+    },
+    {
+      "name": "gongnan_Fashion_color_purple",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -7452491637303907706,
+      "png_sha256": "4988575028b6a311e64cd99fe674501e2d25d9d17a066c409a07149c37dae4e7"
+    },
+    {
+      "name": "gongnan_Fashion_color_red",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -30209478269698611,
+      "png_sha256": "578e7392871017e6cb87bab2f327e07e024450c3cb98a66ff9b3354f6c28bfca"
+    },
+    {
+      "name": "jiannan_Fashion_color_black",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 5939291519275143909,
+      "png_sha256": "aca7c760c6bfb891e35dd9fdb5252a312a90701fdff42f820fdf63a974494aab"
+    },
+    {
+      "name": "jiannan_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 8443432162261673010,
+      "png_sha256": "31a024f6345d2066ba4826d25a0a631b46f334ed62018e66956445584d648743"
+    },
+    {
+      "name": "jiannan_Fashion_color_orange",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -5710680909595559210,
+      "png_sha256": "7cd0c1f3dd8e1960267fb7091d0615673f6d65cf4c0ae44bb7d388c2b982ee25"
+    },
+    {
+      "name": "jiannan_Fashion_color_red",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -7412959182827069007,
+      "png_sha256": "48e3062634903e71ee56aeafacef76517ab05e81c560a5fe034afe15000a3e9e"
+    },
+    {
+      "name": "jiannan_Fashion_color_white",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 3738945147474729663,
+      "png_sha256": "4ed76567c0c038dd9b474e62a66e46e36e8a8417f720106a5ae3d5f250a0ed81"
+    },
+    {
+      "name": "liannv_Fashion_color_blue",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 5573941320549316728,
+      "png_sha256": "190c875fb57de3204ed95b94763b84532898435d330638bbd611d171d8a5701c"
+    },
+    {
+      "name": "liannv_Fashion_color_golden",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -9173542803710481508,
+      "png_sha256": "f4a405817d6d25a8bb0a94308e299f4f35f5a9ea779376f356f7a48ecf98e77d"
+    },
+    {
+      "name": "liannv_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 4330571401153584912,
+      "png_sha256": "5c5180731210ddd370b4b8f72c57cc6798f76d97ffd0ba1811272fbce163a8f5"
+    },
+    {
+      "name": "liannv_Fashion_color_purple",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 1169572320487732378,
+      "png_sha256": "0ee565756af5a16ac9a165cb135ce8a1a24a75aeb2b2682c9f1dfbe656636490"
+    },
+    {
+      "name": "liannv_Fashion_color_red",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -307713137656892592,
+      "png_sha256": "9cad0527b967cfddaeef8fc82963c633559612ddb08f4e6f99460be4bbc48d6b"
+    },
+    {
+      "name": "shuangdao_Fashion_color_black",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 4284591090883302056,
+      "png_sha256": "8cb9ef9af463db2c08c978d8def709e30e0564437c458ff688912bb709f424bd"
+    },
+    {
+      "name": "shuangdao_Fashion_color_golden",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 8549316021219702257,
+      "png_sha256": "e06b29337e16185d18c8e828dfd43cb20c5a3db98a43ace19002569b5421a718"
+    },
+    {
+      "name": "shuangdao_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 4992031678366664609,
+      "png_sha256": "87583a215e2fc7da00f9955c2d16cf993da18b44b8f24ccc157358124e296138"
+    },
+    {
+      "name": "shuangdao_Fashion_color_purple",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -3077039389562394028,
+      "png_sha256": "d9452c71f87d5101c61892ffbbb52f21d06ba163954942506fb18997a3513b3f"
+    },
+    {
+      "name": "shuangdao_Fashion_color_white",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 9023021567287199069,
+      "png_sha256": "3b2799d93d5b6792710c4c7dc3fb293c0fe4e6f8f5ddfe8413467b167c7b62c2"
+    },
+    {
+      "name": "zhunv_Fashion_color_black",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -6402174889955619591,
+      "png_sha256": "f04052b238646c5d07f7ed210f9507003b8c82a1800911e77eae16a828ae2bf5"
+    },
+    {
+      "name": "zhunv_Fashion_color_blue",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": 6709041681877572901,
+      "png_sha256": "d2f94f617dfbb5f96ee22e5b825969647d9d88625ea301abee960711a6a5e74a"
+    },
+    {
+      "name": "zhunv_Fashion_color_initial",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -9074835640299080150,
+      "png_sha256": "8c6a9adb8d341b4d48bd7407bdd1a718b16c13e29c9d61394cdec0b34e60a17e"
+    },
+    {
+      "name": "zhunv_Fashion_color_red",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -1649426632576033115,
+      "png_sha256": "83177d9c6ec0c592c489d879d7cafa3ba9a68c0cc2002da0060814cec3820b70"
+    },
+    {
+      "name": "zhunv_Fashion_color_yellow",
+      "member": "assets/yoo/DefaultPackage/bfc44256883d9f2d6e53cd4e1380ecd6.bundle",
+      "bundle_sha256": "6571491df6f0ed25bb4951bcbf02130f875c343c6e5cea71d619a901235a7dea",
+      "path_id": -436338964697033963,
+      "png_sha256": "b9cb467cb22f74e5ea0eb31a488a52ced2da2822f3c8b1feed474d5928a75778"
+    }
+  ],
+  "limitations": [
+    "Static serialized prefabs and sprites; original APK not executed."
+  ]
+}

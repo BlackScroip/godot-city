@@ -48,7 +48,10 @@ func _initialize() -> void:
 	_fusions()
 	_transferred_effects()
 	_modifier_identity()
+	_source_damage_modifiers()
 	_zero_damage_carriers()
+	_spirit_modifiers()
+	_wolf_projectile_count()
 	print(JSON.stringify({"checks": checks, "failures": failures}))
 	quit(0 if failures.is_empty() else 1)
 
@@ -79,7 +82,7 @@ func _water_cycle() -> void:
 		var target := actor("", "enemy")
 		var maximum: int = [5, 7, 10][tier]
 		for cycle in 2:
-			for hit in 12:
+			for hit in 24:
 				strike(player, target, "NormalAtk")
 				advance(player, 0.11)
 			check(player.buff_layers("50202201") == maximum, "Water tier %d cycle %d reaches cap" % [tier, cycle])
@@ -92,7 +95,7 @@ func _lightning_tiers() -> void:
 	for tier in 3:
 		var player := actor("502024%d0" % tier)
 		player.custom_properties.EnemyDistances = []
-		advance(player, [5.0, 3.0, 1.5][tier] + 0.01)
+		advance(player, [7.0, 4.0, 2.0][tier] + 0.01)
 		check(player.buff_layers("50202401") == 1, "Lightning tier stores one configured charge")
 		player.custom_properties.EnemyDistances = [2.0, 3.0, 4.0, 8.0]
 		var output := advance(player, 0.1)
@@ -108,12 +111,12 @@ func _lightning_tiers() -> void:
 func _light_and_dark() -> void:
 	for tier in 3:
 		var light := actor("502025%d0" % tier)
-		check(events_of(advance(light, 19.9), "summon", "502025%d0" % tier).is_empty(), "Light waits full 20 seconds")
+		check(events_of(advance(light, 29.9), "summon", "502025%d0" % tier).is_empty(), "Light waits full source 30 seconds")
 		var output := advance(light, 0.2)
 		check(events_of(output, "summon", "502025%d0" % tier).size() == 1, "Light emits selected sword carrier")
 		check(is_equal_approx(light.attribute("DefAddRate"), [0.0, 300.0, 600.0][tier]), "Light tier uses authored defense bonus")
 		var dark := actor("502026%d0" % tier)
-		advance(dark, 20.01)
+		advance(dark, 30.01)
 		check(is_equal_approx(dark.attribute("NormalAtkDamageRate"), [600.0, 800.0, 1000.0][tier]) and is_equal_approx(dark.attribute("AttackSpeedRate"), [100.0, 150.0, 200.0][tier]), "Dark tier applies configured speed and damage")
 		var settings := source_settings(dark, "50202601")
 		var duration := 5.0 + float(settings.get("InitLifeTimeAdd", 0)) / 1000.0
@@ -147,30 +150,33 @@ func _rock_and_ice() -> void:
 func _fusions() -> void:
 	var target := actor("", "enemy")
 	var firewind := actor("50202700")
-	advance(firewind, 3.5)
+	advance(firewind, 4.6)
 	strike(firewind, target, "SubActiveSkill")
 	var seed_events := firewind.drain_events()
 	check(events_of(seed_events, "summon", "50202704").size() == 2, "Fire wind retains both authored direct and child seed summons on caster")
 	check(firewind.buff_layers("50202701") == 0 and firewind.buff_layers("50202704") == 0, "Fire wind consumes final charge and clears summon permission")
 	var firethunder := actor("50202800")
 	firethunder.custom_properties.EnemyDistances = [2.0]
-	check(events_of(advance(firethunder, 1.1), "area", "50202403").size() == 1, "Fire thunder finds targets every second")
+	check(events_of(advance(firethunder, 0.01), "area", "50202403").size() == 1, "Fire thunder starts immediately with source InitResetCD false")
+	check(events_of(advance(firethunder, 1.4), "area", "50202403").is_empty(), "Fire thunder waits source 1.5-second interval")
+	check(events_of(advance(firethunder, 0.2), "area", "50202403").size() == 1, "Fire thunder repeats after source 1.5-second interval")
 	var waterthunder := actor("50202900")
 	strike(waterthunder, target, "NormalAtk")
 	check(events_of(advance(waterthunder, 0.2), "summon", "50202903").size() == 1, "Water thunder normal hit emits ray")
 	strike(waterthunder, target, "SpecAtk")
 	check(events_of(advance(waterthunder, 0.2), "summon", "50202903").size() == 1, "Water thunder heavy hit emits ray")
 	var waterwind := actor("50203000")
-	advance(waterwind, 1.01)
+	advance(waterwind, 1.51)
 	waterwind.notify_gameplay("action_start", {"slot": 1, "action": "dodge_attack"})
 	check(events_of(waterwind.drain_events(), "summon", "50203002").size() == 1, "Water wind dodge emits bubbles")
-	advance(waterwind, 1.01)
+	advance(waterwind, 1.51)
 	waterwind.notify_gameplay("action_start", {"slot": 4, "action": "heavy_attack"})
 	check(events_of(waterwind.drain_events(), "summon", "50203002").size() == 1, "Water wind heavy emits bubbles after cooldown")
 	var twins := actor("50203100")
-	advance(twins, 10.02)
+	advance(twins, 15.02)
 	check(twins.buff_layers("50203101") == 1, "Twins dispose dark form into light form")
-	var twin_output := advance(twins, 10.1)
+	check(is_equal_approx(twins.attribute("NormalAtkDamageRate"), 1200.0), "Twins source dark-form bonus is 120 percent")
+	var twin_output := advance(twins, 15.1)
 	check(twins.buff_layers("50203102") == 1 and events_of(twin_output, "summon", "50203101").size() == 1, "Twins final light tick emits six-sword carrier and returns dark")
 	check(is_equal_approx(twins.attribute("DefAddRate"), 300.0), "Twins use source defense value")
 	var icefire := actor("50203200")
@@ -249,6 +255,39 @@ func _modifier_identity() -> void:
 	check(victim.buff_layers("800511") == 0 and victim.buff_layers("50203406") == 0, "Unused damage-ID zero never matches configured lightning or quake modifiers")
 	check(not source_settings(victim, "119901").is_empty(), "Source Level zero selects default burn settings")
 
+func _source_damage_modifiers() -> void:
+	var firethunder := actor("50202800")
+	var target := actor("", "red_lightning_target")
+	var lightning := {"source": firethunder, "damage": 100.0, "sequence": 1, "emission": 1, "definition": {"damageId": 2392301, "actType": "Buff", "element": "Thunder"}}
+	check(is_equal_approx(target.receive(lightning, firethunder.attack), 170.0), "Fresh red lightning applies source final damage bonus700")
+	target.add_buff("119901", 2)
+	var lava := {"source": firethunder, "damage": 100.0, "sequence": 2, "emission": 2, "definition": {"damageId": 50202101, "actType": "SummonUnit", "element": "Fire"}}
+	check(is_equal_approx(target.receive(lava, firethunder.attack), 130.0) and target.buff_layers("119901") == 3, "Lava gains source15 percent per existing burn and adds one burn")
+	var icefire := actor("50203200")
+	var frozen := actor("", "blue_fire_damage_target")
+	frozen.add_buff("119901", 2)
+	frozen.add_buff("700206", 10)
+	var blue_fire := {"source": icefire, "damage": 100.0, "sequence": 1, "emission": 1, "definition": {"damageId": 502032000, "actType": "SummonUnit", "element": "Ice"}}
+	check(is_equal_approx(frozen.receive(blue_fire, icefire.attack), 130.0), "Blue fire gains10 percent per burn and1 percent per frostbite")
+	var waterthunder := actor("50202900")
+	for damage_id in [50202201, 2392301]:
+		var wet := actor("", "wet_damage_target")
+		wet.add_buff("119902", 3)
+		var ray := {"source": waterthunder, "damage": 100.0, "sequence": damage_id, "emission": damage_id, "definition": {"damageId": damage_id, "actType": "SummonUnit", "element": "Thunder"}}
+		check(is_equal_approx(wet.receive(ray, waterthunder.attack), 115.0), "Water thunder rays and lightning gain5 percent per wet layer")
+	var rockthunder := actor("50203400")
+	for damage_id in [502025000, 2392301]:
+		var wounded := actor("", "wound_damage_target")
+		wounded.add_buff("800511", 10)
+		var quake := {"source": rockthunder, "damage": 100.0, "sequence": damage_id, "emission": damage_id, "definition": {"damageId": damage_id, "actType": "SummonUnit", "element": "Thunder"}}
+		var damage := wounded.receive(quake, rockthunder.attack)
+		check(is_equal_approx(damage, 102.0 + float(wounded.buff_layers("800511"))), "Rock thunder gains0.2 percent per existing wound plus current general wound modifier")
+	for layers in [1, 10]:
+		var wounded := actor("", "general_wound_target")
+		wounded.add_buff("800511", layers)
+		var hit := {"damage": 100.0, "sequence": 1, "emission": 1, "definition": {"damageId": 123, "actType": "NormalAtk", "element": "Physical"}}
+		check(is_equal_approx(wounded.receive(hit), 100.0 + float(layers)), "Native combat modifier multiplies its own current buff layers")
+
 func _zero_damage_carriers() -> void:
 	var source := actor()
 	var target := actor("", "enemy")
@@ -278,3 +317,65 @@ func _zero_damage_carriers() -> void:
 		var previous := target.health
 		check(is_zero_approx(target.receive(hit, source.attack)) and target.health == previous and target.shield == 75 and target.armor == 20, "Pure carrier leaves health, shields and armor unchanged")
 		check(not bool(hit.get("resolved_accepted", false)) and target.drain_events().is_empty(), "Pure carrier produces no receive, impact or gameplay side effects")
+	for id in ["45300206", "423002301"]:
+		var carrier := actor()
+		carrier.spawn_summon(id)
+		var source_hit: Dictionary = carrier._summon_index[id].hit
+		var output := advance(carrier, 6.1)
+		var emitted := output.filter(func(event): return event.type == "hit" and str(event.get("summon_id", "")) == id)
+		check(emitted.size() == int(source_hit.count), "Zero-damage funnel schedules the authored ending-carrier count: " + id)
+		check(emitted.all(func(event): return bool(event.definition.get("carrier_only", false))), "All emitted non-physical funnel carriers remain free of receive side effects")
+
+func _spirit_modifiers() -> void:
+	var source := actor()
+	source.set_external_attributes({"SpiritRange": 1000, "SpiritDuration": 1000})
+	for id in ["502032510", "502035510"]:
+		var original: Dictionary = source._summon_index[id]
+		var source_raw := JSON.stringify(original.raw_data)
+		source.spawn_summon(id)
+		var summons := events_of(source.drain_events(), "summon", id)
+		check(summons.size() == 1, "Source spirit field spawns with effective modifiers: " + id)
+		if summons.is_empty(): continue
+		var resolved: Dictionary = summons[0].definition.raw_data
+		var base_radius := float(original.raw_data.EntityProperty.Radius)
+		var expected_life := 7.0 if id == "502032510" else 12.0
+		check(is_equal_approx(float(summons[0].lifetime), expected_life) and is_equal_approx(float(resolved.Duration), expected_life), "Duration modifier adds native weighted attribute in seconds")
+		check(is_equal_approx(float(resolved.EntityProperty.Radius), base_radius * 2.0), "Field collider respects effective SpiritRange")
+		check(is_equal_approx(float(resolved.PrefabScale.x), float(original.raw_data.PrefabScale.x) * 2.0), "Field prefab and collider share one range multiplier")
+		var emitted := advance(source, 0.02).filter(func(event): return event.type == "hit" and str(event.get("summon_id", "")) == id)
+		check(not emitted.is_empty(), "Effective field retains damage pulses")
+		if not emitted.is_empty():
+			var hit_raw = JSON.parse_string(str(emitted[0].definition.raw))
+			check(is_equal_approx(float(hit_raw.EntityProperty.Radius), base_radius * 2.0), "Scheduled field applies range modifier exactly once")
+		check(JSON.stringify(original.raw_data) == source_raw, "Effective cast leaves source catalog unchanged")
+	var thunder := actor()
+	thunder.set_external_attributes({"SpiritTrigger": 1000, "SpiritRange": 1000})
+	thunder.add_buff("50202420")
+	thunder.custom_properties.EnemyDistances = []
+	advance(thunder, 0.49)
+	check(thunder.buff_layers("50202401") == 0, "Highest thunder respects modified initial cooldown")
+	advance(thunder, 0.02)
+	check(thunder.buff_layers("50202401") == 1, "SpiritTrigger subtracts1500ms from source2000ms charge timer")
+	thunder.custom_properties.EnemyDistances = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 6.5]
+	var areas := events_of(advance(thunder, 0.02), "area", "50202403")
+	check(not areas.is_empty() and int(areas[0].definition.maxTargets) == 6, "SpiritRange adds three targets to highest thunder search")
+	var legacy := {"Enabled": true, "Parameter": "Range", "PerMille": 2.0, "MinMultiplier": 0.0, "MaxMultiplier": 5.0}
+	check(is_equal_approx(source._spirit_apply(3.0, legacy), 5.0), "Native modifier arithmetic adds contributions to the supplied base")
+	source.set_external_attributes({"SpiritRange": -1000})
+	check(is_equal_approx(source._spirit_apply(3.0, legacy), 3.0), "Spirit attributes enforce lower bound even without explicit flags")
+	source.set_external_attributes({"SpiritRange": 10000})
+	check(is_equal_approx(source._spirit_apply(3.0, legacy), 13.0), "Spirit attributes enforce source upper bound of five")
+	var current := {"Enabled": true, "Influences": [{"Enabled": true, "Attribute": "SpiritRange", "PerMille": 2.0, "MinMultiplier": 0.0, "MaxMultiplier": 5.0}, {"Enabled": true, "Attribute": "SpiritDuration", "PerMille": 3.0, "MinMultiplier": 0.0, "MaxMultiplier": 5.0}]}
+	source.set_external_attributes({"SpiritRange": 1000, "SpiritDuration": 2000})
+	check(is_equal_approx(source._spirit_apply(1.0, current), 9.0), "New influence format sums independent weighted attributes")
+
+func _wolf_projectile_count() -> void:
+	for layers in [0, 1, 2]:
+		var wolf := actor()
+		if layers > 0: wolf.add_buff("41300112", layers)
+		var action := wolf._action("ActGroup_senlinlangwang", "attack5")
+		var source_hit: Dictionary = action.hits.filter(func(hit): return int(hit.get("damageId", 0)) == 41300151)[0]
+		wolf._schedule(source_hit, 0.0, "attack5", 0, 0.0)
+		var emitted := advance(wolf, 4.0).filter(func(event): return event.type == "hit" and int(event.definition.get("damageId", 0)) == 41300151)
+		check(emitted.size() == 50 + layers * 10, "Fresh wolf modifier adds ten emitted fireballs per source buff layer")
+		check(wolf.diagnostics.is_empty(), "Wolf emission modifier runs without unsupported adapter diagnostics")

@@ -1,0 +1,1672 @@
+{
+  "option_panel": {
+    "layout": "option/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/02f664d2499694d1ebf1448d790ca166.bundle",
+      "sha256": "d47ec4770e365d15a9c91d71e35e3915467d8e576d0b4071756f77745f59b3dd"
+    },
+    "sprites": [
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/settings/option/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "滑动按钮_白",
+        "path": "res://assets/ui/settings/option/_______555368729d.png",
+        "sprite_path_id": "2854313081875403888",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 60,
+        "height": 60,
+        "border": {
+          "x": 27.0,
+          "y": 29.0,
+          "z": 28.0,
+          "w": 29.0
+        },
+        "png_sha256": "fa37626f346588799ffdedef88730d4ffb0fb118d93b98176a73392acaabcd0e"
+      },
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/settings/option/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+      },
+      {
+        "name": "按钮未选择",
+        "path": "res://assets/ui/settings/option/______cae06117c4.png",
+        "sprite_path_id": "2548232578376369656",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 133,
+        "height": 57,
+        "border": {
+          "x": 66.0,
+          "y": 28.0,
+          "z": 66.0,
+          "w": 28.0
+        },
+        "png_sha256": "f5f6ca4227a541921d0360ee5420e606fb2fb6ee5afb86d1f9926d50d13adb5e"
+      },
+      {
+        "name": "滑动条",
+        "path": "res://assets/ui/settings/option/____52738bec78.png",
+        "sprite_path_id": "-9192289390092024283",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 256,
+        "height": 12,
+        "border": {
+          "x": 126.0,
+          "y": 0.0,
+          "z": 127.0,
+          "w": 0.0
+        },
+        "png_sha256": "637cc524de3a6c1c5b4156f57a2af814ce01948b4635d218000db55b9488d6cc"
+      },
+      {
+        "name": "几何形状-白色粉边椭圆",
+        "path": "res://assets/ui/settings/option/____-_______a975c9af62.png",
+        "sprite_path_id": "8584795467250459699",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 80,
+        "height": 64,
+        "border": {
+          "x": 30.0,
+          "y": 0.0,
+          "z": 30.0,
+          "w": 0.0
+        },
+        "png_sha256": "efd73702d851ee6a3317b1adf00435f77464c51476b035928643531f2ee47f6a"
+      },
+      {
+        "name": "几何ui-椭圆白色按钮",
+        "path": "res://assets/ui/settings/option/__ui-_______39ebe9c97d.png",
+        "sprite_path_id": "-1055889953380836409",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 250,
+        "height": 75,
+        "border": {
+          "x": 71.40135955810547,
+          "y": 0.0,
+          "z": 75.7551040649414,
+          "w": 0.0
+        },
+        "png_sha256": "d557dbc1e6c5ad718194dd315e1d878c464f3becac81c087d2c3892985f4dacf"
+      },
+      {
+        "name": "语音播放按钮2",
+        "path": "res://assets/ui/settings/option/______2_64073e9d1a.png",
+        "sprite_path_id": "-8830942361392369274",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7fcfb8172f9a6a47e03ce38e8f7742e0.bundle",
+          "sha256": "5d28c5a2cf1d1385dd54496a878809063c36b448604cd25222549535e1b5aa18"
+        },
+        "width": 46,
+        "height": 46,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6f448e342d5de295e6832e507f8232a45b5a7eceff5b0eaa35e528b6279a6047"
+      },
+      {
+        "name": "账户",
+        "path": "res://assets/ui/settings/option/___061246bd31.png",
+        "sprite_path_id": "-8597911024752531275",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 93,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7b566ff654dfd5b8817e0214fe22f28fddd8abf633a9b964f8aa1b2bfacdf6ce"
+      },
+      {
+        "name": "侧边按钮暗",
+        "path": "res://assets/ui/settings/option/______f8b0f14d40.png",
+        "sprite_path_id": "1235230477398367199",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 34,
+        "height": 118,
+        "border": {
+          "x": 17.0,
+          "y": 59.0,
+          "z": 17.0,
+          "w": 59.0
+        },
+        "png_sha256": "89f64fa5d36c5fadca707001986358b02d746a645b3c74c1086a47dc50b46948"
+      },
+      {
+        "name": "滑动条底",
+        "path": "res://assets/ui/settings/option/_____0c9153e73e.png",
+        "sprite_path_id": "9104185830325976628",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 37,
+        "height": 21,
+        "border": {
+          "x": 18.0,
+          "y": 10.0,
+          "z": 18.0,
+          "w": 10.0
+        },
+        "png_sha256": "0669acb871686f545408376142f47a26ed6b4e94947e07e3939b0ebce9cec81c"
+      },
+      {
+        "name": "分割线1",
+        "path": "res://assets/ui/settings/option/___1_9f291de47f.png",
+        "sprite_path_id": "-2795178781909742681",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 359,
+        "height": 2,
+        "border": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "png_sha256": "1a64b661e2613e5941ff0adbccb646861941986dab7061d317f573626a54eb78"
+      },
+      {
+        "name": "icon_mainstatus",
+        "path": "res://assets/ui/settings/option/icon_mainstatus.png",
+        "sprite_path_id": "175650892367624043",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/42980b97b21fef16088e1fbbb3c13a72.bundle",
+          "sha256": "9d11ee9773833192ad744e7ef446bb91978f1421f83ea50dbcaa1fad9e4bbd23"
+        },
+        "width": 43,
+        "height": 47,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0e2be2a9b6522f5a65681799eb62333e9c9c04fb479aa0870c70b03290b3b388"
+      },
+      {
+        "name": "前往箭头图标",
+        "path": "res://assets/ui/settings/option/_______2727339ff3.png",
+        "sprite_path_id": "5561483642852841791",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/facdd1391aabfe8c494d8346bf420859.bundle",
+          "sha256": "a2630ab440da0e164a9a9f4e0661ecaf1ebb374fe6571b7e231c8d670044fba3"
+        },
+        "width": 30,
+        "height": 38,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "9821832c7a64644a0e4ca83705dceae944b3582abea96014471d9509aa24d3d7"
+      },
+      {
+        "name": "设置音量",
+        "path": "res://assets/ui/settings/option/_____9b261f02f8.png",
+        "sprite_path_id": "-1854095519383112219",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 106,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a5531e6a937d97041c76a6dc6d76ca1fb9fee4c221f969a51ad31337da20bdd6"
+      },
+      {
+        "name": "勾选",
+        "path": "res://assets/ui/settings/option/___c6cdcd00b6.png",
+        "sprite_path_id": "8151684169181863557",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 52,
+        "height": 41,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "e0668ad6621eedcf33bc0bbf638761b79016798d55194f6cfbfb49641f026bf6"
+      },
+      {
+        "name": "选中光效",
+        "path": "res://assets/ui/settings/option/_____bc5830e3ce.png",
+        "sprite_path_id": "-8930961703222545816",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 101,
+        "height": 81,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b9694dab0d6a29e4424a8467ba8ea767a68d6a487e0578616552ccaf96f583c4"
+      },
+      {
+        "name": "分类选中",
+        "path": "res://assets/ui/settings/option/_____ee3dc408b4.png",
+        "sprite_path_id": "2801027422704194543",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 78,
+        "border": {
+          "x": 128.0,
+          "y": 39.0,
+          "z": 128.0,
+          "w": 39.0
+        },
+        "png_sha256": "a65eee0a03fbc75e37e51ef708ee00f5156f41e0e5903f2c380f44f3bb1e2d98"
+      },
+      {
+        "name": "通用背景",
+        "path": "res://assets/ui/settings/option/_____73575f9d22.png",
+        "sprite_path_id": "4445401531142077585",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/dd01b7ed17ef95572ae71526f27bae78.bundle",
+          "sha256": "c9b0e70879ca8e66761df0e47a11dd9ecd2d0514de28541de420d8f9f0006539"
+        },
+        "width": 512,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cb50e755654849ba81e092c2047eaff8fec879c711c6266ed5b2373bc79734f9"
+      },
+      {
+        "name": "勾选框",
+        "path": "res://assets/ui/settings/option/____8ed04630b2.png",
+        "sprite_path_id": "-8776225437776842043",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 43,
+        "height": 43,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "2c75ca1a03126de91aa179e9ad22b9b40d0313095b616d15e6f1ec5d6f38f056"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/settings/option/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf"
+      },
+      {
+        "name": "设置(激活)",
+        "path": "res://assets/ui/settings/option/_______5b02b39267.png",
+        "sprite_path_id": "-3972643914786486662",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 94,
+        "height": 94,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "1ac407e8e753c025a7fefa1154d5c4675acfc284d8693486070b81e5405421bd"
+      },
+      {
+        "name": "指南",
+        "path": "res://assets/ui/settings/option/___6eadeddb7e.png",
+        "sprite_path_id": "-5531833022350855088",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 102,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5247f7b6cedcc7f916e413e38d7a11400926bfee55c45bb561692d1e991b775b"
+      },
+      {
+        "name": "bg装饰",
+        "path": "res://assets/ui/settings/option/bg___effdc594aa.png",
+        "sprite_path_id": "5221211053828565629",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+          "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+        },
+        "width": 236,
+        "height": 236,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "734f70f54f13a54884d56b5aca385f66f19f8253750f9999ce7c4caa4781a640"
+      },
+      {
+        "name": "指南h",
+        "path": "res://assets/ui/settings/option/__h_311b4599b7.png",
+        "sprite_path_id": "2535393671430266139",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 102,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "65678da4ab1f86f7353fa5377cfd156fe91c76433d6341cb643f42e6a4f7870d"
+      },
+      {
+        "name": "边框下",
+        "path": "res://assets/ui/settings/option/____0b61a1b44c.png",
+        "sprite_path_id": "-5237859815792390801",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 16,
+        "height": 16,
+        "border": {
+          "x": 8.0,
+          "y": 8.0,
+          "z": 8.0,
+          "w": 8.0
+        },
+        "png_sha256": "6e216b04277311aac4a10bc2119510d0ce02b1934833e9e99b5cc62d17adac65"
+      },
+      {
+        "name": "设置",
+        "path": "res://assets/ui/settings/option/___df3d58c7d8.png",
+        "sprite_path_id": "-4192284267550148191",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
+          "sha256": "43247ca44a5d54cf0dcc6cd4272251155a71fa6af48e60c070e2ead9bac77488"
+        },
+        "width": 196,
+        "height": 87,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "d3091aaffddda51df585b18cbe05ffc5fe1d7abfb969861b7ce3bfae8ee2d48c"
+      },
+      {
+        "name": "R-C",
+        "path": "res://assets/ui/settings/option/R-C.png",
+        "sprite_path_id": "748922958632801445",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/d388b0a65653fa3dc6cfa59f16d62f7b.bundle",
+          "sha256": "7e6fa18f158109fce9dac319aa095e7b061465c21683ccbb7632cb1559060598"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "d1f7a2a407558ad902d94077078cd983733138eeb440c581fbe4b5f8c62e7785"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/settings/option/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+      },
+      {
+        "name": "设置显示（激活）",
+        "path": "res://assets/ui/settings/option/_________55d003495f.png",
+        "sprite_path_id": "-3021165412216592563",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 89,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cad2a92579f3a0f75244a6dc8004fcf86a12e3d8af770139819b3dcc2f6e5c33"
+      },
+      {
+        "name": "设置显示",
+        "path": "res://assets/ui/settings/option/_____674534f020.png",
+        "sprite_path_id": "-2339751079872074642",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 89,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7d0cc4c5b05e8e3d0176abf43c25a35b624fd653a39e532f4435edea6ccf0a9f"
+      },
+      {
+        "name": "sprite_cardicon_square_npchulinv",
+        "path": "res://assets/ui/settings/option/sprite_cardicon_square_npchulinv.png",
+        "sprite_path_id": "-8966802182169820404",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+          "sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810"
+        },
+        "width": 256,
+        "height": 250,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "452898134a55e75575d62dd5527e92ab3eb45435ac4f744acaeba6c578031989"
+      },
+      {
+        "name": "账户h",
+        "path": "res://assets/ui/settings/option/__h_968c54d96b.png",
+        "sprite_path_id": "-4928456170670652421",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 93,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "18b881b90921b72dcf0f26714a2a92b01c28e6692a94fb147370871e1390345f"
+      },
+      {
+        "name": "几何ui-背景用渐变圆角矩形",
+        "path": "res://assets/ui/settings/option/__ui-__________647acc3b20.png",
+        "sprite_path_id": "-581522297785427559",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 102,
+        "border": {
+          "x": 37.0,
+          "y": 59.0,
+          "z": 41.0,
+          "w": 48.0
+        },
+        "png_sha256": "c511bd8d3c5d772903e61dc5014b073d221bdbaf4c88596af4080233d5272a80"
+      },
+      {
+        "name": "设置音量（激活）",
+        "path": "res://assets/ui/settings/option/_________f18c66c50a.png",
+        "sprite_path_id": "-2717275962030433622",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 106,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5f8171d9e3b1b15490e0863e2bca7a05e432af2566c93a9d714986d1740a42bf"
+      }
+    ],
+    "errors": []
+  },
+  "guide_panel": {
+    "layout": "guide/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/07fea125597242ebe55318e663c16aa4.bundle",
+      "sha256": "34970ab0d9102d4a4602076fbf6ce2e509b3be56eb6bc72d84ffb2b36e4462c7"
+    },
+    "sprites": [
+      {
+        "name": "高亮星标",
+        "path": "res://assets/ui/settings/guide/_____9ff016794a.png",
+        "sprite_path_id": "-862410151406753683",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2cec4d6a703e31a087ce975d04fa4f12.bundle",
+          "sha256": "393d9a05bccc7a223cc9836d87c2667d7a504a58378c5fbf7eebac236f4e118a"
+        },
+        "width": 92,
+        "height": 92,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "bf2118a589b67819a39515ff1ce965f87d4057ec1757aaa017cceb7f1de606eb"
+      },
+      {
+        "name": "几何ui-白椭圆",
+        "path": "res://assets/ui/settings/guide/__ui-____d622e4effa.png",
+        "sprite_path_id": "-2614501852665650507",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 256,
+        "height": 59,
+        "border": {
+          "x": 47.75897979736328,
+          "y": 29.2020206451416,
+          "z": 45.0892219543457,
+          "w": 28.606060028076172
+        },
+        "png_sha256": "0029df0d22d55254f75d04df0d989c6071ef1c0852f3bb7330bcae017ceab75d"
+      },
+      {
+        "name": "白星标",
+        "path": "res://assets/ui/settings/guide/____45d48c752b.png",
+        "sprite_path_id": "-347511828128864971",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+          "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+        },
+        "width": 38,
+        "height": 38,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "8699c7d9416095c140cd356e50cca62a8b6d0006700a47d9e89b784591193c44"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/settings/guide/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+      },
+      {
+        "name": "主城建造节点_已升级_v2",
+        "path": "res://assets/ui/settings/guide/___________v2_096e276f11.png",
+        "sprite_path_id": "5204884890727424205",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+          "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+        },
+        "width": 328,
+        "height": 131,
+        "border": {
+          "x": 125.0,
+          "y": 74.0,
+          "z": 125.0,
+          "w": 74.0
+        },
+        "png_sha256": "2a15b682d21da7e54ea4430e48aadf9ed39e1296d14e6059331726f61de3691c"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/settings/guide/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "箭头白",
+        "path": "res://assets/ui/settings/guide/____edaacdc6ad.png",
+        "sprite_path_id": "4384636787489496816",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+          "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+        },
+        "width": 38,
+        "height": 36,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "1124b0ed0aab6f9f98061806580865cfb44c5750f81e7315f48d9a33c7a56033"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/settings/guide/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf"
+      },
+      {
+        "name": "右边栏底",
+        "path": "res://assets/ui/settings/guide/_____30feb592c3.png",
+        "sprite_path_id": "-8310244591510694277",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 32,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 32.0,
+          "w": 0.0
+        },
+        "png_sha256": "749bc8c72b15cabe73ef817f6740aaf507d47de78acbb7fa156c585b85ff5c92"
+      },
+      {
+        "name": "完成（普通委托）",
+        "path": "res://assets/ui/settings/guide/_________1af2265e1d.png",
+        "sprite_path_id": "-6441706681384598002",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "66418e3f79ff5f576dec709226056bb1020d8a89622085d39fac89c485ebdba0"
+      },
+      {
+        "name": "几何ui-背景用渐变圆角矩形",
+        "path": "res://assets/ui/settings/guide/__ui-__________647acc3b20.png",
+        "sprite_path_id": "-581522297785427559",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 102,
+        "border": {
+          "x": 37.0,
+          "y": 59.0,
+          "z": 41.0,
+          "w": 48.0
+        },
+        "png_sha256": "c511bd8d3c5d772903e61dc5014b073d221bdbaf4c88596af4080233d5272a80"
+      },
+      {
+        "name": "滚动条按钮白 竖直",
+        "path": "res://assets/ui/settings/guide/__________bb3b9b4f72.png",
+        "sprite_path_id": "4370416204254005540",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+          "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+        },
+        "width": 62,
+        "height": 64,
+        "border": {
+          "x": 31.0,
+          "y": 32.0,
+          "z": 32.0,
+          "w": 31.0
+        },
+        "png_sha256": "c197d711ecc2dbc53df8f5f4dba7f792e5c2313a800bc405b46a1b1e0596b314"
+      },
+      {
+        "name": "指南",
+        "path": "res://assets/ui/settings/guide/___6eadeddb7e.png",
+        "sprite_path_id": "-3700024977874735856",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
+          "sha256": "43247ca44a5d54cf0dcc6cd4272251155a71fa6af48e60c070e2ead9bac77488"
+        },
+        "width": 196,
+        "height": 87,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "644b40bc72ca3e478784728b13f98e4fc20e4bfd986ab8669d40483c4784f309"
+      },
+      {
+        "name": "主城建造节点_未达到_v2",
+        "path": "res://assets/ui/settings/guide/___________v2_4cbec885e7.png",
+        "sprite_path_id": "8288926033656218193",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+          "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+        },
+        "width": 328,
+        "height": 131,
+        "border": {
+          "x": 125.0,
+          "y": 74.0,
+          "z": 125.0,
+          "w": 74.0
+        },
+        "png_sha256": "14717e2fc2725379e47c9c032493a9f8c0fdeca2ae911dc9a50add1e125470be"
+      },
+      {
+        "name": "bg装饰",
+        "path": "res://assets/ui/settings/guide/bg___effdc594aa.png",
+        "sprite_path_id": "5221211053828565629",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+          "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+        },
+        "width": 236,
+        "height": 236,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "734f70f54f13a54884d56b5aca385f66f19f8253750f9999ce7c4caa4781a640"
+      },
+      {
+        "name": "主城建造节点_当前升级_v2",
+        "path": "res://assets/ui/settings/guide/____________v2_767f9655e2.png",
+        "sprite_path_id": "-371418152114024326",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+          "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+        },
+        "width": 388,
+        "height": 190,
+        "border": {
+          "x": 125.0,
+          "y": 74.0,
+          "z": 125.0,
+          "w": 74.0
+        },
+        "png_sha256": "6305dcd94ff6bd8f36b9a7c320dee4808c72e46f2b80b5c85d41a7f161a079ae"
+      },
+      {
+        "name": "通用背景",
+        "path": "res://assets/ui/settings/guide/_____73575f9d22.png",
+        "sprite_path_id": "4445401531142077585",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/dd01b7ed17ef95572ae71526f27bae78.bundle",
+          "sha256": "c9b0e70879ca8e66761df0e47a11dd9ecd2d0514de28541de420d8f9f0006539"
+        },
+        "width": 512,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cb50e755654849ba81e092c2047eaff8fec879c711c6266ed5b2373bc79734f9"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/settings/guide/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/07fea125597242ebe55318e663c16aa4.bundle",
+          "sha256": "34970ab0d9102d4a4602076fbf6ce2e509b3be56eb6bc72d84ffb2b36e4462c7"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      }
+    ],
+    "errors": []
+  },
+  "guide_sub_panel": {
+    "layout": "guide_sub/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+      "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+    },
+    "sprites": [
+      {
+        "name": "Bg1",
+        "path": "res://assets/ui/settings/guide_sub/Bg1.png",
+        "sprite_path_id": "2390416119025954208",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+          "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+        },
+        "width": 1024,
+        "height": 512,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "92e01a5da68175c7d303f891537fa772f77b7d16360a002f461d6ef8cb0c4d05"
+      },
+      {
+        "name": "滑动按钮_white",
+        "path": "res://assets/ui/settings/guide_sub/_____white_903861035c.png",
+        "sprite_path_id": "920993249204682218",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 46,
+        "height": 45,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "813716588213e860182853f8e45f40a2109331dffcdea1248b1c1f27e3737970"
+      },
+      {
+        "name": "分割线3_白",
+        "path": "res://assets/ui/settings/guide_sub/___3___0ea7cd5222.png",
+        "sprite_path_id": "1054731721956109140",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 420,
+        "height": 28,
+        "border": {
+          "x": 96.0,
+          "y": 0.0,
+          "z": 300.0,
+          "w": 0.0
+        },
+        "png_sha256": "47437146c7d86f2cb925b9ab409c08fc2777c6579b40d0712b10bd92c688d153"
+      },
+      {
+        "name": "Background",
+        "path": "res://assets/ui/settings/guide_sub/Background.png",
+        "sprite_path_id": "1660267235368898380",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+          "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+        },
+        "width": 32,
+        "height": 32,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "46e2a8c6759bf24681f9f3f6073973ca65ac95e8d1ed8b8e025137819857fb2d"
+      },
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/settings/guide_sub/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+      },
+      {
+        "name": "UISprite",
+        "path": "res://assets/ui/settings/guide_sub/UISprite.png",
+        "sprite_path_id": "5837791642106728268",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+          "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+        },
+        "width": 32,
+        "height": 32,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "9e2b539b7c88fe4464525abc282c724b964852950a0b8aa1df13414014b5f33c"
+      },
+      {
+        "name": "纯白关闭按钮",
+        "path": "res://assets/ui/settings/guide_sub/_______619d48d63f.png",
+        "sprite_path_id": "-7100559353983702432",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 60,
+        "height": 60,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "61bf848b9c6c430807b171b72b9f036e6a5798066f1886099949fecff2c53b6f"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/settings/guide_sub/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+          "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      },
+      {
+        "name": "滑动按钮_close",
+        "path": "res://assets/ui/settings/guide_sub/_____close_c454360665.png",
+        "sprite_path_id": "8583073016278756516",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 46,
+        "height": 45,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "fb9416e8c4f15aae5a8363e984935a25e180f2cf5f21d72c085a64e6398cf4d7"
+      },
+      {
+        "name": "几何ui-白圆角矩形",
+        "path": "res://assets/ui/settings/guide_sub/__ui-______083f833001.png",
+        "sprite_path_id": "6661574081893680522",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 40.0,
+          "z": 38.0,
+          "w": 38.0
+        },
+        "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+      },
+      {
+        "name": "左右箭头按钮",
+        "path": "res://assets/ui/settings/guide_sub/_______ca6063f176.png",
+        "sprite_path_id": "8284727392428173768",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/cd41f8b7a01a6531ea295eea73485523.bundle",
+          "sha256": "0148939aee6e614928e65f8fb90fd336f5b52d94c5513d07862ca29114f903d9"
+        },
+        "width": 96,
+        "height": 96,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7c7355499467a969fcb67a38744847d7bcc6b7e4f2c645fd5c0f5f3047ba013a"
+      }
+    ],
+    "errors": []
+  },
+  "cloud_save_panel": {
+    "layout": "cloud_save/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/425b78b35eef3c135d4a14ec57b34929.bundle",
+      "sha256": "af99590bdb184c59dbef912ad12ff68c9dddffe4724704ec4132d84487175ecf"
+    },
+    "sprites": [
+      {
+        "name": "31",
+        "path": "res://assets/ui/settings/cloud_save/31.png",
+        "sprite_path_id": "3870909522108855738",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 54.0,
+          "y": 54.0,
+          "z": 54.0,
+          "w": 54.0
+        },
+        "png_sha256": "57e6285e8d190f0414f423ce50a11aa1a158196c7cb989a1ba59326c5de4ad7f"
+      },
+      {
+        "name": "角色详情分类(选择)",
+        "path": "res://assets/ui/settings/cloud_save/___________a6b87055a1.png",
+        "sprite_path_id": "-5619093634789414150",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 85,
+        "height": 99,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5fc244858db653f804b78523ef7c335961f58c28aaddae1b926b465422abb8f1"
+      },
+      {
+        "name": "几何ui-椭圆白色按钮",
+        "path": "res://assets/ui/settings/cloud_save/__ui-_______39ebe9c97d.png",
+        "sprite_path_id": "-1055889953380836409",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 250,
+        "height": 75,
+        "border": {
+          "x": 71.40135955810547,
+          "y": 0.0,
+          "z": 75.7551040649414,
+          "w": 0.0
+        },
+        "png_sha256": "d557dbc1e6c5ad718194dd315e1d878c464f3becac81c087d2c3892985f4dacf"
+      },
+      {
+        "name": "图案_时钟",
+        "path": "res://assets/ui/settings/cloud_save/______71b595503d.png",
+        "sprite_path_id": "-1383818645465548747",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+          "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+        },
+        "width": 109,
+        "height": 109,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6e5dad330118203ed1a01e571b60182dfe74f8bbb0e7ece4b5584ef9674cbbe1"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/settings/cloud_save/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/settings/cloud_save/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "箭头_上",
+        "path": "res://assets/ui/settings/cloud_save/_____3ee38af551.png",
+        "sprite_path_id": "5218427736472422516",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+          "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+        },
+        "width": 47,
+        "height": 74,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ebcbb9a5eab9a2b97f4acbc9882780edefb3785b6338a566fb8b92bfa01d3261"
+      },
+      {
+        "name": "UISprite",
+        "path": "res://assets/ui/settings/cloud_save/UISprite.png",
+        "sprite_path_id": "5837791642106728268",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/425b78b35eef3c135d4a14ec57b34929.bundle",
+          "sha256": "af99590bdb184c59dbef912ad12ff68c9dddffe4724704ec4132d84487175ecf"
+        },
+        "width": 32,
+        "height": 32,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "9e2b539b7c88fe4464525abc282c724b964852950a0b8aa1df13414014b5f33c"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/settings/cloud_save/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/425b78b35eef3c135d4a14ec57b34929.bundle",
+          "sha256": "af99590bdb184c59dbef912ad12ff68c9dddffe4724704ec4132d84487175ecf"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      },
+      {
+        "name": "商店按钮_底",
+        "path": "res://assets/ui/settings/cloud_save/_______dd24d75bc3.png",
+        "sprite_path_id": "-8548341121348774352",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 294,
+        "height": 93,
+        "border": {
+          "x": 101.0,
+          "y": 0.0,
+          "z": 115.0,
+          "w": 0.0
+        },
+        "png_sha256": "54c5ce8ad8391544b6d3c6bf13dbc094491a13dbedc6d74ee0cab02fc562b5ba"
+      },
+      {
+        "name": "sprite_materialicon_101",
+        "path": "res://assets/ui/settings/cloud_save/sprite_materialicon_101.png",
+        "sprite_path_id": "-4929560618279763517",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6bad02912188f5aca0b14de5cbf6be37ac6343105118a48437d866c025cf3f93"
+      },
+      {
+        "name": "技能分类名_底",
+        "path": "res://assets/ui/settings/cloud_save/________f795e46eb7.png",
+        "sprite_path_id": "-3773561218812469960",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 38,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "74e58bb59084da094480aa7aeb8742f2fa0f8beaf9aa07305c7c31f9a8fa7a10"
+      },
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/settings/cloud_save/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/settings/cloud_save/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf"
+      },
+      {
+        "name": "武器(选择)",
+        "path": "res://assets/ui/settings/cloud_save/_______98c32063c9.png",
+        "sprite_path_id": "-3545135640624385311",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 83,
+        "height": 89,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "4a91a0d0270da21761893af392efd6b6a2be56a75ca728f0ecf329add2de449b"
+      },
+      {
+        "name": "bg装饰",
+        "path": "res://assets/ui/settings/cloud_save/bg___effdc594aa.png",
+        "sprite_path_id": "5221211053828565629",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+          "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+        },
+        "width": 236,
+        "height": 236,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "734f70f54f13a54884d56b5aca385f66f19f8253750f9999ce7c4caa4781a640"
+      },
+      {
+        "name": "箭头_下",
+        "path": "res://assets/ui/settings/cloud_save/_____725447f90d.png",
+        "sprite_path_id": "-8350808524587598484",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+          "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+        },
+        "width": 47,
+        "height": 74,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a482b775a4f350532a7757ebd301d5ccc4cde930b6f6c196bf0871de4595746a"
+      },
+      {
+        "name": "几何ui-白圆角矩形",
+        "path": "res://assets/ui/settings/cloud_save/__ui-______083f833001.png",
+        "sprite_path_id": "6661574081893680522",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 40.0,
+          "z": 38.0,
+          "w": 38.0
+        },
+        "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+      }
+    ],
+    "errors": []
+  },
+  "redemption_code_panel": {
+    "layout": "redemption_code/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/91824ad99d9be2ded724b146b009adea.bundle",
+      "sha256": "f76aa7f7a72b58bb9f516eec2408a12ff9c5e1a9c611f9471dc23115ce84afe9"
+    },
+    "sprites": [
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/settings/redemption_code/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+      },
+      {
+        "name": "几何ui-白圆角矩形",
+        "path": "res://assets/ui/settings/redemption_code/__ui-______083f833001.png",
+        "sprite_path_id": "6661574081893680522",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 40.0,
+          "z": 38.0,
+          "w": 38.0
+        },
+        "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/settings/redemption_code/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+      },
+      {
+        "name": "主城建造离开按钮",
+        "path": "res://assets/ui/settings/redemption_code/_________fcde123c50.png",
+        "sprite_path_id": "3892142574738822647",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+          "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+        },
+        "width": 360,
+        "height": 121,
+        "border": {
+          "x": 120.0,
+          "y": 0.0,
+          "z": 120.0,
+          "w": 0.0
+        },
+        "png_sha256": "2595f3dff86c2d9c9f265bbe5ad3ac357de1ef28cf291204e68f52c2771632fa"
+      },
+      {
+        "name": "通用按钮",
+        "path": "res://assets/ui/settings/redemption_code/_____a4b3f570f3.png",
+        "sprite_path_id": "-3124727779629688690",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 360,
+        "height": 121,
+        "border": {
+          "x": 120.0,
+          "y": 0.0,
+          "z": 120.0,
+          "w": 0.0
+        },
+        "png_sha256": "eb7680197f53caf5e5614173f630561a7dd015ac73854e2b8d1737635008e910"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/settings/redemption_code/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/settings/redemption_code/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "InputFieldBackground",
+        "path": "res://assets/ui/settings/redemption_code/InputFieldBackground.png",
+        "sprite_path_id": "8385535716932718412",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/91824ad99d9be2ded724b146b009adea.bundle",
+          "sha256": "f76aa7f7a72b58bb9f516eec2408a12ff9c5e1a9c611f9471dc23115ce84afe9"
+        },
+        "width": 32,
+        "height": 32,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "37a101d10d7e8196d7c03cfbb3e0d04f93a06d9afd843ad695b73dbda17a24d3"
+      }
+    ],
+    "errors": []
+  }
+}

@@ -53,6 +53,7 @@ func _run() -> void:
 	await process_frame
 	hud.close_page()
 	hud.primary.hide()
+	var exclusion_baseline := hud.joystick.excluded_controls.size()
 	drops.configure_altar_pointer(hud)
 	drops.altar_requested.connect(func(key, marker):
 		requested.append([key, marker])
@@ -114,7 +115,7 @@ func _run() -> void:
 	drops.clear()
 	check(drops.source_altars.is_empty() and drops.entries.is_empty(), "Changing room clears source and runtime pointer targets")
 	check(not drops.request_altar(source_entry), "A queued click from a cleared room cannot activate a stale altar")
-	check(hud.joystick.excluded_controls.size() == 3, "Room cleanup leaves only the HUD's fixed joystick exclusions")
+	check(hud.joystick.excluded_controls.size() == exclusion_baseline, "Room cleanup restores the HUD's initial joystick exclusions")
 	print("SPIRIT_ALTAR_POINTER_TEST ", JSON.stringify({"checks": checks, "failures": failures, "passed": failures.is_empty()}))
 	canvas.queue_free()
 	await process_frame

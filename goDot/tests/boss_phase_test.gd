@@ -26,7 +26,7 @@ func _run() -> void:
 		_dragon_phases(hz)
 	_tick_seconds = STEP
 	_boss_skill_outputs()
-	var report = {"passed": failures.is_empty(), "checks": checks, "failures": failures, "phases": rows, "skills": skills, "scope": "Bosses enter through begin_enemy_spawn and the serialized AI. Real receive damage crosses HP gates; HP is never assigned to phase thresholds. Four one-time boss transitions, the dragon's three HP gates and recovery at 30/60/120Hz, plus attack output from all ten Boss definitions. Headless domain simulation, not original APK execution or rendered/mobile validation."}
+	var report = {"passed": failures.is_empty(), "checks": checks, "failures": failures, "phases": rows, "skills": skills, "scope": "Bosses enter through begin_enemy_spawn and the serialized AI. Real receive damage crosses phase thresholds; HP is never assigned to phase thresholds. Four one-time boss HP locks, the current APK dragon's 79%/49% observers, source AI transitions, near-death lock and recovery at 30/60/120Hz, plus attack output from all ten Boss definitions. The current dragon's authored zero-value shields are retained. Headless domain simulation, not original APK execution or rendered/mobile validation."}
 	FileAccess.open("res://reports/boss-phase-test.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("BOSS_PHASE ", JSON.stringify({"passed": failures.is_empty(), "checks": checks, "failures": failures, "phases": rows.size(), "boss_skills": skills.size()}))
 	quit(0 if failures.is_empty() else 1)
@@ -93,26 +93,34 @@ func _single_phase(config: Dictionary) -> void:
 func _dragon_phases(hz: int) -> void:
 	var enemy = _new_enemy(53001)
 	var ledger := {"actions": [], "outputs": 0}
-	var installed = _wait_buff(enemy, ledger, "45300130", true, 15.0)
-	_check(installed, "Dragon authored entrance installs eighty-percent HP lock at %dHz" % hz)
+	var installed = _wait_buff(enemy, ledger, "45300120", true, 15.0)
+	_check(installed, "Dragon current APK entrance installs near-death HP lock at %dHz" % hz)
 	if not installed: return
+	_check(enemy.statuses.has("45300140") and enemy.statuses.has("45300141"), "Dragon entrance installs source 79 and 49 percent HP observers")
+	_check(not enemy.statuses.has("45300130") and not enemy.statuses.has("45300131"), "Dragon current entrance retains its authored HP-lock selection")
+	_advance(enemy, ledger, 8.0)
+	_check(not ledger.actions.has("roar1") and not ledger.actions.has("roar2") and not ledger.actions.has("roar3"), "Dragon full-health entrance does not trigger a premature phase")
 	for gate in [
-		{"lock": "45300130", "ratio": 0.799, "next": "45300131", "action": "roar1"},
-		{"lock": "45300131", "ratio": 0.499, "next": "45300120", "action": "roar2"},
-		{"lock": "45300120", "ratio": 0.001, "next": "45300104", "action": "roar3"},
+		{"observer": "45300140", "ratio": 0.79, "next": "45300102", "action": "roar1"},
+		{"observer": "45300141", "ratio": 0.49, "next": "45300103", "action": "roar2"},
 	]:
-		_damage(enemy)
-		var stopped = is_equal_approx(enemy.health / enemy.max_health, float(gate.ratio))
-		_check(stopped, "Dragon lethal hit stops at %.3f HP gate at %dHz" % [gate.ratio, hz])
-		if not stopped:
-			rows.append({"enemy": 53001, "hz": hz, "failed_gate": gate.lock, "health_ratio": enemy.health / enemy.max_health, "actions": ledger.actions})
-			return
-		_damage(enemy)
-		_check(is_equal_approx(enemy.health / enemy.max_health, float(gate.ratio)), "Dragon gate %s survives repeated damage" % gate.lock)
+		for strike in 100:
+			if enemy.health / enemy.max_health <= float(gate.ratio): break
+			enemy.receive({"damage": enemy.max_health * 0.02, "attack_collision": false, "definition": {}}, enemy.attack)
+		_check(enemy.health / enemy.max_health <= float(gate.ratio) and enemy.health / enemy.max_health > float(gate.ratio) - 0.03, "Dragon real damage crosses source %.2f HP observer at %dHz" % [gate.ratio, hz])
+		_check(not enemy.statuses.has(str(gate.observer)), "Dragon consumes its one-time source HP observer %s" % gate.observer)
+		_check(is_zero_approx(enemy.shield), "Dragon retains current APK zero-value phase shield")
 		var advanced = _wait_buff(enemy, ledger, str(gate.next), true, 45.0)
 		_check(advanced and ledger.actions.has(gate.action), "Dragon source AI reaches %s and installs %s" % [gate.action, gate.next])
-		_check(not enemy.statuses.has(str(gate.lock)), "Dragon phase %s clears old HP lock" % gate.action)
+		_check(enemy.statuses.has("45300120"), "Dragon %s preserves near-death lock" % gate.action)
 		if not advanced: return
+	_damage(enemy)
+	_check(is_equal_approx(enemy.health / enemy.max_health, 0.001), "Dragon lethal damage stops at current APK near-death gate at %dHz" % hz)
+	_damage(enemy)
+	_check(is_equal_approx(enemy.health / enemy.max_health, 0.001), "Dragon near-death lock survives repeated damage before final transition")
+	var final_phase = _wait_buff(enemy, ledger, "45300104", true, 45.0)
+	_check(final_phase and ledger.actions.has("roar3"), "Dragon source AI reaches final form after real near-death damage")
+	if not final_phase: return
 	_advance(enemy, ledger, 8.0)
 	var recovery_ratio = enemy.health / enemy.max_health
 	_check(enemy.health / enemy.max_health >= 0.49 and enemy.health / enemy.max_health <= 0.51, "Dragon near-death source healing restores about fifty percent HP at %dHz" % hz)

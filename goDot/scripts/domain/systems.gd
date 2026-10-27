@@ -8,14 +8,24 @@ const Catalog = preload("res://scripts/domain/catalog.gd")
 const Profile = preload("res://scripts/domain/profile.gd")
 const Effects = preload("res://scripts/domain/effects.gd")
 const CampDecorations = preload("res://scripts/domain/camp_decorations.gd")
+const RelationshipTokens = preload("res://scripts/domain/relationship_tokens.gd")
+const ExtraChallenges = preload("res://scripts/domain/extra_challenges.gd")
+const CampHistory = preload("res://scripts/domain/camp_history.gd")
+const CampSocial = preload("res://scripts/domain/camp_social.gd")
 var catalog
 var profile
 var effects
 var decorations
+var relationship_tokens
+var extra_challenges
+var history
+var social
 var diagnostics: Array = []
 var utc_now: Callable = func(): return int(Time.get_unix_time_from_system())
 var _depth = 0
 var _collecting_work = false
+var _partner_mutating = false
+static var _event_node_areas: Dictionary = {}
 
 func _init(source, state) -> void:
 	catalog = source
@@ -23,6 +33,11 @@ func _init(source, state) -> void:
 	profile.normalize_ids()
 	effects = Effects.new(self)
 	decorations = CampDecorations.new(self)
+	relationship_tokens = RelationshipTokens.new(self)
+	extra_challenges = ExtraChallenges.new(self)
+	history = CampHistory.new(self)
+	social = CampSocial.new(self)
+	relationship_tokens.refresh()
 
 func _ok(message = "完成", id = 0) -> Dictionary:
 	return {"success": true, "message": str(message), "id": int(id)}
@@ -32,6 +47,9 @@ func _fail(message) -> Dictionary:
 
 func _done(message = "完成", id = 0) -> Dictionary:
 	if _depth == 0:
+		if relationship_tokens != null:
+			relationship_tokens.refresh()
+			relationship_tokens.normalize()
 		changed.emit()
 	return _ok(message, id)
 
@@ -131,6 +149,8 @@ func camp_feature_status(feature: String) -> Dictionary:
 	var gates = {"characters": [1, 1], "recruit": [1, 1], "talents": [2, 1], "tokens": [2, 1], "treasure": [2, 1], "chests": [2, 1], "gold_apple": [2, 2], "history": [2, 3], "weapons": [3, 1], "training": [3, 2], "weapon_upgrade": [3, 3], "archive": [4, 1], "partners": [4, 2], "partner_skill": [4, 3], "tasks": [5, 1], "work": [6, 1], "work_rare": [6, 2], "work_precious": [6, 3], "meals": [7, 1]}
 	gates["awakening"] = [2, 1]
 	gates["storage"] = [2, 1]
+	gates["amplifiers"] = [2, 1]
+	gates["extra_challenges"] = [5, 2]
 	var gate: Array = gates.get(feature, [0, 0])
 	var level = rank(profile.data.buildings, gate[0])
 	var available = int(gate[1]) == 0 or level >= int(gate[1])
@@ -406,7 +426,29 @@ func character_upgrade_status(id: int) -> Dictionary:
 	var breaks = catalog.config.get("CharaLevelUpCostList_BreakUpItem", [])
 	if level > 0 and level <= breaks.size() and not price.is_empty(): price["503"] = int(breaks[level - 1])
 	if reason.is_empty() and not can_afford(price): reason = "冒险凭证或彩虹魔方不足"
-	return {"id": id, "level": level, "max_level": upgrades.size() + 1, "price": price, "can_upgrade": reason.is_empty(), "reason": reason}
+	var character = catalog.find("CharData", id)
+	var growth = float(catalog.config.get("CharaPerLevelAddStatusPercent", 0)) / 1000.0
+	var stats: Array = []
+	var next_level = mini(level + 1, upgrades.size() + 1)
+	for pair in [["生命", "hp"], ["攻击", "atk"], ["防御", "def"]]:
+		var base = float(character.get(pair[1], 0))
+		stats.append({"name": pair[0], "current": int(base * (1.0 + maxi(0, level - 1) * growth)), "next": int(base * (1.0 + maxi(0, next_level - 1) * growth))})
+	return {"id": id, "level": level, "next_level": next_level, "max_level": upgrades.size() + 1, "price": price, "stats": stats, "can_upgrade": reason.is_empty(), "reason": reason}
+
+func character_fashion_status(id: int, character_id := 0) -> Dictionary:
+	return preload("res://scripts/domain/character_fashion.gd").new(self).status(id, character_id)
+
+func character_fashion_owned() -> Array:
+	return preload("res://scripts/domain/character_fashion.gd").new(self).owned_ids()
+
+func character_fashion_equipped() -> Dictionary:
+	return preload("res://scripts/domain/character_fashion.gd").new(self).equipped_ids()
+
+func unlock_character_fashion(id: int, character_id := 0) -> Dictionary:
+	return preload("res://scripts/domain/character_fashion.gd").new(self).unlock(id, character_id)
+
+func equip_character_fashion(id: int, character_id := 0) -> Dictionary:
+	return preload("res://scripts/domain/character_fashion.gd").new(self).equip(id, character_id)
 
 func upgrade_character(id: int) -> Dictionary:
 	var status = character_upgrade_status(id)
@@ -463,6 +505,31 @@ func upgrade_global_talent(id: int) -> Dictionary:
 	profile.data.talents[str(id)] = int(status.level) + 1
 	var row = catalog.find("TalentTreeData", id)
 	return _done(Catalog.row_name(row), id)
+
+func is_character_talent_marked(id: int) -> bool:
+	return not catalog.find("CharTalentData", id).is_empty() and profile.data.get("marked_character_talents", []).has(id)
+
+func toggle_character_talent_mark(id: int, character_id := 0) -> Dictionary:
+	var row = catalog.find("CharTalentData", id)
+	if row.is_empty(): return _fail("未知角色天赋")
+	if character_id != 0 and int(row.chara_id) != character_id: return _fail("天赋不属于当前角色")
+	var marks: Array = profile.data.marked_character_talents
+	var marked = not marks.has(id)
+	if marked: marks.append(id)
+	else: marks.erase(id)
+	var result = _done("已标记天赋" if marked else "已取消标记", id)
+	result["marked"] = marked
+	return result
+
+func clear_character_talent_marks(character_id: int) -> Dictionary:
+	if catalog.find("CharData", character_id).is_empty(): return _fail("未知角色")
+	var marks: Array = profile.data.marked_character_talents
+	var retained: Array = []
+	for id in marks:
+		var row = catalog.find("CharTalentData", int(id))
+		if int(row.get("chara_id", 0)) != character_id: retained.append(id)
+	profile.data.marked_character_talents = retained
+	return _done("已清除当前角色的天赋标记", character_id)
 
 func learn_character_talent(id: int) -> Dictionary:
 	if not profile.data.run.get("talent_rewards", []).is_empty():
@@ -601,40 +668,70 @@ func upgrade_building(id: int) -> Dictionary:
 	gameplay_event.emit({"type": "building_upgraded", "id": id, "level": int(status.level) + 1, "target": status.target})
 	return _done(status.name, id)
 
-func unlock_partner(id: int) -> Dictionary:
-	var reason = _camp_action_reason("partners")
-	if not reason.is_empty(): return _fail(reason)
+func partner_status(id: int) -> Dictionary:
 	var row = catalog.find("MonsterPartnerData", id)
-	if row.is_empty() or rank(profile.data.partners, id) > 0: return _fail("伙伴已解锁或不存在")
-	if stat("kill:" + str(int(row.enemy_id))) < int(row.unlock_need_kill_count): return _fail("击败该怪物次数不足")
+	var level = rank(profile.data.partners, id)
+	var levels = str(row.get("levelup_need_material", "")).split(",", false)
+	var price = costs(levels[level - 1]) if level >= 1 and level <= levels.size() else {}
+	var reason = _camp_action_reason("partners")
+	if row.is_empty(): reason = "伙伴不存在"
+	elif bool(row.get("is_admin_only", false)): reason = "管理员专用伙伴"
+	var unlock_reason_text = reason
+	if level > 0: unlock_reason_text = "伙伴已解锁"
+	elif unlock_reason_text.is_empty() and stat("kill:" + str(int(row.get("enemy_id", 0)))) < int(row.get("unlock_need_kill_count", 0)): unlock_reason_text = "击败该怪物次数不足"
+	var upgrade_reason = reason
+	if level == 0: upgrade_reason = "伙伴未解锁"
+	elif level > levels.size(): upgrade_reason = "伙伴已满级"
+	elif upgrade_reason.is_empty() and not can_afford(price): upgrade_reason = "伙伴升级材料不足"
+	var equip_reason = reason
+	if level == 0: equip_reason = "伙伴未解锁"
+	elif profile.data.work.any(func(order): return int(order.get("partner_id", 0)) == id): equip_reason = "伙伴派遣中"
+	var skill = preload("res://scripts/domain/partner_skills.gd").new(self).definition(id, maxi(1, level))
+	return {"id": id, "level": level, "max_level": levels.size() + 1, "price": price, "unlocked": level > 0,
+		"can_unlock": unlock_reason_text.is_empty(), "unlock_reason": unlock_reason_text, "can_upgrade": upgrade_reason.is_empty(), "reason": upgrade_reason,
+		"can_equip": equip_reason.is_empty(), "equip_reason": equip_reason, "equipped": profile.data.equipped_partners.has(id),
+		"skills": skill, "skill_description": str(skill.get("description", row.get("resonance_skill_description", ""))), "skill_unlocked": camp_feature_status("partner_skill").available}
+
+func unlock_partner(id: int) -> Dictionary:
+	if _partner_mutating: return _fail("伙伴操作处理中")
+	var state = partner_status(id)
+	if not state.can_unlock: return _fail(state.unlock_reason)
+	_partner_mutating = true
 	profile.data.partners[str(id)] = 1
-	return _done("伙伴已解锁", id)
+	return _finish_partner_transaction("伙伴已解锁", id)
 
 func equip_partner(id: int) -> Dictionary:
-	var reason = _camp_action_reason("partners")
-	if not reason.is_empty(): return _fail(reason)
-	if rank(profile.data.partners, id) < 1 or profile.data.work.any(func(order): return int(order.partner_id) == id): return _fail("伙伴未解锁或派遣中")
+	if _partner_mutating: return _fail("伙伴操作处理中")
+	var state = partner_status(id)
+	if not state.can_equip: return _fail(state.equip_reason)
+	_partner_mutating = true
 	profile.data.equipped_partners = [id]
-	return _done("伙伴已装备", id)
+	return _finish_partner_transaction("伙伴已装备", id)
 
 func unequip_partner(id: int) -> Dictionary:
+	if _partner_mutating: return _fail("伙伴操作处理中")
 	var reason = _camp_action_reason("partners")
 	if not reason.is_empty(): return _fail(reason)
 	if not profile.data.equipped_partners.has(id): return _fail("未装备该伙伴")
+	_partner_mutating = true
 	profile.data.equipped_partners.erase(id)
-	return _done("伙伴已卸下", id)
+	return _finish_partner_transaction("伙伴已卸下", id)
 
 func upgrade_partner(id: int) -> Dictionary:
-	var reason = _camp_action_reason("partners")
-	if not reason.is_empty(): return _fail(reason)
-	var row = catalog.find("MonsterPartnerData", id)
-	var level = rank(profile.data.partners, id)
-	if row.is_empty() or level < 1: return _fail("伙伴未解锁")
-	var levels = str(row.levelup_need_material).split(",")
-	if level > levels.size(): return _fail("伙伴已满级")
-	if not spend(costs(levels[level - 1])): return _fail("伙伴升级材料不足")
-	profile.data.partners[str(id)] = level + 1
-	return _done("伙伴等级 " + str(level + 1), id)
+	if _partner_mutating: return _fail("伙伴操作处理中")
+	var state = partner_status(id)
+	if not state.can_upgrade: return _fail(state.reason)
+	_partner_mutating = true
+	if not spend(state.price):
+		_partner_mutating = false
+		return _fail("伙伴升级材料不足")
+	profile.data.partners[str(id)] = int(state.level) + 1
+	return _finish_partner_transaction("伙伴等级 " + str(int(state.level) + 1), id)
+
+func _finish_partner_transaction(message: String, id: int) -> Dictionary:
+	var result = _done(message, id)
+	_partner_mutating = false
+	return result
 
 func work_status(id: int) -> Dictionary:
 	var row = catalog.find("MonsterWorkData", id)
@@ -1044,7 +1141,7 @@ func adventure_preparation_status(level: int, character: int = 0) -> Dictionary:
 		if stat("token:" + str(id)) > 0 and not owned_tokens.has(id): owned_tokens.append(id)
 	status["tokens_unlocked"] = not owned_tokens.is_empty()
 	status["tokens_reason"] = "" if not owned_tokens.is_empty() else "获得信物后解锁"
-	status["token_count"] = profile.data.equipped_tokens.size()
+	status["token_count"] = relationship_tokens.equipped().size()
 	status["extra_challenge_unlocked"] = rank(profile.data.buildings, 5) >= 2
 	status["extra_challenge_reason"] = "" if status.extra_challenge_unlocked else "委托设施达到 2 级后解锁"
 	status["selected_weapon"] = int(profile.data.selected_weapon)
@@ -1128,6 +1225,7 @@ func end_run(victory: bool) -> Dictionary:
 			var completed = int(profile.data.run.counters.get("chaos_level", 1))
 			if completed == mini(chaos_max_level(), cleared + 1) and cleared < chaos_max_level(): set_record("chaos:clear:" + str(character), cleared + 1)
 	if not victory and int(profile.data.run.difficulty) > 0: record("hard:losses")
+	history.capture(victory, str(profile.data.run.get("outcome", {}).get("reason", "battle")))
 	profile.data.run.active = false
 	record("wins" if victory else "losses")
 	clear_invalid_meals("CompleteRun")
@@ -1170,11 +1268,7 @@ func persistent_ability_ids(selected_character_id: int = 0) -> Array:
 	for id in d.active_awakenings:
 		var row = catalog.find("CharaTalentAwakeTreeData", id)
 		if int(row.get("chara_id", 0)) == character: result.append(int(row.ability_item_id))
-	for material_id in d.equipped_tokens:
-		for row in catalog.rows("RelationshipTokenData"):
-			if int(row.material_id) == int(material_id) and int(row.level) == stat("token:" + str(int(material_id))): result.append_array(Catalog.ids(row.abilityitem_id))
-	for id in d.equipped_amplifiers:
-		result.append_array(Catalog.ids(catalog.find("RelationshipAmplifyData", id).get("abilityitem_id", "")))
+	result.append_array(relationship_tokens.ability_ids(character))
 	return result
 
 func _selected_character(selected_character_id: int = 0) -> int:
@@ -1220,6 +1314,10 @@ func attributes(selected_character_id: int = 0) -> Dictionary:
 	# Combat keeps the level-one database stats; external values are increments.
 	for pair in [["BaseAtk", "atk"], ["BaseDef", "def"], ["BaseHp", "hp"]]:
 		result[pair[0]] = float(character.get(pair[1], 0)) * growth
+	var fashion = preload("res://scripts/domain/character_fashion.gd").new(self)
+	var fashion_attributes: Dictionary = fashion.attributes(character_id)
+	for attribute in fashion_attributes: result[attribute] = result.get(attribute, 0) + fashion_attributes[attribute]
+	for buff in fashion.equipped_buffs(character_id): effects.buff_attributes(buff, 1, result)
 	for buff in selected_weapon_buffs(selected_character_id): effects.buff_attributes(buff, 1, result)
 	var sources = ability_sources(selected_character_id)
 	for id in sources:
@@ -1239,6 +1337,8 @@ func attributes(selected_character_id: int = 0) -> Dictionary:
 				for buff in Catalog.ids(catalog.find("CharTalentLevelData", ids[level - 1]).get("buff_list", "")): effects.buff_attributes(buff, 1, result)
 		for key in d.run.counters:
 			if str(key).begins_with("rogue-event-buff:"): effects.buff_attributes(int(str(key).trim_prefix("rogue-event-buff:")), int(d.run.counters[key]), result)
+		var room_attributes: Dictionary = preload("res://scripts/domain/room_choices.gd").new(self).extra_attributes()
+		for key in room_attributes: result[key] = result.get(key, 0) + room_attributes[key]
 	for id in d.equipped_partners:
 		var row = catalog.find("MonsterPartnerData", int(id))
 		var milestones = str(row.get("add_attribute_array", "")).split(",")
@@ -1252,6 +1352,7 @@ func progression_buff_bindings(selected_character_id: int = 0) -> Dictionary:
 	var roots = {}
 	var counted = []
 	_gather_buffs(selected_weapon_buffs(selected_character_id), 1, roots, counted)
+	_gather_buffs(preload("res://scripts/domain/character_fashion.gd").new(self).equipped_buffs(_selected_character(selected_character_id)), 1, roots, counted)
 	var sources = ability_sources(selected_character_id)
 	for ability_id in sources: _gather_ability_buffs(int(ability_id), int(sources[ability_id]), roots, counted)
 	if profile.data.run.active:
@@ -1264,6 +1365,7 @@ func progression_buff_bindings(selected_character_id: int = 0) -> Dictionary:
 			if str(key).begins_with("rogue-event-buff:"):
 				_gather_buffs(str(key).trim_prefix("rogue-event-buff:"), int(profile.data.run.counters[key]), roots, counted)
 		for buff in persistent_node_entry_buffs(): _gather_buffs(buff.key, int(buff.value), roots, counted)
+		_gather_buffs(preload("res://scripts/domain/room_choices.gd").new(self).extra_buff_ids(), 1, roots, counted)
 	var applications = []
 	for id in roots: applications.append({"id": str(id), "layers": int(roots[id])})
 	return {"roots": applications, "externally_counted_numeric_ids": counted}
@@ -1356,40 +1458,36 @@ func toggle_awakening(id: int) -> Dictionary:
 	profile.data.active_awakenings.append(id)
 	return _done("觉醒已激活", id)
 
+func npc_gift_status(npc_id: int) -> Dictionary:
+	return social.gift_status(npc_id)
+
 func give_npc_gift(npc_id: int) -> Dictionary:
-	var row = catalog.find("NPCData", npc_id)
-	var talks = Catalog.ids(row.get("relationship_talkid", ""))
-	var level = stat("relationship:" + str(npc_id))
-	if talks.is_empty() or profile.data.run.active or level >= talks.size(): return _fail("该NPC当前不可赠礼")
+	if _depth == 0: return _fail("请先完成关系对话")
+	var status = npc_gift_status(npc_id)
+	if not status.success: return status
 	if not spend({"106": 1}): return _fail("需要金苹果")
+	var level = int(status.level)
+	var token_levels: Dictionary = {}
+	for token_id in relationship_tokens.ids(): token_levels[token_id] = stat("token:" + str(token_id))
 	set_record("relationship:" + str(npc_id), level + 1)
-	set_record("talk:" + str(talks[level]), 1)
+	set_record("talk:" + str(status.talk_id), 1)
 	refresh_tokens(false)
-	return _done("好感等级 " + str(level + 1), npc_id)
+	var rewards: Dictionary = {}
+	for token_id in token_levels:
+		if stat("token:" + str(token_id)) > int(token_levels[token_id]): rewards[str(token_id)] = 1
+	var result = _done("好感等级 " + str(level + 1), npc_id)
+	result["rewards"] = rewards
+	return result
 
 func refresh_tokens(notify: bool = true) -> Dictionary:
-	var count = 0
-	for row in catalog.rows("RelationshipTokenData"):
-		if int(row.auto_unlock_data_id) > 0 and is_unlocked(int(row.auto_unlock_data_id)):
-			var key = "token:" + str(int(row.material_id))
-			if stat(key) < int(row.level):
-				set_record(key, int(row.level))
-				count += 1
+	var count: int = relationship_tokens.refresh()
 	return _done("信物解锁 " + str(count)) if notify else _ok()
 
 func upgrade_token(material_id: int) -> Dictionary:
-	var reason = _camp_action_reason("tokens")
-	if not reason.is_empty(): return _fail(reason)
-	var level = stat("token:" + str(material_id))
-	for row in catalog.rows("RelationshipTokenData"):
-		if int(row.material_id) != material_id or int(row.level) != level + 1: continue
-		if profile.data.run.active: return _fail("请在营地强化")
-		if int(row.auto_unlock_data_id) > 0:
-			if not is_unlocked(int(row.auto_unlock_data_id)): return _fail(str(row.get("unlcok_desc", "解锁条件未满足")))
-		elif level == 0 or not spend({"108": int(row.upgrade_need_item)}): return _fail("信物精华不足")
-		set_record("token:" + str(material_id), level + 1)
-		return _done("信物等级 " + str(level + 1), material_id)
-	return _fail("信物不存在或已满级")
+	return relationship_tokens.upgrade(material_id)
+
+func token_status(material_id: int, character_id := 0) -> Dictionary:
+	return relationship_tokens.status(material_id, character_id)
 
 func token_slots() -> int:
 	return 1 + stat("token:slots") + int(catalog.config.get("BlessingMode_RelationshipTokenSlotAddCount", 0) if stat("blessing") == 1 else catalog.config.get("BlessingUltra_RelationshipTokenSlotAddCount", 0) if stat("blessing") == 2 else 0)
@@ -1405,15 +1503,7 @@ func unlock_token_slot() -> Dictionary:
 	return _done("信物槽已解锁")
 
 func equip_token(id: int) -> Dictionary:
-	var reason = _camp_action_reason("tokens")
-	if not reason.is_empty(): return _fail(reason)
-	if profile.data.run.active or stat("token:" + str(id)) == 0: return _fail("请在营地装备已解锁信物")
-	if profile.data.equipped_tokens.has(id):
-		profile.data.equipped_tokens.erase(id)
-		return _done("信物已卸下", id)
-	if profile.data.equipped_tokens.size() >= token_slots(): return _fail("没有空闲信物槽")
-	profile.data.equipped_tokens.append(id)
-	return _done("信物已装备", id)
+	return relationship_tokens.equip(id)
 
 func set_blessing_mode(mode: int) -> Dictionary:
 	if profile.data.run.active or mode < 0 or mode > 2: return _fail("请在营地选择祝福")
@@ -1424,55 +1514,53 @@ func set_blessing_mode(mode: int) -> Dictionary:
 		var order: Dictionary = profile.data.work[index]
 		if not order.has("economy_version"): order["prepaid_quantity"] = 1
 		_store_work_progress(order, int(progress[index].seconds), {"quantity": _work_queue_max(), "duration": _work_duration(catalog.find("MonsterWorkData", int(order.work_id)))})
-	while profile.data.equipped_tokens.size() > token_slots(): profile.data.equipped_tokens.pop_back()
+	relationship_tokens.normalize()
 	return _done("已选择祝福 " + str(mode))
 
 func experience_multiplier() -> int:
 	return maxi(1, int(catalog.config.get("BlessingExpEfficiencyMultiplier", 1))) if stat("blessing") > 0 else 1
 
-func unlock_amplifier_slot() -> Dictionary:
-	if profile.data.run.active or stat("amplify:slots") >= 3: return _fail("增幅槽已满")
-	if not spend({"101": int(catalog.config.get("UnlockAmplifySlotCost", 0))}): return _fail("金币不足")
-	record("amplify:slots")
-	return _done("增幅槽已解锁")
+func unlock_amplifier_slot(token_id: int, slot_index: int) -> Dictionary:
+	return relationship_tokens.unlock_socket(token_id, slot_index)
 
-func equip_amplifier(id: int) -> Dictionary:
-	if profile.data.run.active or material(id) < 1 or catalog.find("RelationshipAmplifyData", id).is_empty(): return _fail("增幅不可装备")
-	if profile.data.equipped_amplifiers.has(id):
-		profile.data.equipped_amplifiers.erase(id)
-		return _done("增幅已卸下", id)
-	if profile.data.equipped_amplifiers.size() >= stat("amplify:slots"): return _fail("没有空闲增幅槽")
-	profile.data.equipped_amplifiers.append(id)
-	return _done("增幅已装备", id)
+func equip_amplifier(character_id: int, token_id: int, slot_index: int, amplifier_id: int) -> Dictionary:
+	return relationship_tokens.equip_amplifier(character_id, token_id, slot_index, amplifier_id)
+
+func unequip_amplifier(token_id: int, slot_index: int) -> Dictionary:
+	return relationship_tokens.unequip(token_id, slot_index)
+
+func unequip_all_amplifiers(token_id := 0) -> Dictionary:
+	return relationship_tokens.unequip_all(token_id)
+
+func amplifier_compose_quote(request: Dictionary = {}) -> Dictionary:
+	return relationship_tokens.compose_quote(request)
 
 func compose_amplifier(id: int) -> Dictionary:
-	var row = catalog.find("RelationshipAmplifyData", id)
-	if row.is_empty() or profile.data.run.active or profile.data.equipped_amplifiers.has(id): return _fail("请使用营地中未装备的增幅")
-	var tier = int(str(row.rare).trim_prefix("Tier"))
-	var prices = Catalog.ids(catalog.config.get("ComposeAmplifyGoldCost", ""))
-	var candidates = catalog.rows("RelationshipAmplifyData").filter(func(x): return x.rare == "Tier" + str(tier + 1))
-	if tier < 1 or tier > prices.size() or candidates.is_empty(): return _fail("增幅已达最高阶")
-	if not spend({str(id): 3, "101": prices[tier - 1]}): return _fail("需要三个同类增幅及金币")
-	var result = int(candidates[next_random(candidates.size())].id)
-	grant_material(result, 1)
-	set_record("amplify:last", result)
-	set_record("amplify:rerolls", 0)
-	return _done("合成完成", result)
+	return relationship_tokens.compose({str(id): 1})
+
+func compose_amplifier_batch(request: Dictionary) -> Dictionary:
+	return relationship_tokens.compose(request)
 
 func reroll_amplifier() -> Dictionary:
-	var id = stat("amplify:last")
-	var row = catalog.find("RelationshipAmplifyData", id)
-	var count = stat("amplify:rerolls")
-	var prices = Catalog.ids(catalog.config.get("ComposeAmplifyRerollCost", ""))
-	if row.is_empty() or profile.data.run.active or material(id) < 1 or profile.data.equipped_amplifiers.has(id) or count >= prices.size(): return _fail("没有可重选的合成结果")
-	var candidates = catalog.rows("RelationshipAmplifyData").filter(func(x): return x.rare == row.rare and int(x.id) != id)
-	if candidates.is_empty(): return _fail("没有其他结果")
-	if not spend({"90002": prices[count], str(id): 1}): return _fail("七彩结晶不足")
-	var result = int(candidates[next_random(candidates.size())].id)
-	grant_material(result, 1)
-	set_record("amplify:last", result)
-	record("amplify:rerolls")
-	return _done("重选完成", result)
+	return relationship_tokens.reroll()
+
+func save_token_preset(index: int) -> Dictionary:
+	return relationship_tokens.save_preset(index)
+
+func load_token_preset(index: int) -> Dictionary:
+	return relationship_tokens.load_preset(index)
+
+func delete_token_preset(index: int) -> Dictionary:
+	return relationship_tokens.delete_preset(index)
+
+func receive_extra_challenges() -> Dictionary:
+	return extra_challenges.receive()
+
+func remove_extra_challenge(id: int) -> Dictionary:
+	return extra_challenges.remove(id)
+
+func claim_extra_challenge(id: int) -> Dictionary:
+	return extra_challenges.claim(id)
 
 func follower_replacements(row: Dictionary) -> Array:
 	var result = []
@@ -1602,6 +1690,19 @@ func treasure_drops(quality: String, treasure_id: int, first_node: bool) -> Arra
 	if not profile.data.run.active: return []
 	return preload("res://scripts/domain/loot_rewards.gd").new(self).treasure(quality, treasure_id, first_node, int(profile.data.run.region) == 1, int(profile.data.run.counters.get("run:total_depth", 0)), attributes())
 
+func reward_slime_drops(enemy_id: int, event: String) -> Array:
+	if not profile.data.run.active: return []
+	return preload("res://scripts/domain/loot_rewards.gd").new(self).reward_slime(enemy_id, event, attributes())
+
+func room_treasure_quality(key: String, room: Dictionary, outcome: Dictionary = {}) -> String:
+	if not profile.data.run.active: return ""
+	var storage := "room_treasure_quality:" + key
+	var counters: Dictionary = profile.data.run.counters
+	if counters.has(storage) and (outcome.is_empty() or str(room.get("FightType", "")) not in ["TimeLimit", "DodgeBattle", "ProtectTarget", "Endless"]): return str(counters[storage])
+	var quality: String = preload("res://scripts/domain/loot_rewards.gd").new(self).completion_quality(room, attributes(), outcome)
+	counters[storage] = quality
+	return quality
+
 func start_chest_trial(campaign, chest_index: int) -> Dictionary:
 	if not profile.data.run.active or profile.data.run.health <= 0 or int(campaign.state.get("seed", -1)) != int(profile.data.run.seed): return _fail("试炼不可开始")
 	return campaign.start_trial(chest_index, profile.data.run.inventory)
@@ -1626,14 +1727,15 @@ func queue_loot_reward(rarity: String, count: int) -> void:
 	var weights: Dictionary = {"Low": {1: 50, 2: 50, 3: 50, 4: 0, 5: -1000}, "Middle": {1: -1000, 2: 50, 3: 50, 4: 50, 5: 0}, "High": {1: -1000, 2: -1000, 3: -5, 4: 50, 5: 200}}.get(rarity, {})
 	var fallback = "AbilityItemLootGuaranteedPoolId_" + ({"Low": "LowRare", "Middle": "MiddleRare", "High": "HighRare"}.get(rarity, rarity))
 	var excluded = _reward_pure_group_exclusions()
+	var candidate_count = maxi(1, 3 + int(attributes().get("BlessingPlusSelectExtraCount", 0)))
 	for i in mini(99, count):
 		var pool = int(catalog.config.get(field, 0))
-		var choices = roll_pool(pool, 3, 0, excluded, weights)
+		var choices = roll_pool(pool, candidate_count, 0, excluded, weights)
 		_replace_normal_reward_with_curse(choices, rarity)
 		if choices.is_empty():
 			pool = int(catalog.config.get(fallback, 0))
-			choices = roll_pool(pool, 3, 0, excluded)
-		profile.data.run.rewards.append({"key": "reward-" + str(profile.data.run.random_step) + "-" + str(profile.data.run.rewards.size()), "pool_id": pool, "quality": rarity, "choices": choices})
+			choices = roll_pool(pool, candidate_count, 0, excluded)
+		profile.data.run.rewards.append({"key": "reward-" + str(profile.data.run.random_step) + "-" + str(profile.data.run.rewards.size()), "pool_id": pool, "quality": rarity, "choices": choices, "candidate_count": candidate_count})
 
 func _reward_pure_group_exclusions() -> Array:
 	var groups = {"诅咒遗物": {}, "净化遗物": {}}
@@ -1668,14 +1770,40 @@ func choose_loot_reward(key: String, id: int) -> Dictionary:
 		return _done(result.message, id)
 	return _fail("奖励已领取或不存在")
 
+func is_loot_lock_unlocked() -> bool:
+	return profile.data.talents.has("221") or profile.data.talents.has(221)
+
+func toggle_loot_reward_lock(key: String, id: int) -> Dictionary:
+	if not is_loot_lock_unlocked(): return _fail("尚未解锁遗物锁定")
+	for reward in profile.data.run.rewards:
+		if str(reward.key) != key: continue
+		if not reward.choices.has(id): return _fail("不在奖励候选中")
+		var locked: Array = reward.get("locked_ids", []).duplicate()
+		if locked.has(id): locked.erase(id)
+		else: locked.append(id)
+		reward["locked_ids"] = locked
+		return _done("物品已锁定" if locked.has(id) else "物品已解锁", id)
+	return _fail("奖励不存在")
+
 func refresh_loot_reward(key: String) -> Dictionary:
 	if int(profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0: return _fail("重选次数不足")
 	for reward in profile.data.run.rewards:
 		if reward.key != key: continue
-		var choices = roll_pool(int(reward.pool_id), 3, 0, _reward_pure_group_exclusions())
-		if choices.is_empty(): return _fail("没有可选物品")
+		var candidate_count = int(reward.get("candidate_count", maxi(3, reward.choices.size())))
+		var locked: Array = reward.choices.filter(func(id): return is_loot_lock_unlocked() and reward.get("locked_ids", []).has(id))
+		if locked.size() >= candidate_count: return _fail("请先解锁一个候选物")
+		var excluded: Array = _reward_pure_group_exclusions()
+		excluded.append_array(locked)
+		var fresh = roll_pool(int(reward.pool_id), candidate_count - locked.size(), 0, excluded)
+		if fresh.is_empty(): return _fail("没有可选物品")
+		var choices: Array = []
+		for old in reward.choices:
+			if locked.has(old): choices.append(old)
+			elif not fresh.is_empty(): choices.append(fresh.pop_front())
+		choices.append_array(fresh)
 		_add(profile.data.run.counters, "SelectRefreshTime", -1)
 		reward.choices = choices
+		reward["locked_ids"] = locked
 		return _done("奖励已重选")
 	return _fail("奖励不存在")
 
@@ -2027,41 +2155,62 @@ func open_material_box(id: int, count: int = 1) -> Dictionary:
 	record("box:" + str(id) + ":opened", count)
 	return _done("宝箱已开启 " + str(count), id)
 
-func event_for_node(node_id: int, seed_value: int, key: String = "") -> Dictionary:
+func event_for_node(node_id: int, seed_value: int, key: String = "", special: bool = false) -> Dictionary:
 	if not profile.data.run.active: return {}
 	if key.is_empty(): key = str(node_id)
 	for encounter in profile.data.run.events:
 		if encounter.key == key: return event_view(encounter)
-	var candidates = []
-	for row in catalog.rows("AdvantureEventData"):
-		var rule = row.get("EventGenerateData", {})
-		if not row.get("IsEnable", false): continue
-		if int(rule.get("NodeLevel", 0)) != 0 and int(rule.NodeLevel) != int(profile.data.run.region): continue
-		if int(rule.get("SpecifyRoomID", 0)) != 0 and int(rule.SpecifyRoomID) != node_id: continue
-		if profile.data.run.events.filter(func(x): return int(x.event_id) == int(row.Id)).size() >= maxi(1, int(rule.get("MaxAppearTime", 1))): continue
-		candidates.append(row)
+	var candidates = event_candidates(node_id, special)
 	if candidates.is_empty(): return {}
-	var total = candidates.reduce(func(sum, row): return sum + maxi(1, int(row.EventGenerateData.get("AppearChance", 1))), 0)
+	var total = candidates.reduce(func(sum, entry): return sum + int(entry.weight), 0)
+	if total <= 0: return {}
 	var state = (seed_value * 1664525 + node_id * 1013904223) & 0xffffffff
 	for codepoint in key.to_utf8_buffer(): state = ((state ^ codepoint) * 16777619) & 0xffffffff
 	var roll = state % total
-	var chosen = candidates[0]
-	for row in candidates:
-		roll -= maxi(1, int(row.EventGenerateData.get("AppearChance", 1)))
+	var chosen = candidates[0].row
+	for entry in candidates:
+		roll -= int(entry.weight)
 		if roll < 0:
-			chosen = row
+			chosen = entry.row
 			break
 	var encounter = {"key": key, "event_id": Catalog.row_id(chosen), "step": 0, "finished": false, "result": ""}
 	profile.data.run.events.append(encounter)
 	_done()
 	return event_view(encounter)
 
+func event_candidates(node_id: int, special: bool = false) -> Array:
+	var candidates: Array = []
+	var sources = ability_sources()
+	var area = event_area_level(node_id)
+	for row in catalog.rows("AdvantureEventData"):
+		var rule = row.get("EventGenerateData", {})
+		if not row.get("IsEnable", false): continue
+		if (str(row.get("EventType", "Normal")) == "Spacial") != special: continue
+		if int(rule.get("NodeLevel", 0)) != 0 and int(rule.NodeLevel) != area: continue
+		var appeared = profile.data.run.events.filter(func(x): return int(x.event_id) == Catalog.row_id(row)).size()
+		if appeared > 0 and appeared >= int(rule.get("MaxAppearTime", 1)): continue
+		var weight = int(rule.get("AppearChance", 0))
+		for token in str(rule.get("AddAppearChanceList", "")).replace("|", ",").split(",", false):
+			var pair = token.split(":")
+			if pair.size() == 2 and rank(sources, int(pair[0])) > 0: weight += int(pair[1])
+		if int(rule.get("SpecifyRoomID", 0)) == node_id: weight += 100000
+		if weight > 0: candidates.append({"row": row, "weight": weight})
+	return candidates
+
+func event_area_level(node_id: int) -> int:
+	if _event_node_areas.is_empty():
+		var campaign_data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/campaign.json"))
+		if campaign_data is Dictionary:
+			for row in campaign_data.get("Nodes", []) + campaign_data.get("SpecialStages", []):
+				_event_node_areas[int(row.Id)] = int(row.Region)
+	return int(_event_node_areas.get(node_id, profile.data.run.get("area_level", profile.data.run.region)))
+
 func event_view(encounter: Dictionary) -> Dictionary:
 	var row = catalog.find("AdvantureEventData", int(encounter.event_id))
 	if row.is_empty(): return {}
 	var data = row.TypeData
 	var gamble = row.RuleType == "GambleType"
-	var result = {"occurrence_key": encounter.key, "event_id": int(encounter.event_id), "name": Catalog.row_name(row), "story": data.get("Gamble_StoryText" if gamble else "StoryText", ""), "finished": encounter.finished, "result": encounter.result, "choices": []}
+	var result = {"occurrence_key": encounter.key, "event_id": int(encounter.event_id), "name": Catalog.row_name(row), "story": data.get("Gamble_StoryText" if gamble else "StoryText", ""), "finished": encounter.finished, "result": encounter.result, "step": int(encounter.step), "choices": []}
 	if encounter.finished: return result
 	var options = data.get("GambleOptionList" if gamble else "OptionList", [])
 	for i in options.size():
@@ -2080,40 +2229,29 @@ func _event_condition(row: Dictionary) -> bool:
 	match kind:
 		0: return true
 		1010: return material(_alias(a)) >= b
-		1000: return rank(profile.data.run.inventory, a) > 0
+		1000: return rank(ability_sources(), a) > 0
 		9101:
 			var value = int(profile.data.run.max_health) if a == 1 else 0
-			return value >= b and (c == 0 or value <= c)
+			return value >= b and value <= c
 		9102:
 			var value = material(102) if a == 8000 else int(profile.data.run.counters.get("SearchPoint", 0)) if a == 8013 else -1
 			return value >= b and value <= c
 	diagnose("Unknown event condition " + str(kind))
 	return false
 
-func _ability_costs(ids) -> Dictionary:
-	var price = {}
-	for id in Catalog.ids(ids):
-		var row = catalog.find("AbilityItems", id)
-		if row.is_empty(): return {"invalid": -1}
-		for i in range(1, 4):
-			var attr = str(row.get("AddAttribute" + str(i), ""))
-			var value = int(row.get("AddAttributeValue" + str(i), 0))
-			var material_id = {"Gold": 101, "MagicPoint": 102, "MineralMat": 103}.get(attr, 0)
-			if material_id > 0 and value < 0: _add(price, material_id, -value)
-	return price
-
 func _event_choice_allowed(option: Dictionary, gamble: bool) -> bool:
-	if not _event_condition(option.get("UnlockData", {})): return false
-	var price = _ability_costs(option.get("Gamble_NeedAbilityItemId" if gamble else "NeedAbilityItemId", ""))
-	for id in price:
-		if not str(id).is_valid_int() or material(int(id)) < int(price[id]): return false
-	return true
+	return _event_condition(option.get("UnlockData", {}))
 
 func _event_rewards(abilities, loot) -> void:
-	for id in Catalog.ids(abilities): effects.instant(catalog.find("AbilityItems", id), [id])
+	_depth += 1
+	for token in str(abilities).replace("|", ",").split(",", false):
+		var pair = token.split(":")
+		var id = int(pair[0])
+		for i in mini(99, int(pair[1]) if pair.size() > 1 else 1): effects.instant(catalog.find("AbilityItems", id), [id])
 	for token in str(loot).replace("|", ",").split(",", false):
 		var pair = token.split(":")
 		for i in mini(99, int(pair[1]) if pair.size() > 1 else 1): add_loot(int(pair[0]), false)
+	_depth -= 1
 
 func resolve_event(key: String, choice_id: int) -> Dictionary:
 	if not profile.data.run.active: return _fail("没有进行中的冒险")
@@ -2121,32 +2259,35 @@ func resolve_event(key: String, choice_id: int) -> Dictionary:
 		if encounter.key != key: continue
 		if encounter.finished: return _fail("事件已完成")
 		var row = catalog.find("AdvantureEventData", int(encounter.event_id))
+		if row.is_empty(): return _fail("事件配置不存在")
 		var data = row.TypeData
 		var gamble = row.RuleType == "GambleType"
 		var options = data.get("GambleOptionList" if gamble else "OptionList", [])
 		if gamble and choice_id == -1 and not options.is_empty():
 			var leaving = options[mini(int(encounter.step), options.size() - 1)]
-			_event_rewards(leaving.get("Gamble_EndAddAbilityItemId", ""), leaving.get("Gamble_EndAddRogueLootItemId", ""))
 			encounter.finished = true
 			encounter.result = leaving.get("EndGambleText", "离开")
+			_event_rewards(leaving.get("Gamble_EndAddAbilityItemId", ""), leaving.get("Gamble_EndAddRogueLootItemId", ""))
 			return _done(encounter.result)
 		for index in options.size():
 			var option = options[index]
 			if int(option.get("GambleOptionDataID" if gamble else "OptionDataId", 0)) != choice_id: continue
 			if gamble and index != int(encounter.step): return _fail("赌博步骤不匹配")
 			if not _event_choice_allowed(option, gamble): return _fail("选项条件或资源不足")
-			if not spend(_ability_costs(option.get("Gamble_NeedAbilityItemId" if gamble else "NeedAbilityItemId", ""))): return _fail("资源不足")
+			_event_rewards(option.get("Gamble_NeedAbilityItemId" if gamble else "NeedAbilityItemId", ""), "")
 			if gamble:
-				var success = next_random(100) < int(option.get("Gamble_SuccessChance", 0))
+				var success = next_random(101) <= int(option.get("Gamble_SuccessChance", 0))
 				var outcome = "Success" if success else "Failure"
-				_event_rewards(option.get("Gamble_" + outcome + "AddAbilityItemId", ""), option.get("Gamble_" + outcome + "AddRogueLootItemId", ""))
 				encounter.result = option.get("Gameble_SuccessText" if success else "Gamble_FailureText", "")
 				encounter.step = int(encounter.step) + 1
-				encounter.finished = success or int(encounter.step) >= options.size()
+				var rule = str(data.get("GambleType", "Guaranteed"))
+				encounter.finished = (success and rule == "Guaranteed") or (not success and rule == "Promotion") or int(encounter.step) >= options.size()
+				if encounter.finished: encounter.result += "\n" + str(data.get("WinToLeaveText" if success else "FailToLeaveText", ""))
+				_event_rewards(option.get("Gamble_" + outcome + "AddAbilityItemId", ""), option.get("Gamble_" + outcome + "AddRogueLootItemId", ""))
 			else:
-				_event_rewards(option.get("AddAbilityItemId", ""), option.get("AddRogueLootItemId", ""))
 				encounter.finished = true
 				encounter.result = str(option.get("OptionSelectFinishText", "")) + "\n" + str(option.get("ResponseText", ""))
+				_event_rewards(option.get("AddAbilityItemId", ""), option.get("AddRogueLootItemId", ""))
 			return _done(encounter.result, choice_id)
 		return _fail("未知事件选项")
 	return _fail("事件不存在")
@@ -2278,8 +2419,8 @@ func revive_player() -> Dictionary:
 	var current = attributes()
 	var old_rate = maxf(0.001, 1 + float(previous.get("HpAddRate", 0)) / 1000.0)
 	var new_rate = maxf(0, 1 + float(current.get("HpAddRate", 0)) / 1000.0)
-	var basis = float(run.max_health) / old_rate - float(previous.get("BaseHp", 0)) - float(previous.get("HpAddFixed", 0))
-	run.max_health = maxf(1, round((basis + float(current.get("BaseHp", 0)) + float(current.get("HpAddFixed", 0))) * new_rate))
+	var basis = (float(run.max_health) - float(previous.get("HpAddFixed", 0))) / old_rate - float(previous.get("BaseHp", 0))
+	run.max_health = maxf(1, round((basis + float(current.get("BaseHp", 0))) * new_rate + float(current.get("HpAddFixed", 0))))
 	run.health = clampf(float(run.health), 0, float(run.max_health))
 	_add(run.counters, "revivals:used", 1)
 	record("revivals")
@@ -2323,15 +2464,21 @@ func execute_npc_function(function_id: int) -> Dictionary:
 	if message not in ["", "EnvUnit_NPC_GiveGift"] and count == 0: return _fail("需要宿主导航: " + message)
 	var rewards = costs(row.get("finish_talk_reward", ""))
 	if rewards.has("invalid"): return _fail("NPC奖励格式无效")
+	var granted: Dictionary = {}
 	_depth += 1
 	var result = _open_camp_boxes_core(count) if count > 0 else give_npc_gift(int(row.npc_index)) if message == "EnvUnit_NPC_GiveGift" else _ok("对话完成", function_id)
 	if result.success:
+		granted = result.get("rewards", {}).duplicate()
 		if stat("npc:reward:" + str(function_id)) == 0 and not rewards.is_empty():
 			for id in rewards: grant_material(int(id), int(rewards[id]))
 			set_record("npc:reward:" + str(function_id), 1)
+			for id in rewards: granted[id] = int(granted.get(id, 0)) + int(rewards[id])
 		_finish_npc(function_id)
 	_depth -= 1
-	return _done(result.message, function_id) if result.success else result
+	if not result.success: return result
+	var completed = _done(result.message, function_id)
+	completed["rewards"] = granted
+	return completed
 
 func camp_treasure_quote(count: int) -> Dictionary:
 	var function_id = {1: 140201, 5: 140203, 50: 140204, 300: 140205}.get(count, 0)

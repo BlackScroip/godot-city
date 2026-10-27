@@ -43,6 +43,14 @@ func _run() -> void:
 		for index in 3:
 			var chest: Dictionary = chests.filter(func(item): return int(item.data.TrialChestIndex) == index)[0]
 			check(chest.state.enabled and not chest.state.opened and chest.data.TreasureType == ["Normal", "Unusual", "Luxury"][index], "Each chest has its native quality")
+			var props = game.world.environment_root.get_node("RoomProps")
+			props._process(0.01)
+			var presentation: Array = props.props.filter(func(entry): return entry.item.id == chest.id)
+			check(presentation.size() == 1, "Every actual trial box has one presentation owner")
+			if presentation.size() == 1:
+				var entry: Dictionary = presentation[0]
+				check(entry.effect_address == props.CHEST_EFFECTS[chest.data.TreasureType], "Actual trial box binds its own quality light")
+				check(entry.effect_anchor.scale.is_equal_approx(Vector3.ONE * (1.5 if index < 2 else 1.0)), "Actual trial preserves the APK ambient scale")
 		check(game.world.interactions._items.values().any(func(item): return item.marker.Type == "EEUT_StageChangeDoor" and item.state.enabled), "Unopened trial allows leaving")
 		await _capture_trial(id, chests)
 		var selected: Dictionary = chests.filter(func(item): return int(item.data.TrialChestIndex) == 1)[0]
@@ -94,14 +102,34 @@ func _run() -> void:
 
 func _capture_trial(scene_id: int, chests: Array) -> void:
 	if DisplayServer.get_name() == "headless": return
+	game.hud.close_page()
 	game._process(0)
 	var center: Vector3 = game.world.trial_room.center
 	game.world.player.position = center + Vector3(0, 0.05, 4)
 	game.world.camera.position = center + game.world._camera_offset
 	game.world.camera.look_at(center + Vector3.UP * 0.4)
+	var effects = game.world.environment_root.get_node("EnvironmentEffects")
+	for entry in game.world.environment_root.get_node("RoomProps").props:
+		if not entry.item.data.has("TrialChestIndex"): continue
+		check(effects._source_active(entry.effect_anchor), "Actual enabled trial light has an active source hierarchy")
+		if not effects._source_active(entry.effect_anchor):
+			var node: Node = entry.effect_anchor
+			while node != game.world.environment_root:
+				print("CHEST_INACTIVE_ANCESTOR ", node.name, " ", node.visible, " ", node.get_meta("unityActive", "unset"), " ", node.get_meta("extras", {}))
+				node = node.get_parent()
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
 		root.size = dimensions
-		for frame in 8: await process_frame
+		for frame in 45:
+			game.world._background = false
+			game.world.paused = false
+			await process_frame
+		# Sample a lit phase of the source's repeating burst, before its fade ends.
+		for entry in game.world.environment_root.get_node("RoomProps").props:
+			if entry.item.data.has("TrialChestIndex") and is_instance_valid(entry.get("effect_binding", {}).get("effect")):
+				entry.effect_binding.effect.restart()
+		for frame in 15:
+			game.world._background = false
+			await process_frame
 		for chest in chests:
 			check(is_instance_valid(chest.visual) and chest.visual.is_visible_in_tree(), "Trial chest has a visible source scene mesh")
 			check(root.get_visible_rect().has_point(game.world.camera.unproject_position(chest.visual.global_position)), "Trial chest is framed at %s" % dimensions)
@@ -110,3 +138,37 @@ func _capture_trial(scene_id: int, chests: Array) -> void:
 		check(not picture.is_empty(), "Trial scene renders pixels")
 		check(picture.get_size() == dimensions, "Trial capture uses requested desktop or mobile dimensions")
 		picture.save_png("res://reports/chest-trial-%d-%dx%d.png" % [scene_id, dimensions.x, dimensions.y])
+		await _verify_light_pixels(scene_id, dimensions)
+
+func _verify_light_pixels(scene_id: int, dimensions: Vector2i) -> void:
+	var effects = game.world.environment_root.get_node("EnvironmentEffects")
+	for binding in effects.bindings:
+		if is_instance_valid(binding.effect): binding.effect.advance(0, true)
+	var was_paused := paused
+	paused = true
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var lit := root.get_texture().get_image()
+	for entry in game.world.environment_root.get_node("RoomProps").props:
+		if not entry.item.data.has("TrialChestIndex"): continue
+		var binding: Dictionary = entry.get("effect_binding", {})
+		check(not binding.is_empty() and is_instance_valid(binding.effect) and binding.effect.visible, "Trial light has a visible particle renderer")
+		if binding.is_empty() or not is_instance_valid(binding.effect): continue
+		binding.effect.hide()
+		await process_frame
+		await RenderingServer.frame_post_draw
+		var unlit := root.get_texture().get_image()
+		var center: Vector2 = game.world.camera.unproject_position(entry.item.visual.global_position)
+		center *= Vector2(dimensions) / root.get_visible_rect().size
+		var extent := Vector2(110, 85) * float(dimensions.x) / 1600.0
+		var area := Rect2i(Vector2i(center - extent), Vector2i(extent * 2)).intersection(Rect2i(Vector2i.ZERO, dimensions))
+		var changed := 0
+		for y in range(area.position.y, area.end.y):
+			for x in range(area.position.x, area.end.x):
+				var on := lit.get_pixel(x, y)
+				var off := unlit.get_pixel(x, y)
+				if maxf(absf(on.r - off.r), maxf(absf(on.g - off.g), absf(on.b - off.b))) > 0.025: changed += 1
+		check(changed >= 8, "Trial %s light visibly contributes pixels at %s" % [entry.item.data.TreasureType, dimensions])
+		print("CHEST_LIGHT_PIXELS ", JSON.stringify({"scene": scene_id, "quality": entry.item.data.TreasureType, "size": str(dimensions), "changed": changed}))
+		binding.effect.show()
+	paused = was_paused

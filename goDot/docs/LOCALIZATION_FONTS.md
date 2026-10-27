@@ -1,7 +1,7 @@
 # Localization Font Sources And Coverage
 
-Audit date: 2026-10-26. These are static font-table observations plus an actual
-Godot 4.7.2 font loading and shaping check. No system font was copied.
+Audit date: 2026-10-27. These are static font-table observations plus an actual
+Godot 4.7.2 font loading and glyph coverage check. No system font was copied.
 
 ## Existing Fonts
 
@@ -69,29 +69,53 @@ Added asset hashes:
 
 ## Verification
 
-The sfnt `cmap` format 4 and 12 tables were decoded directly. After combining
-`default.otf`, `NotoSansKR.ttf`, and `NotoSansThai.ttf`, every visible character in
-the four recovered original locale catalogs has a font glyph. Markup was
-removed and Unicode control/format characters were excluded from that check:
+The sfnt `cmap` format 4 and 12 tables were decoded directly for the observations
+above. The final catalog check uses `tools/audit_localization_fonts.gd` to load
+the actual bytes of `default.otf`, `NotoSansKR.ttf`, and `NotoSansThai.ttf` in
+Godot. Every `FontFile` has `allow_system_fallback = false`. The Korean font is
+wrapped in `FontVariation` with `wght = 400` and added to `default.otf` together
+with the Thai font.
+
+All thirteen effective catalogs were checked against the current 8,529 sources,
+using the runtime order of original catalog, supplemental catalog, then manual
+overrides. Simplified Chinese uses the source text. Recovered keyed catalogs
+and every override were also included. Markup, line breaks, and known zero-width
+formatting characters were excluded from glyph collection. Every collected
+display character has a bundled font glyph:
 
 | Catalog | Distinct Display Codepoints | Missing |
 | --- | ---: | ---: |
-| zh_CN | 2,273 | 0 |
-| zh_TW | 2,121 | 0 |
-| en | 102 | 0 |
-| ja | 1,752 | 0 |
+| zh_CN | 2,395 | 0 |
+| zh_TW | 2,452 | 0 |
+| en | 108 | 0 |
+| ja | 1,995 | 0 |
+| ko | 1,113 | 0 |
+| id | 96 | 0 |
+| th | 161 | 0 |
+| vi | 176 | 0 |
+| de | 104 | 0 |
+| fr | 112 | 0 |
+| pt | 113 | 0 |
+| es | 106 | 0 |
+| ru | 153 | 0 |
 
-In addition, thirteen representative locale strings were loaded and shaped by
-Godot using `FontFile.data`, with `allow_system_fallback = false` on all three
-fonts. The Korean font was wrapped in `FontVariation` with `wght = 400`, then
-added to `default.otf` together with the Thai font. `has_char` found no missing
-glyphs in Simplified Chinese, Traditional Chinese, English, Japanese, Korean,
-Indonesian, Thai, Vietnamese, German, French, Portuguese, Spanish or Russian.
-`get_string_size` returned nonzero shaped sizes for all thirteen samples,
-including Thai combining marks, Vietnamese accents, French ligatures and
-Russian Cyrillic. The check exited with `FONT_COVERAGE_FAILURES=[]`.
+The check exited with `ALL_CATALOG_FONT_FAILURES={}` and wrote
+`assets/localization/font_report.json`. The separate strict catalog audit also
+rejects replacement characters U+FFFD and U+2047, unexpected control characters,
+and inappropriate writing systems, which glyph availability alone cannot
+detect.
 
-The nine locale catalogs absent from the original APK require supplemental
-translations. Representative font coverage does not claim that those
-translations have been written or linguistically reviewed. Later catalog
-generation should also check all of its actual display characters.
+With Godot on `PATH`, reproduce both reports from the `goDot` directory:
+
+```sh
+python3 tools/audit_localization.py
+godot --headless --path . --script res://tools/audit_localization_fonts.gd
+```
+
+All seven presets in `export_presets.cfg` include `assets/fonts/*-OFL.txt`, so
+both added font licenses ship with exported builds.
+
+The supplemental catalogs have been generated and checked, with manual review
+of core text and targeted repairs. Most long-tail text uses offline machine
+translation. Font and structural checks do not constitute a complete native
+linguistic review of every translation.

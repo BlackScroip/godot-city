@@ -43,6 +43,7 @@ var _music_wait := 0.0
 var _music_started := false
 
 func configure(value: Dictionary, world: DungeonWorld) -> void:
+	apply_settings(DungeonSettings.read_options())
 	_stop_all()
 	media = value
 	_world = world
@@ -52,15 +53,18 @@ func configure(value: Dictionary, world: DungeonWorld) -> void:
 	if voices.is_empty():
 		for index in VOICE_BUDGET:
 			var voice = AudioStreamPlayer.new()
+			voice.bus = &"Effects"
 			add_child(voice)
 			voices.append(voice)
 		for index in AMBIENT_BUDGET:
 			var voice = AudioStreamPlayer.new()
+			voice.bus = &"Effects"
 			add_child(voice)
 			ambience.append(voice)
 	if music == null:
 		music = AudioStreamPlayer.new()
 		music.name = "Music"
+		music.bus = &"Music"
 		add_child(music)
 		music.finished.connect(_music_finished)
 	music.stop()
@@ -72,6 +76,9 @@ func configure(value: Dictionary, world: DungeonWorld) -> void:
 	_ambient_layers.clear()
 	_tracked_player = 0
 	_step_distance = 0.0
+
+func apply_settings(settings: Dictionary) -> void:
+	DungeonStyle.apply_audio_options(settings)
 
 func play_event(event: String) -> void:
 	if _blocked(): return
@@ -158,6 +165,8 @@ func _queue_named(name: String, pause_with_world: bool) -> void:
 		return
 	_serial += 1
 	for layer in layers.slice(0, VOICE_BUDGET):
+		layer = layer.duplicate()
+		layer["_bus"] = DungeonStyle.audio_bus(key, layer)
 		var clips: Array = layer.get("clips", [])
 		if clips.is_empty(): continue
 		if pending.size() >= QUEUE_BUDGET:
@@ -225,6 +234,7 @@ func _start_voice(voice: AudioStreamPlayer, layer: Dictionary, clip: int, world_
 	var stream := _stream(path)
 	if stream == null: return
 	voice.stream = stream
+	voice.bus = &"Music" if voice == music else StringName(layer.get("_bus", DungeonStyle.audio_bus("", layer)))
 	voice.pitch_scale = maxf(0.01, float(layer.get("pitch", 1)))
 	voice.volume_db = linear_to_db(maxf(0.0001, float(layer.get("volume", 1))))
 	voice.stream_paused = false

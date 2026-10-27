@@ -47,6 +47,8 @@ def action_source_rows(action):
 
 
 def source_data(catalog, raw, provenance):
+    if provenance.get("apk_sha256") != APK_SHA256:
+        raise ValueError("Boss evidence must be extracted from the audited October APK")
     bosses = [row for row in catalog["enemies"] if row.get("rank") == "Boss"]
     groups = {row["group"].lower(): row["group"] for row in bosses}
     actions = {}

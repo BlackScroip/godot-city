@@ -1,0 +1,152 @@
+{
+  "apk": "/Users/hanyu/U3D/City/1061664.apk",
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+  "sprites": {
+    "sprite_mpskillicon_53001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-6524611852977503413",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_53001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_53001.png",
+      "width": 124,
+      "height": 121,
+      "png_sha256": "8d4dfc8d7b0b4b33448c8ffabe8587253d85994188bc353a5cf8e5fd2d43df89"
+    },
+    "sprite_mpskillicon_633001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-6473855452322436384",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_633001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_633001.png",
+      "width": 116,
+      "height": 122,
+      "png_sha256": "bdea5aaf4c3436970f6b5c5dcd9a783a06b6146d2b15639ede46ec864813db8f"
+    },
+    "sprite_mpskillicon_42001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-4700695983917065157",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_42001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_42001.png",
+      "width": 121,
+      "height": 124,
+      "png_sha256": "17ceea3d0916bab7b45d86be9392c951534c50f456d390df4db09b7fe5413f5c"
+    },
+    "sprite_mpskillicon_623001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-4394200001183250533",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_623001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_623001.png",
+      "width": 127,
+      "height": 115,
+      "png_sha256": "2860ef0c25b5c147f24734927b727ca125bbe9b3642ccb93fb851ce0360f337b"
+    },
+    "sprite_mpskillicon_52003": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-3263095743991388444",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_52003.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_52003.png",
+      "width": 128,
+      "height": 117,
+      "png_sha256": "eb28356ce35db24411d0bf47974d1b381b20ab3324c37e7a74195c075580db38"
+    },
+    "sprite_mpskillicon_12003": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-2680488112763626310",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_12003.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_12003.png",
+      "width": 128,
+      "height": 123,
+      "png_sha256": "f0e2cccb682d387530610e98b6d5a0526af8e268ef104442e58a67ee26581da2"
+    },
+    "sprite_mpskillicon_32001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-1964454336046197321",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_32001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_32001.png",
+      "width": 128,
+      "height": 128,
+      "png_sha256": "00257fa9430a43870d73f9050a50c5423340147a419637b1322c412142749dba"
+    },
+    "sprite_mpskillicon_22002": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "-1562467771501354975",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_22002.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_22002.png",
+      "width": 128,
+      "height": 102,
+      "png_sha256": "1d2343b093da1114c4d7056a267767bc09d0622a00b7d7bd9dd3fcf3eb222f37"
+    },
+    "sprite_mpskillicon_643001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "2942620118715016937",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_643001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_643001.png",
+      "width": 127,
+      "height": 100,
+      "png_sha256": "715752dacd199834cf069bd3ded27a50b9881d2e27f311474e7417b49fdc3d15"
+    },
+    "sprite_mpskillicon_52001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "6169180645496126921",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_52001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_52001.png",
+      "width": 122,
+      "height": 108,
+      "png_sha256": "72f0b60862580537849ffeb3182b5a63024ea59e859c30123373e20cb1d889f1"
+    },
+    "sprite_mpskillicon_52002": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "6782081290558801799",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_52002.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_52002.png",
+      "width": 128,
+      "height": 111,
+      "png_sha256": "21034606ebc535745b133f50e6015df4ebf926efc5a5c118de12369f4e6626cb"
+    },
+    "sprite_mpskillicon_613001": {
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "path_id": "7150363657081411111",
+      "asset_path": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_mpskillicon_613001.png",
+      "path": "res://assets/ui/partner_skills/sprite_mpskillicon_613001.png",
+      "width": 117,
+      "height": 114,
+      "png_sha256": "1a7ce92b105e47969568213c9466306d0e6d74ed4e36f33b40dda2c35e2011ec"
+    }
+  },
+  "limit": "Static serialized sprite evidence; no APK process executed."
+}

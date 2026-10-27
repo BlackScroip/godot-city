@@ -1,0 +1,2810 @@
+{
+  "prefab": {
+    "address": "ATPanel_RedemptionCode",
+    "path": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/ATPanel_RedemptionCode.prefab",
+    "bundle": 5355
+  },
+  "source": {
+    "member": "assets/yoo/DefaultPackage/91824ad99d9be2ded724b146b009adea.bundle",
+    "sha256": "f76aa7f7a72b58bb9f516eec2408a12ff9c5e1a9c611f9471dc23115ce84afe9"
+  },
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "images": [
+    {
+      "path": "ATPanel_RedemptionCode/Container/Image_Bg",
+      "game_object": "11844624912084470",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 11844624912084470
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-暗圆角矩形"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/Image_Bg (1)",
+      "game_object": "-8247728107637576202",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8247728107637576202
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.23260498046875,
+          "y": 1.2010040283203125
+        },
+        "m_SizeDelta": {
+          "x": -23.421300888061523,
+          "y": -22.875900268554688
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-白圆角矩形"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container",
+      "game_object": "-1517230031379501578",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1517230031379501578
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 871912711957114358
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2212524463877713398
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 4984865357136719350
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -425020259951972874
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6873019922701750794
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_RedemptionCode/AntiClick ",
+      "game_object": "-9052551789214634506",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -9052551789214634506
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.003921568859368563
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Image_Background",
+      "game_object": "825218027394756086",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 825218027394756086
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.125490203499794,
+        "g": 0.125490203499794,
+        "b": 0.125490203499794,
+        "a": 0.7843137383460999
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Btn_Exit",
+      "game_object": "7481066078565953014",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7481066078565953014
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.5
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6366766477429379594
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 100.0,
+          "y": -80.0
+        },
+        "m_SizeDelta": {
+          "x": 91.0,
+          "y": 79.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "退出按钮"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Inactive/Image_InActive",
+      "game_object": "-6414211749044883978",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6414211749044883978
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 871912711957114358
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 1,
+      "sprite": "主城建造离开按钮"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Active/Image_Active",
+      "game_object": "3453128014805396982",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3453128014805396982
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2212524463877713398
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 1,
+      "sprite": "通用按钮"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Bar_Top",
+      "game_object": "-5346966883910291978",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5346966883910291978
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 107.55460357666016
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "顶部"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot/Image_Icon",
+      "game_object": "8234246172930928118",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8234246172930928118
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -425020259951972874
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "提示点"
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)",
+      "game_object": "285130758904999414",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 285130758904999414
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -1987079729516057098
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 69.21014404296875
+        },
+        "m_SizeDelta": {
+          "x": -196.03909301757812,
+          "y": -275.0159912109375
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.7358490228652954,
+        "g": 0.7358490228652954,
+        "b": 0.7358490228652954,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "InputFieldBackground"
+    }
+  ],
+  "texts": [
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName/CustomLocalizationText/Text_Localization",
+      "text": "兑换码",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7093628989731106294
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -21.414974212646484
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8844808038690984458
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 42.0
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)",
+      "text": "",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 285130758904999414
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -1987079729516057098
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 69.21014404296875
+        },
+        "m_SizeDelta": {
+          "x": -196.03909301757812,
+          "y": -275.0159912109375
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": null
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/CustomLocalizationText/Text_Localization",
+      "text": "确定",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7752054718547694090
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4984865357136719350
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 50.0
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area/Placeholder",
+      "text": "请输入您的兑换码",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7069749387368656374
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1987079729516057098
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 60.0
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area/Text",
+      "text": "​",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8094928916051071498
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1987079729516057098
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 100.0
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot/Text_Num",
+      "text": "",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6163644291367103990
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -425020259951972874
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -0.5
+        },
+        "m_SizeDelta": {
+          "x": -10.0,
+          "y": -11.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 20.0
+    }
+  ],
+  "controller": [],
+  "sprites": [
+    {
+      "name": "几何ui-暗圆角矩形",
+      "path": "res://assets/ui/settings/redemption_code/__ui-______b937919bba.png",
+      "sprite_path_id": "-5329703775576750254",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 108,
+      "height": 108,
+      "border": {
+        "x": 38.0,
+        "y": 39.0,
+        "z": 38.0,
+        "w": 39.0
+      },
+      "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+    },
+    {
+      "name": "几何ui-白圆角矩形",
+      "path": "res://assets/ui/settings/redemption_code/__ui-______083f833001.png",
+      "sprite_path_id": "6661574081893680522",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 108,
+      "height": 108,
+      "border": {
+        "x": 38.0,
+        "y": 40.0,
+        "z": 38.0,
+        "w": 38.0
+      },
+      "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+    },
+    {
+      "name": "退出按钮",
+      "path": "res://assets/ui/settings/redemption_code/_____395376c50f.png",
+      "sprite_path_id": "-7962153020995228324",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 91,
+      "height": 79,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+    },
+    {
+      "name": "主城建造离开按钮",
+      "path": "res://assets/ui/settings/redemption_code/_________fcde123c50.png",
+      "sprite_path_id": "3892142574738822647",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+        "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+      },
+      "width": 360,
+      "height": 121,
+      "border": {
+        "x": 120.0,
+        "y": 0.0,
+        "z": 120.0,
+        "w": 0.0
+      },
+      "png_sha256": "2595f3dff86c2d9c9f265bbe5ad3ac357de1ef28cf291204e68f52c2771632fa"
+    },
+    {
+      "name": "通用按钮",
+      "path": "res://assets/ui/settings/redemption_code/_____a4b3f570f3.png",
+      "sprite_path_id": "-3124727779629688690",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 360,
+      "height": 121,
+      "border": {
+        "x": 120.0,
+        "y": 0.0,
+        "z": 120.0,
+        "w": 0.0
+      },
+      "png_sha256": "eb7680197f53caf5e5614173f630561a7dd015ac73854e2b8d1737635008e910"
+    },
+    {
+      "name": "顶部",
+      "path": "res://assets/ui/settings/redemption_code/___6f2a4a02e6.png",
+      "sprite_path_id": "-7954782238467266710",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 256,
+      "height": 16,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf"
+    },
+    {
+      "name": "提示点",
+      "path": "res://assets/ui/settings/redemption_code/____e75be5f55f.png",
+      "sprite_path_id": "3080528424784802588",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "width": 26,
+      "height": 26,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+    },
+    {
+      "name": "InputFieldBackground",
+      "path": "res://assets/ui/settings/redemption_code/InputFieldBackground.png",
+      "sprite_path_id": "8385535716932718412",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/91824ad99d9be2ded724b146b009adea.bundle",
+        "sha256": "f76aa7f7a72b58bb9f516eec2408a12ff9c5e1a9c611f9471dc23115ce84afe9"
+      },
+      "width": 32,
+      "height": 32,
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "png_sha256": "37a101d10d7e8196d7c03cfbb3e0d04f93a06d9afd843ad695b73dbda17a24d3"
+    }
+  ],
+  "transforms": [
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName/CustomLocalizationText",
+      "path_id": "-8844808038690984458",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8773458608826740214
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 5867612881803341302
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 6911563942434237942
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area/Placeholder",
+      "path_id": "-8743306274492912138",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7069749387368656374
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1987079729516057098
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon",
+      "path_id": "-6873019922701750794",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8216674791295750666
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -2728293896957268490
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 927.1599731445312,
+          "y": 100.0
+        },
+        "m_SizeDelta": {
+          "x": 360.0,
+          "y": 120.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)",
+      "path_id": "-6714083705732076042",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 285130758904999414
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -1987079729516057098
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 69.21014404296875
+        },
+        "m_SizeDelta": {
+          "x": -196.03909301757812,
+          "y": -275.0159912109375
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/Image_Bg (1)",
+      "path_id": "-6694620966756291082",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8247728107637576202
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.23260498046875,
+          "y": 1.2010040283203125
+        },
+        "m_SizeDelta": {
+          "x": -23.421300888061523,
+          "y": -22.875900268554688
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox",
+      "path_id": "-6366766477429379594",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 379779211476463094
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6911563942434237942
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -1679732484646048266
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 107.55000305175781
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot/Image_Icon",
+      "path_id": "-5431274392235282954",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8234246172930928118
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -425020259951972874
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Inactive/Image_InActive",
+      "path_id": "-5418899490316816906",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6414211749044883978
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 871912711957114358
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot/Text_Num",
+      "path_id": "-4601601685412123146",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6163644291367103990
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -425020259951972874
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -0.5
+        },
+        "m_SizeDelta": {
+          "x": -10.0,
+          "y": -11.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Image_Background",
+      "path_id": "-3827061386909258250",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 825218027394756086
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container",
+      "path_id": "-2728293896957268490",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1517230031379501578
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 871912711957114358
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2212524463877713398
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 4984865357136719350
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -425020259951972874
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6873019922701750794
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area",
+      "path_id": "-1987079729516057098",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5002188256362884598
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -8743306274492912138
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 4207818235891346934
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6714083705732076042
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -0.5
+        },
+        "m_SizeDelta": {
+          "x": -20.0,
+          "y": -13.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Btn_Exit",
+      "path_id": "-1679732484646048266",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7481066078565953014
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.5
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6366766477429379594
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 100.0,
+          "y": -80.0
+        },
+        "m_SizeDelta": {
+          "x": 91.0,
+          "y": 79.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Bar_Top",
+      "path_id": "-841193925612605962",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5346966883910291978
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 107.55460357666016
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot",
+      "path_id": "-425020259951972874",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3727184159879785974
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.6784785985946655,
+          "y": 0.6784785985946655,
+          "z": 0.6784785985946655
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -5431274392235282954
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -4601601685412123146
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -2728293896957268490
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -11.5,
+          "y": -8.0
+        },
+        "m_SizeDelta": {
+          "x": 50.0,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container",
+      "path_id": "1614874417753590",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5621194989021228534
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 4198453286083620342
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -6694620966756291082
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -6714083705732076042
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -6873019922701750794
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 1800.0,
+          "y": 450.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode",
+      "path_id": "341389518641425910",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4514492434854571510
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -3827061386909258250
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1614874417753590
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -841193925612605962
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -6366766477429379594
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 8657072867412078070
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 0
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Inactive",
+      "path_id": "871912711957114358",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3204673103271620086
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -5418899490316816906
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -2728293896957268490
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Active",
+      "path_id": "2212524463877713398",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6402059798221811190
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6044678443313327606
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -2728293896957268490
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/CustomLocalizationText/Text_Localization",
+      "path_id": "3267500538162441718",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7752054718547694090
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4984865357136719350
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/Image_Bg",
+      "path_id": "4198453286083620342",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 11844624912084470
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1614874417753590
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area/Text",
+      "path_id": "4207818235891346934",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8094928916051071498
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1987079729516057098
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/CustomLocalizationText",
+      "path_id": "4984865357136719350",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 642043534232579574
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 3267500538162441718
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -2728293896957268490
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -32.997798919677734,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName/CustomLocalizationText/Text_Localization",
+      "path_id": "5867612881803341302",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7093628989731106294
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -21.414974212646484
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8844808038690984458
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Active/Image_Active",
+      "path_id": "6044678443313327606",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3453128014805396982
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2212524463877713398
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName",
+      "path_id": "6911563942434237942",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7075517876537135626
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -8844808038690984458
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6366766477429379594
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 398.87738037109375,
+          "y": -26.22498321533203
+        },
+        "m_SizeDelta": {
+          "x": 445.84521484375,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_RedemptionCode/AntiClick ",
+      "path_id": "8657072867412078070",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -9052551789214634506
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 341389518641425910
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "limit": "Serialized initial prefab. Runtime texts and enabled states can differ. Unity coordinates use upward positive Y.",
+  "evidence_type": "Static Unity serialized prefab; original APK was not executed",
+  "components": [],
+  "game_objects": [
+    {
+      "path": "ATPanel_RedemptionCode/AntiClick ",
+      "path_id": "-9052551789214634506",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/Image_Bg (1)",
+      "path_id": "-8247728107637576202",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon",
+      "path_id": "-8216674791295750666",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area/Text",
+      "path_id": "-8094928916051071498",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/CustomLocalizationText/Text_Localization",
+      "path_id": "-7752054718547694090",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName",
+      "path_id": "-7075517876537135626",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Inactive/Image_InActive",
+      "path_id": "-6414211749044883978",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Bar_Top",
+      "path_id": "-5346966883910291978",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container",
+      "path_id": "-1517230031379501578",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/Image_Bg",
+      "path_id": "11844624912084470",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)",
+      "path_id": "285130758904999414",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox",
+      "path_id": "379779211476463094",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/CustomLocalizationText",
+      "path_id": "642043534232579574",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Image_Background",
+      "path_id": "825218027394756086",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Inactive",
+      "path_id": "3204673103271620086",
+      "active": false
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Active/Image_Active",
+      "path_id": "3453128014805396982",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot",
+      "path_id": "3727184159879785974",
+      "active": false
+    },
+    {
+      "path": "ATPanel_RedemptionCode",
+      "path_id": "4514492434854571510",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area",
+      "path_id": "5002188256362884598",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container",
+      "path_id": "5621194989021228534",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot/Text_Num",
+      "path_id": "6163644291367103990",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/Box_Active",
+      "path_id": "6402059798221811190",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/InputField (TMP)/Text Area/Placeholder",
+      "path_id": "7069749387368656374",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName/CustomLocalizationText/Text_Localization",
+      "path_id": "7093628989731106294",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Btn_Exit",
+      "path_id": "7481066078565953014",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/Container/ATBtn_BaseCommon/Container/ATBox_RedDot/Image_Icon",
+      "path_id": "8234246172930928118",
+      "active": true
+    },
+    {
+      "path": "ATPanel_RedemptionCode/ATTitleBox/Box_TitleName/CustomLocalizationText",
+      "path_id": "8773458608826740214",
+      "active": true
+    }
+  ]
+}

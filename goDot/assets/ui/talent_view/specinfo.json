@@ -1,0 +1,926 @@
+[
+  {
+    "key": "冒险事件（名称）",
+    "text_cn": "",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zhuoshao>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhuoshao\"><sprite name=\"buff_zhuoshao\"><u><color=#e75326>灼烧</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhuoshao\"><sprite name=\"buff_zhuoshao\"><color=#e75326>灼熱</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhuoshao\"><sprite name=\"buff_zhuoshao\"><color=#e75326>Burn</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhuoshao\"><sprite name=\"buff_zhuoshao\"><color=#e75326>バーン</color></link>"
+  },
+  {
+    "key": "<#specinfo=zhuorejianqi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhuorejianqi\"><sprite name=\"buff_zhuorejianqi\"><u><color=#e75326>灼热剑气</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=anshi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_anshi\"><sprite name=\"buff_anshi\"><u><color=#816be7>暗蚀</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_anshi\"><sprite name=\"buff_anshi\"><color=#816be7>暗蝕</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_anshi\"><sprite name=\"buff_anshi\"><color=#816be7>Eclipse</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_anshi\"><sprite name=\"buff_anshi\"><color=#816be7>エクリプス</color></link>"
+  },
+  {
+    "key": "<#specinfo=pojia>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_pojia\"><sprite name=\"buff_pojia\"><u><color=#CD9825>破甲</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_pojia\"><sprite name=\"buff_pojia\"><color=#f5c04d>破甲</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_pojia\"><sprite name=\"buff_pojia\"><color=#f5c04d>Armor Break</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_pojia\"><sprite name=\"buff_pojia\"><color=#f5c04d>アーマーブレイク</color></link>"
+  },
+  {
+    "key": "<#specinfo=jianyi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianyi\"><sprite name=\"buff_jianyi\"><u><color=#f5c04d>坚毅</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianyi\"><sprite name=\"buff_jianyi\"><color=#f5c04d>堅毅</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianyi\"><sprite name=\"buff_jianyi\"><color=#f5c04d>Perseverance</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianyi\"><sprite name=\"buff_jianyi\"><color=#f5c04d>忍耐</color></link>"
+  },
+  {
+    "key": "<#specinfo=shuiling>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shuiling\"><sprite name=\"buff_shuiling\"><u><color=#5ccef7>水灵</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shuiling\"><sprite name=\"buff_shuiling\"><color=#5ccef7>水靈</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shuiling\"><sprite name=\"buff_shuiling\"><color=#5ccef7>Shuiling</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shuiling\"><sprite name=\"buff_shuiling\"><color=#5ccef7>シュイリン</color></link>"
+  },
+  {
+    "key": "<#specinfo=chaoshi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><u><color=#53aaf2>潮湿</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>潮濕</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>Moist</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>しっとり</color></link>"
+  },
+  {
+    "key": "<#specinfo=huixin>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_huixin\"><sprite name=\"buff_huixin\"><u><color=#6ce587>会心</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_huixin\"><sprite name=\"buff_huixin\"><color=#6ce587>會心</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_huixin\"><sprite name=\"buff_huixin\"><color=#6ce587>Knowing</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_huixin\"><sprite name=\"buff_huixin\"><color=#6ce587>知っている</color></link>"
+  },
+  {
+    "key": "<#specinfo=biaoji>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_biaoji\"><sprite name=\"buff_biaoji\"><u><color=#4bba3c>标记</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_biaoji\"><sprite name=\"buff_biaoji\"><color=#4bba3c>標記</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_biaoji\"><sprite name=\"buff_biaoji\"><color=#4bba3c>Mark</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_biaoji\"><sprite name=\"buff_biaoji\"><color=#4bba3c>マーク</color></link>"
+  },
+  {
+    "key": "<#specinfo=chengjieguangzhu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chengjieguangzhu\"><sprite name=\"buff_chengjieguangzhu\"><u><color=#ED7B01>惩戒光柱</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chengjieguangzhu\"><sprite name=\"buff_chengjieguangzhu\"><color=#fdf07e>懲戒光柱</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chengjieguangzhu\"><sprite name=\"buff_chengjieguangzhu\"><color=#fdf07e>Punishment Beam</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chengjieguangzhu\"><sprite name=\"buff_chengjieguangzhu\"><color=#fdf07e>懲罰ビーム</color></link>"
+  },
+  {
+    "key": "<#specinfo=chengjiebiaoji>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chengjiebiaoji\"><sprite name=\"buff_chengjiebiaoji\"><u><color=#ED7B01>惩戒标记</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jianxin>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianxin\"><sprite name=\"buff_jianxin\"><u><color=#ff8029>剑心</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianxin\"><sprite name=\"buff_jianxin\"><color=#ff8029>劍心</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianxin\"><sprite name=\"buff_jianxin\"><color=#ff8029>Kenshin</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jianxin\"><sprite name=\"buff_jianxin\"><color=#ff8029>謙信</color></link>"
+  },
+  {
+    "key": "<#specinfo=danqie>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_danqie\"><sprite name=\"buff_danqie\"><u><color=#9b2021>胆怯</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_danqie\"><sprite name=\"buff_danqie\"><color=#9b2021>膽怯</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_danqie\"><sprite name=\"buff_danqie\"><color=#9b2021>Timid</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_danqie\"><sprite name=\"buff_danqie\"><color=#9b2021>臆病</color></link>"
+  },
+  {
+    "key": "<#specinfo=sishengbiaoji>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_sishengbiaoji\"><sprite name=\"buff_sishengbiaoji\"><u><color=#826ee8>吞噬标记</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_sishenbiaoji\"><sprite name=\"buff_sishenbiaoji\"><color=#826ee8>死神標記</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_sishenbiaoji\"><sprite name=\"buff_sishenbiaoji\"><color=#826ee8>Death Mark</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_sishenbiaoji\"><sprite name=\"buff_sishenbiaoji\"><color=#826ee8>デスマーク</color></link>"
+  },
+  {
+    "key": "<#specinfo=shandian>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shandian\"><sprite name=\"buff_shandian\"><u><color=#CD9825>闪电</color></u></link>",
+    "text_cht": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shandian\"><sprite name=\"buff_shandian\"><color=#f5c04d>閃電</color></link>",
+    "text_en": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shandian\"><sprite name=\"buff_shandian\"><color=#f5c04d>Lightning</color></link>",
+    "text_jp": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shandian\"><sprite name=\"buff_shandian\"><color=#f5c04d>ライトニング</color></link>"
+  },
+  {
+    "key": "<#specinfo=hudun>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_hudun\"><sprite name=\"buff_hudun\"><u><color=#949494>护盾</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=guangdan>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_guangdan\"><sprite name=\"buff_guangdan\"><u><color=#DCAC0E>光弹</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zidongshanbi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zidongshanbi\"><sprite name=\"buff_zidongshanbi\"><u><color=#9C9C9D>自动闪避</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zhuizongjian>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhuizongjian\"><sprite name=\"buff_zhuizongjian\"><u><color=#34DB79>追踪箭</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=keyinshengdian>",
+    "text_cn": "<link=\"info_abilityItemdescription_keyinshengdian\"><u><color=#1cf52b>迷宫宝珠</color></u></link>",
+    "text_cht": "<link=\"info_abilityItemdescription_keyinshengdian\"><u>聖印光點</u></link>",
+    "text_en": "<link=\"info_abilityItemdescription_keyinshengdian\"><u>Holy Seal Light Spot</u></link>",
+    "text_jp": "<link=\"info_abilityItemdescription_keyinshengdian\"><u>聖印の光点</u></link>"
+  },
+  {
+    "key": "...",
+    "text_cn": "...",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "购买失败",
+    "text_cn": "购买失败",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "领取失败",
+    "text_cn": "领取失败",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "当前材料不足，无法升级",
+    "text_cn": "当前材料不足，无法升级",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "(试用)",
+    "text_cn": "(试用)",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "冒险凭证不足！",
+    "text_cn": "冒险凭证不足！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "突破材料不足！",
+    "text_cn": "突破材料不足！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "如有疑问，请联系客服",
+    "text_cn": "如有疑问，请联系客服",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "常驻开放",
+    "text_cn": "常驻开放",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "不开放",
+    "text_cn": "不开放",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "主线",
+    "text_cn": "主线",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "通关后开放",
+    "text_cn": "通关后开放",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "未开放",
+    "text_cn": "未开放",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "宝箱数量不足！",
+    "text_cn": "宝箱数量不足！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "当前委托未完成哦！",
+    "text_cn": "当前委托未完成哦！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "悬赏信件不足！",
+    "text_cn": "悬赏信件不足！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "今日的奖励已经领取过了哦！",
+    "text_cn": "今日的奖励已经领取过了哦！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "未解锁信物",
+    "text_cn": "未解锁信物",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "取消",
+    "text_cn": "取消",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "确认",
+    "text_cn": "确认",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "确定要返回主城吗？",
+    "text_cn": "确定要返回主城吗？",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "提示",
+    "text_cn": "提示",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "支援空缺",
+    "text_cn": "支援空缺",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "解锁",
+    "text_cn": "解锁",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "铁匠铺等级不足，无法升级",
+    "text_cn": "铁匠铺等级不足，无法升级",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "升级武器",
+    "text_cn": "升级武器",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "登录信息过期，需要重新登录",
+    "text_cn": "登录信息过期，需要重新登录",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "当前未获得怪物伙伴！",
+    "text_cn": "当前未获得怪物伙伴！",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "角色",
+    "text_cn": "角色",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "怪物",
+    "text_cn": "怪物",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "装备",
+    "text_cn": "装备",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "材料",
+    "text_cn": "材料",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "教程",
+    "text_cn": "教程",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "怪物工作加速次数已耗尽，进行一次迷宫探索后恢复",
+    "text_cn": "怪物工作加速次数已耗尽，进行一次迷宫探索后恢复",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "确定要停止当前怪物工作吗？",
+    "text_cn": "确定要停止当前怪物工作吗？",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "战斗中无法使用",
+    "text_cn": "战斗中无法使用",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "当前状态不可退出",
+    "text_cn": "当前状态不可退出",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "信物需要更高等级解锁装饰品镶嵌",
+    "text_cn": "信物需要更高等级解锁装饰品镶嵌",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "商店刷新被禁用了",
+    "text_cn": "商店刷新被禁用了",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=gongjili>",
+    "text_cn": "<sprite name=\"buff_gongjili\"><color=#ff4f4f>攻击力</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=fangyuli>",
+    "text_cn": "<sprite name=\"buff_fangyuli\"><color=#4f8dff>防御力</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shengmingzhi>",
+    "text_cn": "<sprite name=\"buff_shengmingzhi\"><color=#8dff4f>生命值</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shengmingshangxian>",
+    "text_cn": "<sprite name=\"buff_shengmingzhi\"><color=#8dff4f>生命上限</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shengminghuifu>",
+    "text_cn": "<sprite name=\"buff_shengminghuifu\"><color=#8dff4f>恢复</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=baojilv>",
+    "text_cn": "<sprite name=\"buff_baojilv\"><color=#fdb933>暴击率</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=baojishanghai>",
+    "text_cn": "<sprite name=\"buff_baojishang\"><color=#fdb933>暴击伤害</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=gongjisudu>",
+    "text_cn": "<sprite name=\"buff_gongjisudu\"><color=#51edff>攻击速度</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=yidongsudu>",
+    "text_cn": "<sprite name=\"buff_yidongsudu\"><color=#afdfe4>移动速度</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=hujia>",
+    "text_cn": "<sprite name=\"icon_armor\"><color=#fdb933>护甲</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shanbi>",
+    "text_cn": "<sprite name=\"buff_shanbi\"><color=#4ffffd>闪避</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=lengque>",
+    "text_cn": "<sprite name=\"buff_lengque\"><color=#4ffffd>冷却</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zuzhou>",
+    "text_cn": "<sprite name=\"buff_zuzhou\"><color=#c60c0c>【诅咒】</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinghuayiwu>",
+    "text_cn": "<sprite name=\"buff_jinghua\"><color=#ffc436>【净化】</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jiuriyiwu>",
+    "text_cn": "<sprite name=\"buff_jiuri\"><color=#8c59ff>【旧日遗物】</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=taozhuangjihuo>",
+    "text_cn": "<sprite name=\"buff_taozhaung\"><color=#ffc436>【套装激活】</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=linshi>",
+    "text_cn": "<sprite name=\"buff_linshi\"><color=#8c59ff>临时</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=putonggongji>",
+    "text_cn": "<sprite name=\"buff_putonggongji\"><color=#e99f0d>普通攻击</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zhongji>",
+    "text_cn": "<sprite name=\"buff_zhongji\"><color=#e99f0d>重击</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shanbigongji>",
+    "text_cn": "<sprite name=\"buff_shanbigongji\"><color=#e99f0d>闪避攻击</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zhanji>",
+    "text_cn": "<sprite name=\"buff_zhanji\"><color=#e99f0d>战技</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=baofaji>",
+    "text_cn": "<sprite name=\"buff_baofaji\"><color=#e99f0d>爆发技</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=baofajinengliang>",
+    "text_cn": "<sprite name=\"buff_baofajinengliang\"><color=#e99f0d>爆发技能量</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=molijinghua>",
+    "text_cn": "<sprite name=\"buff_MagicPoint\"><color=#5dadff>魔力精华</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinbi>",
+    "text_cn": "<sprite name=\"buff_Gold\"><color=#fcaf17>金币</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=qicaijiejing>",
+    "text_cn": "<sprite name=\"buff_qicaijiejing\"><color=#c0b8ff>七彩结晶</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "请先装备一个信物再进入装饰品镶嵌",
+    "text_cn": "请先装备一个信物再进入装饰品镶嵌",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jingling>",
+    "text_cn": "<sprite name=\"buff_jingling\"><color=#ffd27a>精灵</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinglingchufa>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jinglingchufa\"><sprite name=\"buff_jinglingchufa\"><u><color=#ffd27a>精灵触发</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinglingqianghua>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jinglingqianghua\"><sprite name=\"buff_jinglingqianghua\"><u><color=#ffd27a>精灵强化</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinglingfanwei>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jinglingfanwei\"><sprite name=\"buff_jinglingfanwei\"><u><color=#ffd27a>精灵范围</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinglingchixu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jinglingchixu\"><sprite name=\"buff_jinglingchixu\"><u><color=#ffd27a>精灵持续</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinglingshuliang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jinglingshuliang\"><sprite name=\"buff_jinglingshuliang\"><u><color=#ffd27a>精灵数量</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=guaiwuzhiyuan>",
+    "text_cn": "<sprite name=\"buff_guaiwuzhiyuan\"><color=#ba9bff>怪物支援</color>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=dongshang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_dongshang\"><sprite name=\"buff_dongshang\"><u><color=#aacaff>冻伤</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=sikadizhinunengliang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_sikadizhinu\"><sprite name=\"buff_sikadizhinunengliang\"><u><color=#aacaff>斯卡蒂之怒能量</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=sikadizhinu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_sikadizhinu\"><sprite name=\"buff_sikadizhinu\"><u><color=#aacaff>斯卡蒂之怒</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=longhunshiqi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_longhunshiqi\"><sprite name=\"buff_longhunshiqi\"><u><color=#aacaff>龙魂誓契</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=longhunnengliang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_longhunnengliang\"><sprite name=\"buff_longhunnengliang\"><u><color=#aacaff>龙魂能量</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=longhun>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_longhun\"><sprite name=\"buff_longhun\"><u><color=#aacaff>龙魂</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shuangyu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shuangyu\"><sprite name=\"buff_shuangyu\"><u><color=#aacaff>霜狱</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=longlinkaijia>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_longlinkaijia\"><sprite name=\"buff_longlinkaijia\"><u><color=#aacaff>龙鳞铠甲</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=suibing>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_suibing\"><sprite name=\"buff_suibing\"><u><color=#aacaff>碎冰</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shangdianjiage>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shangdianjiage\"><sprite name=\"buff_shangdianjiage\"><u><color=#fdb933>商店价格</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=jinglingjitan>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_jinglingjitan\"><sprite name=\"buff_jinglingjitan\"><u><color=#c0b8ff>精灵祭坛</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shoulieyinji>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shoulieyinji\"><sprite name=\"buff_shoulieyinji\"><u><color=#a9895a>狩猎印记</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=huanghun>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_huanghun\"><sprite name=\"buff_huanghun\"><u><color=#ffcd3d>荒魂</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=daozhen>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_daozhen\"><sprite name=\"buff_daozhen\"><u><color=#ffcd3d>刀阵</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=luanwu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_luanwu\"><sprite name=\"buff_shayingluanwu\"><u><color=#ffcd3d>乱舞</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=liushafengbao>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_liushafengbao\"><sprite name=\"buff_liushafengbao\"><u><color=#ffcd3d>流沙风暴</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=liujinhuanren>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_liujinhuanren\"><sprite name=\"buff_liujinhuanren\"><u><color=#ffcd3d>鎏金环刃</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=zhongshang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_zhongshang\"><sprite name=\"buff_zhongshang\"><u><color=#b71818>重伤</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=fengshi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_fengshi\"><sprite name=\"buff_fengshi\"><u><color=#ffcd3d>风蚀</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=liujinhuanbi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_liujinhuanbi\"><sprite name=\"buff_liujinhuanbi\"><u><color=#ffcd3d>鎏金幻匕</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=liujinxuanren>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_liujinxuanren\"><sprite name=\"buff_liujinxuanren\"><u><color=#ffcd3d>鎏金旋刃</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=liujinhuanxie>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_liujinhuanxie\"><sprite name=\"buff_liujinhuanxie\"><u><color=#ffcd3d>鎏金幻械</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shaying>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shaying\"><sprite name=\"buff_shaying\"><u><color=#ffcd3d>沙影</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=gedang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_gedang\"><sprite name=\"buff_gedang\"><u><color=#dadada>格挡</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=duya>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_duya\"><sprite name=\"buff_duya\"><u><color=#9E2CD7>毒牙</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=fuji>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_fuji\"><sprite name=\"buff_fuji\"><u><color=#9E2CD7>伏击</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=buxiu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_buxiu\"><sprite name=\"buff_buxiu\"><u><color=#9E2CD7>不朽</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=kuangbao>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_kuangbao\"><sprite name=\"buff_kuangbao\"><u><color=#9E2CD7>狂暴</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=qinshi>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_qinshi\"><sprite name=\"buff_qinshi\"><u><color=#9E2CD7>侵蚀</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=pingzhang>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_pingzhang\"><sprite name=\"buff_pinzhang\"><u><color=#9E2CD7>屏障</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=tongsheng>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_tongsheng\"><sprite name=\"buff_tongsheng\"><u><color=#9E2CD7>同生</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=shixie>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_shixie\"><sprite name=\"buff_shixie\"><u><color=#9E2CD7>嗜血</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=fengli>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_fengli\"><sprite name=\"buff_fengli\"><u><color=#9E2CD7>锋利</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=hundun>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_hundun\"><sprite name=\"buff_hundun\"><u><color=#9E2CD7>混沌</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=modun>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_modun\"><sprite name=\"buff_modun\"><u><color=#9E2CD7>魔盾</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=chiying>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chiying\"><sprite name=\"buff_chiying\"><u><color=#9E2CD7>迟影</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=duanmai>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_duanmai\"><sprite name=\"buff_duanmai\"><u><color=#9E2CD7>断脉</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  },
+  {
+    "key": "<#specinfo=suozu>",
+    "text_cn": "<UI_MsgType=\"Buff\"><link=\"info_buffdescription_suozu\"><sprite name=\"buff_suozu\"><u><color=#9E2CD7>锁足</color></u></link>",
+    "text_cht": "",
+    "text_en": "",
+    "text_jp": ""
+  }
+]

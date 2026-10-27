@@ -2,8 +2,8 @@ class_name DungeonWorldStyle
 extends RefCounted
 
 const PROFILES = {
-	0: [Color("142b32"), Color("527fba"), Color("6479d9"), 0.38, 0.52],
-	1: [Color("203b40"), Color("527fba"), Color("6479d9"), 0.38, 0.52],
+	0: [Color("142b32"), Color("527fba"), Color("8b9fe3"), 0.42, 0.72],
+	1: [Color("203b40"), Color("527fba"), Color("8b9fe3"), 0.42, 0.72],
 	2: [Color("786953"), Color("c3c3ab"), Color("ffe2b1"), 0.45, 0.55],
 	3: [Color("424a60"), Color("b4bad5"), Color("c8dcff"), 0.50, 0.55],
 	4: [Color("554953"), Color("c6b8cb"), Color("e4bad5"), 0.45, 0.55],
@@ -55,6 +55,7 @@ static func environment(world: Node3D, region: int, camp: bool) -> void:
 				if npc.is_empty(): continue
 				var source = world.interactions._items.get(str(marker.get("SourceGameObjectId", "")), {}) if world.interactions else {}
 				for index in 2:
+					if index == 1 and str(npc.get("title", "")).is_empty(): continue
 					var label = Label3D.new()
 					label.name = "CampNpcName" if index == 0 else "CampNpcService"
 					label.set_meta("camp_marker_id", str(marker.get("SourceGameObjectId", "")))

@@ -98,7 +98,9 @@ func _ready() -> void:
 	_locale_changed(DungeonLocale.current_locale())
 
 func _select_language(index: int) -> void:
-	DungeonLocale.set_locale(str(language_select.get_item_metadata(index)))
+	if not DungeonLocale.set_locale(str(language_select.get_item_metadata(index))):
+		_locale_changed(DungeonLocale.current_locale())
+		error_label.text = tr("语言设置保存失败，请重试")
 
 func _locale_changed(locale: String) -> void:
 	for index in language_select.item_count:

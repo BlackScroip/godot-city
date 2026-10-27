@@ -272,13 +272,23 @@ func _scroll_to_current() -> void:
 	if not is_world_map():
 		for index in rows.size():
 			if rows[index].get("is_anchor", false):
-				_set_scroll_center(nodes[index].get_rect().get_center().x)
+				_scroll_to_room(nodes[index])
 				return
 	for index in rows.size():
 		if int(rows[index].layer_index) == int(context.get("current_layer", 0)):
-			_set_scroll_center(nodes[index].get_rect().get_center().x)
+			if is_world_map(): _set_scroll_center(nodes[index].get_rect().get_center().x)
+			else: _scroll_to_room(nodes[index])
 			return
 	_set_scroll_center(0)
+
+func _scroll_to_room(anchor: DungeonRouteNode) -> void:
+	# The APK centers the active node's right edge; its Unity pivot is 0.5.
+	var center = anchor.get_rect().end.x
+	if not context.get("preview", false):
+		for node in nodes:
+			if node.available and not node.room.get("vertical", false) and int(node.room.layer_index) > int(anchor.room.layer_index):
+				center = maxf(center, node.get_rect().end.x + _graph_margin - scroll.size.x * 0.5)
+	_set_scroll_center(center)
 
 func _draw_paths() -> void:
 	for edge in edges:

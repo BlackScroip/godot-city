@@ -37,7 +37,8 @@ func _run() -> void:
 		if event.get("type", "") in ["resource_gained", "resource_spent"]: hud.update_counters(systems, 0))
 	hud.update_navigation(systems)
 	check(hud.counter_buttons.all(func(key): return not key.visible), "Initial balances do not reveal resource rows")
-	check(visible_navigation() == ["menu_store", "menu_character", "menu_settings"], "Camp before the first victory has the three native entries")
+	check(visible_navigation() == ["menu_adventure", "menu_store", "menu_character", "menu_settings"], "Camp offers adventure preparation before the first victory")
+	check(not hud.navigation_buttons.has("menu_cloud"), "Cloud saving has no HUD entry")
 	var gold = hud.counter_buttons[0]
 	var magic = hud.counter_buttons[1]
 	systems.grant_material(101, 25)
@@ -79,12 +80,12 @@ func _run() -> void:
 	check(hud.navigation_buttons.menu_adventure.visible, "A legacy per-difficulty victory also enables native completed-run entries")
 	profile.data.stats.wins = 1
 	hud.update_navigation(systems)
-	check(visible_navigation() == ["menu_adventure", "menu_comment", "menu_cloud", "menu_store", "menu_character", "menu_settings"], "First victory unlocks ordered quick-start, review and cloud prompts")
+	check(visible_navigation() == ["menu_adventure", "menu_comment", "menu_store", "menu_character", "menu_settings"], "First victory adds the unread review prompt while retaining adventure preparation")
 	profile.data.stats["ui:read:Btn_QuickStart"] = 0
 	profile.data.stats["ui:read:Btn_GoComment"] = 0
 	profile.data.stats["ui:read:Btn_CloudSave"] = 0
 	hud.update_navigation(systems)
-	check(visible_navigation() == ["menu_adventure", "menu_store", "menu_character", "menu_settings"], "Existing native read keys hide review/cloud even when their stored value is zero")
+	check(visible_navigation() == ["menu_adventure", "menu_store", "menu_character", "menu_settings"], "Existing native read keys hide review even when their stored value is zero")
 	check(not hud._navigation_badges.menu_adventure.visible, "Acknowledged quick start retains the entry without a red dot")
 	profile.data.guide_index = 9
 	hud.update_navigation(systems)
@@ -94,7 +95,7 @@ func _run() -> void:
 	check(visible_navigation().is_empty(), "Dialogue suppresses the remaining player and option entries")
 	profile.data.guide_index = 10
 	hud.update_navigation(systems)
-	check(visible_navigation().is_empty(), "Dialogue also suppresses unlocked quick start, review, cloud and store entries")
+	check(visible_navigation().is_empty(), "Dialogue also suppresses unlocked quick start, review and store entries")
 	profile.data.dialogue_state = {}
 	profile.data.guide_index = 10
 	profile.data.run.active = true

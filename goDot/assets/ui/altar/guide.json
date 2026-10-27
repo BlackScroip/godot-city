@@ -1,0 +1,62 @@
+{
+  "id": 3,
+  "type_name": "战斗",
+  "title_order": 3,
+  "title": "收集遗物吧！",
+  "head_text": "获取遗物|\n遗物等级|\n遗物合成",
+  "tail_text": "在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。|\n通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。|\n一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。",
+  "middle_image_name": "获取遗物|遗物等级|遗物合成",
+  "parts": [
+    {
+      "heading": "获取遗物",
+      "body": "在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。",
+      "image_name": "获取遗物",
+      "resource": "res://assets/ui/altar/guide3_1.png",
+      "size": [
+        512,
+        256
+      ],
+      "source": {
+        "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+        "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677",
+        "path_id": -2266402911792637599,
+        "type": "Sprite",
+        "png_sha256": "43345c3d597620b3493183e6d278a0681c83d0409e52a5d49ec7f264b3db882b"
+      }
+    },
+    {
+      "heading": "遗物等级",
+      "body": "通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。",
+      "image_name": "遗物等级",
+      "resource": "res://assets/ui/altar/guide3_2.png",
+      "size": [
+        512,
+        256
+      ],
+      "source": {
+        "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+        "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677",
+        "path_id": 1712040917476425692,
+        "type": "Sprite",
+        "png_sha256": "3a10921bbbf962c156862f6a1971863d9b0f71906c285ef8556ce9257a7b3377"
+      }
+    },
+    {
+      "heading": "遗物合成",
+      "body": "一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。",
+      "image_name": "遗物合成",
+      "resource": "res://assets/ui/altar/guide3_3.png",
+      "size": [
+        512,
+        256
+      ],
+      "source": {
+        "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+        "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677",
+        "path_id": 4262433586227293693,
+        "type": "Sprite",
+        "png_sha256": "45b0e316733a3a49610323682c7f7181f263b95d73c1248087def93fc54b7f5a"
+      }
+    }
+  ]
+}

@@ -81,7 +81,7 @@ func _hud_and_pool_cases() -> void:
 	root.add_child(hud)
 	world.hud = hud
 	await process_frame
-	check(hud.skill_buttons.size() == 4 and hud.skill_by_slot.keys() == [0, 1, 2, 3], "Four explicit skill slots")
+	check(hud.skill_buttons.size() == 6 and hud.skill_by_slot.keys() == [0, 1, 2, 3] and hud.partner_skill_bar.buttons.size() == 2, "Four character controls and two independent partner controls")
 	var changes: Array = []
 	hud.action.connect(func(kind, mode, _extra):
 		if kind == "auto_attack_mode":

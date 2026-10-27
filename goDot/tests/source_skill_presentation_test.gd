@@ -65,10 +65,12 @@ func _run() -> void:
 			check(effect.authored != null and effect.authored.scale.is_equal_approx(plan.effects[index].scale), "Spirit %s keeps source impact scale" % summon.id)
 		spirit_cases += 1
 	_delayed_and_buff(presentation, actor)
+	_fallback_warning_offsets(presentation, actor)
 	_modifier_styles(presentation, actor)
 	_source_preload(presentation, actor)
+	_effective_summon_scale(presentation, actor)
 	check(projectile_cases >= 60 and spirit_cases >= 15, "All available Boss projectile and Spirit damage definitions are exercised")
-	var report := {"apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505", "checks": checks, "failures": failures, "boss_projectiles": projectile_cases, "spirit_damage_definitions": spirit_cases, "delayed_entities": delayed_cases, "preloaded_effect_dependencies": preload_effects, "preloaded_sound_dependencies": preload_sounds, "scope": "Recovered source dispatch, projectile/end scaling, creation versus activation effects, nested range Buff styles, impact payloads, attack-ID-scoped style replacements with creation-time snapshots and all 33 spirit ability media closures. Headless checks do not establish Unity shader equivalence or device FPS."}
+	var report := {"apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505", "checks": checks, "failures": failures, "boss_projectiles": projectile_cases, "spirit_damage_definitions": spirit_cases, "delayed_entities": delayed_cases, "preloaded_effect_dependencies": preload_effects, "preloaded_sound_dependencies": preload_sounds, "scope": "Recovered source dispatch, projectile/end scaling, creation versus activation effects, nested range Buff styles, impact payloads, attack-ID-scoped style replacements with creation-time snapshots, all 33 spirit ability media closures, and dynamic ground summon raw scale resolved once. Headless checks do not establish Unity shader equivalence or device FPS."}
 	FileAccess.open("res://reports/source-skill-presentation-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t") + "\n")
 	print("SOURCE_SKILL_PRESENTATION ", JSON.stringify(report))
 	# Let particle work finish before the SceneTree destroys its renderer resources.
@@ -130,9 +132,31 @@ func _delayed_and_buff(presentation: Node3D, actor: DungeonActor) -> void:
 			if str(delayed.get("EffectName", "")).is_empty(): continue
 			var hit := {"definition": definition, "sequence": -1}
 			presentation.clear()
-			presentation.attack_emitted(actor, hit, Vector3(3, 0, 4))
+			presentation.attack_emitted(actor, hit, Vector3(3, 0, 4), Vector3.RIGHT)
 			var immediate := str(entity.get("EffectTriggerDef", {}).get("EffectName", ""))
 			if immediate != str(delayed.EffectName): check(not presentation.active.any(func(effect): return effect.key == presentation._key(delayed.EffectName)), "%s creation does not play its delayed effect early" % action.id)
+			if not immediate.is_empty() and "enemyatkrange" not in immediate.to_lower():
+				var creations: Array = presentation.active.filter(func(effect): return effect.key == presentation._key(immediate))
+				check(not creations.is_empty(), "%s creation emits its source effect" % action.id)
+				if not creations.is_empty():
+					var created: Dictionary = creations[0]
+					var initial: Dictionary = entity.EffectTriggerDef
+					var position := Vector3(3, 0, 4) + Basis(Vector3.UP, PI * 0.5) * DungeonWorld.vector(initial.get("Position", {}))
+					check(created.root.global_position.is_equal_approx(position), "%s creation rotates its local effect offset by the supplied entity facing" % action.id)
+					var angles := Vector3(0, PI * 0.5, 0) + DungeonWorld.vector(initial.get("Euler", {})) * PI / 180.0
+					check(created.root.global_basis.is_equal_approx(Basis.from_euler(angles)), "%s creation uses the supplied entity facing" % action.id)
+			elif "enemyatkrange" in immediate.to_lower():
+				var warnings: Array = presentation.telegraphs.filter(func(effect): return effect.get("key", "") == presentation._key(immediate))
+				check(not warnings.is_empty(), "%s creation retains its source warning" % action.id)
+				if not warnings.is_empty():
+					check(warnings[0].facing.is_equal_approx(Vector3.RIGHT), "%s source warning retains the supplied entity facing" % action.id)
+					check(is_equal_approx(warnings[0].node.rotation.y, PI * 0.5 + float(warnings[0].yaw)), "%s source warning geometry uses entity facing plus prefab yaw" % action.id)
+					var prior_facing := actor.facing
+					actor.facing = Vector3.BACK
+					presentation._place_telegraph(warnings[0], actor)
+					var expected_facing: Vector3 = Basis(Vector3.UP, float(warnings[0].get("facing_offset", 0))) * actor.facing if warnings[0].follow_rotation else Vector3.RIGHT
+					check(warnings[0].facing.is_equal_approx(expected_facing), "%s warning retains its source follow mode and entity rotation offset" % action.id)
+					actor.facing = prior_facing
 			presentation.clear()
 			presentation.entity_activated(actor, hit, Vector3(3, 0, 4), Vector3.RIGHT)
 			check(presentation.active.any(func(effect): return effect.key == presentation._key(delayed.EffectName)), "%s activation emits its delayed source effect" % action.id)
@@ -147,6 +171,21 @@ func _delayed_and_buff(presentation: Node3D, actor: DungeonActor) -> void:
 	check(presentation.active.size() == 1 and presentation.active[0].key == "26091701_fx_buff_rockthunderspirit_lightning", "Magnetized range Buff emits nested EffectName1")
 	check(presentation.active[0].source_only and presentation.active[0].authored.scale == Vector3.ONE, "Range Buff keeps its zero-scale prefab default")
 	check(presentation.active[0].clock_sequence == -1, "A periodic Buff effect is independent of the owner's current action speed")
+
+func _fallback_warning_offsets(presentation: Node3D, actor: DungeonActor) -> void:
+	actor.is_player = false
+	actor.combat.configure_enemy(52001)
+	actor.position = Vector3(3, 0, 4)
+	actor.facing = Vector3.BACK
+	presentation.clear()
+	presentation.action_started(actor, {"sequence": -1, "action": "attack6", "speed": 1.0})
+	var expected_offsets: Array[Vector3] = [Vector3(0, 0, -8.4), Vector3(-9.3, 0, 4.2), Vector3(9.3, 0, 4.2), Vector3.ZERO]
+	check(presentation.telegraphs.size() == expected_offsets.size(), "Chimera attack6 retains its four distinct source fallback warning beats")
+	for index in mini(expected_offsets.size(), presentation.telegraphs.size()):
+		var warning: Dictionary = presentation.telegraphs[index]
+		check(warning.offset.is_equal_approx(expected_offsets[index]), "Chimera attack6 warning %d applies source EmitOffset once" % index)
+		check(warning.node.position.is_equal_approx(actor.position + expected_offsets[index] + Vector3.UP * 0.12), "Chimera attack6 warning %d uses the single source offset in world geometry" % index)
+	presentation.clear()
 
 func _modifier_styles(presentation: Node3D, actor: DungeonActor) -> void:
 	actor.is_player = true

@@ -7,11 +7,11 @@ const STAGE_COLORS := [Color("fff0b9"), Color("ffcb86"), Color("ff9ead"), Color(
 var hits := DungeonStyle.label("0", 52)
 var total := DungeonStyle.label("0", 30)
 var rate := DungeonStyle.label("0", 30)
-var boss_name := DungeonStyle.label("", 22)
 var stats := Control.new()
-var boss := Control.new()
-var bar := ProgressBar.new()
-var boss_health := DungeonStyle.label("", 15)
+var boss = preload("res://scripts/presentation/boss_health_bar.gd").new()
+var boss_name: Label = boss.name_label
+var bar: Range = boss.bar
+var boss_health: Label = boss.health_label
 var enemy_health = preload("res://scripts/presentation/enemy_health_overlay.gd").new()
 var combo_bar := TextureProgressBar.new()
 var hit_tail := TextureRect.new()
@@ -65,24 +65,6 @@ func _ready() -> void:
 		value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		stats.add_child(value)
 	stats.hide()
-	boss.add_child(boss_name)
-	boss_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	boss_name.size = Vector2(440, 32)
-	boss_name.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	boss.add_child(bar)
-	bar.position = Vector2(0, 36)
-	bar.size = Vector2(440, 22)
-	bar.show_percentage = false
-	bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	bar.add_theme_stylebox_override("background", DungeonStyle.box(Color("262521"), Color("fff4c2"), 2))
-	bar.add_theme_stylebox_override("fill", DungeonStyle.box(Color("ff1607"), Color("ffb642"), 1))
-	boss.add_child(boss_health)
-	boss_health.position = Vector2(0, 59)
-	boss_health.size = Vector2(440, 22)
-	boss_health.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	boss_health.add_theme_color_override("font_outline_color", Color("101820"))
-	boss_health.add_theme_constant_override("outline_size", 4)
-	boss.hide()
 	resized.connect(_layout)
 	_layout()
 
@@ -90,17 +72,12 @@ func _layout() -> void:
 	var factor := minf(1.0, minf(size.x / 1280.0, size.y / 720.0))
 	stats.scale = Vector2.ONE * factor
 	stats.position = Vector2(58 * factor, size.y * 0.24)
-	boss.scale = Vector2.ONE * factor
-	boss.position = Vector2(size.x * 0.5 - 220 * factor, 32 * factor)
+	boss.scale = Vector2.ONE * factor * 1.2
+	boss.position = Vector2(size.x * 0.5 - boss.size.x * boss.scale.x * 0.5, 32 * factor)
 
 func update_values(tally: RefCounted, target: DungeonActor, title: String, delta: float = 0.0) -> void:
 	_update_stats(tally, maxf(0.0, delta))
-	boss.visible = is_instance_valid(target) and not target.dead and target.combat != null and target.combat.health > 0 and target.is_visible_in_tree()
-	if boss.visible:
-		boss_name.text = title
-		bar.max_value = target.combat.max_health
-		bar.value = target.combat.health
-		boss_health.text = "%d / %d" % [ceili(target.combat.health), ceili(target.combat.max_health)]
+	boss.update_actor(target, title, maxf(0.0, delta))
 
 func _update_stats(tally: RefCounted, delta: float) -> void:
 	if tally.hits == 0:

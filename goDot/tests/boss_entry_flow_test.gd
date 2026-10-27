@@ -34,7 +34,7 @@ func _run() -> void:
 			game.world.interactions.tick(0.02, game.world.player.position)
 			break
 	game._update_battle_presentation(0)
-	check(game.boss_intro.active and game.world.paused, "First boss encounter starts entry and pauses world")
+	check(game.boss_intro.active and game.world.boss_show_active and not game.world.paused, "First boss encounter starts entry and locks player controls")
 	game._action("page:characters", 0, 0)
 	check(not game.hud.modal_open, "Entry blocks underlying menu commands")
 	var key: String = game.world.actors.back().combat.actor_key
@@ -42,14 +42,26 @@ func _run() -> void:
 	check(boss.combat.current_action == "bosspose", "Encounter starts the actual authored BossAct")
 	var sequence: int = boss.combat._cast_sequence
 	check(game._introduced_bosses.has(key), "Entry is recorded once for this actor")
+	game.boss_intro.skip.button_pressed = true
+	check(game.world.simulation_scale == 3.0 and game.profile.data.get("boss_show_skip", false), "Source skip toggle accelerates the live world and updates its persistent preference")
+	game._process(0.3)
+	check(game.save_store.flush() and game.save_store.load_profile().get("boss_show_skip", false), "Skip preference survives profile serialization")
+	game.boss_intro.skip.button_pressed = false
 	game.boss_intro.finish()
-	check(not game.world.paused, "Skipping entry resumes the world")
+	check(not game.world.paused, "Cancelling entry releases the control lock")
 	boss.combat.tick(0.0)
 	for event in boss.combat.drain_events(): game.world._consume(boss, event)
 	check(boss.combat.buff_layers("41300103") == 1, "Skipping cinematic still executes source BossAct lock initialization")
 	check(boss.combat._cast_sequence == sequence, "Skipping cinematic does not restart the gameplay action")
 	game._update_battle_presentation(0)
 	check(not game.boss_intro.active, "Next frame cannot replay the same boss entry")
+	game.boss_intro.begin(game.world, boss, str(boss.combat.enemy.name))
+	game.boss_intro._process(game.boss_intro.duration + 1.1)
+	game._update_battle_presentation(0)
+	check(not game.boss_intro.active and game.boss_intro.visible and not game.hud.battle_readout.boss.visible, "Temporary source HP animation owns the final banner tail without duplicate health bars")
+	game.boss_intro._process(0.6)
+	game._update_battle_presentation(0)
+	check(game.hud.battle_readout.boss.visible, "Normal boss health display appears after the source banner ends")
 	game.battle_tally.restore({"hits": 4, "damage": 72, "elapsed": 3})
 	game._build_save_snapshot()
 	check(game.profile.data.run.battle.tally.hits == 4, "Battle checkpoint includes hit statistics")

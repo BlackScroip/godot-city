@@ -47,6 +47,9 @@ func _ready() -> void:
 	visibility_changed.connect(_animate_selection)
 	if chosen: _animate_selection()
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED: queue_redraw()
+
 func _animate_selection() -> void:
 	if _selection_tween: _selection_tween.kill()
 	_selection_scale = 1.0
@@ -114,9 +117,16 @@ func _draw() -> void:
 		if lock_art: draw_texture_rect(lock_art, Rect2(center - Vector2(radius * 0.25, radius * 0.32), Vector2(radius * 0.5, radius * 0.64)), false, Color("cb0000"))
 	var caption = DungeonLocale.text("未知领域" if unknown else str(room.get("name", "")))
 	var font_size = 13 if size.y < 90 else 17
+	var font := get_theme_font("font")
+	while font_size > 9 and font.get_string_size(caption, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > size.x:
+		font_size -= 1
+	if font.get_string_size(caption, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > size.x:
+		while not caption.is_empty() and font.get_string_size(caption + "...", HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > size.x:
+			caption = caption.left(-1)
+		caption += "..."
 	var baseline = minf(size.y - 2, radius * 2 + font_size + 5)
-	draw_string_outline(get_theme_font("font"), Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, 3, Color("17201b"))
-	draw_string(get_theme_font("font"), Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, Color("fff4d7"))
+	draw_string_outline(font, Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, 3, Color("17201b"))
+	draw_string(font, Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, Color("fff4d7"))
 	if visited and portrait == null:
 		draw_polyline(PackedVector2Array([center + Vector2(radius - 16, 0), center + Vector2(radius - 10, 6), center + Vector2(radius + 1, -6)]), Color("d7f29b"), 3, true)
 	if chosen:

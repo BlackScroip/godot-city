@@ -1,0 +1,5995 @@
+{
+  "prefab": {
+    "address": "ATPanel_CharTalentDetail",
+    "path": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/ATPanel_CharTalentDetail.prefab",
+    "bundle": 5322
+  },
+  "source": {
+    "member": "assets/yoo/DefaultPackage/f5823b994728af8b33ffd93644f98521.bundle",
+    "sha256": "e4d3d89529d0c358e29fadfa96712fb45f3071b340faf1e0745da3009047d61d"
+  },
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "images": [
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (1)/Image_Inactive",
+      "game_object": "4200031862860281572",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4200031862860281572
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3092287631008986852
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星底"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten/Image_SplittLine",
+      "game_object": "3090274849987163876",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3090274849987163876
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 750027279923410660
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 620.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "18"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Icon",
+      "game_object": "7358782814494389988",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7358782814494389988
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -2447303999265442076
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (3)/Image_Active",
+      "game_object": "-1556088372862060828",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1556088372862060828
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2644031706714994404
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星大"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectActiveEffect/Image_SelectActive (1)",
+      "game_object": "-1340348551387744540",
+      "active": false,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1340348551387744540
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2325626346069817060
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.611907958984375,
+          "y": 0.105499267578125
+        },
+        "m_SizeDelta": {
+          "x": 27.223796844482422,
+          "y": 27.012901306152344
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 1,
+      "sprite": "选择高亮"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Image_RareFg",
+      "game_object": "-6048336576463636764",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6048336576463636764
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 7511558930898745060
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 23.999996185302734
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "slotfg_rare_square_1_v2"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_StarMark/StarMarkBg",
+      "game_object": "-425591915175807260",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -425591915175807260
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -2062025287611058460
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1645333458496719132
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 70.0,
+          "y": 70.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "AwakenSkillBg_1"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Lock/Image_Lock",
+      "game_object": "8731387541979526884",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8731387541979526884
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -5886611050139289884
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 73.0,
+          "y": 84.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "锁"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star/Image_Inactive",
+      "game_object": "6540728769860794084",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6540728769860794084
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -4855915145783216412
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星底"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Image_Bg",
+      "game_object": "7209596840808019684",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7209596840808019684
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.9823200106620789,
+          "y": 0.9823200106620789,
+          "z": 0.9823200106620789
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.9339622855186462,
+        "g": 0.9124855399131775,
+        "b": 0.8766909837722778,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-白圆角矩形"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star/Image_Active",
+      "game_object": "-230037749466073372",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -230037749466073372
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -4855915145783216412
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星大"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (3)/Image_Inactive",
+      "game_object": "5773374433103836900",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5773374433103836900
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2644031706714994404
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星底"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (2)/Image_Inactive",
+      "game_object": "-7732747524806215964",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7732747524806215964
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8397548145480693476
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星底"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectActiveEffect/Image_SelectActive",
+      "game_object": "1599685958964279012",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1599685958964279012
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2325626346069817060
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.611907958984375,
+          "y": 2.3552000522613525
+        },
+        "m_SizeDelta": {
+          "x": 28.93600082397461,
+          "y": 27.01289939880371
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 1,
+      "sprite": "选择高亮"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount/Btn_Reduce/Image_ClickRange",
+      "game_object": "-6939862994583030044",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6939862994583030044
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 680948267446433508
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -4.210000038146973,
+          "y": -4.099999904632568
+        },
+        "m_SizeDelta": {
+          "x": 17.032577514648438,
+          "y": 11.782157897949219
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount/Btn_Reduce",
+      "game_object": "-6659542632642119964",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6659542632642119964
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6888723671259281124
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2436752659185137380
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -14.600000381469727,
+          "y": -13.399999618530273
+        },
+        "m_SizeDelta": {
+          "x": 42.0,
+          "y": 44.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "减号按钮"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Image_BottonBg",
+      "game_object": "5494467232775861988",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5494467232775861988
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -1629143813454432540
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3048115006011869468
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.09803922474384308,
+        "g": 0.08235294371843338,
+        "b": 0.07058823853731155,
+        "a": 0.9019607901573181
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (4)/Image_Inactive",
+      "game_object": "2547380744896706276",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2547380744896706276
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 6453419169615312612
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星底"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Image_Bg (1)",
+      "game_object": "-4201888689506289948",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -4201888689506289948
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0264999866485596,
+          "y": 1.0264999866485596,
+          "z": 1.0264999866485596
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.49298095703125,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -7.132400035858154,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.6698113083839417,
+        "g": 0.6698113083839417,
+        "b": 0.6698113083839417,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-暗圆角矩形"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_AddIcon",
+      "game_object": "2291125294765176548",
+      "active": false,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2291125294765176548
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 131.49009704589844,
+          "y": 131.49009704589844
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "icon_addnum"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectIndex/Image_SelectIndex",
+      "game_object": "-2479088773637671196",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2479088773637671196
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7708379834215233252
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.1766197830438614,
+        "g": 0.35745325684547424,
+        "b": 0.5943396091461182,
+        "a": 0.5372549295425415
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "sprite_rect_128x128"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (1)/Image_Active",
+      "game_object": "916014435260561124",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 916014435260561124
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3092287631008986852
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星大"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (2)/Image_Active",
+      "game_object": "8870674100590278372",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8870674100590278372
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8397548145480693476
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星大"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Info/Image_TextInfoBg",
+      "game_object": "-7760388744877050140",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7760388744877050140
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3861674015754024676
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "24"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Image_Bg2",
+      "game_object": "973647874734814948",
+      "active": false,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 973647874734814948
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 136.734375,
+          "y": -3.48870849609375
+        },
+        "m_SizeDelta": {
+          "x": -376.6517028808594,
+          "y": -108.44760131835938
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.48235294222831726
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "商店存储选项_底(未激活)"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_StarMark/StarMarkBg/Image_StarMark",
+      "game_object": "5279058578771277540",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5279058578771277540
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2657001723789833956
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 80.0,
+          "y": 80.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 0.9055081009864807,
+        "b": 0.5235849022865295,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "白星标"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Lock",
+      "game_object": "-2754999130906102044",
+      "active": false,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2754999130906102044
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -3956095724419483932
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.41680908203125,
+          "y": 1.5727996826171875
+        },
+        "m_SizeDelta": {
+          "x": 11.391900062561035,
+          "y": 9.635700225830078
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.3490196168422699
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "锁定遮罩"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (4)/Image_Active",
+      "game_object": "1306241859921639140",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1306241859921639140
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 6453419169615312612
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "星星大"
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Icon/Image_Icon",
+      "game_object": "8449350543522461412",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8449350543522461412
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 9218903336163145444
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "sprite_attackicon_300033"
+    }
+  ],
+  "texts": [
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectIndex/Text_SelectIndex",
+      "text": "1",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6434361483915626780
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7708379834215233252
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 118.517822265625,
+          "y": 108.96142578125
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 60.0
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/Text_SkillName/Text_Localization",
+      "text": "剑术精通",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2034210359697274596
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -21.414974212646484
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5828626392678921956
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 32.0
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Image_BottonBg/Text_ClickCloseTips/Text_Localization",
+      "text": "点击空白处关闭",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5827918356805847324
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -21.414974212646484
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1629143813454432540
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 35.0
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten/Text_LevelDescription",
+      "text": "等级2： 使用小技能额外恢复7点大技能SP，使用大技能使小技能的冷却时间减少。\n等级2： 使用小技能额外恢复7点大技能SP，使用大技能使小技能的冷却时间减少。\n等级2： 使用小技能额外恢复7点大技能SP，使用大技能使小技能的冷却时间减少。",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3610722896531289828
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 750027279923410660
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 615.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 30.0
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount/Text_SelectCount",
+      "text": "8",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3115453583430448868
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2436752659185137380
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 24.700000762939453,
+          "y": -19.34000015258789
+        },
+        "m_SizeDelta": {
+          "x": 51.184814453125,
+          "y": 41.66796875
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 29.75
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten/Text_EffectDescription",
+      "text": "使用小技能时恢复大技能SP，使用大技能时减少小技能冷却",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4796630143454738148
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 750027279923410660
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 615.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 30.0
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/Text_Lv",
+      "text": "等级 1",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1780860310940284644
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3623242199986604316
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 149.89999389648438,
+          "y": -349.1000061035156
+        },
+        "m_SizeDelta": {
+          "x": 360.0299987792969,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "font_size": 30.0
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Info/Text_BottomInfo",
+      "text": "10",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6382762414345811684
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3861674015754024676
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      },
+      "font_size": 30.0
+    }
+  ],
+  "controller": [],
+  "sprites": [
+    {
+      "name": "星星底",
+      "path": "res://assets/ui/talent_view/detail/____db6e5bd6e3.png",
+      "sprite_path_id": "-2772862117838662624",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 24,
+      "height": 24,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "dd19a5a0c3905816165f8445505fedd1dd74dcd85ae1f019f5e4c6952debe730"
+    },
+    {
+      "name": "18",
+      "path": "res://assets/ui/talent_view/detail/18.png",
+      "sprite_path_id": "-742374628967678081",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 52,
+      "height": 4,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "942a3f44caf4ebecdede3a976170280adc97e9812bd40be7aacbb63a285d896c"
+    },
+    {
+      "name": "星星大",
+      "path": "res://assets/ui/talent_view/detail/____d1b367e11c.png",
+      "sprite_path_id": "-814199833485362129",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 50,
+      "height": 47,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "80ca89571820afb240f77a814f60a9ce420533c9b661bd5ff55329ba8257c8e2"
+    },
+    {
+      "name": "选择高亮",
+      "path": "res://assets/ui/talent_view/detail/_____8efb0fde4e.png",
+      "sprite_path_id": "-495095694787399995",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 68,
+      "height": 68,
+      "border": {
+        "x": 34.0,
+        "y": 34.0,
+        "z": 34.0,
+        "w": 34.0
+      },
+      "png_sha256": "55a4c26025a481768918b2b33f150438542010d4ac8855ee612bfe5db418e069"
+    },
+    {
+      "name": "slotfg_rare_square_1_v2",
+      "path": "res://assets/ui/talent_view/detail/slotfg_rare_square_1_v2.png",
+      "sprite_path_id": "-6259846521885095785",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/85405f110074a3b101657bdb61c1d6db.bundle",
+        "sha256": "a323a3191169a5ac8988ad8f182858d6ffcec9e30fcba6403d60580b3981b5e1"
+      },
+      "width": 63,
+      "height": 64,
+      "border": {
+        "x": 31.70063591003418,
+        "y": 32.0,
+        "z": 31.299362182617188,
+        "w": 32.0
+      },
+      "png_sha256": "ea25eb974cf764e25759aaf26017256dd9608112741bef921f9d6d4e76bbe711"
+    },
+    {
+      "name": "AwakenSkillBg_1",
+      "path": "res://assets/ui/talent_view/detail/AwakenSkillBg_1.png",
+      "sprite_path_id": "3839955108537925876",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 125,
+      "height": 126,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "7473d0fdf4409bdb562d7fd69c707027af9b869a38a8ce24c31789cc31b26d40"
+    },
+    {
+      "name": "锁",
+      "path": "res://assets/ui/talent_view/detail/__4f62f920d6.png",
+      "sprite_path_id": "-7779187746478388713",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 41,
+      "height": 49,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "3fb84b5a85985397eda324f9b51823ce209cc82cee9db5b8e21502625b4d358f"
+    },
+    {
+      "name": "几何ui-白圆角矩形",
+      "path": "res://assets/ui/talent_view/detail/__ui-______083f833001.png",
+      "sprite_path_id": "6661574081893680522",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 108,
+      "height": 108,
+      "border": {
+        "x": 38.0,
+        "y": 40.0,
+        "z": 38.0,
+        "w": 38.0
+      },
+      "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+    },
+    {
+      "name": "减号按钮",
+      "path": "res://assets/ui/talent_view/detail/_____54b659420f.png",
+      "sprite_path_id": "-2453844321401970427",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "width": 42,
+      "height": 44,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "65ed6919ed6c49f78e047df66ba7a874b61cf5bca8c84db1b21979baeaab13ed"
+    },
+    {
+      "name": "几何ui-暗圆角矩形",
+      "path": "res://assets/ui/talent_view/detail/__ui-______b937919bba.png",
+      "sprite_path_id": "-5329703775576750254",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 108,
+      "height": 108,
+      "border": {
+        "x": 38.0,
+        "y": 39.0,
+        "z": 38.0,
+        "w": 39.0
+      },
+      "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+    },
+    {
+      "name": "icon_addnum",
+      "path": "res://assets/ui/talent_view/detail/icon_addnum.png",
+      "sprite_path_id": "-1575747556048610155",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 40,
+      "height": 40,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "48eb7cd4c25eef2504ab06ffccb3b0d5788312021cc42ee0cbc5b181447ab564"
+    },
+    {
+      "name": "sprite_rect_128x128",
+      "path": "res://assets/ui/talent_view/detail/sprite_rect_128x128.png",
+      "sprite_path_id": "3483957996699903255",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+        "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+      },
+      "width": 128,
+      "height": 128,
+      "border": {
+        "x": 13.0,
+        "y": 13.0,
+        "z": 13.0,
+        "w": 13.0
+      },
+      "png_sha256": "77085affe7ed4ae748996e56e57aec088d5b4a996a3060829b41925cc8383fcc"
+    },
+    {
+      "name": "24",
+      "path": "res://assets/ui/talent_view/detail/24.png",
+      "sprite_path_id": "5985676854447024116",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 145,
+      "height": 30,
+      "border": {
+        "x": 40.0,
+        "y": 20.0,
+        "z": 40.0,
+        "w": 5.0
+      },
+      "png_sha256": "9ab8cf6f9f3fbdf02ca35bd227ab20d9def27c9ee0f3c78e5e5d8f06fd35643b"
+    },
+    {
+      "name": "商店存储选项_底(未激活)",
+      "path": "res://assets/ui/talent_view/detail/______________46114c9a95.png",
+      "sprite_path_id": "-4251049369206980729",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 152,
+      "height": 144,
+      "border": {
+        "x": 76.0,
+        "y": 72.0,
+        "z": 76.0,
+        "w": 72.0
+      },
+      "png_sha256": "2beb4f206ac631369bb18a001fb316b22508246c8bc4d59fe5c78976bce17afd"
+    },
+    {
+      "name": "白星标",
+      "path": "res://assets/ui/talent_view/detail/____45d48c752b.png",
+      "sprite_path_id": "-347511828128864971",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+        "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+      },
+      "width": 38,
+      "height": 38,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "8699c7d9416095c140cd356e50cca62a8b6d0006700a47d9e89b784591193c44"
+    },
+    {
+      "name": "锁定遮罩",
+      "path": "res://assets/ui/talent_view/detail/_____c317ca9908.png",
+      "sprite_path_id": "918722314435250836",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 145,
+      "height": 145,
+      "border": {
+        "x": 73.0,
+        "y": 72.0,
+        "z": 72.0,
+        "w": 73.0
+      },
+      "png_sha256": "e9018db60457de8ec82fb160b917594540512dab2aba5a6f634bddecaa633dae"
+    },
+    {
+      "name": "sprite_attackicon_300033",
+      "path": "res://assets/ui/talent_view/detail/sprite_attackicon_300033.png",
+      "sprite_path_id": "-3686439076997110730",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "width": 112,
+      "height": 118,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "59b4146cce65c2fc9656817c79e6ca71dd713761d99fcba3a6b12f4d4e7f07fc"
+    }
+  ],
+  "transforms": [
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (1)/Image_Inactive",
+      "path_id": "-8748670983266437404",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4200031862860281572
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3092287631008986852
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Info/Text_BottomInfo",
+      "path_id": "-8564727368959658268",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6382762414345811684
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3861674015754024676
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Image_RareFg",
+      "path_id": "-8475301594253822236",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6048336576463636764
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 7511558930898745060
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 23.999996185302734
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Image_Bg2",
+      "path_id": "-8288165280515361052",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 973647874734814948
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 136.734375,
+          "y": -3.48870849609375
+        },
+        "m_SizeDelta": {
+          "x": -376.6517028808594,
+          "y": -108.44760131835938
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectActiveEffect/Image_SelectActive",
+      "path_id": "-7889556825907792156",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1599685958964279012
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2325626346069817060
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.611907958984375,
+          "y": 2.3552000522613525
+        },
+        "m_SizeDelta": {
+          "x": 28.93600082397461,
+          "y": 27.01289939880371
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right",
+      "path_id": "-7880163370351135004",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8794294054450231012
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 7264131196297803492
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4738187737839433444
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -360.0,
+          "y": -14.045999526977539
+        },
+        "m_SizeDelta": {
+          "x": 675.0,
+          "y": -41.909000396728516
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_AddIcon",
+      "path_id": "-7453623390285138204",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2291125294765176548
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 131.49009704589844,
+          "y": 131.49009704589844
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount/Text_SelectCount",
+      "path_id": "-7004103534846216476",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3115453583430448868
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2436752659185137380
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 24.700000762939453,
+          "y": -19.34000015258789
+        },
+        "m_SizeDelta": {
+          "x": 51.184814453125,
+          "y": 41.66796875
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectIndex/Text_SelectIndex",
+      "path_id": "-6536244551295306012",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6434361483915626780
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7708379834215233252
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 118.517822265625,
+          "y": 108.96142578125
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectIndex/Image_SelectIndex",
+      "path_id": "-6131952505579440412",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2479088773637671196
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7708379834215233252
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Lock",
+      "path_id": "-5886611050139289884",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2754999130906102044
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -3956095724419483932
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.41680908203125,
+          "y": 1.5727996826171875
+        },
+        "m_SizeDelta": {
+          "x": 11.391900062561035,
+          "y": 9.635700225830078
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star",
+      "path_id": "-4855915145783216412",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7007592670980077284
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 899257677282735844
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6492194021922698980
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1040820112085481188
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 40.168914794921875,
+          "y": -12.94287109375
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 24.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Lock/Image_Lock",
+      "path_id": "-3956095724419483932",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8731387541979526884
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -5886611050139289884
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 73.0,
+          "y": 84.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left",
+      "path_id": "-3623242199986604316",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8402151599396817180
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 4433574160880957156
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 5828626392678921956
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6430687364888262372
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4738187737839433444
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 163.5810546875,
+          "y": -6.72509765625
+        },
+        "m_SizeDelta": {
+          "x": 345.7738952636719,
+          "y": -27.267900466918945
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/Text_SkillName/Text_Localization",
+      "path_id": "-3226235055856748828",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2034210359697274596
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -21.414974212646484
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5828626392678921956
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Image_Bg",
+      "path_id": "-3125224546551662876",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7209596840808019684
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.9823200106620789,
+          "y": 0.9823200106620789,
+          "z": 0.9823200106620789
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (4)/Image_Inactive",
+      "path_id": "-3086878535649003804",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2547380744896706276
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 6453419169615312612
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail",
+      "path_id": "-3048115006011869468",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8524577943643687196
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 4263961427955545828
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1294889528300730084
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 3245940931273094884
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 0
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Icon/Image_Icon",
+      "path_id": "-2447303999265442076",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8449350543522461412
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 9218903336163145444
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_StarMark/StarMarkBg/Image_StarMark",
+      "path_id": "-2062025287611058460",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5279058578771277540
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2657001723789833956
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 80.0,
+          "y": 80.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_StarMark",
+      "path_id": "-1645333458496719132",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2177342424018520348
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 2657001723789833956
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -3.0999984741210938,
+          "y": -3.8000030517578125
+        },
+        "m_SizeDelta": {
+          "x": 67.49330139160156,
+          "y": 67.49330139160156
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Image_BottonBg/Text_ClickCloseTips",
+      "path_id": "-1629143813454432540",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7572929297344039196
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 1250370214037747428
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4263961427955545828
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -485.0
+        },
+        "m_SizeDelta": {
+          "x": 515.04541015625,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click",
+      "path_id": "-1179402739862145308",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2302105834946885348
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -8475301594253822236
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 9218903336163145444
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -7453623390285138204
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 3861674015754024676
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 7708379834215233252
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2325626346069817060
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2436752659185137380
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -5886611050139289884
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1040820112085481188
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -1645333458496719132
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4792357816498124516
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (2)/Image_Active",
+      "path_id": "-333093368305289500",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8870674100590278372
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8397548145480693476
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten/Text_EffectDescription",
+      "path_id": "103261931243828964",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4796630143454738148
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 750027279923410660
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 615.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Info/Image_TextInfoBg",
+      "path_id": "329118103691130596",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7760388744877050140
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3861674015754024676
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount/Btn_Reduce",
+      "path_id": "680948267446433508",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6659542632642119964
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6888723671259281124
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2436752659185137380
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -14.600000381469727,
+          "y": -13.399999618530273
+        },
+        "m_SizeDelta": {
+          "x": 42.0,
+          "y": 44.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten",
+      "path_id": "750027279923410660",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1123277124373444324
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 103261931243828964
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 5210152580281071332
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 7008554505628546788
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7264131196297803492
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star/Image_Inactive",
+      "path_id": "899257677282735844",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6540728769860794084
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -4855915145783216412
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star",
+      "path_id": "1040820112085481188",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 876884258414917348
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.5
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -4855915145783216412
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 3092287631008986852
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 8397548145480693476
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2644031706714994404
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6453419169615312612
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": -1.1904761791229248,
+          "y": -2.5999999046325684
+        },
+        "m_SizeDelta": {
+          "x": 148.33782958984375,
+          "y": 24.94287109375
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Image_BottonBg/Text_ClickCloseTips/Text_Localization",
+      "path_id": "1250370214037747428",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5827918356805847324
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -21.414974212646484
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1629143813454432540
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container",
+      "path_id": "1294889528300730084",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -9200689547738024220
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 5437971985841190628
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -3125224546551662876
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8288165280515361052
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 4738187737839433444
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3048115006011869468
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 11.80459976196289,
+          "y": 10.445799827575684
+        },
+        "m_SizeDelta": {
+          "x": 1054.440673828125,
+          "y": 747.5150756835938
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (3)/Image_Active",
+      "path_id": "1488829487632611044",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1556088372862060828
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2644031706714994404
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (2)/Image_Inactive",
+      "path_id": "2069960136771827428",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7732747524806215964
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8397548145480693476
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectActiveEffect",
+      "path_id": "2325626346069817060",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2940736006459225828
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.100000023841858,
+          "y": 1.100000023841858,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -7889556825907792156
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 5858277696096958180
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount",
+      "path_id": "2436752659185137380",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4071287666379126500
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -7004103534846216476
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 680948267446433508
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (3)",
+      "path_id": "2644031706714994404",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3353184461855717092
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 3421067167914850020
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1488829487632611044
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1040820112085481188
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 91.16891479492188,
+          "y": -12.94287109375
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 24.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_StarMark/StarMarkBg",
+      "path_id": "2657001723789833956",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -425591915175807260
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -2062025287611058460
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1645333458496719132
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 70.0,
+          "y": 70.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (1)",
+      "path_id": "3092287631008986852",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1069931585139832548
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -8748670983266437404
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6968898347910690532
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1040820112085481188
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 57.168914794921875,
+          "y": -12.94287109375
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 24.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container_Audio",
+      "path_id": "3245940931273094884",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2215206502419003108
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": -50.15478515625,
+          "y": 33.190673828125,
+          "z": 5.811736583709717
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 8162262604396623588
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3048115006011869468
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (3)/Image_Inactive",
+      "path_id": "3421067167914850020",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5773374433103836900
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2644031706714994404
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.3600006103515625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.2777999937534332,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Info",
+      "path_id": "3861674015754024676",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 684802000578082532
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 329118103691130596
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8564727368959658268
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.5,
+          "y": -51.50025177001953
+        },
+        "m_SizeDelta": {
+          "x": 11.0,
+          "y": -97.00050354003906
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Image_BottonBg",
+      "path_id": "4263961427955545828",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5494467232775861988
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -1629143813454432540
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3048115006011869468
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square",
+      "path_id": "4433574160880957156",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -889641498880772380
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.9988572001457214,
+          "y": 0.9988572001457214,
+          "z": 0.8055300116539001
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 4792357816498124516
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3623242199986604316
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -23.0,
+          "y": -126.5999984741211
+        },
+        "m_SizeDelta": {
+          "x": 144.0,
+          "y": 144.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail",
+      "path_id": "4738187737839433444",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3742891837454879004
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -3623242199986604316
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -7880163370351135004
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 7.59600830078125,
+          "y": 14.487000465393066
+        },
+        "m_SizeDelta": {
+          "x": -79.81999969482422,
+          "y": -72.49500274658203
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active",
+      "path_id": "4792357816498124516",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1292484942299728156
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -1179402739862145308
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 4433574160880957156
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten/Image_SplittLine",
+      "path_id": "5210152580281071332",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3090274849987163876
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 750027279923410660
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 620.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Image_Bg (1)",
+      "path_id": "5437971985841190628",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -4201888689506289948
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0264999866485596,
+          "y": 1.0264999866485596,
+          "z": 1.0264999866485596
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1294889528300730084
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.49298095703125,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -7.132400035858154,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/Text_SkillName",
+      "path_id": "5828626392678921956",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -4024507032017373468
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -3226235055856748828
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3623242199986604316
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 150.0,
+          "y": -243.8000030517578
+        },
+        "m_SizeDelta": {
+          "x": 228.4134979248047,
+          "y": 67.30000305175781
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectActiveEffect/Image_SelectActive (1)",
+      "path_id": "5858277696096958180",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1340348551387744540
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2325626346069817060
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.611907958984375,
+          "y": 0.105499267578125
+        },
+        "m_SizeDelta": {
+          "x": 27.223796844482422,
+          "y": 27.012901306152344
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/Text_Lv",
+      "path_id": "6430687364888262372",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1780860310940284644
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -3623242199986604316
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 149.89999389648438,
+          "y": -349.1000061035156
+        },
+        "m_SizeDelta": {
+          "x": 360.0299987792969,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (4)",
+      "path_id": "6453419169615312612",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8923632563255375588
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -3086878535649003804
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 8082568889498859236
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1040820112085481188
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 108.16891479492188,
+          "y": -12.94287109375
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 24.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star/Image_Active",
+      "path_id": "6492194021922698980",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -230037749466073372
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -4855915145783216412
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectCount/Btn_Reduce/Image_ClickRange",
+      "path_id": "6888723671259281124",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6939862994583030044
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 680948267446433508
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -4.210000038146973,
+          "y": -4.099999904632568
+        },
+        "m_SizeDelta": {
+          "x": 17.032577514648438,
+          "y": 11.782157897949219
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (1)/Image_Active",
+      "path_id": "6968898347910690532",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 916014435260561124
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3092287631008986852
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport/Conten/Text_LevelDescription",
+      "path_id": "7008554505628546788",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3610722896531289828
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 750027279923410660
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 615.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Right/Viewport",
+      "path_id": "7264131196297803492",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -7820800295929121052
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 750027279923410660
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7880163370351135004
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -40.0,
+          "y": -40.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Image_RareFg/Container_FxRareBg",
+      "path_id": "7511558930898745060",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4365604783149545188
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8475301594253822236
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_SelectIndex",
+      "path_id": "7708379834215233252",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2017938453512980764
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -6131952505579440412
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -6536244551295306012
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_SizeDelta": {
+          "x": 8.0,
+          "y": 6.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (4)/Image_Active",
+      "path_id": "8082568889498859236",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 1306241859921639140
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 6453419169615312612
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container_Audio/audio_ui_turnpage",
+      "path_id": "8162262604396623588",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -95309993656846620
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3245940931273094884
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Star/ATSlot_Star (2)",
+      "path_id": "8397548145480693476",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 720073420002686692
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 2069960136771827428
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -333093368305289500
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1040820112085481188
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 74.16891479492188,
+          "y": -12.94287109375
+        },
+        "m_SizeDelta": {
+          "x": 24.0,
+          "y": 24.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_CharTalentDetail/Container/Detail/Box_Left/ATSlot_Item_Square/Anim_Active/Anim_Click/Box_Icon",
+      "path_id": "9218903336163145444",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7358782814494389988
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -2447303999265442076
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1179402739862145308
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "limit": "Serialized initial prefab. Runtime texts and enabled states can differ. Unity coordinates use upward positive Y."
+}

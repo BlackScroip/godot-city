@@ -1,0 +1,4 @@
+{
+  "篝火餐厅等级达到1": "Le restaurant du feu de camp atteint le niveau 1.",
+  "每层<#specinfo=anshi>效果将累积<color=#a358ff>【侵蚀符文】</color>：<#specinfo=anshi>效果结束或<color=#a358ff>【侵蚀符文】</color>层数足够时会根据累积层数造成爆发伤害。": "Chaque cumul d'Érosion sombre accumule des Runes d'érosion. À la fin de l'effet d'Érosion sombre ou quand le nombre de Runes d'érosion est suffisant, une explosion inflige des dégâts en fonction du nombre de cumuls accumulés."
+}

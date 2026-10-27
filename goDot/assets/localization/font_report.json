@@ -1,0 +1,63 @@
+{
+	"allow_system_fallback": false,
+	"fonts": [
+		"default.otf",
+		"NotoSansKR.ttf",
+		"NotoSansThai.ttf"
+	],
+	"korean_weight": 400,
+	"locales": {
+		"de": {
+			"codepoints": 104,
+			"missing": []
+		},
+		"en": {
+			"codepoints": 108,
+			"missing": []
+		},
+		"es": {
+			"codepoints": 106,
+			"missing": []
+		},
+		"fr": {
+			"codepoints": 112,
+			"missing": []
+		},
+		"id": {
+			"codepoints": 96,
+			"missing": []
+		},
+		"ja": {
+			"codepoints": 1995,
+			"missing": []
+		},
+		"ko": {
+			"codepoints": 1113,
+			"missing": []
+		},
+		"pt": {
+			"codepoints": 113,
+			"missing": []
+		},
+		"ru": {
+			"codepoints": 153,
+			"missing": []
+		},
+		"th": {
+			"codepoints": 161,
+			"missing": []
+		},
+		"vi": {
+			"codepoints": 176,
+			"missing": []
+		},
+		"zh_CN": {
+			"codepoints": 2395,
+			"missing": []
+		},
+		"zh_TW": {
+			"codepoints": 2452,
+			"missing": []
+		}
+	}
+}

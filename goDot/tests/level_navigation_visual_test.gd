@@ -79,7 +79,9 @@ func _run() -> void:
 	game.hud.action.emit("confirm_retreat", 0, 0)
 	game.hud.action.emit("result_next", 0, 0)
 	game.hud.action.emit("result_camp", 0, 0)
-	await process_frame
+	deadline = Time.get_ticks_msec() + 60000
+	while game._transitioning and Time.get_ticks_msec() < deadline: await process_frame
+	check(not game._transitioning and not game.room_loading.visible, "Return waits for camp loading to finish")
 	check(not game.profile.data.run.active and not game.hud.adventure_mode, "Settings return action restores camp")
 	check(game.hud.navigation.get_children().filter(func(key): return key.visible).size() == 3, "Retreat restores initial camp commands without unlocking victory entries")
 	game.queue_free()

@@ -24,6 +24,7 @@ SELECTION = {
     "RegionSlotData": ["get_IsDataReady()"],
     "RogueRunManager": ["StartRegionRouteRun("],
     "RogueRoomManager": ["AdvanceRegionRoute("],
+    "RoadMapData": ["GetActivatingNode()", "<GetActivatingNode>b__0("],
 }
 
 

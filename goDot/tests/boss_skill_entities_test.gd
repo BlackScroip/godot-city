@@ -1,13 +1,28 @@
 extends "res://tests/spirit_world_abilities_test.gd"
 
+class EntityPresentation extends "res://scripts/presentation/combat_presentation.gd":
+	var creations: Array = []
+	var activations: Array = []
+	func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3, facing := Vector3.ZERO) -> void:
+		creations.append({"position": origin, "facing": facing})
+		super.attack_emitted(actor, hit, origin, facing)
+	func entity_activated(actor: DungeonActor, hit: Dictionary, origin: Vector3, facing := Vector3.ZERO) -> void:
+		activations.append({"position": origin, "facing": facing})
+		super.entity_activated(actor, hit, origin, facing)
+
 func _run() -> void:
 	world = ObservedWorld.new()
 	root.add_child(world)
+	world.presentation.queue_free()
+	world.presentation = EntityPresentation.new()
+	world.add_child(world.presentation)
+	world.presentation.configure(world.catalog)
 	world.set_process(false)
 	world.set_physics_process(false)
 	world.presentation.set_process(false)
 	world.presentation.audio_enabled = false
 	_delay_and_restore()
+	_offset_field()
 	_continuous_field()
 	_physical_delay()
 	_end_summon()
@@ -37,7 +52,7 @@ func _boss(id: int, action: String, select: Callable) -> Dictionary:
 			var point = world._hit_origin(boss, event)
 			var emit: Dictionary = raw.get("EmitProperty", {})
 			var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
-			var offset = DungeonWorld.vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * (DungeonWorld.vector(emit.get("AfterRotateEmitOffset", {})) + Vector3(0, 0, float(hit.get("offset", 0))))
+			var offset = DungeonWorld.vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * DungeonWorld.vector(emit.get("AfterRotateEmitOffset", {}))
 			var center: Vector3 = point + DungeonProjectile.orient(offset, boss.facing)
 			world.player.position = center
 			world._consume(boss, event)
@@ -49,6 +64,7 @@ func _delay_and_restore() -> void:
 	var test := _boss(52001, "attack5", func(raw): return raw.get("EntityType", "") == "EET_FrameFan" and float(raw.get("EntityProperty", {}).get("Delay", 0)) == 1.0)
 	if test.is_empty(): return
 	_check(world.impacts.is_empty() and world.pending_attack_entities.size() == 1, "Chimera range creates its telegraph without early damage")
+	_check(world.presentation.creations.back().position.is_equal_approx(test.center), "Creation effect uses the emitted range center")
 	world._tick_attack_entities(0.4)
 	var saved: Dictionary = JSON.parse_string(JSON.stringify(world.transient_snapshot()))
 	test.boss.position += Vector3(30, 0, 30)
@@ -60,6 +76,9 @@ func _delay_and_restore() -> void:
 	world._tick_attack_entities(0.001)
 	_check(world.impacts.size() == 1 and world.player.combat.health < world.player.combat.max_health, "Chimera damage begins at its source one-second delay")
 	_check(world.presentation.spawned > before, "Chimera delayed activation emits its exact source effect")
+	_check(world.presentation.activations.back().position.is_equal_approx(test.center), "Delayed effect shares the actual range emission center")
+	var yaw = deg_to_rad(float(test.raw.get("EmitProperty", {}).get("EmitRotation", {}).get("y", 0)))
+	_check(world.presentation.activations.back().facing.is_equal_approx(Vector3.BACK.rotated(Vector3.UP, yaw)), "Delayed effect retains the emitted range orientation after caster turns")
 	_check(world.impacts.size() == 1 and DungeonWorld.vector(world.impacts[0].origin).is_equal_approx(test.center), "Moving the caster does not move an already emitted field")
 	world._tick_attack_entities(0.05)
 	_check(world.impacts.size() == 1, "Noncontinuous CheckTime does not repeatedly damage an existing target")
@@ -70,6 +89,17 @@ func _delay_and_restore() -> void:
 	world._tick_attack_entities(0.05)
 	_check(world.active_attack_entities.is_empty(), "The Chimera field ends after its configured CheckTime")
 	rows.append({"case": "chimera_delay_restore", "contacts": world.impacts.size(), "center": str(test.center)})
+
+func _offset_field() -> void:
+	var test := _boss(52001, "attack6", func(raw): return raw.get("EntityType", "").begins_with("EET_Frame") and float(raw.get("EntityProperty", {}).get("Delay", 0)) == 2.0)
+	if test.is_empty(): return
+	_check(is_equal_approx(test.center.length(), 8.39999961853027) and world.presentation.creations.back().position.is_equal_approx(test.center), "Chimera offset-field creation effect applies the source8.4-meter emission offset exactly once")
+	test.boss.position += Vector3(30, 0, 30)
+	test.boss.face_direction(Vector3.LEFT)
+	world._tick_attack_entities(2.0)
+	_check(world.presentation.activations.back().position.is_equal_approx(test.center), "Offset-field delayed effect remains at the emitted entity rather than its moved caster")
+	_check(world.impacts.size() == 1 and DungeonWorld.vector(world.impacts[0].origin).is_equal_approx(test.center), "Offset-field visual origin and actual damage origin agree")
+	rows.append({"case": "chimera_offset_field", "center": str(test.center), "contacts": world.impacts.size()})
 
 func _continuous_field() -> void:
 	var test := _boss(13001, "attack5", func(raw): return bool(raw.get("EntityProperty", {}).get("CheckTimeCauseContinuousTrigger", false)))
@@ -96,6 +126,8 @@ func _physical_delay() -> void:
 	_check(world.projectiles.is_empty(), "Physical entity retains its complete source delay")
 	world._tick_attack_entities(0.001)
 	_check(world.projectiles.size() == 1 and world.pending_attack_entities.is_empty(), "Physical entity enters the real projectile simulation once at activation")
+	_check(world.presentation.activations.back().position.is_equal_approx(world.projectiles[0].state.position), "Physical delayed effect includes the real projectile's emission offsets and owner height")
+	_check(world.presentation.activations.back().facing.is_equal_approx(world.projectiles[0].state.direction), "Physical delayed effect uses the actual projectile direction")
 	rows.append({"case": "death_physical", "delay": delay, "projectiles": world.projectiles.size()})
 
 func _end_summon() -> void:

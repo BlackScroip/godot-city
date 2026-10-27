@@ -44,6 +44,7 @@ const normalize = row => {
     EnemyIds: attributes.EnemyIdList ?? [], ForcedSpawns: forced,
     FightType: attributes.FightType ?? '', FightData: attributes.FightData ?? {},
     ...(row.Type === 14 ? {TrialData: attributes} : {}),
+    ...(row.Type === 5 ? {TreasureBoxType: attributes.TreasureBoxType ?? 'Normal'} : {}),
     EnemyClass: attributes.RoomEnemyType ?? '', FinalBoss: attributes.IsFinalBoss ?? false,
     Lighting: attributes.EnableLightSettingOverrideFileName ?? '', Music: attributes.BGMPrefabName ?? '',
     TalkGroup: row.SimpleTalkGroupId ?? 0, TalkDelay: row.SimpleTalkDelayTime ?? 0,

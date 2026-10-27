@@ -1,0 +1,14 @@
+[
+  {
+    "address": "GuideData",
+    "member": "assets/yoo/DefaultPackage/9688f7e4f49c90ce4119c9758d061ae5.bundle",
+    "bundle_sha256": "7e7b2b9cf5f01ae13c870b0e8b8540d682caca51a378a3e13a08ca499370c45e",
+    "data_sha256": "b96e72883a99a909ba1c36d66467d0cd0d9992e7813e724578756bf708c8bdb7"
+  },
+  {
+    "address": "LocalizationData_GuideData",
+    "member": "assets/yoo/DefaultPackage/a7d7949515aafd1a396c749494a81b7c.bundle",
+    "bundle_sha256": "a6f2692efc711f82b837c1f656d5a54672292e6c65d922afada74f5e9b7c5781",
+    "data_sha256": "38c04fbe96a0e64c020f7ccab8302346ae910e9ab70af5a4009390e981a81650"
+  }
+]

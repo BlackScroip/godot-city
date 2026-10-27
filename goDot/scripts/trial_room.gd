@@ -13,6 +13,8 @@ func configure(source, route) -> void:
 	campaign = route
 	var status: Dictionary = campaign.trial_status()
 	center = world.interactions.setup_trial_chests(float(status.get("side_offset", 2.5)))
+	var props = world.environment_root.get_node_or_null("RoomProps")
+	if props != null: props.refresh_chests()
 	if not center.is_finite(): center = world.player.position + Vector3(0, 0, 5)
 	sync()
 

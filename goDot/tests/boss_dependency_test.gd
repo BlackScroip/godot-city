@@ -10,6 +10,11 @@ func _initialize() -> void:
 	_run.call_deferred()
 
 func _run() -> void:
+	var combat_script: Script = load("res://scripts/domain/combat.gd")
+	if combat_script == null or not combat_script.can_instantiate():
+		_check(false, "Combat dependency compiles and can instantiate")
+		_finish()
+		return
 	var audit_path = "res://reports/boss-ability-source.json"
 	if not FileAccess.file_exists(audit_path):
 		_check(false, "Run tools/audit_boss_abilities.py before the dependency smoke test")
@@ -22,6 +27,10 @@ func _run() -> void:
 		_check(ids.get("damage", []).size() == 74, "All 74 fresh-source Boss damage definitions are enumerated")
 		for id in ids.get("buff", []): _buff_case(str(id))
 		for id in ids.get("summon", []): _summon_case(str(id))
+	_check(cases.size() == 216, "All 216 dependency cases complete")
+	_finish()
+
+func _finish() -> void:
 	var report = {"passed": failures.is_empty(), "checks": checks, "failures": failures, "cases": cases,
 		"scope": "Each of the complete fresh-source Boss closure's 82 buffs and 134 summons is individually initialized in the Godot domain and advanced two seconds. Buff cases also receive representative injured/action/message notifications. Hit payloads are checked for finite nonnegative damage. Static-range world-adapter dispatch is retained explicitly. This is initialization/dispatch smoke coverage, not every condition branch, full-lifetime behavior, collision, world entity or rendered-effect coverage."}
 	FileAccess.open("res://reports/boss-dependency-test.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))

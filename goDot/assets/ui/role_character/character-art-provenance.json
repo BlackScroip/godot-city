@@ -1,0 +1,687 @@
+{
+  "apk": "/Users/hanyu/U3D/City/1061664.apk",
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "extracted": [
+    {
+      "address": "CharaFashionConfigData",
+      "source": "assets/yoo/DefaultPackage/517900f07af21b7f276f5d299117cdd8.bundle",
+      "bundle_sha256": "ebcbb1043bcc182436c81a78b70b4f887c4540cb74056492f6e8fcbfda868291",
+      "path_id": "-12787763782990976",
+      "output": "assets/ui/role_character/CharaFashionConfigData.json",
+      "output_sha256": "5b15035909f163a1bb0ef61e576f277e9d754d2fa9bf474eaa51c3becadd8661"
+    },
+    {
+      "address": "sprite_illustration_binqiang",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-8927024077112844741",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang.png",
+      "output_sha256": "e2add11f570141873e447ed66bd48b0b7e48804c4a3b07ef1433efadce69c8ac"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_black",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-1988753469259756397",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_black.png",
+      "output_sha256": "f1f56bace8b9691ab892a9dba6dd58e0918a4a460370419deb330beda0c39769"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_golden",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "4040504776507590378",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_golden.png",
+      "output_sha256": "df7cdfc97df1b8a63733a28e026685945a8623e16d2cdc4ee9904c3db8ad0f00"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_green",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-3069054913392260446",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_green.png",
+      "output_sha256": "666d39e2b815aacdd1569487fd3e417b91e554d86877294c1158b44c94173064"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_ice",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-4748860120203503011",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_ice.png",
+      "output_sha256": "386fed8f24ef351dca08e389a54ce06b6e747212ead31926b29eeeab2aca6d6f"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_swimwear",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "1432512640072509484",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_swimwear.png",
+      "output_sha256": "5232fce85e4e48dd6fe57ebce90352998c35171dd33db7a63caee3e14f8392b5"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_swimwear_7202",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-4846173710967872423",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_swimwear_7202.png",
+      "output_sha256": "f4657ea6965b46ef78a106b4dbb5c9d66213caca14e2811bbbaabc0cf7239f55"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_swimwear_7203",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "3685257062314439884",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_swimwear_7203.png",
+      "output_sha256": "8ae944b5bb076d36760e5263643569c824681e68aa65b618e52fc5876dca988d"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_swimwear_7204",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "2408782880447453639",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_swimwear_7204.png",
+      "output_sha256": "c970a0a1e037e80ff569af3035f889a3527535d731870bc51b4b5caf552a3099"
+    },
+    {
+      "address": "sprite_illustration_binqiang_fashion_swimwear_7205",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "187884390632204745",
+      "output": "assets/ui/role_character/sprite_illustration_binqiang_fashion_swimwear_7205.png",
+      "output_sha256": "ca1e32e7e9320df38cb1a3c520a2c2be65a49fae6a33f7ffb529d6aa3b109097"
+    },
+    {
+      "address": "sprite_illustration_funan",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "8055732807926720408",
+      "output": "assets/ui/role_character/sprite_illustration_funan.png",
+      "output_sha256": "6444ac87eb4c28b03e290eb6b18b3ac5aa7396dfd959a0e1682f3a9f6439f549"
+    },
+    {
+      "address": "sprite_illustration_funan_fashion_black",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "3737526008062813052",
+      "output": "assets/ui/role_character/sprite_illustration_funan_fashion_black.png",
+      "output_sha256": "c26276b0bc1897bbb1a39f379564c89366938e1168ceb440b8a9f686310e4d07"
+    },
+    {
+      "address": "sprite_illustration_funan_fashion_blue",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "2039057132294290768",
+      "output": "assets/ui/role_character/sprite_illustration_funan_fashion_blue.png",
+      "output_sha256": "2e7725d2a434b1644000576355d2d5c75d76054764a31704a3a6487856ae497b"
+    },
+    {
+      "address": "sprite_illustration_funan_fashion_gold",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-6727600661132685402",
+      "output": "assets/ui/role_character/sprite_illustration_funan_fashion_gold.png",
+      "output_sha256": "12233b0e8e5b70a79ff029bb7232d36d677bbdc33b7e13bbaa4cdd34a60c584d"
+    },
+    {
+      "address": "sprite_illustration_funan_fashion_green",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-3013577951456521067",
+      "output": "assets/ui/role_character/sprite_illustration_funan_fashion_green.png",
+      "output_sha256": "7f9b5b0488ebc659604b96bd455d442088c72a53ca6394e745ef123e985ed0ba"
+    },
+    {
+      "address": "sprite_illustration_gongnan",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "1580796025462275435",
+      "output": "assets/ui/role_character/sprite_illustration_gongnan.png",
+      "output_sha256": "b8c7ef1d04d40700116ee09425cd7ef416595ef45cfcbdfd4b188154031f3062"
+    },
+    {
+      "address": "sprite_illustration_gongnan_fashion_blue",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-5638814321914517406",
+      "output": "assets/ui/role_character/sprite_illustration_gongnan_fashion_blue.png",
+      "output_sha256": "94dfedfe006a2d907d4309af858476e119c0260818819512857b318293d791b3"
+    },
+    {
+      "address": "sprite_illustration_gongnan_fashion_green",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-1438583961343379342",
+      "output": "assets/ui/role_character/sprite_illustration_gongnan_fashion_green.png",
+      "output_sha256": "e368b19ebedf143319768da097526e3dac7d3fec494eb01a566b7e7524931d2c"
+    },
+    {
+      "address": "sprite_illustration_gongnan_fashion_purple",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-8046817776669738858",
+      "output": "assets/ui/role_character/sprite_illustration_gongnan_fashion_purple.png",
+      "output_sha256": "247f58d2c6f9f7791ea7fa1a72b9376e8ea2c9ff5af267adae38a651ec8f7efc"
+    },
+    {
+      "address": "sprite_illustration_gongnan_fashion_red",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-1401983816211138857",
+      "output": "assets/ui/role_character/sprite_illustration_gongnan_fashion_red.png",
+      "output_sha256": "d896a32e35553817e66a2bbb96f68f280b6f777af6e9f5ea9970907b929a3001"
+    },
+    {
+      "address": "sprite_illustration_jiannan",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-4074225677597552942",
+      "output": "assets/ui/role_character/sprite_illustration_jiannan.png",
+      "output_sha256": "e3722c4fa24a48898027482770121bbe300eb57e672786cd0413b9d592d48d5b"
+    },
+    {
+      "address": "sprite_illustration_jiannan_fashion_black",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "8630583528550679650",
+      "output": "assets/ui/role_character/sprite_illustration_jiannan_fashion_black.png",
+      "output_sha256": "b930646f9412e3251663578ecb7ea788b0bbe79bcbe7f1a3d0d2ef2a8526a877"
+    },
+    {
+      "address": "sprite_illustration_jiannan_fashion_orange",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-4188155573746356252",
+      "output": "assets/ui/role_character/sprite_illustration_jiannan_fashion_orange.png",
+      "output_sha256": "83e2cde0a7c5d12af87fbdfdd2d6296b5eb21aa0c8b2fda38d09a34e924da07f"
+    },
+    {
+      "address": "sprite_illustration_jiannan_fashion_red",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-653718465101942770",
+      "output": "assets/ui/role_character/sprite_illustration_jiannan_fashion_red.png",
+      "output_sha256": "a9a7595ab4f1f7464b02dc794b5106079b0bbef823dde6616c14d1ee16919bef"
+    },
+    {
+      "address": "sprite_illustration_jiannan_fashion_white",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "1433699945842457259",
+      "output": "assets/ui/role_character/sprite_illustration_jiannan_fashion_white.png",
+      "output_sha256": "aafa8147aaa2a9464fa190f3920cde77469e2ade409cb55e1f589b9be0343393"
+    },
+    {
+      "address": "sprite_illustration_liannv",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "2982403533707053007",
+      "output": "assets/ui/role_character/sprite_illustration_liannv.png",
+      "output_sha256": "a8d6a987ee12c19a026f12f6ce6bc38fafe01210a2e949b0427ee370c1eb3275"
+    },
+    {
+      "address": "sprite_illustration_liannv_fashion_blue",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "644295596283270297",
+      "output": "assets/ui/role_character/sprite_illustration_liannv_fashion_blue.png",
+      "output_sha256": "3c382a56660278c5ea695180c3871e60436d66bffc408541667a3aa4452b1113"
+    },
+    {
+      "address": "sprite_illustration_liannv_fashion_dark",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "7890324994065746227",
+      "output": "assets/ui/role_character/sprite_illustration_liannv_fashion_dark.png",
+      "output_sha256": "67a345e706008ff39d567d4c442cc0d84f6beaf84a90cf97431078016e33e248"
+    },
+    {
+      "address": "sprite_illustration_liannv_fashion_gold",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-5590633881513676754",
+      "output": "assets/ui/role_character/sprite_illustration_liannv_fashion_gold.png",
+      "output_sha256": "0ee6c56c8c5b7e501ea5213959603f0921564ce54895378bb2512fa4b4995b37"
+    },
+    {
+      "address": "sprite_illustration_liannv_fashion_red",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-3550344474705259185",
+      "output": "assets/ui/role_character/sprite_illustration_liannv_fashion_red.png",
+      "output_sha256": "d13a30848c3f00d26099e2976ccc6f23519ec015ae5fffe7553d73c2452c2ae6"
+    },
+    {
+      "address": "sprite_illustration_shuangdao",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "4120039089187996863",
+      "output": "assets/ui/role_character/sprite_illustration_shuangdao.png",
+      "output_sha256": "52cc879742f5760cf5a161ee07d76afca1dd2f93ce85258a49c0e14dc9eb9110"
+    },
+    {
+      "address": "sprite_illustration_shuangdao_fashion_black",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "3490833629230907892",
+      "output": "assets/ui/role_character/sprite_illustration_shuangdao_fashion_black.png",
+      "output_sha256": "a1852218024023a1b0e8d23c8813a2aaeb48010b314dad89225a7a7d76e59938"
+    },
+    {
+      "address": "sprite_illustration_shuangdao_fashion_golden",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-1707993484798728920",
+      "output": "assets/ui/role_character/sprite_illustration_shuangdao_fashion_golden.png",
+      "output_sha256": "eea28387a115ea10248c9682dc11a674a1b6366d7b6da5493222ef9cd066e3ca"
+    },
+    {
+      "address": "sprite_illustration_shuangdao_fashion_purple",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-623071088496070393",
+      "output": "assets/ui/role_character/sprite_illustration_shuangdao_fashion_purple.png",
+      "output_sha256": "05c393568bf5c7347cfc117663faa4521e56b112c6948ab7786c15c5d3fdc000"
+    },
+    {
+      "address": "sprite_illustration_shuangdao_fashion_white",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "2894507720514634726",
+      "output": "assets/ui/role_character/sprite_illustration_shuangdao_fashion_white.png",
+      "output_sha256": "e346a2b392ae5e0af518b3b8db2adbd5fdd82932d7f404cbdfc69677d15c8367"
+    },
+    {
+      "address": "sprite_illustration_zhangnv",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-4764240426114283281",
+      "output": "assets/ui/role_character/sprite_illustration_zhangnv.png",
+      "output_sha256": "d7fea097ff5cf1cc1145df7d6e4d068dfba04df613c71daf2e7d37b77fbe1d03"
+    },
+    {
+      "address": "sprite_illustration_zhangnv_fashion_green",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "3599505155417428615",
+      "output": "assets/ui/role_character/sprite_illustration_zhangnv_fashion_green.png",
+      "output_sha256": "64a6ce2848ab20e04b94d8d3653efd67eec9fc0d4073c31debe957715e8cee58"
+    },
+    {
+      "address": "sprite_illustration_zhangnv_fashion_purple",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "1287799697008627878",
+      "output": "assets/ui/role_character/sprite_illustration_zhangnv_fashion_purple.png",
+      "output_sha256": "226fa7d8acf63c41c11be18b4a5cc01a7570d8c9dfcffa9c71fde84428902c63"
+    },
+    {
+      "address": "sprite_illustration_zhangnv_fashion_snow",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-5153189032140146970",
+      "output": "assets/ui/role_character/sprite_illustration_zhangnv_fashion_snow.png",
+      "output_sha256": "b3fc9b76437caa99072a1a8d0ec99760a22c7a4becde71011a7a4d2dffd46077"
+    },
+    {
+      "address": "sprite_illustration_zhangnv_fashion_white",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-9115768769916142293",
+      "output": "assets/ui/role_character/sprite_illustration_zhangnv_fashion_white.png",
+      "output_sha256": "7df1fe79d063a8522177cf1f3bcf3ffe938125a5f7604aedbc980b7c5698e76b"
+    },
+    {
+      "address": "sprite_illustration_zhunv",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "2828271677009331138",
+      "output": "assets/ui/role_character/sprite_illustration_zhunv.png",
+      "output_sha256": "e74d7a5dfd56f7738aaf60051670a38a728916c57a41a064aa30bc0932fb0c05"
+    },
+    {
+      "address": "sprite_illustration_zhunv_fashion_black",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "-4611206198918444706",
+      "output": "assets/ui/role_character/sprite_illustration_zhunv_fashion_black.png",
+      "output_sha256": "78f47ccbdb0f9910953e1ad829da780744554eff84ca871118acab9543dcb676"
+    },
+    {
+      "address": "sprite_illustration_zhunv_fashion_blue",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "8562007105491639931",
+      "output": "assets/ui/role_character/sprite_illustration_zhunv_fashion_blue.png",
+      "output_sha256": "006d03fad7dab82b183d6d37539545db0306d5c4af88d107f20c6c22e906c71f"
+    },
+    {
+      "address": "sprite_illustration_zhunv_fashion_red",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "8431390173117782019",
+      "output": "assets/ui/role_character/sprite_illustration_zhunv_fashion_red.png",
+      "output_sha256": "b4b559c1608d07faee3181a78a7b7bf43d0fd80c122a9ef9ee1ee25b5c62d7fb"
+    },
+    {
+      "address": "sprite_illustration_zhunv_fashion_yellow",
+      "source": "assets/yoo/DefaultPackage/20ec76d0422cb1686d2b0d38d3f8014f.bundle",
+      "bundle_sha256": "228c5af55d3c6f4e1a5f7b026e5e90cc695d75558cbcf9692c732dc1f5517810",
+      "path_id": "7106277111342361849",
+      "output": "assets/ui/role_character/sprite_illustration_zhunv_fashion_yellow.png",
+      "output_sha256": "84fc6dad560dc0838bc69e9eefb5f15dd8d5abbae773e551a46a31feace23925"
+    },
+    {
+      "address": "CharaFashion_Dark",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "1480074071534390315",
+      "output": "assets/ui/role_character/CharaFashion_Dark.png",
+      "output_sha256": "bc6772dd34a95e497f2b3eeb8cfd665c5496e75f63687ec443d2ee79ce291ec7"
+    },
+    {
+      "address": "CharaFashion_Fire",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "6776247128722072742",
+      "output": "assets/ui/role_character/CharaFashion_Fire.png",
+      "output_sha256": "77351e004382c86b78278f54627f961df73bf4cf15cefb21f0f8d625835c5f69"
+    },
+    {
+      "address": "CharaFashion_Ice",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "669983169348165839",
+      "output": "assets/ui/role_character/CharaFashion_Ice.png",
+      "output_sha256": "56a5c497c381b1f7e6916547f5b5ab7ff431ae50ccb0ac2bc1d5bdcf69bd73cb"
+    },
+    {
+      "address": "CharaFashion_Light",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-3401825812197953473",
+      "output": "assets/ui/role_character/CharaFashion_Light.png",
+      "output_sha256": "9c0ae0c9f92b871bfd167aac097823ae38213c2d6b03998be0ae19e58e956788"
+    },
+    {
+      "address": "CharaFashion_Soil",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "5118832657258548182",
+      "output": "assets/ui/role_character/CharaFashion_Soil.png",
+      "output_sha256": "a4e2efc2676bad7a593ba6c8d07ca1d143c168a71ffe33eb41cf4d12434ae883"
+    },
+    {
+      "address": "CharaFashion_Thunder",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-467652817904256363",
+      "output": "assets/ui/role_character/CharaFashion_Thunder.png",
+      "output_sha256": "6cc90c6a95ee4813d8c9d555c8f989d5ca1a80e8626c8f5fcecdad2cf530c964"
+    },
+    {
+      "address": "CharaFashion_Water",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "6291275242589708644",
+      "output": "assets/ui/role_character/CharaFashion_Water.png",
+      "output_sha256": "b4a2efbe3b6f6b6e25b13535cac898cc3bdae43c353e31de01f585c6d8df29c7"
+    },
+    {
+      "address": "CharaFashion_Wind",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "7363819843335938194",
+      "output": "assets/ui/role_character/CharaFashion_Wind.png",
+      "output_sha256": "fafb5418b09872f002241ed5124947547b98d68f6e931d0501687eb79ee834c4"
+    },
+    {
+      "address": "CharaFashionCard_11",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-8161078413800429013",
+      "output": "assets/ui/role_character/CharaFashionCard_11.png",
+      "output_sha256": "3655e58da6ca82007906efdceaa6b2080f6a956691fd18fb7f7d71a0e8b3ca89"
+    },
+    {
+      "address": "CharaFashionCard_21",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-1328137393986654405",
+      "output": "assets/ui/role_character/CharaFashionCard_21.png",
+      "output_sha256": "dc74926cb981065e380babf778adba179f700250833d5e40a96b6b30d89e819c"
+    },
+    {
+      "address": "CharaFashionCard_31",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-8166464766367572784",
+      "output": "assets/ui/role_character/CharaFashionCard_31.png",
+      "output_sha256": "18cf1f396edefb30aa2a208d03d1f1133fbb05eb3916b1df4eda3bc2b33ac48c"
+    },
+    {
+      "address": "CharaFashionCard_41",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-771393958020721499",
+      "output": "assets/ui/role_character/CharaFashionCard_41.png",
+      "output_sha256": "3f911046919b61c834d15435aa113a0e9c29ed06f63b6bb6fcb1eb31abf03ee7"
+    },
+    {
+      "address": "CharaFashionCard_51",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "6716882773418287802",
+      "output": "assets/ui/role_character/CharaFashionCard_51.png",
+      "output_sha256": "eaeda6284d312909a40ec4ed86bfbfc1844556f42522b09f328e8ab0ffa13174"
+    },
+    {
+      "address": "CharaFashionCard_61",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "6826330660118386629",
+      "output": "assets/ui/role_character/CharaFashionCard_61.png",
+      "output_sha256": "1d2bcdf8a1ba9d29edadfca8bc9f208b34d90cc95e52a18a9125b2527800c1b5"
+    },
+    {
+      "address": "CharaFashionCard_71",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "8807797744684440069",
+      "output": "assets/ui/role_character/CharaFashionCard_71.png",
+      "output_sha256": "faa3d7af1068ae8d21581aff74c83e0c0f72e8732b481c69d683bbe17c7d07c9"
+    },
+    {
+      "address": "CharaFashionCard_72",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "6615371783729048460",
+      "output": "assets/ui/role_character/CharaFashionCard_72.png",
+      "output_sha256": "c9f2c1f47fdf16bb03bc89619e74046db6f03e6282ccdedeb6c7789ea3a6a406"
+    },
+    {
+      "address": "CharaFashionCard_81",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "4005686800037364629",
+      "output": "assets/ui/role_character/CharaFashionCard_81.png",
+      "output_sha256": "5c481b556d96063035b2aa9d1fa55709041cdb0f8c74425164c1e024b37ae27a"
+    },
+    {
+      "address": "charamenumask_1",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "7110401111357011734",
+      "output": "assets/ui/role_character/charamenumask_1.png",
+      "output_sha256": "9c14171f8a00b396aa190d1e7d81a5621b947292e70bfcfb12eb14e4c7bba9b3"
+    },
+    {
+      "address": "charamenumask_2",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-7851923309181775701",
+      "output": "assets/ui/role_character/charamenumask_2.png",
+      "output_sha256": "de2ad2defeeb7b783f8d8f1049723943d465c4a7479fcb6d7671e1d645babc69"
+    },
+    {
+      "address": "charamenumask_3",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "3601844562333944983",
+      "output": "assets/ui/role_character/charamenumask_3.png",
+      "output_sha256": "7d205730c644ee9e63b19ca5a07d8f9ac585a671a38db95892d9c2adef0ba6bd"
+    },
+    {
+      "address": "charamenumask_4",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "1944340512827921885",
+      "output": "assets/ui/role_character/charamenumask_4.png",
+      "output_sha256": "e0d056d7d0e31f019f8284143d3db54c625cb0acd8377752766706b4511a61d6"
+    },
+    {
+      "address": "charamenumask_5",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "-4319719853548040717",
+      "output": "assets/ui/role_character/charamenumask_5.png",
+      "output_sha256": "f989193d3e2b7ba5855709046fb79ca4999c00356c55ffcdc6a3f4ca0563fa79"
+    },
+    {
+      "address": "charamenumask_6",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "6098933003453773272",
+      "output": "assets/ui/role_character/charamenumask_6.png",
+      "output_sha256": "647cffa3fb9b9869c87fed62d231433e8874b1eb891e73dd8f9ca31f7b044d6a"
+    },
+    {
+      "address": "charamenumask_7",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "8429097220370496673",
+      "output": "assets/ui/role_character/charamenumask_7.png",
+      "output_sha256": "42ec2ea42a784c5a508eda080dd9469f986347dbb0ad9649630a8be4c6031024"
+    },
+    {
+      "address": "charamenumask_8",
+      "source": "assets/yoo/DefaultPackage/e8fe4116ea4f8bb6ec37f318a6099683.bundle",
+      "bundle_sha256": "5ea5c84a0066828a53baf46b38e28e07f526e900e9e7ca55b467bdacc7d71646",
+      "path_id": "3626925183169707826",
+      "output": "assets/ui/role_character/charamenumask_8.png",
+      "output_sha256": "e0f891d4cbdbb2c5ef33de838b00d450ceaa616913cd2a7dff36c0d40a0c7f6a"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_binqiang",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "2147729682336472341",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_binqiang.png",
+      "output_sha256": "68156459c8dea1a434a1991787289aa75e4fbc91644f87d55113acca3d23c20e"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_binqiang_72",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "-3221840850461838662",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_binqiang_72.png",
+      "output_sha256": "dc6676b05512deea1706a94154e2799afb2507f102f827616c72919f8ef37d6c"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_funan",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "-8890794949203512057",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_funan.png",
+      "output_sha256": "e312a92a3d237dfdd59a7ea7bab5741f8121f504a90ed1d6239f5c7f87da3c29"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_gongnan",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "3341357322404012444",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_gongnan.png",
+      "output_sha256": "a742bc05bd4a09d7cac73c4319e2989c4423200440a3f13c628c60aa25c770ae"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_jiannan",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "36254962649626700",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_jiannan.png",
+      "output_sha256": "932dc5b857a0ca21bcf2a09d136a052da4072aea77462ab4dd96e9f4d39f79bd"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_liannv",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "-5123963428259467034",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_liannv.png",
+      "output_sha256": "66ffd26e1779b3b7f6f72e8135c713d6b0ecbe5ebeba0fedc240f8c4116b690d"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_shuangdao",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "-3394432444892518456",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_shuangdao.png",
+      "output_sha256": "4572f1930f412232c16b3ae3376648eab4f3b165c9d9114bacc3ec45622486f2"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_zhangnv",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "7647526837766233102",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_zhangnv.png",
+      "output_sha256": "82ac7e04eacf34f25e1aa9346cb7d991e58b871ce7f71944c5e0cfb56a3d099d"
+    },
+    {
+      "address": "sprite_cardicon_square_bg_zhunv",
+      "source": "assets/yoo/DefaultPackage/e13b31bd4d3be7f758bbcbfb98cd31b1.bundle",
+      "bundle_sha256": "f8834447ad14b1989ca8e096390f1353a9e7c7d75bb77ebc54b18083bff81a44",
+      "path_id": "-7682148858875867912",
+      "output": "assets/ui/role_character/sprite_cardicon_square_bg_zhunv.png",
+      "output_sha256": "046ff5214f8b5d67230ce10c2a5fb19c80d5b5e9ca0b9096d5487362cdb64f09"
+    },
+    {
+      "address": "Adventure_Level_1",
+      "source": "assets/yoo/DefaultPackage/aaa53f878be5ff5e6e55525fbf39fa02.bundle",
+      "bundle_sha256": "bd628ccc0bf01caa83dc183947c00993da6bd808434e75d566f901fb83553c36",
+      "path_id": "-6424885733430727255",
+      "output": "assets/ui/role_character/Adventure_Level_1.png",
+      "output_sha256": "3f8c24bf34dc9dfa33cffdc4ec32c201593e7939d7af1bdf5698bc65793ca65c"
+    },
+    {
+      "address": "Adventure_Level_2",
+      "source": "assets/yoo/DefaultPackage/aaa53f878be5ff5e6e55525fbf39fa02.bundle",
+      "bundle_sha256": "bd628ccc0bf01caa83dc183947c00993da6bd808434e75d566f901fb83553c36",
+      "path_id": "732032226153154505",
+      "output": "assets/ui/role_character/Adventure_Level_2.png",
+      "output_sha256": "2d1bc93af3336aee30c0c0466258803a4e3724fc0ac03ecf27fa9d1885c8e924"
+    },
+    {
+      "address": "Adventure_Level_3",
+      "source": "assets/yoo/DefaultPackage/aaa53f878be5ff5e6e55525fbf39fa02.bundle",
+      "bundle_sha256": "bd628ccc0bf01caa83dc183947c00993da6bd808434e75d566f901fb83553c36",
+      "path_id": "-6099041985289991347",
+      "output": "assets/ui/role_character/Adventure_Level_3.png",
+      "output_sha256": "092168b9959edc1a631d0613fc97ff231ec8e3f0d67b9f082c2b088a49b77e43"
+    },
+    {
+      "address": "Adventure_Level_4",
+      "source": "assets/yoo/DefaultPackage/aaa53f878be5ff5e6e55525fbf39fa02.bundle",
+      "bundle_sha256": "bd628ccc0bf01caa83dc183947c00993da6bd808434e75d566f901fb83553c36",
+      "path_id": "4341373795087732929",
+      "output": "assets/ui/role_character/Adventure_Level_4.png",
+      "output_sha256": "53d61233af416f82a907344665d60e7032e1931a982e533e51e353f0889837a5"
+    },
+    {
+      "address": "Adventure_Level_5",
+      "source": "assets/yoo/DefaultPackage/aaa53f878be5ff5e6e55525fbf39fa02.bundle",
+      "bundle_sha256": "bd628ccc0bf01caa83dc183947c00993da6bd808434e75d566f901fb83553c36",
+      "path_id": "12160901144888178",
+      "output": "assets/ui/role_character/Adventure_Level_5.png",
+      "output_sha256": "3739f6b31109e2bb4bb49d17c724aca51292429c14b6fb9d87a049297a72b4f3"
+    }
+  ],
+  "limit": "Static serialized prefab and sprite evidence; no APK execution."
+}

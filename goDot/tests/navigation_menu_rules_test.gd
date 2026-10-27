@@ -27,6 +27,7 @@ class FixtureGame extends Node:
 	var hud = FixtureHud.new()
 	var world = FixtureWorld.new()
 	var selected_character := 1
+	var save_store = DungeonSaveStore.new("/private/tmp/city-navigation-menu-fixture.json")
 	var difficulty := 0
 	var resource_audio = null
 	var ads = FixtureAds.new()
@@ -52,6 +53,7 @@ func _initialize() -> void:
 	_settings(game, menus)
 	_characters(game, menus)
 	_weapons(game, menus)
+	_inventory(game, menus)
 	_meal_buffs(game, menus)
 	_mall(game, menus)
 	game.systems.decorations = null
@@ -68,12 +70,13 @@ func _settings(game: FixtureGame, menus: DungeonMenus) -> void:
 		check(game.hud.shown_layout == "settings", "Settings opens with ads available = " + str(available))
 		var rows = game.hud.shown_rows
 		check(rows.any(func(row): return row.title == "广告隐私") == available, "Privacy command follows platform availability")
-		var visual_rows = rows.filter(func(row): return row.has("options") and str(row.options[0].action).begins_with("visual:"))
-		check(visual_rows.size() == 3, "All visual options survive the optional privacy row")
+		var visual_rows = rows.filter(func(row): return row.has("options") and row.get("section", "") == "画面")
+		for key in ["quality", "shadows", "fps"]:
+			check(visual_rows.any(func(row): return row.get("key", "") == key), "Visual option survives the optional privacy row: " + key)
 		for row in visual_rows:
 			check(row.options.filter(func(option): return option.selected).size() == 1, "Exactly one option is selected for " + str(row.title))
-		var adventure = rows.filter(func(row): return row.title == "冒险")
-		check(adventure.size() == 1 and adventure[0].buttons.map(func(button): return button.action) == ["save", "retreat", "quit"], "Save and return commands remain connected")
+		for action in ["save", "retreat", "quit"]:
+			check(rows.any(func(row): return row.get("buttons", []).any(func(button): return button.action == action)), "Save and return commands remain connected: " + action)
 
 func _characters(game: FixtureGame, menus: DungeonMenus) -> void:
 	game.profile.data.run.active = false
@@ -150,6 +153,40 @@ func _mall(game: FixtureGame, menus: DungeonMenus) -> void:
 	var purchase_coin_row: Dictionary = game.hud.shown_rows.filter(func(entry): return int(entry.config_id) == 994001)[0]
 	check(purchase_coin_row.payment_type == "PurchaseCion" and purchase_coin_row.offer_quote.currency == 90001 and not purchase_coin_row.buttons[0].disabled, "Native purchase coin enum uses its own wallet and valid trade command")
 	check(purchase_coin_row.description.contains("20 " + DungeonCatalog.clean(game.systems.material_name(90001))), "Purchase coin pricing uses the original price and source currency name")
+
+func _inventory(game: FixtureGame, menus: DungeonMenus) -> void:
+	game.profile.data.materials.merge({"102": 120, "50011": 1, "10101": 10, "801": 2}, true)
+	game.profile.data.buildings["4"] = 2
+	game.profile.data.run.active = false
+	menus.open("storage")
+	var context = game.hud.shown_context
+	var rows = game.hud.shown_rows
+	check(context.camp and not context.in_run, "Camp role shell uses the camp mode")
+	check(context.role_navigation.map(func(entry): return entry.page) == ["characters", "weapons", "storage"], "APK camp navigation shows character, weapon and warehouse")
+	check(context.resources.size() == 1 and context.resources[0][0] == "material:101", "Role shell keeps the source gold counter")
+	check(rows.any(func(row): return int(row.get("material_id", 0)) == 10101 and row.count == 10), "Warehouse carries actual collected material counts")
+	check(not rows.any(func(row): return int(row.get("material_id", 0)) in [102, 50011]), "APK warehouse excludes magic points and token items")
+	var boxes = rows.filter(func(row): return int(row.get("material_id", 0)) == 801)
+	check(boxes.size() == 1 and boxes[0].buttons[0].action == "op:open_material_box", "Owned material boxes keep their real opening command in the warehouse")
+	check(rows.any(func(row): return row.description.contains("获取途径")), "Warehouse descriptions preserve source acquisition text")
+	game.profile.data.run.inventory = {"10000": 2, "10100": 1}
+	menus.open("inventory")
+	check(not game.hud.shown_rows.any(func(row): return row.has("loot_id")), "Camp cannot display stale adventure relics")
+	game.profile.data.run.active = true
+	menus.open("inventory")
+	context = game.hud.shown_context
+	rows = game.hud.shown_rows
+	check(not context.camp and context.in_run, "Adventure role shell uses the run mode")
+	check(context.resources.map(func(entry): return entry[0]) == ["material:101", "material:102", "loot:12101", "material:108"], "APK adventure role resource list uses the actual always-display counters")
+	check(context.role_navigation.map(func(entry): return entry.page) == ["characters", "weapons", "inventory", "storage"], "APK adventure navigation adds the backpack while retaining warehouse")
+	check(rows.size() == 1 and int(rows[0].loot_id) == 10000 and rows[0].count == 2, "Backpack lists owned visible relics and filters hidden consumed drops")
+	check(not rows.any(func(row): return row.has("material_id")), "Backpack and warehouse use their separate source inventories")
+	game.profile.data.buildings["4"] = 3
+	menus.open("weapons")
+	check(game.hud.shown_context.role_navigation.map(func(entry): return entry.page) == ["characters", "weapons", "inventory", "storage", "partners"], "Institute level three adds the APK run partner entry")
+	game.profile.data.run.active = false
+	menus.open("characters")
+	check(game.hud.shown_context.role_navigation.size() == 3 and not game.hud.shown_context.partner_navigation, "Camp navigation excludes run-only entries even with a completed institute")
 
 func _meal_buffs(game: FixtureGame, menus: DungeonMenus) -> void:
 	var first = game.catalog.rows("CatMealData")[0]

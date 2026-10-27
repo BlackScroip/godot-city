@@ -35,6 +35,8 @@ func _start() -> void:
 	check(game.profile.data.run.active and game.campaign.state.get("phase") == "room", "World confirmation enters first room")
 	check(game.campaign.current_room().get("flow") == "Entrance", "First room is chapter entrance")
 	check(not game.hud.modal_open, "First room does not require route selection")
+	check(game.hud.skill_cluster.visible and not game.hud.skill_by_slot[0].disabled, "Entering an adventure restores combat controls")
+	check(not game.hud.navigation_buttons.menu_adventure.visible and game.hud.navigation_buttons.menu_difficulty.visible, "Adventure navigation replaces start adventure with difficulty")
 
 func _combat_room() -> void:
 	for node in game.campaign.database.Nodes:
@@ -68,12 +70,39 @@ func _seed_run_items() -> void:
 	game.systems.grant_material(103, 3)
 	game.systems.grant_material(801, 1)
 
+func _return_to_camp() -> void:
+	var outcome: Dictionary = game.profile.data.run.outcome.duplicate(true)
+	var player_id: int = game.world.player.get_instance_id()
+	if render_check:
+		canvas.size = Vector2i(1600, 900) if outcome.victory else Vector2i(844, 390)
+		game.hud._layout()
+	game._action("result_camp", 0, 0)
+	check(game._transitioning and game.room_loading.visible and game.world.paused, "Return to camp immediately shows loading and pauses gameplay")
+	check(game.room_loading.destination == "营地" and game.room_loading.progress_bar.value == 0, "Camp loading starts with fresh destination and progress")
+	check(game.world.player.get_instance_id() == player_id and game.profile.data.run.outcome == outcome, "Loading appears before camp replaces the result and player")
+	game._action("result_camp", 0, 0)
+	game._action("close_page", 0, 0)
+	check(game._transitioning and game.room_loading.visible and game.profile.data.run.outcome == outcome, "Repeated return and close actions cannot interrupt camp loading")
+	if render_check and DisplayServer.get_name() != "headless":
+		await RenderingServer.frame_post_draw
+		check(game.room_loading.visible, "Loading stays visible for its first rendered frame")
+		var frame: Image = canvas.get_texture().get_image()
+		check(not frame.is_empty(), "Camp loading renders pixels")
+		frame.save_png("/private/tmp/settlement-camp-loading-%s-%dx%d.png" % ["victory" if outcome.victory else "death", canvas.size.x, canvas.size.y])
+	await _wait_transition()
+	check(not game.room_loading.visible and game.room_loading.progress_bar.value == 100, "Camp hides loading only after reaching completion")
+	check(game.world._camp_camera and is_instance_valid(game.world.player) and not game.world.paused, "Loading finishes in a playable camp")
+	check(game.hud.skill_cluster.visible and not game.hud.skill_by_slot[0].disabled, "Returning to camp retains usable combat controls")
+	check(game.hud.navigation_buttons.menu_adventure.visible and not game.hud.navigation_buttons.menu_difficulty.visible, "Returning to camp restores start adventure")
+	check(not game.world.presentation.has_pending_preparation(), "Camp player resources are ready before loading closes")
+
 func _check_camp_cleanup(vouchers: int, minerals: int) -> void:
 	check(game.profile.data.run == DungeonProfile.new_run(), "Return to camp clears temporary items, talents, counters, route and battle")
 	check(game.systems.material(102) == 0, "Return to camp clears remaining magic")
 	check(game.systems.material(501) == vouchers and game.systems.material(103) == minerals, "Return to camp preserves vouchers and collected minerals")
 	game.menus.open("inventory")
 	check(game.hud.page._rows.all(func(row): return int(row.get("loot_id", 0)) == 0), "Camp inventory has no previous adventure relics")
+	game.menus.open("storage")
 	check(game.hud.page._rows.any(func(row): return int(row.get("material_id", 0)) == 801), "Camp inventory retains permanent material boxes")
 	game._close_page()
 	var saved: Dictionary = game.save_store.load_profile()
@@ -220,7 +249,7 @@ func _run() -> void:
 	game._action("result_next", 0, 0)
 	check(game.systems.material(501) == vouchers_before + vouchers and game.profile.data.run.outcome.experience_claimed, "Settlement reload cannot regrant vouchers")
 	var minerals_before: int = game.systems.material(103)
-	game._action("result_camp", 0, 0)
+	await _return_to_camp()
 	check(not game.profile.data.run.active and not game._flow_locked() and not game.hud.modal_open, "Rewards return to playable camp")
 	_check_camp_cleanup(vouchers_before + vouchers, minerals_before)
 	await _start()
@@ -241,7 +270,7 @@ func _run() -> void:
 	game._action("result_next", 0, 0)
 	check(game.profile.data.run.outcome.stage == "rewards" and game.systems.material(501) == vouchers_before + vouchers, "Victory summary grants vouchers once")
 	minerals_before = game.systems.material(103)
-	game._action("result_camp", 0, 0)
+	await _return_to_camp()
 	check(not game._flow_locked() and not game.profile.data.run.active, "Victory rewards return to camp")
 	_check_camp_cleanup(vouchers_before + vouchers, minerals_before)
 	_seed_run_items()

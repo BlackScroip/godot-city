@@ -1,0 +1,84 @@
+{
+  "26080801": {
+    "raw": {
+      "BuffType": "EBT_None",
+      "LastModifyTime": "2026/8/8 11:17:45",
+      "BuffData": {
+        "ID": "26080801",
+        "PropertyGroupId": "",
+        "Name_EDT": "26080801_设置用_屏蔽闪避攻击标志位",
+        "Description_EDT": "",
+        "Icon": "",
+        "TriggerPriority": 1000,
+        "IsPassiveSkill": true,
+        "IsCanBeDisperse": false,
+        "IsDeBuff": false,
+        "MaxLayerNum": 1,
+        "OwnerDeadClearLayer": 0,
+        "OnceReduceNumCount": 0,
+        "AddLayerDurationModifyType": "Reset",
+        "InitAddTargetBuffIdList": [],
+        "InitClearTargetBuffIdList": [],
+        "DisposeTriggerBuff": {
+          "BuffTriggerId": "",
+          "BuffAddLayer": 1
+        },
+        "Duration": -1,
+        "SwitchPlayerState": "EBSP_None",
+        "CommonBuffEffectId": "",
+        "PropertyContext_AddMaxLayer": "",
+        "PropertyContext_AddDuration": "",
+        "EnableAddCd": false,
+        "EnableAddCd_CdTime": 0,
+        "EnableAddCd_CanAddLayer": false
+      }
+    },
+    "apk_source": {
+      "source_asset": "Assets/[00002]Resource/ActionEngineCfg/Buff/BuffCfg_[26080801].json",
+      "bundle": "assets/yoo/DefaultPackage/0028f699404701b347563fdde63707a6.bundle",
+      "bundle_sha256": "db6bfdd2fecaa196e3d8c634552c6958d270807b0d70be13f9b5f80f54d95f69",
+      "path_id": "-240253845384437021"
+    }
+  },
+  "26081001": {
+    "raw": {
+      "BuffType": "EBT_None",
+      "LastModifyTime": "2026/8/10 16:37:31",
+      "BuffData": {
+        "ID": "26081001",
+        "PropertyGroupId": "",
+        "Name_EDT": "26081001_设置用_自动闪避攻击标志位",
+        "Description_EDT": "",
+        "Icon": "",
+        "TriggerPriority": 1000,
+        "IsPassiveSkill": true,
+        "IsCanBeDisperse": false,
+        "IsDeBuff": false,
+        "MaxLayerNum": 1,
+        "OwnerDeadClearLayer": 0,
+        "OnceReduceNumCount": 0,
+        "AddLayerDurationModifyType": "Reset",
+        "InitAddTargetBuffIdList": [],
+        "InitClearTargetBuffIdList": [],
+        "DisposeTriggerBuff": {
+          "BuffTriggerId": "",
+          "BuffAddLayer": 1
+        },
+        "Duration": -1,
+        "SwitchPlayerState": "EBSP_None",
+        "CommonBuffEffectId": "",
+        "PropertyContext_AddMaxLayer": "",
+        "PropertyContext_AddDuration": "",
+        "EnableAddCd": false,
+        "EnableAddCd_CdTime": 0,
+        "EnableAddCd_CanAddLayer": false
+      }
+    },
+    "apk_source": {
+      "source_asset": "Assets/[00002]Resource/ActionEngineCfg/Buff/BuffCfg_[26081001].json",
+      "bundle": "assets/yoo/DefaultPackage/0028f699404701b347563fdde63707a6.bundle",
+      "bundle_sha256": "db6bfdd2fecaa196e3d8c634552c6958d270807b0d70be13f9b5f80f54d95f69",
+      "path_id": "1959989406063149405"
+    }
+  }
+}

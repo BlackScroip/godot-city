@@ -2,9 +2,9 @@ extends "res://tests/impact_visual_test.gd"
 
 const SPIRIT_CASES := [
 	{"name": "lightning", "buff": "50202420", "frames": 260, "shots": [185, 200]},
-	{"name": "water", "buff": "50202200", "frames": 160, "shots": [75, 105]},
-	{"name": "magnetic", "buff": "50203400", "frames": 440, "shots": [80, 335, 380]},
-	{"name": "firethunder", "buff": "50202800", "frames": 420, "shots": [65, 125, 335]}
+	{"name": "water", "buff": "50202200", "frames": 200, "shots": [125, 155]},
+	{"name": "magnetic", "buff": "50203400", "frames": 440, "shots": [335, 380]},
+	{"name": "firethunder", "buff": "50202800", "frames": 420, "shots": [125, 335]}
 ]
 
 func _run() -> void:
@@ -87,8 +87,8 @@ func _scenario(scenario: Dictionary) -> void:
 	var peak_emitters := 0
 	for frame in int(scenario.frames):
 		if scenario.name == "water":
-			if frame in [10, 20, 30, 40, 50]: _input_hit(targets[0], "NormalAtk", frame)
-			if frame == 60: _input_hit(targets[0], "SpecAtk", frame)
+			if frame in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]: _input_hit(targets[0], "NormalAtk", frame)
+			if frame == 110: _input_hit(targets[0], "SpecAtk", frame)
 		elif scenario.name == "magnetic" and frame == 10: _input_hit(targets[0], "DodgeAtk", frame)
 		combat.custom_properties["EnemyDistances"] = targets.map(func(target): return target.position.distance_to(player.position))
 		for actor in world.actors: actor.combat.tick(1.0 / HZ)

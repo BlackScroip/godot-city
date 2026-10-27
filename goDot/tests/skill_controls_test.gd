@@ -35,7 +35,7 @@ func run() -> void:
 	hud.skill.connect(func(slot, pressed): events.append([slot, pressed]))
 	hud.action.connect(func(kind, mode, _extra):
 		if kind == "auto_attack_mode": hud.set_attack_mode(mode))
-	var keys = hud.skill_buttons + [hud.attack_mode_button]
+	var keys: Array = hud.skill_by_slot.values() + [hud.attack_mode_button]
 	for dimensions in [Vector2i(640, 360), Vector2i(844, 390), Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(2460, 1080), Vector2i(1200, 900)]:
 		root.size = dimensions
 		await process_frame

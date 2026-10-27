@@ -1,0 +1,750 @@
+{
+  "select_weapon_panel": {
+    "layout": "select_weapon/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/2d679923200f2797e7704fb0412d1750.bundle",
+      "sha256": "14ff518ead1ecc83f97d262b35ce3c965c1b239a0296cc48be6c5d9239dbba3f"
+    },
+    "sprites": [
+      {
+        "name": "AwakenSkillBg_1",
+        "path": "res://assets/ui/role_weapon/select_weapon/AwakenSkillBg_1.png",
+        "sprite_path_id": "3839955108537925876",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 125,
+        "height": 126,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7473d0fdf4409bdb562d7fd69c707027af9b869a38a8ce24c31789cc31b26d40"
+      },
+      {
+        "name": "几何ui-椭圆白色按钮",
+        "path": "res://assets/ui/role_weapon/select_weapon/__ui-_______39ebe9c97d.png",
+        "sprite_path_id": "-1055889953380836409",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 250,
+        "height": 75,
+        "border": {
+          "x": 71.40135955810547,
+          "y": 0.0,
+          "z": 75.7551040649414,
+          "w": 0.0
+        },
+        "png_sha256": "d557dbc1e6c5ad718194dd315e1d878c464f3becac81c087d2c3892985f4dacf"
+      },
+      {
+        "name": "sprite_attackicon_300033",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_attackicon_300033.png",
+        "sprite_path_id": "-3686439076997110730",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+          "sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+        },
+        "width": 112,
+        "height": 118,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "59b4146cce65c2fc9656817c79e6ca71dd713761d99fcba3a6b12f4d4e7f07fc"
+      },
+      {
+        "name": "星星底",
+        "path": "res://assets/ui/role_weapon/select_weapon/____db6e5bd6e3.png",
+        "sprite_path_id": "-2772862117838662624",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 24,
+        "height": 24,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "dd19a5a0c3905816165f8445505fedd1dd74dcd85ae1f019f5e4c6952debe730"
+      },
+      {
+        "name": "通用背景",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____73575f9d22.png",
+        "sprite_path_id": "4445401531142077585",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/dd01b7ed17ef95572ae71526f27bae78.bundle",
+          "sha256": "c9b0e70879ca8e66761df0e47a11dd9ecd2d0514de28541de420d8f9f0006539"
+        },
+        "width": 512,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "cb50e755654849ba81e092c2047eaff8fec879c711c6266ed5b2373bc79734f9"
+      },
+      {
+        "name": "星星大",
+        "path": "res://assets/ui/role_weapon/select_weapon/____d1b367e11c.png",
+        "sprite_path_id": "-814199833485362129",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 50,
+        "height": 47,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "80ca89571820afb240f77a814f60a9ce420533c9b661bd5ff55329ba8257c8e2"
+      },
+      {
+        "name": "18",
+        "path": "res://assets/ui/role_weapon/select_weapon/18.png",
+        "sprite_path_id": "-742374628967678081",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 52,
+        "height": 4,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "942a3f44caf4ebecdede3a976170280adc97e9812bd40be7aacbb63a285d896c"
+      },
+      {
+        "name": "提示点",
+        "path": "res://assets/ui/role_weapon/select_weapon/____e75be5f55f.png",
+        "sprite_path_id": "3080528424784802588",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 26,
+        "height": 26,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "970a9c961e1220a75c129316195afada5a502f653765f27a515a4a0698bb3c57"
+      },
+      {
+        "name": "24",
+        "path": "res://assets/ui/role_weapon/select_weapon/24.png",
+        "sprite_path_id": "5985676854447024116",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 145,
+        "height": 30,
+        "border": {
+          "x": 40.0,
+          "y": 20.0,
+          "z": 40.0,
+          "w": 5.0
+        },
+        "png_sha256": "9ab8cf6f9f3fbdf02ca35bd227ab20d9def27c9ee0f3c78e5e5d8f06fd35643b"
+      },
+      {
+        "name": "白星标",
+        "path": "res://assets/ui/role_weapon/select_weapon/____45d48c752b.png",
+        "sprite_path_id": "-347511828128864971",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+          "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+        },
+        "width": 38,
+        "height": 38,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "8699c7d9416095c140cd356e50cca62a8b6d0006700a47d9e89b784591193c44"
+      },
+      {
+        "name": "slotfg_rare_square_1_v2",
+        "path": "res://assets/ui/role_weapon/select_weapon/slotfg_rare_square_1_v2.png",
+        "sprite_path_id": "-6259846521885095785",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/85405f110074a3b101657bdb61c1d6db.bundle",
+          "sha256": "a323a3191169a5ac8988ad8f182858d6ffcec9e30fcba6403d60580b3981b5e1"
+        },
+        "width": 63,
+        "height": 64,
+        "border": {
+          "x": 31.70063591003418,
+          "y": 32.0,
+          "z": 31.299362182617188,
+          "w": 32.0
+        },
+        "png_sha256": "ea25eb974cf764e25759aaf26017256dd9608112741bef921f9d6d4e76bbe711"
+      },
+      {
+        "name": "锁定遮罩",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____c317ca9908.png",
+        "sprite_path_id": "918722314435250836",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 145,
+        "height": 145,
+        "border": {
+          "x": 73.0,
+          "y": 72.0,
+          "z": 72.0,
+          "w": 73.0
+        },
+        "png_sha256": "e9018db60457de8ec82fb160b917594540512dab2aba5a6f634bddecaa633dae"
+      },
+      {
+        "name": "选择高亮",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____8efb0fde4e.png",
+        "sprite_path_id": "-495095694787399995",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 68,
+        "height": 68,
+        "border": {
+          "x": 34.0,
+          "y": 34.0,
+          "z": 34.0,
+          "w": 34.0
+        },
+        "png_sha256": "55a4c26025a481768918b2b33f150438542010d4ac8855ee612bfe5db418e069"
+      },
+      {
+        "name": "减号按钮",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____54b659420f.png",
+        "sprite_path_id": "-2453844321401970427",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+          "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+        },
+        "width": 42,
+        "height": 44,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "65ed6919ed6c49f78e047df66ba7a874b61cf5bca8c84db1b21979baeaab13ed"
+      },
+      {
+        "name": "退出按钮",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____395376c50f.png",
+        "sprite_path_id": "-7962153020995228324",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 91,
+        "height": 79,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+      },
+      {
+        "name": "icon_addnum",
+        "path": "res://assets/ui/role_weapon/select_weapon/icon_addnum.png",
+        "sprite_path_id": "-1575747556048610155",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 40,
+        "height": 40,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "48eb7cd4c25eef2504ab06ffccb3b0d5788312021cc42ee0cbc5b181447ab564"
+      },
+      {
+        "name": "物品详情_底",
+        "path": "res://assets/ui/role_weapon/select_weapon/_______d311bbfc6d.png",
+        "sprite_path_id": "-24360010370924150",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 104,
+        "height": 104,
+        "border": {
+          "x": 52.0,
+          "y": 52.0,
+          "z": 52.0,
+          "w": 52.0
+        },
+        "png_sha256": "6ac45041fc7a29b1dfec1ac9b4673b6dbccf41ac5c19352a09d764851518495a"
+      },
+      {
+        "name": "详情_底框_0",
+        "path": "res://assets/ui/role_weapon/select_weapon/______0_25458f9254.png",
+        "sprite_path_id": "8904821900668994116",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 81,
+        "height": 228,
+        "border": {
+          "x": 69.01382446289062,
+          "y": 73.15999603271484,
+          "z": 3.539170503616333,
+          "w": 69.6199951171875
+        },
+        "png_sha256": "abcef7a97fd6119a72227743ec7b55477209af2fb7b64809fed5f544f056182a"
+      },
+      {
+        "name": "sprite_materialicon_103",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_103.png",
+        "sprite_path_id": "-2847287226865223873",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "3064adbcecaa556b27161d2369a5ed3ba6d0f41aa6c5f330765e671750300c32"
+      },
+      {
+        "name": "sprite_materialicon_40001",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_40001.png",
+        "sprite_path_id": "-7693951651999609644",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "66ca2f57e43c0dd1e4620f7b1e73920cef2d5281459724c04067a056550a9c08"
+      },
+      {
+        "name": "SealingWax",
+        "path": "res://assets/ui/role_weapon/select_weapon/SealingWax.png",
+        "sprite_path_id": "4490906433730611215",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/1da5aadb6033cb59b6d0163a9c8a0196.bundle",
+          "sha256": "e6ac8660143746795271e02b44d39f03312ea2848ac2c6acbbcae05bc0539ba3"
+        },
+        "width": 250,
+        "height": 242,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "035256d52df5fda77894b259ae97a5d37f5501442217aad88668658456bde17e"
+      },
+      {
+        "name": "副标题",
+        "path": "res://assets/ui/role_weapon/select_weapon/____7370212371.png",
+        "sprite_path_id": "7067585135278051490",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 160,
+        "height": 80,
+        "border": {
+          "x": 70.0,
+          "y": 0.0,
+          "z": 70.0,
+          "w": 0.0
+        },
+        "png_sha256": "dd19e9d7703b109d69dbdfe1a75adc955e2c6b75ae622ee864a631a8ddf96768"
+      },
+      {
+        "name": "Background",
+        "path": "res://assets/ui/role_weapon/select_weapon/Background.png",
+        "sprite_path_id": "1660267235368898380",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2d679923200f2797e7704fb0412d1750.bundle",
+          "sha256": "14ff518ead1ecc83f97d262b35ce3c965c1b239a0296cc48be6c5d9239dbba3f"
+        },
+        "width": 32,
+        "height": 32,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "46e2a8c6759bf24681f9f3f6073973ca65ac95e8d1ed8b8e025137819857fb2d"
+      },
+      {
+        "name": "锁",
+        "path": "res://assets/ui/role_weapon/select_weapon/__4f62f920d6.png",
+        "sprite_path_id": "-7779187746478388713",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 41,
+        "height": 49,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "3fb84b5a85985397eda324f9b51823ce209cc82cee9db5b8e21502625b4d358f"
+      },
+      {
+        "name": "sprite_materialicon_502",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_502.png",
+        "sprite_path_id": "8462504211962514845",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "64517341db825a02ab7a4fb297a8a7941cd6ae0e5bde7cfab5fb9d5f01b304a3"
+      },
+      {
+        "name": "货币_底",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____a5692cce8c.png",
+        "sprite_path_id": "8416506778996739775",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 249,
+        "height": 51,
+        "border": {
+          "x": 125.0,
+          "y": 25.0,
+          "z": 124.0,
+          "w": 26.0
+        },
+        "png_sha256": "8637e4e85bc5cf905943031f7a48c503dab670432b5148fe5e811e285ff0381a"
+      },
+      {
+        "name": "sprite_rect_128x128",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_rect_128x128.png",
+        "sprite_path_id": "3483957996699903255",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
+          "sha256": "6b67d0ed0f67ec1e7a52343ddbac5871246ea9d21493194ebb0243c46a7d6e91"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 13.0,
+          "y": 13.0,
+          "z": 13.0,
+          "w": 13.0
+        },
+        "png_sha256": "77085affe7ed4ae748996e56e57aec088d5b4a996a3060829b41925cc8383fcc"
+      },
+      {
+        "name": "顶部",
+        "path": "res://assets/ui/role_weapon/select_weapon/___6f2a4a02e6.png",
+        "sprite_path_id": "-7954782238467266710",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 256,
+        "height": 16,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0eca0cf2af0dc8feca566fc59a0b2e91051e8be50cb44d8d764f0c9cd75a56bf"
+      },
+      {
+        "name": "sprite_materialicon_90002",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_90002.png",
+        "sprite_path_id": "6651430658684800665",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "df45ad6d7354fae2868550eeb052f03d09fdc25ad59745c7b289cb1619c73148"
+      },
+      {
+        "name": "sprite_materialicon_108",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_108.png",
+        "sprite_path_id": "-6886311129609553285",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "98887778f026ffc2dc812e953514433d58a4cce7c117d7d97bb24e25f9cb42cb"
+      },
+      {
+        "name": "sprite_materialicon_101",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_101.png",
+        "sprite_path_id": "-4929560618279763517",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6bad02912188f5aca0b14de5cbf6be37ac6343105118a48437d866c025cf3f93"
+      },
+      {
+        "name": "sprite_abilityitemicon_15101",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_abilityitemicon_15101.png",
+        "sprite_path_id": "4722616278204564780",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "4f29ad319730261e525c403835a003e1a95f1fe1765804bb7dfdaae1b7640201"
+      },
+      {
+        "name": "须知",
+        "path": "res://assets/ui/role_weapon/select_weapon/___3195038864.png",
+        "sprite_path_id": "-3264226760608914741",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+          "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+        },
+        "width": 50,
+        "height": 50,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "1605d616392871b7965873cf67b90c8248e174ca98f4084676cc0fcd27701eb5"
+      },
+      {
+        "name": "sprite_materialicon_90001",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_90001.png",
+        "sprite_path_id": "-8314781698419631035",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a4af50f4bcedee204c3fcc7ada6d5d21f6181d799e6068a54a24765b4ca2e2ed"
+      },
+      {
+        "name": "sprite_materialicon_102",
+        "path": "res://assets/ui/role_weapon/select_weapon/sprite_materialicon_102.png",
+        "sprite_path_id": "3894177138201564098",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "8c0e26cdfc8d76be9762019a6b3a2f82e7f8f4b1aa42f3d1bdb9bd714b84a37d"
+      },
+      {
+        "name": "分割线-无进度",
+        "path": "res://assets/ui/role_weapon/select_weapon/___-____379351ce5f.png",
+        "sprite_path_id": "1749052139309600037",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 16,
+        "height": 6,
+        "border": {
+          "x": 8.0,
+          "y": 0.0,
+          "z": 8.0,
+          "w": 0.0
+        },
+        "png_sha256": "2de7271387f49e9b5f1bd484648e615d5bf1ad5832fad2f8a19b45d2fb5598e0"
+      },
+      {
+        "name": "详情_底框_2",
+        "path": "res://assets/ui/role_weapon/select_weapon/______2_757a56f42a.png",
+        "sprite_path_id": "3245560463388607044",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 96,
+        "height": 236,
+        "border": {
+          "x": 0.0,
+          "y": 71.97999572753906,
+          "z": 0.0,
+          "w": 69.6199951171875
+        },
+        "png_sha256": "c47a2a6cf0f8d5c586e2bd74c10890333f3858ce769ca822c93cd0df3b738870"
+      },
+      {
+        "name": "分割线-有进度顶",
+        "path": "res://assets/ui/role_weapon/select_weapon/___-_____ac42f21c6d.png",
+        "sprite_path_id": "6325337732902878773",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 14,
+        "height": 5,
+        "border": {
+          "x": 7.0,
+          "y": 0.0,
+          "z": 7.0,
+          "w": 0.0
+        },
+        "png_sha256": "53b755ab480400ca4a7decdfd982711291dd9f8f86e7ecf3604062ecc91672d8"
+      },
+      {
+        "name": "升级按钮",
+        "path": "res://assets/ui/role_weapon/select_weapon/_____3eccfda0b5.png",
+        "sprite_path_id": "5197352753010978524",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 126,
+        "height": 126,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "9610043f973b31c873cea75231d71b0d23f44aafc9ae5fd849211c1cf6fda5fe"
+      },
+      {
+        "name": "武器",
+        "path": "res://assets/ui/role_weapon/select_weapon/___4fe131173e.png",
+        "sprite_path_id": "-6899608228516530877",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
+          "sha256": "43247ca44a5d54cf0dcc6cd4272251155a71fa6af48e60c070e2ead9bac77488"
+        },
+        "width": 196,
+        "height": 88,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "64dda98668c0274736a8da9b70bc9678dffafc1114a8fe85c9e4ae0e2f9429d3"
+      },
+      {
+        "name": "分割线-有进度底",
+        "path": "res://assets/ui/role_weapon/select_weapon/___-_____a21b58c2d4.png",
+        "sprite_path_id": "7332686488428864595",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 17,
+        "height": 7,
+        "border": {
+          "x": 9.0,
+          "y": 0.0,
+          "z": 8.0,
+          "w": 0.0
+        },
+        "png_sha256": "4386679bfa33aeabdb32726d814ef729b44569a8aa6552598c1d17d235f57317"
+      }
+    ],
+    "errors": []
+  }
+}

@@ -12,6 +12,9 @@ var suspended := false
 var simulation_scale := 1.0
 var low_quality := false
 var audio_enabled := true
+var effects_density := 2
+var effects_opacity := 1.0
+var reduce_player_effects := false
 var catalog: Dictionary = {}
 var media: Dictionary = {}
 var monster_tuning: Dictionary = {}
@@ -50,12 +53,14 @@ var _buff_style_bindings: Dictionary = {}
 var _replacement_buff_ids: Array[String] = []
 
 func configure(value: Dictionary) -> void:
+	apply_settings(DungeonSettings.read_options())
 	catalog = value
 	media = Descriptors.load_catalog()
 	var tuning_path = "res://assets/data/monster_presentation_tuning.json"
 	if FileAccess.file_exists(tuning_path): monster_tuning = JSON.parse_string(FileAccess.get_file_as_string(tuning_path))
 	for index in FEEL.audio_budget:
 		var voice = AudioStreamPlayer3D.new()
+		voice.bus = &"Effects"
 		voice.max_distance = 28
 		voice.unit_size = 8
 		add_child(voice)
@@ -68,6 +73,27 @@ func configure(value: Dictionary) -> void:
 			for clip in layer.get("clips", []):
 				if ResourceLoader.exists(str(clip)): sound_cache[str(clip)] = load(str(clip))
 	_prewarm_heavy_audio()
+
+func apply_settings(settings: Dictionary) -> void:
+	DungeonStyle.apply_audio_options(settings)
+	effects_density = clampi(int(settings.get("effects_density", 2)), 0, 2)
+	effects_opacity = clampf(float(settings.get("effects_opacity", 100)) / 100.0, 0.0, 1.0)
+	reduce_player_effects = bool(settings.get("reduce_player_effects", false))
+	for effect in active: _apply_effect_opacity(effect)
+
+func _apply_effect_opacity(effect: Dictionary) -> void:
+	var actor = effect.actor.get_ref()
+	var gain := effects_opacity * (0.35 if reduce_player_effects and actor and actor.is_player and not effect.important else 1.0)
+	# Enemy attack warnings retain their source visibility regardless of cosmetic settings.
+	if effect.important: gain = 1.0
+	effect["settings_opacity"] = gain
+	if effect.authored:
+		for emitter in effect.authored.emitters:
+			var particle: CPUParticles3D = emitter.node
+			if not particle.has_meta("settings_base_alpha"): particle.set_meta("settings_base_alpha", particle.color.a)
+			particle.color.a = float(particle.get_meta("settings_base_alpha")) * gain
+		for model in effect.authored.find_children("*", "MeshInstance3D", true, false): model.transparency = 1.0 - gain
+	effect.sparks.color.a = gain
 
 func _collect_heavy_audio(value: Variant, sounds: Dictionary, summons: Dictionary) -> void:
 	if value is Dictionary:
@@ -422,6 +448,11 @@ func _reserve_effect(particles: int, emitters: int, important: bool, priority: b
 	var budget = FEEL.low_effect_budget if low_quality else FEEL.effect_budget
 	var particle_limit = FEEL.low_particle_budget if low_quality else FEEL.particle_budget
 	var emitter_limit = FEEL.low_emitter_budget if low_quality else FEEL.emitter_budget
+	if not important:
+		var multiplier: float = [0.35, 0.65, 1.0][effects_density]
+		budget = maxi(4, int(budget * multiplier))
+		particle_limit = maxi(128, int(particle_limit * multiplier))
+		emitter_limit = maxi(8, int(emitter_limit * multiplier))
 	while active.size() >= budget or pool.is_empty() or _active_particles + particles > particle_limit or _active_emitters + emitters > emitter_limit:
 		var victim := -1
 		for i in active.size():
@@ -476,6 +507,7 @@ func emit_effect(actor: DungeonActor, name: String, point: Vector3, dimensions :
 		entry["cache_key"] = cache_key
 		entry.mesh.hide()
 		if not loop and follow == null: entry.duration = maxf(float(entry.duration), minf(authored.lifetime, 4.0))
+	_apply_effect_opacity(entry)
 	active.append(entry)
 	spawned += 1
 
@@ -544,7 +576,7 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 	var name = str(definition.get("EffectName", ""))
 	if name.is_empty(): return
 	if not actor.is_player and "enemyatkrange" in name.to_lower():
-		_authored_telegraph(actor, definition, sequence, point)
+		_authored_telegraph(actor, definition, sequence, point, -1.0, facing)
 		return
 	var anchor = _anchor(actor, definition)
 	var follows = str(definition.get("DummyType", "")) in ["EEDT_DummyChild", "EEDT_DummyPosFollow_WithoutRotate"]
@@ -610,7 +642,9 @@ func action_started(actor: DungeonActor, event: Dictionary) -> void:
 				elif shape == 1: size = Vector2.ONE * maxf(size.x, size.y)
 				var emit: Dictionary = raw.get("EmitProperty", {})
 				var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
-				var offset = DungeonWorld.vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * (DungeonWorld.vector(emit.get("AfterRotateEmitOffset", {})) + Vector3(0, 0, float(hit.get("offset", 0))))
+				# Imported hit.offset already mirrors EmitOffset.z when raw emission exists.
+				var local_offset = float(hit.get("forward_offset", 0)) + (0.0 if emit.has("EmitOffset") else float(hit.get("offset", 0)))
+				var offset = DungeonWorld.vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * (DungeonWorld.vector(emit.get("AfterRotateEmitOffset", {})) + Vector3(0, 0, local_offset))
 				offset.y = 0
 				var at = float(hit.time)
 				var identity = str([at, size, shape, degrees, offset, yaw])
@@ -624,7 +658,7 @@ func action_started(actor: DungeonActor, event: Dictionary) -> void:
 	for effect in active:
 		if effect.actor.get_ref() == actor and effect.sequence == int(event.sequence): effect.clock_sequence = int(event.sequence)
 
-func _authored_telegraph(actor: DungeonActor, definition: Dictionary, sequence: int, point: Vector3, start := -1.0) -> void:
+func _authored_telegraph(actor: DungeonActor, definition: Dictionary, sequence: int, point: Vector3, start := -1.0, facing := Vector3.ZERO) -> void:
 	var key = _key(str(definition.EffectName))
 	var scale_value = DungeonWorld.vector(definition.get("Scale", {})).abs()
 	if scale_value.is_zero_approx(): scale_value = Vector3.ONE
@@ -651,6 +685,9 @@ func _authored_telegraph(actor: DungeonActor, definition: Dictionary, sequence: 
 	telegraphs.back()["follow_position"] = str(definition.get("DummyType", "EEDT_DummyChild")) in ["EEDT_DummyChild", "EEDT_DummyPosFollow_WithoutRotate"]
 	telegraphs.back()["follow_rotation"] = str(definition.get("DummyType", "EEDT_DummyChild")) == "EEDT_DummyChild"
 	telegraphs.back()["detach_after"] = maxf(0, float(definition.get("DelayTimeToWorldPos", 0))) / 1000.0
+	if not facing.is_zero_approx():
+		telegraphs.back()["facing"] = facing
+		telegraphs.back()["facing_offset"] = atan2(facing.x, facing.z) - atan2(actor.facing.x, actor.facing.z)
 	_place_telegraph(telegraphs.back(), actor)
 
 func _add_telegraph(actor: DungeonActor, sequence: int, size: Vector2, shape: int, degrees: float, offset: Vector3, yaw: float, duration: float, point := Vector3.INF, start := -1.0) -> void:
@@ -668,7 +705,7 @@ func _place_telegraph(entry: Dictionary, actor: DungeonActor) -> void:
 		entry.follow_position = false
 		entry.follow_rotation = false
 	if entry.get("follow_position", true): entry.origin = actor.position if entry.point == Vector3.INF else entry.point
-	if entry.get("follow_rotation", true): entry.facing = actor.facing
+	if entry.get("follow_rotation", true): entry.facing = Basis(Vector3.UP, float(entry.get("facing_offset", 0))) * actor.facing
 	var facing = Basis(Vector3.UP, atan2(entry.facing.x, entry.facing.z))
 	entry.node.position = entry.origin + facing * entry.offset + Vector3.UP * 0.12
 	entry.node.rotation.y = atan2(entry.facing.x, entry.facing.z) + float(entry.yaw)
@@ -689,9 +726,9 @@ func command(actor: DungeonActor, event: Dictionary) -> void:
 			for i in range(active.size() - 1, -1, -1):
 				if active[i].actor.get_ref() == actor and (key.is_empty() or active[i].key == key): _recycle(i)
 		"EET_PlaySound": play_sound(str(raw.get("SoundName", "")), actor.position, actor, int(event.sequence))
-		"EET_PlayVoice": play_sound(str(raw.get("VoiceName", "")), actor.position, actor, int(event.sequence))
+		"EET_PlayVoice": play_sound(str(raw.get("VoiceName", "")), actor.position, actor, int(event.sequence), 1.0, 1.0, false, "voice")
 
-func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3) -> void:
+func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3, facing := Vector3.ZERO) -> void:
 	# Entity styles retain the modifiers active at creation across their delay/lifetime.
 	if not hit.has("source_attack_effect_replacements"): hit["source_attack_effect_replacements"] = _attack_effect_replacements(actor, hit)
 	var definition: Dictionary = hit.get("definition", {})
@@ -700,7 +737,7 @@ func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3) -> vo
 	var effect := _attack_effect_definition(actor, entity.get("EffectTriggerDef", {}), hit)
 	var emitted_before = spawned
 	var attached = str(raw.get("MotionAnimatorType", "")) in ["EMAT_FollowOwner", "EMAT_RotateOwner"]
-	if not str(effect.get("EffectName", "")).is_empty() and (raw.get("EntityType", "") != "EET_Physical" or attached): trigger(actor, effect, int(hit.get("sequence", -1)), origin, true, _source_style(actor, hit) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat))
+	if not str(effect.get("EffectName", "")).is_empty() and (raw.get("EntityType", "") != "EET_Physical" or attached): trigger(actor, effect, int(hit.get("sequence", -1)), origin, true, _source_style(actor, hit) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat), facing)
 	if spawned > emitted_before:
 		if preload("res://scripts/presentation/impact_profiles.gd").ranged(hit): active.back().clock_sequence = -1
 	play_sound(str(entity.get("CreateSound", {}).get("SoundName", "")), origin, actor, int(hit.get("sequence", -1)))
@@ -963,7 +1000,7 @@ func sync_actor_buffs(actor: DungeonActor) -> void:
 		play_sound(str(previous[identity].get("EndSound", {}).get("SoundName", "")), actor.position, actor)
 	_buff_styles[actor_id] = {"actor": weakref(actor), "styles": current}
 
-func play_sound(name: String, point: Vector3, actor: DungeonActor, sequence := -1, gain := 1.0, pitch := 1.0, priority := false) -> void:
+func play_sound(name: String, point: Vector3, actor: DungeonActor, sequence := -1, gain := 1.0, pitch := 1.0, priority := false, category := "") -> void:
 	if name.is_empty() or not audio_enabled: return
 	var key = _key(name)
 	var layers: Array = media.get("audio", {}).get(key, [])
@@ -985,7 +1022,7 @@ func play_sound(name: String, point: Vector3, actor: DungeonActor, sequence := -
 			sound_queue.remove_at(victim)
 		_sound_serial += 1
 		var variation = 1.0 + (float((_sound_serial * 17) % 7) - 3) * 0.008 if priority else 1.0
-		sound_queue.append({"delay": float(layer.get("delay", 0)), "layer": layer, "point": point, "actor": weakref(actor), "sequence": sequence, "gain": gain, "pitch": pitch * variation, "priority": priority, "clip": _sound_serial % maxi(1, layer.get("clips", []).size())})
+		sound_queue.append({"delay": float(layer.get("delay", 0)), "layer": layer, "bus": DungeonStyle.audio_bus(key, layer, category), "point": point, "actor": weakref(actor), "sequence": sequence, "gain": gain, "pitch": pitch * variation, "priority": priority, "clip": _sound_serial % maxi(1, layer.get("clips", []).size())})
 
 func _process(delta: float) -> void:
 	delta *= simulation_scale
@@ -1029,6 +1066,7 @@ func _process(delta: float) -> void:
 		if effect.body_burst: effect.burst_material.set_shader_parameter("phase", fraction)
 		var color: Color = effect.color
 		color.a = 0.65 if effect.important else (0.8 + sin(effect.age * 18) * 0.2) if effect.loop else 1.0 - fraction
+		color.a *= float(effect.get("settings_opacity", 1.0))
 		effect.material.albedo_color = color
 		if not effect.authored and not effect.body_burst and not effect.important and not effect.loop: effect.root.scale = Vector3.ONE * (1.0 + fraction * 0.35)
 	sound_queue.sort_custom(func(a, b): return not bool(a.get("priority", false)) and bool(b.get("priority", false)))
@@ -1056,6 +1094,7 @@ func _process(delta: float) -> void:
 			var path = str(entry.layer.clips[int(entry.get("clip", 0))])
 			if not sound_cache.has(path) and ResourceLoader.exists(path): sound_cache[path] = load(path)
 			voice.stream = sound_cache.get(path)
+			voice.bus = StringName(entry.get("bus", &"Effects"))
 			voice.position = entry.point
 			voice.pitch_scale = clampf(float(entry.layer.get("pitch", 1)) * float(entry.get("pitch", 1)), 0.2, 3)
 			voice.volume_db = linear_to_db(maxf(0.001, float(entry.layer.get("volume", 1)) * 0.65 * float(entry.get("gain", 1))))

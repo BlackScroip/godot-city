@@ -8,7 +8,7 @@ const EnemyHitReaction = preload("res://scripts/domain/enemy_hit_reaction.gd")
 const HIT_REACTION_ATTRIBUTES := ["Weight", "PushForceResist", "PushForceAddRate", "BaseTenacity", "BaseTenacityRecover", "TenacityAccAddRate", "BaseWeakTime"]
 
 const DATA_PATH = "res://assets/data/combat.json"
-const SUPPORTED_ATTRIBUTES = ["BaseAtk", "BaseDef", "BaseHp", "MoveSpeedRate", "HpAddFixed", "HpAddRate", "AttackSpeedRate", "Monster_AttackCDRate", "AtkAddFixed", "AtkAddRate", "DefAddFixed", "DefAddRate", "CriticalRate", "CriticalMulti", "NormalAtkDamageRate", "DodgeAtkDamageRate", "SubSkillDamageRate", "MainSkillDamageRate", "SpecialAtkDamageRate", "AllElementDamageRate", "AllElementResist", "HealRate", "ShieldEmpower", "None", "FireDamageRate", "WaterDamageRate", "ThunderDamageRate", "WindDamageRate", "LightDamageRate", "DarkDamageRate", "FireResist", "WaterResist", "ThunderResist", "WindResist", "LightResist", "DarkResist", "SkillActive1ExtraUseCount", "SkillActive1MaxSpAddRate", "SkillActive1CostSpAddRate", "SkillActive2ExtraUseCount", "SkillActive2MaxSpAddRate", "SkillActive2CostSpAddRate"]
+const SUPPORTED_ATTRIBUTES = ["BaseAtk", "BaseDef", "BaseHp", "MoveSpeedRate", "HpAddFixed", "HpAddRate", "AttackSpeedRate", "Monster_AttackCDRate", "AtkAddFixed", "AtkAddRate", "DefAddFixed", "DefAddRate", "CriticalRate", "CriticalMulti", "NormalAtkDamageRate", "DodgeAtkDamageRate", "SubSkillDamageRate", "MainSkillDamageRate", "SpecialAtkDamageRate", "MonsterPartnerDamageRate", "AllElementDamageRate", "AllElementResist", "HealRate", "ShieldEmpower", "None", "FireDamageRate", "WaterDamageRate", "ThunderDamageRate", "WindDamageRate", "LightDamageRate", "DarkDamageRate", "IceDamageRate", "FireResist", "WaterResist", "ThunderResist", "WindResist", "LightResist", "DarkResist", "IceResist", "SpiritTrigger", "SpiritEnhance", "SpiritRange", "SpiritDuration", "SpiritCount", "SkillActive1ExtraUseCount", "SkillActive1MaxSpAddRate", "SkillActive1CostSpAddRate", "SkillActive2ExtraUseCount", "SkillActive2MaxSpAddRate", "SkillActive2CostSpAddRate"]
 static var _shared_catalog: Dictionary = {}
 static var _shared_actions: Dictionary = {}
 static var _shared_buffs: Dictionary = {}
@@ -56,7 +56,7 @@ var armor: float = 0.0
 var shield: float = 0.0
 var max_health: float:
 	get:
-		return maxf(1.0, (_base_max_health + attribute("BaseHp") + attribute("HpAddFixed")) * (1.0 + attribute("HpAddRate") / 1000.0))
+		return maxf(1.0, (_base_max_health + attribute("BaseHp")) * (1.0 + attribute("HpAddRate") / 1000.0) + attribute("HpAddFixed"))
 	set(value):
 		_base_max_health = maxf(1.0, value)
 var hp: float:
@@ -270,6 +270,21 @@ func apply_enemy_enhancements(enhancements: Array) -> bool:
 
 func is_mohua() -> bool:
 	return not enemy.is_empty() and bool(custom_properties.get("sIs_MoHua_Enhance_Monster", false))
+
+func enemy_health_title() -> String:
+	var names: PackedStringArray = []
+	for enhancement in custom_properties.get("_enemy_enhancements", []):
+		var title := str(enhancement.get("name", ""))
+		if not title.is_empty(): names.append(DungeonLocale.text(title))
+	if names.is_empty(): return ""
+	return " ".join(names) + " " + DungeonLocale.text(str(enemy.get("name", "")))
+
+func enemy_health_locked() -> bool:
+	# The source indicator starts after a lock activates, and ends on disposal.
+	for entry in statuses.values():
+		if int(entry.get("lock_count", 0)) > 0 and int(entry.get("layers", 0)) > 0 and _buff_index.get(str(entry.id), {}).get("type") == "EBT_SpecialBuffLockHp":
+			return true
+	return false
 
 func enemy_attack_cooldown() -> float:
 	if enemy.is_empty(): return 0.0
@@ -1159,6 +1174,17 @@ func _status_range_visual(definition: Dictionary, caster: DungeonCombat) -> void
 	if str(raw.get("EffectName", "")).is_empty() and str(raw.get("EffectName1", {}).get("EffectName", "")).is_empty(): return
 	_emit_event("buff_effect", {"id": str(definition.id), "phase": "pulse", "definition": raw, "effect_radius": float(_status_area(definition, caster).get("radius", 0))})
 
+func recover_health(amount: float, apply_heal_rate := false) -> float:
+	if not is_finite(amount) or amount <= 0 or health <= 0 or _anti_heal_time > 0: return 0.0
+	var previous := health
+	var recovery := amount * (1.0 + attribute("HealRate") / 1000.0) if apply_heal_rate else amount
+	health = clampf(health + recovery, 0.0, max_health)
+	_apply_health_locks(previous)
+	var restored := maxf(0.0, health - previous)
+	_emit_event("heal", {"id": "spring", "amount": restored})
+	notify_gameplay("heal", {"amount": restored})
+	return restored
+
 func confirm_direct_damage(previous_health: float, context: Dictionary) -> void:
 	if not is_finite(previous_health) or previous_health <= health or invincible > 0 or _dodge_time > 0 or _block_time > 0: return
 	_emission_sequence += 1
@@ -1440,6 +1466,19 @@ func set_progression_buffs(roots: Array, externally_counted_numeric_ids: Array =
 		if root is Dictionary and not str(root.get("id", "")).is_empty() and int(root.get("layers", 0)) > 0:
 			next[str(root.id)] = int(next.get(str(root.id), 0)) + int(root.layers)
 	_external_numeric_buffs = externally_counted_numeric_ids.duplicate()
+	if next != _progression_roots:
+		var retired: Dictionary = {}
+		var retained: Dictionary = {}
+		for id in _progression_roots:
+			if not next.has(id): _collect_progression_effects(str(id), retired)
+		for id in next: _collect_progression_effects(str(id), retained)
+		for id in retired:
+			if retained.has(id) or _buff_index.get(id, {}).get("type") == "EBT_SpecialCustomStateBar": continue
+			# Removal must not run disposal transitions that can revive an old form.
+			statuses.erase(id)
+		_pending = _pending.filter(func(event):
+			var id := str(event.get("condition_effect", {}).get("id", ""))
+			return not retired.has(id) or retained.has(id))
 	var required: Dictionary = {}
 	for id in next:
 		_collect_initial(str(id), required)
@@ -1712,7 +1751,11 @@ func _tick_movement_interrupts() -> void:
 		var duration = float(command.get("duration", 0))
 		if elapsed + 0.000001 < start or (duration > 0 and elapsed > start + duration + 0.000001): continue
 		var raw = _read_raw_json(str(command.get("raw", "{}")))
-		if not raw is Dictionary or not _interrupt_conditions(raw): continue
+		if not raw is Dictionary: continue
+		if target == "sys_checkdodgeatk":
+			if _try_dodge_attack_interrupt(raw): return
+			continue
+		if not _interrupt_conditions(raw): continue
 		if not target.begins_with("sys_") and not target.begins_with("run_") and not target.begins_with("idle_"):
 			if fighter.get("combo", []).has(target): continue
 			var next = _action("ActGroup_playerchara", target)
@@ -1726,6 +1769,24 @@ func _tick_movement_interrupts() -> void:
 		busy = 0.0
 		_emit_event("action_cancelled", {"sequence": _cast_sequence})
 		return
+
+func _try_dodge_attack_interrupt(raw: Dictionary) -> bool:
+	if statuses.has("26080801"): return false
+	var manual := bool(custom_properties.get("InputAttack", false))
+	if statuses.has("26081001"): custom_properties.InputAttack = true
+	var admitted := _interrupt_conditions(raw)
+	custom_properties.InputAttack = manual
+	if not admitted: return false
+	var dispatcher := _action("ActGroup_playerchara", "sys_checkdodgeatk")
+	for branch in dispatcher.get("events", []):
+		if not branch.get("enabled", false): continue
+		var condition: Dictionary = _read_raw_json(str(branch.get("raw", "{}")))
+		if condition.get("Conditions", []).is_empty() or not _interrupt_conditions(condition): continue
+		var dodge_attack := _action("ActGroup_playerchara", str(branch.get("target", "")))
+		if not dodge_attack.is_empty():
+			_start(dodge_attack, 0)
+			return true
+	return false
 
 func _schedule(hit: Dictionary, at: float, action_name: String, slot: int, offset: float, summon_id: String = "", origin: Dictionary = {}, target_key: String = "") -> void:
 	hit = _modified_attack_definition(hit)
@@ -1920,7 +1981,8 @@ func _emit_hit(event: Dictionary) -> void:
 	if not damage_data.is_empty():
 		value = maxf(0.0, _damage_value(damage_data, effective_attack_power()))
 	var critical_multi = float(fighter.get("critMultiplier", 1.5)) + attribute("CriticalMulti") / 1000.0
-	value *= 1.0 + (attribute(rate_keys[clampi(int(event.slot), 0, 4)]) + attribute("AllElementDamageRate") + attribute(str(definition.get("element", "")) + "DamageRate")) / 1000.0
+	var damage_rate_key: String = "MonsterPartnerDamageRate" if int(event.slot) in [5, 6] else rate_keys[clampi(int(event.slot), 0, 4)]
+	value *= 1.0 + (attribute(damage_rate_key) + attribute("AllElementDamageRate") + attribute(str(definition.get("element", "")) + "DamageRate")) / 1000.0
 	value *= _damage_multiplier(str(definition.get("actType", "")))
 	_emission_sequence += 1
 	_emit_event("hit", {"definition": definition, "action": event.action, "slot": event.slot, "sequence": event.sequence, "emission": _emission_sequence, "emit_index": int(event.get("emit_index", 0)), "damage": value * (critical_multi if critical else 1.0), "uncritical_damage": value, "critical_rate": critical_rate, "critical_multi": critical_multi, "critical_roll": critical_roll, "critical": critical, "forward_offset": float(event.get("offset", 0)), "projectile": bool(definition.get("projectile", false)), "summon_id": event.get("summon_id", ""), "origin": event.get("origin", {}), "target_key": event.get("target_key", ""), "source": self})
@@ -1955,7 +2017,7 @@ func _spawn_summon(id: String, at: float, action_name: String, slot: int, offset
 	origin = origin.duplicate(true)
 	_emission_sequence += 1
 	origin["_summon_token"] = "%s:%d" % [actor_key, _emission_sequence]
-	_emit_event("summon", {"id": id, "definition": summon, "lifetime": float(summon.get("lifetime", 0)), "forward_offset": offset, "origin": origin, "target_key": target_key})
+	_emit_event("summon", {"id": id, "definition": summon, "lifetime": float(summon.get("lifetime", 0)), "forward_offset": offset, "origin": origin, "target_key": target_key, "action": action_name, "slot": slot, "sequence": _cast_sequence})
 	notify_gameplay("summon", {"id": id})
 	var raw: Dictionary = summon.get("raw_data", {})
 	_apply_raw_buff(raw.get("BuffTrigger_Caster", {}), effective_attack_power(), depth + 1)
@@ -2196,7 +2258,7 @@ func _apply_combat_modifiers(context: Dictionary, target: DungeonCombat, source:
 				entry.modifier_cooldown = maxf(0.0, float(entry.modifier_cooldown) + float(custom_properties[cooldown_property]) / 1000.0)
 			else:
 				_report("Modifier cooldown context unbound: %s %s" % [entry.id, cooldown_property])
-		var layers = 1
+		var layers = int(entry.layers)
 		var owner_multiplier = str(settings.get("ModifyDamageMultiLayer_AttackerBuffId", ""))
 		var target_multiplier = str(settings.get("ModifyDamageMultiLayer_AttackeeBuffId", ""))
 		if not owner_multiplier.is_empty():
@@ -2610,7 +2672,7 @@ func _condition(condition: Dictionary) -> bool:
 		if not bool(condition.get("exists", true)): return not statuses.has(buff_id)
 		return statuses.has(buff_id) and _compare(float(buff_layers(buff_id)), float(condition.get("layers", 1)), str(condition.get("compare", "ECT_GreaterEqual")))
 	if type == "EECT_CheckHP":
-		return _compare(health / max_health * 1000.0, float(condition.get("value", raw.get("CompareVal", 0))), str(condition.get("compare", "ECT_LessEqual")))
+		return _compare(health / max_health * 1000.0, float(raw.get("CompareVal", condition.get("value", 0))), str(raw.get("CompareType", condition.get("compare", "ECT_LessEqual"))))
 	var property = str(raw.get("CustomProperty", ""))
 	if property.is_empty():
 		property = str(condition.get("property", ""))
@@ -2657,6 +2719,12 @@ func _interrupt_conditions(raw: Dictionary) -> bool:
 		elif type == "EIT_CheckAttackMode":
 			var mode = str(custom_properties.get("AttackModeStr", "satk" if _current_slot == 4 else "normal"))
 			passed = mode == ("satk" if condition.get("ModeType") == "Special" else "normal")
+		elif type == "EIT_CheckBuffExist":
+			var present := buff_layers(str(condition.get("BuffId", ""))) >= int(condition.get("CheckLayerCount", 1))
+			passed = present == bool(condition.get("IsExist", true))
+		elif type == "EIT_CheckWeaponType":
+			var weapons := {"EWT_Sword": 1, "EWT_Sickle": 2, "EWT_Axe": 3, "EWT_Wand": 4, "EWT_Bow": 5, "EWT_Orb": 6, "EWT_Lance": 7, "EWT_DualBlades": 8}
+			passed = character_id == int(weapons.get(str(condition.get("WeaponType", "")), -1))
 		elif type == "EIT_CheckDead":
 			passed = health <= 0
 		elif type == "EIT_CheckAI":
@@ -2720,7 +2788,9 @@ func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack:
 			_refresh_health_lock(entry, settings)
 		"EBT_SpecialBuffChargeSkillSp":
 			var slot := int({"MainSkill": 3, "SubSkill": 2, "Dodge": 1}.get(str(raw.get("AttackType", "")), -1))
-			if slot < 0:
+			if str(raw.get("AttackType", "")) == "MonsterPartnerSkill":
+				_emit_event("partner_charge", {"settings": settings.duplicate(true)})
+			elif slot < 0:
 				_report("Skill charge requires system adapter: %s %s" % [entry.id, raw.get("AttackType", "")])
 			elif not fighter.is_empty():
 				var amount := float(settings.get("ChargeCount", 0)) / 1000.0 + skill_cost(slot) * float(settings.get("ChargePercent", 0)) / 1000.0
@@ -2885,11 +2955,11 @@ func rebind_buff_casters(actors: Dictionary) -> Array:
 			unresolved.append(key)
 	return unresolved
 
-func spawn_summon(id: String, origin: Dictionary = {}, target_key: String = "") -> bool:
+func spawn_summon(id: String, origin: Dictionary = {}, target_key: String = "", provenance: Dictionary = {}) -> bool:
 	if not _summon_index.has(id):
 		_report("Missing summon " + id)
 		return false
-	_spawn_summon(id, _clock, current_action, _current_slot, float(origin.get("InitPosOffset", {}).get("z", 0)), 0, origin, target_key)
+	_spawn_summon(id, _clock, str(provenance.get("action", current_action)), int(provenance.get("slot", _current_slot)), float(origin.get("InitPosOffset", {}).get("z", 0)), 0, origin, target_key)
 	return true
 
 func property_value(name: String) -> Variant:
@@ -2990,6 +3060,23 @@ func _collect_initial(id: String, result: Dictionary) -> void:
 	result[id] = true
 	for child in _buff_index.get(id, {}).get("initial", []):
 		_collect_initial(str(child), result)
+
+func _collect_progression_effects(id: String, result: Dictionary) -> void:
+	if result.has(id) or not _buff_index.has(id): return
+	result[id] = true
+	var definition: Dictionary = _buff_index[id]
+	var raw: Dictionary = definition.get("raw_data", {})
+	for child in definition.get("initial", []): _collect_progression_effects(str(child), result)
+	_collect_progression_effects(str(definition.get("disposeBuff", raw.get("DisposeTriggerBuff", {}).get("BuffTriggerId", ""))), result)
+	_collect_progression_effects(str(definition.get("modify", "")), result)
+	_collect_progression_effects(str(raw.get("FailedTriggerBuffId", "")), result)
+	for rule in definition.get("triggers", []):
+		for child in rule.get("add", []): _collect_progression_effects(str(child.id), result)
+	for settings in raw.get("BuffSettingDataList", []):
+		_collect_progression_effects(str(settings.get("AddBuff_ToAttacker", {}).get("BuffTriggerId", "")), result)
+	if str(raw.get("EBuffAddTargetType", "Self")) in ["Self", "Caster"]:
+		for settings in raw.get("BuffSettingDataList", []):
+			for child in settings.get("AddBuffIDList", []): _collect_progression_effects(str(child), result)
 
 func _clear_charge() -> void:
 	for id in ["700004", "700005", "700001", "700002", "700003"]:

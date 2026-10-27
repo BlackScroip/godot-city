@@ -6,6 +6,7 @@ files intentionally remain empty for the supplemental translation layer.
 
 import argparse
 from collections import Counter
+from decimal import Decimal
 import hashlib
 import json
 from pathlib import Path
@@ -28,6 +29,9 @@ PLACEHOLDER = re.compile(
     r"&[A-Za-z]+\d+&|\{\d+(?::[^{}]*)?\}|"
     r"(?<!%)%(?:\d+\$)?[-+#0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?[diouxXeEfFgGcs](?![A-Za-z])"
 )
+MARKUP = re.compile(r"<[^>]*>")
+NUMBER = re.compile(r"[-+]?(?:\d+(?:\.\d+)?|\.\d+)")
+SEMANTIC_TAG = re.compile(r"<#(specinfo|LocalizationId)=[\"']?([^>\"']+)[\"']?>")
 
 
 def digest(payload):
@@ -95,6 +99,21 @@ def signature(text):
     return dict(sorted(Counter(PLACEHOLDER.findall(text)).items()))
 
 
+def number_signature(text):
+    plain = MARKUP.sub("", PLACEHOLDER.sub("", text))
+    return dict(sorted(Counter(str(Decimal(value).normalize())
+                               for value in NUMBER.findall(plain)).items()))
+
+
+def semantic_signature(text, source_keys):
+    terms = []
+    for kind, key in SEMANTIC_TAG.findall(text):
+        lookup = "<#specinfo=" + key + ">" if kind == "specinfo" else key
+        value = MARKUP.sub("", source_keys.get(lookup, key))
+        terms.append(re.sub(r"[^\w\u3400-\u9fff]", "", value).lower())
+    return dict(sorted(Counter(terms).items()))
+
+
 def priority(row):
     table, value = row
     preferred = {"LocalizationData_keyword": 0, "LocalizationData_SingleKeyword": 1}
@@ -150,15 +169,17 @@ def recover(apk):
         raise ValueError("Missing packaged localization tables: " + ", ".join(missing))
 
     source_keys = {}
+    for _, row in rows:
+        key = row["key"]
+        if key in source_keys:
+            raise ValueError("Duplicate localization key: " + key)
+        source_keys[key] = row["text_cn"] if isinstance(row.get("text_cn"), str) else ""
     source_maps = {locale: {} for locale in LOCALES}
     keyed_maps = {locale: {} for locale in LOCALES}
-    excluded, conflicts = [], []
+    excluded, content_excluded, conflicts = [], [], []
     for table, row in sorted(rows, key=priority):
         key = row["key"]
         source = row.get("text_cn")
-        if key in source_keys:
-            raise ValueError("Duplicate localization key: " + key)
-        source_keys[key] = source if isinstance(source, str) else ""
         for locale, field in LOCALES.items():
             translation = row.get(field) if field else None
             if not isinstance(translation, str) or not translation:
@@ -171,6 +192,23 @@ def recover(apk):
                     "translation_placeholders": signature(translation),
                 })
                 continue
+            if source:
+                source_numbers, target_numbers = number_signature(source), number_signature(translation)
+                source_terms = semantic_signature(source, source_keys)
+                target_terms = semantic_signature(translation, source_keys)
+                reasons = []
+                if source_numbers != target_numbers:
+                    reasons.append("numbers")
+                if source_terms != target_terms:
+                    reasons.append("semantic_tags")
+                if reasons:
+                    content_excluded.append({
+                        "table": table, "key": key, "locale": locale,
+                        "source": source, "translation": translation, "reasons": reasons,
+                        "source_numbers": source_numbers, "translation_numbers": target_numbers,
+                        "source_semantic_tags": source_terms, "translation_semantic_tags": target_terms,
+                    })
+                    continue
             keyed_maps[locale][key] = translation
             if not source:
                 continue
@@ -195,6 +233,10 @@ def recover(apk):
         "keyed_map_counts": {locale: len(mapping) for locale, mapping in keyed_maps.items()},
         "placeholder_mismatch_count": len(excluded),
         "excluded_placeholder_mismatches": excluded,
+        "content_mismatch_count": len(content_excluded),
+        "content_mismatch_reasons": dict(Counter(reason for row in content_excluded
+                                                  for reason in row["reasons"])),
+        "excluded_content_mismatches": content_excluded,
         "source_translation_conflict_count": len(conflicts),
         "source_translation_conflicts": conflicts,
         "source_conflict_selection": "keyword, then SingleKeyword, then alphabetical table and key; keyed maps preserve context",
@@ -203,6 +245,8 @@ def recover(apk):
             "The original APK contains Simplified Chinese, Traditional Chinese, English and Japanese only.",
             "Empty and null original translations are omitted; no automatic fallback is presented as a translation.",
             "Translations with differing substitution placeholders are retained as evidence but excluded from runtime maps.",
+            "Translations with differing visible numbers or semantic tag identities are retained as evidence but excluded from runtime maps.",
+            "Semantic tag identities resolve through their original Simplified Chinese labels; absent target tags are conservatively rejected.",
             "Original translations may refer to older gameplay text; extraction does not assert linguistic accuracy.",
             "Markup, specinfo keys and LocalizationId references are preserved verbatim for the runtime renderer.",
             "The original application was not executed during this static resource recovery.",
@@ -243,7 +287,9 @@ def main():
     print(json.dumps({"checked" if args.check else "written": str(args.output),
                       "tables": report["table_count"], "keys": report["source_key_count"],
                       "locale_entries": report["source_map_counts"],
-                      "excluded_placeholder_mismatches": report["placeholder_mismatch_count"]},
+                      "excluded_placeholder_mismatches": report["placeholder_mismatch_count"],
+                      "excluded_content_mismatches": report["content_mismatch_count"],
+                      "content_mismatch_reasons": report["content_mismatch_reasons"]},
                      ensure_ascii=False))
 
 

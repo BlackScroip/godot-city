@@ -15,10 +15,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
     native.SELECTION = {
         "RogueRoomManager": ["AdventureEvent", "OldDay"],
+        "RogueRunManager": ["CheckSelectCharaTalentAndLoot", "SelectLootByRandom"],
+        "ATGameManager": ["bool Check(UnlockData", "bool Check(EUnlockConditionType"],
         "ATPanel_AdventureEvent": [""],
         "RogueAdvantureEventProperty_Gamble": ["bool Check()"],
         "RogueAdvantureEventProperty_Select": ["bool CheckSuccess()"],
         "RogueAdvantureEventData": ["GetAddAppearChanceDic"],
+        "NodeData": ["get_NodeLevel()"],
+        "RoadMapData": ["GetMapId()"],
         "UnlockData": ["Check", "9101", "9102"],
     }
     native.SELECTED_OFFSETS = set()

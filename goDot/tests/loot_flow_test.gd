@@ -196,6 +196,7 @@ func _run() -> void:
 	game._action("result_next", 0, 0)
 	game._action("result_next", 0, 0)
 	game._action("result_camp", 0, 0)
+	await wait_transition(game)
 	check(not game._flow_locked() and not game.hud.modal_open, "Victory settlement returns to camp before a new adventure")
 	game.systems.begin_run(9128, game.selected_character, 100, 0)
 	check(game.profile.data.run.talents.is_empty(), "Temporary talent upgrades do not survive a new run")

@@ -8,6 +8,7 @@ func _initialize() -> void:
 	catalog.load_all()
 	check(DungeonCatalog.clean("命中附加<#specinfo=zhuoshao>。") == "命中附加灼烧。", "Burn term survives cleanup")
 	check(DungeonCatalog.clean("<#specinfo=zhuorejianqi>与<#specinfo=anshi>") == "灼热剑气与暗蚀", "APK proper names resolve")
+	check(DungeonCatalog.clean("<#specinfo=shoulieyinji>、<#specinfo=daozhen>、<#specinfo=liujinhuanren>、<#specinfo=fengshi>") == "狩猎印记、刀阵、鎏金环刃、风蚀", "Recovered character terms resolve without internal identifiers")
 	check(DungeonCatalog.clean("<color=#fff><#specinfo=gongjili></color>+10%<br><#specinfo=putonggongji>") == "攻击力+10%\n普通攻击", "Legacy combat terms and line breaks remain")
 	check(DungeonCatalog.clean("<#specinfo=unknown_status>") == "【术语：unknown_status】", "Unknown semantic term remains visible")
 	check(DungeonCatalog.clean("<#LocalizationId=\"keyword_Relics\">遗物</LocalizationId>") == "遗物", "Inline localization fallback is not duplicated")

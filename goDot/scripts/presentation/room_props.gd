@@ -4,45 +4,33 @@ var world: Node3D
 var props: Array[Dictionary] = []
 var clock := 0.0
 var door_materials = preload("res://scripts/presentation/door_materials.gd").new()
+var chest_sources: Dictionary = {}
+const CHEST_CATALOG := "res://assets/environment_effects/chest_catalog.json"
 
 # Box_Effect children in the APK's EnvUnit_TreasureBox_* subprefabs.
 const CHEST_EFFECTS := {
 	"Normal": "23121501_fx_other_propblue",
 	"Unusual": "23121501_fx_other_proppurple",
 	"Luxury": "23122101_fx_other_treasureboxyellow",
-	"Curse": "23122101_fx_other_treasureboxcurse"
+	"Curse": "23122101_fx_other_treasureboxcurse",
+	"Curse_Final": "23122101_fx_other_treasureboxcurse"
 }
 
 func configure(source: Node3D) -> void:
 	world = source
+	if FileAccess.file_exists(CHEST_CATALOG):
+		var catalog = JSON.parse_string(FileAccess.get_file_as_string(CHEST_CATALOG))
+		if catalog is Dictionary: chest_sources = catalog.get("chests", {})
 	door_materials.configure(world.environment_root)
 	for item in world.interactions._items.values():
 		var kind := str(item.marker.get("Type", ""))
-		if kind not in ["EEUT_AbilityItemTreasureBox", "EEUT_StageChangeDoor", "EEUT_Protal"]: continue
+		if kind not in ["EEUT_StageChangeDoor", "EEUT_Protal"]: continue
 		if not is_instance_valid(item.visual): continue
 		var anchor = Node3D.new()
 		anchor.name = "InteractionPresentation"
 		item.visual.add_child(anchor)
 		var entry := {"item": item, "anchor": anchor, "opened": false}
-		if kind == "EEUT_AbilityItemTreasureBox":
-			item["chest_presentation"] = true
-			entry["effect_address"] = CHEST_EFFECTS.get(str(item.data.get("TreasureType", "")), "")
-			var effect_anchor: Node3D
-			if not entry.effect_address.is_empty():
-				for child in item.visual.find_children("*", "Node3D", true, false):
-					if str(child.name) == entry.effect_address or str(child.name).begins_with(entry.effect_address + "_"):
-						effect_anchor = child
-						break
-			if effect_anchor == null:
-				effect_anchor = Node3D.new()
-				effect_anchor.name = "ChestSourceEffect"
-				anchor.add_child(effect_anchor)
-			entry["effect_anchor"] = effect_anchor
-			# Exported treasure markers may contain only an empty artmodel socket.
-			var existing: Array = item.visual.find_children("*", "MeshInstance3D", true, false)
-			if existing.is_empty(): _chest(anchor, entry)
-			DungeonWorldStyle.effect(anchor, Vector3.ZERO, Color(0.12, 0.42, 1, 0.48), 2.6, -1)
-		else:
+		if kind in ["EEUT_StageChangeDoor", "EEUT_Protal"]:
 			_portal(anchor, item.visual.find_children("*", "MeshInstance3D", true, false).is_empty(), entry)
 			entry["door_details"] = []
 			for child in item.visual.find_children("*", "Node3D", true, false):
@@ -65,6 +53,50 @@ func configure(source: Node3D) -> void:
 				opening.size = Vector2(2.4, 3.4)
 				_mesh(anchor, opening, surface, Vector3(0, 1.7, 0.06)).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 				entry["exit_surface"] = surface
+		props.append(entry)
+	refresh_chests()
+
+func refresh_chests() -> void:
+	var controller = world.environment_root.get_node_or_null("EnvironmentEffects")
+	for entry in props.duplicate():
+		if str(entry.item.marker.get("Type", "")) == "EEUT_AbilityItemTreasureBox": props.erase(entry)
+	for item in world.interactions._items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_AbilityItemTreasureBox" or not is_instance_valid(item.visual): continue
+		# Trial boxes clone the source visual after its first presentation setup.
+		if controller != null:
+			for binding in controller.bindings.duplicate():
+				if item.visual.is_ancestor_of(binding.anchor) and CHEST_EFFECTS.values().has(binding.address): controller.remove_binding(binding)
+		for child in item.visual.get_children():
+			if str(child.name).begins_with("InteractionPresentation"):
+				item.visual.remove_child(child)
+				child.queue_free()
+		for child in item.visual.find_children("*", "Node3D", true, false):
+			for address in CHEST_EFFECTS.values():
+				if str(child.name) == address or str(child.name).begins_with(address + "_"):
+					child.hide()
+					child.set_meta("unityActive", false)
+		var anchor := Node3D.new()
+		anchor.name = "InteractionPresentation"
+		item.visual.add_child(anchor)
+		item["chest_presentation"] = true
+		var quality := str(item.data.get("TreasureType", "Normal"))
+		var source: Dictionary = chest_sources.get("Curse" if quality == "Curse_Final" else quality, {})
+		var entry := {"item": item, "anchor": anchor, "opened": bool(item.state.opened), "effect_address": str(source.get("ambient_effect", CHEST_EFFECTS.get(quality, "")))}
+		var effect_anchor := Node3D.new()
+		effect_anchor.name = "ChestSourceEffect"
+		anchor.add_child(effect_anchor)
+		for component in source.get("ambient_transform_chain", []):
+			var q: Dictionary = component.get("rotation", {})
+			var rotation_value := Quaternion(float(q.get("x", 0)), float(q.get("y", 0)), float(q.get("z", 0)), float(q.get("w", 1))).normalized()
+			var scale_value := DungeonWorld.vector(component.get("scale", {"x": 1, "y": 1, "z": 1}))
+			effect_anchor.transform *= Transform3D(Basis(rotation_value).scaled(scale_value), DungeonWorld.vector(component.get("position", {})))
+		effect_anchor.visible = bool(source.get("ambient_active", true)) and not bool(item.state.opened)
+		entry["effect_anchor"] = effect_anchor
+		# Some exported markers contain only an empty artmodel socket.
+		if item.visual.find_children("*", "MeshInstance3D", true, false).is_empty(): _chest(anchor, entry)
+		if controller != null and not entry.effect_address.is_empty():
+			var binding: Dictionary = controller.register_anchor(effect_anchor, entry.effect_address)
+			if not binding.is_empty(): entry["effect_binding"] = binding
 		props.append(entry)
 
 func _material(color: Color, glow := 0.0, metallic := 0.0) -> StandardMaterial3D:
@@ -95,7 +127,6 @@ func _chest(anchor: Node3D, entry: Dictionary) -> void:
 	var wood = _material(Color("596665"))
 	var dark = _material(Color("283c42"))
 	var steel = _material(Color("a5b9b5"), 0, 0.45)
-	var glow = _material(Color("66dcff"), 1.2)
 	_box(anchor, Vector3(1.38, 0.55, 0.86), Vector3(0, 0.34, 0), wood)
 	for y in [0.12, 0.57]:
 		_box(anchor, Vector3(1.45, 0.07, 0.92), Vector3(0, y, 0), steel)
@@ -113,9 +144,7 @@ func _chest(anchor: Node3D, entry: Dictionary) -> void:
 	_box(lid, Vector3(1.46, 0.06, 0.94), Vector3(0, -0.035, 0.43), steel)
 	_box(lid, Vector3(0.19, 0.24, 0.065), Vector3(0, -0.08, 0.91), steel)
 	_box(lid, Vector3(0.045, 0.08, 0.016), Vector3(0, -0.08, 0.95), dark)
-	_box(anchor, Vector3(1.22, 0.018, 0.8), Vector3(0, 0.625, 0), glow)
 	entry["lid"] = lid
-	entry["glow"] = glow
 
 func _portal(anchor: Node3D, missing: bool, entry: Dictionary) -> void:
 	# Recovered stone portals retain their source silhouette without generic rings.
@@ -158,7 +187,6 @@ func _process(delta: float) -> void:
 			entry.orb.rotation.y += delta * 0.35
 		if entry.has("lid"):
 			entry.lid.rotation.x = move_toward(entry.lid.rotation.x, -1.65 if state.opened else 0.0, delta * 3.5)
-			entry.glow.emission_energy_multiplier = 0.12 if state.opened else 1.1 + sin(clock * 2.2) * 0.2
 		if bool(state.opened) != bool(entry.opened):
 			entry.opened = state.opened
 			for child in entry.anchor.get_children():

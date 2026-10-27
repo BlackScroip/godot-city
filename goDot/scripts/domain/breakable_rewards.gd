@@ -48,7 +48,8 @@ func destroyable(config_id: String, attrs: Dictionary = {}, source_flags: Dictio
 				for id in systems.roll_pool(int(systems.catalog.config.get("DefaultRecoverItemLootPoolId", 0)), 1):
 					_entry(result, int(id), 1, false, false)
 		"70003":
-			# The source golden apple updates its own run counter rather than spawning currency.
+			# Attribute 1300 updates the persistent wallet immediately; no pickup is spawned.
+			_entry(result, 106, 1, true)
 			result.append({"counter": "EatGoldAppleCount", "amount": 1, "direct": true})
 		_:
 			if _roll(1001) <= 100: _entry(result, 101, 1 + _roll(3))

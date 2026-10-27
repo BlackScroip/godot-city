@@ -1,0 +1,912 @@
+[
+  {
+    "name": "BOSS图标",
+    "path": "res://assets/ui/settings/guide_images/908770c368a9c210.png",
+    "sprite_path_id": "2670931800226758280",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+      "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+    },
+    "png_sha256": "2c82062bac950430408cdd79ac34ecdf28b163c0483c770ef3e57072fefdc8a5"
+  },
+  {
+    "name": "天赋树",
+    "path": "res://assets/ui/settings/guide_images/83969c4741b2cc8b.png",
+    "sprite_path_id": "5452053530389219519",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
+      "sha256": "03596ac9627ac23fecb9ee6240f868f50a8dd144773f170fff7be1e137d2eaa3"
+    },
+    "png_sha256": "3f04497eb32adb682dd66642e5684f4d95831dda96524bb407f7e2f79b0b361c"
+  },
+  {
+    "name": "buff_qinshi",
+    "path": "res://assets/ui/settings/guide_images/b14625e1c2293f8f.png",
+    "sprite_path_id": "-7962297438874751634",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "a7789178a7b7e81a51c8256b0d9b6610b0099d0ebf5acc9e316e30c6bfbf36f1"
+  },
+  {
+    "name": "buff_tongsheng",
+    "path": "res://assets/ui/settings/guide_images/21d4503379352822.png",
+    "sprite_path_id": "-7886912281259987602",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "b75cf39d7c55e175f0a168321f74f15750aad1fcbb7be7cb960b0800bbc09912"
+  },
+  {
+    "name": "buff_pinzhang",
+    "path": "res://assets/ui/settings/guide_images/5eaca1d2e6122ed3.png",
+    "sprite_path_id": "-7337050703953290581",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "4bfa9a33c303ea1cbc999bc5a4eab69f257b750e3cc3e4c44b4f1d19e4ee949c"
+  },
+  {
+    "name": "buff_hundun",
+    "path": "res://assets/ui/settings/guide_images/3c50598f756cb9b5.png",
+    "sprite_path_id": "-6720958167915230011",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "6e8de26637147899579ecdddcca916430adc1f8e65b1a1f71a429a401eb76724"
+  },
+  {
+    "name": "buff_kuangbao",
+    "path": "res://assets/ui/settings/guide_images/2eacf774813d2ca2.png",
+    "sprite_path_id": "-6133167356716307090",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "7a7ab6a7562153f1b4dcf43cf5b403563c12340ea866778b03b2096c729eaf78"
+  },
+  {
+    "name": "buff_buxiu",
+    "path": "res://assets/ui/settings/guide_images/4e9457058dadda7c.png",
+    "sprite_path_id": "-6004985645018670421",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "b562ffca7e920b4f1a81b385d74a6bbbd2b5b11d26a0350d44dd509c8c466316"
+  },
+  {
+    "name": "buff_fuji",
+    "path": "res://assets/ui/settings/guide_images/59cc2f2264077cb5.png",
+    "sprite_path_id": "-5693665039170785938",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "54cd14e7d80b505903cca972c333b774aa7f835d5cdf8398e8984ce3cc5addbe"
+  },
+  {
+    "name": "buff_modun",
+    "path": "res://assets/ui/settings/guide_images/71e643af2938cfa6.png",
+    "sprite_path_id": "-5353965817588732562",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "e36fbf54b4759ea07e20fce768999d7dc46b218a007762bc5866801241820215"
+  },
+  {
+    "name": "buff_fengli",
+    "path": "res://assets/ui/settings/guide_images/9e1fd67d994eb188.png",
+    "sprite_path_id": "-4184639143929107090",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "bf7fea66554c0721f6e3922b353ef0e8fe3737956c570ff75d3e685256ba870f"
+  },
+  {
+    "name": "buff_shixie",
+    "path": "res://assets/ui/settings/guide_images/f16ad95feff02f84.png",
+    "sprite_path_id": "-3069570239703544635",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "59d5225156e8fea3c38ea1d0a53b7af9ab320e06d7f1dae7cff7abfb947b34a1"
+  },
+  {
+    "name": "buff_duya",
+    "path": "res://assets/ui/settings/guide_images/b21e23780ee08314.png",
+    "sprite_path_id": "3808865726406069445",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    "png_sha256": "9c56f8b97c03bc6d89d4d25ca6d56482359edd3529571d13241788f66b79300d"
+  },
+  {
+    "name": "buff_suozu",
+    "path": "res://assets/ui/settings/guide_images/28256b12d82e1809.png",
+    "sprite_path_id": "-9077362353329676336",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f"
+    },
+    "png_sha256": "94c38521dd272cc25e6323e07ac802a95d05e7ef11d92715a82ff63f844a36e8"
+  },
+  {
+    "name": "buff_duanmai",
+    "path": "res://assets/ui/settings/guide_images/e66cee7faeea3600.png",
+    "sprite_path_id": "-8738764824009186109",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f"
+    },
+    "png_sha256": "42ceaf29aa8a3ab3d8a88c89c3354cd2aed1979464e0f38ae20527c7c2841a83"
+  },
+  {
+    "name": "buff_chiying",
+    "path": "res://assets/ui/settings/guide_images/768434bdf3371a2c.png",
+    "sprite_path_id": "1496718400639483113",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f"
+    },
+    "png_sha256": "8776c74339bf8efe5085ee74e5838ba048b0b8d710e08625b487bd71db70e828"
+  },
+  {
+    "name": "SpritesAltar",
+    "path": "res://assets/ui/settings/guide_images/7d40bec15f7dce50.png",
+    "sprite_path_id": "-3526217163340320126",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+      "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+    },
+    "png_sha256": "fbdaf3af03fb8fffb8a0e688130069a15827db03c0bce74cdb0eeea066da68cb"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_heal",
+    "path": "res://assets/ui/settings/guide_images/023b74a1bb4c457f.png",
+    "sprite_path_id": "-9091792953692683774",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "f2a5a6dc86a5ea169a9f3ab7716c9766eda18e8fca09ac866cd6646cb580613f"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_first",
+    "path": "res://assets/ui/settings/guide_images/c0a2b0f55230f732.png",
+    "sprite_path_id": "-7963177256771273659",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "6789288bfab0d858532b898244c3eef988bede1472cffc9b1b1fd086874584fb"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_Boss(new)",
+    "path": "res://assets/ui/settings/guide_images/1fa52758685caa96.png",
+    "sprite_path_id": "-6780197944493773812",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "ce9688d1a73d099c45928498372fdd471b00458d505cb91a2d42819b5a61cf1e"
+  },
+  {
+    "name": "icon_materialicon",
+    "path": "res://assets/ui/settings/guide_images/7b3a398e53c17dc2.png",
+    "sprite_path_id": "-3786927540215496959",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "60e056924023a8360393ea9e95c10f634f00582826cd9ef919052bcc5375d182"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_Normal",
+    "path": "res://assets/ui/settings/guide_images/96a5ada826ccdbad.png",
+    "sprite_path_id": "-2342399754298911906",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "ae8b9e083a748291013b97efe794264648be94c0722ef5da2016d1cf2a0ff737"
+  },
+  {
+    "name": "icon_gold",
+    "path": "res://assets/ui/settings/guide_images/26c717e3c70079e8.png",
+    "sprite_path_id": "-354578817330875833",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "5338ff6af7f58e7cbc7cdb68f888aecae4fa24d98012da28b05325a92295ad6e"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_dodge",
+    "path": "res://assets/ui/settings/guide_images/c9a7ceb0cb005e2f.png",
+    "sprite_path_id": "445594771879343035",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "777cdbba7a50baaaf0dd100e3deaf55ec182ceeaea32308fd5646de8afdf6989"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_Elite",
+    "path": "res://assets/ui/settings/guide_images/ec1676450f7062ad.png",
+    "sprite_path_id": "861024946103773962",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "ea712c57498b73991a9dc73b8de7225349d6c25cb97675bc12ea4ba5e29d728b"
+  },
+  {
+    "name": "icon_materialpoint",
+    "path": "res://assets/ui/settings/guide_images/ffb9a5bca722a0f5.png",
+    "sprite_path_id": "1387658022391728769",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "b723cebf2ef78b4078f3307497bfa08c6a6a4acd7bd9250164882356aad96b9e"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_Limited",
+    "path": "res://assets/ui/settings/guide_images/4f4a43bad2a49dd2.png",
+    "sprite_path_id": "3072175275080423604",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "41817c047387ec944503bd7fb7b0557023664d652ec7e32420651188ee6ed150"
+  },
+  {
+    "name": "icon_MonsterPartnerSkillSelector",
+    "path": "res://assets/ui/settings/guide_images/9b505fc70db658ca.png",
+    "sprite_path_id": "5440518939519853885",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "606024753e46e850012d51d6493ee51005d400aba75bce2c3528a6ccc7a0f606"
+  },
+  {
+    "name": "icon_maincitybulid_camp",
+    "path": "res://assets/ui/settings/guide_images/4d4faf31fae934eb.png",
+    "sprite_path_id": "6300335915973562546",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "7272465668853b67a8567af2ffcc2329fa1d40c6c26538c9ae8f55f8fa542b0f"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_traproom",
+    "path": "res://assets/ui/settings/guide_images/f30a8577a4fb1f3c.png",
+    "sprite_path_id": "7756452549979992350",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "848795c06917a09ec7ae2ea0b5809c37f6c80830f51898161c906ecae6a8b59d"
+  },
+  {
+    "name": "icon_stagerewardtypeicon_shop",
+    "path": "res://assets/ui/settings/guide_images/97ff2b49aa9f5507.png",
+    "sprite_path_id": "8624811174968177962",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/e05a616ef0b7ba19af3ea033eec31f2f.bundle",
+      "sha256": "ecfb50046f2b5a966ef9df36bc1037c94ff5357c93d2c1f549ad01cabd19211d"
+    },
+    "png_sha256": "23ba2e1acd350dec5761a4d7de568a3ec120ec08a0ab5ce874c4d786b1dba56b"
+  },
+  {
+    "name": "升级精灵",
+    "path": "res://assets/ui/settings/guide_images/9a612c1e27b56252.png",
+    "sprite_path_id": "-8778669737229863056",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "44bf6496189e5d6ddd5ebf01e5ea4cb7d69fa71d674ee5730ae40a768608ae84"
+  },
+  {
+    "name": "诅咒遗物",
+    "path": "res://assets/ui/settings/guide_images/0f226be1ca7f81ba.png",
+    "sprite_path_id": "-8687986864953275123",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "be6ed8800f9d8620c8893858aa1217733082aefa1397d38fccee571575cf8c0b"
+  },
+  {
+    "name": "契约等级",
+    "path": "res://assets/ui/settings/guide_images/ce23eb310c760617.png",
+    "sprite_path_id": "-8592481424736572399",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "04adf190390ed44c683999df9c32ac9b0ff5a727c12aa3b8acd01a9cb00ccb40"
+  },
+  {
+    "name": "委托栏",
+    "path": "res://assets/ui/settings/guide_images/dc0e8b28a1257498.png",
+    "sprite_path_id": "-8222873088147874066",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "19cf0dbd240ad3414f0466fb830b3f29d465c7b4715597a1c22be2c119972349"
+  },
+  {
+    "name": "爆发技",
+    "path": "res://assets/ui/settings/guide_images/75abecd56906150b.png",
+    "sprite_path_id": "-7863371409503275733",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "deb332044c9da9c45d13b43f2dd5338ce4f7f184901e88f574b619aa25ebd058"
+  },
+  {
+    "name": "极限闪避",
+    "path": "res://assets/ui/settings/guide_images/a4b30fc9b6469dd5.png",
+    "sprite_path_id": "-7791193370745661327",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "7e3f514319b35bc500592728b8d58f6c920c027d500498e842bb83ceb2a1be42"
+  },
+  {
+    "name": "保护目标",
+    "path": "res://assets/ui/settings/guide_images/a5b4795b9108b15a.png",
+    "sprite_path_id": "-7600960138931909745",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "bdef0ec5bdfb33f4fc8b701148d34ddcf7401c5e24f8dd593872f0c5c61d6616"
+  },
+  {
+    "name": "护盾",
+    "path": "res://assets/ui/settings/guide_images/b65b6e3a2e3dfc52.png",
+    "sprite_path_id": "-6430988119404455824",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "7d968bdd340dbfe39f32b493321c380926134daec8bb4a3b49917e4d66134a2c"
+  },
+  {
+    "name": "普通攻击",
+    "path": "res://assets/ui/settings/guide_images/d90c73f75ac24cd1.png",
+    "sprite_path_id": "-6147685426820751440",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "ef4ad8913f1cb98e8c02313499f675857e90ad7cb7ee5a9c03d096cab607c5a1"
+  },
+  {
+    "name": "阿尔托",
+    "path": "res://assets/ui/settings/guide_images/5edbb76de9431317.png",
+    "sprite_path_id": "-6129840829742770278",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "ff1dd7e55e44ad16e670f898d1fe75ca42bd72fda737ee0d84d18ee6c231b43a"
+  },
+  {
+    "name": "怪物魔化",
+    "path": "res://assets/ui/settings/guide_images/8e9b6f5bdc9f0966.png",
+    "sprite_path_id": "-6044685838789880724",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "296a8cde1f46c0db06bba8bca3d39683adcbe10984446d8883df0ea8e793a3c2"
+  },
+  {
+    "name": "闪避攻击",
+    "path": "res://assets/ui/settings/guide_images/32da5057d225045f.png",
+    "sprite_path_id": "-5900176939528615519",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "e985b86f4ec01a66f119d8f2432b7ab777cab989c41cbc41496d710e04396925"
+  },
+  {
+    "name": "限时战斗",
+    "path": "res://assets/ui/settings/guide_images/7a2a7ced95663fe2.png",
+    "sprite_path_id": "-5643002474617467295",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "245105cdaa9d02af3313c9474375ad51673c7c3ccdb429b9b48a9d53c2fedae6"
+  },
+  {
+    "name": "烹饪",
+    "path": "res://assets/ui/settings/guide_images/c79bb628c7385204.png",
+    "sprite_path_id": "-4203355143448050251",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "d9462273dc1b131a05eb3be908e784c3cf62b1ad56b612a59b27505a309013e5"
+  },
+  {
+    "name": "怪物养成",
+    "path": "res://assets/ui/settings/guide_images/904afe1588731a02.png",
+    "sprite_path_id": "-3848358734212620000",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "44bc701db83391842a69907e2a94b5c4a68965442ee1899d27f7176a20b60577"
+  },
+  {
+    "name": "祈愿遗物",
+    "path": "res://assets/ui/settings/guide_images/f04ec332a9d6aa30.png",
+    "sprite_path_id": "-3744862284182706757",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "be63c6a5005035b49a2d99eae0d74f271c4a05042feabde7aaaed635300ff420"
+  },
+  {
+    "name": "觉醒等级与潜能结晶",
+    "path": "res://assets/ui/settings/guide_images/9e9dad4945d77aed.png",
+    "sprite_path_id": "-3733711221881349074",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "6940c82f2c4556d5d70355158e55648621ad5e14cc3c67e61d7381afff67ad8a"
+  },
+  {
+    "name": "融合精灵",
+    "path": "res://assets/ui/settings/guide_images/90ed38bc9a8c93ce.png",
+    "sprite_path_id": "-2818229477645514280",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "d6da2b0b2d6ec26dd15ef7c96a157ae1cbc18a42550c8a3a613a868052f79034"
+  },
+  {
+    "name": "冒险家评级",
+    "path": "res://assets/ui/settings/guide_images/2fa455fd6fe6d5df.png",
+    "sprite_path_id": "-2789655317772498735",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "7e15e62e3714cd408a86c618f7dfb5025cd377e2ca04a54c748fa038b75d34e5"
+  },
+  {
+    "name": "获取遗物",
+    "path": "res://assets/ui/settings/guide_images/ccc488ceacda9307.png",
+    "sprite_path_id": "-2266402911792637599",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "43345c3d597620b3493183e6d278a0681c83d0409e52a5d49ec7f264b3db882b"
+  },
+  {
+    "name": "契约挑战",
+    "path": "res://assets/ui/settings/guide_images/0bee6da8d818956c.png",
+    "sprite_path_id": "-2220333493983886555",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "52a0a955dca95af7f327797be54dae40f6b19a3278c47d5c7883b3b09bf914c4"
+  },
+  {
+    "name": "破坏素材",
+    "path": "res://assets/ui/settings/guide_images/fe50eb0ce1793fb3.png",
+    "sprite_path_id": "-2200706824697097472",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "a8ba1fee1e39a94ec2a0c057414a5d3a2a06375fc4032381f238fd3755dbf4eb"
+  },
+  {
+    "name": "好感度",
+    "path": "res://assets/ui/settings/guide_images/10ab1caee38e30e2.png",
+    "sprite_path_id": "-1602751363530932307",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "c7ca43771cb57fc8bf164a4caec6fbff1e23ad7b031e04ea525b829a4edcbc49"
+  },
+  {
+    "name": "战技",
+    "path": "res://assets/ui/settings/guide_images/6d8c868f526cb044.png",
+    "sprite_path_id": "-1225430018963117734",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "ccaae751d3e37b141c262bc7228b561e8180cd68deb6ee222ab10f5f5a54fea9"
+  },
+  {
+    "name": "觉醒点数",
+    "path": "res://assets/ui/settings/guide_images/d4b59daad7122cd5.png",
+    "sprite_path_id": "-988842655890927354",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "862a2f1e7b649c1cf5d47a3e59006dd578050cbacc2cc75053d1709f818f8a62"
+  },
+  {
+    "name": "攻击型陷阱",
+    "path": "res://assets/ui/settings/guide_images/23beeafb9ff710e4.png",
+    "sprite_path_id": "-560247619193202699",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "7f493cb921292dc3f6ce77ad8200f1f67af990ea76a96b8f56a64aeab597892c"
+  },
+  {
+    "name": "净化遗物",
+    "path": "res://assets/ui/settings/guide_images/e5fac325250a2445.png",
+    "sprite_path_id": "-52524718562985144",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "7312de36b88fa17548c83d24423bc0289981a7c038bdacc2f15596433e9bda09"
+  },
+  {
+    "name": "解锁天赋",
+    "path": "res://assets/ui/settings/guide_images/7ce142b06c5a0f73.png",
+    "sprite_path_id": "293085961396798798",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "b058fbf2a9ee8e543db861759423a30fa874fc1375ea2b8e20c1d85bfc36c204"
+  },
+  {
+    "name": "觉醒天赋",
+    "path": "res://assets/ui/settings/guide_images/4648937238f694d5.png",
+    "sprite_path_id": "516515881966952040",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "3d54be2deec535888792a4728a80b9bb9d4ef3f0480e29c8458404a3eb7feb0c"
+  },
+  {
+    "name": "怪物祭坛",
+    "path": "res://assets/ui/settings/guide_images/2a4a3278f64c6b58.png",
+    "sprite_path_id": "625596353973809767",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "80461cc836c0ffb270410958ef33a071b5b3bb7978da41ccb14de386d6feb4e4"
+  },
+  {
+    "name": "悬赏委托",
+    "path": "res://assets/ui/settings/guide_images/b421cb2dbc60275e.png",
+    "sprite_path_id": "718527155770217814",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "f453e04d7800e1c0ff4e4086650854660c830ed9e6e25e04d38f4dd20634a93c"
+  },
+  {
+    "name": "解锁武器",
+    "path": "res://assets/ui/settings/guide_images/1767983240301ce4.png",
+    "sprite_path_id": "1032825155089667367",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "c0090f91a9cf3e27476c231ed1e59bc5c95e245ad3caf030e086c55afc682c4b"
+  },
+  {
+    "name": "怪物护甲",
+    "path": "res://assets/ui/settings/guide_images/8709f744f6b79809.png",
+    "sprite_path_id": "1682216316241658713",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "142d3c4f96cfeba444371e95d3b4ae3641349dbd736c28fbbafba602af0fd485"
+  },
+  {
+    "name": "遗物等级",
+    "path": "res://assets/ui/settings/guide_images/0a8dc33db34ed97f.png",
+    "sprite_path_id": "1712040917476425692",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "3a10921bbbf962c156862f6a1971863d9b0f71906c285ef8556ce9257a7b3377"
+  },
+  {
+    "name": "研究食谱",
+    "path": "res://assets/ui/settings/guide_images/7efbf3edf89ce5f1.png",
+    "sprite_path_id": "1746164835776426869",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "8a17a6be569408f9a2085718e175e8c0068b45c4396fd72a559935610a23b4a9"
+  },
+  {
+    "name": "护甲指南",
+    "path": "res://assets/ui/settings/guide_images/3d81b881831ab3cc.png",
+    "sprite_path_id": "1854357819746273575",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "0df6bc64d1187a625526d44ca5a6a4f092491d971a7ea10cc93293cc3a8258b3"
+  },
+  {
+    "name": "支援遗物选择",
+    "path": "res://assets/ui/settings/guide_images/3c11569a8ce6c440.png",
+    "sprite_path_id": "2093065811406012455",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "c220fd3bee90bad0b9bb5a4ff7a059560330db28563d1023492850967b73af29"
+  },
+  {
+    "name": "怪物图鉴",
+    "path": "res://assets/ui/settings/guide_images/00c43b443d9919aa.png",
+    "sprite_path_id": "2098652970733141214",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "322df78504df68387e30da8079be724212df159de46c7d9d687608c9d3b6059e"
+  },
+  {
+    "name": "圣印光点指南",
+    "path": "res://assets/ui/settings/guide_images/fde02a03e226084d.png",
+    "sprite_path_id": "2303325490223173068",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "28b5950a72dc8cfb4bfe2b9ef71bc25d043e888b2276735c481852a8cb254ffc"
+  },
+  {
+    "name": "怪物工作",
+    "path": "res://assets/ui/settings/guide_images/e8ca67deb1996c8f.png",
+    "sprite_path_id": "2424493804112811778",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "7718615257eae5c2e1558f70834f4718b4b7bb735841a6901c454d9443129f5f"
+  },
+  {
+    "name": "契约赐福",
+    "path": "res://assets/ui/settings/guide_images/a0c2a46413734bcd.png",
+    "sprite_path_id": "2501477226596524292",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "8d75498a984379a1ff2aa0ce89dfcf09fb93d41fc3885149f109fde56569ec2f"
+  },
+  {
+    "name": "遗物图鉴",
+    "path": "res://assets/ui/settings/guide_images/1c2c1857fd25d0f3.png",
+    "sprite_path_id": "2645625976649109440",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "27d87d0ac3915982eb6ba48cfcbbc8ce5210c9d8421975f56516588b49c151a8"
+  },
+  {
+    "name": "诅咒型陷阱",
+    "path": "res://assets/ui/settings/guide_images/9f66ffbf94f1c0ef.png",
+    "sprite_path_id": "2706432546448859929",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "b82ccbe02c82bb2fd210d2555fdaca257fae759d1c08f4bf92fdc8f1f34d7427"
+  },
+  {
+    "name": "支援技能选择",
+    "path": "res://assets/ui/settings/guide_images/510ed77749113ac1.png",
+    "sprite_path_id": "3330440743327328748",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "4b948f8f38c609c823909f1e1e155d7c7604a7c375d8a2cfa5edb55df3493025"
+  },
+  {
+    "name": "可破坏物",
+    "path": "res://assets/ui/settings/guide_images/6bd690c16cd7f7f4.png",
+    "sprite_path_id": "3757035747229461024",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "9754f8e0ed4f30486451a8ae964f61366674a59fe2e2c1cd27095c82b2ebfceb"
+  },
+  {
+    "name": "遗物合成",
+    "path": "res://assets/ui/settings/guide_images/a417767464ae295b.png",
+    "sprite_path_id": "4262433586227293693",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "45b0e316733a3a49610323682c7f7181f263b95d73c1248087def93fc54b7f5a"
+  },
+  {
+    "name": "强化重击",
+    "path": "res://assets/ui/settings/guide_images/57c2e2758beef087.png",
+    "sprite_path_id": "4297741207331315599",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "dc744b9ea5184da2081a0a24a9d2aaf1dbf283128de4bf3d3e80e46736347a69"
+  },
+  {
+    "name": "宝箱类型",
+    "path": "res://assets/ui/settings/guide_images/8a12a5f4aee783cb.png",
+    "sprite_path_id": "4359327314677862355",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "3f4b783d2251290a9f23c5597c692d3bbc660ec4db64f94e5d5e2d38f59d67b6"
+  },
+  {
+    "name": "派生攻击",
+    "path": "res://assets/ui/settings/guide_images/e348f339523d0d8a.png",
+    "sprite_path_id": "5910325672017025549",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "5aa7ddbc042e7a9b91149bd7a59670cfd71dcc47857f555e020455a09378c76f"
+  },
+  {
+    "name": "获取精灵",
+    "path": "res://assets/ui/settings/guide_images/9e12870e041eeaf3.png",
+    "sprite_path_id": "5985132227945726145",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "9f5ad97a7b7d7223537a3add300e01ea37bc15fb74c1bc8393ef4f90a73d2bed"
+  },
+  {
+    "name": "解锁伙伴",
+    "path": "res://assets/ui/settings/guide_images/bfa09a55e19ddf0f.png",
+    "sprite_path_id": "6344539598505688673",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "dd793f932270827c4f973fce6c41f0245b1443f24e950a90fed4f923dda5443a"
+  },
+  {
+    "name": "难度奖励",
+    "path": "res://assets/ui/settings/guide_images/658f36774fdf22d1.png",
+    "sprite_path_id": "6879496182510561006",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "8ddde671260bc0d609d09ff10493ced3223fa7dc60f1ce1b70da6e2484387f54"
+  },
+  {
+    "name": "重击",
+    "path": "res://assets/ui/settings/guide_images/39c847f2e04fc2c0.png",
+    "sprite_path_id": "6931580872123181930",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "2cee9bce30b87708f6288ce11fd61785a9915b3d6f8ed1ac15f091d952ee6512"
+  },
+  {
+    "name": "增殖指南",
+    "path": "res://assets/ui/settings/guide_images/8e2f196d779c8b19.png",
+    "sprite_path_id": "7168370298945058838",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "5b37543b839aa1041f6eab1cb94f7400dd5b1b96884fb09c8ad494b45c8d58d5"
+  },
+  {
+    "name": "选择难度",
+    "path": "res://assets/ui/settings/guide_images/9fe165c271021496.png",
+    "sprite_path_id": "7292261084039317366",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "8b45295f1e901f4b9e98fa3306b83237d64967dd39f429b0b3b9d128fb3a5bb7"
+  },
+  {
+    "name": "信物列表",
+    "path": "res://assets/ui/settings/guide_images/06a581866aafec81.png",
+    "sprite_path_id": "7303327662273945092",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "4137ad2747c0465f300d1679101a56ffdf0ac3b361adc940546993e6f1f1dd6c"
+  },
+  {
+    "name": "支援能量",
+    "path": "res://assets/ui/settings/guide_images/62717ddc75470733.png",
+    "sprite_path_id": "7724162260432458534",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "8547cde7d86e799677965f32ce90ed30de1e55cd920c4c7757bd684754f4f5a9"
+  },
+  {
+    "name": "升级武器",
+    "path": "res://assets/ui/settings/guide_images/30177b3c02efd634.png",
+    "sprite_path_id": "7736209255379126428",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "d0db1696d90305a12a76b1c2354d2b2e7f2b5b7155bd89ea8b73263d9508240a"
+  },
+  {
+    "name": "破坏矿脉",
+    "path": "res://assets/ui/settings/guide_images/45cf6446572aa635.png",
+    "sprite_path_id": "8512373864173341942",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "c702d903ebc10af82add33e34ae2486d7b08371e0f6a72869e1a7950467eee11"
+  },
+  {
+    "name": "寻宝",
+    "path": "res://assets/ui/settings/guide_images/f536a2b99284e59c.png",
+    "sprite_path_id": "8624287413441543491",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/8c96e5af59e0150d424c97deccb31240.bundle",
+      "sha256": "261b246a5cb74bf3dc458f227a0c30541d82bdbcfb0630bce6ade0a64ff12677"
+    },
+    "png_sha256": "6d4745910d19a92075061b5b1317eacf22cdd69dca871fe69611a77bfcb9657e"
+  }
+]

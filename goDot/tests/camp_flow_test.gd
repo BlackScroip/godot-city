@@ -109,6 +109,9 @@ func _run() -> void:
 	game._action("result_next", 0, 0)
 	check(game.systems.material(501) == vouchers, "Settlement claims adventure vouchers exactly once through UI")
 	game._action("result_camp", 0, 0)
+	var deadline := Time.get_ticks_msec() + 60000
+	while game._transitioning and Time.get_ticks_msec() < deadline: await process_frame
+	check(not game._transitioning and not game.room_loading.visible, "Settlement camp loading completes")
 	game.world.set_physics_process(false)
 	check(not game.profile.data.run.active and game.profile.data.run.get("outcome", {}).is_empty(), "Settlement returns to camp and releases progression")
 	var upgrade = game.systems.character_upgrade_status(1)

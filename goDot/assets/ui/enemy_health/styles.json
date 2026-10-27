@@ -1,0 +1,1510 @@
+{
+  "normal": {
+    "images": {
+      "SheildStateBar/HpStateBar/Bar": {
+        "resource": "res://assets/ui/enemy_health/9873a06d62c63c0e.png",
+        "name": "底部 1",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 10.0,
+          "y": 9.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 28.0,
+          "height": 20.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Bar/BarTop_Follow": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 0.46226418018341064,
+          "g": 0.46226418018341064,
+          "b": 0.46226418018341064,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Bar": {
+        "resource": "res://assets/ui/enemy_health/9873a06d62c63c0e.png",
+        "name": "底部 1",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 10.0,
+          "y": 9.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 28.0,
+          "height": 20.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Bar/BarTop_Cur": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Box_Elite/Image": {
+        "resource": "res://assets/ui/enemy_health/a4956228cc29d8f1.png",
+        "name": "icon_nodeicon_trapchallenge",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "texture_rect_offset": {
+          "x": 1.0761204957962036,
+          "y": 19.05131721496582
+        }
+      },
+      "SheildStateBar/Bar/BarTop_OverCap": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 0.25,
+          "g": 0.5,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/HpStateBar/Bar/BarTop_Follow": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 1.0,
+          "g": 0.7301538586616516,
+          "b": 0.1450980305671692,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/HpStateBar/Bar/BarTop_Cur": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 1.0,
+          "g": 0.07157289236783981,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "texts": {
+      "Text_DamageValue": {
+        "m_text": "12345",
+        "m_fontSize": 40.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 0.6066145896911621,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 0
+      },
+      "Text_Level": {
+        "m_text": "坚毅 重生 森林狼",
+        "m_fontSize": 28.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.874509871006012,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 0
+      }
+    },
+    "bars": {
+      "SheildStateBar/HpStateBar": {
+        "HPModel": 1,
+        "mShakeStrength": 0.15000000596046448,
+        "mShakeDuration": 0.11999999731779099,
+        "mShakeVibrato": 8
+      },
+      "SheildStateBar": {
+        "HPModel": 1,
+        "mShakeStrength": 0.15000000596046448,
+        "mShakeDuration": 0.11999999731779099,
+        "mShakeVibrato": 8
+      }
+    },
+    "lock_animations": {}
+  },
+  "elite": {
+    "images": {
+      "SheildStateBar/HpStateBar/Bar/BarTop_Cur": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 1.0,
+          "g": 0.07157289236783981,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/HpStateBar/Bar/BarTop_Follow": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 1.0,
+          "g": 0.7301538586616516,
+          "b": 0.1450980305671692,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/HpStateBar/Bar": {
+        "resource": "res://assets/ui/enemy_health/9873a06d62c63c0e.png",
+        "name": "底部 1",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 10.0,
+          "y": 9.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 28.0,
+          "height": 20.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Bar/BarTop_Follow": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 0.46226418018341064,
+          "g": 0.46226418018341064,
+          "b": 0.46226418018341064,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Box_Elite/Image": {
+        "resource": "res://assets/ui/enemy_health/a4956228cc29d8f1.png",
+        "name": "icon_nodeicon_trapchallenge",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 256.0
+        },
+        "texture_rect_offset": {
+          "x": 1.0761204957962036,
+          "y": 19.05131721496582
+        }
+      },
+      "SheildStateBar/Bar": {
+        "resource": "res://assets/ui/enemy_health/9873a06d62c63c0e.png",
+        "name": "底部 1",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 10.0,
+          "y": 9.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 28.0,
+          "height": 20.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Bar/BarTop_Cur": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "SheildStateBar/Bar/BarTop_OverCap": {
+        "resource": "res://assets/ui/enemy_health/2123587b6f3cc106.png",
+        "name": "bg_slider_01",
+        "color": {
+          "r": 0.25,
+          "g": 0.5,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0,
+          "w": 7.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 27.0,
+          "height": 16.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "texts": {
+      "Text_Level": {
+        "m_text": "坚毅 重生 森林狼",
+        "m_fontSize": 28.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.874509871006012,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 0
+      },
+      "Text_DamageValue": {
+        "m_text": "12345",
+        "m_fontSize": 40.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 0.6066145896911621,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 0
+      }
+    },
+    "bars": {
+      "SheildStateBar/HpStateBar": {
+        "HPModel": 1,
+        "mShakeStrength": 0.15000000596046448,
+        "mShakeDuration": 0.11999999731779099,
+        "mShakeVibrato": 8
+      },
+      "SheildStateBar": {
+        "HPModel": 1,
+        "mShakeStrength": 0.15000000596046448,
+        "mShakeDuration": 0.11999999731779099,
+        "mShakeVibrato": 8
+      }
+    },
+    "lock_animations": {}
+  },
+  "boss": {
+    "images": {
+      "HpStateBar/Image_SheidlBar": {
+        "resource": "res://assets/ui/enemy_health/13f3efb8b63c83b1.png",
+        "name": "护盾底框",
+        "color": {
+          "r": 0.15094339847564697,
+          "g": 0.15094339847564697,
+          "b": 0.15094339847564697,
+          "a": 0.2705882489681244
+        },
+        "type": 1,
+        "border": {
+          "x": 23.82978630065918,
+          "y": 0.0,
+          "z": 23.82978630065918,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 63.999996185302734,
+          "height": 29.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_SheidlBar_Double/Image_LeftDotLeft (1)": {
+        "resource": "res://assets/ui/enemy_health/a725d0ea9a6748d2.png",
+        "name": "BOSS名称装饰_1",
+        "color": {
+          "r": 0.43921568989753723,
+          "g": 0.1568627506494522,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 7.076120376586914,
+          "y": 0.0
+        }
+      },
+      "Container_Name/Box_Name/Image_LeftDotLeft": {
+        "resource": "res://assets/ui/enemy_health/f165b817eaf9f35c.png",
+        "name": "BOSS名称装饰",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 9.076120376586914,
+          "y": 0.0
+        }
+      },
+      "SpecialStateBar/Bar/BarTop_Follow": {
+        "resource": "res://assets/ui/enemy_health/dc1ce7bf680dd107.png",
+        "name": "当前人物血条带尖角模板",
+        "color": {
+          "r": 1.0,
+          "g": 0.7301538586616516,
+          "b": 0.1450980305671692,
+          "a": 1.0
+        },
+        "type": 3,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 8.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Invincible/LockHp": {
+        "resource": "res://assets/ui/enemy_health/eb52231830bea48b.png",
+        "name": "锁头",
+        "color": {
+          "r": 1.0,
+          "g": 0.9331388473510742,
+          "b": 0.36320751905441284,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 73.0,
+          "height": 84.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_SheidlBar_Double/Image_LeftDot (1)": {
+        "resource": "res://assets/ui/enemy_health/a725d0ea9a6748d2.png",
+        "name": "BOSS名称装饰_1",
+        "color": {
+          "r": 0.43921568989753723,
+          "g": 0.1568627506494522,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 7.076120376586914,
+          "y": 0.0
+        }
+      },
+      "SpecialStateBar/Bar/BarTop_Cur": {
+        "resource": "res://assets/ui/enemy_health/dc1ce7bf680dd107.png",
+        "name": "当前人物血条带尖角模板",
+        "color": {
+          "r": 1.0,
+          "g": 0.7818934917449951,
+          "b": 0.04339611530303955,
+          "a": 1.0
+        },
+        "type": 3,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 8.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "Text_LevelInfo/Image_Bottom": {
+        "resource": "res://assets/ui/enemy_health/44d7fe8dff0f1e1a.png",
+        "name": "怪物名字-底",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 48.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Bar/BarTop_Follow": {
+        "resource": "res://assets/ui/enemy_health/dc1ce7bf680dd107.png",
+        "name": "当前人物血条带尖角模板",
+        "color": {
+          "r": 1.0,
+          "g": 0.7301538586616516,
+          "b": 0.1450980305671692,
+          "a": 1.0
+        },
+        "type": 3,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 8.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_SheidlBar/Image_LeftDot": {
+        "resource": "res://assets/ui/enemy_health/a725d0ea9a6748d2.png",
+        "name": "BOSS名称装饰_1",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 7.076120376586914,
+          "y": 0.0
+        }
+      },
+      "SpecialStateBar/Bar": {
+        "resource": "res://assets/ui/enemy_health/9b2259dab0fcf071.png",
+        "name": "当前人物血条的底",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 25.0,
+          "y": 16.0,
+          "z": 25.0,
+          "w": 16.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 70.0,
+          "height": 33.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "Container_Name/Box_Name/Image_LeftDot": {
+        "resource": "res://assets/ui/enemy_health/f165b817eaf9f35c.png",
+        "name": "BOSS名称装饰",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 9.076120376586914,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Bar": {
+        "resource": "res://assets/ui/enemy_health/7319cd3487281123.png",
+        "name": "BOSS血条黑底",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 60.0,
+          "y": 0.0,
+          "z": 60.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 128.0,
+          "height": 64.0
+        },
+        "texture_rect_offset": {
+          "x": 10.076120376586914,
+          "y": 14.026750564575195
+        }
+      },
+      "HpStateBar": {
+        "resource": "res://assets/ui/enemy_health/ed9b667da83887b3.png",
+        "name": "BOSS血条白框",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 60.0,
+          "y": 0.0,
+          "z": 60.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 128.0,
+          "height": 64.0
+        },
+        "texture_rect_offset": {
+          "x": 0.07612049579620361,
+          "y": 10.076120376586914
+        }
+      },
+      "HpStateBar/Image_LeftDotLeft": {
+        "resource": "res://assets/ui/enemy_health/f165b817eaf9f35c.png",
+        "name": "BOSS名称装饰",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 9.076120376586914,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_SheidlBar/Image_SheidlBarBg": {
+        "resource": "res://assets/ui/enemy_health/13f3efb8b63c83b1.png",
+        "name": "护盾底框",
+        "color": {
+          "r": 0.43921568989753723,
+          "g": 0.1568627506494522,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 23.82978630065918,
+          "y": 0.0,
+          "z": 23.82978630065918,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 63.999996185302734,
+          "height": 29.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Bar/BarTop_Cur": {
+        "resource": "res://assets/ui/enemy_health/5148764d38b3b6f8.png",
+        "name": "BOSS血条颜色",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 3,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 128.0,
+          "height": 8.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_SheidlBar/Image_LeftDotLeft": {
+        "resource": "res://assets/ui/enemy_health/a725d0ea9a6748d2.png",
+        "name": "BOSS名称装饰_1",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 7.076120376586914,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Invincible": {
+        "resource": "res://assets/ui/enemy_health/c18d8f09cb26ebd7.png",
+        "name": "护甲",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 0.6745098233222961
+        },
+        "type": 1,
+        "border": {
+          "x": 31.0,
+          "y": 0.0,
+          "z": 27.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 93.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_LeftDot": {
+        "resource": "res://assets/ui/enemy_health/f165b817eaf9f35c.png",
+        "name": "BOSS名称装饰",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 64.0,
+          "height": 32.0
+        },
+        "texture_rect_offset": {
+          "x": 9.076120376586914,
+          "y": 0.0
+        }
+      },
+      "Container_Name/Image_Name": {
+        "resource": "res://assets/ui/enemy_health/1373c63d1f9be281.png",
+        "name": "BOSS名字底框",
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "type": 0,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 256.0,
+          "height": 64.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "HpStateBar/Image_SheidlBar_Double": {
+        "resource": "res://assets/ui/enemy_health/13f3efb8b63c83b1.png",
+        "name": "护盾底框",
+        "color": {
+          "r": 1.0,
+          "g": 0.14148260653018951,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "type": 1,
+        "border": {
+          "x": 23.82978630065918,
+          "y": 0.0,
+          "z": 23.82978630065918,
+          "w": 0.0
+        },
+        "rect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 63.999996185302734,
+          "height": 29.0
+        },
+        "texture_rect_offset": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    "texts": {
+      "SpecialStateBar/Text_Info": {
+        "m_text": "2148/2148",
+        "m_fontSize": 16.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 0
+      },
+      "Container_Name/Box_Name/Text_EnemyName": {
+        "m_text": "怪物名字怪物名字",
+        "m_fontSize": 25.149999618530273,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 1
+      },
+      "Text_LevelInfo": {
+        "m_text": "Lv.100",
+        "m_fontSize": 24.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 0
+      },
+      "HpStateBar/Text_SheildInfo": {
+        "m_text": "2148/2148",
+        "m_fontSize": 18.0,
+        "m_fontColor": {
+          "r": 0.6531239151954651,
+          "g": 0.46698111295700073,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 1
+      },
+      "HpStateBar/Text_Info": {
+        "m_text": "2148/2148",
+        "m_fontSize": 25.0,
+        "m_fontColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "m_enableAutoSizing": 1
+      }
+    },
+    "bars": {
+      "SpecialStateBar": {
+        "HPModel": 0,
+        "mShakeStrength": 0.15000000596046448,
+        "mShakeDuration": 0.11999999731779099,
+        "mShakeVibrato": 8
+      },
+      "HpStateBar": {
+        "HPModel": 0,
+        "mShakeStrength": 0.15000000596046448,
+        "mShakeDuration": 0.11999999731779099,
+        "mShakeVibrato": 8
+      }
+    },
+    "lock_animations": {
+      "BattlePlayerCtrl_BossInvincible": {
+        "scale": [
+          {
+            "time": 0.0,
+            "value": {
+              "x": 1.176800012588501,
+              "y": 1.176800012588501,
+              "z": 1.176800012588501
+            },
+            "inSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "outSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "weightedMode": 0,
+            "inWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            },
+            "outWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            }
+          },
+          {
+            "time": 0.13333334028720856,
+            "value": {
+              "x": 0.9977588653564453,
+              "y": 0.8714603185653687,
+              "z": 1.010388731956482
+            },
+            "inSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "outSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "weightedMode": 0,
+            "inWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            },
+            "outWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            }
+          },
+          {
+            "time": 0.25,
+            "value": {
+              "x": 1.0154191255569458,
+              "y": 0.8868851065635681,
+              "z": 1.0282725095748901
+            },
+            "inSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "outSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "weightedMode": 0,
+            "inWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            },
+            "outWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            }
+          }
+        ],
+        "floats": [
+          {
+            "path": "",
+            "attribute": "m_Alpha",
+            "keys": [
+              {
+                "time": 0.0,
+                "value": 0.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.13333334028720856,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              }
+            ]
+          },
+          {
+            "path": "",
+            "attribute": "m_Color.a",
+            "keys": [
+              {
+                "time": 0.13333334028720856,
+                "value": 0.6745098233222961,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.20000000298023224,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.4166666567325592,
+                "value": 0.6392157077789307,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              }
+            ]
+          },
+          {
+            "path": "LockHp",
+            "attribute": "m_Alpha",
+            "keys": [
+              {
+                "time": 0.0,
+                "value": 0.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.3333333432674408,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              }
+            ]
+          }
+        ]
+      },
+      "BattlePlayerCtrl_BossInvincible_Close": {
+        "scale": [
+          {
+            "time": 0.0,
+            "value": {
+              "x": 1.0154191255569458,
+              "y": 0.8868851065635681,
+              "z": 1.0282725095748901
+            },
+            "inSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "outSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "weightedMode": 0,
+            "inWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            },
+            "outWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            }
+          },
+          {
+            "time": 0.1666666716337204,
+            "value": {
+              "x": 1.168036699295044,
+              "y": 1.0201839208602905,
+              "z": 1.1828218698501587
+            },
+            "inSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "outSlope": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "weightedMode": 0,
+            "inWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            },
+            "outWeight": {
+              "x": 0.3333333432674408,
+              "y": 0.3333333432674408,
+              "z": 0.3333333432674408
+            }
+          }
+        ],
+        "floats": [
+          {
+            "path": "",
+            "attribute": "m_Alpha",
+            "keys": [
+              {
+                "time": 0.0,
+                "value": 0.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.0,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.1666666716337204,
+                "value": 0.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              }
+            ]
+          },
+          {
+            "path": "",
+            "attribute": "m_Color.a",
+            "keys": [
+              {
+                "time": 0.0,
+                "value": 0.6392157077789307,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.0,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              },
+              {
+                "time": 0.1666666716337204,
+                "value": 0.6392157077789307,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.3333333432674408
+              }
+            ]
+          },
+          {
+            "path": "LockHp",
+            "attribute": "m_Alpha",
+            "keys": [
+              {
+                "time": 0.0,
+                "value": 1.0,
+                "inSlope": 0.0,
+                "outSlope": 0.0,
+                "weightedMode": 0,
+                "inWeight": 0.0,
+                "outWeight": 0.0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

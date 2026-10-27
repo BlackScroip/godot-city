@@ -7,10 +7,17 @@ func _init(source) -> void:
 
 func _state() -> Dictionary:
 	var data: Dictionary = systems.profile.data
-	var day = int(int(systems.utc_now.call()) / 86400)
+	var day = floori((float(systems.utc_now.call()) - 22 * 3600) / 86400.0)
 	if not data.get("ad_rewards", {}) is Dictionary: data.ad_rewards = {}
-	if int(data.get("ad_rewards", {}).get("day", -1)) != day:
-		data.ad_rewards = {"day": day, "counts": {}, "skips": 0, "receipts": []}
+	var saved: Dictionary = data.get("ad_rewards", {})
+	if saved.is_empty():
+		data.ad_rewards = {"day": day, "counts": {}, "skips": 0, "receipts": [], "reset_version": 1}
+	elif int(saved.get("reset_version", 0)) == 0:
+		# Keep used limits when migrating the previous UTC-midnight ledger.
+		saved.day = day
+		saved.reset_version = 1
+	elif day > int(saved.day):
+		data.ad_rewards = {"day": day, "counts": {}, "skips": 0, "receipts": saved.receipts, "reset_version": 1}
 	return data.ad_rewards
 
 func free_skips() -> int:
@@ -40,6 +47,10 @@ func quote(context: Dictionary) -> Dictionary:
 		var status = systems.work_status(id)
 		if status.order.is_empty() or int(status.completed_quantity) >= int(status.queue_max): return _fail("没有需要加速的派遣")
 		point = "MonsterWork_AdSpeedUp"
+	elif kind.begins_with("extra_challenge_"):
+		var bounty = systems.extra_challenges.ad_quote(kind.trim_prefix("extra_challenge_"), id)
+		if not bounty.success: return bounty
+		point = bounty.point
 	else:
 		return _fail("奖励入口不可用")
 	var maximum = int(systems.catalog.config.get("AdsDailyLimitConfig", {}).get(point, 0))
@@ -64,6 +75,9 @@ func claim(context: Dictionary, receipt: String, skip: bool = false) -> Dictiona
 		systems._complete_meal_purchase(check.meals)
 	elif context.kind == "work":
 		systems.add_work_progress(id, 30 * 60)
+	elif str(context.kind).begins_with("extra_challenge_"):
+		var bounty = systems.extra_challenges.apply_ad(str(context.kind).trim_prefix("extra_challenge_"), id)
+		if not bounty.success: return bounty
 	state.counts[check.point] = int(state.counts.get(check.point, 0)) + 1
 	if skip: state.skips += 1
 	state.receipts.append(receipt)

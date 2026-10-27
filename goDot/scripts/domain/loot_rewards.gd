@@ -55,7 +55,9 @@ func _resources(result: Array, pool: Dictionary, depth: int, attrs: Dictionary, 
 				factor = 1.0 + float(attrs.get("DropMineralMatFactor", 0)) / 1000.0
 				if not enemy_rate.is_empty(): chance += int(attrs.get("DropMineralMatChanceAdd_" + enemy_rate, 0))
 			90002: factor = 1.0 + float(attrs.get("DropFreeCoinFactor", 0)) / 1000.0
-		var amount := int(resource_amount(row, depth) * maxf(0.0, factor))
+		var amount := int(resource_amount(row, depth) * factor)
+		# GetMonsterResDrop initializes mineral count to one before adding the roll.
+		if id == 103 and not enemy_rate.is_empty() and row == pool.get("MineralData", {}): amount += 1
 		# APK uses Range(0,1001) and a strict comparison for material drops.
 		if _roll(1001) < chance and amount > 0 and id > 0:
 			result.append({"id": id, "amount": amount, "material": true})
@@ -67,6 +69,8 @@ func monster(rate: String, depth: int, attrs: Dictionary, mohua: bool = false) -
 	var cfg: Dictionary = systems.catalog.config
 	var resource_key := "DefaultBossDropResPoolData" if rate == "Boss" else "DefaultEliteDropResPoolData" if rate == "Elite" else "DefaultEnemyDropResPoolData"
 	_resources(result, cfg.get(resource_key, {}), depth, attrs, rate)
+	if _roll(1001) < int(attrs.get("DropFreeCoinChanceAdd_" + rate, 0)):
+		result.append({"id": 90002, "amount": 1, "material": true})
 	if mohua and rate in ["Normal", "Elite"]:
 		var essence_counts := str(cfg.get("MohuaEnemyDropMonsterEssence", "1|4|10")).split("|", false)
 		if essence_counts.size() != 3: essence_counts = PackedStringArray(["1", "4", "10"])
@@ -74,20 +78,21 @@ func monster(rate: String, depth: int, attrs: Dictionary, mohua: bool = false) -
 	var token_counts := str(cfg.get("EnemyDropRelationshipTokenUpgradeItem_ByDifficulty", {}).get(str(int(systems.profile.data.run.difficulty)), "")).split("|", false)
 	if token_counts.size() == 3 and int(token_counts[index]) > 0:
 		result.append({"id": 108, "amount": int(token_counts[index]), "material": true})
-	# Equipment and selection bags are restricted to lords by the current game rule.
+	if rate == "Elite" and int(attrs.get("EliteDropExtraRelicBag", 0)) >= 1:
+		_item(result, int(cfg.get("AbilityItem_SelectLootItem_Low", 0)))
 	if rate == "Boss":
 		var extra := int(attrs.get("BossDropExtraChance", 0))
 		var guaranteed := int(extra / 1000.0)
 		var count := guaranteed + (1 if _roll(1001) <= extra - guaranteed * 1000 else 0)
 		if count > 0: _pool(result, "DefaultAbilityItemLootPoolId", count)
-		var chances: Array = cfg.get("EnemyExtraDropLowRareAbilityItemChanceArray", [])
-		var counts: Array = cfg.get("EnemyExtraDropLowRareAbilityItemMaxCountArray", [])
-		var chance := int(chances[index]) if index < chances.size() else 0
-		# Native multiplies the chance, rounds to even, and caps lords at 1000.
-		chance = mini(1000, _round_even(chance * (1.0 + int(attrs.get("EnemyDropLowAbilityChance_Boss", 0)) / 1000.0)))
-		for attempt in maxi(0, int(counts[index]) if index < counts.size() else 0):
-			var roll := _roll(1001)
-			if chance > 0 and roll <= chance: _pool(result, "LowRareAbilityItemLootPoolId")
+	var chances: Array = cfg.get("EnemyExtraDropLowRareAbilityItemChanceArray", [])
+	var counts: Array = cfg.get("EnemyExtraDropLowRareAbilityItemMaxCountArray", [])
+	var chance := int(chances[index]) if index < chances.size() else 0
+	# HandleMonsterDrop applies the rank modifier before its rank-specific cap.
+	chance = mini(200 if rate == "Normal" else 1000, _round_even(chance * (1.0 + int(attrs.get("EnemyDropLowAbilityChance_" + rate, 0)) / 1000.0)))
+	for attempt in maxi(0, int(counts[index]) if index < counts.size() else 0):
+		var roll := _roll(1001)
+		if chance > 0 and roll <= chance: _pool(result, "LowRareAbilityItemLootPoolId")
 	var recover := int(attrs.get("EnemyDropRecoverRate" if rate == "Normal" else "EliteEnemyDropRecoverRate", 0)) if rate != "Boss" else 0
 	if 1 + _roll(1000) <= recover: _pool(result, "DefaultRecoverItemLootPoolId")
 	_amplifiers(result, index, attrs)
@@ -108,6 +113,46 @@ func _amplifiers(result: Array, rank: int, attrs: Dictionary) -> void:
 		var options: Array = systems.catalog.rows("RelationshipAmplifyData").filter(func(row): return str(row.rare) == tier)
 		if not options.is_empty(): result.append({"id": int(options[_roll(options.size())].id), "amount": 1, "material": true})
 
+func reward_slime(enemy_id: int, event: String, attrs: Dictionary) -> Array:
+	if enemy_id not in [90001, 90002, 90003] or event not in ["hit", "dead"]: return []
+	var pool: Dictionary = systems.catalog.config.get("DefaultRewardSlimeDropResPoolData", {})
+	var row: Dictionary = pool.get("GoldData", {}) if enemy_id == 90001 else pool.get("MagicPointData", {})
+	if enemy_id == 90003:
+		row = {}
+		for other in pool.get("OtherRewardDataList", []):
+			if int(other.get("DropMaterialType", 0)) == 90002: row = other; break
+	var base := int(float(row.get("DropBase", 0)) * (0.05 if event == "hit" else 0.8))
+	var attribute: String = {90001: "DropGoldFactor", 90002: "DropMagicPointFactor", 90003: "DropFreeCoinFactor"}[enemy_id]
+	# The native slime branch adds one to magic's existing 1000 baseline.
+	var factor := (2.0 if enemy_id == 90002 else 1.0) + float(attrs.get(attribute, 0)) / 1000.0
+	var amount := int(base * factor)
+	return [{"id": int(row.get("DropMaterialType", 0)), "amount": amount, "material": true}] if amount > 0 and not row.is_empty() else []
+
+func completion_quality(room: Dictionary, attrs: Dictionary, outcome: Dictionary = {}) -> String:
+	var flow := str(room.get("flow", room.get("Flow", "")))
+	if flow == "Entrance":
+		return ["Normal", "Unusual", "Luxury"][clampi(int(attrs.get("RegionEnterTreasureBoxType", 0)), 0, 2)]
+	if flow == "Treasure": return str(room.get("TreasureBoxType", "Normal"))
+	var fight_type := str(room.get("FightType", ""))
+	if fight_type in ["TimeLimit", "DodgeBattle", "ProtectTarget", "Endless"]:
+		if outcome.is_empty(): return "None"
+		var data: Dictionary = room.get("FightData", {})
+		for rank in [3, 2, 1]:
+			if rank == 3 and int(attrs.get("ChallengeGoldUnlock", 0)) <= 0: continue
+			var passed := false
+			match fight_type:
+				"TimeLimit": passed = int(outcome.get("elapsed", 2147483647)) <= int(data.get("RewardTimeLimit_Lv" + str(rank), 0)) + int(attrs.get("TimeLimitRoomAddTime", 0))
+				"DodgeBattle": passed = int(outcome.get("hits", 0)) < int(data.get("BeHitCount_Lv" + str(rank), 0)) + int(attrs.get("DodgeRoomAddDodgeCount", 0))
+				"ProtectTarget": passed = float(outcome.get("target_hp", 0)) > 0 if rank == 1 else float(outcome.get("target_hp", 0)) >= clampi(int(data.get("RemainTargetHp_Lv" + str(rank), 100)) - int(attrs.get("RemainTargetAddHp", 0)), 10, 100)
+				"Endless": passed = int(outcome.get("kills", 0)) >= int(data.get("KillCount_Lv" + str(rank), 0))
+			if passed: return ["Normal", "Unusual", "Luxury"][rank - 1]
+		return "None"
+	if str(room.get("FightType", "")) != "Regular": return ""
+	match str(room.get("EnemyClass", "")):
+		"Elite": return "Unusual"
+		"Boss": return "Curse_Final" if room.get("FinalBoss", false) else "Curse"
+	return "Normal"
+
 func treasure(quality: String, treasure_id: int, first_node: bool, first_region: bool, depth: int, attrs: Dictionary) -> Array:
 	var result: Array = []
 	if quality not in ["Normal", "Unusual", "Luxury", "Curse", "Curse_Final"]: return result
@@ -122,23 +167,27 @@ func treasure(quality: String, treasure_id: int, first_node: bool, first_region:
 		if extra > 0 and _roll(1001) <= extra: _pool(result, "LowRareAbilityItemLootPoolId")
 	for bag in maxi(0, 1 + int(attrs.get("ExtraRelicBagCount", 0))):
 		if quality == "Unusual":
-			var high := _roll(1000) <= int(attrs.get("DropLuxuryBag", 0))
+			# RandomTools.GetRandomInt includes its maximum; Unity Range excludes it.
+			var high := _roll(1001) <= int(attrs.get("DropLuxuryBag", 0))
 			_item(result, int(cfg.get("AbilityItem_SelectLootItem_High" if high else "AbilityItem_SelectLootItem_Middle", 0)))
 			var upgrade := int(attrs.get("NormalBagUpgradeToHighBag", 0))
 			if upgrade > 0:
 				for index in range(result.size() - 1, -1, -1):
 					var entry: Dictionary = result[index]
-					if not entry.material and int(entry.id) == int(cfg.get("AbilityItem_SelectLootItem_Middle", 0)) and _roll(1000) <= upgrade:
+					if not entry.material and int(entry.id) == int(cfg.get("AbilityItem_SelectLootItem_Middle", 0)) and _roll(1001) <= upgrade:
 						entry.id = int(cfg.get("AbilityItem_SelectLootItem_High", 0))
 		elif quality in ["Luxury", "Curse"]:
 			_item(result, int(cfg.get("AbilityItem_SelectLootItem_High", 0)))
-			if quality == "Curse" and int(attrs.get("BossTreasureBoxDropExtraHighLoot", 0)) >= 1:
-				_item(result, int(cfg.get("AbilityItem_SelectLootItem_High", 0)))
+	if quality == "Curse" and int(attrs.get("BossTreasureBoxDropExtraHighLoot", 0)) >= 1:
+		_item(result, int(cfg.get("AbilityItem_SelectLootItem_High", 0)))
 	if treasure_id == 1 and not first_node and quality != "Curse_Final":
-		if _roll(1001) <= int(cfg.get(quality + "TreasureBoxDropSelectCharaItemChance", 0)):
+		if _roll(1002) <= int(cfg.get(quality + "TreasureBoxDropSelectCharaItemChance", 0)):
 			_item(result, int(cfg.get("AbilityItem_CharaTalentItem_Super" if quality == "Curse" else "AbilityItem_CharaTalentItem_Normal", 0)))
+	if quality == "Curse":
+		for scroll in maxi(0, int(attrs.get("BossTreasureBoxDropExtraSuperTalentItem", 0))):
+			_item(result, int(cfg.get("AbilityItem_CharaTalentItem_Super", 0)))
 	var extra_scroll := int(attrs.get("OpenTreasureBoxExtraGetSelectChara_Low", 0))
-	if extra_scroll > 0 and _roll(1001) <= extra_scroll:
+	if _roll(1002) <= extra_scroll:
 		_item(result, int(cfg.get("AbilityItem_CharaTalentItem_Curse", 0)))
 	if treasure_id == 1 and first_node and first_region and quality in ["Unusual", "Luxury"]:
 		_item(result, int(cfg.get("AbilityItem_CharaTalentItem_Normal" if quality == "Unusual" else "AbilityItem_CharaTalentItem_Super", 0)))

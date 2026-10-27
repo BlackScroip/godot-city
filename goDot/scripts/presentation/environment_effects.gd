@@ -24,11 +24,23 @@ func configure(world: Node3D, camp := false) -> void:
 	if FileAccess.file_exists(CATALOG):
 		var catalog = JSON.parse_string(FileAccess.get_file_as_string(CATALOG))
 		if catalog is Dictionary: effects = catalog.get("effects", {})
+	var chest_catalog := "res://assets/environment_effects/chest_catalog.json"
+	var chest_sources: Dictionary = {}
+	if FileAccess.file_exists(chest_catalog):
+		var catalog = JSON.parse_string(FileAccess.get_file_as_string(chest_catalog))
+		if catalog is Dictionary:
+			effects.merge(catalog.get("effects", {}), true)
+			chest_sources = catalog.get("chests", {})
 	if is_instance_valid(world.get("interactions")) and world.interactions.has_signal("effect_requested"):
 		world.interactions.effect_requested.connect(_on_effect_requested)
 		world.interactions.presentation_requested.connect(_on_presentation_requested)
 	var event_data: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/environment_feedback.json"))
 	if event_data is Dictionary: _event_effects = event_data.get("events", {})
+	if not chest_sources.is_empty():
+		var variants: Dictionary = {}
+		for quality in chest_sources: variants[quality] = str(chest_sources[quality].get("open_effect", ""))
+		variants["Curse_Final"] = variants.get("Curse", "")
+		_event_effects["chest_open"] = {"variants": variants}
 	for anchor in world.environment_root.find_children("*", "Node3D", true, false):
 		var address := resolve_address(str(anchor.name))
 		if not effects.has(address): continue

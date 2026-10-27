@@ -1,0 +1,70 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "icons": [
+    {
+      "address": "sprite_weaponicon_square_801",
+      "status": "imported",
+      "source": "assets/yoo/DefaultPackage/745dd5cda7ee1f45366315e4bbc825e8.bundle",
+      "bundle_sha256": "c042311915d22d2a50e70b9bbc763b59eb00c72b69b90f3fee27ff155da0e7ec",
+      "path_id": "7266825761413075870",
+      "output": "res://assets/ui/role_weapon/weapon_icons/sprite_weaponicon_square_801.png",
+      "png_sha256": "4c7a90f6e13b0c3339b5047619f33e3db4e5e3f6047b48aa0a4178393666a8b1"
+    },
+    {
+      "address": "sprite_weaponicon_full_801",
+      "status": "exact_sprite_address_absent_from_manifest"
+    },
+    {
+      "address": "sprite_weaponicon_square_802",
+      "status": "imported",
+      "source": "assets/yoo/DefaultPackage/745dd5cda7ee1f45366315e4bbc825e8.bundle",
+      "bundle_sha256": "c042311915d22d2a50e70b9bbc763b59eb00c72b69b90f3fee27ff155da0e7ec",
+      "path_id": "-7258311361654089484",
+      "output": "res://assets/ui/role_weapon/weapon_icons/sprite_weaponicon_square_802.png",
+      "png_sha256": "e72860cc5c79c17f90919294d94d3fa377f4d05dd5dc938adc287e16ed79fa1d"
+    },
+    {
+      "address": "sprite_weaponicon_full_802",
+      "status": "exact_sprite_address_absent_from_manifest"
+    },
+    {
+      "address": "sprite_weaponicon_square_803",
+      "status": "imported",
+      "source": "assets/yoo/DefaultPackage/745dd5cda7ee1f45366315e4bbc825e8.bundle",
+      "bundle_sha256": "c042311915d22d2a50e70b9bbc763b59eb00c72b69b90f3fee27ff155da0e7ec",
+      "path_id": "1885249106602674141",
+      "output": "res://assets/ui/role_weapon/weapon_icons/sprite_weaponicon_square_803.png",
+      "png_sha256": "d66fa563e8c31cd44c24395198124b162a1de7d53426bde0f383d220d67b301a"
+    },
+    {
+      "address": "sprite_weaponicon_full_803",
+      "status": "exact_sprite_address_absent_from_manifest"
+    },
+    {
+      "address": "sprite_weaponicon_square_804",
+      "status": "imported",
+      "source": "assets/yoo/DefaultPackage/745dd5cda7ee1f45366315e4bbc825e8.bundle",
+      "bundle_sha256": "c042311915d22d2a50e70b9bbc763b59eb00c72b69b90f3fee27ff155da0e7ec",
+      "path_id": "-4812786060817196458",
+      "output": "res://assets/ui/role_weapon/weapon_icons/sprite_weaponicon_square_804.png",
+      "png_sha256": "567029055faed7c7b6213839ec857784f3d4b95413c988b39139d7092ae26cef"
+    },
+    {
+      "address": "sprite_weaponicon_full_804",
+      "status": "exact_sprite_address_absent_from_manifest"
+    },
+    {
+      "address": "sprite_weaponicon_square_805",
+      "status": "imported",
+      "source": "assets/yoo/DefaultPackage/745dd5cda7ee1f45366315e4bbc825e8.bundle",
+      "bundle_sha256": "c042311915d22d2a50e70b9bbc763b59eb00c72b69b90f3fee27ff155da0e7ec",
+      "path_id": "5926794444247988218",
+      "output": "res://assets/ui/role_weapon/weapon_icons/sprite_weaponicon_square_805.png",
+      "png_sha256": "e4a647ae66948eea83d736a33adccaf25bc8ee004d2a0168ce75a0a45234d239"
+    },
+    {
+      "address": "sprite_weaponicon_full_805",
+      "status": "exact_sprite_address_absent_from_manifest"
+    }
+  ]
+}

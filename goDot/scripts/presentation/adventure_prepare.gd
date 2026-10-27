@@ -18,6 +18,7 @@ var reason: Label
 var header: HBoxContainer
 var chaos: HBoxContainer
 var equipment: HBoxContainer
+var token_title: Label
 var row_buttons: Array[Button] = []
 const INK = Color("535966")
 const PAPER = Color("eee9cc")
@@ -49,6 +50,7 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 	header.add_child(back)
 	var title = _picture("冒险准备", Vector2(230, 60))
 	header.add_child(title)
+	DungeonStyle.localize_artwork_title(title, "冒险准备", 36)
 	var help = _button("", "须知", func():
 		reason.text = "通关前一难度后解锁下一难度；混沌首通奖励按角色领取。")
 	help.tooltip_text = "冒险须知"
@@ -77,8 +79,10 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 	var weapon = catalog.find("WeaponData", int(systems.profile.data.selected_weapon))
 	_equipment(equipment, character, "page:characters", str(character.get("square_icon_name", "")), "Lv.%d" % systems.rank(systems.profile.data.character_levels, int(systems.profile.data.selected_character)))
 	_equipment(equipment, weapon, "page:weapons", str(weapon.get("square_icon_name", "interaction_weapon")), "")
-	var token_title = _label("角色装备信物", 21)
+	token_title = _label("角色装备信物", 21)
 	token_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	token_title.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY if DungeonLocale.current_locale() == "th" else TextServer.AUTOWRAP_WORD_SMART
+	token_title.clip_text = true
 	summary.add_child(token_title)
 	var prep: Dictionary = context.preparation
 	var tokens = _button("已装备信物 %d" % int(prep.token_count) if prep.tokens_unlocked else "未解锁信物功能", "", func(): command.emit("page:tokens", 0, 0))
@@ -87,7 +91,7 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 	tokens.size_flags_vertical = SIZE_EXPAND_FILL
 	summary.add_child(tokens)
 	summary.add_child(HSeparator.new())
-	var tasks = _button("悬赏委托" if prep.extra_challenge_unlocked else "未建造营地任务栏", "", func(): command.emit("page:tasks" if prep.extra_challenge_unlocked else "page:buildings", 5, 0))
+	var tasks = _button("悬赏委托" if prep.extra_challenge_unlocked else "未建造营地任务栏", "", func(): command.emit("page:extra_challenges" if prep.extra_challenge_unlocked else "page:buildings", 0 if prep.extra_challenge_unlocked else 5, 0))
 	tasks.tooltip_text = str(prep.extra_challenge_reason)
 	tasks.size_flags_vertical = SIZE_EXPAND_FILL
 	summary.add_child(tasks)
@@ -190,6 +194,8 @@ func _label(text: String, font_size: int) -> Label:
 func _button(text: String, icon: String, callback: Callable) -> Button:
 	var button = Button.new()
 	button.text = text
+	button.clip_text = true
+	button.resized.connect(func(): DungeonStyle.fit_button_text(button, 17 if size.y < 600 else 22))
 	button.add_theme_font_size_override("font_size", 22)
 	button.add_theme_color_override("font_color", INK)
 	button.add_theme_color_override("font_disabled_color", INK.lightened(0.12))
@@ -216,14 +222,31 @@ func _equipment(parent: Control, source: Dictionary, action: String, icon: Strin
 	key.add_child(stack)
 	var caption = _label(DungeonCatalog.row_name(source), 22)
 	caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	caption.clip_text = true
+	caption.max_lines_visible = 2
+	caption.size_flags_vertical = SIZE_EXPAND_FILL
 	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	caption.resized.connect(func(): _fit_equipment_caption(caption))
 	stack.add_child(caption)
 	var art = DungeonStyle.picture(icon, Vector2(64, 64))
-	art.size_flags_vertical = SIZE_EXPAND_FILL
 	stack.add_child(art)
 	var rank_label = _label(level, 17)
+	rank_label.visible = not level.is_empty()
 	rank_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	stack.add_child(rank_label)
+	key.tooltip_text = DungeonCatalog.row_name(source)
+
+func _fit_equipment_caption(caption: Label) -> void:
+	if caption.size.x <= 1 or caption.size.y <= 1: return
+	var font := caption.get_theme_font("font")
+	var text := DungeonLocale.text(caption.text)
+	var font_size := 18 if size.y < 600 else 22
+	while font_size > 10:
+		var measured := font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, caption.size.x, font_size, -1, TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND | TextServer.BREAK_ADAPTIVE)
+		if measured.x <= caption.size.x + 1 and measured.y <= caption.size.y + 1: break
+		font_size -= 1
+	if caption.get_theme_font_size("font_size") != font_size:
+		caption.add_theme_font_size_override("font_size", font_size)
 
 func _select(level: int) -> void:
 	selected = level
@@ -294,6 +317,8 @@ func _adapt() -> void:
 	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]: paper_style.set_content_margin(side, 12 if compact else 26)
 	left.add_theme_stylebox_override("panel", paper_style)
 	left.get_child(0).add_theme_constant_override("separation", 6 if compact else 16)
+	token_title.add_theme_font_size_override("font_size", 18 if compact else 21)
+	token_title.custom_minimum_size.y = 54 if compact else 64
 	equipment.custom_minimum_size.y = 122 if compact else 225
 	for key in equipment.get_children():
 		var item = key.get_child(0)
@@ -301,14 +326,15 @@ func _adapt() -> void:
 		item.offset_top = 8 if compact else 14
 		item.offset_right = -8 if compact else -14
 		item.offset_bottom = -8 if compact else -14
-		item.get_child(0).add_theme_font_size_override("font_size", 18 if compact else 22)
 		item.get_child(1).custom_minimum_size = Vector2(40, 40) if compact else Vector2(64, 64)
 		item.get_child(2).add_theme_font_size_override("font_size", 14 if compact else 17)
+		_fit_equipment_caption(item.get_child(0))
 	for key in left.get_child(0).get_children():
-		if key is Button: key.add_theme_font_size_override("font_size", 17 if compact else 22)
+		if key is Button: DungeonStyle.fit_button_text(key, 17 if compact else 22)
 	right.position = Vector2(margin + left_width + gap, top)
 	right.size = Vector2(size.x - margin * 2 - left_width - gap, size.y - top - margin)
-	header.get_child(1).custom_minimum_size = Vector2(150, 42) if compact else Vector2(230, 60)
+	var title_width := (150 if compact else 230) if DungeonLocale.current_locale() == "zh_CN" else (300 if compact else 400)
+	header.get_child(1).custom_minimum_size = Vector2(title_width, 42 if compact else 60)
 	for counter in header.get_children():
 		if counter is HBoxContainer: counter.custom_minimum_size.x = 72 if compact else 112
 	reward_bar.custom_minimum_size.y = 32 if compact else 62
@@ -327,6 +353,8 @@ func _adapt() -> void:
 		line.get_child(0).custom_minimum_size.x = 66 if compact else 108
 		line.get_child(0).add_theme_font_size_override("font_size", 20 if compact else 27)
 		line.get_child(2).add_theme_font_size_override("font_size", 15 if compact else 20)
-	start.custom_minimum_size = Vector2(160, 38) if compact else Vector2(240, 52)
+	var start_width := (160 if compact else 240) if DungeonLocale.current_locale().begins_with("zh") else (280 if compact else 340)
+	start.custom_minimum_size = Vector2(start_width, 38 if compact else 52)
+	DungeonStyle.fit_button_text(start, 17 if compact else 22)
 	left.set_deferred("size", Vector2(left_width, size.y - top - margin))
 	_reveal_selected.call_deferred()

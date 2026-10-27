@@ -95,8 +95,10 @@ func _skin(key: String, margin: int = 8, tint: Color = Color.WHITE) -> StyleBox:
 func _button(parent: Node, value: String, rect: Rect2, key: String = "商店按钮_底", font_size: int = 24) -> Button:
 	var result = Button.new()
 	result.text = value
+	result.clip_text = true
 	result.custom_minimum_size = Vector2.ZERO
 	result.add_theme_font_size_override("font_size", font_size)
+	result.resized.connect(func(): DungeonStyle.fit_button_text(result, font_size))
 	result.add_theme_color_override("font_color", Color("fffdf3"))
 	result.add_theme_color_override("font_disabled_color", Color("ece9e0"))
 	result.add_theme_color_override("font_outline_color", Color("46382c"))
@@ -153,7 +155,8 @@ func _build() -> void:
 	back.pressed.connect(func():
 		if is_instance_valid(host): host.back_requested.emit()
 		else: command.emit("close_page", 0, 0))
-	_picture(canvas, "商城", Rect2(135, 24, 230, 102))
+	var title_art := _picture(canvas, "商城", Rect2(135, 24, 230, 102))
+	DungeonStyle.localize_artwork_title(title_art, "商城", 60)
 	_label(canvas, "请适度娱乐，理性消费。", Rect2(138, 118, 310, 30), 18, Color("e7e8da"))
 	var wallet_x = _logical_size.x - 330
 	_picture(canvas, "货币_底", Rect2(wallet_x, 20, 280, 48))
@@ -164,7 +167,8 @@ func _build() -> void:
 	_label(canvas, "客服", Rect2(39, 865, 90, 30), 20, Color.WHITE)
 	var restore = _art_button(canvas, "客服", "恢复内购", Rect2(159, 795, 70, 70))
 	restore.pressed.connect(func(): command.emit("restore_purchases", 0, 0))
-	_label(canvas, "恢复内购", Rect2(142, 865, 140, 30), 20, Color.WHITE)
+	var restore_caption := _label(canvas, "恢复内购", Rect2(142, 845, 170, 55), 18, Color.WHITE)
+	restore_caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	board = Control.new()
 	canvas.add_child(board)
 	_place(board, Rect2(775, 90, _board_size.x, _board_size.y))
@@ -208,7 +212,8 @@ func _build_vip() -> void:
 	var height = _board_size.y
 	_picture(board, "背景装饰环", Rect2(-20, 95, width * 0.61, height - 150)).modulate = Color(1.0, 0.86, 0.5, 0.24)
 	_picture(board, "特权", Rect2(75, 165, width * 0.37, height - 215)).flip_h = true
-	_picture(board, "迷宫特权标题cn", Rect2(width * 0.41, 36, width * 0.58, 170))
+	var privilege_art := _picture(board, "迷宫特权标题cn", Rect2(width * 0.41, 36, width * 0.58, 170))
+	DungeonStyle.localize_artwork_title(privilege_art, "永久迷宫特权", 64, Color("fff0c1"))
 	var right_x = width * 0.56
 	var right_width = width * 0.38
 	var ad_band = Panel.new()

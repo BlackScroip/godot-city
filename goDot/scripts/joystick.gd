@@ -9,6 +9,7 @@ var home := Vector2.INF
 var center := Vector2.ZERO
 var drag_origin := Vector2.ZERO
 var excluded_controls: Array[Control] = []
+var fixed_mode := false
 const FEEL = preload("res://assets/feel_settings.tres")
 
 func _ready() -> void:
@@ -21,6 +22,12 @@ func _ready() -> void:
 
 func _home() -> Vector2:
 	return home if home.is_finite() else size * 0.5
+
+func apply_settings(settings: Dictionary) -> void:
+	var next := bool(settings.get("joystick_fixed", false))
+	if fixed_mode == next: return
+	fixed_mode = next
+	_reset()
 
 func _draw() -> void:
 	var point := _home() if finger == -1 else center
@@ -45,7 +52,8 @@ func _begin_pointer(index: int, point: Vector2) -> void:
 	finger = index
 	drag_origin = point
 	var margin := Vector2.ONE * (radius + 8)
-	center = point.clamp(margin, size - margin)
+	center = _home() if fixed_mode else point.clamp(margin, size - margin)
+	if fixed_mode: drag_origin = center
 	_set_point(point)
 
 func _input(event: InputEvent) -> void:

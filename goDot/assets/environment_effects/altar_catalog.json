@@ -1,0 +1,161 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "billboards": {
+    "EnvUnit_MonoData_BtnDisplayName_CurseAltar": {
+      "type": "SpriteRenderer",
+      "source": "CAB-2108491f488489c082ada8e583803322:6251256626462942029",
+      "sprite": {
+        "source": "CAB-d8a092987fe701788159827d2aa6384e:6547899533961528020",
+        "type": "Sprite",
+        "name": "sprite_abilityitemicon_14104"
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "enabled": true,
+      "pixels_per_unit": 50.0,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "texture_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "texture_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "texture": "res://assets/environment_effects/altar_pickup_sprite_abilityitemicon_14104.png",
+      "texture_sha256": "0b49f656b7e702dfde7c5cf78c3b31c958d4dcf765a4adaf62f2f10fa131dfee"
+    },
+    "EnvUnit_MonoData_BtnDisplayName_SacrificialAltar": {
+      "type": "SpriteRenderer",
+      "source": "CAB-bfeb4cd4defe10cbcf46001d98a3ed31:1380780580962796272",
+      "sprite": {
+        "source": "CAB-d8a092987fe701788159827d2aa6384e:208886530458299428",
+        "type": "Sprite",
+        "name": "sprite_abilityitemicon_14103"
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "enabled": true,
+      "pixels_per_unit": 50.0,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "texture_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "texture_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "texture": "res://assets/environment_effects/altar_pickup_sprite_abilityitemicon_14103.png",
+      "texture_sha256": "393042f6aed46e1a16e62a257409c332e74c113415fa485dfef3454b139224b5"
+    },
+    "EnvUnit_MonoData_BtnDisplayName_SpritesAltar": {
+      "type": "SpriteRenderer",
+      "source": "CAB-89fd32bb01d0533e05306bd724e3e3cf:-7934479806340189844",
+      "sprite": {
+        "source": "CAB-d8a092987fe701788159827d2aa6384e:-3526217163340320126",
+        "type": "Sprite",
+        "name": "SpritesAltar"
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "enabled": true,
+      "pixels_per_unit": 100.0,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "texture_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "texture_offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "texture": "res://assets/environment_effects/spirit_altar_egg.png",
+      "texture_sha256": "fbdaf3af03fb8fffb8a0e688130069a15827db03c0bce74cdb0eeea066da68cb"
+    },
+    "EnvUnit_MonoData_BtnDisplayName_OldDayAltar": {
+      "type": "SpriteRenderer",
+      "source": "CAB-defce147acc4610f8f1e40b4499fbfdc:-1493196056816651422",
+      "sprite": {
+        "source": "CAB-d8a092987fe701788159827d2aa6384e:-4904460196209073296",
+        "type": "Sprite",
+        "name": "sprite_abilityitemicon_14105"
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "enabled": true,
+      "pixels_per_unit": 50.0,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "texture_rect": {
+        "x": 14.076120376586914,
+        "y": 3.076120376586914,
+        "width": 99.84776306152344,
+        "height": 122.84776306152344
+      },
+      "texture_offset": {
+        "x": 14.076120376586914,
+        "y": 3.076120376586914
+      },
+      "texture": "res://assets/environment_effects/altar_pickup_sprite_abilityitemicon_14105.png",
+      "texture_sha256": "801975acb664d5c9c974d9fb12ea03f642beb2c714c64502773093988ea447f7"
+    }
+  }
+}

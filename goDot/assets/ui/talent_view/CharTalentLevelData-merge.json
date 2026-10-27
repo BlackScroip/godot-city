@@ -1,0 +1,222 @@
+{
+  "member": "assets/yoo/DefaultPackage/9688f7e4f49c90ce4119c9758d061ae5.bundle",
+  "bundle_sha256": "7e7b2b9cf5f01ae13c870b0e8b8540d682caca51a378a3e13a08ca499370c45e",
+  "path_id": "4912649132672340287",
+  "added_ids": [
+    8011,
+    8012,
+    8013,
+    8021,
+    8022,
+    8023,
+    8031,
+    8032,
+    8033,
+    8041,
+    8042,
+    8043,
+    8051,
+    8052,
+    8053,
+    8061,
+    8062,
+    8063,
+    8071,
+    8072,
+    8073,
+    8081,
+    8082,
+    8083,
+    8091,
+    8092,
+    8093,
+    8101,
+    8102,
+    8103,
+    8111,
+    8112,
+    8113,
+    8121,
+    8122,
+    8123,
+    8131,
+    8132,
+    8133,
+    8141,
+    8142,
+    8143,
+    8151,
+    8152,
+    8153,
+    8161,
+    8162,
+    8163,
+    8171,
+    8172,
+    8173,
+    8181,
+    8182,
+    8183,
+    8911,
+    8912,
+    8913,
+    8921,
+    8922,
+    8923,
+    8931,
+    8932,
+    8933
+  ],
+  "description_ids_refreshed": [
+    1053,
+    2053,
+    2911,
+    4131,
+    4132,
+    4133,
+    4181,
+    4182,
+    4183,
+    4913,
+    5921,
+    6051,
+    6052,
+    6053,
+    6061,
+    6062,
+    6063,
+    6911,
+    6913,
+    7911,
+    7912
+  ],
+  "changed_fields": {
+    "1053": {
+      "effect_description": {
+        "existing": "<color=#fb701d>【烈焰横斩】</color>附带2层<#specinfo=zhuoshao>。敌人身上每层灼烧+0.5%<color=#fb701d>【烈焰横斩】</color>的伤害。",
+        "apk": "<color=#fb701d>【烈焰横斩】</color>附带2层<#specinfo=zhuoshao>。使用<color=#f28e00>【强化<#specinfo=zhongji>】</color>后的下一次<color=#fb701d>【烈焰横斩】</color>会随敌人身上的<#specinfo=zhuoshao>层数提高伤害，每层<#specinfo=zhuoshao>+5%。"
+      }
+    },
+    "2053": {
+      "effect_description": {
+        "existing": "每0.5秒<#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>。进入<color=#a358ff>【降临状态】</color>时立刻<#specinfo=shengminghuifu>15%最大<#specinfo=shengmingzhi>。",
+        "apk": "每0.5秒<#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>。进入<color=#a358ff>【降临状态】</color>时立刻<#specinfo=shengminghuifu>15%<#specinfo=shengmingzhi>。"
+      }
+    },
+    "2911": {
+      "effect_description": {
+        "existing": "进入新节点或离开<color=#a358ff>【降临状态】</color>后都能获得10层<color=#a358ff>【降临能量：聚魂】</color>。",
+        "apk": "进入新节点或离开<color=#a358ff>【降临状态】</color>后都能获得20层<color=#a358ff>【降临能量：聚魂】</color>。"
+      }
+    },
+    "4131": {
+      "effect_description": {
+        "existing": "<color=#529fff>【水弹】</color>伤害+15%，每层<#specinfo=yidongsudu>+3%。",
+        "apk": "<color=#529fff>【水弹】</color>伤害+15%，每层<#specinfo=yidongsudu>+3。"
+      }
+    },
+    "4132": {
+      "effect_description": {
+        "existing": "<color=#529fff>【水弹】</color>伤害+30%，每层<#specinfo=yidongsudu>+6%。",
+        "apk": "<color=#529fff>【水弹】</color>伤害+30%，每层<#specinfo=yidongsudu>+6。"
+      }
+    },
+    "4133": {
+      "effect_description": {
+        "existing": "<color=#529fff>【水弹】</color>伤害+50%，每层<#specinfo=yidongsudu>+10%。",
+        "apk": "<color=#529fff>【水弹】</color>伤害+50%，每层<#specinfo=yidongsudu>+10。"
+      }
+    },
+    "4181": {
+      "effect_description": {
+        "existing": "每次获得1%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>。",
+        "apk": "每次获得1%<#specinfo=shengmingshangxian>的<#specinfo=hudun>。"
+      }
+    },
+    "4182": {
+      "effect_description": {
+        "existing": "每次获得2%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>。",
+        "apk": "每次获得2%<#specinfo=shengmingshangxian>的<#specinfo=hudun>。"
+      }
+    },
+    "4183": {
+      "effect_description": {
+        "existing": "每次获得3%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>，持续期间<#specinfo=yidongsudu>增加。",
+        "apk": "每次获得3%<#specinfo=shengmingshangxian>的<#specinfo=hudun>，持续期间<#specinfo=yidongsudu>增加。"
+      }
+    },
+    "4913": {
+      "effect_description": {
+        "existing": "<color=#529fff>【水刃】</color>及<color=#529fff>【水弹】</color>对<#specinfo=chaoshi>目标造成的伤害+100%，且生效于<color=#529fff>【潮汐】</color>。",
+        "apk": "每层<#specinfo=chaoshi>使敌人受到的<color=#529fff>【水弹】</color>和<color=#529fff>【水刃】</color>伤害额外提高10%。"
+      }
+    },
+    "5921": {
+      "effect_description": {
+        "existing": "使用<#specinfo=zhanji>后<#specinfo=putonggongji>速度+15，使用<#specinfo=baofaji>后<#specinfo=gongjisudu>+30。",
+        "apk": "使用<#specinfo=zhanji>后<#specinfo=gongjisudu>+15，使用<#specinfo=baofaji>后<#specinfo=gongjisudu>+30。"
+      }
+    },
+    "6051": {
+      "effect_description": {
+        "existing": "使用<#specinfo=zhanji>时+4%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>。",
+        "apk": "使用<#specinfo=zhanji>时+4%<#specinfo=shengmingshangxian>的<#specinfo=hudun>。"
+      }
+    },
+    "6052": {
+      "effect_description": {
+        "existing": "使用<#specinfo=zhanji>时+8%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>。",
+        "apk": "使用<#specinfo=zhanji>时+8%<#specinfo=shengmingshangxian>的<#specinfo=hudun>。"
+      }
+    },
+    "6053": {
+      "effect_description": {
+        "existing": "使用<#specinfo=zhanji>时+12%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>。当前每损失1%<#specinfo=shengmingzhi>，额外+0.1%最大<#specinfo=shengmingzhi>的<#specinfo=hudun>。",
+        "apk": "使用<#specinfo=zhanji>时+12%<#specinfo=shengmingshangxian>的<#specinfo=hudun>。当前每损失1%<#specinfo=shengmingzhi>，额外+0.1%<#specinfo=shengmingshangxian>的<#specinfo=hudun>。"
+      }
+    },
+    "6061": {
+      "effect_description": {
+        "existing": "每次触发<#specinfo=shengminghuifu>0.5%最大<#specinfo=shengmingzhi>。",
+        "apk": "每次触发<#specinfo=shengminghuifu>0.5%<#specinfo=shengmingzhi>。"
+      }
+    },
+    "6062": {
+      "effect_description": {
+        "existing": "每次触发<#specinfo=shengminghuifu>1%最大<#specinfo=shengmingzhi>。",
+        "apk": "每次触发<#specinfo=shengminghuifu>1%<#specinfo=shengmingzhi>。"
+      }
+    },
+    "6063": {
+      "effect_description": {
+        "existing": "每次触发<#specinfo=shengminghuifu>2%最大<#specinfo=shengmingzhi>，<#specinfo=chengjiebiaoji>触发后，可以+1层<color=#f18800>【<#specinfo=zhongji>能量：信仰】</color>。",
+        "apk": "每次触发<#specinfo=shengminghuifu>2%<#specinfo=shengmingzhi>，<#specinfo=chengjiebiaoji>触发后，可以+1层<color=#f18800>【<#specinfo=zhongji>能量：信仰】</color>。"
+      }
+    },
+    "6911": {
+      "effect_description": {
+        "existing": "使用<#specinfo=baofaji>消耗<#specinfo=shengmingzhi>的50%转化为<#specinfo=hudun>并进入<color=#f18800>【神谕形态】</color>：每拥有1点<#specinfo=hudun>+0.2%<#specinfo=gongjili>；每拥有1点<#specinfo=hudun>+0.2%<color=#f18800>光辉黑洞</color>伤害。<br><color=#f18800>【神谕形态】</color>下使用<#specinfo=baofaji>不刷新<color=#f18800>【神谕形态】</color>的持续时间，但可以<#specinfo=shengminghuifu>15%已损失的<#specinfo=shengmingzhi>。",
+        "apk": "使用<#specinfo=baofaji>消耗<#specinfo=shengmingzhi>的50%转化为<#specinfo=hudun>并进入<color=#f18800>【神谕形态】</color>：每拥有1点<#specinfo=hudun>+0.2%<#specinfo=gongjili>；每拥有1点<#specinfo=hudun>+0.2%<color=#f18800>光辉黑洞</color>伤害。<br><color=#f18800>【神谕形态】</color>下使用<#specinfo=baofaji>不会将<#specinfo=shengmingzhi>转化为<#specinfo=hudun>，但可以<#specinfo=shengminghuifu>15%已损失的<#specinfo=shengmingzhi>；自身没有<#specinfo=hudun>时退出<color=#f18800>【神谕形态】</color>。"
+      }
+    },
+    "6913": {
+      "effect_description": {
+        "existing": "<#specinfo=hudun>上限增加至<#specinfo=shengmingzhi>的200%，当前<#specinfo=hudun>超过<#specinfo=shengmingzhi>100%时+20%<#specinfo=baojilv>与50%<#specinfo=baojishanghai>，超过150%时该效果翻倍。",
+        "apk": "<#specinfo=hudun>上限增加至<#specinfo=shengmingshangxian>的200%，当前<#specinfo=hudun>超过<#specinfo=shengmingshangxian>100%时+20%<#specinfo=baojilv>与50%<#specinfo=baojishanghai>，超过150%时该效果翻倍。"
+      }
+    },
+    "7911": {
+      "effect_description": {
+        "existing": "攻击后使敌人叠加的<#specinfo=dongshang>层数提升40%。",
+        "apk": "攻击使敌人叠加<#specinfo=dongshang>时，每叠加5层，额外附加2层效果。"
+      }
+    },
+    "7912": {
+      "effect_description": {
+        "existing": "<#specinfo=dongshang>造成伤害时获得1点<color=#76A9FF><#specinfo=sikadizhinu>能量</color>，触发<#specinfo=suibing>后获得3\n0点<color=#76A9FF><#specinfo=sikadizhinu>能量</color>。",
+        "apk": "<#specinfo=dongshang>造成伤害时获得1点<color=#76A9FF><#specinfo=sikadizhinu>能量</color>，触发<#specinfo=suibing>后获得30点<color=#76A9FF><#specinfo=sikadizhinu>能量</color>。"
+      }
+    }
+  },
+  "apk_rows": 504
+}

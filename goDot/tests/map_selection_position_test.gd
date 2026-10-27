@@ -51,6 +51,7 @@ func _run() -> void:
 	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	canvas.add_child(background)
+	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var campaign = DungeonCampaign.new()
 	check(campaign.configure() and campaign.generate(12345, 0).success, "Current APK campaign loads")
 	var world = _page(campaign.region_map(), {"map_scope": "world", "first_layer": 1, "current_layer": 1})
@@ -122,8 +123,8 @@ func _run() -> void:
 			var page = _page(layout_rows, {"map_scope": scope, "first_layer": 0, "current_layer": 5})
 			await _settle()
 			var focus = page.nodes[5 if scope == "world" else 4]
-			var center: float = focus.get_rect().get_center().x
-			check(absf(center - page.scroll.scroll_horizontal - page.scroll.size.x * 0.5) <= 1.0, "%s centers current focus at %s" % [scope, dimensions])
+			var center: float = focus.get_rect().get_center().x if scope == "world" else focus.get_rect().end.x
+			check(absf(center - page.scroll.scroll_horizontal - page.scroll.size.x * 0.5) <= 1.0, "%s uses APK focus alignment at %s" % [scope, dimensions])
 			check(page.get_rect().encloses(page.header.get_rect()) and page.get_rect().encloses(page.footer.get_rect()), "Controls stay inside %s" % dimensions)
 			check(page.scroll.get_rect().end.y <= page.footer.position.y, "Graph stays above controls at %s" % dimensions)
 			page.scroll.scroll_horizontal += 110
@@ -143,6 +144,7 @@ func _run() -> void:
 			check(last.end.x - page.scroll.scroll_horizontal <= page.scroll.size.x + 1, "Last column remains visible after clamping")
 			page.queue_free()
 			await process_frame
+	await _check_completed_room_positions()
 	await _check_game(campaign, fixture, duplicate)
 	canvas.queue_free()
 	display.queue_free()
@@ -151,6 +153,44 @@ func _run() -> void:
 	FileAccess.open("res://reports/map-selection-position-test.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("MAP_SELECTION_POSITION ", JSON.stringify(report))
 	quit(0 if failures.is_empty() else 1)
+
+func _check_completed_room_positions() -> void:
+	var campaign = DungeonCampaign.new()
+	check(campaign.configure() and campaign.generate(12345, 0).success and campaign.select_region(2).success, "Progression fixture opens actual APK forest route")
+	for cleared in 6:
+		var choices = campaign.choices()
+		check(not choices.is_empty(), "Progression has a forward destination after %d rooms" % cleared)
+		if choices.is_empty(): return
+		check(campaign.enter(int(choices[0].node_id)).success, "Progression enters room %d" % cleared)
+		if campaign.current_room().combat:
+			while not campaign.room_ready(): campaign.clear_wave()
+		elif not campaign.trial_status().is_empty(): campaign.decline_trial()
+		else: campaign.resolve_action()
+		check(campaign.complete_room().success and campaign.advance().success, "Completed room %d returns to route selection" % cleared)
+		var snapshot = campaign.snapshot().duplicate(true)
+		for dimensions in [Vector2i(1600, 900), Vector2i(1280, 720), Vector2i(2460, 1080), Vector2i(844, 390), Vector2i(1000, 900), Vector2i(640, 900)]:
+			canvas.size = dimensions
+			var rows = campaign.route_map()
+			for row in rows: row["config_id"] = int(row.layer_index) * 100000000 + int(row.node_id)
+			var page = _page(rows, {"map_scope": "rooms", "first_layer": 0, "current_layer": int(campaign.state.layer_index), "portrait": "sprite_cardicon_square_jiannan"})
+			await _settle()
+			var reachable := 0
+			for index in page.nodes.size():
+				if not page.rows[index].available: continue
+				reachable += 1
+				var bounds = page.nodes[index].get_rect()
+				var glow = bounds.size.x * (DungeonRouteNode.SELECTED_FRAME_SIZE.x * DungeonRouteNode.SELECTION_PEAK_SCALE - 1.0) * 0.5
+				check(bounds.position.x - glow >= page.scroll.scroll_horizontal - 1 and bounds.end.x + glow <= page.scroll.scroll_horizontal + page.scroll.size.x + 1, "Next selectable room fits with its highlight after room %d at %s" % [cleared, dimensions])
+			check(reachable > 0 and page.selected_id == 0 and not page.confirm.visible, "Next column is visible without preselecting a room")
+			check(campaign.snapshot() == snapshot, "Opening completed-room selection preserves progress")
+			if cleared == 3 and dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(1000, 900), Vector2i(640, 900)] and DisplayServer.get_name() != "headless":
+				await create_timer(0.8).timeout
+				await RenderingServer.frame_post_draw
+				var path = "res://reports/map-next-room-%dx%d.png" % [dimensions.x, dimensions.y]
+				canvas.get_texture().get_image().save_png(path)
+				captures.append(path)
+			page.queue_free()
+			await process_frame
 
 func _check_game(campaign: DungeonCampaign, fixture: Dictionary, duplicate: int) -> void:
 	var game = GameProbe.new()

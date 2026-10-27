@@ -30,6 +30,7 @@ func _run() -> void:
 	var rows: Array = []
 	for index in 3:
 		rows.append({"title": ["烈阳之锋", "破空剑心", "焰之伤"][index], "icon": "sprite_charatalent_10%d" % (index + 1), "rarity": 5, "grade": "传奇", "level_text": "Lv.0 → Lv.1", "description": "解锁战技派生技能，命中敌人会获得剑心。\n\n等级1：战技伤害+20%，命中敌人后获得1层剑心。\n\n".repeat(4), "buttons": [{"text": "选择", "action": "choose_talent", "id": index + 101, "extra": "reward:test"}]})
+	rows[0]["marked"] = true
 	rows.append({"presentation_role": "refresh", "buttons": [{"text": "刷新", "action": "refresh_talent", "id": "reward:test", "extra": 0, "disabled": true}]})
 	page.display("选择角色天赋", rows, "talent")
 	var selection = page.special.get_child(0)
@@ -51,7 +52,7 @@ func _run() -> void:
 	page.display("选择冒险家支援道具", support, "support")
 	selection = page.special.get_child(0)
 	await _verify_layout(canvas, page, selection, "support")
-	check(selection.parts[0].panel.fill_top != selection.parts[1].panel.fill_top and selection.parts[1].panel.fill_top != selection.parts[2].panel.fill_top, "Support rarities have distinct blue, green and gray cards")
+	check(selection.parts[0].panel.background_key == "rarebg_vertical_3_v2" and selection.parts[1].panel.background_key == "rarebg_vertical_2_v2" and selection.parts[2].panel.background_key == "rarebg_vertical_1_v2", "Support rarities use the APK blue, green and gray card sprites")
 	check(not selection.parts[0].tag.visible, "Items do not show an empty talent level")
 	selection.parts[0].choose.pressed.emit()
 	selection.refresh_button.pressed.emit()
@@ -83,7 +84,11 @@ func _verify_entry_points(catalog: DungeonCatalog) -> void:
 	check(game.hud.captured_rows.slice(0, 3).map(func(row): return int(row.rarity)) == [3, 2, 1], "Run reward rarities come from item data")
 	game.systems.queue_character_talent_reward("High")
 	game._talent_rewards()
-	check(game.hud.captured_layout == "talent" and game.hud.captured_rows[0].rarity == 5, "Legendary talents enter the gold card layout")
+	check(game.hud.captured_layout == "talent" and game.hud.captured_rows[0].rarity == 3, "A one-level candidate uses the APK blue card regardless of scroll quality")
+	var marked_id = int(game.hud.captured_rows[0].config_id)
+	game.systems.toggle_character_talent_mark(marked_id)
+	game._talent_rewards()
+	check(game.hud.captured_rows[0].config_id == marked_id and game.hud.captured_rows[0].marked, "Real reward entry point preserves the candidate and forwards its saved mark")
 	game.hud.free()
 	game.ads.free()
 	game.resource_audio.free()
@@ -98,6 +103,9 @@ func _verify_layout(canvas: SubViewport, page: DungeonMenuPage, selection: Contr
 		check(page.size.y <= dimensions.y + 1, "Page stays within viewport %s %s" % [mode, dimensions])
 		check(viewport.encloses(selection.toolbar.get_global_rect()), "Toolbar stays inside viewport %s %s" % [mode, dimensions])
 		check(not selection.heading.get_global_rect().intersects(selection.toolbar.get_global_rect()), "Heading does not overlap toolbar %s %s" % [mode, dimensions])
+		if mode == "talent":
+			var mark = selection.parts[0].icon.get_node("TalentMark")
+			check(mark.visible and mark.size.x > 10 and selection.parts[0].panel.get_global_rect().encloses(mark.get_global_rect()), "Source marker fits the reward card " + str(dimensions))
 		for part in selection.parts:
 			check(viewport.encloses(part.panel.get_global_rect()), "Card stays inside viewport %s %s" % [mode, dimensions])
 			check(part.scroll.size.y > 24, "Description remains scrollable %s %s" % [mode, dimensions])

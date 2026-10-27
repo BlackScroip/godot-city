@@ -15,12 +15,14 @@ func update_actors(actors: Array, camera: Camera3D, delta: float) -> void:
 	var factor := clampf(minf(size.x / 1280.0, size.y / 720.0), 0.72, 1.2)
 	var screen := camera.get_viewport().get_visible_rect().size
 	for actor in actors:
-		if not is_instance_valid(actor) or actor.is_player or actor.dead or actor.combat == null: continue
-		if actor.combat.health <= 0 or not actor.is_visible_in_tree(): continue
+		if not is_instance_valid(actor) or actor.is_player or actor.combat == null: continue
+		if not actor.is_visible_in_tree(): continue
 		if is_instance_valid(actor.visual) and not actor.visual.visible: continue
 		# Bosses retain their separate top-of-screen readout.
 		if actor.combat.enemy.get("rank", "") == "Boss": continue
 		var key: int = actor.get_instance_id()
+		var dying: bool = actor.dead or actor.combat.health <= 0.0
+		if dying and not bars.has(key): continue
 		active[key] = true
 		if not bars.has(key):
 			var health_bar = HealthBar.new()
@@ -28,7 +30,9 @@ func update_actors(actors: Array, camera: Camera3D, delta: float) -> void:
 			add_child(health_bar)
 			bars[key] = health_bar
 		var bar: Control = bars[key]
-		bar.update_health(actor.combat.health, actor.combat.max_health, actor.combat.shield, delta)
+		bar.update_actor(actor.combat, delta)
+		# SwitchDisplay retains the projected box until the unit is deleted.
+		if delta > 0.0: bar.modulate.a = lerpf(bar.modulate.a, 0.0 if dying else 1.0, 0.2)
 		var bounds: AABB = actor.impact_bounds
 		var head: Vector3 = actor.get_global_transform_interpolated() * Vector3(bounds.get_center().x, bounds.end.y + 0.2, bounds.get_center().z)
 		bar.visible = not camera.is_position_behind(head)

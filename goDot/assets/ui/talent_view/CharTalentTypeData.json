@@ -1,0 +1,146 @@
+[
+  {
+    "id": 10,
+    "name": "灼烧",
+    "icon_name": "sprite_attackicon_1120003",
+    "sort": 1
+  },
+  {
+    "id": 11,
+    "name": "剑气",
+    "icon_name": "sprite_attackicon_300002",
+    "sort": 2
+  },
+  {
+    "id": 12,
+    "name": "剑心",
+    "icon_name": "icon_普攻",
+    "sort": 3
+  },
+  {
+    "id": 20,
+    "name": "降临",
+    "icon_name": "icon_普攻",
+    "sort": 1
+  },
+  {
+    "id": 21,
+    "name": "暗蚀",
+    "icon_name": "sprite_attackicon_1080002",
+    "sort": 2
+  },
+  {
+    "id": 22,
+    "name": "魅影",
+    "icon_name": "sprite_attackicon_300013",
+    "sort": 3
+  },
+  {
+    "id": 30,
+    "name": "毁灭",
+    "icon_name": "icon_普攻",
+    "sort": 1
+  },
+  {
+    "id": 31,
+    "name": "闪电",
+    "icon_name": "sprite_attackicon_400003",
+    "sort": 2
+  },
+  {
+    "id": 32,
+    "name": "护盾",
+    "icon_name": "sprite_attackicon_1120002",
+    "sort": 3
+  },
+  {
+    "id": 40,
+    "name": "潮湿",
+    "icon_name": "icon_普攻",
+    "sort": 1
+  },
+  {
+    "id": 41,
+    "name": "水灵",
+    "icon_name": "sprite_attackicon_1100003",
+    "sort": 2
+  },
+  {
+    "id": 42,
+    "name": "海神",
+    "icon_name": "sprite_attackicon_1100002",
+    "sort": 3
+  },
+  {
+    "id": 50,
+    "name": "突袭",
+    "icon_name": "sprite_attackicon_1030002",
+    "sort": 1
+  },
+  {
+    "id": 51,
+    "name": "长弓",
+    "icon_name": "sprite_attackicon_1020002",
+    "sort": 2
+  },
+  {
+    "id": 52,
+    "name": "箭雨",
+    "icon_name": "icon_普攻",
+    "sort": 3
+  },
+  {
+    "id": 60,
+    "name": "裁决",
+    "icon_name": "icon_普攻",
+    "sort": 1
+  },
+  {
+    "id": 61,
+    "name": "惩戒",
+    "icon_name": "sprite_attackicon_300032",
+    "sort": 2
+  },
+  {
+    "id": 62,
+    "name": "光辉",
+    "icon_name": "sprite_attackicon_300033",
+    "sort": 3
+  },
+  {
+    "id": 70,
+    "name": "霜矛",
+    "icon_name": "icon_普攻",
+    "sort": 1
+  },
+  {
+    "id": 71,
+    "name": "霜心",
+    "icon_name": "icon_普攻",
+    "sort": 2
+  },
+  {
+    "id": 72,
+    "name": "龙鳞",
+    "icon_name": "icon_普攻",
+    "sort": 3
+  },
+  {
+    "id": 80,
+    "name": "猎手",
+    "icon_name": "icon_普攻",
+    "sort": 1
+  },
+  {
+    "id": 81,
+    "name": "刃舞",
+    "icon_name": "icon_普攻",
+    "sort": 2
+  },
+  {
+    "id": 82,
+    "name": "旋刃",
+    "icon_name": "icon_普攻",
+    "sort": 3
+  }
+]

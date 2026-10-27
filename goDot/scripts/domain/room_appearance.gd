@@ -67,12 +67,20 @@ func environment_decisions(key: String, room: Dictionary, items: Array) -> Dicti
 	var counters: Dictionary = systems.profile.data.run.counters
 	var storage := "room_environment:" + key
 	var stored = counters.get(storage)
-	if stored is Dictionary: return stored.duplicate(true)
+	if stored is Dictionary:
+		for item in items:
+			var id := str(item.get("id", ""))
+			if _res_id(item) == "70003" and not id.is_empty() and not stored.has(id):
+				stored[id] = preload("res://scripts/domain/camp_social.gd").new(systems).golden_apple_appears(key, id, int(room.get("progress_region", room.get("region", 1))), systems.attributes(), random, int(room.get("region", 1)))
+		return stored.duplicate(true)
 	var increments := node_increments(key, room)
 	var attrs: Dictionary = systems.attributes()
 	var result: Dictionary = {}
 	for item in items:
 		var id := str(item.get("id", ""))
+		if _res_id(item) == "70003" and not id.is_empty():
+			result[id] = preload("res://scripts/domain/camp_social.gd").new(systems).golden_apple_appears(key, id, int(room.get("progress_region", room.get("region", 1))), attrs, random, int(room.get("region", 1)))
+			continue
 		var chance := environment_chance(_res_id(item), room, attrs, increments)
 		if id.is_empty() or chance < 0: continue
 		# Unity Random.Range(int,int) excludes 1000, unlike node increment rolls.

@@ -1,0 +1,272 @@
+[
+  {
+    "name": "attribute_shengmingzhi",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "134bcd966160a2df70021059c9fb6ddfd09934426f71c7e4490852446d462a4c"
+  },
+  {
+    "name": "attribute_gongjili",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "c2da95cf9f344d8ed2f44c31efddbcba12657141501a55975b687001361dda4d"
+  },
+  {
+    "name": "attribute_fangyuli",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "3ec9853ecbbfd321edfd508ee8b97f39696ef07f576f5fdb7f048716062976e8"
+  },
+  {
+    "name": "attribute_baolv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "10508e5c8e1d503e9e345b6dac2425a0fe5bbe341ae4719a50bb5b7afeb603ba"
+  },
+  {
+    "name": "attribute_baoshang",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "316fbb53e9113ffe21aa9e77c5411bc05d629658be5c54f6410e7cae1a7546af"
+  },
+  {
+    "name": "attribute_gongsu",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "d1c9741175cc4ce001d2d9bd4235cb7d103e7cf63249f72fa8f9a718711b47f8"
+  },
+  {
+    "name": "attribute_yidongsudu",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "ff0bf99ca34e1d3cc3d070de38552f8526d710c100bed6ebff66569d3902ff37"
+  },
+  {
+    "name": "attribute_zhanjilengque",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "8738fca48625ea0a524be8ae7f47f5470f00263ef8797252f187f60f4f9656b5"
+  },
+  {
+    "name": "attribute_baofajinengliang",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "5c7ecb6d53acc415e67010766b5e18730cee3fed3aa0591020c6b2335f3b745f"
+  },
+  {
+    "name": "attribute_shanbilengque",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "981ad06dd0bb26365ce2d61bed4e39e9ec9745444fdb8b1ad094cf2565d6e4ff"
+  },
+  {
+    "name": "attribute_zhanjicishu",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "3b455227df3195b0c3e6a7a1789cd198af1cb697ad46b8c600ecbac15ecad14f"
+  },
+  {
+    "name": "attribute_shanbicishu",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "d145ed988b87caa5072c3b18b2396263a76181189afa964b4c7bae8d74b62dfd"
+  },
+  {
+    "name": "attribute_putonggongji",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "dd113b2c27e4fc2814bd366165d232f9e61e1b599783882ae4f2226d06a3273a"
+  },
+  {
+    "name": "attribute_zhongji",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "ecb9dc449eb6b7a73bbf86ace768877b3287d637e17696d7b19ebff95b84a8e7"
+  },
+  {
+    "name": "attribute_shanbigongji",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "5e88c1ca216d70d730eadc623ed9941a56f1c3701b493512b2a5f6ec9898795f"
+  },
+  {
+    "name": "attribute_zhanji",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "60e06afdf15d6aa635a7de0028b487bf3f5b7f38abf6680181b18ba07d636511"
+  },
+  {
+    "name": "attribute_baofaji",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "32d8cc4167a1953ab88eb84ce8dd61609211b284680570e57b82f4d2781f150c"
+  },
+  {
+    "name": "attribute_shanbi",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "abcb853e3be217c6dc13bb311e1c0598ff211bd6c092e3d96320fcaac23d61b1"
+  },
+  {
+    "name": "attribute_shengminghuifu",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "d70b2455dcb4a2ae726a03428d62ba0347942446a4ed4e244a127abeb026d532"
+  },
+  {
+    "name": "attribute_duilingzhushanghai",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "a4aec165cfc49f7aba13de49e7838bcda87e0b3288f93f85692f40ed8675ae3a"
+  },
+  {
+    "name": "attribute_jingyingzaochengshanghai",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "801931c22cd6fdc727f17f1dfc282432a395af494bc8d55ced5bcf36867a1648"
+  },
+  {
+    "name": "attribute_pojiaxiaolv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "f66cbf7ba5bdcee74992bfa10f86bcb27c42783c088708f888b107fb23e090a2"
+  },
+  {
+    "name": "attribute_shangdianjiage",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "61449a18561b463c233960f90437a0b15d2232b94670e29d9aa0ff39bc850a91"
+  },
+  {
+    "name": "attribute_shangdianmianfei",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "6a1881dbc03976edab353bf47354ef467db5a307ab658754fc81a715196656a8"
+  },
+  {
+    "name": "attribute_baoshimianfei",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "ebd0fd6c2b873eefe77011653aee8f335ccbcbe25b9063c239290272dfbc14c5"
+  },
+  {
+    "name": "attribute_molijinghuadiaoluo",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "796926369266c79cc358e0e8baca51d4e44df2cd4ae67ed2583ea4679a97939b"
+  },
+  {
+    "name": "attribute_jingbidiaoluo",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "cdb03aa1244b2cf11b2f2d6e30d22176efa12f8a4cc1df596f6f1318a4bbf1a9"
+  },
+  {
+    "name": "attribute_qicaijiejingdiaoluo",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "2a8d0124303d6c194f98d718fd1abd575bb9792c1ce873693b0e0de58717dd15"
+  },
+  {
+    "name": "attribute_sucaichuxiangailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "191fca0283a3fd1c7602f28b296128915068c32647c4e8c4f1fb025e99de7b8b"
+  },
+  {
+    "name": "attribute_kuangmaichuxian",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "a2b0422d1a4e4aba48883d3a3f8181d485718c67b3e71a779099c6049794c62d"
+  },
+  {
+    "name": "attribute_putongdiaoluo",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "75a9d66f0313359faf4ab44d040ff725f033017c64b62b5a93b25e86aa1b017c"
+  },
+  {
+    "name": "attribute_jingyingdiaoluo",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "e5a010cfae5ccbe15f8dc06013f15c260ed22a7197ba3590a40f77ebf64ef5f2"
+  },
+  {
+    "name": "attribute_bossdiaoluoyiwugailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "2d75d81c9ebf91fa4ad3ab52c4de4d15714cf5e9c8d18d9f44a6965365f7fbd4"
+  },
+  {
+    "name": "attribute_shijianchuxiangailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "b70e13ddaf213bf8d08aa96731aa5d2477b0a25c1f11e29fbcaee74160bb5834"
+  },
+  {
+    "name": "attribute_jinglingchuxiangailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "52b7c79730d35d7f451deccc67e06d031606b20985b374d58f02fd0548b6e7c8"
+  },
+  {
+    "name": "attribute_guaiwuzhiyuanjitanchuxiangailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "f2b85d8d1bf336f9b6b6854f38654d9f0f113ba60d656cd821961102f9b5d28c"
+  },
+  {
+    "name": "attribute_baoshishangrenchuxiangailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "f0739b93f62dcf3e251f06245178519ba0a4f79e7002eaa7276ba21d84ef4bfd"
+  },
+  {
+    "name": "attribute_jingyingchuxiangailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "10c86f3a8539aa9de0c067af617c898a53bb08deb09d12eef02f15821a3f8fba"
+  },
+  {
+    "name": "attribute_quanshuihuifuxiaolv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "058604b9e7969912171e864e8dfa5203c3ebf8de76c81d3bd21629b48097fb47"
+  },
+  {
+    "name": "attribute_yaoshuihuifuxiaolv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "cc530c2afdba18739b290cbf3cfde7495af49f3d3d47be1075cb565f1e1f2243"
+  },
+  {
+    "name": "attribute_guaiwuzhiyuanchongneng",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "61831426629036a6107878cde787fbf2aba7a61a965faa007c3eaba989dbdf31"
+  },
+  {
+    "name": "attribute_guaiwuzhiyuanshanghai",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "959f75e7688bee6fc52d8ca70a4836e61cbb118a4f3f6ba8afc4d132dcd4b513"
+  },
+  {
+    "name": "attribute_tianfushengjigailv",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "c5a96729fb1bbf0e300576e8a49473af677d42de07226a257f65580c196e21d7"
+  },
+  {
+    "name": "attribute_bossdianjiage",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "a4864bc4d3982305d2678742a3caf8bbee78eda7dac57725b0de9b50c815c146"
+  },
+  {
+    "name": "attribute_chuizhiyidong",
+    "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+    "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+    "png_sha256": "0f8f74446125bcabc5ba9a7f0246b1f0fafdc8a948968671bc98dd2da5c05db7"
+  }
+]

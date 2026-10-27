@@ -1,0 +1,3345 @@
+{
+  "talkcfg_npc_139808_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_angry",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "又是魔物骚扰吗？真是可恶。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_suprise",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "啊！是冒险家大人，失礼了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "其实是迷宫附近出现了魔物，应该是迷宫的出现让它们都活跃了起来。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_angry",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "虽然它们找不到营地，但会袭击路人和村庄。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家们大部分都在迷宫冒险，事态紧急，看来必须我去收拾它们了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 24,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "谢谢冒险家大人关心，我好歹也是击败过魔王军的冒险家呢，这点问题我可以解决。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 26,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 27,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 28,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139806_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "您已经是位身经百战的冒险家了，有接受过悬赏委托吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "悬赏委托是指一些贵富贵人家会指定一位冒险家去完成他们给出的委托任务。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "通常来说，这些委托相当重要，且奖励丰厚。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "有机会的话请一定不要拒绝，在迷宫之外的名望和财富对于冒险家来说也是相当重要的。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 19,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 20,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139101_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "rd=Random(0,9)"
+      }
+    },
+    {
+      "line": 3,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=0"
+      }
+    },
+    {
+      "line": 4,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 6,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "休息？等委托栏最后一个任务结束了，我就去休假。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 8,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 10,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=1"
+      }
+    },
+    {
+      "line": 11,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 13,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "讨伐魔王？这真的是可以贴在这的委托吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 15,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 17,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=2"
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "巡逻也是相当重要的委托，希望冒险家们可以重视起来啊。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 24,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=3"
+      }
+    },
+    {
+      "line": 25,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_suprise",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 27,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "清理街道的委托貌似少了很多，是因为城市变干净了吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 29,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 31,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=4"
+      }
+    },
+    {
+      "line": 33,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "耐寒药剂最近非常抢手，看来得着手多购置一些了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 35,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 37,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=5"
+      }
+    },
+    {
+      "line": 39,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "运输物资的马车最近总是迟误，看来得委托一些冒险家大人去护送了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 41,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 43,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=6"
+      }
+    },
+    {
+      "line": 45,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "虽然出现伤员的情况并不多见，但还是提前准备些药水吧。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 47,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 49,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=7"
+      }
+    },
+    {
+      "line": 50,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 52,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "没有营地护卫？别担心，交给我就好。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 54,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 55,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=8"
+      }
+    },
+    {
+      "line": 56,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 58,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家大人，有空可以帮我看住莉莉安娜吗？我担心她又混进冒险家队伍里跑进迷宫。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 60,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 62,
+      "class": "BeginIf",
+      "params": {
+        "Expression": "rd=9"
+      }
+    },
+    {
+      "line": 63,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 65,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "无论收获如何，平安才最重要。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 67,
+      "class": "EndIf",
+      "params": {}
+    },
+    {
+      "line": 69,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 70,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 71,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139800_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_suprise",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "金苹果？谢谢您冒险家大人。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "看见这金苹果还真是感慨良多，以前在迷宫也见过不少，已经很久没见过它了呢。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "您问我为什么会去迷宫？只是工作需要罢了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "谢谢您的苹果，在我见过的金苹果中，这份是最漂亮的，请收下这个。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 19,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 20,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139803_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "您担心迷宫营地的安全吗？劳您费心了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "不过，请不必担心这里，目前来看营地绝对安全。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "要进入营地必须从阿尔托先生打造的传送阵进入，一般来说绝不会有魔物袭击营地的。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "就算出现了特殊情况，我对自己的身手还算有信心，想来比试一下吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "呵，开个玩笑，请专心探索迷宫吧冒险家大人，这里交给我们就好。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 23,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 24,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_130201_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "欢迎来检查委托冒险家大人，我是公会委托管理员洛蒂，如果想要接取委托任务就来找我吧。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "说起来要感谢冒险家大人的帮忙，如果这里没有重建好，公会也没办法将新的委托任务和奖励送来。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "接下来请继续探索吧冒险家大人，大家期待您的活跃表现。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 15,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 16,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_130000_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 1,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 3,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "欢迎来到冒险家公会，想要登记委托？还是想领取奖励？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 5,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 7,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_130301_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 1,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_suprise",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 3,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家大人，营地外送来了紧急委托，可以请你接下吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 5,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 7,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "失礼了，毕竟事发突然，一些陷入危险境地的冒险家和其他外界人士需要支援。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 9,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 11,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "我们向其他冒险家同时发布了相关委托，奖励相当丰富，希望您在冒险之中能够留意委托内容。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 13,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 14,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 15,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139802_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "您说为什么我来之前营地就有冒险委托了？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "嗯，这倒也算不上什么秘密。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "许多委托在迷宫营地造好前就已经发布了，我拜托阿尔托先生先把这部分带来了营地，希望冒险家们能尽快进入迷宫冒险。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "不过总是麻烦阿尔托先生可不好，公会的任务还是让公会成员来负责最好，不是吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 19,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 20,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139805_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家大人，您有特意了解过迷宫领主的习惯吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "领主绝不允许有其他领主靠近自己的领地，一块土地只允许有一名王者。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "目前看来，它们都只在自己的领地休息，即便如此也不排除它会突然暴走。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "想象一下，如果它们跑出了自己的领地，去袭击正在探索的冒险家怎么办？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "请您冒险时多与它们交战收集资料，但务必小心，您能安全回来比什么都重要。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 23,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 24,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139900_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "感谢您的帮助冒险家大人，祝您此行顺利。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 7,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 8,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139201": [
+    {
+      "line": 0,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.5,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 0.0,
+            "hasValue": 1
+          },
+          {
+            "value": -42.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "character",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 2,
+      "class": "PrintText",
+      "params": {
+        "ConditionalExpression": "g_lauguage==\"CN\"",
+        "Text": "感谢您的支持冒险家大人，委托已经张贴出来了。",
+        "AuthorId": "洛蒂",
+        "RevealSpeed": 1.0
+      }
+    },
+    {
+      "line": 3,
+      "class": "PrintText",
+      "params": {
+        "ConditionalExpression": "g_lauguage==\"CHT\"",
+        "Text": "感謝您的支持冒險家大人，委託已經張貼出來了。",
+        "AuthorId": "洛蒂",
+        "RevealSpeed": 1.0
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "ConditionalExpression": "g_lauguage==\"EN\"",
+        "Text": "Thank you for your support, noble adventurer; the request has now been posted.",
+        "AuthorId": "Lotti",
+        "RevealSpeed": 1.0
+      }
+    },
+    {
+      "line": 5,
+      "class": "PrintText",
+      "params": {
+        "ConditionalExpression": "g_lauguage==\"JP\"",
+        "Text": "ご支援ありがとうございます、冒険者様。依頼がすでに掲示されました。",
+        "AuthorId": "ロッティ",
+        "RevealSpeed": 1.0
+      }
+    },
+    {
+      "line": 7,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 8,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 10,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139804_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家大人，我听说迷宫每个出口都有一位魔物领主，是真的吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_suprise",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "嗯，稍微有些难以置信，在一个迷宫里出现了那么多强大的魔物。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "魔物是集群种族，所谓领主是魔物群中的最强者，它们的力量就足够代表一个种族。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "如果有一只出现在外界，恐怕需要传说级冒险家才能接受这样的讨伐委托吧。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_angry",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家大人，我知道您拥有无比强大的力量，但遇见危机情况请一定不要恋战。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_be_shy",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 24,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "如果您受伤，可是会有许多人担心的。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 26,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 27,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 28,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139807_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "诶？您说没见过我休息，所以担心我的身体？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "谢谢关心，您说得没错，或许我该找个时间去休息一下。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "虽然还有露娜她们，但现在各地迷宫四起，还不是休息的时候。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "请放心，我不会勉强自己的，等有空了请您陪我一起去营地外走走吧。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 19,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 20,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139809_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_suprise",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "冒险家大人，您来了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "我看起来很开心？这是当然的。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "多亏您的努力，冒险委托的工作已经轻松了不少，许多需要多人攻克的难关，您一人就完成了。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_doubt",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "这次迷宫出现的工作结束后，我打算去休假一段时间，能请您和我一起吗？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "去哪里休假？或许重走一遍曾经的冒险之旅也不错，但还是交给您安排吧，我很期待。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 23,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 24,
+      "class": "Stop",
+      "params": {}
+    }
+  ],
+  "talkcfg_npc_139801_cn": [
+    {
+      "line": 0,
+      "class": "SetCustomVariable",
+      "params": {
+        "Expression": "renwu=\"洛蒂\""
+      }
+    },
+    {
+      "line": 2,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 4,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "谢谢您冒险家大人，想必您在迷宫探索的过程应该相当顺利。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 6,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_sad",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 8,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "像您这样的冒险家真是少见，有不少冒险家队伍在冒险过后都会为宝物分配发生争吵。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 10,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_normal",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 12,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "不过这些事见得多了倒也不奇怪，如果他们在公会闹的话，我会让他们猜拳决定。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 14,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 16,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "您问为什么他们会听我的话？",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 18,
+      "class": "ModifyCharacter",
+      "params": {
+        "Scale": [
+          {
+            "value": 1.7000000476837158,
+            "hasValue": 1
+          }
+        ],
+        "ScenePosition": [
+          {
+            "value": 2.0,
+            "hasValue": 1
+          },
+          {
+            "value": -50.0,
+            "hasValue": 1
+          }
+        ],
+        "IdAndAppearance": {
+          "name": {
+            "value": "renwu",
+            "hasValue": 1
+          },
+          "value": {
+            "value": "characterillustration_renwu_laugh",
+            "hasValue": 1
+          }
+        }
+      }
+    },
+    {
+      "line": 20,
+      "class": "PrintText",
+      "params": {
+        "Wait": 1,
+        "Text": "我猜，他们也不想在大庭广众下狼狈地走出公会吧，好啦，冒险家大人，祝您冒险愉快。",
+        "AuthorId": "renwu",
+        "RevealSpeed": 1.0,
+        "WaitForInput": 1
+      }
+    },
+    {
+      "line": 22,
+      "class": "WaitForEvent",
+      "params": {}
+    },
+    {
+      "line": 23,
+      "class": "HideAllCharacters",
+      "params": {
+        "Remove": 1
+      }
+    },
+    {
+      "line": 24,
+      "class": "Stop",
+      "params": {}
+    }
+  ]
+}

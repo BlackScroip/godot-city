@@ -1,0 +1,966 @@
+[
+  {
+    "id": 201,
+    "title": "探索迷宫吧！",
+    "category": "冒险",
+    "order": 1,
+    "body": "宝箱类型\n迷宫中的宝藏，分为普通木宝箱、精致铁宝箱、华丽金宝箱、领主宝箱，越高级的宝箱掉落奖励越珍贵，获取难度也越高。",
+    "images": [
+      "res://assets/ui/settings/guide_images/8a12a5f4aee783cb.png"
+    ],
+    "pages": [
+      {
+        "head": "宝箱类型",
+        "body": "迷宫中的宝藏，分为普通木宝箱、精致铁宝箱、华丽金宝箱、领主宝箱，越高级的宝箱掉落奖励越珍贵，获取难度也越高。",
+        "image": "res://assets/ui/settings/guide_images/8a12a5f4aee783cb.png"
+      }
+    ]
+  },
+  {
+    "id": 202,
+    "title": "选择路线！",
+    "category": "冒险",
+    "order": 2,
+    "body": "节点增殖\n一些房间会有增殖标识，这代表了该房间出现增殖标识的材料或道具的概率大大增加。\n\n迷宫宝珠\n消耗迷宫宝珠能够在有标识的地方纵向移动。",
+    "images": [
+      "res://assets/ui/settings/guide_images/8e2f196d779c8b19.png",
+      "res://assets/ui/settings/guide_images/fde02a03e226084d.png"
+    ],
+    "pages": [
+      {
+        "head": "节点增殖",
+        "body": "一些房间会有增殖标识，这代表了该房间出现增殖标识的材料或道具的概率大大增加。",
+        "image": "res://assets/ui/settings/guide_images/8e2f196d779c8b19.png"
+      },
+      {
+        "head": "迷宫宝珠",
+        "body": "消耗迷宫宝珠能够在有标识的地方纵向移动。",
+        "image": "res://assets/ui/settings/guide_images/fde02a03e226084d.png"
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "title": "节点类型·其一",
+    "category": "冒险",
+    "order": 3,
+    "body": "入口\n迷宫区域的入口，玩家可以这个节点休息，或与一些道具互动。\n\n遭遇战\n潜伏着一般怪物的节点，可以相信的是这个节点一定有宝藏。\n\n危险遭遇战\n情报显示这个节点有着强大的精英怪物，击败怪物后一定有更稀有的宝藏。\n\n迷宫商店\n迷宫商人带着他的马车出现在迷宫各处安全的节点售卖着迷宫遗物。\n\n治愈泉水\n该节点有着治愈伤势的泉水，神秘的史莱姆之王也常常出没在这里。\n\n寻宝\n迷宫内生成的陷阱房间，在本节点中无法连续闪避，在一片陷阱后有着稀有宝藏。\n\n领主\n迷宫的守层怪物，拥有极强的战力，只有击败它才能去往迷宫深处。",
+    "images": [
+      "res://assets/ui/settings/guide_images/c0a2b0f55230f732.png",
+      "res://assets/ui/settings/guide_images/96a5ada826ccdbad.png",
+      "res://assets/ui/settings/guide_images/1fa52758685caa96.png",
+      "res://assets/ui/settings/guide_images/97ff2b49aa9f5507.png",
+      "res://assets/ui/settings/guide_images/023b74a1bb4c457f.png",
+      "res://assets/ui/settings/guide_images/f30a8577a4fb1f3c.png",
+      "res://assets/ui/settings/guide_images/908770c368a9c210.png"
+    ],
+    "pages": [
+      {
+        "head": "入口",
+        "body": "迷宫区域的入口，玩家可以这个节点休息，或与一些道具互动。",
+        "image": "res://assets/ui/settings/guide_images/c0a2b0f55230f732.png"
+      },
+      {
+        "head": "遭遇战",
+        "body": "潜伏着一般怪物的节点，可以相信的是这个节点一定有宝藏。",
+        "image": "res://assets/ui/settings/guide_images/96a5ada826ccdbad.png"
+      },
+      {
+        "head": "危险遭遇战",
+        "body": "情报显示这个节点有着强大的精英怪物，击败怪物后一定有更稀有的宝藏。",
+        "image": "res://assets/ui/settings/guide_images/1fa52758685caa96.png"
+      },
+      {
+        "head": "迷宫商店",
+        "body": "迷宫商人带着他的马车出现在迷宫各处安全的节点售卖着迷宫遗物。",
+        "image": "res://assets/ui/settings/guide_images/97ff2b49aa9f5507.png"
+      },
+      {
+        "head": "治愈泉水",
+        "body": "该节点有着治愈伤势的泉水，神秘的史莱姆之王也常常出没在这里。",
+        "image": "res://assets/ui/settings/guide_images/023b74a1bb4c457f.png"
+      },
+      {
+        "head": "寻宝",
+        "body": "迷宫内生成的陷阱房间，在本节点中无法连续闪避，在一片陷阱后有着稀有宝藏。",
+        "image": "res://assets/ui/settings/guide_images/f30a8577a4fb1f3c.png"
+      },
+      {
+        "head": "领主",
+        "body": "迷宫的守层怪物，拥有极强的战力，只有击败它才能去往迷宫深处。",
+        "image": "res://assets/ui/settings/guide_images/908770c368a9c210.png"
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "title": "开始破坏吧！",
+    "category": "冒险",
+    "order": 4,
+    "body": "可破坏物\n一些节点拥有可破坏障碍，这些障碍会阻挡远程攻击和移动，可以被攻击破坏。\n\n区域素材\n每层迷宫都生长着区域素材，这些素材有概率出现在各个节点，需要被攻击采集。\n\n矿脉\n节点内有概率出现黄金或魔力矿脉，击碎它们可以收集一些素材。",
+    "images": [
+      "res://assets/ui/settings/guide_images/6bd690c16cd7f7f4.png",
+      "res://assets/ui/settings/guide_images/fe50eb0ce1793fb3.png",
+      "res://assets/ui/settings/guide_images/45cf6446572aa635.png"
+    ],
+    "pages": [
+      {
+        "head": "可破坏物",
+        "body": "一些节点拥有可破坏障碍，这些障碍会阻挡远程攻击和移动，可以被攻击破坏。",
+        "image": "res://assets/ui/settings/guide_images/6bd690c16cd7f7f4.png"
+      },
+      {
+        "head": "区域素材",
+        "body": "每层迷宫都生长着区域素材，这些素材有概率出现在各个节点，需要被攻击采集。",
+        "image": "res://assets/ui/settings/guide_images/fe50eb0ce1793fb3.png"
+      },
+      {
+        "head": "矿脉",
+        "body": "节点内有概率出现黄金或魔力矿脉，击碎它们可以收集一些素材。",
+        "image": "res://assets/ui/settings/guide_images/45cf6446572aa635.png"
+      }
+    ]
+  },
+  {
+    "id": 205,
+    "title": "节点类型·其二",
+    "category": "冒险",
+    "order": 5,
+    "body": "限时战斗\n限时战斗节点需要玩家在限定的时间内击败所有怪物，花费时间越短奖励越丰厚。\n\n极限闪避\n极限闪避节点需要玩家在受到限定次数的伤害内击败所有怪物，被击中越少奖励越丰厚。\n\n保护目标\n保护目标节点需要玩家在魔法基石被摧毁前击败所有怪物，魔法基石受到的伤害越少奖励越丰厚。",
+    "images": [
+      "res://assets/ui/settings/guide_images/4f4a43bad2a49dd2.png",
+      "res://assets/ui/settings/guide_images/c9a7ceb0cb005e2f.png",
+      "res://assets/ui/settings/guide_images/ec1676450f7062ad.png"
+    ],
+    "pages": [
+      {
+        "head": "限时战斗",
+        "body": "限时战斗节点需要玩家在限定的时间内击败所有怪物，花费时间越短奖励越丰厚。",
+        "image": "res://assets/ui/settings/guide_images/4f4a43bad2a49dd2.png"
+      },
+      {
+        "head": "极限闪避",
+        "body": "极限闪避节点需要玩家在受到限定次数的伤害内击败所有怪物，被击中越少奖励越丰厚。",
+        "image": "res://assets/ui/settings/guide_images/c9a7ceb0cb005e2f.png"
+      },
+      {
+        "head": "保护目标",
+        "body": "保护目标节点需要玩家在魔法基石被摧毁前击败所有怪物，魔法基石受到的伤害越少奖励越丰厚。",
+        "image": "res://assets/ui/settings/guide_images/ec1676450f7062ad.png"
+      }
+    ]
+  },
+  {
+    "id": 2051,
+    "title": "尽快击败敌人！",
+    "category": "冒险",
+    "order": 6,
+    "body": "限时战斗\n限时战斗挑战需要玩家在限定时间内击败所有怪物，上方的信息标明了当前挑战成功获得的奖励等级和剩余时间。",
+    "images": [
+      "res://assets/ui/settings/guide_images/7a2a7ced95663fe2.png"
+    ],
+    "pages": [
+      {
+        "head": "限时战斗",
+        "body": "限时战斗挑战需要玩家在限定时间内击败所有怪物，上方的信息标明了当前挑战成功获得的奖励等级和剩余时间。",
+        "image": "res://assets/ui/settings/guide_images/7a2a7ced95663fe2.png"
+      }
+    ]
+  },
+  {
+    "id": 2052,
+    "title": "别被打中！",
+    "category": "冒险",
+    "order": 7,
+    "body": "极限闪避\n极限闪避挑战需要玩家在击败所有怪物的同时尽可能不受到任何伤害，上方的信息标明了当前挑战成功获得的奖励等级和剩余被击中的次数。",
+    "images": [
+      "res://assets/ui/settings/guide_images/a4b30fc9b6469dd5.png"
+    ],
+    "pages": [
+      {
+        "head": "极限闪避",
+        "body": "极限闪避挑战需要玩家在击败所有怪物的同时尽可能不受到任何伤害，上方的信息标明了当前挑战成功获得的奖励等级和剩余被击中的次数。",
+        "image": "res://assets/ui/settings/guide_images/a4b30fc9b6469dd5.png"
+      }
+    ]
+  },
+  {
+    "id": 2053,
+    "title": "坚守基石！",
+    "category": "冒险",
+    "order": 8,
+    "body": "保护目标\n保护目标挑战需要玩家在击败所有怪物的同时保护魔法基石，上方的信息标明了当前挑战成功获得的奖励等级和魔法基石剩余的耐久度。",
+    "images": [
+      "res://assets/ui/settings/guide_images/a5b4795b9108b15a.png"
+    ],
+    "pages": [
+      {
+        "head": "保护目标",
+        "body": "保护目标挑战需要玩家在击败所有怪物的同时保护魔法基石，上方的信息标明了当前挑战成功获得的奖励等级和魔法基石剩余的耐久度。",
+        "image": "res://assets/ui/settings/guide_images/a5b4795b9108b15a.png"
+      }
+    ]
+  },
+  {
+    "id": 2054,
+    "title": "寻找宝藏吧！",
+    "category": "冒险",
+    "order": 9,
+    "body": "寻宝\n该节点标记了许多陷阱，玩家必须穿过这些陷阱才能找到最终的宝藏，成功穿过所有陷阱还有额外的宝箱奖励。",
+    "images": [
+      "res://assets/ui/settings/guide_images/f536a2b99284e59c.png"
+    ],
+    "pages": [
+      {
+        "head": "寻宝",
+        "body": "该节点标记了许多陷阱，玩家必须穿过这些陷阱才能找到最终的宝藏，成功穿过所有陷阱还有额外的宝箱奖励。",
+        "image": "res://assets/ui/settings/guide_images/f536a2b99284e59c.png"
+      }
+    ]
+  },
+  {
+    "id": 206,
+    "title": "节点增殖",
+    "category": "冒险",
+    "order": 10,
+    "body": "素材增殖\n素材增殖的节点标识代表了该节点生长着更多的迷宫素材。\n\n魔力矿脉\n魔力矿脉的节点标识代表了该节点有着许多储存魔力精华的矿石。\n\n黄金矿脉\n黄金矿脉的节点标识代表了该节点有着许多珍贵的黄金矿石。\n\n精灵石坛\n精灵石坛的节点标识代表了该节点布置了可获取的元素精灵石坛。\n\n怪物石坛\n怪物石坛的节点标识代表了该节点布置了可获取的怪物支援石坛。",
+    "images": [
+      "res://assets/ui/settings/guide_images/7b3a398e53c17dc2.png",
+      "res://assets/ui/settings/guide_images/ffb9a5bca722a0f5.png",
+      "res://assets/ui/settings/guide_images/26c717e3c70079e8.png",
+      "res://assets/ui/settings/guide_images/7d40bec15f7dce50.png",
+      "res://assets/ui/settings/guide_images/9b505fc70db658ca.png"
+    ],
+    "pages": [
+      {
+        "head": "素材增殖",
+        "body": "素材增殖的节点标识代表了该节点生长着更多的迷宫素材。",
+        "image": "res://assets/ui/settings/guide_images/7b3a398e53c17dc2.png"
+      },
+      {
+        "head": "魔力矿脉",
+        "body": "魔力矿脉的节点标识代表了该节点有着许多储存魔力精华的矿石。",
+        "image": "res://assets/ui/settings/guide_images/ffb9a5bca722a0f5.png"
+      },
+      {
+        "head": "黄金矿脉",
+        "body": "黄金矿脉的节点标识代表了该节点有着许多珍贵的黄金矿石。",
+        "image": "res://assets/ui/settings/guide_images/26c717e3c70079e8.png"
+      },
+      {
+        "head": "精灵石坛",
+        "body": "精灵石坛的节点标识代表了该节点布置了可获取的元素精灵石坛。",
+        "image": "res://assets/ui/settings/guide_images/7d40bec15f7dce50.png"
+      },
+      {
+        "head": "怪物石坛",
+        "body": "怪物石坛的节点标识代表了该节点布置了可获取的怪物支援石坛。",
+        "image": "res://assets/ui/settings/guide_images/9b505fc70db658ca.png"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "击败怪物！",
+    "category": "战斗",
+    "order": 1,
+    "body": "普通攻击\n轻按普通攻击按钮，实现能对敌人造成伤害的数次攻击。\n\n闪避攻击\n闪避过程中轻按普通攻击键，角色将释放一次闪避攻击。\n\n重击\n长按普通攻击键，角色将释放一次普通重击。\n\n强化重击\n当重击能量满足时，长按攻击键，角色将释放一次更为强大的重击。\n\n战技\n轻按战技按钮，释放独属于该角色的技能，释放后会进入冷却时间。\n\n爆发技\n爆发技能量充满时，轻按爆发技按钮，释放独属于该角色的强大技能，释放后会清空爆发技能量。",
+    "images": [
+      "res://assets/ui/settings/guide_images/d90c73f75ac24cd1.png",
+      "res://assets/ui/settings/guide_images/32da5057d225045f.png",
+      "res://assets/ui/settings/guide_images/39c847f2e04fc2c0.png",
+      "res://assets/ui/settings/guide_images/57c2e2758beef087.png",
+      "res://assets/ui/settings/guide_images/6d8c868f526cb044.png",
+      "res://assets/ui/settings/guide_images/75abecd56906150b.png"
+    ],
+    "pages": [
+      {
+        "head": "普通攻击",
+        "body": "轻按普通攻击按钮，实现能对敌人造成伤害的数次攻击。",
+        "image": "res://assets/ui/settings/guide_images/d90c73f75ac24cd1.png"
+      },
+      {
+        "head": "闪避攻击",
+        "body": "闪避过程中轻按普通攻击键，角色将释放一次闪避攻击。",
+        "image": "res://assets/ui/settings/guide_images/32da5057d225045f.png"
+      },
+      {
+        "head": "重击",
+        "body": "长按普通攻击键，角色将释放一次普通重击。",
+        "image": "res://assets/ui/settings/guide_images/39c847f2e04fc2c0.png"
+      },
+      {
+        "head": "强化重击",
+        "body": "当重击能量满足时，长按攻击键，角色将释放一次更为强大的重击。",
+        "image": "res://assets/ui/settings/guide_images/57c2e2758beef087.png"
+      },
+      {
+        "head": "战技",
+        "body": "轻按战技按钮，释放独属于该角色的技能，释放后会进入冷却时间。",
+        "image": "res://assets/ui/settings/guide_images/6d8c868f526cb044.png"
+      },
+      {
+        "head": "爆发技",
+        "body": "爆发技能量充满时，轻按爆发技按钮，释放独属于该角色的强大技能，释放后会清空爆发技能量。",
+        "image": "res://assets/ui/settings/guide_images/75abecd56906150b.png"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "提升等级吧！",
+    "category": "战斗",
+    "order": 2,
+    "body": "冒险家评级\n每位角色拥有独立等级，分为古铜、黑铁、秘银、黄金、白金，每次提升等级都能增加该角色的生命、攻击力、防御力。\n\n解锁天赋！\n随着冒险家评级的提升，角色也将解锁更多天赋供冒险选择！",
+    "images": [
+      "res://assets/ui/settings/guide_images/2fa455fd6fe6d5df.png",
+      "res://assets/ui/settings/guide_images/7ce142b06c5a0f73.png"
+    ],
+    "pages": [
+      {
+        "head": "冒险家评级",
+        "body": "每位角色拥有独立等级，分为古铜、黑铁、秘银、黄金、白金，每次提升等级都能增加该角色的生命、攻击力、防御力。",
+        "image": "res://assets/ui/settings/guide_images/2fa455fd6fe6d5df.png"
+      },
+      {
+        "head": "解锁天赋！",
+        "body": "随着冒险家评级的提升，角色也将解锁更多天赋供冒险选择！",
+        "image": "res://assets/ui/settings/guide_images/7ce142b06c5a0f73.png"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "收集遗物吧！",
+    "category": "战斗",
+    "order": 3,
+    "body": "获取遗物\n在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。\n\n遗物等级\n通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。\n\n遗物合成\n一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。",
+    "images": [
+      "res://assets/ui/settings/guide_images/ccc488ceacda9307.png",
+      "res://assets/ui/settings/guide_images/0a8dc33db34ed97f.png",
+      "res://assets/ui/settings/guide_images/a417767464ae295b.png"
+    ],
+    "pages": [
+      {
+        "head": "获取遗物",
+        "body": "在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。",
+        "image": "res://assets/ui/settings/guide_images/ccc488ceacda9307.png"
+      },
+      {
+        "head": "遗物等级",
+        "body": "通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。",
+        "image": "res://assets/ui/settings/guide_images/0a8dc33db34ed97f.png"
+      },
+      {
+        "head": "遗物合成",
+        "body": "一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。",
+        "image": "res://assets/ui/settings/guide_images/a417767464ae295b.png"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "我的精灵伙伴！",
+    "category": "战斗",
+    "order": 4,
+    "body": "获取精灵吧！\n迷宫中会随机出现孵化精灵蛋的神秘石坛，在没有触发战斗时，玩家可以与其互动获得一种元素精灵的力量，精灵仅在本次冒险生效。\n\n升级精灵吧！\n与精灵石坛互动时，如果已经持有精灵，则有概率能选择已拥有精灵的升级状态以提升该精灵的力量，每只精灵的最高等级为五星。\n\n收集精灵吧！\n达成解锁条件，并集齐两只力量相衬的五星精灵后，再次开启精灵石坛将可以出现最强大的精灵融合形态！",
+    "images": [
+      "res://assets/ui/settings/guide_images/9e12870e041eeaf3.png",
+      "res://assets/ui/settings/guide_images/9a612c1e27b56252.png",
+      "res://assets/ui/settings/guide_images/90ed38bc9a8c93ce.png"
+    ],
+    "pages": [
+      {
+        "head": "获取精灵吧！",
+        "body": "迷宫中会随机出现孵化精灵蛋的神秘石坛，在没有触发战斗时，玩家可以与其互动获得一种元素精灵的力量，精灵仅在本次冒险生效。",
+        "image": "res://assets/ui/settings/guide_images/9e12870e041eeaf3.png"
+      },
+      {
+        "head": "升级精灵吧！",
+        "body": "与精灵石坛互动时，如果已经持有精灵，则有概率能选择已拥有精灵的升级状态以提升该精灵的力量，每只精灵的最高等级为五星。",
+        "image": "res://assets/ui/settings/guide_images/9a612c1e27b56252.png"
+      },
+      {
+        "head": "收集精灵吧！",
+        "body": "达成解锁条件，并集齐两只力量相衬的五星精灵后，再次开启精灵石坛将可以出现最强大的精灵融合形态！",
+        "image": "res://assets/ui/settings/guide_images/90ed38bc9a8c93ce.png"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "战斗天赋-派生攻击",
+    "category": "战斗",
+    "order": 5,
+    "body": "衔接招式吧！\n选择一些特殊天赋后，根据该天赋描述释放普通攻击、战技或重击后轻按普通攻击按钮，能够立即释放一次特殊攻击。",
+    "images": [
+      "res://assets/ui/settings/guide_images/e348f339523d0d8a.png"
+    ],
+    "pages": [
+      {
+        "head": "衔接招式吧！",
+        "body": "选择一些特殊天赋后，根据该天赋描述释放普通攻击、战技或重击后轻按普通攻击按钮，能够立即释放一次特殊攻击。",
+        "image": "res://assets/ui/settings/guide_images/e348f339523d0d8a.png"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "获取信物吧！",
+    "category": "战斗",
+    "order": 6,
+    "body": "装备信物！\n玩家能够在信物列表装备角色们赠送的特殊信物，以获得额外的冒险助力。\n\n提升好感！\n向其他伙伴赠送礼物可以提高他们的好感度，或许还能获得他们的回礼噢。",
+    "images": [
+      "res://assets/ui/settings/guide_images/06a581866aafec81.png",
+      "res://assets/ui/settings/guide_images/10ab1caee38e30e2.png"
+    ],
+    "pages": [
+      {
+        "head": "装备信物！",
+        "body": "玩家能够在信物列表装备角色们赠送的特殊信物，以获得额外的冒险助力。",
+        "image": "res://assets/ui/settings/guide_images/06a581866aafec81.png"
+      },
+      {
+        "head": "提升好感！",
+        "body": "向其他伙伴赠送礼物可以提高他们的好感度，或许还能获得他们的回礼噢。",
+        "image": "res://assets/ui/settings/guide_images/10ab1caee38e30e2.png"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "特殊遗物！",
+    "category": "战斗",
+    "order": 7,
+    "body": "黑暗遗物\n玩家可以在黑暗石坛获取被侵蚀的遗物，这些遗物会限制玩家的战斗力或强化其他怪物，满足它们的净化条件后，这些遗物就能恢复原来的模样。\n\n净化遗物\n完成黑暗遗物的净化条件可以获得净化遗物，净化遗物的效果往往比普通的遗物更加强大。",
+    "images": [
+      "res://assets/ui/settings/guide_images/0f226be1ca7f81ba.png",
+      "res://assets/ui/settings/guide_images/e5fac325250a2445.png"
+    ],
+    "pages": [
+      {
+        "head": "黑暗遗物",
+        "body": "玩家可以在黑暗石坛获取被侵蚀的遗物，这些遗物会限制玩家的战斗力或强化其他怪物，满足它们的净化条件后，这些遗物就能恢复原来的模样。",
+        "image": "res://assets/ui/settings/guide_images/0f226be1ca7f81ba.png"
+      },
+      {
+        "head": "净化遗物",
+        "body": "完成黑暗遗物的净化条件可以获得净化遗物，净化遗物的效果往往比普通的遗物更加强大。",
+        "image": "res://assets/ui/settings/guide_images/e5fac325250a2445.png"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "保护自己！",
+    "category": "战斗",
+    "order": 8,
+    "body": "护甲\n护甲能够代替生命值承受伤害，当护甲受到过量伤害而碎裂时也不会扣除生命值。\n\n护盾\n护盾能够代替生命值承受伤害，除非特别说明，否则护盾上限无法超过生命上限，也无法带入下一节点。",
+    "images": [
+      "res://assets/ui/settings/guide_images/3d81b881831ab3cc.png",
+      "res://assets/ui/settings/guide_images/b65b6e3a2e3dfc52.png"
+    ],
+    "pages": [
+      {
+        "head": "护甲",
+        "body": "护甲能够代替生命值承受伤害，当护甲受到过量伤害而碎裂时也不会扣除生命值。",
+        "image": "res://assets/ui/settings/guide_images/3d81b881831ab3cc.png"
+      },
+      {
+        "head": "护盾",
+        "body": "护盾能够代替生命值承受伤害，除非特别说明，否则护盾上限无法超过生命上限，也无法带入下一节点。",
+        "image": "res://assets/ui/settings/guide_images/b65b6e3a2e3dfc52.png"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "召唤怪物支援技！",
+    "category": "战斗",
+    "order": 9,
+    "body": "怪物石坛\n与节点中的怪物石坛互动可以获得迷宫怪物的力量，在支援能量足够的情况下可以随时召唤怪物为自己的战斗添加助力。\n\n怪物支援技\n玩家可以选择一项怪物支援技能装备，玩家最多能够持有两种不同的怪物支援技能。\n\n专属遗物\n怪物支援石坛可以选择专属遗物，这些遗物能用于强化怪物支援技能，或使用怪物支援技能后为玩家带来强大增益。\n\n支援能量\n选择怪物支援技能后，可以通过攻击怪物增加支援能量，涨满后获得1点支援能量点，玩家可以消耗对应数量的支援能量点召唤怪物支援技。",
+    "images": [
+      "res://assets/ui/settings/guide_images/2a4a3278f64c6b58.png",
+      "res://assets/ui/settings/guide_images/510ed77749113ac1.png",
+      "res://assets/ui/settings/guide_images/3c11569a8ce6c440.png",
+      "res://assets/ui/settings/guide_images/62717ddc75470733.png"
+    ],
+    "pages": [
+      {
+        "head": "怪物石坛",
+        "body": "与节点中的怪物石坛互动可以获得迷宫怪物的力量，在支援能量足够的情况下可以随时召唤怪物为自己的战斗添加助力。",
+        "image": "res://assets/ui/settings/guide_images/2a4a3278f64c6b58.png"
+      },
+      {
+        "head": "怪物支援技",
+        "body": "玩家可以选择一项怪物支援技能装备，玩家最多能够持有两种不同的怪物支援技能。",
+        "image": "res://assets/ui/settings/guide_images/510ed77749113ac1.png"
+      },
+      {
+        "head": "专属遗物",
+        "body": "怪物支援石坛可以选择专属遗物，这些遗物能用于强化怪物支援技能，或使用怪物支援技能后为玩家带来强大增益。",
+        "image": "res://assets/ui/settings/guide_images/3c11569a8ce6c440.png"
+      },
+      {
+        "head": "支援能量",
+        "body": "选择怪物支援技能后，可以通过攻击怪物增加支援能量，涨满后获得1点支援能量点，玩家可以消耗对应数量的支援能量点召唤怪物支援技。",
+        "image": "res://assets/ui/settings/guide_images/62717ddc75470733.png"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "当心脚下！",
+    "category": "战斗",
+    "order": 10,
+    "body": "攻击型陷阱\n迷宫中有着各式各样的陷阱，攻击型陷阱能够对角色或怪物造成伤害。\n\n侵蚀型陷阱\n侵蚀型陷阱能够对角色或怪物附加各种异常状态。",
+    "images": [
+      "res://assets/ui/settings/guide_images/23beeafb9ff710e4.png",
+      "res://assets/ui/settings/guide_images/9f66ffbf94f1c0ef.png"
+    ],
+    "pages": [
+      {
+        "head": "攻击型陷阱",
+        "body": "迷宫中有着各式各样的陷阱，攻击型陷阱能够对角色或怪物造成伤害。",
+        "image": "res://assets/ui/settings/guide_images/23beeafb9ff710e4.png"
+      },
+      {
+        "head": "侵蚀型陷阱",
+        "body": "侵蚀型陷阱能够对角色或怪物附加各种异常状态。",
+        "image": "res://assets/ui/settings/guide_images/9f66ffbf94f1c0ef.png"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "魔化与强化词条",
+    "category": "战斗",
+    "order": 13,
+    "body": "怪物魔化\n受到【魔化】效果的怪物会获得若干强化词条，且自身招式与体型也会发生变化。\n\n不朽\n受到致命伤害时，将生命值锁定在20%，并在1秒内分四段恢复共40%最大生命值。\n\n魔盾\n敌人获得等同于100%最大生命值的护甲；精英在护甲未破碎且未满时，每秒恢复1%最大生命值的护甲，最多60次。\n\n狂暴\n生命值不高于50%时，攻击力提升50%，攻击间隔缩短50%。\n\n侵蚀\n被攻击时，有20%概率使20米范围内的冒险家治疗量降低50%，持续5秒。\n\n同生\n每5秒治疗4米范围内除自己和领主外的友方魔物5%最大生命值。\n\n屏障\n常态更不容易被打断；普通攻击期间受到的伤害降低50%。\n\n伏击\n造成的伤害提升25%，触发后冷却3秒。\n\n毒牙\n被怪物普通攻击命中后，每秒损失1点生命值，持续约5秒。\n\n嗜血\n对冒险家造成伤害后，恢复自身10%最大生命值，冷却1秒。\n\n锋利\n攻击力提升30%，造成的伤害提升30%。\n\n混沌\n初始获得18层减伤，每层提供5%全元素抗性；每次受到冒险家伤害减少1层。\n\n迟影\n被怪物命中后，5秒内该冒险家<#specinfo=shanbi>冷却时间延长50%。\n\n断脉\n被怪物命中后，5秒内该冒险家<#specinfo=baofajinengliang>充能效率降低20%。\n\n锁足\n被怪物命中后，5秒内该冒险家<#specinfo=yidongsudu>降低20%。",
+    "images": [
+      "res://assets/ui/settings/guide_images/8e9b6f5bdc9f0966.png",
+      "res://assets/ui/settings/guide_images/4e9457058dadda7c.png",
+      "res://assets/ui/settings/guide_images/71e643af2938cfa6.png",
+      "res://assets/ui/settings/guide_images/2eacf774813d2ca2.png",
+      "res://assets/ui/settings/guide_images/b14625e1c2293f8f.png",
+      "res://assets/ui/settings/guide_images/21d4503379352822.png",
+      "res://assets/ui/settings/guide_images/5eaca1d2e6122ed3.png",
+      "res://assets/ui/settings/guide_images/59cc2f2264077cb5.png",
+      "res://assets/ui/settings/guide_images/b21e23780ee08314.png",
+      "res://assets/ui/settings/guide_images/f16ad95feff02f84.png",
+      "res://assets/ui/settings/guide_images/9e1fd67d994eb188.png",
+      "res://assets/ui/settings/guide_images/3c50598f756cb9b5.png",
+      "res://assets/ui/settings/guide_images/768434bdf3371a2c.png",
+      "res://assets/ui/settings/guide_images/e66cee7faeea3600.png",
+      "res://assets/ui/settings/guide_images/28256b12d82e1809.png"
+    ],
+    "pages": [
+      {
+        "head": "怪物魔化",
+        "body": "受到【魔化】效果的怪物会获得若干强化词条，且自身招式与体型也会发生变化。",
+        "image": "res://assets/ui/settings/guide_images/8e9b6f5bdc9f0966.png"
+      },
+      {
+        "head": "不朽",
+        "body": "受到致命伤害时，将生命值锁定在20%，并在1秒内分四段恢复共40%最大生命值。",
+        "image": "res://assets/ui/settings/guide_images/4e9457058dadda7c.png"
+      },
+      {
+        "head": "魔盾",
+        "body": "敌人获得等同于100%最大生命值的护甲；精英在护甲未破碎且未满时，每秒恢复1%最大生命值的护甲，最多60次。",
+        "image": "res://assets/ui/settings/guide_images/71e643af2938cfa6.png"
+      },
+      {
+        "head": "狂暴",
+        "body": "生命值不高于50%时，攻击力提升50%，攻击间隔缩短50%。",
+        "image": "res://assets/ui/settings/guide_images/2eacf774813d2ca2.png"
+      },
+      {
+        "head": "侵蚀",
+        "body": "被攻击时，有20%概率使20米范围内的冒险家治疗量降低50%，持续5秒。",
+        "image": "res://assets/ui/settings/guide_images/b14625e1c2293f8f.png"
+      },
+      {
+        "head": "同生",
+        "body": "每5秒治疗4米范围内除自己和领主外的友方魔物5%最大生命值。",
+        "image": "res://assets/ui/settings/guide_images/21d4503379352822.png"
+      },
+      {
+        "head": "屏障",
+        "body": "常态更不容易被打断；普通攻击期间受到的伤害降低50%。",
+        "image": "res://assets/ui/settings/guide_images/5eaca1d2e6122ed3.png"
+      },
+      {
+        "head": "伏击",
+        "body": "造成的伤害提升25%，触发后冷却3秒。",
+        "image": "res://assets/ui/settings/guide_images/59cc2f2264077cb5.png"
+      },
+      {
+        "head": "毒牙",
+        "body": "被怪物普通攻击命中后，每秒损失1点生命值，持续约5秒。",
+        "image": "res://assets/ui/settings/guide_images/b21e23780ee08314.png"
+      },
+      {
+        "head": "嗜血",
+        "body": "对冒险家造成伤害后，恢复自身10%最大生命值，冷却1秒。",
+        "image": "res://assets/ui/settings/guide_images/f16ad95feff02f84.png"
+      },
+      {
+        "head": "锋利",
+        "body": "攻击力提升30%，造成的伤害提升30%。",
+        "image": "res://assets/ui/settings/guide_images/9e1fd67d994eb188.png"
+      },
+      {
+        "head": "混沌",
+        "body": "初始获得18层减伤，每层提供5%全元素抗性；每次受到冒险家伤害减少1层。",
+        "image": "res://assets/ui/settings/guide_images/3c50598f756cb9b5.png"
+      },
+      {
+        "head": "迟影",
+        "body": "被怪物命中后，5秒内该冒险家<#specinfo=shanbi>冷却时间延长50%。",
+        "image": "res://assets/ui/settings/guide_images/768434bdf3371a2c.png"
+      },
+      {
+        "head": "断脉",
+        "body": "被怪物命中后，5秒内该冒险家<#specinfo=baofajinengliang>充能效率降低20%。",
+        "image": "res://assets/ui/settings/guide_images/e66cee7faeea3600.png"
+      },
+      {
+        "head": "锁足",
+        "body": "被怪物命中后，5秒内该冒险家<#specinfo=yidongsudu>降低20%。",
+        "image": "res://assets/ui/settings/guide_images/28256b12d82e1809.png"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "精英怪物！",
+    "category": "战斗",
+    "order": 14,
+    "body": "怪物护甲\n精英敌人拥有自身100%生命上限的护甲，护甲可以代替生命值承受伤害，并且在持有护甲时自身抗打断能力大幅提升。",
+    "images": [
+      "res://assets/ui/settings/guide_images/8709f744f6b79809.png"
+    ],
+    "pages": [
+      {
+        "head": "怪物护甲",
+        "body": "精英敌人拥有自身100%生命上限的护甲，护甲可以代替生命值承受伤害，并且在持有护甲时自身抗打断能力大幅提升。",
+        "image": "res://assets/ui/settings/guide_images/8709f744f6b79809.png"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "角色觉醒",
+    "category": "战斗",
+    "order": 15,
+    "body": "觉醒等级与潜能结晶\n每名角色攻略每一级<color=#FF4040>混沌难度</color>都能在<color=#fdb933>难度选择处</color>领取<color=#c0b8ff>觉醒结晶</color>，使用<color=#c0b8ff>觉醒结晶</color>可以<color=#fdb933>提高</color>该角色的<color=#c0b8ff>觉醒等级</color>并获得<color=#c0b8ff>觉醒点数</color>。\n\n觉醒天赋\n<color=#c0b8ff>觉醒天赋</color>的<color=#fdb933>解锁</color>与<color=#c0b8ff>觉醒等级</color>相关，<color=#fdb933>提高</color><color=#c0b8ff>觉醒等级</color>才能够<color=#fdb933>解锁</color>更多<color=#c0b8ff>觉醒天赋</color>。\n\n觉醒点数\n<color=#fdb933>解锁</color><color=#c0b8ff>觉醒天赋</color>后，在冒险之前<color=#fdb933>消耗</color>从<color=#c0b8ff>觉醒等级</color>获得的<color=#c0b8ff>觉醒点数</color><color=#fdb933>激活</color>该天赋，只有被<color=#fdb933>激活</color>的天赋才能够在冒险中<color=#fdb933>生效</color>。",
+    "images": [
+      "res://assets/ui/settings/guide_images/9e9dad4945d77aed.png",
+      "res://assets/ui/settings/guide_images/4648937238f694d5.png",
+      "res://assets/ui/settings/guide_images/d4b59daad7122cd5.png"
+    ],
+    "pages": [
+      {
+        "head": "觉醒等级与潜能结晶",
+        "body": "每名角色攻略每一级<color=#FF4040>混沌难度</color>都能在<color=#fdb933>难度选择处</color>领取<color=#c0b8ff>觉醒结晶</color>，使用<color=#c0b8ff>觉醒结晶</color>可以<color=#fdb933>提高</color>该角色的<color=#c0b8ff>觉醒等级</color>并获得<color=#c0b8ff>觉醒点数</color>。",
+        "image": "res://assets/ui/settings/guide_images/9e9dad4945d77aed.png"
+      },
+      {
+        "head": "觉醒天赋",
+        "body": "<color=#c0b8ff>觉醒天赋</color>的<color=#fdb933>解锁</color>与<color=#c0b8ff>觉醒等级</color>相关，<color=#fdb933>提高</color><color=#c0b8ff>觉醒等级</color>才能够<color=#fdb933>解锁</color>更多<color=#c0b8ff>觉醒天赋</color>。",
+        "image": "res://assets/ui/settings/guide_images/4648937238f694d5.png"
+      },
+      {
+        "head": "觉醒点数",
+        "body": "<color=#fdb933>解锁</color><color=#c0b8ff>觉醒天赋</color>后，在冒险之前<color=#fdb933>消耗</color>从<color=#c0b8ff>觉醒等级</color>获得的<color=#c0b8ff>觉醒点数</color><color=#fdb933>激活</color>该天赋，只有被<color=#fdb933>激活</color>的天赋才能够在冒险中<color=#fdb933>生效</color>。",
+        "image": "res://assets/ui/settings/guide_images/d4b59daad7122cd5.png"
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "title": "修复营地吧！",
+    "category": "系统",
+    "order": 1,
+    "body": "工程师\n为营地工程师阿尔托提供素材后，他能为您重建冒险营地中的各处建筑，并开放更多功能。",
+    "images": [
+      "res://assets/ui/settings/guide_images/5edbb76de9431317.png"
+    ],
+    "pages": [
+      {
+        "head": "工程师",
+        "body": "为营地工程师阿尔托提供素材后，他能为您重建冒险营地中的各处建筑，并开放更多功能。",
+        "image": "res://assets/ui/settings/guide_images/5edbb76de9431317.png"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "title": "冒险家公会-公会支援表",
+    "category": "系统",
+    "order": 2,
+    "body": "公会支援表\n公会支援表能够消耗各种素材激活帮助玩家冒险的各种辅助功能。",
+    "images": [
+      "res://assets/ui/settings/guide_images/83969c4741b2cc8b.png"
+    ],
+    "pages": [
+      {
+        "head": "公会支援表",
+        "body": "公会支援表能够消耗各种素材激活帮助玩家冒险的各种辅助功能。",
+        "image": "res://assets/ui/settings/guide_images/83969c4741b2cc8b.png"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "title": "招募伙伴吧！",
+    "category": "系统",
+    "order": 3,
+    "body": "解锁伙伴\n每位冒险伙伴都拥有各自的招募条件，达成后可以消耗招募之证解锁全新角色。",
+    "images": [
+      "res://assets/ui/settings/guide_images/bfa09a55e19ddf0f.png"
+    ],
+    "pages": [
+      {
+        "head": "解锁伙伴",
+        "body": "每位冒险伙伴都拥有各自的招募条件，达成后可以消耗招募之证解锁全新角色。",
+        "image": "res://assets/ui/settings/guide_images/bfa09a55e19ddf0f.png"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "title": "铁匠铺-解锁武器",
+    "category": "系统",
+    "order": 4,
+    "body": "解锁武器\n每一位角色都有数种不同样式和能力的武器，达成解锁条件后，可以消耗矿石素材打造武器。",
+    "images": [
+      "res://assets/ui/settings/guide_images/1767983240301ce4.png"
+    ],
+    "pages": [
+      {
+        "head": "解锁武器",
+        "body": "每一位角色都有数种不同样式和能力的武器，达成解锁条件后，可以消耗矿石素材打造武器。",
+        "image": "res://assets/ui/settings/guide_images/1767983240301ce4.png"
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "title": "铁匠铺-强化武器",
+    "category": "系统",
+    "order": 5,
+    "body": "强化武器\n解锁武器后，可以消耗更多矿石素材升级武器获得更强的力量。",
+    "images": [
+      "res://assets/ui/settings/guide_images/30177b3c02efd634.png"
+    ],
+    "pages": [
+      {
+        "head": "强化武器",
+        "body": "解锁武器后，可以消耗更多矿石素材升级武器获得更强的力量。",
+        "image": "res://assets/ui/settings/guide_images/30177b3c02efd634.png"
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "title": "委托栏-冒险委托",
+    "category": "系统",
+    "order": 6,
+    "body": "冒险委托栏\n由公会委托管理员洛蒂负责的冒险委托栏，玩家可以完成委托中的任务获取奖励。",
+    "images": [
+      "res://assets/ui/settings/guide_images/dc0e8b28a1257498.png"
+    ],
+    "pages": [
+      {
+        "head": "冒险委托栏",
+        "body": "由公会委托管理员洛蒂负责的冒险委托栏，玩家可以完成委托中的任务获取奖励。",
+        "image": "res://assets/ui/settings/guide_images/dc0e8b28a1257498.png"
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "title": "委托栏-悬赏委托",
+    "category": "系统",
+    "order": 7,
+    "body": "悬赏委托\n消耗悬赏信件能够接取一些悬赏委托，完成后可以获得许多珍贵奖励。",
+    "images": [
+      "res://assets/ui/settings/guide_images/b421cb2dbc60275e.png"
+    ],
+    "pages": [
+      {
+        "head": "悬赏委托",
+        "body": "消耗悬赏信件能够接取一些悬赏委托，完成后可以获得许多珍贵奖励。",
+        "image": "res://assets/ui/settings/guide_images/b421cb2dbc60275e.png"
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "title": "研究所-遗物图鉴",
+    "category": "系统",
+    "order": 8,
+    "body": "检查遗物\n遗物图鉴中记录着在迷宫中见过的所有遗物。\n\n祈愿遗物\n玩家能够消耗祈愿点，选择一样已解锁的遗物提升它的出现概率。",
+    "images": [
+      "res://assets/ui/settings/guide_images/1c2c1857fd25d0f3.png",
+      "res://assets/ui/settings/guide_images/f04ec332a9d6aa30.png"
+    ],
+    "pages": [
+      {
+        "head": "检查遗物",
+        "body": "遗物图鉴中记录着在迷宫中见过的所有遗物。",
+        "image": "res://assets/ui/settings/guide_images/1c2c1857fd25d0f3.png"
+      },
+      {
+        "head": "祈愿遗物",
+        "body": "玩家能够消耗祈愿点，选择一样已解锁的遗物提升它的出现概率。",
+        "image": "res://assets/ui/settings/guide_images/f04ec332a9d6aa30.png"
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "title": "研究所-怪物石坛",
+    "category": "系统",
+    "order": 9,
+    "body": "怪物图鉴\n怪物石坛记录着在迷宫中见过的所有怪物，这些怪物正等待着您使用迷宫中的怪物石坛召唤他们战斗。\n\n怪物养成\n消耗素材强化这些怪物，玩家能够获得全局的属性加成。",
+    "images": [
+      "res://assets/ui/settings/guide_images/00c43b443d9919aa.png",
+      "res://assets/ui/settings/guide_images/904afe1588731a02.png"
+    ],
+    "pages": [
+      {
+        "head": "怪物图鉴",
+        "body": "怪物石坛记录着在迷宫中见过的所有怪物，这些怪物正等待着您使用迷宫中的怪物石坛召唤他们战斗。",
+        "image": "res://assets/ui/settings/guide_images/00c43b443d9919aa.png"
+      },
+      {
+        "head": "怪物养成",
+        "body": "消耗素材强化这些怪物，玩家能够获得全局的属性加成。",
+        "image": "res://assets/ui/settings/guide_images/904afe1588731a02.png"
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "title": "符文巨石",
+    "category": "系统",
+    "order": 10,
+    "body": "怪物工作\n与符文巨石互动，使用它力量能使用它让魔物们去别的地方探索，并收获一些素材。",
+    "images": [
+      "res://assets/ui/settings/guide_images/e8ca67deb1996c8f.png"
+    ],
+    "pages": [
+      {
+        "head": "怪物工作",
+        "body": "与符文巨石互动，使用它力量能使用它让魔物们去别的地方探索，并收获一些素材。",
+        "image": "res://assets/ui/settings/guide_images/e8ca67deb1996c8f.png"
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "title": "篝火餐厅-食谱",
+    "category": "系统",
+    "order": 11,
+    "body": "解锁食谱\n一些食谱需要达成解锁条件才能发现，发现该食谱后，需要消耗素材解锁。",
+    "images": [
+      "res://assets/ui/settings/guide_images/7efbf3edf89ce5f1.png"
+    ],
+    "pages": [
+      {
+        "head": "解锁食谱",
+        "body": "一些食谱需要达成解锁条件才能发现，发现该食谱后，需要消耗素材解锁。",
+        "image": "res://assets/ui/settings/guide_images/7efbf3edf89ce5f1.png"
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "title": "篝火餐厅-烹饪",
+    "category": "系统",
+    "order": 12,
+    "body": "烹饪食物\n在每层迷宫入口处，玩家可以消耗素材烹饪已解锁的食谱，以获得辅助冒险的特殊效果。",
+    "images": [
+      "res://assets/ui/settings/guide_images/c79bb628c7385204.png"
+    ],
+    "pages": [
+      {
+        "head": "烹饪食物",
+        "body": "在每层迷宫入口处，玩家可以消耗素材烹饪已解锁的食谱，以获得辅助冒险的特殊效果。",
+        "image": "res://assets/ui/settings/guide_images/c79bb628c7385204.png"
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "title": "迷宫难度",
+    "category": "系统",
+    "order": 13,
+    "body": "解锁难度\n迷宫拥有许多难度等级，攻略所选迷宫等级后即可解锁下一难度，随着难度提升，怪物们将会获得各种强化。\n\n难度奖励\n随着难度提升，冒险获得的奖励也将更加丰厚。",
+    "images": [
+      "res://assets/ui/settings/guide_images/9fe165c271021496.png",
+      "res://assets/ui/settings/guide_images/658f36774fdf22d1.png"
+    ],
+    "pages": [
+      {
+        "head": "解锁难度",
+        "body": "迷宫拥有许多难度等级，攻略所选迷宫等级后即可解锁下一难度，随着难度提升，怪物们将会获得各种强化。",
+        "image": "res://assets/ui/settings/guide_images/9fe165c271021496.png"
+      },
+      {
+        "head": "难度奖励",
+        "body": "随着难度提升，冒险获得的奖励也将更加丰厚。",
+        "image": "res://assets/ui/settings/guide_images/658f36774fdf22d1.png"
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "title": "据点装饰",
+    "category": "系统",
+    "order": 15,
+    "body": "更换据点外观\n当据点全部建筑达到最高等级后，将解锁据点装饰功能。选择左侧建筑，再选择想要使用的装饰方案，点击确认后即可完成更换。",
+    "images": [
+      "res://assets/ui/settings/guide_images/4d4faf31fae934eb.png"
+    ],
+    "pages": [
+      {
+        "head": "更换据点外观",
+        "body": "当据点全部建筑达到最高等级后，将解锁据点装饰功能。选择左侧建筑，再选择想要使用的装饰方案，点击确认后即可完成更换。",
+        "image": "res://assets/ui/settings/guide_images/4d4faf31fae934eb.png"
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "title": "迷宫契约",
+    "category": "系统",
+    "order": 114,
+    "body": "契约等级\n迷宫契约等级与武器挑战进度相关，达成当前武器需求的挑战等级并攻略迷宫后会自动提升契约等级，提升契约等级可以解锁更多挑战词条与更多赐福词条\n\n契约挑战\n自定义搭配挑战提高冒险难度，需要注意的是当前武器到达需求的挑战等级后，超出的挑战等级并不能为这件武器解锁多项契约等级奖励。\n\n契约赐福\n自定义搭配挑战赐福，提高奖励或全新流派搭配，赐福等级需要小于或等于挑战等级才允许开始冒险。",
+    "images": [
+      "res://assets/ui/settings/guide_images/ce23eb310c760617.png",
+      "res://assets/ui/settings/guide_images/0bee6da8d818956c.png",
+      "res://assets/ui/settings/guide_images/a0c2a46413734bcd.png"
+    ],
+    "pages": [
+      {
+        "head": "契约等级",
+        "body": "迷宫契约等级与武器挑战进度相关，达成当前武器需求的挑战等级并攻略迷宫后会自动提升契约等级，提升契约等级可以解锁更多挑战词条与更多赐福词条",
+        "image": "res://assets/ui/settings/guide_images/ce23eb310c760617.png"
+      },
+      {
+        "head": "契约挑战",
+        "body": "自定义搭配挑战提高冒险难度，需要注意的是当前武器到达需求的挑战等级后，超出的挑战等级并不能为这件武器解锁多项契约等级奖励。",
+        "image": "res://assets/ui/settings/guide_images/0bee6da8d818956c.png"
+      },
+      {
+        "head": "契约赐福",
+        "body": "自定义搭配挑战赐福，提高奖励或全新流派搭配，赐福等级需要小于或等于挑战等级才允许开始冒险。",
+        "image": "res://assets/ui/settings/guide_images/a0c2a46413734bcd.png"
+      }
+    ]
+  }
+]

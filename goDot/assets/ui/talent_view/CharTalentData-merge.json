@@ -1,0 +1,75 @@
+{
+  "member": "assets/yoo/DefaultPackage/9688f7e4f49c90ce4119c9758d061ae5.bundle",
+  "bundle_sha256": "7e7b2b9cf5f01ae13c870b0e8b8540d682caca51a378a3e13a08ca499370c45e",
+  "path_id": "-1906201288657588667",
+  "added_ids": [
+    801,
+    802,
+    803,
+    804,
+    805,
+    806,
+    807,
+    808,
+    809,
+    810,
+    811,
+    812,
+    813,
+    814,
+    815,
+    816,
+    817,
+    818,
+    891,
+    892,
+    893
+  ],
+  "description_ids_refreshed": [
+    111,
+    215,
+    218,
+    305,
+    413,
+    603
+  ],
+  "changed_fields": {
+    "111": {
+      "description": {
+        "existing": "<#specinfo=zhuorejianqi>造成伤害时可以提高<#specinfo=gongjili>。",
+        "apk": "<#specinfo=zhuorejianqi>造成伤害时获得1层效果：每层提高<#specinfo=gongjili>，最多30层，持续20秒。"
+      }
+    },
+    "215": {
+      "description": {
+        "existing": "<#specinfo=shanbi>成功后增加<#specinfo=gongjili>。",
+        "apk": "<#specinfo=shanbi>成功后获得1层效果：每层提高<#specinfo=gongjili>，最多10层，持续10秒。"
+      }
+    },
+    "218": {
+      "description": {
+        "existing": "<#specinfo=putonggongji>、<#specinfo=shanbigongji>、<#specinfo=zhongji>命中敌人能累加<#specinfo=zidongshanbi>概率。",
+        "apk": "<#specinfo=putonggongji>、<#specinfo=shanbigongji>、<#specinfo=zhongji>命中敌人能累加<#specinfo=zidongshanbi>概率，最多叠加100层。"
+      }
+    },
+    "305": {
+      "description": {
+        "existing": "<#specinfo=zhongji>造成伤害时获得10%<#specinfo=fangyuli>与1%<#specinfo=yidongsudu>加成。",
+        "apk": "<#specinfo=zhongji>造成伤害时获得10%<#specinfo=fangyuli>与1<#specinfo=yidongsudu>加成。"
+      }
+    },
+    "413": {
+      "description": {
+        "existing": "<color=#529fff>水弹</color>伤害提高，命中后获得<#specinfo=yidongsudu>加成。",
+        "apk": "<color=#529fff>水弹</color>伤害提高，命中后获得1层效果：每层提高<#specinfo=yidongsudu>，最多10层，持续2秒。"
+      }
+    },
+    "603": {
+      "description": {
+        "existing": "<#specinfo=zhanji>造成伤害时临时提高<#specinfo=gongjisudu>。",
+        "apk": "<#specinfo=zhanji>造成伤害时获得1层效果：每层提高<#specinfo=gongjisudu>，最多10层，持续3秒。"
+      }
+    }
+  },
+  "apk_rows": 168
+}

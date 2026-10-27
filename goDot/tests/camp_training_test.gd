@@ -47,7 +47,9 @@ func _run() -> void:
 		check(dummy.global_position.is_equal_approx(anchor.global_position), "Dummy uses its exact recovered source anchor: " + str(index))
 		check(dummy.visual_loaded and dummy.animation != null and dummy.animation_aliases.has("damage"), "Source scarecrow model and hit animation are present: " + str(index))
 		check(dummy.combat.max_health == 100000 and dummy.combat.defense == 0, "Source generator HP is retained with explicit zero-defense training baseline")
-	check(not world.use_skill(0).success, "Manual attacks are unavailable outside a training session")
+	check(world.use_skill(0).success, "Manual attacks are available outside a training session")
+	world.clear_input()
+	check(game.hud.skill_cluster.visible and not game.hud.skill_by_slot[0].disabled, "Camp combat controls are usable outside a training session")
 	world.player.dead = true
 	check(not world.start_camp_training().success, "A defeated player cannot start practice")
 	world.player.dead = false
@@ -74,6 +76,8 @@ func _run() -> void:
 	world.enemy_defeated.connect(func(id): deaths.append(id))
 	world.player_defeated.connect(func(): player_deaths.append(true))
 	check(world.start_camp_training().success, "Training starts at the source practice area")
+	game._process(0.0)
+	check(game.hud.skill_cluster.visible and not game.hud.skill_by_slot[0].disabled, "Active training restores usable combat controls inside camp")
 	var training: RefCounted = world.player.combat
 	var impact_callback: Callable = world._on_impact.bind(world.player)
 	check(world.player.combat != original and world.player.combat._random_state == 90010, "Training owns a separate combat instance and RNG")
@@ -110,6 +114,8 @@ func _run() -> void:
 		world._background = false
 	check(world.reset_camp_training().success and world.camp_training_status().hits == 0 and world.camp_training_status().total_damage == 0, "Practice statistics reset without ending the session")
 	check(world.end_camp_training().success and not world.camp_training_status().active, "Explicit finish ends practice")
+	game._process(0.0)
+	check(game.hud.skill_cluster.visible and not game.hud.skill_by_slot[0].disabled, "Finishing training keeps camp combat controls usable")
 	check(world.player.combat == original and original._random_state == original_rng and original.skill_resource_snapshot() == original_resources, "Finishing restores the exact original player combat and resources")
 	check(world._actor_by_key("player") == world.player and original.impact_confirmed.is_connected(impact_callback) and not training.impact_confirmed.is_connected(impact_callback), "Only the restored combat retains the world impact callback after finishing")
 	check(world.projectiles.is_empty() and world.pending_attack_entities.is_empty() and world.active_attack_entities.is_empty() and world.summon_units.is_empty(), "Finishing clears all practice attack transients")

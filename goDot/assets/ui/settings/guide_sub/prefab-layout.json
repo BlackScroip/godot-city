@@ -1,0 +1,5706 @@
+{
+  "prefab": {
+    "address": "ATPanel_GuideSub",
+    "path": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/ATPanel_GuideSub.prefab",
+    "bundle": 5332
+  },
+  "source": {
+    "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+    "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+  },
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "images": [
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Image_Middle",
+      "game_object": "-3077618413118811898",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3077618413118811898
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "Bg1"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point (2)",
+      "game_object": "7184881267119755526",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7184881267119755526
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.569800615310669,
+          "y": 0.569800615310669,
+          "z": 0.569800615310669
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8314431214177677050
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "滑动按钮_white"
+    },
+    {
+      "path": "ATPanel_GuideSub/AntiClick ",
+      "game_object": "5937232455167971590",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5937232455167971590
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.003921568859368563
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line/Image_LeftLine",
+      "game_object": "4347652486456676614",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4347652486456676614
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7501816974177791738
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 700.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "分割线3_白"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal",
+      "game_object": "2047102435405795590",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2047102435405795590
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -6471669793337634554
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1796695103022436614
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -17.0,
+          "y": 20.0
+        },
+        "m_Pivot": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "Background"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Image",
+      "game_object": "2367446769157148934",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2367446769157148934
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.9700000286102295,
+          "y": 0.9700000286102295,
+          "z": 0.9700000286102295
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7033115877085286662
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -1.49310302734375,
+          "y": 1.03289794921875
+        },
+        "m_SizeDelta": {
+          "x": 6.7957000732421875,
+          "y": -2.1298000812530518
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-暗圆角矩形"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal/Sliding Area/Handle",
+      "game_object": "-9184460503855329018",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -9184460503855329018
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6471669793337634554
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 20.0,
+          "y": 20.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "UISprite"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Btn_Exit/Image",
+      "game_object": "-1445964197848936186",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1445964197848936186
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.4399999976158142,
+          "y": 0.4399999976158142,
+          "z": 0.4399999976158142
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7597666620829602054
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.79998779296875,
+          "y": -1.2000007629394531
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 8.684700012207031
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.19263972342014313,
+        "g": 0.25881609320640564,
+        "b": 0.349056601524353,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": "纯白关闭按钮"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport",
+      "game_object": "-4824934736883150586",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -4824934736883150586
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 3348011843318452486
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8686822329904983802
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1796695103022436614
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 5.6986083984375
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 11.397000312805176
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "UIMask"
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Image_Point",
+      "game_object": "8346385438522937606",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8346385438522937606
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5996984728391913734
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -209.0,
+          "y": 1230.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "滑动按钮_white"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point",
+      "game_object": "2404039551180673286",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2404039551180673286
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.569800615310669,
+          "y": 0.569800615310669,
+          "z": 0.569800615310669
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8314431214177677050
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "滑动按钮_white"
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg/Button_Next",
+      "game_object": "-6509567008101560058",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6509567008101560058
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 770984278358495494
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 634.8138427734375,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -1269.627685546875,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "UISprite"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Close",
+      "game_object": "4905679145138327814",
+      "active": false,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4905679145138327814
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": 0.7071068286895752,
+          "w": 0.7071068286895752
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 111.0001220703125,
+          "y": 1.16998291015625
+        },
+        "m_SizeDelta": {
+          "x": 82.4072265625,
+          "y": 129.7476043701172
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "滑动按钮_close"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg",
+      "game_object": "4700986476789371142",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4700986476789371142
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0441999435424805,
+          "y": 1.0441999435424805,
+          "z": 1.0441999435424805
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 8037946225803530502
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 7597666620829602054
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6651662801064029946
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -400.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.5377358198165894,
+        "g": 0.5377358198165894,
+        "b": 0.5377358198165894,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-暗圆角矩形"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point (1)",
+      "game_object": "-5174785554418495226",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5174785554418495226
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.569800615310669,
+          "y": 0.569800615310669,
+          "z": 0.569800615310669
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8314431214177677050
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "滑动按钮_white"
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Image_Middle_bg",
+      "game_object": "-6013981810857209594",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6013981810857209594
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-白圆角矩形"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Last",
+      "game_object": "3978068358105927942",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3978068358105927942
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -100.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 82.0,
+          "y": 130.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "左右箭头按钮"
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_BlurMask",
+      "game_object": "514897041008431366",
+      "active": false,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 514897041008431366
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Next",
+      "game_object": "-1166666924660748026",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1166666924660748026
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0,
+          "w": 0.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 100.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 82.0,
+          "y": 130.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "左右箭头按钮"
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Image_Middle",
+      "game_object": "-3812741169081020154",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3812741169081020154
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "Bg1"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Image_Middle",
+      "game_object": "-1877100114741096186",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1877100114741096186
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "Bg1"
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg/Button_Last",
+      "game_object": "-453085680988778234",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -453085680988778234
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 770984278358495494
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -649.812744140625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -1299.625244140625,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "UISprite"
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg",
+      "game_object": "3264028805819535622",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3264028805819535622
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 878379260868038918
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6565456498374217990
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.7843137383460999
+      },
+      "image_type": 0,
+      "preserve_aspect": 0,
+      "sprite": null
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Image_Middle_bg",
+      "game_object": "7665424511497212166",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7665424511497212166
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-白圆角矩形"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Image_Middle_bg",
+      "game_object": "-2351034353296404218",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2351034353296404218
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-白圆角矩形"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Image_Middle",
+      "game_object": "-728418895576690426",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -728418895576690426
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "Bg1"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Btn_Exit",
+      "game_object": "-5729918718156533498",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5729918718156533498
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.7999999523162842,
+          "y": 1.7999999523162842,
+          "z": 1.7999999523162842
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6563621060928344326
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7033115877085286662
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -17.700000762939453,
+          "y": -39.0
+        },
+        "m_SizeDelta": {
+          "x": 91.0,
+          "y": 79.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "preserve_aspect": 1,
+      "sprite": "滑动按钮_white"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Image_Middle_bg",
+      "game_object": "4777193963793355014",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4777193963793355014
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "几何ui-白圆角矩形"
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line/Image_RightLine",
+      "game_object": "7742929642929787142",
+      "active": true,
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7742929642929787142
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": -1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7501816974177791738
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 700.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      },
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "preserve_aspect": 0,
+      "sprite": "分割线3_白"
+    }
+  ],
+  "texts": [
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/TextTitle",
+      "text": "战斗",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -848492790433640186
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6651662801064029946
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -38.25579833984375
+        },
+        "m_SizeDelta": {
+          "x": 1050.0338134765625,
+          "y": 89.95020294189453
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 38.0
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Text_Tail",
+      "text": "尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2661800831790739194
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 23.799999237060547
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Text_Head",
+      "text": "头文本内容头文本内容头文本",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6105075424990990598
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 28.0
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Text_Head",
+      "text": "头文本内容头文本内容头文本",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1501146780928634618
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 28.0
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Text_Tail",
+      "text": "尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5246028412549000954
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 23.799999237060547
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Text_Head",
+      "text": "头文本内容头文本内容头文本",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5641322495888331014
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 28.0
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Text_Tail",
+      "text": "尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8624484723256913658
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 23.799999237060547
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Text_Tail",
+      "text": "尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容尾文本内容",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6292790941842730746
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 23.799999237060547
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Text_Head",
+      "text": "头文本内容头文本内容头文本",
+      "rect": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7442364548907864326
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      },
+      "font_size": 28.0
+    }
+  ],
+  "controller": [],
+  "sprites": [
+    {
+      "name": "Bg1",
+      "path": "res://assets/ui/settings/guide_sub/Bg1.png",
+      "sprite_path_id": "2390416119025954208",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/909bf4569331fadfd25f6d470a200eea.bundle",
+        "sha256": "755d1207a9b98b6d36d090fd6613f9aa228b9824fbb58d0c85fa46cb1b739dd5"
+      },
+      "width": 1024,
+      "height": 512,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "92e01a5da68175c7d303f891537fa772f77b7d16360a002f461d6ef8cb0c4d05"
+    },
+    {
+      "name": "滑动按钮_white",
+      "path": "res://assets/ui/settings/guide_sub/_____white_903861035c.png",
+      "sprite_path_id": "920993249204682218",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "width": 46,
+      "height": 45,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "813716588213e860182853f8e45f40a2109331dffcdea1248b1c1f27e3737970"
+    },
+    {
+      "name": "分割线3_白",
+      "path": "res://assets/ui/settings/guide_sub/___3___0ea7cd5222.png",
+      "sprite_path_id": "1054731721956109140",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 420,
+      "height": 28,
+      "border": {
+        "x": 96.0,
+        "y": 0.0,
+        "z": 300.0,
+        "w": 0.0
+      },
+      "png_sha256": "47437146c7d86f2cb925b9ab409c08fc2777c6579b40d0712b10bd92c688d153"
+    },
+    {
+      "name": "Background",
+      "path": "res://assets/ui/settings/guide_sub/Background.png",
+      "sprite_path_id": "1660267235368898380",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+        "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+      },
+      "width": 32,
+      "height": 32,
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "png_sha256": "46e2a8c6759bf24681f9f3f6073973ca65ac95e8d1ed8b8e025137819857fb2d"
+    },
+    {
+      "name": "几何ui-暗圆角矩形",
+      "path": "res://assets/ui/settings/guide_sub/__ui-______b937919bba.png",
+      "sprite_path_id": "-5329703775576750254",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 108,
+      "height": 108,
+      "border": {
+        "x": 38.0,
+        "y": 39.0,
+        "z": 38.0,
+        "w": 39.0
+      },
+      "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+    },
+    {
+      "name": "UISprite",
+      "path": "res://assets/ui/settings/guide_sub/UISprite.png",
+      "sprite_path_id": "5837791642106728268",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+        "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+      },
+      "width": 32,
+      "height": 32,
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "png_sha256": "9e2b539b7c88fe4464525abc282c724b964852950a0b8aa1df13414014b5f33c"
+    },
+    {
+      "name": "纯白关闭按钮",
+      "path": "res://assets/ui/settings/guide_sub/_______619d48d63f.png",
+      "sprite_path_id": "-7100559353983702432",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "width": 60,
+      "height": 60,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "61bf848b9c6c430807b171b72b9f036e6a5798066f1886099949fecff2c53b6f"
+    },
+    {
+      "name": "UIMask",
+      "path": "res://assets/ui/settings/guide_sub/UIMask.png",
+      "sprite_path_id": "-426171492875694260",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2cd4cc954b6ba5f6d7e56e987e935111.bundle",
+        "sha256": "4a135da05695e06ab303629f9d402875e79ca7ddcee6ab60b5e328d80cf5e3c2"
+      },
+      "width": 28,
+      "height": 28,
+      "border": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      },
+      "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+    },
+    {
+      "name": "滑动按钮_close",
+      "path": "res://assets/ui/settings/guide_sub/_____close_c454360665.png",
+      "sprite_path_id": "8583073016278756516",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
+        "sha256": "c69406e4de8aac8f9130fc9d16267a42d66fa28536991231f35759a59b912efa"
+      },
+      "width": 46,
+      "height": 45,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "fb9416e8c4f15aae5a8363e984935a25e180f2cf5f21d72c085a64e6398cf4d7"
+    },
+    {
+      "name": "几何ui-白圆角矩形",
+      "path": "res://assets/ui/settings/guide_sub/__ui-______083f833001.png",
+      "sprite_path_id": "6661574081893680522",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "width": 108,
+      "height": 108,
+      "border": {
+        "x": 38.0,
+        "y": 40.0,
+        "z": 38.0,
+        "w": 38.0
+      },
+      "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+    },
+    {
+      "name": "左右箭头按钮",
+      "path": "res://assets/ui/settings/guide_sub/_______ca6063f176.png",
+      "sprite_path_id": "8284727392428173768",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/cd41f8b7a01a6531ea295eea73485523.bundle",
+        "sha256": "0148939aee6e614928e65f8fb90fd336f5b52d94c5513d07862ca29114f903d9"
+      },
+      "width": 96,
+      "height": 96,
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "png_sha256": "7c7355499467a969fcb67a38744847d7bcc6b7e4f2c645fd5c0f5f3047ba013a"
+    }
+  ],
+  "transforms": [
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Image_Middle",
+      "path_id": "-9014619315086290682",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3077618413118811898
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Image_Middle",
+      "path_id": "-8808579167097712378",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3812741169081020154
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/CenterPoint",
+      "path_id": "-8686822329904983802",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 745693657618845958
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -2990052198267350778
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 100.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Image_Middle",
+      "path_id": "-8579426211120017146",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -728418895576690426
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point (2)",
+      "path_id": "-8403616514510614266",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7184881267119755526
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.569800615310669,
+          "y": 0.569800615310669,
+          "z": 0.569800615310669
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8314431214177677050
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container",
+      "path_id": "-8314431214177677050",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8047036541919826182
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.5
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 3933573160292651270
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 691624530210918662
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8403616514510614266
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1796695103022436614
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -6.0
+        },
+        "m_SizeDelta": {
+          "x": 500.0,
+          "y": 35.6078987121582
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line",
+      "path_id": "-7501816974177791738",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3353812352530771706
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 8796091312454045958
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -875867639308873466
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6651662801064029946
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -140.0
+        },
+        "m_SizeDelta": {
+          "x": 1500.0,
+          "y": 40.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal",
+      "path_id": "-7419838692555747066",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2047102435405795590
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -6471669793337634554
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1796695103022436614
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -17.0,
+          "y": 20.0
+        },
+        "m_Pivot": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer",
+      "path_id": "-6651662801064029946",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7639833832736821510
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 7033115877085286662
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1813137955786526982
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -7501816974177791738
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1796695103022436614
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 5.398200035095215,
+          "y": 7.027900218963623
+        },
+        "m_SizeDelta": {
+          "x": 1708.800048828125,
+          "y": 939.878173828125
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal/Sliding Area",
+      "path_id": "-6471669793337634554",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 559637434370363654
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6832955619140309254
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7419838692555747066
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -20.0,
+          "y": -20.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Image_Middle_bg",
+      "path_id": "-6377000304701337338",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7665424511497212166
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Text_Head",
+      "path_id": "-6204297335693176570",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5641322495888331014
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Image_Middle_bg",
+      "path_id": "-3060802347950665466",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4777193963793355014
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport",
+      "path_id": "-2990052198267350778",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -4824934736883150586
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 3348011843318452486
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8686822329904983802
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1796695103022436614
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 5.6986083984375
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 11.397000312805176
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub",
+      "path_id": "-1137898835907178234",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3375537241852538618
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 2008483876707373318
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 770984278358495494
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2777262108303167750
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 5748080742224105734
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 5996984728391913734
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 0
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line/Image_LeftLine",
+      "path_id": "-875867639308873466",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4347652486456676614
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7501816974177791738
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 700.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Text_Tail",
+      "path_id": "-610227909840924410",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -8624484723256913658
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -413050954278039290
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Text_Head",
+      "path_id": "-433727229379997434",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6105075424990990598
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)",
+      "path_id": "-413050954278039290",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 9114662171985449222
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.2315789461135864,
+          "y": 1.2315789461135864,
+          "z": 1.2315789461135864
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -6204297335693176570
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -3060802347950665466
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -9014619315086290682
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -610227909840924410
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3348011843318452486
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 1120.0,
+          "y": 722.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Text_Tail",
+      "path_id": "-19475121965952762",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5246028412549000954
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Text_Head",
+      "path_id": "648896622645154054",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7442364548907864326
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Image_Middle",
+      "path_id": "667500887598108934",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1877100114741096186
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.7789306640625,
+          "y": 47.33951950073242
+        },
+        "m_SizeDelta": {
+          "x": -45.557899475097656,
+          "y": 385.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point (1)",
+      "path_id": "691624530210918662",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5174785554418495226
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.569800615310669,
+          "y": 0.569800615310669,
+          "z": 0.569800615310669
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8314431214177677050
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg",
+      "path_id": "770984278358495494",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3264028805819535622
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 878379260868038918
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6565456498374217990
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg/Button_Next",
+      "path_id": "878379260868038918",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6509567008101560058
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 770984278358495494
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 634.8138427734375,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -1269.627685546875,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page",
+      "path_id": "1260607171690303750",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8171328329114849542
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 1837707620536029446
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 3433996240852422918
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8808579167097712378
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 3966369799543197958
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5996984728391913734
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 573.0,
+          "y": 1468.0
+        },
+        "m_SizeDelta": {
+          "x": 1120.0,
+          "y": 722.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages",
+      "path_id": "1796695103022436614",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 6673091115815735558
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -2990052198267350778
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -7419838692555747066
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8314431214177677050
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6651662801064029946
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -70.0
+        },
+        "m_SizeDelta": {
+          "x": -440.0,
+          "y": -180.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/TextTitle",
+      "path_id": "1813137955786526982",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -848492790433640186
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6651662801064029946
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -38.25579833984375
+        },
+        "m_SizeDelta": {
+          "x": 1050.0338134765625,
+          "y": 89.95020294189453
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Text_Head",
+      "path_id": "1837707620536029446",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1501146780928634618
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": -60.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 60.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_BlurMask",
+      "path_id": "2008483876707373318",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 514897041008431366
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)",
+      "path_id": "2065037348194160902",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 299226666666103046
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.2315789461135864,
+          "y": 1.2315789461135864,
+          "z": 1.2315789461135864
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 648896622645154054
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -6377000304701337338
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 667500887598108934
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 8060612834560839942
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3348011843318452486
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 1120.0,
+          "y": 722.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container",
+      "path_id": "2777262108303167750",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2906133780818685690
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -6651662801064029946
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 6955430006839382278
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 8750211291109724422
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 4109873702030545158
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -580.0,
+          "y": -274.1824035644531
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content",
+      "path_id": "3348011843318452486",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2313584325915963130
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 8725706408642351366
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -413050954278039290
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 2065037348194160902
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -2990052198267350778
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0001220703125,
+          "y": 8.0001220703125
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.6653062105178833,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Image_Middle_bg",
+      "path_id": "3433996240852422918",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6013981810857209594
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point",
+      "path_id": "3933573160292651270",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2404039551180673286
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.569800615310669,
+          "y": 0.569800615310669,
+          "z": 0.569800615310669
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -8314431214177677050
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Text_Tail",
+      "path_id": "3966369799543197958",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2661800831790739194
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 1260607171690303750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Last",
+      "path_id": "4109873702030545158",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 3978068358105927942
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -100.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 82.0,
+          "y": 130.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/AntiClick ",
+      "path_id": "5748080742224105734",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 5937232455167971590
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab",
+      "path_id": "5996984728391913734",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6618752182232608506
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 8589462774622195974
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 1260607171690303750
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -1137898835907178234
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 100.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Btn_Exit/Image",
+      "path_id": "6563621060928344326",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1445964197848936186
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.4399999976158142,
+          "y": 0.4399999976158142,
+          "z": 0.4399999976158142
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7597666620829602054
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.79998779296875,
+          "y": -1.2000007629394531
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 8.684700012207031
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg/Button_Last",
+      "path_id": "6565456498374217990",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -453085680988778234
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 770984278358495494
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -649.812744140625,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -1299.625244140625,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal/Sliding Area/Handle",
+      "path_id": "6832955619140309254",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -9184460503855329018
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6471669793337634554
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 20.0,
+          "y": 20.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Next",
+      "path_id": "6955430006839382278",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -1166666924660748026
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0,
+          "w": 0.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 100.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 82.0,
+          "y": 130.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg",
+      "path_id": "7033115877085286662",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4700986476789371142
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0441999435424805,
+          "y": 1.0441999435424805,
+          "z": 1.0441999435424805
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 8037946225803530502
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 7597666620829602054
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -6651662801064029946
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": -400.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Image_Middle_bg",
+      "path_id": "7160225697403834630",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -2351034353296404218
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.8999999761581421,
+          "y": 0.8999999761581421,
+          "z": 0.8999999761581421
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 8725706408642351366
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -0.42120361328125,
+          "y": 47.0
+        },
+        "m_SizeDelta": {
+          "x": -318.91290283203125,
+          "y": -310.6263122558594
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Btn_Exit",
+      "path_id": "7597666620829602054",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -5729918718156533498
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.7999999523162842,
+          "y": 1.7999999523162842,
+          "z": 1.7999999523162842
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": 6563621060928344326
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7033115877085286662
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -17.700000762939453,
+          "y": -39.0
+        },
+        "m_SizeDelta": {
+          "x": 91.0,
+          "y": 79.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Image",
+      "path_id": "8037946225803530502",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 2367446769157148934
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 0.9700000286102295,
+          "y": 0.9700000286102295,
+          "z": 0.9700000286102295
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 7033115877085286662
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": -1.49310302734375,
+          "y": 1.03289794921875
+        },
+        "m_SizeDelta": {
+          "x": 6.7957000732421875,
+          "y": -2.1298000812530518
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Text_Tail",
+      "path_id": "8060612834560839942",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -6292790941842730746
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2065037348194160902
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 205.0
+        },
+        "m_SizeDelta": {
+          "x": -220.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Image_Point",
+      "path_id": "8589462774622195974",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 8346385438522937606
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 5996984728391913734
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -209.0,
+          "y": 1230.0
+        },
+        "m_SizeDelta": {
+          "x": 30.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page",
+      "path_id": "8725706408642351366",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -4416763206178893562
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.2315789461135864,
+          "y": 1.2315789461135864,
+          "z": 1.2315789461135864
+        },
+        "m_Children": [
+          {
+            "m_FileID": 0,
+            "m_PathID": -433727229379997434
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": 7160225697403834630
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -8579426211120017146
+          },
+          {
+            "m_FileID": 0,
+            "m_PathID": -19475121965952762
+          }
+        ],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 3348011843318452486
+        },
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 1120.0,
+          "y": 722.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Close",
+      "path_id": "8750211291109724422",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 4905679145138327814
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": 0.7071068286895752,
+          "w": 0.7071068286895752
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": 1.1699999570846558,
+          "y": 1.1699999570846558,
+          "z": 1.1699999570846558
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": 2777262108303167750
+        },
+        "m_AnchorMin": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 111.0001220703125,
+          "y": 1.16998291015625
+        },
+        "m_SizeDelta": {
+          "x": 82.4072265625,
+          "y": 129.7476043701172
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line/Image_RightLine",
+      "path_id": "8796091312454045958",
+      "data": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": 7742929642929787142
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        },
+        "m_LocalPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_LocalScale": {
+          "x": -1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_Children": [],
+        "m_Father": {
+          "m_FileID": 0,
+          "m_PathID": -7501816974177791738
+        },
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 700.0,
+          "y": 30.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "limit": "Serialized initial prefab. Runtime texts and enabled states can differ. Unity coordinates use upward positive Y.",
+  "evidence_type": "Static Unity serialized prefab; original APK was not executed",
+  "components": [
+    {
+      "path": "ATPanel_GuideSub",
+      "path_id": "-8873030252873379578",
+      "script": "ATPanel_GuideSub",
+      "fields": {
+        "m_GameObject": {
+          "m_FileID": 0,
+          "m_PathID": -3375537241852538618
+        },
+        "m_Enabled": 1,
+        "m_Script": {
+          "m_FileID": 0,
+          "m_PathID": -1829744773110502018
+        },
+        "m_Name": "",
+        "anim": {
+          "m_FileID": 0,
+          "m_PathID": -767536312763346682
+        },
+        "OpenAnimation": {
+          "m_FileID": 2,
+          "m_PathID": 8421251929274102025
+        },
+        "CloseAnimation": {
+          "m_FileID": 3,
+          "m_PathID": 2833012368740182192
+        },
+        "delayCloseTime": 0.30000001192092896,
+        "openCnt": 0,
+        "Opened": 0,
+        "Slot_Page": {
+          "m_FileID": 0,
+          "m_PathID": 8171328329114849542
+        },
+        "Conten_Pages": {
+          "m_FileID": 0,
+          "m_PathID": 3348011843318452486
+        },
+        "scrollRectAutoPos": {
+          "m_FileID": 0,
+          "m_PathID": 6326953642316927238
+        },
+        "Btn_Next": {
+          "m_FileID": 0,
+          "m_PathID": -7564932304034983674
+        },
+        "Btn_Last": {
+          "m_FileID": 0,
+          "m_PathID": 2934242659673837830
+        },
+        "Btn_Close": {
+          "m_FileID": 0,
+          "m_PathID": 7267600010454241542
+        },
+        "Box_CanNext": {
+          "m_FileID": 0,
+          "m_PathID": 6955430006839382278
+        },
+        "Box_CanLast": {
+          "m_FileID": 0,
+          "m_PathID": 4109873702030545158
+        },
+        "Box_CanClose": {
+          "m_FileID": 0,
+          "m_PathID": 8750211291109724422
+        },
+        "Text_Title": {
+          "m_FileID": 0,
+          "m_PathID": -5989334662412955386
+        }
+      }
+    }
+  ],
+  "game_objects": [
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal/Sliding Area/Handle",
+      "path_id": "-9184460503855329018",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Text_Tail",
+      "path_id": "-8624484723256913658",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab",
+      "path_id": "-6618752182232608506",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg/Button_Next",
+      "path_id": "-6509567008101560058",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Text_Tail",
+      "path_id": "-6292790941842730746",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Image_Middle_bg",
+      "path_id": "-6013981810857209594",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Btn_Exit",
+      "path_id": "-5729918718156533498",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Text_Tail",
+      "path_id": "-5246028412549000954",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point (1)",
+      "path_id": "-5174785554418495226",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport",
+      "path_id": "-4824934736883150586",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page",
+      "path_id": "-4416763206178893562",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Image_Middle",
+      "path_id": "-3812741169081020154",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub",
+      "path_id": "-3375537241852538618",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line",
+      "path_id": "-3353812352530771706",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Image_Middle",
+      "path_id": "-3077618413118811898",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container",
+      "path_id": "-2906133780818685690",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Text_Tail",
+      "path_id": "-2661800831790739194",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Image_Middle_bg",
+      "path_id": "-2351034353296404218",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content",
+      "path_id": "-2313584325915963130",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Image_Middle",
+      "path_id": "-1877100114741096186",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page/Text_Head",
+      "path_id": "-1501146780928634618",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Btn_Exit/Image",
+      "path_id": "-1445964197848936186",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Next",
+      "path_id": "-1166666924660748026",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/TextTitle",
+      "path_id": "-848492790433640186",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Image_Middle",
+      "path_id": "-728418895576690426",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg/Button_Last",
+      "path_id": "-453085680988778234",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)",
+      "path_id": "299226666666103046",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_BlurMask",
+      "path_id": "514897041008431366",
+      "active": false
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal/Sliding Area",
+      "path_id": "559637434370363654",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/CenterPoint",
+      "path_id": "745693657618845958",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Scrollbar Horizontal",
+      "path_id": "2047102435405795590",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg/Image",
+      "path_id": "2367446769157148934",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point",
+      "path_id": "2404039551180673286",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Image_Bg",
+      "path_id": "3264028805819535622",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Last",
+      "path_id": "3978068358105927942",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line/Image_LeftLine",
+      "path_id": "4347652486456676614",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Image_Bg",
+      "path_id": "4700986476789371142",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Image_Middle_bg",
+      "path_id": "4777193963793355014",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/Image_Close",
+      "path_id": "4905679145138327814",
+      "active": false
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)/Text_Head",
+      "path_id": "5641322495888331014",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/AntiClick ",
+      "path_id": "5937232455167971590",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page/Text_Head",
+      "path_id": "6105075424990990598",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages",
+      "path_id": "6673091115815735558",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container/Image_Point (2)",
+      "path_id": "7184881267119755526",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Text_Head",
+      "path_id": "7442364548907864326",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer",
+      "path_id": "7639833832736821510",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (2)/Image_Middle_bg",
+      "path_id": "7665424511497212166",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/Box_Line/Image_RightLine",
+      "path_id": "7742929642929787142",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Point_Container",
+      "path_id": "8047036541919826182",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Slot_Page",
+      "path_id": "8171328329114849542",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Conainter_Prefab/Image_Point",
+      "path_id": "8346385438522937606",
+      "active": true
+    },
+    {
+      "path": "ATPanel_GuideSub/Container/SubContainer/ScrollView_Pages/Viewport/Content/Slot_Page (1)",
+      "path_id": "9114662171985449222",
+      "active": true
+    }
+  ]
+}

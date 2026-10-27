@@ -19,11 +19,17 @@ var camera: Camera3D
 var environment_root: Node3D
 var catalog: Dictionary = {}
 var systems: RefCounted
+var _partner_skill_rules: RefCounted
 var hud: DungeonHud
 var paused := false
+var boss_show_active := false
+var _boss_show_speed := 1.0
 var simulation_scale := 1.0
 var _battle_scales: Dictionary = {}
 var source_hit_stop_percent := 100
+var runtime_settings: Dictionary = {}
+var slow_motion_enabled := true
+var camera_shake_percent := 100
 var _source_stop_hits: Dictionary = {}
 var _source_stop_projectiles: Dictionary = {}
 var fighting := false
@@ -78,6 +84,7 @@ var room_fight_type := "Regular"
 var _room_stage_wait := 0.0
 var _entry_wave: Dictionary = {}
 static var _monster_field_data: Dictionary = {}
+static var _settings_dodge_buffs: Dictionary = {}
 var interactions: RefCounted
 var _event_markers: Dictionary = {}
 var _event_refresh_at := 0
@@ -89,6 +96,7 @@ var camera_closeup = preload("res://scripts/presentation/camera_closeup.gd").new
 var camp_camera = preload("res://scripts/presentation/camp_camera.gd").new()
 var camp_progression = preload("res://scripts/presentation/camp_progression.gd").new()
 var camp_decorations = preload("res://scripts/presentation/camp_decorations.gd").new()
+var camp_visitors = preload("res://scripts/presentation/camp_visitors.gd").new()
 var camp_training = preload("res://scripts/camp_training.gd").new()
 var _camp_destination := ""
 var _camp_destination_page := ""
@@ -107,6 +115,7 @@ func update_event_markers(camp: bool) -> void:
 	var now := Time.get_ticks_msec()
 	if now < _event_refresh_at: return
 	_event_refresh_at = now + 250
+	var groups: Dictionary = {}
 	for item in interactions._items.values():
 		var pending := false
 		var npc_id := int(item.data.get("NpcId", 0))
@@ -141,19 +150,26 @@ func update_event_markers(camp: bool) -> void:
 					pending = true
 					break
 		pending = pending and item.state.enabled and not item.state.broken
-		var badge = _event_markers.get(item.id)
+		var marker_id := "camp:tasks" if page_id == "tasks" or npc_id == 1300 else str(item.id)
+		var group: Dictionary = groups.get(marker_id, {"pending": false, "position": item.position})
+		group.pending = group.pending or pending
+		if str(item.data.get("UIBtnName", "")) == "EnvUnit_MonoData_BtnDisplayName_Quest": group.position = item.position
+		groups[marker_id] = group
+	for marker_id in groups:
+		var group: Dictionary = groups[marker_id]
+		var pending := bool(group.pending)
+		var badge = _event_markers.get(marker_id)
 		if pending and not is_instance_valid(badge):
-			badge = Label3D.new()
-			badge.text = "!"
-			badge.font_size = 80
-			badge.pixel_size = 0.012
-			badge.modulate = Color(1.0, 0.8, 0.15)
-			badge.outline_size = 16
+			badge = Sprite3D.new()
+			badge.name = "CampEventMarker"
+			badge.texture = DungeonStyle.texture("interaction_quest")
+			badge.pixel_size = 0.006
 			badge.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 			badge.no_depth_test = true
+			badge.shaded = false
 			environment_root.add_child(badge)
-			badge.position = item.position + Vector3.UP * 3.5
-			_event_markers[item.id] = badge
+			badge.position = group.position + Vector3.UP * 3.5
+			_event_markers[marker_id] = badge
 		if is_instance_valid(badge): badge.visible = pending
 const FEEL = preload("res://assets/feel_settings.tres")
 var intent = preload("res://scripts/player_intent.gd").new()
@@ -187,18 +203,19 @@ func _ready() -> void:
 	if file: catalog = JSON.parse_string(file.get_as_text())
 	var sky = WorldEnvironment.new()
 	var environment = Environment.new()
+	var lighting: Array = DungeonWorldStyle.PROFILES[0]
 	environment.background_mode = Environment.BG_COLOR
-	environment.background_color = Color("7b9c8c")
+	environment.background_color = lighting[0]
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	environment.ambient_light_color = Color("c6deca")
-	environment.ambient_light_energy = 0.45
-	environment.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	environment.ambient_light_color = lighting[1]
+	environment.ambient_light_energy = lighting[3]
+	environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
 	sky.environment = environment
 	add_child(sky)
 	var sun = DirectionalLight3D.new()
 	sun.rotation_degrees = Vector3(-52, -35, 0)
-	sun.light_color = Color("fff0c3")
-	sun.light_energy = 0.65
+	sun.light_color = lighting[2]
+	sun.light_energy = lighting[4]
 	sun.shadow_enabled = true
 	add_child(sun)
 	camera = Camera3D.new()
@@ -225,6 +242,25 @@ func _ready() -> void:
 		_projectile_visual_pool.append(_make_projectile_visual())
 		_projectile_state_pool.append(DungeonProjectile.new())
 	for index in 32: _number_pool.append(_make_damage_number())
+
+func apply_settings(settings: Dictionary) -> void:
+	runtime_settings = settings.duplicate()
+	source_hit_stop_percent = int(settings.get("hit_stop", 100))
+	slow_motion_enabled = bool(settings.get("slow_motion", true))
+	camera_shake_percent = int(settings.get("camera_shake", 100))
+	if source_hit_stop_percent == 0: _battle_scales.erase("UnitStopFrame")
+	_refresh_battle_scale()
+	if presentation: presentation.apply_settings(settings)
+	ground_loot.apply_settings(settings)
+	_refresh_dodge_settings()
+	for index in range(_numbers.size() - 1, -1, -1):
+		var entry: Dictionary = _numbers[index]
+		var mode := int(settings.get("healing_numbers" if entry.get("healing", false) else "damage_numbers", 0))
+		if mode == 2:
+			entry.node.hide()
+			_number_pool.append(entry.node)
+			_numbers.remove_at(index)
+		else: entry.node.text = number_text(float(entry.get("amount", 0)), mode, bool(entry.get("healing", false)))
 
 func asset_path(kind: String, id: Variant) -> String:
 	var entry = catalog.get(kind, {}).get(str(id), {})
@@ -297,7 +333,7 @@ func release_environment() -> void:
 	navigation_region = null
 	fighting = false
 
-func load_environment(id: Variant, camp := false) -> void:
+func load_environment(id: Variant, camp := false, completion_chest_quality: String = "") -> void:
 	release_environment()
 	_camp_camera = camp
 	environment_root = Node3D.new()
@@ -321,6 +357,7 @@ func load_environment(id: Variant, camp := false) -> void:
 	if camp:
 		var training_marker: Dictionary = camp_training.marker(environment_root)
 		if not training_marker.is_empty(): semantic_markers.append(training_marker)
+		if systems: semantic_markers.append_array(camp_visitors.markers(self))
 	interactions = load("res://scripts/world_interactions.gd").new()
 	interactions.transition_requested.connect(func(context): environment_action.emit("transition", context))
 	interactions.sound_requested.connect(func(name): environment_sound.emit(name))
@@ -336,6 +373,7 @@ func load_environment(id: Variant, camp := false) -> void:
 	interactions.trap_triggered.connect(_environment_trap)
 	interactions.diagnostic_reported.connect(func(context): _diagnostic("Environment: " + str(context)))
 	interactions.setup(environment_root, semantic_markers, {"colliders": markers, "catalog": systems.catalog if systems else null, "camp": camp, "is_unlocked": func(id): return systems.is_unlocked(int(id)) if systems else false})
+	if not camp: interactions.set_completion_chest_quality(completion_chest_quality)
 	if camp: _apply_camp_interaction_states()
 	_build_navigation(_camp_navigation_key() if camp else str(id))
 	var angles: Array = environment_entry.get("camera_rotation", [45.0, -45.0])
@@ -346,6 +384,7 @@ func load_environment(id: Variant, camp := false) -> void:
 	fighting = false
 	elapsed = 0
 	received_hits = 0
+	defeated_count = 0
 	_wave_reported = true
 	DungeonWorldStyle.environment(self, int(str(id).substr(2, 1)), camp)
 	camera.size = 17.0 if camp else FEEL.level_camera_height
@@ -373,10 +412,10 @@ func _apply_camp_interaction_states() -> void:
 		elif npc_id == 1400: page = "storage"
 		elif npc_id == 1500: page = "characters"
 		# The commission board remains interactable while its facility is locked.
-		if systems and page in ["characters", "weapons", "talents", "awakening", "tokens", "storage", "archive", "partners", "work", "meals", "training"]:
+		if systems and page in ["characters", "weapons", "talents", "awakening", "tokens", "storage", "archive", "partners", "work", "meals", "training", "extra_challenges"]:
 			active = active and bool(systems.camp_feature_status(page).available)
-		elif systems and page == "achievements":
-			active = active and bool(systems.camp_feature_status("talents").available)
+		elif systems and page == "history":
+			active = active and bool(systems.camp_feature_status("history").available)
 		elif systems and page == "task_npc":
 			active = active and bool(systems.camp_feature_status("tasks").available)
 		elif not camp_progression.controls(node_name): continue
@@ -397,6 +436,7 @@ func refresh_camp_progression() -> void:
 		if body is StaticBody3D and camp_progression.controls(str(marker.get("exported_node_name", ""))):
 			body.collision_layer = 1 if camp_progression.collider_active(marker) else 0
 	_apply_camp_interaction_states()
+	camp_visitors.refresh(self)
 	if is_instance_valid(navigation_region):
 		environment_root.remove_child(navigation_region)
 		navigation_region.queue_free()
@@ -603,7 +643,7 @@ func camp_facility(page: String) -> Dictionary:
 	for item in interactions._items.values():
 		if page == "talents" and int(item.data.get("NpcId", 0)) == 1000 and _camp_facility_available(item): return item
 		if page in ["treasure", "chests", "storage"] and int(item.data.get("NpcId", 0)) == 1400 and _camp_facility_available(item): return item
-		if page == "history" and str(interactions.prompt_for(item)[1]) == "achievements" and _camp_facility_available(item): return item
+		if page == "history" and str(interactions.prompt_for(item)[1]) == "history" and _camp_facility_available(item): return item
 		if _camp_facility_available(item) and str(interactions.prompt_for(item)[1]) == page: return item
 	return {}
 
@@ -999,15 +1039,40 @@ func prepare_feedback_rendering() -> void:
 
 func use_skill(slot: int, pressed := true) -> Dictionary:
 	var result: Dictionary
-	if not player or player.dead or paused or _background or (hud and hud.modal_open) or (_camp_camera and not camp_training.active): result = {"success": false, "status": "rejected"}
+	if not player or player.dead or paused or boss_show_active or _background or (hud and hud.modal_open): result = {"success": false, "status": "rejected"}
 	else:
 		if pressed:
 			_release_auto_heavy()
 			_automatic_action = false
 			if slot == 0 and auto_attack_enabled: player.combat.request_attack(4, false)
-		result = intent.attack_button(player.combat, pressed) if slot == 0 else intent.request(player.combat, slot, pressed)
+		if slot in [5, 6]:
+			result = _partner_controller().request(player.combat, slot - 5) if pressed and systems else {"success": not pressed}
+			if pressed and result.get("success", false):
+				var target := _nearest_enemy(player.position)
+				if is_instance_valid(target) and player.position.distance_squared_to(target.position) <= 400.0 and int(runtime_settings.get("target_mode", 0)) != 2:
+					player.face_direction(target.position - player.position)
+		else: result = intent.attack_button(player.combat, pressed) if slot == 0 else intent.request(player.combat, slot, pressed)
 	skill_request_resolved.emit(slot, result)
 	return result
+
+func _partner_controller() -> RefCounted:
+	if _partner_skill_rules == null:
+		_partner_skill_rules = preload("res://scripts/domain/partner_skills.gd").new(systems)
+	return _partner_skill_rules
+
+func partner_skill_state() -> Dictionary:
+	if not systems or not systems.profile.data.run.active or not is_instance_valid(player): return {}
+	return _partner_controller().state(player.combat)
+
+func advance_partner_skills(delta: float) -> void:
+	if not systems or not systems.profile.data.run.active or not is_instance_valid(player): return
+	var in_range := false
+	if fighting:
+		for actor in actors:
+			if is_instance_valid(actor) and not actor.is_player and not actor.dead and player.position.distance_squared_to(actor.position) <= 400.0:
+				in_range = true
+				break
+	_partner_controller().tick(player.combat, delta, in_range)
 
 func set_attack_mode(mode: String) -> void:
 	var normalized = mode if mode in ["normal", "heavy", "off"] else "normal"
@@ -1043,6 +1108,19 @@ func clear_input() -> void:
 		for key in hud.skill_buttons: key.release(true)
 		hud.attack_mode_button.release(true)
 
+func set_boss_show(enabled: bool, speed: float = 1.0) -> void:
+	var entering := enabled and not boss_show_active
+	boss_show_active = enabled
+	_boss_show_speed = speed if enabled else 1.0
+	if enabled: clear_input()
+	if entering and is_instance_valid(player) and not player.dead:
+		_automatic_action = false
+		var idle: Dictionary = player.combat._action("ActGroup_playerchara", "sys_idle")
+		if not idle.is_empty():
+			player.combat._start(idle, -1)
+			for event in player.combat.drain_events(): _consume(player, event)
+	_refresh_battle_scale()
+
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_APPLICATION_PAUSED]:
 		_background = true
@@ -1057,7 +1135,13 @@ func _attack_target(slot: int) -> DungeonActor:
 		if not is_instance_valid(actor) or actor.dead or actor.is_player: continue
 		var distance = player.position.distance_squared_to(actor.position)
 		if distance > reach * reach: continue
-		candidates.append({"actor": actor, "score": distance * (0.64 if actor == _auto_target else 1.0)})
+		var score: float = distance * (0.64 if actor == _auto_target else 1.0)
+		if int(runtime_settings.get("target_mode", 0)) == 0 and player.desired_velocity.length_squared() > 0.0001:
+			var direction := (actor.position - player.position).normalized()
+			var alignment := player.desired_velocity.normalized().dot(direction)
+			if alignment < 0.0: continue
+			score *= 1.0 + (1.0 - alignment) * 4.0
+		candidates.append({"actor": actor, "score": score})
 	candidates.sort_custom(func(a, b): return a.score < b.score)
 	for candidate in candidates:
 		var actor: DungeonActor = candidate.actor
@@ -1089,6 +1173,7 @@ func _normal_reach() -> float:
 func _movement_allows_auto_attack(target: DungeonActor) -> bool:
 	if not is_instance_valid(target): return false
 	if player.desired_velocity.length_squared() < 0.04: return true
+	if int(runtime_settings.get("attack_priority", 0)) == 1: return false
 	var direction = target.position - player.position
 	direction.y = 0
 	return player.desired_velocity.normalized().dot(direction.normalized()) >= FEEL.auto_attack_move_alignment
@@ -1102,7 +1187,7 @@ func _execute_player(slot: int, automatic := false, selected_target: DungeonActo
 	if slot == 1:
 		player.face_direction(intent.dodge_direction(player.desired_velocity, player.facing))
 		intent.heavy_held = false
-	elif target: player.face_direction(target.position - player.position)
+	elif target and int(runtime_settings.get("target_mode", 0)) != 2: player.face_direction(target.position - player.position)
 	return true
 
 func _process(delta: float) -> void:
@@ -1142,6 +1227,7 @@ func _process(delta: float) -> void:
 		var wave = sin(phase * TAU * maxi(1, int(shake.get("times", 3))))
 		offset += Vector3(0 if shake.get("disable_x", false) else wave, 0 if shake.get("disable_y", false) else cos(phase * TAU * maxi(1, int(shake.get("times", 3)))), 0) * magnitude
 	if not camera_shake_enabled: offset = Vector3.ZERO
+	offset *= float(camera_shake_percent) / 100.0
 	offset = offset.limit_length(FEEL.camera_impact_limit)
 	camera_closeup.apply(camera, _camera_focus, _camera_offset)
 	camera.position += camera.basis * offset
@@ -1187,6 +1273,7 @@ func _physics_process(delta: float) -> void:
 			if is_instance_valid(actor): actor.desired_velocity = Vector3.ZERO
 		return
 	camp_training.advance(delta)
+	advance_partner_skills(delta)
 	_physics_serial += 1
 	_prune_source_stop_hits()
 	_tick_room_sequence(delta)
@@ -1202,7 +1289,7 @@ func _physics_process(delta: float) -> void:
 	if fighting: elapsed += delta
 	_tick_wave_spawns(delta)
 	var movement = Vector2.ZERO
-	if not hud or not hud.modal_open:
+	if not boss_show_active and (not hud or not hud.modal_open):
 		movement = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if hud: movement += hud.joystick.value
 		movement = movement.limit_length()
@@ -1218,7 +1305,7 @@ func _physics_process(delta: float) -> void:
 		elif not _camp_destination.is_empty():
 			player.desired_velocity = _camp_navigation_velocity(delta)
 	if player.desired_velocity.length_squared() > 0.0001: intent.last_move = player.desired_velocity.normalized()
-	if test_driver and fighting:
+	if test_driver and fighting and not boss_show_active:
 		var nearest = _nearest_enemy(player.position)
 		if nearest:
 			var direction = nearest.position - player.position
@@ -1283,6 +1370,8 @@ func _physics_process(delta: float) -> void:
 	_tick_wave_clear(delta)
 
 func _tick_player_input(delta: float) -> void:
+	_refresh_dodge_settings()
+	if boss_show_active: return
 	intent.advance_hold(player.combat, delta)
 	if _automatic_heavy_held:
 		if player.dead or intent.manual_attack_active() or not (fighting or camp_training.active) or not _movement_allows_auto_attack(_attack_target(4)):
@@ -1305,6 +1394,25 @@ func _tick_player_input(delta: float) -> void:
 			if _execute_player(slot, true, target):
 				_automatic_heavy_held = slot == 4
 				if slot == 0: _auto_attack = 0.0
+
+func _refresh_dodge_settings() -> void:
+	if not is_instance_valid(player) or not runtime_settings.has("dodge_priority"): return
+	if _settings_dodge_buffs.is_empty():
+		var source: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/settings/dodge_buffs.json"))
+		if source is Dictionary: _settings_dodge_buffs = source
+	for id in _settings_dodge_buffs:
+		if player.combat._buff_index.has(id): continue
+		var raw: Dictionary = _settings_dodge_buffs[id].raw
+		var definition: Dictionary = player.combat._buff_index.get("26081001", {}).duplicate(true)
+		definition.merge({"id": id, "type": raw.BuffType, "name": raw.BuffData.Name_EDT, "raw": JSON.stringify(raw), "raw_data": raw.BuffData, "apk_source": _settings_dodge_buffs[id].apk_source}, true)
+		player.combat._buff_index = player.combat._buff_index.duplicate()
+		player.combat._buff_index[id] = definition
+	var mode := int(runtime_settings.dodge_priority)
+	var chain := mode == 0 and is_instance_valid(_attack_target(0))
+	for id in ["26080801", "26081001"]:
+		var wanted: bool = mode == 2 if id == "26080801" else chain
+		if wanted and not player.combat.statuses.has(id): player.combat.add_buff(id)
+		elif not wanted and player.combat.statuses.has(id): player.combat.remove_buff(id)
 
 func _line_blocked(actor: DungeonActor, distance_squared: float) -> bool:
 	var key := actor.get_instance_id()
@@ -1357,7 +1465,10 @@ func _prune_source_stop_hits() -> void:
 
 func _refresh_battle_scale() -> void:
 	simulation_scale = 1.0
-	for entry in _battle_scales.values(): simulation_scale = minf(simulation_scale, float(entry.scale))
+	for key in _battle_scales:
+		if not slow_motion_enabled and key != "UnitStopFrame": continue
+		simulation_scale = minf(simulation_scale, float(_battle_scales[key].scale))
+	simulation_scale *= _boss_show_speed
 	if presentation: presentation.simulation_scale = simulation_scale
 
 func _consume(actor: DungeonActor, event: Dictionary) -> void:
@@ -1374,7 +1485,7 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 			if not actor.is_player: actor.action_target = player if is_instance_valid(player) and not player.dead else null
 			presentation.action_started(actor, event)
 			var action_name = str(event.get("action", ""))
-			actor.play_animation(action_name if actor.animations.has(action_name) else "dodge" if int(event.get("slot", 0)) == 1 else "attack", true)
+			actor.play_animation(action_name if actor.animations.has(action_name) else "idle" if action_name == "sys_idle" else "dodge" if int(event.get("slot", 0)) == 1 else "attack", true)
 			if int(event.get("slot", 0)) == 1:
 				actor.invulnerability = 0.35
 				actor.start_dodge(actor.facing)
@@ -1386,7 +1497,13 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 			presentation.cancel_actor(actor)
 		"hit":
 			if actor.get_meta("chest_trial", false) and trial_room.consume_hit(event): return
-			presentation.attack_emitted(actor, event, _hit_origin(actor, event))
+			var definition: Dictionary = event.get("definition", {})
+			var raw = _raw_definition(definition)
+			if raw.get("EntityType", "EET_Physical" if definition.get("projectile", false) else "") == "EET_Physical":
+				presentation.attack_emitted(actor, event, _hit_origin(actor, event))
+			else:
+				var transform_data = _frame_entity_transform(actor, event)
+				presentation.attack_emitted(actor, event, transform_data.position, transform_data.facing)
 			_start_attack_entity(actor, event)
 		"summon": _create_summon(actor, event)
 		"summon_trigger_effect":
@@ -1396,21 +1513,42 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 		"spawn_monster": _spawn_monsters(actor, event)
 		"delete_unit":
 			actor.apply_delete_event(event.get("definition", {}))
+		"ai_message":
+			var message: Dictionary = event.get("message", {})
+			if str(message.get("name", "")) == "Rogue_RewardSlimeBeHit":
+				_drop_reward_slime(actor, str(message.get("parameters", {}).get("Arg1", "")))
 		"message":
 			var definition: Dictionary = event.get("definition", event)
 			var message = str(definition.get("MessageName", definition.get("MsgName", event.get("name", ""))))
+			if message == "Rogue_RewardSlimeBeHit":
+				_drop_reward_slime(actor, str(definition.get("MsgArg1", definition.get("Arg1", event.get("argument", "")))))
+				return
 			if actor.is_player: spirit_followers.trigger_message(message, actor, presentation)
 			for recipient in actors:
 				if is_instance_valid(recipient) and not recipient.dead: recipient.combat.notify_gameplay("message", {"name": message, "argument": definition.get("MsgArg1", definition.get("Arg1", ""))})
 			if not camp_training.active: world_message.emit(message, definition)
 		"buff_effect":
 			presentation.buff_effect(actor, event)
+		"partner_charge":
+			if actor.is_player and systems: _partner_controller().charge(event.get("settings", {}))
+		"heal":
+			if float(event.get("amount", 0)) > 0: _healing_number(actor.position + Vector3.UP * 1.8, float(event.amount))
 		"area":
 			_consume_area(actor, event)
 		"command":
 			var command: Dictionary = event.get("command", event)
 			if int(event.get("sequence", -1)) != actor.combat._cast_sequence: return
 			presentation.command(actor, event)
+			if str(command.get("type", "")) == "EET_CameraEffect":
+				var settings_effects := get_node_or_null("SettingsEffects")
+				var camera_effect := _raw_definition(command)
+				if settings_effects and str(camera_effect.get("EffectType", "")) in ["ECET_FlashLight", "3"]:
+					var effect_data: Dictionary = camera_effect.get("EffectData", {})
+					var color: Color = presentation.color_for(actor)
+					if bool(effect_data.get("UseOverrideColor", false)):
+						var raw_color: Dictionary = effect_data.get("FlashLightColor", {})
+						color = Color(float(raw_color.get("r", 1)), float(raw_color.get("g", 1)), float(raw_color.get("b", 1)), 1)
+					settings_effects.screen_flash(float(effect_data.get("Intensity", 1)), float(command.get("duration", 0.5)), color, actor, int(event.get("sequence", -1)))
 			if str(command.get("type", "")) == "EET_CameraShake" and actor.is_player:
 				var raw_shake = _raw_definition(command)
 				raw_shake["FeedbackType"] = "EHT_CameraShake"
@@ -1504,10 +1642,11 @@ func _tick_attack_entities(delta: float) -> void:
 		_activate_attack_entity(source, entry.hit)
 
 func _activate_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
-	presentation.entity_activated(actor, hit, _hit_origin(actor, hit), _hit_facing(actor, hit))
 	var definition: Dictionary = hit.get("definition", {})
 	var raw = _raw_definition(definition)
-	if raw.get("EntityType", "EET_Physical" if definition.get("projectile", false) else "") == "EET_Physical": _projectile(actor, hit)
+	if raw.get("EntityType", "EET_Physical" if definition.get("projectile", false) else "") == "EET_Physical":
+		var state = _projectile(actor, hit)
+		presentation.entity_activated(actor, hit, state.position, state.direction)
 	else:
 		var saved = hit.duplicate(true)
 		saved.erase("source")
@@ -1515,6 +1654,8 @@ func _activate_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
 		saved["entity_facing"] = DungeonProjectile._array(_hit_facing(actor, hit))
 		saved["entity_contacts"] = {}
 		saved["entity_age"] = 0.0
+		var transform_data = _frame_entity_transform(actor, saved)
+		presentation.entity_activated(actor, saved, transform_data.position, transform_data.facing)
 		_hit_area(actor, saved)
 		var lifetime = maxf(0.0, float(raw.get("EntityProperty", {}).get("CheckTime", 0)))
 		if lifetime > 0: active_attack_entities.append({"owner": actor.combat.actor_key, "age": 0.0, "life": lifetime, "hit": saved})
@@ -1528,21 +1669,30 @@ func _finish_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
 	ending["world_facing"] = DungeonProjectile._array(_hit_facing(actor, hit).rotated(Vector3.UP, yaw))
 	_spawn_from_definition(actor, ending, point, hit)
 
+func _frame_entity_transform(source: DungeonActor, hit: Dictionary) -> Dictionary:
+	var definition: Dictionary = hit.get("definition", hit.get("area", {}))
+	var raw = _raw_definition(definition)
+	var facing = _hit_facing(source, hit)
+	var center = _hit_origin(source, hit) + facing * (float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0)))
+	var hit_facing = vector(hit.get("trial_facing", facing))
+	var emit: Dictionary = raw.get("EmitProperty", {})
+	if not emit.is_empty():
+		var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
+		var local_offset = float(hit.get("forward_offset", 0)) + (0.0 if emit.has("EmitOffset") else float(definition.get("offset", 0)))
+		var offset = vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * (vector(emit.get("AfterRotateEmitOffset", {})) + Vector3(0, 0, local_offset))
+		center = _hit_origin(source, hit) + DungeonProjectile.orient(offset, facing)
+		hit_facing = hit_facing.rotated(Vector3.UP, yaw)
+	return {"position": center, "facing": hit_facing}
+
 func _hit_area(source: DungeonActor, hit: Dictionary, area := false) -> void:
 	var definition: Dictionary = hit.get("definition", hit.get("area", {}))
 	var raw = _raw_definition(definition)
 	var entity: Dictionary = raw.get("EntityProperty", {})
 	var width = maxf(0, float(definition.get("width", 1)))
 	var length_value = maxf(0, float(definition.get("length", 1)))
-	var facing = _hit_facing(source, hit)
-	var center = _hit_origin(source, hit) + facing * (float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0)))
-	var hit_facing = vector(hit.get("trial_facing", facing))
-	if not source.is_player:
-		var emit: Dictionary = raw.get("EmitProperty", {})
-		var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
-		var offset = vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * (vector(emit.get("AfterRotateEmitOffset", {})) + Vector3(0, 0, float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0))))
-		center = _hit_origin(source, hit) + DungeonProjectile.orient(offset, facing)
-		hit_facing = hit_facing.rotated(Vector3.UP, yaw)
+	var transform_data = _frame_entity_transform(source, hit)
+	var center: Vector3 = transform_data.position
+	var hit_facing: Vector3 = transform_data.facing
 	hit["impact_origin"] = DungeonProjectile._array(center)
 	hit["impact_radius"] = maxf(width, length_value) * 0.5
 	for target in actors:
@@ -1652,9 +1802,9 @@ func _on_impact(hit: Dictionary, target: DungeonActor) -> void:
 			_queue_source_shakes(profile.get("source_feedback", {}).get("camera_shakes", []))
 		else:
 			target.hit_flash(float(profile.flash))
-			target.combat.apply_hit_stop(float(profile.stop))
+			target.combat.apply_hit_stop(float(profile.stop) * float(source_hit_stop_percent) / 100.0)
 			if source and not profile.ranged and int(hit.get("sequence", -1)) == source.combat._cast_sequence:
-				source.combat.apply_hit_stop(float(profile.stop), true)
+				source.combat.apply_hit_stop(float(profile.stop) * float(source_hit_stop_percent) / 100.0, true)
 			if damage > 0 and (profile.category != "continuous" or float(profile.distance) > 0): _apply_feedback(source, target, hit)
 			if profile.category == "explosion":
 				_blast(visual_source, hit, profile, vector(hit.get("impact_origin", hit.impact_position)))
@@ -1690,7 +1840,7 @@ func _blast(source: DungeonActor, hit: Dictionary, profile: Dictionary, point: V
 	_queue_impact_shake(profile, point)
 	presentation.explosion(source, point, profile)
 
-func _projectile(source: DungeonActor, hit: Dictionary) -> void:
+func _projectile(source: DungeonActor, hit: Dictionary) -> DungeonProjectile:
 	var state = _projectile_state_pool.pop_back() if not _projectile_state_pool.is_empty() else DungeonProjectile.new()
 	var target = _nearest_opponent(source)
 	var origin = _hit_origin(source, hit)
@@ -1706,6 +1856,7 @@ func _projectile(source: DungeonActor, hit: Dictionary) -> void:
 	state.target_key = str(target.combat.actor_key) if target else ""
 	for message in state.diagnostics: _diagnostic(message)
 	_add_projectile_visual(state, source)
+	return state
 
 func _add_projectile_visual(state: DungeonProjectile, source: DungeonActor) -> void:
 	state.hit["source_key"] = state.source_key
@@ -1905,6 +2056,7 @@ func _nearest_opponent(source: DungeonActor, from: Vector3 = Vector3.INF) -> Dun
 	return found
 
 func _find_motion_target(raw: Dictionary, source: DungeonActor) -> DungeonActor:
+	if source.is_player and int(runtime_settings.get("target_mode", 0)) == 2: return null
 	var found: DungeonActor
 	var radius = float(raw.get("SearchRadius", 0))
 	var distance = pow(radius if radius > 0 else 7.0, 2) if source.is_player else (radius * radius if radius > 0 else INF)
@@ -2116,7 +2268,7 @@ func _spawn_from_definition(owner: DungeonActor, definition: Dictionary, point: 
 		var origin = definition.duplicate(true)
 		origin["world_position"] = DungeonProjectile._array(point)
 		if ImpactProfiles.is_source_heavy(provenance, owner.combat): origin["_source_heavy"] = true
-		owner.combat.spawn_summon(id, origin)
+		owner.combat.spawn_summon(id, origin, "", provenance)
 
 func _dispose_summon(unit: Dictionary, trigger_end: bool) -> void:
 	var owner = _actor_by_key(unit.owner)
@@ -2152,7 +2304,7 @@ func transient_snapshot() -> Dictionary:
 		motion_states[str(actor.combat.actor_key)] = {"sequence": actor.combat._cast_sequence, "duration": actor.action_timeline_duration, "cursor": actor.action_cursor, "speed": actor.action_speed, "events": actor.action_motion.duplicate(true), "target": str(actor.action_target.combat.actor_key) if is_instance_valid(actor.action_target) else "", "facing": DungeonProjectile._array(actor.facing), "animation": str(actor.animation.current_animation) if actor.animation else "", "animation_position": actor.animation.current_animation_position if actor.animation else 0.0}
 		motion_states[str(actor.combat.actor_key)].merge({"born_position": DungeonProjectile._array(actor.born_position), "born_facing": DungeonProjectile._array(actor.born_facing), "field_center": DungeonProjectile._array(actor.field_center), "animation_state_speed": actor.animation_state_speed})
 	var source_stop := {"hits": _source_stop_hits.keys(), "register": _battle_scales.get("UnitStopFrame", {}).duplicate()}
-	return {"projectiles": bullets, "pending_attack_entities": pending_attack_entities.duplicate(true), "active_attack_entities": active_attack_entities.duplicate(true), "summons": units, "source_hit_stop": source_stop, "actor_serial": _actor_serial, "summon_serial": _summon_serial, "ground_loot": ground_loot.snapshot(), "action_motion": motion_states, "monster_spawn_queue": monster_spawn_queue.duplicate(true), "wave_spawns": wave_spawn_queue.duplicate(true), "wave_spawn_wait": _wave_spawn_wait, "wave_gate": _wave_gate_remaining, "wave_clear_wait": _wave_clear_remaining, "wave_final": _wave_final, "chest_trial": trial_room.snapshot(), "room_flow": {"stage": room_stage, "fight_type": room_fight_type, "remaining": _room_stage_wait, "entry_wave": _entry_wave.duplicate(true)}}
+	return {"projectiles": bullets, "pending_attack_entities": pending_attack_entities.duplicate(true), "active_attack_entities": active_attack_entities.duplicate(true), "summons": units, "source_hit_stop": source_stop, "actor_serial": _actor_serial, "summon_serial": _summon_serial, "ground_loot": ground_loot.snapshot(), "action_motion": motion_states, "monster_spawn_queue": monster_spawn_queue.duplicate(true), "wave_spawns": wave_spawn_queue.duplicate(true), "wave_spawn_wait": _wave_spawn_wait, "wave_gate": _wave_gate_remaining, "wave_clear_wait": _wave_clear_remaining, "wave_final": _wave_final, "chest_trial": trial_room.snapshot(), "room_flow": {"stage": room_stage, "fight_type": room_fight_type, "remaining": _room_stage_wait, "entry_wave": _entry_wave.duplicate(true), "defeated_count": defeated_count}}
 
 func restore_transients(snapshot: Dictionary) -> void:
 	pending_attack_entities.assign(snapshot.get("pending_attack_entities", []).duplicate(true))
@@ -2172,6 +2324,7 @@ func restore_transients(snapshot: Dictionary) -> void:
 		room_fight_type = str(room_flow.get("fight_type", room_fight_type))
 		_room_stage_wait = maxf(0.0, float(room_flow.get("remaining", 0)))
 		_entry_wave = room_flow.get("entry_wave", {}).duplicate(true)
+		defeated_count = maxi(0, int(room_flow.get("defeated_count", 0)))
 		if room_stage != "unmanaged": fighting = room_stage == "fighting"
 	monster_spawn_queue.assign(snapshot.get("monster_spawn_queue", []))
 	wave_spawn_queue.assign(snapshot.get("wave_spawns", []))
@@ -2248,6 +2401,11 @@ func _environment_trap(context: Dictionary) -> void:
 		actor.combat.confirm_direct_damage(previous, {"source_key": "environment", "emission": emission, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
 		if actor.combat.health <= 0: _die(actor)
 
+func _drop_reward_slime(actor: DungeonActor, event: String) -> void:
+	if actor.is_player or not systems or camp_training.active: return
+	for drop in systems.reward_slime_drops(actor.actor_id, event):
+		ground_loot.spawn(int(drop.id), actor.position, int(drop.amount), true)
+
 func _die(actor: DungeonActor) -> void:
 	if actor.get_meta("camp_training", false):
 		actor.combat.health = actor.combat.max_health
@@ -2292,15 +2450,30 @@ func _enemy_count() -> int:
 	return count
 
 func _damage_number(point: Vector3, amount: float, received: bool) -> void:
+	_spawn_number(point, amount, received, false)
+
+func _healing_number(point: Vector3, amount: float) -> void:
+	_spawn_number(point, amount, false, true)
+
+static func number_text(amount: float, mode: int, healing := false) -> String:
+	var value := str(int(amount))
+	if mode == 1:
+		if amount >= 1000000: value = ("%.1f" % (amount / 1000000.0)).trim_suffix(".0") + "M"
+		elif amount >= 1000: value = ("%.1f" % (amount / 1000.0)).trim_suffix(".0") + "K"
+	return ("+" if healing else "") + value
+
+func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool) -> void:
+	var mode := int(runtime_settings.get("healing_numbers" if healing else "damage_numbers", 0))
+	if mode == 2 or amount <= 0.0: return
 	var text: Label3D
 	if not _number_pool.is_empty(): text = _number_pool.pop_back()
 	elif _numbers.size() < FEEL.damage_number_budget: text = _make_damage_number()
 	else: text = _numbers.pop_front().node
-	text.text = str(int(amount))
-	text.modulate = Color("ff9b80") if received else Color("fff1a6")
+	text.text = number_text(amount, mode, healing)
+	text.modulate = Color("88f7ac") if healing else Color("ff9b80") if received else Color("fff1a6")
 	text.position = point
 	text.show()
-	_numbers.append({"node": text, "origin": point, "age": 0.0})
+	_numbers.append({"node": text, "origin": point, "age": 0.0, "amount": amount, "healing": healing})
 
 func _make_damage_number() -> Label3D:
 	var text := Label3D.new()

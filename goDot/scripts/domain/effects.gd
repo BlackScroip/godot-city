@@ -85,8 +85,7 @@ func instant(row: Dictionary, path: Array = []) -> void:
 		elif attr.begins_with("SelectLootRemainCount_"):
 			systems.queue_loot_reward(attr.trim_prefix("SelectLootRemainCount_"), amount)
 		elif attr == "PlayerMaxHpDownModifyValue":
-			run.max_health = maxf(1, float(run.max_health) + amount)
-			run.health = minf(float(run.health), float(run.max_health))
+			preload("res://scripts/domain/room_choices.gd").new(systems).adjust_max_health(amount)
 		elif attr == "SearchPoint": systems.add_search_points(amount)
 		elif not _empty(attr):
 			systems._add(run.counters, attr, amount)
@@ -130,6 +129,8 @@ func instant_buff(id: int, layers: int = 1) -> void:
 
 func dispatch(event: String, param1: String = "", param2: String = "", param3: String = "") -> void:
 	if not systems.profile.data.run.active: return
+	if systems.get("extra_challenges") != null:
+		systems.extra_challenges.record_event(event, param1, param2, param3)
 	if _event_depth >= 16:
 		_unknown("Ability event recursion exceeds 16")
 		return

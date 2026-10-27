@@ -1,0 +1,2915 @@
+{
+  "10000": {
+    "loot_id": 10000,
+    "ability_id": 10000,
+    "loot_type": "攻击宝石",
+    "effect_tags": [
+      1
+    ]
+  },
+  "10001": {
+    "loot_id": 10001,
+    "ability_id": 10001,
+    "loot_type": "攻击宝石",
+    "effect_tags": [
+      1
+    ]
+  },
+  "10002": {
+    "loot_id": 10002,
+    "ability_id": 10002,
+    "loot_type": "攻击宝石",
+    "effect_tags": [
+      1
+    ]
+  },
+  "10010": {
+    "loot_id": 10010,
+    "ability_id": 10010,
+    "loot_type": "生命宝石",
+    "effect_tags": [
+      3
+    ]
+  },
+  "10011": {
+    "loot_id": 10011,
+    "ability_id": 10011,
+    "loot_type": "生命宝石",
+    "effect_tags": [
+      3
+    ]
+  },
+  "10012": {
+    "loot_id": 10012,
+    "ability_id": 10012,
+    "loot_type": "生命宝石",
+    "effect_tags": [
+      3
+    ]
+  },
+  "10020": {
+    "loot_id": 10020,
+    "ability_id": 10020,
+    "loot_type": "防御宝石",
+    "effect_tags": [
+      2
+    ]
+  },
+  "10021": {
+    "loot_id": 10021,
+    "ability_id": 10021,
+    "loot_type": "防御宝石",
+    "effect_tags": [
+      2
+    ]
+  },
+  "10022": {
+    "loot_id": 10022,
+    "ability_id": 10022,
+    "loot_type": "防御宝石",
+    "effect_tags": [
+      2
+    ]
+  },
+  "10100": {
+    "loot_id": 10100,
+    "ability_id": 10100,
+    "loot_type": "生命药水",
+    "effect_tags": [
+      4
+    ]
+  },
+  "10101": {
+    "loot_id": 10101,
+    "ability_id": 10101,
+    "loot_type": "生命药水",
+    "effect_tags": [
+      4
+    ]
+  },
+  "10102": {
+    "loot_id": 10102,
+    "ability_id": 10102,
+    "loot_type": "生命药水",
+    "effect_tags": [
+      4
+    ]
+  },
+  "11001": {
+    "loot_id": 11001,
+    "ability_id": 11001,
+    "loot_type": "金币",
+    "effect_tags": [
+      19
+    ]
+  },
+  "11002": {
+    "loot_id": 11002,
+    "ability_id": 11002,
+    "loot_type": "金币",
+    "effect_tags": [
+      19
+    ]
+  },
+  "11003": {
+    "loot_id": 11003,
+    "ability_id": 11003,
+    "loot_type": "金币",
+    "effect_tags": [
+      19
+    ]
+  },
+  "11004": {
+    "loot_id": 11004,
+    "ability_id": 11004,
+    "loot_type": "金币",
+    "effect_tags": []
+  },
+  "11005": {
+    "loot_id": 11005,
+    "ability_id": 11005,
+    "loot_type": "金币",
+    "effect_tags": []
+  },
+  "11006": {
+    "loot_id": 11006,
+    "ability_id": 11006,
+    "loot_type": "金币",
+    "effect_tags": []
+  },
+  "11101": {
+    "loot_id": 11101,
+    "ability_id": 11101,
+    "loot_type": "魔力精华",
+    "effect_tags": [
+      20
+    ]
+  },
+  "11102": {
+    "loot_id": 11102,
+    "ability_id": 11102,
+    "loot_type": "魔力精华",
+    "effect_tags": [
+      20
+    ]
+  },
+  "11103": {
+    "loot_id": 11103,
+    "ability_id": 11103,
+    "loot_type": "魔力精华",
+    "effect_tags": [
+      20
+    ]
+  },
+  "11201": {
+    "loot_id": 11201,
+    "ability_id": 11201,
+    "loot_type": "矿石素材",
+    "effect_tags": []
+  },
+  "11202": {
+    "loot_id": 11202,
+    "ability_id": 11202,
+    "loot_type": "矿石素材",
+    "effect_tags": []
+  },
+  "11203": {
+    "loot_id": 11203,
+    "ability_id": 11203,
+    "loot_type": "矿石素材",
+    "effect_tags": []
+  },
+  "13101": {
+    "loot_id": 13101,
+    "ability_id": 13101,
+    "loot_type": "天赋卷轴",
+    "effect_tags": []
+  },
+  "13102": {
+    "loot_id": 13102,
+    "ability_id": 13102,
+    "loot_type": "天赋卷轴",
+    "effect_tags": []
+  },
+  "13103": {
+    "loot_id": 13103,
+    "ability_id": 13103,
+    "loot_type": "天赋卷轴",
+    "effect_tags": []
+  },
+  "14101": {
+    "loot_id": 14101,
+    "ability_id": 14101,
+    "loot_type": "遗物袋子",
+    "effect_tags": []
+  },
+  "14102": {
+    "loot_id": 14102,
+    "ability_id": 14102,
+    "loot_type": "遗物袋子",
+    "effect_tags": []
+  },
+  "14103": {
+    "loot_id": 14103,
+    "ability_id": 14103,
+    "loot_type": "遗物袋子",
+    "effect_tags": []
+  },
+  "15101": {
+    "loot_id": 15101,
+    "ability_id": 15101,
+    "loot_type": "调查点数",
+    "effect_tags": []
+  },
+  "15102": {
+    "loot_id": 15102,
+    "ability_id": 15102,
+    "loot_type": "调查点数",
+    "effect_tags": []
+  },
+  "15103": {
+    "loot_id": 15103,
+    "ability_id": 15103,
+    "loot_type": "调查点数",
+    "effect_tags": []
+  },
+  "16101": {
+    "loot_id": 16101,
+    "ability_id": 16101,
+    "loot_type": "护甲",
+    "effect_tags": [
+      8
+    ]
+  },
+  "16102": {
+    "loot_id": 16102,
+    "ability_id": 16102,
+    "loot_type": "护甲",
+    "effect_tags": [
+      8
+    ]
+  },
+  "16103": {
+    "loot_id": 16103,
+    "ability_id": 16103,
+    "loot_type": "护甲",
+    "effect_tags": [
+      8
+    ]
+  },
+  "20100": {
+    "loot_id": 20100,
+    "ability_id": 20100,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20101": {
+    "loot_id": 20101,
+    "ability_id": 20101,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      5
+    ]
+  },
+  "20102": {
+    "loot_id": 20102,
+    "ability_id": 20102,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      28
+    ]
+  },
+  "20103": {
+    "loot_id": 20103,
+    "ability_id": 20103,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "20104": {
+    "loot_id": 20104,
+    "ability_id": 20104,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20105": {
+    "loot_id": 20105,
+    "ability_id": 20105,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      7
+    ]
+  },
+  "20106": {
+    "loot_id": 20106,
+    "ability_id": 20106,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      7
+    ]
+  },
+  "20107": {
+    "loot_id": 20107,
+    "ability_id": 20107,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      7
+    ]
+  },
+  "20108": {
+    "loot_id": 20108,
+    "ability_id": 20108,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      7
+    ]
+  },
+  "20109": {
+    "loot_id": 20109,
+    "ability_id": 20109,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20110": {
+    "loot_id": 20110,
+    "ability_id": 20110,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20111": {
+    "loot_id": 20111,
+    "ability_id": 20111,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20112": {
+    "loot_id": 20112,
+    "ability_id": 20112,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20113": {
+    "loot_id": 20113,
+    "ability_id": 20113,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      10
+    ]
+  },
+  "20114": {
+    "loot_id": 20114,
+    "ability_id": 20114,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20115": {
+    "loot_id": 20115,
+    "ability_id": 20115,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20116": {
+    "loot_id": 20116,
+    "ability_id": 20116,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20117": {
+    "loot_id": 20117,
+    "ability_id": 20117,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20118": {
+    "loot_id": 20118,
+    "ability_id": 20118,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20119": {
+    "loot_id": 20119,
+    "ability_id": 20119,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "20120": {
+    "loot_id": 20120,
+    "ability_id": 20120,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "20121": {
+    "loot_id": 20121,
+    "ability_id": 20121,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20122": {
+    "loot_id": 20122,
+    "ability_id": 20122,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      21
+    ]
+  },
+  "20123": {
+    "loot_id": 20123,
+    "ability_id": 20123,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      21
+    ]
+  },
+  "20124": {
+    "loot_id": 20124,
+    "ability_id": 20124,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20125": {
+    "loot_id": 20125,
+    "ability_id": 20125,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      8
+    ]
+  },
+  "20126": {
+    "loot_id": 20126,
+    "ability_id": 20126,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      8
+    ]
+  },
+  "20127": {
+    "loot_id": 20127,
+    "ability_id": 20127,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      8
+    ]
+  },
+  "20128": {
+    "loot_id": 20128,
+    "ability_id": 20128,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20129": {
+    "loot_id": 20129,
+    "ability_id": 20129,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      5,
+      1
+    ]
+  },
+  "20130": {
+    "loot_id": 20130,
+    "ability_id": 20130,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      5,
+      28
+    ]
+  },
+  "20131": {
+    "loot_id": 20131,
+    "ability_id": 20131,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1,
+      28
+    ]
+  },
+  "20132": {
+    "loot_id": 20132,
+    "ability_id": 20132,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20133": {
+    "loot_id": 20133,
+    "ability_id": 20133,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      25
+    ]
+  },
+  "20134": {
+    "loot_id": 20134,
+    "ability_id": 20134,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20135": {
+    "loot_id": 20135,
+    "ability_id": 20135,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      25
+    ]
+  },
+  "20136": {
+    "loot_id": 20136,
+    "ability_id": 20136,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20137": {
+    "loot_id": 20137,
+    "ability_id": 20137,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      11
+    ]
+  },
+  "20138": {
+    "loot_id": 20138,
+    "ability_id": 20138,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20139": {
+    "loot_id": 20139,
+    "ability_id": 20139,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20140": {
+    "loot_id": 20140,
+    "ability_id": 20140,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20141": {
+    "loot_id": 20141,
+    "ability_id": 20141,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20142": {
+    "loot_id": 20142,
+    "ability_id": 20142,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20143": {
+    "loot_id": 20143,
+    "ability_id": 20143,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20144": {
+    "loot_id": 20144,
+    "ability_id": 20144,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      26
+    ]
+  },
+  "20145": {
+    "loot_id": 20145,
+    "ability_id": 20145,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20146": {
+    "loot_id": 20146,
+    "ability_id": 20146,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20147": {
+    "loot_id": 20147,
+    "ability_id": 20147,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20148": {
+    "loot_id": 20148,
+    "ability_id": 20148,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20149": {
+    "loot_id": 20149,
+    "ability_id": 20149,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "20150": {
+    "loot_id": 20150,
+    "ability_id": 20150,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20151": {
+    "loot_id": 20151,
+    "ability_id": 20151,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "20152": {
+    "loot_id": 20152,
+    "ability_id": 20152,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20153": {
+    "loot_id": 20153,
+    "ability_id": 20153,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      6
+    ]
+  },
+  "20154": {
+    "loot_id": 20154,
+    "ability_id": 20154,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      29
+    ]
+  },
+  "20155": {
+    "loot_id": 20155,
+    "ability_id": 20155,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      5,
+      28
+    ]
+  },
+  "20156": {
+    "loot_id": 20156,
+    "ability_id": 20156,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20157": {
+    "loot_id": 20157,
+    "ability_id": 20157,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24
+    ]
+  },
+  "20158": {
+    "loot_id": 20158,
+    "ability_id": 20158,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20159": {
+    "loot_id": 20159,
+    "ability_id": 20159,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      10
+    ]
+  },
+  "20160": {
+    "loot_id": 20160,
+    "ability_id": 20160,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      12,
+      13,
+      29
+    ]
+  },
+  "20161": {
+    "loot_id": 20161,
+    "ability_id": 20161,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "20162": {
+    "loot_id": 20162,
+    "ability_id": 20162,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "20163": {
+    "loot_id": 20163,
+    "ability_id": 20163,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "20164": {
+    "loot_id": 20164,
+    "ability_id": 20164,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20165": {
+    "loot_id": 20165,
+    "ability_id": 20165,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20166": {
+    "loot_id": 20166,
+    "ability_id": 20166,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "20170": {
+    "loot_id": 20170,
+    "ability_id": 20170,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20171": {
+    "loot_id": 20171,
+    "ability_id": 20171,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20176": {
+    "loot_id": 20176,
+    "ability_id": 20176,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20177": {
+    "loot_id": 20177,
+    "ability_id": 20177,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20178": {
+    "loot_id": 20178,
+    "ability_id": 20178,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      11
+    ]
+  },
+  "20179": {
+    "loot_id": 20179,
+    "ability_id": 20179,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "20188": {
+    "loot_id": 20188,
+    "ability_id": 20188,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20189": {
+    "loot_id": 20189,
+    "ability_id": 20189,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20190": {
+    "loot_id": 20190,
+    "ability_id": 20190,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20191": {
+    "loot_id": 20191,
+    "ability_id": 20191,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20192": {
+    "loot_id": 20192,
+    "ability_id": 20192,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20193": {
+    "loot_id": 20193,
+    "ability_id": 20193,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20194": {
+    "loot_id": 20194,
+    "ability_id": 20194,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "20195": {
+    "loot_id": 20195,
+    "ability_id": 20195,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20196": {
+    "loot_id": 20196,
+    "ability_id": 20196,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20197": {
+    "loot_id": 20197,
+    "ability_id": 20197,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20198": {
+    "loot_id": 20198,
+    "ability_id": 20198,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20199": {
+    "loot_id": 20199,
+    "ability_id": 20199,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20200": {
+    "loot_id": 20200,
+    "ability_id": 20200,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20210": {
+    "loot_id": 20210,
+    "ability_id": 20210,
+    "loot_type": "随从",
+    "effect_tags": [
+      12
+    ]
+  },
+  "20211": {
+    "loot_id": 20211,
+    "ability_id": 20211,
+    "loot_type": "随从",
+    "effect_tags": [
+      12
+    ]
+  },
+  "20212": {
+    "loot_id": 20212,
+    "ability_id": 20212,
+    "loot_type": "随从",
+    "effect_tags": [
+      12
+    ]
+  },
+  "20220": {
+    "loot_id": 20220,
+    "ability_id": 20220,
+    "loot_type": "随从",
+    "effect_tags": []
+  },
+  "20221": {
+    "loot_id": 20221,
+    "ability_id": 20221,
+    "loot_type": "随从",
+    "effect_tags": [
+      13
+    ]
+  },
+  "20222": {
+    "loot_id": 20222,
+    "ability_id": 20222,
+    "loot_type": "随从",
+    "effect_tags": [
+      13
+    ]
+  },
+  "20230": {
+    "loot_id": 20230,
+    "ability_id": 20230,
+    "loot_type": "随从",
+    "effect_tags": []
+  },
+  "20231": {
+    "loot_id": 20231,
+    "ability_id": 20231,
+    "loot_type": "随从",
+    "effect_tags": [
+      14
+    ]
+  },
+  "20232": {
+    "loot_id": 20232,
+    "ability_id": 20232,
+    "loot_type": "随从",
+    "effect_tags": [
+      14
+    ]
+  },
+  "20240": {
+    "loot_id": 20240,
+    "ability_id": 20240,
+    "loot_type": "随从",
+    "effect_tags": [
+      16
+    ]
+  },
+  "20241": {
+    "loot_id": 20241,
+    "ability_id": 20241,
+    "loot_type": "随从",
+    "effect_tags": [
+      16
+    ]
+  },
+  "20242": {
+    "loot_id": 20242,
+    "ability_id": 20242,
+    "loot_type": "随从",
+    "effect_tags": [
+      16
+    ]
+  },
+  "20250": {
+    "loot_id": 20250,
+    "ability_id": 20250,
+    "loot_type": "随从",
+    "effect_tags": []
+  },
+  "20251": {
+    "loot_id": 20251,
+    "ability_id": 20251,
+    "loot_type": "随从",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20252": {
+    "loot_id": 20252,
+    "ability_id": 20252,
+    "loot_type": "随从",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20255": {
+    "loot_id": 20255,
+    "ability_id": 20255,
+    "loot_type": "随从",
+    "effect_tags": [
+      34
+    ]
+  },
+  "20256": {
+    "loot_id": 20256,
+    "ability_id": 20256,
+    "loot_type": "随从",
+    "effect_tags": [
+      34
+    ]
+  },
+  "20257": {
+    "loot_id": 20257,
+    "ability_id": 20257,
+    "loot_type": "随从",
+    "effect_tags": [
+      24,
+      34
+    ]
+  },
+  "20260": {
+    "loot_id": 20260,
+    "ability_id": 20260,
+    "loot_type": "随从",
+    "effect_tags": [
+      6,
+      22
+    ]
+  },
+  "20261": {
+    "loot_id": 20261,
+    "ability_id": 20261,
+    "loot_type": "随从",
+    "effect_tags": [
+      6,
+      29,
+      22
+    ]
+  },
+  "20262": {
+    "loot_id": 20262,
+    "ability_id": 20262,
+    "loot_type": "随从",
+    "effect_tags": [
+      6,
+      29,
+      22
+    ]
+  },
+  "20270": {
+    "loot_id": 20270,
+    "ability_id": 20270,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      12
+    ]
+  },
+  "20280": {
+    "loot_id": 20280,
+    "ability_id": 20280,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      12,
+      16
+    ]
+  },
+  "20290": {
+    "loot_id": 20290,
+    "ability_id": 20290,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      13,
+      16
+    ]
+  },
+  "20300": {
+    "loot_id": 20300,
+    "ability_id": 20300,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      13,
+      14
+    ]
+  },
+  "20310": {
+    "loot_id": 20310,
+    "ability_id": 20310,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      6,
+      22,
+      29
+    ]
+  },
+  "20320": {
+    "loot_id": 20320,
+    "ability_id": 20320,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      33,
+      12
+    ]
+  },
+  "20330": {
+    "loot_id": 20330,
+    "ability_id": 20330,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      14,
+      33
+    ]
+  },
+  "20340": {
+    "loot_id": 20340,
+    "ability_id": 20340,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      16,
+      34
+    ]
+  },
+  "20350": {
+    "loot_id": 20350,
+    "ability_id": 20350,
+    "loot_type": "高级随从",
+    "effect_tags": [
+      13,
+      34
+    ]
+  },
+  "20400": {
+    "loot_id": 20400,
+    "ability_id": 20400,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "20401": {
+    "loot_id": 20401,
+    "ability_id": 20401,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "20402": {
+    "loot_id": 20402,
+    "ability_id": 20402,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20403": {
+    "loot_id": 20403,
+    "ability_id": 20403,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20404": {
+    "loot_id": 20404,
+    "ability_id": 20404,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20405": {
+    "loot_id": 20405,
+    "ability_id": 20405,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1,
+      7
+    ]
+  },
+  "20406": {
+    "loot_id": 20406,
+    "ability_id": 20406,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "20407": {
+    "loot_id": 20407,
+    "ability_id": 20407,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      26,
+      27
+    ]
+  },
+  "20408": {
+    "loot_id": 20408,
+    "ability_id": 20408,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20409": {
+    "loot_id": 20409,
+    "ability_id": 20409,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20410": {
+    "loot_id": 20410,
+    "ability_id": 20410,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "20411": {
+    "loot_id": 20411,
+    "ability_id": 20411,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20412": {
+    "loot_id": 20412,
+    "ability_id": 20412,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20413": {
+    "loot_id": 20413,
+    "ability_id": 20413,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20414": {
+    "loot_id": 20414,
+    "ability_id": 20414,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20415": {
+    "loot_id": 20415,
+    "ability_id": 20415,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "20416": {
+    "loot_id": 20416,
+    "ability_id": 20416,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      16,
+      18
+    ]
+  },
+  "20417": {
+    "loot_id": 20417,
+    "ability_id": 20417,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20418": {
+    "loot_id": 20418,
+    "ability_id": 20418,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "20419": {
+    "loot_id": 20419,
+    "ability_id": 20419,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20420": {
+    "loot_id": 20420,
+    "ability_id": 20420,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20421": {
+    "loot_id": 20421,
+    "ability_id": 20421,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      3,
+      1
+    ]
+  },
+  "20422": {
+    "loot_id": 20422,
+    "ability_id": 20422,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20423": {
+    "loot_id": 20423,
+    "ability_id": 20423,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "20424": {
+    "loot_id": 20424,
+    "ability_id": 20424,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20425": {
+    "loot_id": 20425,
+    "ability_id": 20425,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1,
+      2,
+      3
+    ]
+  },
+  "20426": {
+    "loot_id": 20426,
+    "ability_id": 20426,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20427": {
+    "loot_id": 20427,
+    "ability_id": 20427,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20428": {
+    "loot_id": 20428,
+    "ability_id": 20428,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20429": {
+    "loot_id": 20429,
+    "ability_id": 20429,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "20430": {
+    "loot_id": 20430,
+    "ability_id": 20430,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20431": {
+    "loot_id": 20431,
+    "ability_id": 20431,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20432": {
+    "loot_id": 20432,
+    "ability_id": 20432,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20433": {
+    "loot_id": 20433,
+    "ability_id": 20433,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "20434": {
+    "loot_id": 20434,
+    "ability_id": 20434,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20435": {
+    "loot_id": 20435,
+    "ability_id": 20435,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      19
+    ]
+  },
+  "20436": {
+    "loot_id": 20436,
+    "ability_id": 20436,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20437": {
+    "loot_id": 20437,
+    "ability_id": 20437,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      6,
+      7
+    ]
+  },
+  "20438": {
+    "loot_id": 20438,
+    "ability_id": 20438,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20439": {
+    "loot_id": 20439,
+    "ability_id": 20439,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20440": {
+    "loot_id": 20440,
+    "ability_id": 20440,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      22,
+      23
+    ]
+  },
+  "20441": {
+    "loot_id": 20441,
+    "ability_id": 20441,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20442": {
+    "loot_id": 20442,
+    "ability_id": 20442,
+    "loot_type": "旧日遗物",
+    "effect_tags": []
+  },
+  "20443": {
+    "loot_id": 20443,
+    "ability_id": 20443,
+    "loot_type": "旧日遗物",
+    "effect_tags": [
+      28
+    ]
+  },
+  "20501": {
+    "loot_id": 20501,
+    "ability_id": 20501,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22
+    ]
+  },
+  "20502": {
+    "loot_id": 20502,
+    "ability_id": 20502,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22
+    ]
+  },
+  "20503": {
+    "loot_id": 20503,
+    "ability_id": 20503,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22,
+      5
+    ]
+  },
+  "20504": {
+    "loot_id": 20504,
+    "ability_id": 20504,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22,
+      6
+    ]
+  },
+  "20511": {
+    "loot_id": 20511,
+    "ability_id": 20511,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24,
+      28
+    ]
+  },
+  "20512": {
+    "loot_id": 20512,
+    "ability_id": 20512,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24,
+      5
+    ]
+  },
+  "20513": {
+    "loot_id": 20513,
+    "ability_id": 20513,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24
+    ]
+  },
+  "20514": {
+    "loot_id": 20514,
+    "ability_id": 20514,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      10
+    ]
+  },
+  "20521": {
+    "loot_id": 20521,
+    "ability_id": 20521,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      23,
+      2
+    ]
+  },
+  "20522": {
+    "loot_id": 20522,
+    "ability_id": 20522,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      23
+    ]
+  },
+  "20523": {
+    "loot_id": 20523,
+    "ability_id": 20523,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      9
+    ]
+  },
+  "20524": {
+    "loot_id": 20524,
+    "ability_id": 20524,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      23
+    ]
+  },
+  "20531": {
+    "loot_id": 20531,
+    "ability_id": 20531,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      25
+    ]
+  },
+  "20532": {
+    "loot_id": 20532,
+    "ability_id": 20532,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      25
+    ]
+  },
+  "20533": {
+    "loot_id": 20533,
+    "ability_id": 20533,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      25
+    ]
+  },
+  "20534": {
+    "loot_id": 20534,
+    "ability_id": 20534,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      5,
+      28
+    ]
+  },
+  "20541": {
+    "loot_id": 20541,
+    "ability_id": 20541,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      26,
+      28
+    ]
+  },
+  "20542": {
+    "loot_id": 20542,
+    "ability_id": 20542,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      9
+    ]
+  },
+  "20543": {
+    "loot_id": 20543,
+    "ability_id": 20543,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      26
+    ]
+  },
+  "20544": {
+    "loot_id": 20544,
+    "ability_id": 20544,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      26,
+      5
+    ]
+  },
+  "20551": {
+    "loot_id": 20551,
+    "ability_id": 20551,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20552": {
+    "loot_id": 20552,
+    "ability_id": 20552,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20553": {
+    "loot_id": 20553,
+    "ability_id": 20553,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20554": {
+    "loot_id": 20554,
+    "ability_id": 20554,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20561": {
+    "loot_id": 20561,
+    "ability_id": 20561,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      32
+    ]
+  },
+  "20562": {
+    "loot_id": 20562,
+    "ability_id": 20562,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      32
+    ]
+  },
+  "20563": {
+    "loot_id": 20563,
+    "ability_id": 20563,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      32
+    ]
+  },
+  "20564": {
+    "loot_id": 20564,
+    "ability_id": 20564,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      32
+    ]
+  },
+  "21111": {
+    "loot_id": 21111,
+    "ability_id": 21111,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "21112": {
+    "loot_id": 21112,
+    "ability_id": 21112,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "21113": {
+    "loot_id": 21113,
+    "ability_id": 21113,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "21114": {
+    "loot_id": 21114,
+    "ability_id": 21114,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "21121": {
+    "loot_id": 21121,
+    "ability_id": 21121,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22
+    ]
+  },
+  "21122": {
+    "loot_id": 21122,
+    "ability_id": 21122,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22
+    ]
+  },
+  "21123": {
+    "loot_id": 21123,
+    "ability_id": 21123,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "21124": {
+    "loot_id": 21124,
+    "ability_id": 21124,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      5,
+      28,
+      22
+    ]
+  },
+  "21131": {
+    "loot_id": 21131,
+    "ability_id": 21131,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24,
+      25,
+      23
+    ]
+  },
+  "21132": {
+    "loot_id": 21132,
+    "ability_id": 21132,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "21133": {
+    "loot_id": 21133,
+    "ability_id": 21133,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "21134": {
+    "loot_id": 21134,
+    "ability_id": 21134,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "21141": {
+    "loot_id": 21141,
+    "ability_id": 21141,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      5
+    ]
+  },
+  "21142": {
+    "loot_id": 21142,
+    "ability_id": 21142,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "21143": {
+    "loot_id": 21143,
+    "ability_id": 21143,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "21144": {
+    "loot_id": 21144,
+    "ability_id": 21144,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "21151": {
+    "loot_id": 21151,
+    "ability_id": 21151,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "21152": {
+    "loot_id": 21152,
+    "ability_id": 21152,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "21153": {
+    "loot_id": 21153,
+    "ability_id": 21153,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      2
+    ]
+  },
+  "21154": {
+    "loot_id": 21154,
+    "ability_id": 21154,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      9
+    ]
+  },
+  "21161": {
+    "loot_id": 21161,
+    "ability_id": 21161,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      11
+    ]
+  },
+  "21162": {
+    "loot_id": 21162,
+    "ability_id": 21162,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "21163": {
+    "loot_id": 21163,
+    "ability_id": 21163,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "21164": {
+    "loot_id": 21164,
+    "ability_id": 21164,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      30
+    ]
+  },
+  "21171": {
+    "loot_id": 21171,
+    "ability_id": 21171,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "21172": {
+    "loot_id": 21172,
+    "ability_id": 21172,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "21173": {
+    "loot_id": 21173,
+    "ability_id": 21173,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "21174": {
+    "loot_id": 21174,
+    "ability_id": 21174,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      22
+    ]
+  },
+  "21180": {
+    "loot_id": 21180,
+    "ability_id": 21180,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "21181": {
+    "loot_id": 21181,
+    "ability_id": 21181,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "21182": {
+    "loot_id": 21182,
+    "ability_id": 21182,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "21183": {
+    "loot_id": 21183,
+    "ability_id": 21183,
+    "loot_type": "普通遗物",
+    "effect_tags": []
+  },
+  "22011": {
+    "loot_id": 22011,
+    "ability_id": 22011,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22012": {
+    "loot_id": 22012,
+    "ability_id": 22012,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "22021": {
+    "loot_id": 22021,
+    "ability_id": 22021,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22022": {
+    "loot_id": 22022,
+    "ability_id": 22022,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      8
+    ]
+  },
+  "22031": {
+    "loot_id": 22031,
+    "ability_id": 22031,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22032": {
+    "loot_id": 22032,
+    "ability_id": 22032,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "22041": {
+    "loot_id": 22041,
+    "ability_id": 22041,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22042": {
+    "loot_id": 22042,
+    "ability_id": 22042,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "22051": {
+    "loot_id": 22051,
+    "ability_id": 22051,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22052": {
+    "loot_id": 22052,
+    "ability_id": 22052,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "22061": {
+    "loot_id": 22061,
+    "ability_id": 22061,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22062": {
+    "loot_id": 22062,
+    "ability_id": 22062,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      10
+    ]
+  },
+  "22071": {
+    "loot_id": 22071,
+    "ability_id": 22071,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22072": {
+    "loot_id": 22072,
+    "ability_id": 22072,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      3
+    ]
+  },
+  "22081": {
+    "loot_id": 22081,
+    "ability_id": 22081,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22082": {
+    "loot_id": 22082,
+    "ability_id": 22082,
+    "loot_type": "净化遗物",
+    "effect_tags": []
+  },
+  "22091": {
+    "loot_id": 22091,
+    "ability_id": 22091,
+    "loot_type": "诅咒遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "22092": {
+    "loot_id": 22092,
+    "ability_id": 22092,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "22101": {
+    "loot_id": 22101,
+    "ability_id": 22101,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22102": {
+    "loot_id": 22102,
+    "ability_id": 22102,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "22111": {
+    "loot_id": 22111,
+    "ability_id": 22111,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22112": {
+    "loot_id": 22112,
+    "ability_id": 22112,
+    "loot_type": "净化遗物",
+    "effect_tags": []
+  },
+  "22121": {
+    "loot_id": 22121,
+    "ability_id": 22121,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22122": {
+    "loot_id": 22122,
+    "ability_id": 22122,
+    "loot_type": "净化遗物",
+    "effect_tags": []
+  },
+  "22131": {
+    "loot_id": 22131,
+    "ability_id": 22131,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22132": {
+    "loot_id": 22132,
+    "ability_id": 22132,
+    "loot_type": "净化遗物",
+    "effect_tags": []
+  },
+  "22141": {
+    "loot_id": 22141,
+    "ability_id": 22141,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22142": {
+    "loot_id": 22142,
+    "ability_id": 22142,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      26,
+      27
+    ]
+  },
+  "22151": {
+    "loot_id": 22151,
+    "ability_id": 22151,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22152": {
+    "loot_id": 22152,
+    "ability_id": 22152,
+    "loot_type": "净化遗物",
+    "effect_tags": []
+  },
+  "22161": {
+    "loot_id": 22161,
+    "ability_id": 22161,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22162": {
+    "loot_id": 22162,
+    "ability_id": 22162,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "22171": {
+    "loot_id": 22171,
+    "ability_id": 22171,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22172": {
+    "loot_id": 22172,
+    "ability_id": 22172,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      10
+    ]
+  },
+  "22181": {
+    "loot_id": 22181,
+    "ability_id": 22181,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22182": {
+    "loot_id": 22182,
+    "ability_id": 22182,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "22191": {
+    "loot_id": 22191,
+    "ability_id": 22191,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22192": {
+    "loot_id": 22192,
+    "ability_id": 22192,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      1,
+      4
+    ]
+  },
+  "22201": {
+    "loot_id": 22201,
+    "ability_id": 22201,
+    "loot_type": "诅咒遗物",
+    "effect_tags": []
+  },
+  "22202": {
+    "loot_id": 22202,
+    "ability_id": 22202,
+    "loot_type": "净化遗物",
+    "effect_tags": [
+      11
+    ]
+  },
+  "23021": {
+    "loot_id": 23021,
+    "ability_id": 23021,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "23022": {
+    "loot_id": 23022,
+    "ability_id": 23022,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "23023": {
+    "loot_id": 23023,
+    "ability_id": 23023,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "23024": {
+    "loot_id": 23024,
+    "ability_id": 23024,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      20
+    ]
+  },
+  "23030": {
+    "loot_id": 23030,
+    "ability_id": 23030,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      30
+    ]
+  },
+  "23031": {
+    "loot_id": 23031,
+    "ability_id": 23031,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      30
+    ]
+  },
+  "23032": {
+    "loot_id": 23032,
+    "ability_id": 23032,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      30
+    ]
+  },
+  "23033": {
+    "loot_id": 23033,
+    "ability_id": 23033,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      30
+    ]
+  },
+  "23040": {
+    "loot_id": 23040,
+    "ability_id": 23040,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "23041": {
+    "loot_id": 23041,
+    "ability_id": 23041,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23042": {
+    "loot_id": 23042,
+    "ability_id": 23042,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      8
+    ]
+  },
+  "23043": {
+    "loot_id": 23043,
+    "ability_id": 23043,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23050": {
+    "loot_id": 23050,
+    "ability_id": 23050,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "23051": {
+    "loot_id": 23051,
+    "ability_id": 23051,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1,
+      3
+    ]
+  },
+  "23052": {
+    "loot_id": 23052,
+    "ability_id": 23052,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23053": {
+    "loot_id": 23053,
+    "ability_id": 23053,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23060": {
+    "loot_id": 23060,
+    "ability_id": 23060,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      13
+    ]
+  },
+  "23061": {
+    "loot_id": 23061,
+    "ability_id": 23061,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23062": {
+    "loot_id": 23062,
+    "ability_id": 23062,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      13
+    ]
+  },
+  "23063": {
+    "loot_id": 23063,
+    "ability_id": 23063,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      11
+    ]
+  },
+  "23070": {
+    "loot_id": 23070,
+    "ability_id": 23070,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      18
+    ]
+  },
+  "23071": {
+    "loot_id": 23071,
+    "ability_id": 23071,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "23072": {
+    "loot_id": 23072,
+    "ability_id": 23072,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      8
+    ]
+  },
+  "23073": {
+    "loot_id": 23073,
+    "ability_id": 23073,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      18
+    ]
+  },
+  "23080": {
+    "loot_id": 23080,
+    "ability_id": 23080,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      12
+    ]
+  },
+  "23081": {
+    "loot_id": 23081,
+    "ability_id": 23081,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      12
+    ]
+  },
+  "23082": {
+    "loot_id": 23082,
+    "ability_id": 23082,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "23083": {
+    "loot_id": 23083,
+    "ability_id": 23083,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      12
+    ]
+  },
+  "23090": {
+    "loot_id": 23090,
+    "ability_id": 23090,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23091": {
+    "loot_id": 23091,
+    "ability_id": 23091,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      29
+    ]
+  },
+  "23092": {
+    "loot_id": 23092,
+    "ability_id": 23092,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23093": {
+    "loot_id": 23093,
+    "ability_id": 23093,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23100": {
+    "loot_id": 23100,
+    "ability_id": 23100,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      14
+    ]
+  },
+  "23101": {
+    "loot_id": 23101,
+    "ability_id": 23101,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      14
+    ]
+  },
+  "23102": {
+    "loot_id": 23102,
+    "ability_id": 23102,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1,
+      6
+    ]
+  },
+  "23103": {
+    "loot_id": 23103,
+    "ability_id": 23103,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      28
+    ]
+  },
+  "23110": {
+    "loot_id": 23110,
+    "ability_id": 23110,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      17
+    ]
+  },
+  "23111": {
+    "loot_id": 23111,
+    "ability_id": 23111,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23112": {
+    "loot_id": 23112,
+    "ability_id": 23112,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      4
+    ]
+  },
+  "23113": {
+    "loot_id": 23113,
+    "ability_id": 23113,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      17
+    ]
+  },
+  "23120": {
+    "loot_id": 23120,
+    "ability_id": 23120,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "23121": {
+    "loot_id": 23121,
+    "ability_id": 23121,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "23122": {
+    "loot_id": 23122,
+    "ability_id": 23122,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      27
+    ]
+  },
+  "23123": {
+    "loot_id": 23123,
+    "ability_id": 23123,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      6
+    ]
+  },
+  "23124": {
+    "loot_id": 23124,
+    "ability_id": 23124,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      16
+    ]
+  },
+  "23130": {
+    "loot_id": 23130,
+    "ability_id": 23130,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      15
+    ]
+  },
+  "23131": {
+    "loot_id": 23131,
+    "ability_id": 23131,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      15
+    ]
+  },
+  "23132": {
+    "loot_id": 23132,
+    "ability_id": 23132,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      15
+    ]
+  },
+  "23133": {
+    "loot_id": 23133,
+    "ability_id": 23133,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      15
+    ]
+  },
+  "23140": {
+    "loot_id": 23140,
+    "ability_id": 23140,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "23141": {
+    "loot_id": 23141,
+    "ability_id": 23141,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      5,
+      6
+    ]
+  },
+  "23142": {
+    "loot_id": 23142,
+    "ability_id": 23142,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23143": {
+    "loot_id": 23143,
+    "ability_id": 23143,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      28
+    ]
+  },
+  "23144": {
+    "loot_id": 23144,
+    "ability_id": 23144,
+    "loot_type": "套装遗物",
+    "effect_tags": []
+  },
+  "23150": {
+    "loot_id": 23150,
+    "ability_id": 23150,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "23151": {
+    "loot_id": 23151,
+    "ability_id": 23151,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23152": {
+    "loot_id": 23152,
+    "ability_id": 23152,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      9
+    ]
+  },
+  "23153": {
+    "loot_id": 23153,
+    "ability_id": 23153,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      28,
+      10
+    ]
+  },
+  "20571": {
+    "loot_id": 20571,
+    "ability_id": 20571,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "20572": {
+    "loot_id": 20572,
+    "ability_id": 20572,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      32,
+      1
+    ]
+  },
+  "20573": {
+    "loot_id": 20573,
+    "ability_id": 20573,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      32,
+      3
+    ]
+  },
+  "20574": {
+    "loot_id": 20574,
+    "ability_id": 20574,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      32,
+      5
+    ]
+  },
+  "20581": {
+    "loot_id": 20581,
+    "ability_id": 20581,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20582": {
+    "loot_id": 20582,
+    "ability_id": 20582,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20583": {
+    "loot_id": 20583,
+    "ability_id": 20583,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20584": {
+    "loot_id": 20584,
+    "ability_id": 20584,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23154": {
+    "loot_id": 23154,
+    "ability_id": 23154,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      1,
+      2
+    ]
+  },
+  "24001": {
+    "loot_id": 24001,
+    "ability_id": 24001,
+    "loot_type": "怪物支援通用遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "24002": {
+    "loot_id": 24002,
+    "ability_id": 24002,
+    "loot_type": "怪物支援通用遗物",
+    "effect_tags": []
+  },
+  "24003": {
+    "loot_id": 24003,
+    "ability_id": 24003,
+    "loot_type": "怪物支援通用遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "24004": {
+    "loot_id": 24004,
+    "ability_id": 24004,
+    "loot_type": "怪物支援通用遗物",
+    "effect_tags": []
+  },
+  "24005": {
+    "loot_id": 24005,
+    "ability_id": 24005,
+    "loot_type": "怪物支援通用遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "24006": {
+    "loot_id": 24006,
+    "ability_id": 24006,
+    "loot_type": "怪物支援通用遗物",
+    "effect_tags": [
+      31
+    ]
+  },
+  "20600": {
+    "loot_id": 20600,
+    "ability_id": 20600,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      5
+    ]
+  },
+  "20601": {
+    "loot_id": 20601,
+    "ability_id": 20601,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20602": {
+    "loot_id": 20602,
+    "ability_id": 20602,
+    "loot_type": "普通遗物",
+    "effect_tags": [
+      26
+    ]
+  },
+  "23160": {
+    "loot_id": 23160,
+    "ability_id": 23160,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      33
+    ]
+  },
+  "23161": {
+    "loot_id": 23161,
+    "ability_id": 23161,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      33
+    ]
+  },
+  "23162": {
+    "loot_id": 23162,
+    "ability_id": 23162,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      33
+    ]
+  },
+  "23163": {
+    "loot_id": 23163,
+    "ability_id": 23163,
+    "loot_type": "强化遗物",
+    "effect_tags": []
+  },
+  "23164": {
+    "loot_id": 23164,
+    "ability_id": 23164,
+    "loot_type": "强化遗物",
+    "effect_tags": [
+      1
+    ]
+  },
+  "20610": {
+    "loot_id": 20610,
+    "ability_id": 20610,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24
+    ]
+  },
+  "20611": {
+    "loot_id": 20611,
+    "ability_id": 20611,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24
+    ]
+  },
+  "20612": {
+    "loot_id": 20612,
+    "ability_id": 20612,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24
+    ]
+  },
+  "20613": {
+    "loot_id": 20613,
+    "ability_id": 20613,
+    "loot_type": "套装遗物",
+    "effect_tags": [
+      24,
+      28
+    ]
+  },
+  "20265": {
+    "loot_id": 20265,
+    "ability_id": 20265,
+    "loot_type": "随从",
+    "effect_tags": [
+      33
+    ]
+  },
+  "20266": {
+    "loot_id": 20266,
+    "ability_id": 20266,
+    "loot_type": "随从",
+    "effect_tags": [
+      33
+    ]
+  },
+  "20267": {
+    "loot_id": 20267,
+    "ability_id": 20267,
+    "loot_type": "随从",
+    "effect_tags": [
+      33
+    ]
+  }
+}

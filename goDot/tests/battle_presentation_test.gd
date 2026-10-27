@@ -57,7 +57,7 @@ func _run() -> void:
 	var hp_before: float = combat.health
 	intro.begin(world, boss, "赤炎狼王·布伽鲁")
 	for frame in 130: intro._process(1.0 / 60.0)
-	check(intro.active and world.paused and intro.visible, "Boss entry pauses combat and displays presentation")
+	check(intro.active and world.boss_show_active and not world.paused and intro.visible, "Boss entry locks player controls while battle remains live")
 	check(boss.combat.current_action == action_before and boss.combat.action_elapsed == clock_before and combat.health == hp_before, "Visual entry cannot advance attacks or inflict damage")
 	var elapsed_before: float = intro.elapsed
 	world._background = true
@@ -78,11 +78,15 @@ func _run() -> void:
 			await process_frame
 			await RenderingServer.frame_post_draw
 			check(frame.get_data() != root.get_texture().get_image().get_data(), "Rendered boss pose changes at %s" % dimensions)
-	intro.skip.pressed.emit()
-	check(not intro.active and not intro.visible and world.camera.transform.is_equal_approx(camera_before), "Skip restores camera and closes overlay")
+	intro.skip.button_pressed = true
+	check(intro.active and world.simulation_scale == 3.0, "Source skip toggle accelerates the entry instead of closing it")
+	intro.finish()
+	check(not intro.active and not intro.visible and world.camera.transform.is_equal_approx(camera_before) and world.simulation_scale == 1.0, "Cancellation restores camera and speed")
+	intro.set_skip_preference(false)
 	intro.begin(world, boss, "赤炎狼王·布伽鲁")
-	intro._process(intro.duration + 0.1)
+	intro._process(intro.duration + 1.1)
 	check(not intro.active and world.camera.transform.is_equal_approx(camera_before), "Natural completion restores the camera")
+	intro.finish()
 	tally.record(hit, "player")
 	hud.battle_readout.show()
 	hud.battle_readout.update_values(tally, boss, "赤炎狼王·布伽鲁")

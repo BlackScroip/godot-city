@@ -9,7 +9,7 @@ func _run() -> void:
 	world.presentation.audio_enabled = false
 	world.low_effects = true
 	var audit: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://reports/boss-ability-source.json"))
-	var ids: Array = audit.get("reachable_ids", {}).get("summon", [])
+	var ids: Array = audit.get("fresh_source_parity", {}).get("closure_ids", {}).get("summon", [])
 	_check(bool(audit.get("passed", false)) and ids.size() >= 134, "Source audit provides the complete current-APK Boss summon closure")
 	for id in ids:
 		_reset()

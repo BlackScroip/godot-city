@@ -11,13 +11,7 @@ var back_button: Button
 var heading: Label
 var toolbar: HBoxContainer
 
-const PALETTES = {
-	1: [Color("cdd1d6"), Color("f0f0ef"), Color("777e86"), Color("515a62")],
-	2: [Color("abc99b"), Color("e6f0e7"), Color("729660"), Color("47662c")],
-	3: [Color("93d1f2"), Color("e5f2f5"), Color("639fc0"), Color("236588")],
-	4: [Color("c8afe0"), Color("f0eaf7"), Color("9a7aba"), Color("71518d")],
-	5: [Color("e9cc89"), Color("faf2d9"), Color("b19550"), Color("8b6b2f")]
-}
+const Palette = preload("res://scripts/presentation/choice_palette.gd")
 
 func configure(page: DungeonMenuPage, rows: Array) -> void:
 	host = page
@@ -75,11 +69,15 @@ func _tool_button(text: String, icon: String, hint: String) -> Button:
 
 func _build_card(row: Dictionary) -> void:
 	var index = parts.size()
-	var palette: Array = PALETTES[clampi(int(row.get("rarity", 3)), 1, 5)]
+	var rare = Palette.rarity(int(row.target_level)) if row.has("target_level") else clampi(int(row.get("rarity", 3)), 1, 5)
+	var loot_type = row.get("loot_type", "")
+	var cursed = Palette.is_curse(loot_type)
 	var panel = preload("res://scripts/presentation/talent_card.gd").new()
-	panel.fill_top = palette[0]
-	panel.fill_bottom = palette[1]
-	panel.accent = palette[2]
+	panel.configure(rare, loot_type)
+	var marked = _is_marked(row)
+	panel.set_meta("talent_marked", marked)
+	if marked:
+		panel.tooltip_text = "已标记天赋"
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	panel.focus_mode = Control.FOCUS_ALL
 	panel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -97,19 +95,34 @@ func _build_card(row: Dictionary) -> void:
 	stack.add_child(center)
 	var icon_frame = PanelContainer.new()
 	icon_frame.mouse_filter = Control.MOUSE_FILTER_PASS
-	var icon_style = DungeonStyle.box(palette[3], Color("f0e4b3"), 2)
-	icon_style.set_corner_radius_all(8)
-	icon_style.shadow_color = Color(0.1, 0.14, 0.16, 0.35)
-	icon_style.shadow_size = 2
+	var icon_style = StyleBoxTexture.new()
+	icon_style.texture = Palette.texture(Palette.sprite_key("slotfg_rare_square", rare, loot_type))
+	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]: icon_style.set_texture_margin(side, 16)
 	icon_style.set_content_margin_all(5)
 	icon_frame.add_theme_stylebox_override("panel", icon_style)
 	center.add_child(icon_frame)
 	var icon = DungeonStyle.picture(str(row.get("icon", "")), Vector2(120, 120))
 	icon_frame.add_child(icon)
-	var title = _label(str(row.get("title", "")), 30, Color("ffda65"), true)
+	var mark = DungeonStyle.picture("AwakenSkillBg_1", Vector2.ZERO)
+	mark.name = "TalentMark"
+	mark.visible = marked
+	icon.add_child(mark)
+	mark.anchor_left = -0.05
+	mark.anchor_top = -0.05
+	mark.anchor_right = 0.45
+	mark.anchor_bottom = 0.45
+	var star = DungeonStyle.picture("白星标", Vector2.ZERO)
+	star.modulate = Color(1, 0.9055, 0.5236)
+	mark.add_child(star)
+	star.anchor_left = -0.07
+	star.anchor_top = -0.07
+	star.anchor_right = 1.07
+	star.anchor_bottom = 1.07
+	var title = _label(str(row.get("title", "")), 30, Palette.color("curse_title_color" if cursed else "title"), true)
+	title.add_theme_color_override("font_outline_color", Palette.outline("Text_Name"))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	stack.add_child(title)
-	var tag = _label(str(row.get("grade", "")) + "  " + str(row.get("level_text", "")), 18, Color("47535a"))
+	var tag = _label(str(row.get("grade", "")) + "  " + str(row.get("level_text", "")), 18, Palette.color("level"))
 	tag.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	tag.visible = row.has("level_text")
 	stack.add_child(tag)
@@ -120,21 +133,28 @@ func _build_card(row: Dictionary) -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	stack.add_child(scroll)
-	var description = _label(str(row.get("description", "")), 25, Color("fffdf4"), true)
+	var text_stack = VBoxContainer.new()
+	text_stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(text_stack)
+	var description = _label(str(row.get("effect_description", row.get("description", ""))), 25, Palette.color("curse_desc_color" if cursed else "effect"), true)
+	description.add_theme_color_override("font_outline_color", Palette.outline("Text_EffectDescription"))
 	description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(description)
+	text_stack.add_child(description)
+	var level_description = _label(str(row.get("level_description", "")), 25, Palette.color("level_description"))
+	level_description.visible = row.has("level_description")
+	text_stack.add_child(level_description)
 	var lower_line = Control.new()
 	lower_line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	stack.add_child(lower_line)
 	var choose = Button.new()
 	choose.text = "选择"
 	choose.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	choose.add_theme_color_override("font_color", Color("785018"))
-	choose.add_theme_color_override("font_hover_color", Color("4d310a"))
-	choose.add_theme_color_override("font_pressed_color", Color("4d310a"))
-	choose.add_theme_color_override("font_disabled_color", Color("8a8b84"))
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color", "font_hover_pressed_color", "font_disabled_color"]:
+		choose.add_theme_color_override(state, Palette.color("choose"))
+	choose.add_theme_color_override("font_outline_color", Palette.outline("Text_Select"))
+	choose.add_theme_constant_override("outline_size", 2)
 	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
-		var style = DungeonStyle.box(Color(1, 0.94, 0.7, 0.45) if state in ["hover", "pressed", "focus"] else Color.TRANSPARENT)
+		var style = StyleBoxEmpty.new()
 		style.set_content_margin_all(0)
 		choose.add_theme_stylebox_override(state, style)
 	for entry in row.get("buttons", []):
@@ -143,7 +163,12 @@ func _build_card(row: Dictionary) -> void:
 			_select(index)
 			command.emit(str(entry.action), entry.get("id", ""), entry.get("extra", "")))
 	stack.add_child(choose)
-	parts.append({"panel": panel, "stack": stack, "icon": icon, "tag": tag, "title": title, "description": description, "scroll": scroll, "choose": choose, "upper_line": upper_line, "lower_line": lower_line})
+	parts.append({"panel": panel, "stack": stack, "icon": icon, "icon_frame": icon_frame, "tag": tag, "title": title, "description": description, "level_description": level_description, "scroll": scroll, "choose": choose, "upper_line": upper_line, "lower_line": lower_line})
+
+func _is_marked(row: Dictionary) -> bool:
+	if row.has("marked"): return bool(row.marked)
+	var systems = host.page_context.get("systems")
+	return systems != null and systems.has_method("is_character_talent_marked") and systems.is_character_talent_marked(int(row.get("config_id", 0)))
 
 func _label(value: String, font_size: int, color: Color, outlined := false) -> Label:
 	var label = DungeonStyle.label(value, font_size)
@@ -187,6 +212,7 @@ func _adapt() -> void:
 		part.title.add_theme_font_size_override("font_size", maxi(15, int(31 * scale_factor)))
 		part.tag.add_theme_font_size_override("font_size", maxi(11, int(20 * scale_factor)))
 		part.description.add_theme_font_size_override("font_size", maxi(14, int(27 * scale_factor)))
+		part.level_description.add_theme_font_size_override("font_size", maxi(14, int(27 * scale_factor)))
 		part.description.add_theme_constant_override("outline_size", 3 if compact else 4)
 		part.choose.custom_minimum_size.y = maxi(26, int(44 * scale_factor))
 		part.choose.add_theme_font_size_override("font_size", maxi(16, int(29 * scale_factor)))

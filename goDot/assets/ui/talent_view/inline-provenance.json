@@ -1,0 +1,626 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "evidence_type": "Static serialized TextAsset and Sprite; no APK runtime executed",
+  "keyword_table": {
+    "member": "assets/yoo/DefaultPackage/a7d7949515aafd1a396c749494a81b7c.bundle",
+    "bundle_sha256": "a6f2692efc711f82b837c1f656d5a54672292e6c65d922afada74f5e9b7c5781",
+    "path_id": "7760172260345100151",
+    "rows": 132
+  },
+  "sprites": [
+    {
+      "name": "buff_anshi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-1569258017009323564",
+      "output": "res://assets/ui/talent_view/inline/buff_anshi.png"
+    },
+    {
+      "name": "buff_baofaji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "5167692785709090437",
+      "output": "res://assets/ui/talent_view/inline/buff_baofaji.png"
+    },
+    {
+      "name": "buff_baofajinengliang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "1335347291317564084",
+      "output": "res://assets/ui/talent_view/inline/buff_baofajinengliang.png"
+    },
+    {
+      "name": "buff_baojilv",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2830004449062932652",
+      "output": "res://assets/ui/role_character/fashion/buff_baojilv.png"
+    },
+    {
+      "name": "buff_baojishang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-3210279699776569367",
+      "output": "res://assets/ui/role_character/fashion/buff_baojishang.png"
+    },
+    {
+      "name": "buff_biaoji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "5079694961324381727",
+      "output": "res://assets/ui/talent_view/inline/buff_biaoji.png"
+    },
+    {
+      "name": "buff_buxiu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-3907920766500175071",
+      "output": "res://assets/ui/talent_view/inline/buff_buxiu.png"
+    },
+    {
+      "name": "buff_chaoshi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "883559833479408111",
+      "output": "res://assets/ui/talent_view/inline/buff_chaoshi.png"
+    },
+    {
+      "name": "buff_chengjiebiaoji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "3258784125456854040",
+      "output": "res://assets/ui/talent_view/inline/buff_chengjiebiaoji.png"
+    },
+    {
+      "name": "buff_chengjieguangzhu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "3090469984109398731",
+      "output": "res://assets/ui/talent_view/inline/buff_chengjieguangzhu.png"
+    },
+    {
+      "name": "buff_chiying",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "1496718400639483113",
+      "output": "res://assets/ui/talent_view/inline/buff_chiying.png"
+    },
+    {
+      "name": "buff_danqie",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "5869104381348263258",
+      "output": "res://assets/ui/talent_view/inline/buff_danqie.png"
+    },
+    {
+      "name": "buff_daozhen",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-3356972748641670475",
+      "output": "res://assets/ui/talent_view/inline/buff_daozhen.png"
+    },
+    {
+      "name": "buff_dongshang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "9171715948192992325",
+      "output": "res://assets/ui/talent_view/inline/buff_dongshang.png"
+    },
+    {
+      "name": "buff_duanmai",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-8738764824009186109",
+      "output": "res://assets/ui/talent_view/inline/buff_duanmai.png"
+    },
+    {
+      "name": "buff_duya",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2022882040411722359",
+      "output": "res://assets/ui/talent_view/inline/buff_duya.png"
+    },
+    {
+      "name": "buff_fangyuli",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2959188647341167215",
+      "output": "res://assets/ui/role_character/fashion/buff_fangyuli.png"
+    },
+    {
+      "name": "buff_fengli",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "1035039101187729012",
+      "output": "res://assets/ui/talent_view/inline/buff_fengli.png"
+    },
+    {
+      "name": "buff_fengshi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-789811928017990824",
+      "output": "res://assets/ui/talent_view/inline/buff_fengshi.png"
+    },
+    {
+      "name": "buff_fuji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "3580649796700289734",
+      "output": "res://assets/ui/talent_view/inline/buff_fuji.png"
+    },
+    {
+      "name": "buff_gedang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "8450297712621427981",
+      "output": "res://assets/ui/talent_view/inline/buff_gedang.png"
+    },
+    {
+      "name": "buff_Gold",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-6248546757646613007",
+      "output": "res://assets/ui/talent_view/inline/buff_Gold.png"
+    },
+    {
+      "name": "buff_gongjili",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "83319341428392240",
+      "output": "res://assets/ui/role_character/attribute_detail/buff_gongjili.png"
+    },
+    {
+      "name": "buff_gongjisudu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "7146848391487918664",
+      "output": "res://assets/ui/talent_view/inline/buff_gongjisudu.png"
+    },
+    {
+      "name": "buff_guaiwuzhiyuan",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "7154239279609879014",
+      "output": "res://assets/ui/talent_view/inline/buff_guaiwuzhiyuan.png"
+    },
+    {
+      "name": "buff_guangdan",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "5860626341602752009",
+      "output": "res://assets/ui/talent_view/inline/buff_guangdan.png"
+    },
+    {
+      "name": "buff_huanghun",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-7966055243081018494",
+      "output": "res://assets/ui/talent_view/inline/buff_huanghun.png"
+    },
+    {
+      "name": "buff_hudun",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "462549994626664085",
+      "output": "res://assets/ui/talent_view/inline/buff_hudun.png"
+    },
+    {
+      "name": "buff_huixin",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "4027748297487293766",
+      "output": "res://assets/ui/talent_view/inline/buff_huixin.png"
+    },
+    {
+      "name": "buff_hundun",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "4921044829324787957",
+      "output": "res://assets/ui/talent_view/inline/buff_hundun.png"
+    },
+    {
+      "name": "buff_jianxin",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "8343883781684045804",
+      "output": "res://assets/ui/talent_view/inline/buff_jianxin.png"
+    },
+    {
+      "name": "buff_jianyi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "7321559223800371849",
+      "output": "res://assets/ui/talent_view/inline/buff_jianyi.png"
+    },
+    {
+      "name": "buff_jinghua",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2869837060700606257",
+      "output": "res://assets/ui/talent_view/inline/buff_jinghua.png"
+    },
+    {
+      "name": "buff_jingling",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-1417072197116765527",
+      "output": "res://assets/ui/talent_view/inline/buff_jingling.png"
+    },
+    {
+      "name": "buff_jinglingchixu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-4743089189808484050",
+      "output": "res://assets/ui/talent_view/inline/buff_jinglingchixu.png"
+    },
+    {
+      "name": "buff_jinglingchufa",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "3416906791580567443",
+      "output": "res://assets/ui/talent_view/inline/buff_jinglingchufa.png"
+    },
+    {
+      "name": "buff_jinglingfanwei",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "409037453832779950",
+      "output": "res://assets/ui/talent_view/inline/buff_jinglingfanwei.png"
+    },
+    {
+      "name": "buff_jinglingjitan",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-8648910853657523712",
+      "output": "res://assets/ui/talent_view/inline/buff_jinglingjitan.png"
+    },
+    {
+      "name": "buff_jinglingqianghua",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-6832609914172634540",
+      "output": "res://assets/ui/talent_view/inline/buff_jinglingqianghua.png"
+    },
+    {
+      "name": "buff_jinglingshuliang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-53157643347955784",
+      "output": "res://assets/ui/talent_view/inline/buff_jinglingshuliang.png"
+    },
+    {
+      "name": "buff_jiuri",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "6740096865086009282",
+      "output": "res://assets/ui/talent_view/inline/buff_jiuri.png"
+    },
+    {
+      "name": "buff_kuangbao",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-4060955260160499534",
+      "output": "res://assets/ui/talent_view/inline/buff_kuangbao.png"
+    },
+    {
+      "name": "buff_lengque",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-1374778157774667620",
+      "output": "res://assets/ui/talent_view/inline/buff_lengque.png"
+    },
+    {
+      "name": "buff_linshi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-4091830024318697467",
+      "output": "res://assets/ui/talent_view/inline/buff_linshi.png"
+    },
+    {
+      "name": "buff_liujinhuanbi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5198737684424015818",
+      "output": "res://assets/ui/talent_view/inline/buff_liujinhuanbi.png"
+    },
+    {
+      "name": "buff_liujinhuanren",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5074034139214379295",
+      "output": "res://assets/ui/talent_view/inline/buff_liujinhuanren.png"
+    },
+    {
+      "name": "buff_liujinhuanxie",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "5448958611452928891",
+      "output": "res://assets/ui/talent_view/inline/buff_liujinhuanxie.png"
+    },
+    {
+      "name": "buff_liujinxuanren",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2008498229505994974",
+      "output": "res://assets/ui/talent_view/inline/buff_liujinxuanren.png"
+    },
+    {
+      "name": "buff_liushafengbao",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "570909074622510166",
+      "output": "res://assets/ui/talent_view/inline/buff_liushafengbao.png"
+    },
+    {
+      "name": "buff_longhun",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-1148906149917594897",
+      "output": "res://assets/ui/talent_view/inline/buff_longhun.png"
+    },
+    {
+      "name": "buff_longhunshiqi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-548191935059386503",
+      "output": "res://assets/ui/talent_view/inline/buff_longhunshiqi.png"
+    },
+    {
+      "name": "buff_longlinkaijia",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-7116235512619558726",
+      "output": "res://assets/ui/talent_view/inline/buff_longlinkaijia.png"
+    },
+    {
+      "name": "buff_MagicPoint",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "7836838327378299997",
+      "output": "res://assets/ui/talent_view/inline/buff_MagicPoint.png"
+    },
+    {
+      "name": "buff_modun",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-8387616317579867263",
+      "output": "res://assets/ui/talent_view/inline/buff_modun.png"
+    },
+    {
+      "name": "buff_pinzhang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2070027853462556174",
+      "output": "res://assets/ui/talent_view/inline/buff_pinzhang.png"
+    },
+    {
+      "name": "buff_pojia",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-2985380036267821982",
+      "output": "res://assets/ui/talent_view/inline/buff_pojia.png"
+    },
+    {
+      "name": "buff_putonggongji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5654207622831930277",
+      "output": "res://assets/ui/talent_view/inline/buff_putonggongji.png"
+    },
+    {
+      "name": "buff_qicaijiejing",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "4476843313719101835",
+      "output": "res://assets/ui/talent_view/inline/buff_qicaijiejing.png"
+    },
+    {
+      "name": "buff_qinshi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "956241665107532694",
+      "output": "res://assets/ui/talent_view/inline/buff_qinshi.png"
+    },
+    {
+      "name": "buff_shanbi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "2618973692864133590",
+      "output": "res://assets/ui/talent_view/inline/buff_shanbi.png"
+    },
+    {
+      "name": "buff_shanbigongji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "5722874428290141429",
+      "output": "res://assets/ui/talent_view/inline/buff_shanbigongji.png"
+    },
+    {
+      "name": "buff_shandian",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "6845476164270947986",
+      "output": "res://assets/ui/talent_view/inline/buff_shandian.png"
+    },
+    {
+      "name": "buff_shangdianjiage",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-7033827987691167834",
+      "output": "res://assets/ui/talent_view/inline/buff_shangdianjiage.png"
+    },
+    {
+      "name": "buff_shaying",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "7194807966010106696",
+      "output": "res://assets/ui/talent_view/inline/buff_shaying.png"
+    },
+    {
+      "name": "buff_shayingluanwu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "3179433041796507675",
+      "output": "res://assets/ui/talent_view/inline/buff_shayingluanwu.png"
+    },
+    {
+      "name": "buff_shengminghuifu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-615656362131868024",
+      "output": "res://assets/ui/talent_view/inline/buff_shengminghuifu.png"
+    },
+    {
+      "name": "buff_shengmingzhi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5194075962601100986",
+      "output": "res://assets/ui/role_character/fashion/buff_shengmingzhi.png"
+    },
+    {
+      "name": "buff_shixie",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "213057823645939042",
+      "output": "res://assets/ui/talent_view/inline/buff_shixie.png"
+    },
+    {
+      "name": "buff_shoulieyinji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "1784994404627509625",
+      "output": "res://assets/ui/talent_view/inline/buff_shoulieyinji.png"
+    },
+    {
+      "name": "buff_shuangyu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "2279038279398381965",
+      "output": "res://assets/ui/talent_view/inline/buff_shuangyu.png"
+    },
+    {
+      "name": "buff_shuiling",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-7510465977713888423",
+      "output": "res://assets/ui/talent_view/inline/buff_shuiling.png"
+    },
+    {
+      "name": "buff_sikadizhinu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-139239403145548700",
+      "output": "res://assets/ui/talent_view/inline/buff_sikadizhinu.png"
+    },
+    {
+      "name": "buff_sishengbiaoji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-4345029579639228130",
+      "output": "res://assets/ui/talent_view/inline/buff_sishengbiaoji.png"
+    },
+    {
+      "name": "buff_suibing",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5780028426353994184",
+      "output": "res://assets/ui/talent_view/inline/buff_suibing.png"
+    },
+    {
+      "name": "buff_suozu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-9077362353329676336",
+      "output": "res://assets/ui/talent_view/inline/buff_suozu.png"
+    },
+    {
+      "name": "buff_taozhaung",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "7895451015349365956",
+      "output": "res://assets/ui/talent_view/inline/buff_taozhaung.png"
+    },
+    {
+      "name": "buff_tongsheng",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "1388545282052055349",
+      "output": "res://assets/ui/talent_view/inline/buff_tongsheng.png"
+    },
+    {
+      "name": "buff_yidongsudu",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-412251235376131907",
+      "output": "res://assets/ui/role_character/fashion/buff_yidongsudu.png"
+    },
+    {
+      "name": "buff_zhanji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5851527100833664147",
+      "output": "res://assets/ui/talent_view/inline/buff_zhanji.png"
+    },
+    {
+      "name": "buff_zhongji",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "6894664858712172236",
+      "output": "res://assets/ui/talent_view/inline/buff_zhongji.png"
+    },
+    {
+      "name": "buff_zhongshang",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-7404734459406866732",
+      "output": "res://assets/ui/talent_view/inline/buff_zhongshang.png"
+    },
+    {
+      "name": "buff_zhuizongjian",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-8473461719097168723",
+      "output": "res://assets/ui/talent_view/inline/buff_zhuizongjian.png"
+    },
+    {
+      "name": "buff_zhuorejianqi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-3562890966783906276",
+      "output": "res://assets/ui/talent_view/inline/buff_zhuorejianqi.png"
+    },
+    {
+      "name": "buff_zhuoshao",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-6020944075478032396",
+      "output": "res://assets/ui/role_inventory/buff_zhuoshao.png"
+    },
+    {
+      "name": "buff_zidongshanbi",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "4099881521981991568",
+      "output": "res://assets/ui/talent_view/inline/buff_zidongshanbi.png"
+    },
+    {
+      "name": "buff_zuzhou",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "-5700933381912688288",
+      "output": "res://assets/ui/talent_view/inline/buff_zuzhou.png"
+    },
+    {
+      "name": "icon_armor",
+      "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
+      "bundle_sha256": "3c89621fb29555dfeea5d4243a251d93a39934a1839988c42876f75484d2865f",
+      "path_id": "1184229412816119823",
+      "output": "res://assets/ui/talent_view/inline/icon_armor.png"
+    }
+  ],
+  "unresolved": [
+    "buff_longhunnengliang",
+    "buff_sikadizhinunengliang",
+    "buff_sishenbiaoji"
+  ]
+}

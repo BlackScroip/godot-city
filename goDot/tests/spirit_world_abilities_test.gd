@@ -169,7 +169,7 @@ func _water_repeated_burst() -> void:
 	var victim := _actor("water_target", false, Vector3(0, 0, 3))
 	world.player.combat.add_buff("50202200")
 	for cycle in 2:
-		for index in 5:
+		for index in 10:
 			world._apply_hit(world.player, victim, {"damage": 10.0, "sequence": cycle + 1, "emission": "water_normal:%d:%d" % [cycle, index], "attack_collision": false, "definition": {"actType": "NormalAtk"}})
 			_step(6)
 		_check(world.player.combat.buff_layers("50202201") == 5, "Water burst %d recharges five stacks" % cycle)

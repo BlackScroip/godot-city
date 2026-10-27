@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "source_count": 8529,
+  "recorded_source_count": 8529,
+  "source_drift": {
+    "added": [],
+    "removed": [],
+    "changed_paths": []
+  },
+  "checks": [
+    "nonempty",
+    "placeholders_and_markup",
+    "printf_order",
+    "numeric_values",
+    "percent_symbols",
+    "residual_han",
+    "unexpected_script",
+    "replacement_characters",
+    "unexpected_control_characters",
+    "reviewed_supplemental_sync"
+  ],
+  "locales": {
+    "zh_CN": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "zh_TW": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "en": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "ja": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "ko": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "id": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "th": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "vi": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "de": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "fr": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "pt": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "es": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    },
+    "ru": {
+      "translated": 8529,
+      "issues": 0,
+      "reviewed_sync_issues": 0,
+      "reasons": {},
+      "failures": {},
+      "reviewed_unsynced": {}
+    }
+  }
+}

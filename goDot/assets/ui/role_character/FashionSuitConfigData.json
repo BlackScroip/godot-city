@@ -1,0 +1,93 @@
+
+[
+    {
+    "id" : 11,
+    "chara_id" : 1,
+    "name"     : "炽焰勇者",
+    "description" : "凯的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_11",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 21,
+    "chara_id" : 2,
+    "name"     : "魅影骑士",
+    "description" : "妮洛的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_21",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 31,
+    "chara_id" : 3,
+    "name"     : "雷霆战狂",
+    "description" : "阿克斯的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_31",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 41,
+    "chara_id" : 4,
+    "name"     : "清泉水灵",
+    "description" : "涅兹米的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_41",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 51,
+    "chara_id" : 5,
+    "name"     : "凌风游侠",
+    "description" : "乌玛的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_51",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 61,
+    "chara_id" : 6,
+    "name"     : "光灵之礼",
+    "description" : "欧芭的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_61",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 71,
+    "chara_id" : 7,
+    "name"     : "霜龙战甲",
+    "description" : "菲奥娜的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_71",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+},
+    {
+    "id" : 72,
+    "chara_id" : 7,
+    "name"     : "浪花晴风",
+    "description" : "菲奥娜的海岛夏日时装",
+    "icon_path"   : "CharaFashionCard_72",
+    "square_icon_path" : "sprite_cardicon_square_binqiang_swimwear",
+    "avatar_path"      : "sprite_cardicon_square_bg_binqiang_72",
+    "avatar_frame_path" : "Character_bingqiang_swimwear"
+},
+    {
+    "id" : 81,
+    "chara_id" : 8,
+    "name"     : "黄沙意志",
+    "description" : "佩特拉的初始外观与配套换色皮肤",
+    "icon_path"   : "CharaFashionCard_81",
+    "square_icon_path" : "",
+    "avatar_path"      : "",
+    "avatar_frame_path" : ""
+}
+]

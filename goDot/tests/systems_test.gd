@@ -4,9 +4,11 @@ const Catalog = preload("res://scripts/domain/catalog.gd")
 const Profile = preload("res://scripts/domain/profile.gd")
 const Systems = preload("res://scripts/domain/systems.gd")
 const Combat = preload("res://scripts/domain/combat.gd")
+const Dialogue = preload("res://scripts/domain/dialogue.gd")
 var catalog
 var profile
 var systems
+var dialogue
 var assertions = 0
 var failures: Array = []
 var now = 10000
@@ -27,6 +29,8 @@ func check(value, message: String) -> void:
 func _run() -> void:
 	catalog = Catalog.new()
 	check(catalog.load_all(), "all self-contained data loads")
+	dialogue = Dialogue.new()
+	check(dialogue.load_all(), "relationship dialogue catalog loads")
 	profile = Profile.new()
 	systems = Systems.new(catalog, profile)
 	systems.utc_now = func(): return now
@@ -74,7 +78,7 @@ func _run() -> void:
 			systems.unlock_partner(id)
 			for level in 3: systems.upgrade_partner(id)
 		for row in catalog.rows("NPCData"):
-			for gift in 12: systems.give_npc_gift(Catalog.row_id(row))
+			for gift in 12: _complete_relationship_story(Catalog.row_id(row))
 		for row in catalog.rows("NPCFunctionData"):
 			if row.get("func_msg_name", "") == "": systems.execute_npc_function(Catalog.row_id(row))
 		for row in catalog.rows("CatMealData"):
@@ -132,6 +136,18 @@ func _run() -> void:
 	output.close()
 	print("SYSTEMS ", assertions, " assertions, ", failures.size(), " failures; tasks ", profile.data.claimed_tasks.size(), "/271, groups ", profile.data.claimed_achievements.size(), "/68")
 	quit(0 if failures.is_empty() else 1)
+
+func _complete_relationship_story(npc_id: int) -> void:
+	var status = systems.npc_gift_status(npc_id)
+	if not status.success: return
+	var lines = dialogue.read_story(str(status.story), int(status.function_id))
+	check(not lines.is_empty(), "relationship story exists " + str(status.talk_id))
+	if lines.is_empty(): return
+	# The host invokes this public operation only after the story ends.
+	var before_level = systems.stat("relationship:" + str(npc_id))
+	var before_apples = systems.material(106)
+	var result = systems.execute_npc_function(int(status.function_id))
+	check(result.success and systems.stat("relationship:" + str(npc_id)) == before_level + 1 and systems.material(106) == before_apples - 1, "relationship story completion consumes one apple " + str(status.talk_id))
 
 func _claim_all() -> void:
 	for attempt in 65:

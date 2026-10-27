@@ -24,12 +24,25 @@ var _pointer_player := Vector3.ZERO
 var _pickup_effects: Dictionary = {}
 var _pickup_effects_loaded := false
 var _flight_random := RandomNumberGenerator.new()
+var pickup_settings: Dictionary = {}
 
 func _init() -> void:
 	_flight_random.randomize()
 
 func is_automatic(entry: Dictionary) -> bool:
 	return bool(entry.get("material", false)) and int(entry.id) in [101, 102]
+
+func apply_settings(settings: Dictionary) -> void:
+	pickup_settings = settings.duplicate()
+
+func preferred_pickup(entry: Dictionary, systems: RefCounted) -> bool:
+	if entry.has("altar"): return false
+	if bool(entry.get("material", false)):
+		return bool(pickup_settings.get("auto_pickup_ornament", false)) and not systems.catalog.find("RelationshipAmplifyData", int(entry.id)).is_empty()
+	var row: Dictionary = systems.catalog.find("LootData", int(entry.id))
+	var kind := str(row.get("loot_type", ""))
+	if kind.ends_with("遗物"): return bool(pickup_settings.get("auto_pickup_relic", false))
+	return bool(pickup_settings.get("auto_pickup_consumable", false)) and kind in ["生命药水", "护甲", "攻击宝石", "防御宝石", "生命宝石", "遗物袋子", "天赋卷轴"]
 
 func spawn(id: int, point: Vector3, amount := 1, material := false, replay_appearance := true) -> void:
 	if id <= 0 or amount <= 0: return
@@ -190,22 +203,7 @@ func sync_source_altars(interactions: RefCounted, room_key: String) -> void:
 		_add_altar_pointer(entry)
 
 func _restore_altar_renderer(egg: Node3D) -> void:
-	if egg is GeometryInstance3D or not egg.find_children("*", "GeometryInstance3D", true, false).is_empty(): return
-	var texture := DungeonStyle.texture(ALTAR_EGG_TEXTURE)
-	if texture == null: return
-	# Unity's planar sprite has zero Z scale; Godot needs a nonsingular billboard basis.
-	if is_zero_approx(egg.basis.determinant()):
-		var planar := egg.basis
-		planar.z = planar.x.cross(planar.y).normalized() * maxf(planar.x.length(), planar.y.length())
-		egg.basis = planar
-	var sprite := Sprite3D.new()
-	sprite.name = "SourceAltarPickup"
-	sprite.texture = texture
-	sprite.pixel_size = 0.01
-	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	sprite.shaded = false
-	sprite.render_priority = 5
-	egg.add_child(sprite)
+	preload("res://scripts/presentation/altar_billboards.gd").restore(egg, ALTAR_BUTTON_KEY)
 
 func _source_altar_available(entry: Dictionary) -> bool:
 	if not source_altars.has(entry): return false
@@ -366,7 +364,22 @@ func advance_collection(delta: float, target: Vector3, systems: RefCounted) -> A
 	var collected: Array[Dictionary] = []
 	if delta <= 0: return collected
 	for entry in entries.duplicate():
-		if not is_automatic(entry): continue
+		if not is_automatic(entry):
+			entry.age += delta
+			if float(entry.age) < PICKUP_DELAY or not preferred_pickup(entry, systems) or (entry.position as Vector3).distance_to(target) >= 2.4: continue
+			var result: Dictionary
+			if entry.material:
+				systems.grant_material(entry.id, entry.amount)
+				result = {"success": true}
+			else: result = systems.add_loot(entry.id)
+			if not result.get("success", false): continue
+			collected.append({"success": true, "id": entry.id, "amount": 1 if not entry.material else entry.amount, "material": entry.material})
+			if not entry.material and int(entry.amount) > 1:
+				entry.amount = int(entry.amount) - 1
+			else:
+				_release_visual(entry)
+				entries.erase(entry)
+			continue
 		var previous: Vector3 = entry.visual.position
 		var previous_age := float(entry.age)
 		entry.age += delta

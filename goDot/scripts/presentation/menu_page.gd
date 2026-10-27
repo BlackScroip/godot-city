@@ -29,8 +29,12 @@ var prepare_view: Control
 var unclaimed_view: Control
 var room_shop_view: Control
 var character_view: Control
+var weapon_view: Control
+var inventory_view: Control
 var shop_view: Control
+var camp_service_view: Control
 var page_context: Dictionary = {}
+var _open_tween: Tween
 
 func _ready() -> void:
 	add_theme_stylebox_override("panel", DungeonStyle.panel())
@@ -97,6 +101,11 @@ func _ready() -> void:
 	resized.connect(_adapt)
 
 func display(title: String, rows: Array, layout := "list", context: Dictionary = {}) -> void:
+	if _open_tween and _open_tween.is_valid(): _open_tween.kill()
+	modulate.a = 1.0 if layout == "buildings" else 0.35
+	if layout != "buildings":
+		_open_tween = create_tween()
+		_open_tween.tween_property(self, "modulate:a", 1.0, 0.3 / float(DungeonSettings.read_options().ui_speed))
 	page_context = context
 	_clear(resource_bar)
 	for resource in context.get("resources", []):
@@ -122,7 +131,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	_choices.clear()
 	_clear(rows_host)
 	_clear(detail)
-	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view, room_shop_view, unclaimed_view, character_view, shop_view]:
+	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view, room_shop_view, unclaimed_view, character_view, weapon_view, inventory_view, shop_view, camp_service_view]:
 		if is_instance_valid(view):
 			stack.remove_child(view)
 			view.queue_free()
@@ -134,7 +143,10 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	unclaimed_view = null
 	room_shop_view = null
 	character_view = null
+	weapon_view = null
+	inventory_view = null
 	shop_view = null
+	camp_service_view = null
 	if is_instance_valid(outcome_view):
 		stack.remove_child(outcome_view)
 		outcome_view.queue_free()
@@ -147,21 +159,39 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.remove_child(special)
 		special.queue_free()
 		special = null
-	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "talent", "support", "room_shop", "unclaimed", "character", "shop"]
-	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "talent", "support", "room_shop", "unclaimed", "character", "shop"]
+	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "altar", "talent", "support", "room_shop", "unclaimed", "character", "weapon", "inventory", "shop", "settings"]
+	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "altar", "talent", "support", "room_shop", "unclaimed", "character", "weapon", "inventory", "shop", "settings"]
 	stack.add_theme_constant_override("separation", 0 if layout in ["route", "outcome"] else 16)
-	if layout in ["character", "shop"]:
+	if layout in ["tokens", "camp_service"]:
+		stack.get_child(0).hide()
+		stack.get_child(1).hide()
 		backdrop.hide()
 		body.hide()
 		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 		stack.add_theme_constant_override("separation", 0)
-		var view = load("res://scripts/presentation/character_page.gd" if layout == "character" else "res://scripts/presentation/mall_page.gd").new()
-		if layout == "character": character_view = view
-		else: shop_view = view
+		camp_service_view = load("res://scripts/presentation/" + ("token_page" if layout == "tokens" else "camp_services_page") + ".gd").new()
+		stack.add_child(camp_service_view)
+		camp_service_view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+		camp_service_view.closed.connect(func(): closed.emit())
+		camp_service_view.back_requested.connect(func(): back_requested.emit())
+		camp_service_view.configure(self, rows, context)
+		return
+	if layout in ["character", "weapon", "inventory", "shop"]:
+		backdrop.hide()
+		body.hide()
+		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+		stack.add_theme_constant_override("separation", 0)
+		var pages = {"character": "character_page", "weapon": "weapon_page", "inventory": "inventory_page", "shop": "mall_page"}
+		var view = load("res://scripts/presentation/" + str(pages[layout]) + ".gd").new()
+		match layout:
+			"character": character_view = view
+			"weapon": weapon_view = view
+			"inventory": inventory_view = view
+			"shop": shop_view = view
 		stack.add_child(view)
 		view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
 		if view.has_signal("closed"): view.closed.connect(func(): closed.emit())
-		if view.has_signal("back_requested"): view.back_requested.connect(func(): back_requested.emit())
+		if view.has_signal("back_requested"): view.back_requested.connect(func(): closed.emit())
 		view.configure(self, rows, context)
 		return
 	if layout == "room_shop":
@@ -224,7 +254,9 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	var specialized = layout in ["inventory", "altar", "talent", "support", "character", "weapon", "settings", "tree", "awakening", "buildings", "route", "prepare", "shop"]
 	backdrop.visible = layout in ["inventory", "character", "weapon", "awakening"]
 	add_theme_stylebox_override("panel", DungeonStyle.box(Color(0.03, 0.06, 0.06, 0.2)) if backdrop.visible or layout in ["settings", "route", "shop"] else DungeonStyle.panel())
-	if layout == "altar": add_theme_stylebox_override("panel", DungeonStyle.box(Color("291f1e")))
+	if layout == "altar":
+		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+		stack.add_theme_constant_override("separation", 0)
 	if layout in ["tree", "buildings", "prepare"]:
 		var paper = DungeonStyle.box(Color("eae6da"), DungeonStyle.GOLD, 3)
 		paper.set_content_margin_all(28)
@@ -233,6 +265,9 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	else: title_label.add_theme_color_override("font_color", DungeonStyle.TEXT)
 	body.visible = not specialized
 	if specialized:
+		if layout == "settings":
+			add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+			stack.add_theme_constant_override("separation", 0)
 		special = DungeonReferencePages.new()
 		stack.add_child(special)
 		special.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
@@ -251,7 +286,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		for index in rows.size():
 			var row: Dictionary = rows[index]
 			var choice = Button.new()
-			choice.custom_minimum_size = Vector2(130, 140)
+			choice.custom_minimum_size = Vector2(130, 84 if page_context.get("room_activity", false) and get_viewport_rect().size.y < 600 else 140)
 			choice.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			choice.text = str(row.get("title", ""))
 			choice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -259,7 +294,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 			choice.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			choice.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
 			choice.expand_icon = true
-			choice.add_theme_constant_override("icon_max_width", 68)
+			choice.add_theme_constant_override("icon_max_width", 42 if page_context.get("room_activity", false) and get_viewport_rect().size.y < 600 else 68)
 			choice.add_theme_font_size_override("font_size", 17)
 			choice.pressed.connect(func(): _select(index))
 			grid.add_child(choice)
@@ -285,13 +320,14 @@ func _select(index: int) -> void:
 		detail.add_child(preview)
 		preview.show_model(str(row.model))
 	else:
-		var art = DungeonStyle.picture(str(row.get("icon", "menu_adventure")), Vector2(120, 120))
+		var art_size := 48 if page_context.get("room_activity", false) and get_viewport_rect().size.y < 600 else 120
+		var art = DungeonStyle.picture(str(row.get("icon", "menu_adventure")), Vector2(art_size, art_size))
 		detail.add_child(art)
 	_row(detail, row, false)
 	detail_scroll.scroll_vertical = 0
 
 func _row(parent: Control, row: Dictionary, separator := true) -> void:
-	var compact = page_context.get("camp", false) and get_viewport_rect().size.y < 600
+	var compact = (page_context.get("camp", false) or page_context.get("room_activity", false)) and get_viewport_rect().size.y < 600
 	var item = VBoxContainer.new()
 	item.add_theme_constant_override("separation", 6 if compact else 10)
 	parent.add_child(item)
@@ -349,7 +385,7 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 
 func _adapt() -> void:
 	var compact = size.x < 1000
-	if page_context.get("camp", false) and _layout in ["list", "grid", "model"]:
+	if (page_context.get("camp", false) or page_context.get("room_activity", false)) and _layout in ["list", "grid", "model"]:
 		var style = DungeonStyle.box(Color("172d30"), DungeonStyle.GOLD, 2) if get_viewport_rect().size.y < 600 else DungeonStyle.panel().duplicate()
 		style.set_content_margin_all(16 if get_viewport_rect().size.y < 600 else 62)
 		add_theme_stylebox_override("panel", style)
@@ -362,6 +398,14 @@ func _adapt() -> void:
 			if child is TextureRect: child.custom_minimum_size = Vector2(26, 26) if compact else Vector2(36, 36)
 	title_label.add_theme_font_size_override("font_size", 22 if compact else 28)
 	if is_instance_valid(grid): grid.columns = 2 if size.x < 1100 or _layout == "model" else 3
+	if page_context.get("room_activity", false):
+		var short_view := get_viewport_rect().size.y < 600
+		for choice in _choices:
+			choice.custom_minimum_size = Vector2(130, 84 if short_view else 140)
+			choice.add_theme_constant_override("icon_max_width", 42 if short_view else 68)
+		if detail.get_child_count() > 0 and detail.get_child(0) is TextureRect:
+			var art_size := 48 if short_view else 120
+			detail.get_child(0).custom_minimum_size = Vector2(art_size, art_size)
 	if detail_scroll.visible:
 		list_scroll.size_flags_stretch_ratio = 1.2 if size.x >= 1100 else 1.0
 

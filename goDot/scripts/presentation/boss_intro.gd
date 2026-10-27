@@ -1,220 +1,229 @@
 extends CanvasLayer
 
 signal finished
+signal skip_changed(enabled: bool)
+
 var active := false
 var elapsed := 0.0
-var duration := 3.0
+var duration := 4.0
 var world: DungeonWorld
 var actor: DungeonActor
 var blocker := Control.new()
-var bands: Control
-var title := DungeonStyle.label("", 58)
+var bands = preload("res://scripts/presentation/boss_intro_banner.gd").new()
 var skip := Button.new()
+var _skip_check := TextureRect.new()
+var _skip_label := Label.new()
 var _camera_transform := Transform3D.IDENTITY
 var _camera_fov := 60.0
-var _animation := ""
-var _animation_position := 0.0
-var _animation_speed := 1.0
-var _visual_transform := Transform3D.IDENTITY
 var _behavior: Dictionary = {}
-var _commands: Array = []
-var _command_cursor := 0
 var _presentation_controls: Dictionary = {}
 var _sounds: Array = []
-var _voices: Array[AudioStreamPlayer3D] = []
-
-class Bands extends Control:
-	var reveal := 0.0
-	func _draw() -> void:
-		var w := size.x
-		var h := size.y
-		var slide := (1.0 - reveal) * h * 0.3
-		draw_colored_polygon(PackedVector2Array([Vector2(0, 0), Vector2(w, 0), Vector2(w, h * 0.08 - slide), Vector2(0, h * 0.25 - slide)]), Color.BLACK)
-		draw_colored_polygon(PackedVector2Array([Vector2(0, h * 0.1 - slide), Vector2(w, -slide), Vector2(w, 10 - slide), Vector2(0, h * 0.1 + 10 - slide)]), Color("b90f18"))
-		draw_colored_polygon(PackedVector2Array([Vector2(0, h * 0.90 + slide), Vector2(w, h * 0.74 + slide), Vector2(w, h), Vector2(0, h)]), Color.BLACK)
-		draw_colored_polygon(PackedVector2Array([Vector2(0, h * 0.95 + slide), Vector2(w, h * 0.80 + slide), Vector2(w, h * 0.84 + slide), Vector2(0, h * 0.99 + slide)]), Color("b90f18"))
+var _voices: Array[AudioStreamPlayer] = []
+var _banner_start := 0.0
+var _camera_returned := false
+var _speed := 1.0
+var _banner_elapsed := -1.0
+var _audio_cursor := 0
 
 func _ready() -> void:
 	layer = 80
 	blocker.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	blocker.mouse_filter = Control.MOUSE_FILTER_STOP
 	blocker.theme = DungeonStyle.theme()
+	blocker.clip_contents = true
 	add_child(blocker)
-	bands = Bands.new()
-	bands.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	bands.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	blocker.add_child(bands)
-	title.add_theme_color_override("font_color", Color("fa2a22"))
-	title.add_theme_color_override("font_outline_color", Color("fff0e6"))
-	title.add_theme_constant_override("outline_size", 5)
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	blocker.add_child(title)
-	skip.text = "跳过"
-	skip.add_theme_font_size_override("font_size", 30)
-	for state in ["normal", "hover", "pressed"]: skip.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	skip.pressed.connect(finish)
+	skip.toggle_mode = true
+	skip.focus_mode = Control.FOCUS_NONE
+	for state in ["normal", "hover", "pressed", "hover_pressed", "focus", "disabled"]: skip.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+	var background := TextureRect.new()
+	for entry in [["Background", background], ["Background/Checkmark", _skip_check], ["Text_Skip", _skip_label]]:
+		var record: Dictionary = bands.catalog.skip.nodes[entry[0]]
+		var control: Control = entry[1]
+		control.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var parent: Control = background if entry[0] == "Background/Checkmark" else skip
+		parent.add_child(control)
+		var rect: Dictionary = record.rect
+		control.anchor_left = float(rect.anchor_min[0])
+		control.anchor_right = float(rect.anchor_max[0])
+		control.anchor_top = 1.0 - float(rect.anchor_max[1])
+		control.anchor_bottom = 1.0 - float(rect.anchor_min[1])
+		var extent := Vector2(float(rect.size_delta[0]), float(rect.size_delta[1]))
+		var offset := Vector2(float(rect.anchored_position[0]), -float(rect.anchored_position[1])) - extent * 0.5
+		control.offset_left = offset.x
+		control.offset_top = offset.y
+		control.offset_right = offset.x + extent.x
+		control.offset_bottom = offset.y + extent.y
+		if control is TextureRect:
+			control.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			control.texture = load(str(record.image.texture))
+	var text: Dictionary = bands.catalog.skip.nodes.Text_Skip.text
+	_skip_label.add_theme_font_override("font", load(str(text.font.resource)))
+	_skip_label.add_theme_font_size_override("font_size", int(text.font_size))
+	_skip_label.add_theme_constant_override("outline_size", 0)
+	_skip_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_skip_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	skip.toggled.connect(_toggle_skip)
 	blocker.add_child(skip)
 	blocker.resized.connect(_layout)
 	hide()
 
+func set_skip_preference(enabled: bool) -> void:
+	skip.set_pressed_no_signal(enabled)
+	_skip_check.visible = enabled
+	_speed = 3.0 if enabled else 1.0
+
+func _toggle_skip(enabled: bool) -> void:
+	_speed = 3.0 if enabled else 1.0
+	_skip_check.visible = enabled
+	if active and is_instance_valid(world): world.set_boss_show(true, _speed)
+	skip_changed.emit(enabled)
+
 func begin(target_world: DungeonWorld, target: DungeonActor, name_text: String) -> void:
-	if active: finish()
+	finish()
+	if not is_instance_valid(target_world) or not is_instance_valid(target_world.camera) or not is_instance_valid(target) or target.dead: return
 	world = target_world
 	actor = target
-	if not is_instance_valid(actor) or actor.dead: return
 	if _behavior.is_empty(): _behavior = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/monster_behavior.json"))
 	var config: Dictionary = _behavior.get("enemies", {}).get(str(actor.actor_id), {})
-	duration = clampf(float(config.get("boss_action_time", 3.0)), 2.0, 8.0)
-	var pose := str(config.get("boss_action", ""))
-	if pose.is_empty(): pose = str(config.get("first_action", "born"))
-	_commands = actor.combat._action(str(actor.combat.enemy.group), pose).get("events", []).filter(func(event): return bool(event.get("enabled", true)) and event.get("type", "") in ["EET_PlayAnim", "EET_PlayEffect", "EET_PlaySound", "EET_PlayVoice"])
-	_commands.sort_custom(func(a, b): return float(a.time) < float(b.time))
-	_command_cursor = 0
+	duration = float(config.get("boss_action_time", 4.0))
+	_banner_start = maxf(0.0, duration - 4.0)
 	_camera_transform = world.camera.transform
 	_camera_fov = world.camera.fov
-	if actor.animation:
-		_animation = actor.animation.current_animation
-		_animation_position = actor.animation.current_animation_position
-		_animation_speed = actor.animation_state_speed
-	if actor.visual: _visual_transform = actor.visual.transform
-	actor.play_animation(pose, true)
+	_camera_returned = false
 	active = true
 	elapsed = 0.0
-	title.text = name_text
-	world.paused = true
-	world.intent.clear()
+	_banner_elapsed = 0.0 if _banner_start == 0.0 else -1.0
+	_audio_cursor = 0
+	_speed = 3.0 if skip.button_pressed else 1.0
+	world.set_boss_show(true, _speed)
+	_presentation_controls.clear()
 	if world.hud:
-		world.hud.joystick._reset()
-		for key in world.hud.skill_buttons: key.release()
-		world.hud.attack_mode_button.release()
-		_presentation_controls.clear()
-		for control in [world.hud.joystick, world.hud.skill_cluster, world.hud.vitals, world.hud.primary, world.hud.navigation]:
-			_presentation_controls[control] = control.visible
-			control.hide()
+		_presentation_controls[world.hud.root] = world.hud.root.visible
+		world.hud.root.hide()
+	_skip_label.text = DungeonLocale.text("跳过")
+	bands.set_boss_name(name_text)
+	for sound in bands.catalog.audio: _sounds.append(sound)
 	show()
+	skip.show()
+	blocker.mouse_filter = Control.MOUSE_FILTER_STOP
 	_layout()
+	_update_camera()
+	_update_banner()
 
 func _layout() -> void:
-	var s := blocker.size
-	var factor := minf(1.0, minf(s.x / 1280.0, s.y / 720.0))
-	title.add_theme_font_size_override("font_size", 48)
-	title.scale = Vector2.ONE * factor
-	title.position = Vector2(s.x * 0.12, s.y * 0.67)
-	title.size = Vector2(s.x * 0.76 / maxf(factor, 0.1), 86)
+	if bands.catalog.is_empty(): return
+	var reference: Array = bands.catalog.reference_size
+	var factor := minf(blocker.size.x / float(reference[0]), blocker.size.y / float(reference[1]))
+	if factor <= 0.0: return
+	bands.size = blocker.size / factor
+	bands.scale = Vector2.ONE * factor
+	var rect: Dictionary = bands.catalog.skip.nodes[""].rect
+	var extent: Array = rect.size_delta
+	var position_value: Array = rect.anchored_position
 	skip.scale = Vector2.ONE * factor
-	skip.position = Vector2(34, 70) * factor
-	skip.size = Vector2(120, 52)
+	skip.size = Vector2(float(extent[0]), float(extent[1]))
+	skip.position = (Vector2(float(position_value[0]), -float(position_value[1])) - skip.size * 0.5) * factor
 
 func _process(delta: float) -> void:
-	if not active: return
-	if not is_instance_valid(actor) or actor.dead or not is_instance_valid(world):
+	if not visible and _voices.is_empty(): return
+	if not is_instance_valid(world):
 		finish()
 		return
-	for voice in _voices: voice.stream_paused = world._background
-	if world._background: return
-	elapsed += delta
-	bands.reveal = clampf(elapsed / 0.25, 0.0, 1.0) * clampf((duration - elapsed) / 0.25, 0.0, 1.0)
-	bands.queue_redraw()
-	title.modulate.a = bands.reveal
-	if actor.animation: actor.animation.advance(delta * actor.animation_state_speed)
-	while _command_cursor < _commands.size() and float(_commands[_command_cursor].time) <= elapsed:
-		var command: Dictionary = _commands[_command_cursor]
-		_command_cursor += 1
-		if not actor.combat._conditions(command.get("conditions", []), bool(command.get("all", true))): continue
-		if command.type == "EET_PlayAnim": actor.play_animation(str(command.anim), true)
-		else:
-			var before: int = world.presentation.spawned
-			var sounds_before: int = world.presentation.sound_queue.size()
-			world.presentation.command(actor, {"command": command, "sequence": -1})
-			while world.presentation.sound_queue.size() > sounds_before:
-				_sounds.append(world.presentation.sound_queue.pop_at(sounds_before))
-			if world.presentation.spawned > before:
-				world.presentation.active.back()["boss_intro_owner"] = get_instance_id()
-				world.presentation.active.back().clock_sequence = -1
-	# Only cosmetic events from the recovered pose advance while battle clocks stop.
-	for effect in world.presentation.active:
-		if effect.get("boss_intro_owner", 0) != get_instance_id(): continue
-		effect.age += delta
-		if effect.follow:
-			var anchor = effect.follow.get_ref()
-			if anchor:
-				effect.root.global_position = anchor.global_position + effect.world_offset if effect.get("position_without_rotate", false) else anchor.to_global(effect.offset)
-				if effect.follow_rotation: effect.root.global_basis = anchor.global_basis * effect.rotation_offset
-				if float(effect.get("detach_after", 0)) > 0 and effect.age >= float(effect.detach_after):
-					effect.follow = null
-					effect.follow_rotation = false
-		if effect.authored: effect.authored.advance(delta * float(effect.playback_speed), false, float(effect.playback_speed))
-	for i in range(world.presentation.active.size() - 1, -1, -1):
-		var effect = world.presentation.active[i]
-		if effect.get("boss_intro_owner", 0) == get_instance_id() and effect.age >= effect.duration:
-			effect.erase("boss_intro_owner")
-			world.presentation._recycle(i)
-	_tick_sounds(delta)
-	var focus := actor.global_position + Vector3.UP * maxf(0.8, actor.impact_bounds.size.y * 0.45)
-	var distance := maxf(12.0, actor.impact_bounds.size.length() * 2.8)
-	var facing := actor.facing.normalized()
-	var offset := (facing + Vector3.UP * 0.8 + Vector3.UP.cross(facing) * 0.25).normalized() * distance
-	world.camera.global_position = focus + offset * lerpf(1.15, 1.0, clampf(elapsed / duration, 0.0, 1.0))
-	world.camera.look_at(focus)
-	world.camera.fov = 48
-	if elapsed >= duration: finish()
-
-func finish() -> void:
-	if not active: return
-	active = false
-	hide()
-	_sounds.clear()
 	for voice in _voices:
-		voice.stop()
-		voice.queue_free()
-	_voices.clear()
+		voice.stream_paused = world._background or world.paused or not world.presentation.audio_enabled
+	if not visible: return
+	if not is_instance_valid(actor) or actor.dead or (is_instance_valid(world.player) and world.player.dead):
+		finish()
+		return
+	if world._background or world.paused: return
+	delta = maxf(0.0, delta)
+	var previous := elapsed
+	if active: elapsed += delta * world.simulation_scale
+	if _banner_elapsed < 0.0 and elapsed >= _banner_start:
+		_banner_elapsed = maxf(0.0, elapsed - _banner_start) / maxf(0.001, world.simulation_scale) * _speed
+	elif _banner_elapsed >= 0.0:
+		_banner_elapsed += delta * _speed
+	if active:
+		_update_camera()
+		if elapsed >= duration + 1.0:
+			var excess := maxf(0.0, elapsed - maxf(previous, duration + 1.0)) / maxf(0.001, world.simulation_scale)
+			_banner_elapsed -= excess * (_speed - 1.0)
+			_resume_battle()
+	_update_banner()
+	_tick_sounds()
+	if _banner_elapsed >= float(bands.catalog.duration) and not active:
+		hide()
+		_sounds.clear()
+
+func _update_banner() -> void:
+	bands.visible = _banner_elapsed >= 0.0 and _banner_elapsed < float(bands.catalog.duration)
+	if bands.visible: bands.sample(_banner_elapsed)
+
+func _update_camera() -> void:
+	if elapsed >= duration:
+		_restore_camera()
+		return
+	# ChangeFollowTarget(boss, true) keeps the level camera's existing projection.
+	world.camera.position = actor.position + world._camera_offset
+	world.camera.look_at(actor.global_position)
+	world.camera.reset_physics_interpolation()
+
+func _restore_camera() -> void:
+	if _camera_returned: return
+	_camera_returned = true
 	if is_instance_valid(world) and is_instance_valid(world.camera):
 		world.camera.transform = _camera_transform
 		world.camera.fov = _camera_fov
-		for i in range(world.presentation.active.size() - 1, -1, -1):
-			var effect = world.presentation.active[i]
-			if effect.get("boss_intro_owner", 0) == get_instance_id():
-				effect.erase("boss_intro_owner")
-				world.presentation._recycle(i)
+		world.camera.reset_physics_interpolation()
+
+func _resume_battle() -> void:
+	if not active: return
+	active = false
+	_restore_camera()
+	if is_instance_valid(world): world.set_boss_show(false)
+	_speed = 1.0
 	for control in _presentation_controls:
 		if is_instance_valid(control): control.visible = _presentation_controls[control]
 	_presentation_controls.clear()
-	if is_instance_valid(actor):
-		if actor.animation and not _animation.is_empty():
-			actor.animation.play(_animation)
-			actor.animation.seek(_animation_position, true)
-			actor.animation_state_speed = _animation_speed
-		if actor.visual: actor.visual.transform = _visual_transform
+	skip.hide()
+	blocker.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	finished.emit()
 
-func _tick_sounds(delta: float) -> void:
-	for i in range(_sounds.size() - 1, -1, -1):
-		var sound: Dictionary = _sounds[i]
-		sound.delay -= delta
-		if sound.delay > 0: continue
-		_sounds.remove_at(i)
-		if not world.presentation.audio_enabled or sound.layer.get("clips", []).is_empty(): continue
-		var voice: AudioStreamPlayer3D
-		for candidate in _voices:
-			if not candidate.playing:
-				voice = candidate
-				break
-		if not voice and _voices.size() < 4:
-			voice = AudioStreamPlayer3D.new()
-			world.add_child(voice)
-			_voices.append(voice)
-		if not voice: continue
-		var path := str(sound.layer.clips[int(sound.get("clip", 0))])
-		if not ResourceLoader.exists(path): continue
-		voice.stream = load(path)
-		voice.position = actor.position
-		voice.pitch_scale = clampf(float(sound.layer.get("pitch", 1)) * float(sound.get("pitch", 1)), 0.2, 3.0)
-		voice.volume_db = linear_to_db(maxf(0.001, float(sound.layer.get("volume", 1)) * 0.65 * float(sound.get("gain", 1))))
+func finish() -> void:
+	_resume_battle()
+	hide()
+	_sounds.clear()
+	for voice in _voices:
+		if is_instance_valid(voice):
+			voice.stop()
+			voice.queue_free()
+	_voices.clear()
+
+func _tick_sounds() -> void:
+	while _audio_cursor < _sounds.size() and float(_sounds[_audio_cursor].start) <= _banner_elapsed:
+		var source: Dictionary = _sounds[_audio_cursor]
+		_audio_cursor += 1
+		if not world.presentation.audio_enabled: continue
+		var voice := AudioStreamPlayer.new()
+		voice.bus = &"Effects"
+		add_child(voice)
+		voice.stream = load(str(source.resource))
+		voice.volume_db = float(source.event_volume_db) + float(source.container_volume_db)
+		var variation := float(source.get("pitch_random_range_semitones", 0.0)) if source.get("pitch_random_enabled", false) else 0.0
+		voice.pitch_scale = pow(2.0, randf_range(-variation, variation) / 12.0)
+		voice.finished.connect(func():
+			_voices.erase(voice)
+			voice.queue_free())
 		voice.play()
+		_voices.append(voice)
 
 func _input(event: InputEvent) -> void:
 	if not active: return
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE, KEY_SPACE, KEY_ENTER]: finish()
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE, KEY_SPACE, KEY_ENTER]:
+		skip.button_pressed = not skip.button_pressed
 	if not event is InputEventMouse and not event is InputEventScreenTouch and not event is InputEventScreenDrag:
 		get_viewport().set_input_as_handled()
+
+func _exit_tree() -> void:
+	_resume_battle()

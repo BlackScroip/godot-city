@@ -89,6 +89,9 @@
   "\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+5点。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+10点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+1.5%。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+10点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+3%。<br>满<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color>时额外+20%<#specinfo=gongjili>。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+15点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+4.5%。<br>满<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color>时额外+30%<#specinfo=gongjili>，<#specinfo=putonggongji>有20%概率获得<#specinfo=baofajinengliang>。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+20点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+6%。<br>满<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color>时额外+40%<#specinfo=gongjili>，<#specinfo=putonggongji>有40%概率获得<#specinfo=baofajinengliang>。\r<br><br><br><br>": [
     "assets/data/WeaponData.json"
   ],
+  "\n[color=#af810e]获取途径：[/color]": [
+    "scripts/presentation/inventory_page.gd"
+  ],
   "\n下次产出 %d 分钟": [
     "scripts/menus.gd"
   ],
@@ -105,6 +108,7 @@
     "scripts/menus.gd"
   ],
   "\n合计：": [
+    "scripts/main.gd",
     "scripts/menus.gd"
   ],
   "\n尚未领取的 %d 份产出也会丢弃。": [
@@ -173,26 +177,22 @@
   "   波次 %d / %d": [
     "scripts/main.gd"
   ],
-  "  · 已出战": [
-    "scripts/presentation/character_page.gd"
-  ],
-  "  · 未招募": [
+  "  属性详情": [
     "scripts/presentation/character_page.gd"
   ],
   "  已通关 %d 层": [
     "scripts/presentation/adventure_prepare.gd"
   ],
-  " · 属性详情": [
+  "  时装": [
     "scripts/presentation/character_page.gd"
   ],
   " · 已生效": [
+    "scripts/main.gd",
     "scripts/menus.gd"
   ],
   " · 餐单已选": [
+    "scripts/main.gd",
     "scripts/menus.gd"
-  ],
-  "%.1f万": [
-    "scripts/main.gd"
   ],
   "%d 存入": [
     "scripts/presentation/room_shop.gd"
@@ -214,6 +214,38 @@
   ],
   "%s剩余 %d / %d": [
     "scripts/presentation/mall_page.gd"
+  ],
+  "&s1& 已失效": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "&s1& 次": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "&s1&不足！": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "&s1&次冒险后，新商品送达！": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "&s1&次战斗后净化": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "(未选择)": [
+    "scripts/presentation/inventory_page.gd"
+  ],
+  "(选择)": [
+    "scripts/presentation/inventory_page.gd"
+  ],
+  "*游戏卡顿时请打开手机的游戏模式": [
+    "scripts/domain/settings.gd"
+  ],
+  "*调整全局光照亮度": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "*调整屏幕UI和画面顶部边缘的距离": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "+0.1%<#specinfo=zidongshanbi>概率。": [
     "assets/data/CharTalentLevelData.json"
@@ -1534,6 +1566,9 @@
   "<#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>；并获得3层<color=#a358ff>【暗影愈合】</color>，最多叠加40层，造成伤害时消耗1层<color=#a358ff>【暗影愈合】</color>，<#specinfo=shengminghuifu>1点<#specinfo=shengmingzhi>。": [
     "assets/data/CharTalentLevelData.json"
   ],
+  "<#specinfo=shengmingshangxian>+3%，最多持有20件。": [
+    "assets/data/AbilityItems.json"
+  ],
   "<#specinfo=shengmingzhi>低于50%时<#specinfo=zhongji>造成伤害能够<#specinfo=shengminghuifu><#specinfo=shengmingzhi>。": [
     "assets/data/CharTalentData.json"
   ],
@@ -1801,8 +1836,14 @@
   "<#specinfo=zidongshanbi>概率额外提高3%。": [
     "assets/data/AbilityItems.json"
   ],
+  "<color=#007729>套装&s1&</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
   "<color=#009ad6>冰龙之骨</color>和<color=#009ad6>饮料</color>！为什么从来没有人想过这样的组合？<br><br>你将饮料递给冒险家们，大家在痛饮过后也给你送上了等价的<color=#f28e00>回礼</color>！": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "<color=#115400>套装激活</color>": [
+    "assets/data/DisplayTerms.json"
   ],
   "<color=#33a3dc>冰矛</color>命中敌人后额外增加自身<#specinfo=baojilv>1%，最大10层。": [
     "assets/data/RelationshipTokenData.json"
@@ -1920,13 +1961,13 @@
   "<color=#5398ff>奖励史莱姆</color>出现概率+10%。<br>|<color=#5398ff>奖励史莱姆</color>出现概率+30%。<br>|<color=#5398ff>奖励史莱姆</color>出现概率+50%且不会逃跑。": [
     "assets/data/CatMealData.json"
   ],
-  "<color=#56e20a>基础</color><#specinfo=shengmingzhi>上限+10。": [
+  "<color=#56e20a>基础</color><#specinfo=shengmingshangxian>+10。": [
+    "assets/data/AbilityItems.json"
+  ],
+  "<color=#56e20a>基础</color><#specinfo=shengmingshangxian>+50。": [
     "assets/data/AbilityItems.json"
   ],
   "<color=#56e20a>基础</color><#specinfo=shengmingzhi>上限+25。": [
-    "assets/data/AbilityItems.json"
-  ],
-  "<color=#56e20a>基础</color><#specinfo=shengmingzhi>上限+50。": [
     "assets/data/AbilityItems.json"
   ],
   "<color=#56e20a>生命药水</color><#specinfo=shengminghuifu>效率+30%。": [
@@ -1938,6 +1979,9 @@
   "<color=#5d93f5>魔力精华</color>": [
     "assets/data/MaterialData.json"
   ],
+  "<color=#666666>送礼(金苹果:&s1&)</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
   "<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>10%伤害，持续15秒，最大可叠加5层。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>15%伤害，持续15秒，最大可叠加5层。<#specinfo=longhunshiqi>状态下可以额外<color=#76A9FF>【蓄力】</color>5次，每次提升20%<#specinfo=zhongji>造成的伤害。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>15%伤害，持续15秒，最大可叠加10层。<#specinfo=longhunshiqi>状态下可以额外<color=#76A9FF>【蓄力】</color>5次，每次提升40%<#specinfo=zhongji>造成的伤害。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>20%伤害，持续15秒，最大可叠加10层。<#specinfo=longhunshiqi>状态下可以额外<color=#76A9FF>【蓄力】</color>5次，每次提升60%<#specinfo=zhongji>造成的伤害。<br><#specinfo=sikadizhinu>提供的强化效果增加1。<br><br>": [
     "assets/data/WeaponData.json"
   ],
@@ -1946,6 +1990,12 @@
   ],
   "<color=#76A9FF>蓄力速度</color>提升。": [
     "assets/data/CharTalentData.json"
+  ],
+  "<color=#7dff43>恢复之泉</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "<color=#7dff43>泉水节点</color>": [
+    "assets/data/DisplayTerms.json"
   ],
   "<color=#8533ff>初生紫兰</color>": [
     "assets/data/MaterialData.json"
@@ -2091,6 +2141,9 @@
   "<color=#CECECE>银剑</color>。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "<color=#E85700>套装&s1&</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
   "<color=#FF4040>【普通】</color>怪物有概率获得<UI_MsgType=\"Guide\"><link=\"13\"><u>【魔化】</u></link>的力量！": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
@@ -2178,7 +2231,7 @@
   "<color=#c0b8ff>【事件强化·需要训练用木剑】</color><br><#specinfo=gongjili>+70%。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br><#specinfo=baofajinengliang>充能效率+20%。": [
+  "<color=#c0b8ff>【事件获得】</color><br><#specinfo=baofajinengliang>充能效率+20。": [
     "assets/data/AbilityItems.json"
   ],
   "<color=#c0b8ff>【事件获得】</color><br><#specinfo=fangyuli>+1%。<br>这件遗物等待着事件中的另一件遗物与它合成。": [
@@ -2190,16 +2243,19 @@
   "<color=#c0b8ff>【事件获得】</color><br><#specinfo=gongjili>+25%。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br><#specinfo=zhanji><#specinfo=lengque>时间-20%。": [
+  "<color=#c0b8ff>【事件获得】</color><br><#specinfo=jinbi>矿脉与<#specinfo=molijinghua>矿脉掉落数量+30%。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br>下一个区域的节点，<#specinfo=jingling>石坛的出现概率增加。": [
+  "<color=#c0b8ff>【事件获得】</color><br><#specinfo=zhanji><#specinfo=lengque>时间-20。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br>下一个区域的节点，<color=#a3cf62>迷宫素材</color>的出现概率增加。": [
+  "<color=#c0b8ff>【事件获得】</color><br>下一个区域的节点，<#specinfo=jinbi>矿脉与<#specinfo=molijinghua>矿脉出现概率+25%。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br>下一个区域的节点，出现矿脉概率增加。": [
+  "<color=#c0b8ff>【事件获得】</color><br>下一个区域的节点，<#specinfo=jingling>石坛出现概率+25%。": [
+    "assets/data/AbilityItems.json"
+  ],
+  "<color=#c0b8ff>【事件获得】</color><br>下一个区域的节点，<color=#a3cf62>迷宫素材</color>出现概率+25%。": [
     "assets/data/AbilityItems.json"
   ],
   "<color=#c0b8ff>【事件获得】</color><br>到达新节点时，<#specinfo=shengminghuifu>5%<#specinfo=shengmingzhi>。": [
@@ -2214,16 +2270,13 @@
   "<color=#c0b8ff>【事件获得】</color><br>持有<#specinfo=hujia>时，<#specinfo=gongjili>+50%。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br>根据持有的<#specinfo=keyinshengdian>数量降低挑战节点难度。": [
+  "<color=#c0b8ff>【事件获得】</color><br>根据持有的<#specinfo=keyinshengdian>数量降低挑战类型的节点难度。": [
     "assets/data/AbilityItems.json"
   ],
-  "<color=#c0b8ff>【事件获得】</color><br>每持有1点<#specinfo=keyinshengdian>，宝石史莱姆王给出高级宝石的概率+100%。<color=#fdd033>（当前<#backpack_layer>层）</color>": [
+  "<color=#c0b8ff>【事件获得】</color><br>每持有1点<#specinfo=keyinshengdian>，宝石史莱姆王给出高级宝石的概率+10%。<color=#fdd033>（当前<#backpack_layer>层）</color>": [
     "assets/data/AbilityItems.json"
   ],
   "<color=#c0b8ff>【事件获得】</color><br>每消耗1点<#specinfo=keyinshengdian>+70<#specinfo=molijinghua>。": [
-    "assets/data/AbilityItems.json"
-  ],
-  "<color=#c0b8ff>【事件获得】</color><br>矿脉掉落的资源数量增加。": [
     "assets/data/AbilityItems.json"
   ],
   "<color=#c0b8ff>【事件获得】</color>持有<#specinfo=hujia>时，<#specinfo=baojilv>+20%": [
@@ -2236,6 +2289,9 @@
   "<color=#c0b8ff>宝石史莱姆王</color>出现概率+8%": [
     "assets/data/AbilityItems.json",
     "assets/data/RelationshipAmplifyData.json"
+  ],
+  "<color=#c0b8ff>觉醒天赋</color>的<color=#fdb933>解锁</color>与<color=#c0b8ff>觉醒等级</color>相关，<color=#fdb933>提高</color><color=#c0b8ff>觉醒等级</color>才能够<color=#fdb933>解锁</color>更多<color=#c0b8ff>觉醒天赋</color>。": [
+    "assets/ui/settings/guides.json"
   ],
   "<color=#c37e00>下次一定。</color>": [
     "assets/data/AdvantureEventData.json"
@@ -2534,6 +2590,12 @@
   "<color=#c37e00>继续冒险。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
+  "<color=#c37e00>继续冒险。</color>（获得<color=#ff4f4f>大颗红宝石</color>）": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "<color=#c37e00>继续冒险。</color>（诶？我是来这干什么的？）": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "<color=#c37e00>继续冒险吧。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -2576,10 +2638,13 @@
   "<color=#c37e00>获得200点<color=#426ab3>【魔力精华】</color>。": [
     "assets/data/AdvantureEventData.json"
   ],
-  "<color=#c37e00>获得3件【冒险木盾】。</color>": [
+  "<color=#c37e00>获得3枚<color=#ff4f4f>大颗红宝石</color>。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
   "<color=#c37e00>获得500点<#specinfo=molijinghua>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "<color=#c37e00>获得5件【冒险木盾】。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
   "<color=#c37e00>获得【吞噬者之戒】。</color>": [
@@ -2660,6 +2725,9 @@
   "<color=#c37e00>还是算了吧。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
+  "<color=#c37e00>还是走吧。</color>": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "<color=#c37e00>还是靠自己吧。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -2706,6 +2774,9 @@
     "assets/data/AdvantureEventData.json"
   ],
   "<color=#c37e00>难受地离开。</color>": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "<color=#c37e00>靠自己也可以。</color>": [
     "assets/data/AdvantureEventData.json"
   ],
   "<color=#c37e00>飞速地离开。</color>": [
@@ -2785,6 +2856,12 @@
   ],
   "<color=#d91e1e>【迷宫领主】</color>有100%概率掉落低阶<color=#f28e00>遗物</color>。": [
     "assets/data/TalentTreeLevelData.json"
+  ],
+  "<color=#d91e1e>迷宫领主</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "<color=#d91e1e>领主节点</color>": [
+    "assets/data/DisplayTerms.json"
   ],
   "<color=#d93a49>红宝石</color>显然更符合自己的需要，你相信你的选择会给自己带来不小的帮助。": [
     "assets/data/AdvantureEventData.json"
@@ -2899,6 +2976,21 @@
   ],
   "<color=#f28e00>【强化<#specinfo=zhongji>】召唤的</color><color=#f18800>光辉黑洞</color>消失时会产生1次更大范围的爆炸。": [
     "assets/data/CharTalentData.json"
+  ],
+  "<color=#f28e00>【战技】</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "<color=#f28e00>【普通攻击】</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "<color=#f28e00>【爆发技】</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "<color=#f28e00>【重击】</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "<color=#f28e00>【闪避攻击】</color>": [
+    "assets/data/DisplayTerms.json"
   ],
   "<color=#f28e00>你不能走</color>。<br>牛头人们叫住了你，但你绝不会停下自己的脚步！": [
     "assets/data/AdvantureEventData.json"
@@ -3025,11 +3117,23 @@
     "assets/data/AbilityItems.json",
     "assets/data/RelationshipAmplifyData.json"
   ],
+  "<color=#fdb933>悬赏委托</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
   "<color=#fdb933>砍价！</color><br>（30%概率成功）": [
     "assets/data/AdvantureEventData.json"
   ],
+  "<color=#fdb933>篝火餐厅</color>": [
+    "assets/data/DisplayTerms.json"
+  ],
   "<color=#fdb933>继续砍价！</color><br>（60%概率成功）": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "<color=#fdb933>解锁</color><color=#c0b8ff>觉醒天赋</color>后，在冒险之前<color=#fdb933>消耗</color>从<color=#c0b8ff>觉醒等级</color>获得的<color=#c0b8ff>觉醒点数</color><color=#fdb933>激活</color>该天赋，只有被<color=#fdb933>激活</color>的天赋才能够在冒险中<color=#fdb933>生效</color>。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "<color=#fdb933>记录档案</color>": [
+    "assets/data/DisplayTerms.json"
   ],
   "<color=#ff4f4f>基础</color><#specinfo=gongjili>+15点。": [
     "assets/data/AbilityItems.json"
@@ -3057,6 +3161,9 @@
   ],
   "<color=#ff6551>【复苏】</color>次数+1，复苏后进入3秒无敌时间。": [
     "assets/data/TalentTreeLevelData.json"
+  ],
+  "<color=#ffb751>护甲</color>": [
+    "assets/data/DisplayTerms.json"
   ],
   "<color=#ffc436>【净化】</color><br><#specinfo=molijinghua>掉落量+20%，持有折光匕首后每获得50<#specinfo=molijinghua>，<color=#ff4f4f>造成的伤害</color>+2%，最大可叠100层。<color=#fdd033>（当前<#backpack_layer>层）</color>": [
     "assets/data/AbilityItems.json"
@@ -3130,8 +3237,17 @@
   "NPC支援道具池": [
     "assets/data/ItemPoolData.json"
   ],
+  "UI播放速度": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "UI高度适配": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "bg装饰": [
-    "scripts/presentation/building_page.gd"
+    "scripts/presentation/building_page.gd",
+    "scripts/presentation/inventory_page.gd"
   ],
   "·<#specinfo=putonggongji>会召唤群鹿冲锋，造成150%伤害，命中增加一层<#specinfo=dongshang>，<#specinfo=lengque>时间5秒。": [
     "assets/data/MonsterPartnerData.json"
@@ -3169,7 +3285,34 @@
   "·飓风环绕自身期间获得30%的减伤效果。": [
     "assets/data/MonsterPartnerData.json"
   ],
+  "“哈啊啊啊啊啊啊啊啊啊…”<br>史莱姆王终于钓上鱼啦，这可是很值得炫耀的事呢！": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“哈啊啊啊啊啊啊啊啊啊…”<br>是一条大鱼！史莱姆王非常高兴，看起来今天真是适合钓鱼的好日子呢。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“哼啊啊啊啊啊啊…”<br>史莱姆王似乎对钓上来的东西十分不满意，于是它把钓上来的<color=#ff4f4f>大颗红宝石</color>送给了你。<br>（获得<color=#ff4f4f>大颗红宝石</color>。）": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“哼啊啊啊啊啊啊…”<br>哦天哪，看起来史莱姆王被鱼钓走了，真是可怜，不过它应该不会有事吧？": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“哼啊啊啊啊啊啊…”<br>它又生气地把钓上来的<color=#ff4f4f>大颗红宝石</color>送给了你。<br>（获得<color=#ff4f4f>大颗红宝石</color>。）": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“哼啊啊啊啊啊啊啊…”<br>史莱姆王修格斯看上了一条大鱼，看起来它志在必得，结果会怎样？还蛮期待的。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“嗨！朋友！”<br>你发现阿尔托在不远处呼唤着你，他自豪地向你展示手上的咸鱼剑。<br>“哼哼！这个可比什么宝剑都好用，怎么样？要试试吗？”": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "“好吧，好吧。”<br>商人被你的一番演讲感动了，留下<color=#F8C920>【传奇天赋卷轴】</color>就离开了。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“好吧，那就带上这些继续冒险吧。”": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "“好啦，看看它能有多强，我收拾收拾建筑材料先回去啦。”": [
     "assets/data/AdvantureEventData.json"
   ],
   "“当然是您了！勇敢的冒险家大人！”<br><br>是的，它称赞了你，但这还远远不够！<br>（获得<color=#F8C920>【精致天赋卷轴】</color>）": [
@@ -3201,6 +3344,9 @@
   ],
   "【冰龙】<br>超过100点最大<#specinfo=shengmingzhi>的部分，每10点最大<#specinfo=shengmingzhi>+2%<#specinfo=gongjili>，最大60%。": [
     "assets/data/AbilityItems.json"
+  ],
+  "【净化】": [
+    "assets/data/DisplayTerms.json"
   ],
   "【刺客】<br><#specinfo=shanbigongji>后<#specinfo=shanbigongji>伤害提升40%，持续5秒，可以叠加5层。": [
     "assets/data/AbilityItems.json"
@@ -3310,6 +3456,9 @@
   "【头盔系列】<br>受到攻击时会召唤一个能吸收15点伤害的<#specinfo=hudun>，<#specinfo=lengque>25秒。": [
     "assets/data/AbilityItems.json"
   ],
+  "【套装激活】": [
+    "assets/data/DisplayTerms.json"
+  ],
   "【巨魔】<br>+20%<#specinfo=shengmingzhi>上限。击败敌人时，<#specinfo=linshi>+2%<#specinfo=shengmingzhi>上限，持续10秒。": [
     "assets/data/AbilityItems.json"
   ],
@@ -3396,6 +3545,9 @@
   ],
   "【无畏】<br>每释放5次<#specinfo=zhongji>，获得10点<#specinfo=hudun>，<#specinfo=lengque>10秒。": [
     "assets/data/AbilityItems.json"
+  ],
+  "【旧日遗物】": [
+    "assets/data/DisplayTerms.json"
   ],
   "【时间胶囊】，这是多么令人怀念的东西，将我的梦想种下，送往远方吧。": [
     "assets/data/AdvantureEventData.json"
@@ -3576,6 +3728,9 @@
   ],
   "【裁决】强化天赋。": [
     "assets/data/CharTalentData.json"
+  ],
+  "【诅咒】": [
+    "assets/data/DisplayTerms.json"
   ],
   "【进阶光精灵】<br>每隔30秒，在角色周围生成2把<color=#f18800>光之剑</color>，每把造成75%<#specinfo=gongjili>伤害，同时角色<#specinfo=fangyuli>增加30%，持续6秒。": [
     "assets/data/AbilityItems.json"
@@ -3868,8 +4023,20 @@
   "一些巫女会将自己藏匿在树林的沼泽当中进行奇怪的研究。<br>有趣的是，这些巫女小屋周围总有许多珍贵素材被当作垃圾一般丢出来，派怪物们捡点回来应该没问题吧。": [
     "assets/data/MonsterWorkData.json"
   ],
+  "一些房间会有增殖标识，这代表了该房间出现增殖标识的材料或道具的概率大大增加。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "一些节点拥有可破坏障碍，这些障碍会阻挡远程攻击和移动，可以被攻击破坏。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。": [
+    "assets/ui/settings/guides.json"
+  ],
   "一些金币": [
     "assets/data/MallTradeDetailsData.json"
+  ],
+  "一些食谱需要达成解锁条件才能发现，发现该食谱后，需要消耗素材解锁。": [
+    "assets/ui/settings/guides.json"
   ],
   "一位传奇工匠大师留下了<color=#f28e00>两张</color>装备图纸，但工匠们按照图纸打造出来后发现这些装备的耐久差强人意。<br><br>工匠们仍认为是自己没能领会那位工匠大师的高超技艺，所以他们将这些<color=#f28e00>原型装备</color>免费提供给冒险家使用。<br><br>嗯？免费？既然免费，为什么不拿一件走呢？": [
     "assets/data/AdvantureEventData.json"
@@ -3896,6 +4063,9 @@
     "assets/data/AdvantureEventData.json"
   ],
   "一位老者摆弄着一台魔法道具，似乎可以轻松钻入地下挖掘<color=#f28e00>宝物</color>。<br><br>既然这样，要不要拜托他也帮自己挖一些呢？": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "一位龙骑士的赠礼，现在，我将它让渡与你。": [
     "assets/data/AdvantureEventData.json"
   ],
   "一切危险始于未知，面对任何敌人都不得有半分大意。": [
@@ -3972,6 +4142,9 @@
   "一盒魔物精华": [
     "assets/data/MallTradeData.json"
   ],
+  "一直等下去可浪费时间了，如果天色暗下来可就不适合冒险了，还是抓紧时间上路吧。": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "一群强盗将营地驻扎在迷宫冒险家营地附近收着不合理的过路费。<br>虽然冒险家公会的洛蒂小姐常常出手教训他们，但总归会有漏网之鱼，现在是时候让这些家伙付出代价了。": [
     "assets/data/MonsterWorkData.json"
   ],
@@ -3993,14 +4166,19 @@
   "一路顺风！咱们迷宫底层再见！": [
     "assets/data/dialogue.json"
   ],
+  "一键加群": [
+    "scripts/presentation/settings_page.gd"
+  ],
   "一面神奇的镜子放置在迷宫房间中，不知道的冒险家或许已经将它当成魔物砸碎了。<br><br>但你认识它，它正是拥有大智慧的<color=#fdb933>魔镜</color>！<br><br>你询问道：<color=#fdb933>魔镜魔镜</color>告诉我，谁才是迷宫中最强大的冒险家呢？": [
     "assets/data/AdvantureEventData.json"
   ],
   "七彩结晶": [
     "assets/data/AchieveData.json",
+    "assets/data/DisplayTerms.json",
     "assets/data/MallTradeDetailsData.json"
   ],
   "七彩结晶不足": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
   ],
   "七彩结晶宝箱": [
@@ -4052,8 +4230,14 @@
     "assets/data/SubAchieveData.json",
     "assets/data/WeaponData.json"
   ],
+  "三相图腾": [
+    "assets/data/partner_skills.json"
+  ],
   "三连劈": [
     "assets/data/combat.json"
+  ],
+  "上一页": [
+    "scripts/presentation/settings_page.gd"
   ],
   "上次偷偷溜进迷宫立刻就被洛蒂前辈抓出来了，我觉得下次我能做得更好！": [
     "assets/data/dialogue.json"
@@ -4065,11 +4249,18 @@
     "scripts/main.gd"
   ],
   "下一步": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/presentation/run_outcome.gd"
   ],
   "下一波敌人出现": [
     "scripts/main.gd"
+  ],
+  "下一页": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "下拉条": [
+    "scripts/presentation/inventory_page.gd"
   ],
   "下次一定": [
     "scripts/main.gd"
@@ -4100,6 +4291,12 @@
   "下级效果": [
     "scripts/presentation/guild_page.gd"
   ],
+  "下载云存档成功，需要重启游戏。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "下载成功": [
+    "assets/data/DisplayTerms.json"
+  ],
   "不不不！还是算了，我不想再被洛蒂前辈在迷宫里抓到了。": [
     "assets/data/dialogue.json"
   ],
@@ -4117,6 +4314,9 @@
   ],
   "不喝。": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "不在伙伴技能候选中": [
+    "scripts/domain/room_choices.gd"
   ],
   "不在奖励候选中": [
     "scripts/domain/systems.gd"
@@ -4179,7 +4379,9 @@
     "assets/data/dialogue.json"
   ],
   "不朽": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "不朽冰锥": [
     "assets/data/AbilityItems.json"
@@ -4196,6 +4398,9 @@
   ],
   "不灭幽兰": [
     "assets/data/MaterialData.json"
+  ],
+  "不灭幽兰触发": [
+    "assets/data/DisplayTerms.json"
   ],
   "不灭鳞甲": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -4373,6 +4578,15 @@
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "与符文巨石互动，使用它力量能使用它让魔物们去别的地方探索，并收获一些素材。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "与精灵石坛互动时，如果已经持有精灵，则有概率能选择已拥有精灵的升级状态以提升该精灵的力量，每只精灵的最高等级为五星。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "与节点中的怪物石坛互动可以获得迷宫怪物的力量，在支援能量足够的情况下可以随时召唤怪物为自己的战斗添加助力。": [
+    "assets/ui/settings/guides.json"
+  ],
   "与菲奥娜对话": [
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
@@ -4387,8 +4601,15 @@
   "专业鞋匠": [
     "assets/data/TalentTreeData.json"
   ],
+  "专属遗物": [
+    "assets/ui/settings/guides.json"
+  ],
   "中": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "中等": [
+    "scripts/domain/settings.gd"
   ],
   "中级迷宫素材包": [
     "assets/data/MallTradeData.json"
@@ -4401,6 +4622,12 @@
   ],
   "丰饶麦田": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "临时": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "临时遗物": [
+    "assets/data/DisplayTerms.json"
   ],
   "为了夺取霜龙的力量，他们迟早会进攻龙骑士城堡，我必须尽快变强，回去帮助其他战友们。": [
     "assets/data/dialogue.json"
@@ -4432,6 +4659,9 @@
   "为自己选择合适的<color=#f28e00>防具</color>是冒险最重要的事情之一。<br><br>手边正好有许多合适的<color=#f28e00>防具材料</color>，要不要<color=#f28e00>打造</color>一些呢？": [
     "assets/data/AdvantureEventData.json"
   ],
+  "为营地工程师阿尔托提供素材后，他能为您重建冒险营地中的各处建筑，并开放更多功能。": [
+    "assets/ui/settings/guides.json"
+  ],
   "主城": [
     "assets/data/campaign.json"
   ],
@@ -4449,6 +4679,10 @@
   ],
   "主存档不可用，已恢复备份进度": [
     "scripts/save_store.gd"
+  ],
+  "主音量": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "之后我们再去见一见迷宫核心吧，看看我们能发现什么。": [
     "assets/data/dialogue.json"
@@ -4499,7 +4733,8 @@
     "assets/data/AdvantureEventData.json"
   ],
   "乱舞": [
-    "assets/data/CharTalentData.json"
+    "assets/data/CharTalentData.json",
+    "assets/data/DisplayTerms.json"
   ],
   "事不宜迟，我们一起去迷宫试试，看这把剑能爆发出怎样的力量吧！": [
     "assets/data/dialogue.json"
@@ -4549,6 +4784,9 @@
   "事件水晶": [
     "assets/data/TalentTreeData.json"
   ],
+  "事件配置不存在": [
+    "scripts/domain/systems.gd"
+  ],
   "事半功倍": [
     "assets/data/SubAchieveData.json"
   ],
@@ -4571,11 +4809,20 @@
     "assets/data/CharTalentLevelData.json"
   ],
   "云存档": [
+    "assets/data/DisplayTerms.json",
     "scripts/hud.gd",
-    "scripts/main.gd"
+    "scripts/main.gd",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "云存档暂不可用": [
     "scripts/main.gd"
+  ],
+  "云端存档": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "云端存档下载至本地": [
+    "scripts/presentation/settings_page.gd"
   ],
   "交互": [
     "scripts/main.gd",
@@ -4670,14 +4917,32 @@
   "今日": [
     "scripts/presentation/mall_page.gd"
   ],
+  "今日使用次数:&s1&/&s2&": [
+    "assets/data/DisplayTerms.json"
+  ],
   "今日免广告次数已用完": [
     "scripts/domain/ad_rewards.gd"
+  ],
+  "今日剩余次数：&s1&/&s2&": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "今日剩余试用次数：&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "今日已领取": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "今日广告使用次数已达上限": [
+    "assets/data/DisplayTerms.json"
   ],
   "今日次数已用完": [
     "scripts/domain/ad_rewards.gd"
   ],
   "今日派遣领取次数已用完": [
     "scripts/domain/systems.gd"
+  ],
+  "今日的奖励已经领取过了哦！": [
+    "assets/data/DisplayTerms.json"
   ],
   "从它挥舞手杖的频率和神态来看，那一定是一段惊天动地的传奇故事。": [
     "assets/data/dialogue.json"
@@ -4698,9 +4963,16 @@
     "assets/data/EnemyData.json"
   ],
   "仓库": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/character_page.gd",
-    "scripts/presentation/reference_pages.gd"
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "仓库(未选择)": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "仔细一看不难发现，那正是王国至宝之一的守护者之斧。": [
     "assets/data/dialogue.json"
@@ -4722,6 +4994,9 @@
   ],
   "他手中的武器与他并肩作战数年，在这名战士陷入危机时，他手中的武器突然获得了强大的力量，最后靠着这把武器的力量，他回到了安全的地方。": [
     "assets/data/dialogue.json"
+  ],
+  "付费时装": [
+    "scripts/presentation/character_page.gd"
   ],
   "付费解锁": [
     "scripts/menus.gd"
@@ -4759,6 +5034,9 @@
   "以迅雷之势俯身穿过敌人。<br>\n<#specinfo=shanbigongji>：<br>\n拔出双刀快速穿过敌人，造成88%<#specinfo=gongjili>的伤害，并引爆<#specinfo=shoulieyinji>叠加到3层以上的敌人。<br>\n成功引爆3层以上<#specinfo=shoulieyinji>时使自身获得<#specinfo=fengshi>。": [
     "assets/data/combat.json"
   ],
+  "以飓风围绕自身，提升玩家50<#specinfo=yidongsudu>和50<#specinfo=gongjisudu>，持续20秒。|飓风能阻挡敌人靠近。|飓风能阻挡部分弹幕攻击。": [
+    "assets/data/partner_skills.json"
+  ],
   "任务尚未完成": [
     "scripts/domain/systems.gd"
   ],
@@ -4786,6 +5064,9 @@
   "任意招式命中都能叠加1层<#specinfo=fangyuli>提升的效果。": [
     "assets/data/CharTalentData.json"
   ],
+  "任意点击以继续。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "任意角色完成第四关。": [
     "assets/data/UnlockData.json"
   ],
@@ -4793,7 +5074,9 @@
     "assets/data/AbilityItems.json"
   ],
   "伏击": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "休息。": [
     "assets/data/AdvantureEventData.json"
@@ -4813,6 +5096,14 @@
   "休闲时刻！": [
     "assets/data/AchieveData.json"
   ],
+  "优先攻击": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "优先移动": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "优质冒险凭证": [
     "assets/data/MallTradeData.json"
   ],
@@ -4826,7 +5117,8 @@
     "assets/data/TalentTreeData.json"
   ],
   "伙伴": [
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "伙伴升级材料不足": [
     "scripts/domain/systems.gd"
@@ -4846,6 +5138,22 @@
   "伙伴已解锁或不存在": [
     "scripts/domain/systems.gd"
   ],
+  "伙伴技能": [
+    "scripts/main.gd",
+    "scripts/world_interactions.gd"
+  ],
+  "伙伴技能不可使用": [
+    "scripts/domain/partner_skills.gd"
+  ],
+  "伙伴技能不可选择": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "伙伴技能动作缺失": [
+    "scripts/domain/partner_skills.gd"
+  ],
+  "伙伴技能状态已变化": [
+    "scripts/domain/room_choices.gd"
+  ],
   "伙伴招募 - 招募妮洛、阿克斯、涅兹米等冒险伙伴": [
     "assets/data/AchieveData.json"
   ],
@@ -4862,8 +5170,12 @@
     "scripts/presentation/run_outcome.gd"
   ],
   "伙伴登记处": [
+    "assets/data/DisplayTerms.json",
     "assets/data/NPCData.json",
     "assets/data/dialogue.json"
+  ],
+  "伙伴登记处<br>等待重建": [
+    "assets/data/DisplayTerms.json"
   ],
   "伙伴登记处|组建休息区|升级休息区": [
     "assets/data/RogueConfigData.json"
@@ -4898,6 +5210,9 @@
   "伙计，马车可是非卖品，除非，你加钱。": [
     "assets/data/dialogue.json"
   ],
+  "会心": [
+    "assets/data/DisplayTerms.json"
+  ],
   "会心一击": [
     "assets/data/CharTalentData.json"
   ],
@@ -4915,6 +5230,9 @@
   ],
   "伟大的史莱姆王称赞了你的眼光，并向你竖起了大拇指！": [
     "assets/data/dialogue.json"
+  ],
+  "传入数据错误": [
+    "assets/data/DisplayTerms.json"
   ],
   "传奇": [
     "scripts/main.gd"
@@ -5036,6 +5354,10 @@
   "伤害+90%，且<#specinfo=zhongji>攻击范围+30%。": [
     "assets/data/CharTalentLevelData.json"
   ],
+  "伤害冒字": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "伤害生效范围提高30%。": [
     "assets/data/AbilityItems.json"
   ],
@@ -5093,6 +5415,10 @@
   "但遗物却不是这样，真是奇妙啊。": [
     "assets/data/dialogue.json"
   ],
+  "低帧率下启用动态分辨率": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "低阶宝箱也是宝": [
     "assets/data/TalentTreeData.json"
   ],
@@ -5119,6 +5445,9 @@
   ],
   "作为打造武器装备来说，矿石素材十分珍贵，但除此之外它也没有其他的效果了。": [
     "assets/data/dialogue.json"
+  ],
+  "作弊检测": [
+    "assets/data/DisplayTerms.json"
   ],
   "你不禁怀疑，这真的是木门吗？<br><br>再努把力，下次说不定就开了！": [
     "assets/data/AdvantureEventData.json"
@@ -5275,6 +5604,9 @@
   ],
   "你想知道最早的魔法武器是什么样的？": [
     "assets/data/dialogue.json"
+  ],
+  "你成功给了魔界花致命一击！<br>并在岛屿破碎前利用<#specinfo=keyinshengdian>逃到了安全的地方。<br>魔界花倒下后迷宫深处发出了愤怒的吼叫，原来这只是一具分身，不过好在刚刚偷袭得手拿到了一枚战利品。": [
+    "assets/data/AdvantureEventData.json"
   ],
   "你把秘法书展开，释放出的魔法很快就把书籍全部归位了。<br><br>老者并没有高兴，也没有对你表示感谢，而是坐回座位上，掏出了<color=#f28e00>【传奇天赋卷轴】</color>送给了你。": [
     "assets/data/AdvantureEventData.json"
@@ -5706,14 +6038,31 @@
   "侧身闪": [
     "assets/data/combat.json"
   ],
+  "侧边按钮暗": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
   "侵蚀": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "侵蚀型陷阱": [
+    "assets/ui/settings/guides.json"
+  ],
+  "侵蚀型陷阱能够对角色或怪物附加各种异常状态。": [
+    "assets/ui/settings/guides.json"
   ],
   "保养武器是非常有必要的，你如何对待武器，武器就如何回报你。": [
     "assets/data/dialogue.json"
   ],
   "保存": [
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/touch_layout_editor.gd"
+  ],
+  "保存失败，请重试": [
+    "scripts/presentation/touch_layout_editor.gd"
   ],
   "保护基石·坚守阵地": [
     "assets/data/campaign.json"
@@ -5754,8 +6103,26 @@
   "保护烛台": [
     "assets/data/TalentTreeData.json"
   ],
+  "保护目标": [
+    "assets/ui/settings/guides.json"
+  ],
+  "保护目标\n保护目标挑战需要玩家在击败所有怪物的同时保护魔法基石，上方的信息标明了当前挑战成功获得的奖励等级和魔法基石剩余的耐久度。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "保护目标挑战需要玩家在击败所有怪物的同时保护魔法基石，上方的信息标明了当前挑战成功获得的奖励等级和魔法基石剩余的耐久度。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "保护目标节点需要玩家在魔法基石被摧毁前击败所有怪物，魔法基石受到的伤害越少奖励越丰厚。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "保护自己！": [
+    "assets/ui/settings/guides.json"
+  ],
   "保温便当": [
     "assets/data/MaterialData.json"
+  ],
+  "保管箱": [
+    "assets/data/DisplayTerms.json"
   ],
   "信仰·光辉赐福": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -5767,6 +6134,7 @@
     "scripts/presentation/building_page.gd"
   ],
   "信物": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/reference_pages.gd"
   ],
@@ -5953,6 +6321,9 @@
   "修复自己吗？原来是这样。": [
     "assets/data/dialogue.json"
   ],
+  "修复营地吧！": [
+    "assets/ui/settings/guides.json"
+  ],
   "修复迷宫核心，我知道了。": [
     "assets/data/dialogue.json"
   ],
@@ -5983,11 +6354,18 @@
   "修补装备。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "倍速": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "倒不是什么很重要的东西，主要是记录了在迷宫中找到了什么稀奇古怪的宝物，现在都已经写了这么多了。": [
     "assets/data/dialogue.json"
   ],
   "停止后当前工作的进度将清空。": [
     "scripts/main.gd"
+  ],
+  "停止工作": [
+    "assets/data/DisplayTerms.json"
   ],
   "停止施工的地下矿洞，这个大家很熟悉。": [
     "assets/data/dialogue.json"
@@ -6007,6 +6385,9 @@
   ],
   "健步如飞": [
     "assets/data/AbilityItems.json"
+  ],
+  "偷袭！<br>（持有2点及以上<#specinfo=keyinshengdian>）": [
+    "assets/data/AdvantureEventData.json"
   ],
   "像师父那样，先冥想一下吧。": [
     "assets/data/dialogue.json"
@@ -6053,6 +6434,9 @@
   ],
   "光之惩戒": [
     "assets/data/CharTalentData.json"
+  ],
+  "光弹": [
+    "assets/data/DisplayTerms.json"
   ],
   "光明之盾": [
     "assets/data/CharTalentData.json"
@@ -6132,12 +6516,39 @@
   "免费的<color=#f28e00>装备</color>就是好。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "免费获得": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "免费重选": [
+    "scripts/main.gd"
+  ],
   "免费领取": [
     "scripts/presentation/room_shop.gd"
   ],
   "兑换": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/mall_page.gd"
+  ],
+  "兑换暂不可用：当前版本尚未接入兑换服务。": [
+    "scripts/main.gd"
+  ],
+  "兑换码": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "兑换码已使用": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "兑换码无效": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "入口": [
+    "assets/ui/settings/guides.json"
+  ],
+  "入口\n迷宫区域的入口，玩家可以这个节点休息，或与一些道具互动。\n\n遭遇战\n潜伏着一般怪物的节点，可以相信的是这个节点一定有宝藏。\n\n危险遭遇战\n情报显示这个节点有着强大的精英怪物，击败怪物后一定有更稀有的宝藏。\n\n迷宫商店\n迷宫商人带着他的马车出现在迷宫各处安全的节点售卖着迷宫遗物。\n\n治愈泉水\n该节点有着治愈伤势的泉水，神秘的史莱姆之王也常常出没在这里。\n\n寻宝\n迷宫内生成的陷阱房间，在本节点中无法连续闪避，在一片陷阱后有着稀有宝藏。\n\n领主\n迷宫的守层怪物，拥有极强的战力，只有击败它才能去往迷宫深处。": [
+    "assets/ui/settings/guides.json"
   ],
   "入房效果已处理": [
     "scripts/domain/systems.gd"
@@ -6150,6 +6561,14 @@
   ],
   "全宝石": [
     "assets/data/ItemPoolData.json"
+  ],
+  "全局光照亮度": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "全局慢放演出": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "全抽选遗物池（商人和遗物袋）": [
     "assets/data/ItemPoolData.json"
@@ -6167,14 +6586,21 @@
   "全能增幅·肆": [
     "assets/data/AbilityItems.json"
   ],
+  "全部": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "全部完成奖励": [
     "scripts/presentation/commission_board.gd"
   ],
-  "全都包下。<br>（花费50点<#specinfo=molijinghua>，获得50点<color=#CF9333>【光辉护甲】</color>）": [
+  "全都包下。<br>（花费50点<#specinfo=molijinghua>，获得<color=#CF9333>【光辉护甲】</color>）": [
     "assets/data/AdvantureEventData.json"
   ],
   "全金币": [
     "assets/data/ItemPoolData.json"
+  ],
+  "全难度解锁·金币+300%·怪物工作5倍队列·信物栏位+1·祈愿+4·禁用+8·全拿+1": [
+    "assets/data/DisplayTerms.json"
   ],
   "全魔力精华": [
     "assets/data/ItemPoolData.json"
@@ -6201,8 +6627,13 @@
     "assets/data/AchieveData.json"
   ],
   "公会支援表": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
     "scripts/main.gd",
     "scripts/menus.gd"
+  ],
+  "公会支援表\n公会支援表能够消耗各种素材激活帮助玩家冒险的各种辅助功能。": [
+    "assets/ui/settings/guides.json"
   ],
   "公会支援表等级大于10": [
     "assets/data/NPCFunctionData.json",
@@ -6223,6 +6654,9 @@
   "公会支援表等级大于40，进行20次游戏": [
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
+  ],
+  "公会支援表能够消耗各种素材激活帮助玩家冒险的各种辅助功能。": [
+    "assets/ui/settings/guides.json"
   ],
   "公会支援：其一": [
     "assets/data/SubAchieveData.json"
@@ -6299,9 +6733,6 @@
   "公共获得500魔力精华": [
     "assets/data/AbilityItems.json"
   ],
-  "公共获得50<#specinfo=molijinghua>": [
-    "assets/data/AbilityItems.json"
-  ],
   "公共获得50金币": [
     "assets/data/AbilityItems.json"
   ],
@@ -6324,6 +6755,9 @@
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "关卡内无法更改。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "关卡加载失败，请重试": [
     "scripts/main.gd"
   ],
@@ -6340,21 +6774,18 @@
     "scripts/world_interactions.gd"
   ],
   "关闭": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
     "scripts/hud.gd",
     "scripts/main.gd",
     "scripts/menus.gd",
     "scripts/presentation/building_page.gd",
     "scripts/presentation/mall_page.gd",
-    "scripts/presentation/menu_page.gd"
-  ],
-  "关闭属性详情": [
-    "scripts/presentation/character_page.gd"
+    "scripts/presentation/menu_page.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "关闭物品说明": [
     "scripts/presentation/pickup_card.gd"
-  ],
-  "关闭角色详情": [
-    "scripts/presentation/character_page.gd"
   ],
   "其他冒险家大人会用金苹果来招募伙伴，或者用大价钱卖给收藏家，您不打算这样做吗？": [
     "assets/data/dialogue.json"
@@ -6417,6 +6848,9 @@
   "再次提高区域入口的<color=#f28e00>宝箱</color>质量。": [
     "assets/data/TalentTreeData.json"
   ],
+  "再等等看！": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "再见": [
     "scripts/main.gd"
   ],
@@ -6446,8 +6880,11 @@
     "assets/data/dialogue.json"
   ],
   "冒险": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
     "scripts/menus.gd",
-    "scripts/presentation/guild_page.gd"
+    "scripts/presentation/guild_page.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "冒险中无法更改难度": [
     "scripts/domain/systems.gd"
@@ -6474,6 +6911,7 @@
     "assets/data/SubAchieveData.json"
   ],
   "冒险事件": [
+    "scripts/main.gd",
     "scripts/world_interactions.gd"
   ],
   "冒险事件3_选项2_降低20%<#specinfo=shengmingzhi>上限获得洪流波塞冬": [
@@ -6494,6 +6932,9 @@
   ],
   "冒险凭证 × %d": [
     "scripts/presentation/run_outcome.gd"
+  ],
+  "冒险凭证不足！": [
+    "assets/data/DisplayTerms.json"
   ],
   "冒险凭证或彩虹魔方不足": [
     "scripts/domain/systems.gd"
@@ -6522,6 +6963,15 @@
   "冒险奖励": [
     "scripts/main.gd"
   ],
+  "冒险委托栏": [
+    "assets/ui/settings/guides.json"
+  ],
+  "冒险委托栏\n由公会委托管理员洛蒂负责的冒险委托栏，玩家可以完成委托中的任务获取奖励。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "冒险委托栏<br>等待重建": [
+    "assets/data/DisplayTerms.json"
+  ],
   "冒险家们大部分时间都在迷宫探索和领取委托，平时还蛮无聊的呢。": [
     "assets/data/dialogue.json"
   ],
@@ -6532,11 +6982,21 @@
     "assets/data/MaterialData.json"
   ],
   "冒险家公会": [
+    "assets/data/DisplayTerms.json",
     "assets/data/NPCData.json",
     "assets/data/dialogue.json"
   ],
+  "冒险家公会-公会支援表": [
+    "assets/ui/settings/guides.json"
+  ],
+  "冒险家公会<br>等待重建": [
+    "assets/data/DisplayTerms.json"
+  ],
   "冒险家公会|金苹果|冒险档案馆": [
     "assets/data/RogueConfigData.json"
+  ],
+  "冒险家公会正急缺某些材料，请您收集需求的物品。": [
+    "assets/data/DisplayTerms.json"
   ],
   "冒险家大人信物已经充满了力量，随时准备和您一起去往更深层的迷宫啦，那么祝您冒险顺利。": [
     "assets/data/dialogue.json"
@@ -6703,6 +7163,9 @@
   "冒险家大人，您觉得金苹果是怎么长出来的呢？": [
     "assets/data/dialogue.json"
   ],
+  "冒险家大人，我们的宝箱不足了哦。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "冒险家大人，我听说幻影鹿王被您击败的消息了！": [
     "assets/data/dialogue.json"
   ],
@@ -6780,6 +7243,12 @@
   ],
   "冒险家见闻": [
     "assets/data/MallTradeData.json"
+  ],
+  "冒险家评级": [
+    "assets/ui/settings/guides.json"
+  ],
+  "冒险家评级\n每位角色拥有独立等级，分为古铜、黑铁、秘银、黄金、白金，每次提升等级都能增加该角色的生命、攻击力、防御力。\n\n解锁天赋！\n随着冒险家评级的提升，角色也将解锁更多天赋供冒险选择！": [
+    "assets/ui/settings/guides.json"
   ],
   "冒险家评级可是很重要的，毕竟公会认定后，还需要等一段时间才能把徽章送来。": [
     "assets/data/dialogue.json"
@@ -6865,6 +7334,9 @@
   ],
   "冒险计划已经准备就绪，一起来看看如何？": [
     "assets/data/dialogue.json"
+  ],
+  "冒险评分": [
+    "assets/data/DisplayTerms.json"
   ],
   "冒险资金": [
     "assets/data/MallTradeData.json"
@@ -6988,6 +7460,9 @@
   "况且为宝石添加迷宫的力量本身就不是一件简单的事，只有出自史莱姆王的宝石才能为冒险家带来强化。": [
     "assets/data/dialogue.json"
   ],
+  "冷却": [
+    "assets/data/DisplayTerms.json"
+  ],
   "冷却  %.1f 秒": [
     "scripts/presentation/character_page.gd"
   ],
@@ -7015,6 +7490,9 @@
   "冷静，我是来帮忙的。": [
     "assets/data/dialogue.json"
   ],
+  "冻伤": [
+    "assets/data/DisplayTerms.json"
+  ],
   "冻土入口": [
     "assets/data/campaign.json"
   ],
@@ -7027,10 +7505,14 @@
   "净化目标不存在": [
     "scripts/domain/systems.gd"
   ],
+  "净化进度 &s1&/&s2&": [
+    "assets/data/DisplayTerms.json"
+  ],
   "净化进度已记录": [
     "scripts/domain/systems.gd"
   ],
   "净化遗物": [
+    "assets/ui/settings/guides.json",
     "scripts/domain/systems.gd"
   ],
   "净化遗物布袋": [
@@ -7073,6 +7555,9 @@
   "减少<color=#e99f0d>陷阱</color>的伤害。": [
     "assets/data/TalentTreeData.json"
   ],
+  "减少玩家特效": [
+    "scripts/domain/settings.gd"
+  ],
   "减少释放<#specinfo=zhongji>前的蓄力时间，同时增加造成的伤害。": [
     "assets/data/CharTalentData.json"
   ],
@@ -7097,8 +7582,28 @@
     "scripts/presentation/guild_page.gd",
     "scripts/presentation/menu_page.gd"
   ],
+  "几何ui-异形白色按钮": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "几何ui-暗圆角矩形": [
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "几何ui-椭圆白色按钮": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/settings_page.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
   "几何ui-白圆角矩形": [
-    "scripts/presentation/commission_board.gd"
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/commission_board.gd",
+    "scripts/presentation/inventory_page.gd"
+  ],
+  "几何ui-白椭圆": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "几何形状-白色粉边椭圆": [
+    "scripts/presentation/settings_page.gd"
   ],
   "几天后我打造了唯一一把只用矿石素材打造的佩剑，但最后他们把这把佩剑挂在雕像身上，并为这把剑编了一段从天降临的传说故事。": [
     "assets/data/dialogue.json"
@@ -7183,11 +7688,18 @@
     "scripts/menus.gd",
     "scripts/world_interactions.gd"
   ],
+  "出大红啦": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "出没在宝石附近的强大魔物，守护着自己领地所有宝石，对它而言，宝石是财物，同样也是武器。<br>冒险家们遇见爆裂穿山甲后都会向冒险家公会表示它会发射宝石炸弹，即便如此危险，他们仍然会优先选择讨伐爆裂穿山甲的委托，毕竟爆裂穿山甲身上的宝石价值远远高于委托报酬。": [
     "assets/data/EnemyData.json"
   ],
   "出没在矿洞中的一般魔物，它们会将自身隐藏，假装矿石等待猎物上钩乘机偷袭。<br>虽然伪装矿石是它们最常用的手段，但即便是正面作战，它们仍然有着强大的优势，身上的甲壳就是最合身的铠甲，在矿洞召唤矿石攻击敌人，对它而言也并非难事。": [
     "assets/data/EnemyData.json"
+  ],
+  "击中顿帧": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "击破所有的石柱，可以解除泰坦巨像的矿石护盾。": [
     "assets/data/dialogue.json"
@@ -7361,6 +7873,9 @@
   "击败怪物有20%概率掉落<#specinfo=qicaijiejing>，且领主宝箱内<#specinfo=qicaijiejing>掉落量提高20%。": [
     "assets/data/AbilityItems.json"
   ],
+  "击败怪物！": [
+    "assets/ui/settings/guides.json"
+  ],
   "击败敌人<#specinfo=shengminghuifu>值提高至1.5%<#specinfo=shengmingzhi>。": [
     "assets/data/AbilityItems.json"
   ],
@@ -7383,6 +7898,7 @@
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
   "击败数量": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd"
   ],
   "击败该怪物次数不足": [
@@ -7397,12 +7913,19 @@
   "击败领主敌人时获得3次奖励刷新次数。": [
     "assets/data/AbilityItems.json"
   ],
+  "刀阵": [
+    "assets/data/DisplayTerms.json"
+  ],
   "刀阵追击": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
   "分享评价": [
     "scripts/hud.gd",
     "scripts/main.gd"
+  ],
+  "分割线1": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "分割线四": [
     "scripts/presentation/dialogue_page.gd"
@@ -7412,6 +7935,11 @@
   ],
   "分头行动": [
     "assets/data/SubAchieveData.json"
+  ],
+  "分类选中": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "分裂冲击": [
     "assets/data/CharTalentData.json"
@@ -7460,6 +7988,9 @@
   "初始携带<#specinfo=keyinshengdian>。": [
     "assets/data/TalentTreeData.json"
   ],
+  "初始获得18层减伤，每层提供5%全元素抗性；每次受到冒险家伤害减少1层。": [
+    "assets/ui/settings/guides.json"
+  ],
   "初始额外提高5%最大<#specinfo=shengmingzhi>。": [
     "assets/data/AbilityItems.json"
   ],
@@ -7479,6 +8010,9 @@
   ],
   "初级迷宫素材包": [
     "assets/data/MallTradeData.json"
+  ],
+  "删除存档": [
+    "assets/data/DisplayTerms.json"
   ],
   "利刃纵贯": [
     "assets/data/CharTalentData.json"
@@ -7501,6 +8035,9 @@
   "别看我这样，全村最强的剑士就是我啦！": [
     "assets/data/dialogue.json"
   ],
+  "别被打中！": [
+    "assets/ui/settings/guides.json"
+  ],
   "别说混沌魔龙了，不管是什么魔物我都相信你能击败它们的。": [
     "assets/data/dialogue.json"
   ],
@@ -7517,6 +8054,7 @@
     "assets/data/AdvantureEventData.json"
   ],
   "刷新": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/presentation/talent_selection.gd"
   ],
@@ -7584,6 +8122,9 @@
   "剑圣考核": [
     "assets/data/SubAchieveData.json"
   ],
+  "剑心": [
+    "assets/data/DisplayTerms.json"
+  ],
   "剑心·攻击增幅": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
@@ -7621,8 +8162,20 @@
   "剧烈的爆炸后，这个遗物布袋发生了奇怪的变化，似乎被笼罩了黑暗的力量<br><br>当你回过神的时候主持人已经丢下摊子跑路了。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "剩余": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "剩余&s1&(奖励&s2&/&s3&)": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "剩余存入次数:": [
+    "assets/data/DisplayTerms.json"
+  ],
   "剩余存入次数：": [
     "scripts/presentation/room_shop.gd"
+  ],
+  "剩余时间": [
+    "assets/data/DisplayTerms.json"
   ],
   "力大砖飞": [
     "assets/data/AbilityItems.json"
@@ -7639,6 +8192,12 @@
   "加载中... 0%": [
     "scripts/presentation/room_loading.gd"
   ],
+  "加载中……": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "加速工作": [
+    "assets/data/DisplayTerms.json"
+  ],
   "劣质": [
     "scripts/main.gd"
   ],
@@ -7647,6 +8206,13 @@
   ],
   "劣质生命恢复药水": [
     "assets/data/AbilityItems.json"
+  ],
+  "动态": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "动态演出模糊": [
+    "scripts/domain/settings.gd"
   ],
   "努力锻炼，我相信终有一天，自己可以强到用巨斧劈开山脉！": [
     "assets/data/dialogue.json"
@@ -7684,8 +8250,20 @@
   "勇者之盾强化": [
     "assets/data/AbilityItems.json"
   ],
+  "勾选": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "勾选即表示您同意<link=\"https://www.teamelo.cn/cn/termofservice\"><color=#35c6d9> 服务条款 </color></link>，并确认您已阅读<link=\"https://www.teamelo.cn/cn/privacypolicy\"><color=#35c6d9>隐私权政策</color></link>。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "勾选框": [
+    "scripts/presentation/settings_page.gd"
+  ],
   "化身虚影遁入虚空，从黑暗中锁定目标，在虚影状态下瞬间对目标区域发起多段攻击，随后破空而出，撕裂虚空并造成大范围伤害。": [
     "assets/data/combat.json"
+  ],
+  "北国士兵们的战甲仍然坚固耐用。<br>虽然无法阻挡魔王军的步伐，但至少能为你提供帮助。": [
+    "assets/data/AdvantureEventData.json"
   ],
   "北国战甲": [
     "assets/data/AbilityItems.json"
@@ -7693,11 +8271,17 @@
   "北国碎刃": [
     "assets/data/AbilityItems.json"
   ],
+  "北国遗产": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "北国遗宝": [
     "assets/data/AbilityItems.json"
   ],
   "北方山国也是这样的覆雪山峰，山内有迷宫的祝福，但仍然有人生活在山上才对。": [
     "assets/data/dialogue.json"
+  ],
+  "区域": [
+    "assets/data/DisplayTerms.json"
   ],
   "区域 %d": [
     "scripts/main.gd"
@@ -7726,6 +8310,9 @@
   "区域总览": [
     "scripts/main.gd"
   ],
+  "区域素材": [
+    "assets/ui/settings/guides.json"
+  ],
   "区域路线": [
     "scripts/main.gd",
     "scripts/presentation/route_page.gd"
@@ -7738,6 +8325,8 @@
     "assets/data/MaterialData.json"
   ],
   "升级": [
+    "assets/data/DisplayTerms.json",
+    "scripts/main.gd",
     "scripts/menus.gd",
     "scripts/presentation/guild_page.gd"
   ],
@@ -7753,8 +8342,26 @@
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "升级后获得": [
+    "assets/data/DisplayTerms.json"
+  ],
   "升级或突破材料不足": [
     "scripts/domain/systems.gd"
+  ],
+  "升级所需材料": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "升级效果将在下局游戏生效。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "升级武器": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "升级消耗:": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "升级精灵吧！": [
+    "assets/ui/settings/guides.json"
   ],
   "半熟烤肉排": [
     "assets/data/CatMealData.json"
@@ -7792,6 +8399,9 @@
   ],
   "卫士长手斧强化": [
     "assets/data/AbilityItems.json"
+  ],
+  "危险遭遇战": [
+    "assets/ui/settings/guides.json"
   ],
   "危险遭遇战·\r先祖锻道": [
     "assets/data/campaign.json"
@@ -7979,19 +8589,25 @@
   "原来迷宫意志一直在引领各位冒险家大人前往核心，希望各位冒险家大人交还魔力精华修复丧失的力量。": [
     "assets/data/dialogue.json"
   ],
+  "原生": [
+    "scripts/domain/settings.gd"
+  ],
   "原配置兑换": [
     "scripts/domain/systems.gd"
   ],
   "去哪里休假？或许重走一遍曾经的冒险之旅也不错，但还是交给您安排吧，我很期待。": [
     "assets/data/dialogue.json"
   ],
-  "参加格斗！<br>（最大<#specinfo=shengmingzhi>大于150）": [
+  "参加格斗！<br>（<#specinfo=shengmingshangxian>大于150）": [
     "assets/data/AdvantureEventData.json"
   ],
   "参加面试。<br>（上交【优秀的简历】）": [
     "assets/data/AdvantureEventData.json"
   ],
   "参加面试。<br>（上交【简单的简历】）": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "又是<color=#ff4f4f>大颗红宝石</color>，史莱姆王失落地坐在岸边。<br>钓鱼这项运动还真是除了鱼什么都能钓上来呢。": [
     "assets/data/AdvantureEventData.json"
   ],
   "又是巡逻任务吗？为什么冒险家总是要抢士兵的工作呢？": [
@@ -8031,16 +8647,33 @@
     "assets/data/dialogue.json"
   ],
   "反馈": [
-    "scripts/main.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/main.gd",
+    "scripts/menus.gd"
+  ],
+  "反馈成功！": [
+    "assets/data/DisplayTerms.json"
   ],
   "发现<color=#5398ff>奖励史莱姆</color>的概率提高。": [
     "assets/data/TalentTreeData.json"
   ],
   "取消": [
-    "scripts/main.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/main.gd",
+    "scripts/presentation/settings_page.gd",
+    "scripts/presentation/touch_layout_editor.gd"
   ],
   "取消<#specinfo=lengque>时间。": [
     "assets/data/AbilityItems.json"
+  ],
+  "取消祈愿": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "取消禁用": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "取消装备": [
+    "assets/data/DisplayTerms.json"
   ],
   "取消该遗物加成对于<#specinfo=putonggongji>的限制。": [
     "assets/data/AbilityItems.json"
@@ -8087,6 +8720,9 @@
   "受到【水之精灵】祝福的武器，在御使【水】的力量时更加得心应手。": [
     "assets/data/WeaponData.json"
   ],
+  "受到【魔化】效果的怪物会获得若干强化词条，且自身招式与体型也会发生变化。": [
+    "assets/ui/settings/guides.json"
+  ],
   "受到伤害后0.5秒内使用<#specinfo=zhanji>能<#specinfo=shengminghuifu>10%<#specinfo=shengmingzhi>，效果触发后增加50%<#specinfo=gongjili>。": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
@@ -8122,6 +8758,9 @@
   ],
   "受到的伤害降低40%，触发后获得10点<color=#76A9FF><#specinfo=sikadizhinu>能量</color>，<#specinfo=zhongji>伤害+100%。": [
     "assets/data/CharTalentLevelData.json"
+  ],
+  "受到致命伤害时，将生命值锁定在20%，并在1秒内分四段恢复共40%最大生命值。": [
+    "assets/ui/settings/guides.json"
   ],
   "受挫了吗？请放心，爱丽丝一定会陪着冒险家大人的。": [
     "assets/data/dialogue.json"
@@ -8170,6 +8809,9 @@
   ],
   "古铜护甲": [
     "assets/data/AbilityItems.json"
+  ],
+  "古铜级": [
+    "assets/data/DisplayTerms.json"
   ],
   "只存在于迷宫内的魔力能量汇集结晶，虽然无法使用，但在一些人手中却能发挥价值。<br><color=#DAA60B>获取途径：</color>击败怪物或开启宝箱收集。": [
     "assets/data/MaterialData.json"
@@ -8228,6 +8870,30 @@
   "召唤<color=#529fff>【水刃】</color>时所有<color=#529fff>【回响】</color>也会发射<color=#529fff>【水刃】</color>，该效果每2秒最多触发一次。": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
+  "召唤乌鸦围绕自身，对附近的敌人造成伤害，持续10秒，每只渡鸦命中后造成50%<#specinfo=gongjili>的伤害。|被乌鸦累计击中10次后，为目标附上<#specinfo=sishengbiaoji>。|乌鸦数量增加5只，且乌鸦每次命中提升玩家1%<#specinfo=gongjili>，持续15秒。": [
+    "assets/data/partner_skills.json"
+  ],
+  "召唤幻影鹿王向敌人发起数道幻影冲锋，每段造成200%<#specinfo=gongjili>的伤害，命中增加一层<#specinfo=dongshang>。|幻影冲锋会定期在地面留下寒冰法阵延迟爆炸，造成300%<#specinfo=gongjili>的伤害，命中增加一层<#specinfo=dongshang>。|幻影鹿王在发起幻影冲锋后会释放【极寒风雪】，每段造成100%<#specinfo=gongjili>的伤害，命中增加一层<#specinfo=dongshang>。": [
+    "assets/data/partner_skills.json"
+  ],
+  "召唤怪物支援技！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "召唤泰坦巨像快速向前进行拍击，并在地上扩散尖刺，尖刺每段造成100%<#specinfo=gongjili>的伤害。|尖刺命中时增加自身1%<#specinfo=gongjili>，最大50层，持续8秒。|拍击结束后自身体型变大并用力砸下，造成500%<#specinfo=gongjili>的伤害，并对敌人附加<#specinfo=pojia>。": [
+    "assets/data/partner_skills.json"
+  ],
+  "召唤深渊狂鲨扑向敌人，之后获得25次召唤次数，<#specinfo=putonggongji>或<#specinfo=zhongji>命中时必定触发（<#specinfo=lengque>1秒）召唤1条深渊迷你鲨冲向敌人。深渊狂鲨造成150%<#specinfo=gongjili>的伤害，深渊迷你鲨造成75%<#specinfo=gongjili>的伤害。|深渊迷你鲨离开后有概率再次浮出重新造成伤害。|深渊迷你鲨每次命中小概率召唤深渊狂鲨跃出，造成500%<#specinfo=gongjili>的巨额伤害。": [
+    "assets/data/partner_skills.json"
+  ],
+  "召唤混沌魔龙唤出落雷，落雷造成300%<#specinfo=gongjili>的伤害，后聚集火元素爆发，造成1000%<#specinfo=gongjili>的伤害。|使用后返还1点<#specinfo=guaiwuzhiyuan>点数。|召唤落雷后混沌魔龙改为释放【灭世龙息】，总共造成2400%<#specinfo=gongjili>的伤害，对【首领】伤害翻倍。": [
+    "assets/data/partner_skills.json"
+  ],
+  "召唤炽焰狼王连续释放爪击，爪击每段造成300%<#specinfo=gongjili>的伤害。|爪击能够发射【火焰爪痕】对敌人造成<#specinfo=zhuoshao>，火焰爪痕每段造成200%<#specinfo=gongjili>的伤害。|爪击结束后释放【狼吼】给敌人施加<#specinfo=danqie>，狼吼造成200%<#specinfo=gongjili>的伤害。": [
+    "assets/data/partner_skills.json"
+  ],
+  "召唤荒漠圣兽落下数枚风弹，风弹命中造成1000%<#specinfo=gongjili>的伤害。|荒漠圣兽落下风弹后会腾空并留下1道龙卷风，龙卷每段造成200%<#specinfo=gongjili>的伤害。|荒漠圣兽腾空后会向前发射1道【分裂龙卷风】，分裂造成的伤害减半。": [
+    "assets/data/partner_skills.json"
+  ],
   "叮当！叮当！<br>一名修补匠一边哼着歌一遍修补着盔甲，嗯，这首歌似乎还挺耳熟的，既然来了，要顺便挑个材料修补一下装备吗？": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -8267,6 +8933,15 @@
   "可用": [
     "scripts/domain/systems.gd"
   ],
+  "可用伙伴技能不足，请先解锁伙伴": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "可破坏物": [
+    "assets/ui/settings/guides.json"
+  ],
+  "可破坏物\n一些节点拥有可破坏障碍，这些障碍会阻挡远程攻击和移动，可以被攻击破坏。\n\n区域素材\n每层迷宫都生长着区域素材，这些素材有概率出现在各个节点，需要被攻击采集。\n\n矿脉\n节点内有概率出现黄金或魔力矿脉，击碎它们可以收集一些素材。": [
+    "assets/ui/settings/guides.json"
+  ],
   "可累计的最大上限提高至80%。": [
     "assets/data/AbilityItems.json"
   ],
@@ -8291,8 +8966,14 @@
   "可能要等魔王军开始进攻，王国才会再次征集士兵，希望这一天不会来吧。": [
     "assets/data/dialogue.json"
   ],
+  "可解锁": [
+    "assets/data/DisplayTerms.json"
+  ],
   "可触发的<#specinfo=shengmingzhi>提高至50%。": [
     "assets/data/AbilityItems.json"
+  ],
+  "可领取奖励": [
+    "assets/data/DisplayTerms.json"
   ],
   "史莱姆伙伴": [
     "assets/data/AbilityItems.json"
@@ -8408,7 +9089,7 @@
   "吃红色的那边。": [
     "assets/data/AdvantureEventData.json"
   ],
-  "吃绿色的那边。<br>（最大<#specinfo=shengmingzhi>大于150）": [
+  "吃绿色的那边。<br>（<#specinfo=shengmingshangxian>大于150）": [
     "assets/data/AdvantureEventData.json"
   ],
   "合作伙伴！": [
@@ -8427,7 +9108,9 @@
     "assets/data/dialogue.json"
   ],
   "同生": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "后悔药": [
     "assets/data/AdvantureEventData.json"
@@ -8438,11 +9121,17 @@
   "后退": [
     "scripts/menus.gd"
   ],
+  "向其他伙伴赠送礼物可以提高他们的好感度，或许还能获得他们的回礼噢。": [
+    "assets/ui/settings/guides.json"
+  ],
   "向前冲刺并横扫周围的敌人，对敌人附加<#specinfo=anshi>。": [
     "assets/data/combat.json"
   ],
   "向前快速位移并进行2段烈焰攻击，每段附加1层<#specinfo=zhuoshao>效果。": [
     "assets/data/combat.json"
+  ],
+  "向前方展开一片持续10秒的流沙之域，敌人进入后每0.25秒累加1%减速。|敌人进入领域累计3秒后被施加<#specinfo=pojia>。|领域每次向敌人施加减速时为玩家提高1点<#specinfo=fangyuli>，最多99层，持续5秒。": [
+    "assets/data/partner_skills.json"
   ],
   "向前方快速垫步。<br><br><#specinfo=shanbigongji><br>朝前方释放出交叉攻击。": [
     "assets/data/combat.json"
@@ -8452,6 +9141,12 @@
   ],
   "向天上射出1只分裂箭，随后在前方区域降下<color=#DAA60B>暴风箭雨</color>，每次命中时附加<#specinfo=biaoji>。": [
     "assets/data/combat.json"
+  ],
+  "吞噬": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "吞噬标记": [
+    "assets/data/DisplayTerms.json"
   ],
   "吞噬者之徽": [
     "assets/data/AbilityItems.json"
@@ -8518,6 +9213,26 @@
   ],
   "启动守护": [
     "scripts/world_interactions.gd"
+  ],
+  "启用1星合成": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "启用2星合成": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "启用3星合成": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "启用4星合成": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "启用Bloom眩光": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "启用景深": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "呀呀呀！别吃我！别吃我！": [
     "assets/data/dialogue.json"
@@ -8610,7 +9325,8 @@
     "assets/data/dialogue.json"
   ],
   "咸鱼剑": [
-    "assets/data/AbilityItems.json"
+    "assets/data/AbilityItems.json",
+    "assets/data/AdvantureEventData.json"
   ],
   "哇！真的好冷啊。": [
     "assets/data/dialogue.json"
@@ -8708,6 +9424,9 @@
   "哼啊啊啊啊啊。": [
     "assets/data/dialogue.json"
   ],
+  "哼啊啊啊啊啊啊…<br>啊，是史莱姆王来了，看起来修格斯对你的到来相当开心，它让几只<color=#ff4f4f>红宝石史莱姆</color>为你送上了<color=#ff4f4f>宝石</color>。<br>要好好使用它们哦。": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "哼！可不是吗，还得谢谢人家没把这里夷为平地呢。": [
     "assets/data/dialogue.json"
   ],
@@ -8803,6 +9522,7 @@
     "scripts/domain/systems.gd"
   ],
   "商城": [
+    "assets/data/DisplayTerms.json",
     "scripts/hud.gd",
     "scripts/menus.gd",
     "scripts/presentation/mall_page.gd"
@@ -8812,6 +9532,12 @@
   ],
   "商店不存在": [
     "scripts/domain/systems.gd"
+  ],
+  "商店价格": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "商店免费购买次数": [
+    "assets/data/DisplayTerms.json"
   ],
   "商店兑换卷": [
     "assets/data/AbilityItems.json"
@@ -8830,6 +9556,9 @@
   ],
   "商店升至 %d 级": [
     "scripts/domain/systems.gd"
+  ],
+  "商店存储": [
+    "assets/data/DisplayTerms.json"
   ],
   "商店已刷新": [
     "scripts/domain/systems.gd"
@@ -8901,6 +9630,10 @@
   ],
   "喝汤。<br>（获得1件<color=#D27EFB>【惩罚遗物】</color>）": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "嗜血": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
   ],
   "嗨！朋友，我在这翻到了不少好东西，给，把这个带上吧，希望对你的冒险有帮助。": [
     "assets/data/dialogue.json"
@@ -9104,6 +9837,10 @@
   "回答，龙骑士城堡有大量金币和材料，这次来是为了找到能带回雪山的强大的宝物，越多越好。": [
     "assets/data/dialogue.json"
   ],
+  "固定": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "图书管理员": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -9142,6 +9879,9 @@
   ],
   "圣典·黑洞之礼": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "圣兽·飓风飞弹": [
+    "assets/data/partner_skills.json"
   ],
   "圣咏余韵": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -9211,6 +9951,9 @@
   "在宽大斧面上点缀的流星似乎不仅是好看那么简单。": [
     "assets/data/WeaponData.json"
   ],
+  "在每层迷宫入口处，玩家可以消耗素材烹饪已解锁的食谱，以获得辅助冒险的特殊效果。": [
+    "assets/ui/settings/guides.json"
+  ],
   "在沙漠列队巡逻的龙蜥战士，手持一把破损严重的短刀。<br>从短刀的状态可以看出，它们并不具备打造武器的水平，就更不必说修补了，龙蜥战士的一切武装应该都来源于冒险家丢弃的破损装备。": [
     "assets/data/EnemyData.json"
   ],
@@ -9225,6 +9968,9 @@
   ],
   "在第一次神魔战争中，天空之神将自己的光辉铸入剑身，赐予第一位圣骑士。传说当它举起之时，天空会回应持剑者的意志。": [
     "assets/data/WeaponData.json"
+  ],
+  "在身旁召唤1根图腾，图腾会留在原地自动进行攻击，持续20秒，图腾每次命中造成100%（冰弹）、50%（冰阵）、100%（火弹）、300%（毒爆）的伤害。|图腾数量增加。|图腾数量再增加，命中时造成异常效果。": [
+    "assets/data/partner_skills.json"
   ],
   "在过去的冒险中，妮洛在巨树迷宫中打开了神秘宝箱，里面只有这朵黑暗之花的花苞，似乎正在等待有人将它带出迷宫。": [
     "assets/data/dialogue.json"
@@ -9310,6 +10056,9 @@
   "在迷宫中伫立的巨大塔楼，从未有人找到的神秘地点。<br>谁也无法想到，这无人管理的塔楼，正堆藏着用之不竭的七彩结晶。": [
     "assets/data/MonsterWorkData.json"
   ],
+  "在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。": [
+    "assets/ui/settings/guides.json"
+  ],
   "在迷宫冒险结束后，冒险家大人请带上它去各处冒险吧，它一定也是这样期待的。": [
     "assets/data/dialogue.json"
   ],
@@ -9343,6 +10092,15 @@
   "地火鼠": [
     "assets/data/EnemyData.json",
     "assets/data/combat.json"
+  ],
+  "场景细节": [
+    "scripts/domain/settings.gd"
+  ],
+  "坚守基石！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "坚毅": [
+    "assets/data/DisplayTerms.json"
   ],
   "坚韧增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -9479,8 +10237,10 @@
     "assets/data/AbilityItems.json"
   ],
   "声音": [
-    "scripts/menus.gd",
-    "scripts/presentation/reference_pages.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "处于<#specinfo=shuangyu>增幅状态下每4秒召唤<color=#76A9FF>【霜盾】</color>攻击周围的敌人，并且使用<#specinfo=baofaji>后额外召唤一个<#specinfo=shuangyu>跟随自身。": [
     "assets/data/CharTalentLevelData.json"
@@ -9499,6 +10259,9 @@
   ],
   "复生之血": [
     "assets/data/AbilityItems.json"
+  ],
+  "复苏": [
+    "assets/data/DisplayTerms.json"
   ],
   "复苏后<#specinfo=shengminghuifu>更多<#specinfo=shengmingzhi>。": [
     "assets/data/TalentTreeData.json"
@@ -9633,8 +10396,16 @@
     "assets/data/EnemyData.json",
     "assets/data/combat.json"
   ],
+  "天赋": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "天赋/遗物刷新次数": [
+    "assets/data/DisplayTerms.json"
+  ],
   "天赋卷轴": [
-    "assets/data/ItemPoolData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/ItemPoolData.json",
+    "scripts/ground_loot.gd"
   ],
   "天赋增幅·伍": [
     "assets/data/RelationshipAmplifyData.json"
@@ -9657,8 +10428,14 @@
   "天赋已满级，转化为魔力 +%d": [
     "scripts/main.gd"
   ],
+  "天赋已满，转化&s1&。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "天赋已重选": [
     "scripts/domain/systems.gd"
+  ],
+  "天赋未解锁": [
+    "assets/data/DisplayTerms.json"
   ],
   "天赋树_区域入口会出现宝箱（普通）": [
     "assets/data/AbilityItems.json"
@@ -9839,6 +10616,9 @@
   "太诡异了！": [
     "assets/data/AdvantureEventData.json"
   ],
+  "失手": [
+    "assets/data/DisplayTerms.json"
+  ],
   "失控魔杖": [
     "assets/data/AbilityItems.json"
   ],
@@ -9920,6 +10700,18 @@
   "奋勇冲撞": [
     "assets/data/CharTalentData.json"
   ],
+  "契约挑战": [
+    "assets/ui/settings/guides.json"
+  ],
+  "契约等级": [
+    "assets/ui/settings/guides.json"
+  ],
+  "契约等级\n迷宫契约等级与武器挑战进度相关，达成当前武器需求的挑战等级并攻略迷宫后会自动提升契约等级，提升契约等级可以解锁更多挑战词条与更多赐福词条\n\n契约挑战\n自定义搭配挑战提高冒险难度，需要注意的是当前武器到达需求的挑战等级后，超出的挑战等级并不能为这件武器解锁多项契约等级奖励。\n\n契约赐福\n自定义搭配挑战赐福，提高奖励或全新流派搭配，赐福等级需要小于或等于挑战等级才允许开始冒险。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "契约赐福": [
+    "assets/ui/settings/guides.json"
+  ],
   "奔浪": [
     "assets/data/combat.json"
   ],
@@ -9955,6 +10747,9 @@
   "奖励已处理": [
     "scripts/domain/ad_rewards.gd"
   ],
+  "奖励已翻倍": [
+    "assets/data/DisplayTerms.json"
+  ],
   "奖励已重选": [
     "scripts/domain/systems.gd"
   ],
@@ -9964,13 +10759,20 @@
   "奖励已领取或不存在": [
     "scripts/domain/systems.gd"
   ],
+  "奖励翻倍": [
+    "assets/data/DisplayTerms.json"
+  ],
   "奖励配置不可用": [
     "scripts/domain/ad_rewards.gd"
+  ],
+  "奖励：": [
+    "assets/data/DisplayTerms.json"
   ],
   "奖池内容": [
     "scripts/presentation/mall_page.gd"
   ],
   "套装遗物": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
   ],
   "好了，你先拿上这个，等一切准备就绪了，随时来到武器库挑选，我随时都在。": [
@@ -10087,6 +10889,9 @@
   "好感度信物_进入房间时，若没有支援点则获得支援点": [
     "assets/data/AbilityItems.json"
   ],
+  "好感度已满。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "好感满级 - NPC好感度达到10级": [
     "assets/data/AchieveData.json"
   ],
@@ -10119,6 +10924,9 @@
   ],
   "如同一枚巨大十字星的长剑，挥舞时反射的光线也是武器的一部分。": [
     "assets/data/WeaponData.json"
+  ],
+  "如有疑问，请联系客服。": [
+    "assets/data/DisplayTerms.json"
   ],
   "如果": [
     "assets/data/AdvantureEventData.json"
@@ -10261,6 +11069,9 @@
   "妮洛随身佩戴的黑暗之花吸引了爱丽丝的注意，妮洛向爱丽丝解释了这朵花的来历。": [
     "assets/data/dialogue.json"
   ],
+  "委托": [
+    "assets/data/DisplayTerms.json"
+  ],
   "委托任务": [
     "scripts/menus.gd",
     "scripts/world_interactions.gd"
@@ -10275,14 +11086,30 @@
     "assets/data/SubAchieveData.json"
   ],
   "委托板": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/menus.gd"
+  ],
+  "委托栏": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "委托栏-冒险委托": [
+    "assets/ui/settings/guides.json"
+  ],
+  "委托栏-悬赏委托": [
+    "assets/ui/settings/guides.json"
+  ],
+  "委托组": [
+    "assets/data/DisplayTerms.json"
   ],
   "委托设施达到 2 级后解锁": [
     "scripts/domain/systems.gd"
   ],
   "威能横扫": [
     "assets/data/CharTalentData.json"
+  ],
+  "存入": [
+    "assets/data/DisplayTerms.json"
   ],
   "存入商店": [
     "scripts/presentation/room_shop.gd"
@@ -10291,8 +11118,9 @@
     "scripts/domain/systems.gd"
   ],
   "存档": [
-    "scripts/menus.gd",
-    "scripts/presentation/reference_pages.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "存档不可读取或超出大小限制": [
     "scripts/save_store.gd"
@@ -10308,6 +11136,9 @@
   ],
   "存档目录无法打开": [
     "scripts/save_store.gd"
+  ],
+  "孢子爆发": [
+    "assets/data/partner_skills.json"
   ],
   "孤岛魔蝠": [
     "assets/data/EnemyData.json",
@@ -10449,6 +11280,9 @@
   "守护者之镰": [
     "assets/data/SubAchieveData.json",
     "assets/data/WeaponData.json"
+  ],
+  "守护者之镰触发": [
+    "assets/data/DisplayTerms.json"
   ],
   "守护者宝珠": [
     "assets/data/SubAchieveData.json",
@@ -10636,17 +11470,29 @@
   "完成公会支援箱初次对话。": [
     "assets/data/UnlockData.json"
   ],
+  "完成奖励": [
+    "assets/data/DisplayTerms.json"
+  ],
   "完成广告后领取奖励": [
     "scripts/presentation/mall_page.gd"
   ],
   "完成所有<#LocalizationId=\"EnvUnit_MonoData_BtnDisplayName_MainCityDeveloper\">据点建设</LocalizationId>。": [
     "assets/data/UnlockData.json"
   ],
+  "完成黑暗遗物的净化条件可以获得净化遗物，净化遗物的效果往往比普通的遗物更加强大。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "官方Q群": [
+    "assets/data/DisplayTerms.json"
+  ],
   "宝珠宗师": [
     "assets/data/AchieveData.json"
   ],
   "宝珠精通": [
     "assets/data/AchieveData.json"
+  ],
+  "宝石": [
+    "assets/data/DisplayTerms.json"
   ],
   "宝石交易完成": [
     "scripts/domain/systems.gd"
@@ -10662,6 +11508,9 @@
   ],
   "宝石伙伴": [
     "assets/data/SubAchieveData.json"
+  ],
+  "宝石免费交易次数": [
+    "assets/data/DisplayTerms.json"
   ],
   "宝石口袋": [
     "assets/data/AbilityItems.json",
@@ -10688,6 +11537,9 @@
   ],
   "宝石研磨": [
     "assets/data/TalentTreeData.json"
+  ],
+  "宝箱不足": [
+    "assets/data/DisplayTerms.json"
   ],
   "宝箱保底材料不存在": [
     "scripts/domain/systems.gd"
@@ -10716,6 +11568,12 @@
   "宝箱权重格式无效": [
     "scripts/domain/systems.gd"
   ],
+  "宝箱类型": [
+    "assets/ui/settings/guides.json"
+  ],
+  "宝箱类型\n迷宫中的宝藏，分为普通木宝箱、精致铁宝箱、华丽金宝箱、领主宝箱，越高级的宝箱掉落奖励越珍贵，获取难度也越高。": [
+    "assets/ui/settings/guides.json"
+  ],
   "宝箱缺少配置或保底规则尚未恢复": [
     "scripts/domain/systems.gd"
   ],
@@ -10735,6 +11593,7 @@
     "assets/data/TalentTreeData.json"
   ],
   "客服": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/mall_page.gd"
   ],
   "家常咖喱": [
@@ -10822,6 +11681,9 @@
   "对你现在来说，治疗药汤的诱惑力更大一些，你拿上了遗物希望这口汤能对得起你的付出。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "对冒险家造成伤害后，恢复自身10%最大生命值，冷却1秒。": [
+    "assets/ui/settings/guides.json"
+  ],
   "对周围敌人造成伤害的判定<color=#fdb933>范围</color>+100%。": [
     "assets/data/AbilityItems.json"
   ],
@@ -10852,6 +11714,12 @@
   "对附带<#specinfo=anshi>的敌人造成伤害时可以将敌人的<color=#a358ff>【魂灵】</color>抽出体外，每拾取1枚<color=#a358ff>【魂灵】</color>能临时+1%<#specinfo=gongjili>。<br><color=#a358ff>【魂灵】</color>加成持续10秒。": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
+  "寻宝": [
+    "assets/ui/settings/guides.json"
+  ],
+  "寻宝\n该节点标记了许多陷阱，玩家必须穿过这些陷阱才能找到最终的宝藏，成功穿过所有陷阱还有额外的宝箱奖励。": [
+    "assets/ui/settings/guides.json"
+  ],
   "寻宝·冰封宝库": [
     "assets/data/campaign.json"
   ],
@@ -10881,6 +11749,9 @@
   ],
   "寻找公主": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "寻找宝藏吧！": [
+    "assets/ui/settings/guides.json"
   ],
   "寻找捷径。<br>（持有1枚以上<#specinfo=keyinshengdian>）": [
     "assets/data/AdvantureEventData.json"
@@ -10987,7 +11858,7 @@
   "小帮手": [
     "assets/data/MaterialData.json"
   ],
-  "小心打开宝箱。<br>（最大<#specinfo=shengmingzhi>大于150）": [
+  "小心打开宝箱。<br>（<#specinfo=shengmingshangxian>大于150）": [
     "assets/data/AdvantureEventData.json"
   ],
   "小有成就": [
@@ -11004,6 +11875,9 @@
   ],
   "尘暴再续": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "尚无本地存档": [
+    "scripts/presentation/settings_page.gd"
   ],
   "尚未修复的任务板": [
     "assets/data/RogueConfigData.json"
@@ -11032,10 +11906,13 @@
   "尚未修复的铁匠铺": [
     "assets/data/RogueConfigData.json"
   ],
+  "尚未击败该怪物。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "尚未接入": [
     "scripts/presentation/mall_page.gd"
   ],
-  "尝一口。<br>（最大<#specinfo=shengmingzhi>大于200）": [
+  "尝一口。<br>（<#specinfo=shengmingshangxian>大于200）": [
     "assets/data/AdvantureEventData.json"
   ],
   "就像最开始那样，从头开始慢慢攻略吧。": [
@@ -11062,8 +11939,18 @@
   "就算是造型本身，很多时候也不由我们工匠决定，通常是矿石素材和持有者本身对武器造成的变化。": [
     "assets/data/dialogue.json"
   ],
+  "就近": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "就这样吧，还是诚实些的好。": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "尽快击败敌人！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "局内无法编辑": [
+    "assets/data/DisplayTerms.json"
   ],
   "居住于山洞之中的强大魔物，健硕的身躯和自豪的防御力让它们在主场作战从无败绩。<br>一些经验老道的冒险家感到奇怪，为什么迷宫巨魔会主动离开山洞与周围的狩猎区域，甚至失去了棘手的自愈能力，不管怎么说，现在发生的一切都是有利于冒险家战斗的。": [
     "assets/data/EnemyData.json"
@@ -11082,8 +11969,17 @@
   "居民与支援": [
     "scripts/menus.gd"
   ],
+  "屏幕演出闪光强度": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "屏蔽": [
+    "scripts/domain/settings.gd"
+  ],
   "屏障": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "属性详情": [
     "scripts/presentation/character_page.gd"
@@ -11105,6 +12001,9 @@
   ],
   "岩之史莱姆": [
     "assets/data/AbilityItems.json"
+  ],
+  "岩盾爆炸": [
+    "assets/data/partner_skills.json"
   ],
   "岩精灵": [
     "assets/data/AbilityItems.json"
@@ -11139,8 +12038,20 @@
   "工匠挚友": [
     "assets/data/SubAchieveData.json"
   ],
+  "工程师": [
+    "assets/ui/settings/guides.json"
+  ],
+  "工程师\n为营地工程师阿尔托提供素材后，他能为您重建冒险营地中的各处建筑，并开放更多功能。": [
+    "assets/ui/settings/guides.json"
+  ],
   "工程师(?)": [
     "assets/data/dialogue.json"
+  ],
+  "工程消耗": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "左右箭头按钮": [
+    "scripts/presentation/settings_page.gd"
   ],
   "左移": [
     "scripts/menus.gd"
@@ -11192,16 +12103,29 @@
     "assets/data/dialogue.json"
   ],
   "已享用 %d 道料理": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
   ],
   "已使用该外观": [
     "scripts/domain/camp_decorations.gd"
   ],
+  "已关闭": [
+    "assets/data/DisplayTerms.json"
+  ],
   "已净化的诅咒遗物": [
     "assets/data/ItemPoolData.json"
   ],
+  "已发现": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已取消按键修改": [
+    "scripts/main.gd"
+  ],
   "已取消激活": [
     "scripts/domain/systems.gd"
+  ],
+  "已启用": [
+    "assets/data/DisplayTerms.json"
   ],
   "已售罄": [
     "scripts/main.gd"
@@ -11215,6 +12139,9 @@
   "已存入 %d 魔力": [
     "scripts/domain/systems.gd"
   ],
+  "已完成": [
+    "assets/data/DisplayTerms.json"
+  ],
   "已封印%s，获得 %d 魔力": [
     "scripts/domain/systems.gd"
   ],
@@ -11222,12 +12149,20 @@
     "scripts/menus.gd"
   ],
   "已建造": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/building_page.gd"
+  ],
+  "已建造营地数量": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已收到您的反馈！我们会尽快处理！<br>欢迎点击右侧按钮加入官方社交媒体，关注游戏相关的第一消息！": [
+    "assets/data/DisplayTerms.json"
   ],
   "已更换外观": [
     "scripts/domain/camp_decorations.gd"
   ],
   "已更新餐单": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
   ],
   "已有派遣进行中，请先领取奖励并停止当前派遣": [
@@ -11240,17 +12175,45 @@
     "scripts/menus.gd",
     "scripts/presentation/guild_page.gd"
   ],
+  "已激活": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已点亮天赋数量": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已禁用": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已累计 &s1&/&s2& 份奖励": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已自动拾取当前场景中遗留的掉落资源物品。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "已被灭亡的部分<color=#78CAF8>北方诸国</color>仍留下了不少遗产。<br>勇敢的冒险家啊，<color=#78CAF8>带上一件</color>北国的意志，一起冒险吧。": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "已装备": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "已装备信物 %d": [
     "scripts/presentation/adventure_prepare.gd"
   ],
   "已解锁": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd"
+  ],
+  "已购买": [
+    "assets/data/DisplayTerms.json"
   ],
   "已达上限": [
     "scripts/main.gd"
+  ],
+  "已达到最大等级": [
+    "assets/data/DisplayTerms.json"
   ],
   "已达购买上限": [
     "scripts/domain/systems.gd"
@@ -11262,6 +12225,9 @@
   "已选择": [
     "scripts/domain/systems.gd",
     "scripts/menus.gd"
+  ],
+  "已选择伙伴技能": [
+    "scripts/domain/room_choices.gd"
   ],
   "已选择混沌 %d 层": [
     "scripts/domain/systems.gd"
@@ -11278,6 +12244,9 @@
   ],
   "已领取委托 %d / %d": [
     "scripts/presentation/commission_board.gd"
+  ],
+  "已饮用泉水": [
+    "scripts/main.gd"
   ],
   "布罗克": [
     "assets/data/NPCData.json",
@@ -11368,6 +12337,9 @@
   "帐篷风格的铁匠铺外观": [
     "assets/data/RogueConfigData.json"
   ],
+  "带上它吧，愿北国之刃为你开辟道路。": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "带走。": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -11375,7 +12347,8 @@
     "assets/data/AdvantureEventData.json"
   ],
   "帧率上限": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "帮忙。<br>（持有【训练用木剑】）": [
     "assets/data/AdvantureEventData.json"
@@ -11385,6 +12358,9 @@
   ],
   "常年被积雪覆盖的山峰从来都是魔力充沛的地方。<br>而这样的环境一定会生产更好的迷宫素材，让不畏风雪的怪物前往探索应该是一个不错的选择。": [
     "assets/data/MonsterWorkData.json"
+  ],
+  "常态更不容易被打断；普通攻击期间受到的伤害降低50%。": [
+    "assets/ui/settings/guides.json"
   ],
   "常驻委托栏|限时委托栏|完善委托栏": [
     "assets/data/RogueConfigData.json"
@@ -11507,6 +12483,9 @@
   "庆典面具": [
     "assets/data/AbilityItems.json"
   ],
+  "库存": [
+    "assets/data/DisplayTerms.json"
+  ],
   "应用内购买暂不可用：尚未接入支付与凭证验证": [
     "scripts/domain/systems.gd"
   ],
@@ -11539,6 +12518,9 @@
   ],
   "建设": [
     "scripts/menus.gd"
+  ],
+  "建设/升级": [
+    "assets/data/DisplayTerms.json"
   ],
   "建设材料不足": [
     "scripts/domain/systems.gd"
@@ -11575,15 +12557,18 @@
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "开发者模式": [
+    "assets/data/DisplayTerms.json"
+  ],
   "开启": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
     "scripts/main.gd",
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/inventory_page.gd"
   ],
   "开启 %d 个": [
     "scripts/presentation/mall_page.gd"
-  ],
-  "开启 / 关闭": [
-    "scripts/menus.gd"
   ],
   "开启%d次 · 金币%d": [
     "scripts/main.gd"
@@ -11626,7 +12611,11 @@
     "assets/data/dialogue.json"
   ],
   "开始游戏": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/start_screen.gd"
+  ],
+  "开始破坏吧！": [
+    "assets/ui/settings/guides.json"
   ],
   "开始训练": [
     "scripts/menus.gd"
@@ -11667,8 +12656,15 @@
   "弓箭精通": [
     "assets/data/AchieveData.json"
   ],
+  "弱": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "弱点痛击": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "强": [
+    "scripts/domain/settings.gd"
   ],
   "强化": [
     "scripts/menus.gd"
@@ -11692,13 +12688,21 @@
     "assets/data/SubAchieveData.json"
   ],
   "强化武器": [
-    "assets/data/TalentTreeData.json"
+    "assets/data/TalentTreeData.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "强化武器\n解锁武器后，可以消耗更多矿石素材升级武器获得更强的力量。": [
+    "assets/ui/settings/guides.json"
   ],
   "强化水晶": [
     "assets/data/TalentTreeData.json"
   ],
   "强化遗物": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
+  ],
+  "强化重击": [
+    "assets/ui/settings/guides.json"
   ],
   "强化重击演出": [
     "assets/data/camera_closeup.json"
@@ -11721,6 +12725,9 @@
   "当前位置": [
     "scripts/presentation/route_page.gd"
   ],
+  "当前共鸣度已达最高值": [
+    "assets/data/DisplayTerms.json"
+  ],
   "当前关卡内每次受到伤害增加10%<#specinfo=fangyuli>，最多增加200%。": [
     "assets/data/AbilityItems.json"
   ],
@@ -11730,29 +12737,111 @@
   "当前关卡内每次受到伤害增加20%<#specinfo=fangyuli>，最多增加600%。": [
     "assets/data/AbilityItems.json"
   ],
+  "当前升级需要": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前商店等级:": [
+    "assets/data/DisplayTerms.json"
+  ],
   "当前商店等级：": [
     "scripts/presentation/room_shop.gd"
+  ],
+  "当前处于角色试用模式<br>开始游戏将会扣除一次试用次数<br>当前剩余次数为&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前委托未完成哦！": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前怪物伙伴加成:": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前持有:&s1&": [
+    "assets/data/DisplayTerms.json"
   ],
   "当前效果": [
     "scripts/presentation/guild_page.gd"
   ],
+  "当前无怪物伙伴": [
+    "assets/data/DisplayTerms.json"
+  ],
   "当前无法交互": [
     "scripts/main.gd"
+  ],
+  "当前无法使用战技。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前无法使用爆发技。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前无法使用闪避。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前无通关记录": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前无道具": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前最大生命值": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前有可精炼的信物": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前有已完成的委托未领取奖励，是否领取新的委托？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前有未完成的委托，是否领取新的委托？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前未获得怪物伙伴！": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前未领取委托，请点击下方按钮领取委托。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前材料不足，无法升级。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前正处于节点：&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前正处于营地中": [
+    "assets/data/DisplayTerms.json"
   ],
   "当前没有冒险支援": [
     "scripts/domain/systems.gd"
   ],
-  "当前版本尚未接入账号与云存档服务。": [
+  "当前没有可用的解锁途径": [
+    "scripts/domain/character_fashion.gd"
+  ],
+  "当前版本尚未接入反馈服务。可通过联系客服获取帮助。": [
     "scripts/main.gd"
   ],
-  "当前版本尚未配置客服渠道": [
+  "当前版本尚未接入账号与云存档服务。": [
+    "scripts/main.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "当前版本尚未配置此渠道": [
     "scripts/main.gd"
   ],
   "当前版本暂不支持广告": [
     "scripts/ads_service.gd"
   ],
+  "当前用户ID与存档ID不符，请联系管理员处理": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前登录:": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前节点": [
+    "assets/data/DisplayTerms.json"
+  ],
   "当前节点内每次受到伤害+10%<#specinfo=fangyuli>，最多+200%。<br>|当前节点内每次受到伤害+15%<#specinfo=fangyuli>，最多+375%。<br>|当前节点内每次受到伤害+20%<#specinfo=fangyuli>，最多+600%。": [
     "assets/data/CatMealData.json"
+  ],
+  "当前获得": [
+    "assets/data/DisplayTerms.json"
   ],
   "当前角色已出战": [
     "scripts/domain/systems.gd"
@@ -11766,8 +12855,32 @@
   "当前设施没有可用的到达位置": [
     "scripts/main.gd"
   ],
+  "当前进度 &s1&/&s2&": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当前难度：混沌等级&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
   "当前难度：等级%d": [
     "scripts/presentation/reference_pages.gd"
+  ],
+  "当前难度：等级&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当天广告直接完成次数已耗尽，请明日再来。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当天广告领取次数已耗尽，请明日再来。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当天角色试用次数已耗尽": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "当心脚下！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "当据点全部建筑达到最高等级后，将解锁据点装饰功能。选择左侧建筑，再选择想要使用的装饰方案，点击确认后即可完成更换。": [
+    "assets/ui/settings/guides.json"
   ],
   "当然了，有免费的为什么不用呢？": [
     "assets/data/AdvantureEventData.json"
@@ -11780,6 +12893,9 @@
   ],
   "当然，就在旁边武器架上，先选一把喜欢的武器，然后准备足够的矿石素材送来，我就可以帮你打造合适的武器了。": [
     "assets/data/dialogue.json"
+  ],
+  "当重击能量满足时，长按攻击键，角色将释放一次更为强大的重击。": [
+    "assets/ui/settings/guides.json"
   ],
   "彩虹商店": [
     "scripts/presentation/mall_page.gd"
@@ -11949,9 +13065,17 @@
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
   "怪物伙伴": [
+    "assets/data/DisplayTerms.json",
     "assets/data/RogueConfigData.json",
     "assets/data/SubAchieveData.json",
+    "scripts/menus.gd",
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/inventory_page.gd",
     "scripts/world_interactions.gd"
+  ],
+  "怪物伙伴(未选择)": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "怪物伙伴废墟": [
     "assets/data/RogueConfigData.json"
@@ -11959,11 +13083,23 @@
   "怪物伙伴遗物池子": [
     "assets/data/ItemPoolData.json"
   ],
+  "怪物共鸣度": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "怪物养成": [
+    "assets/ui/settings/guides.json"
+  ],
   "怪物养成 - 升级研究所，培养怪物伙伴": [
     "assets/data/AchieveData.json"
   ],
   "怪物养成 - 完成怪物工作，培养怪物伙伴": [
     "assets/data/AchieveData.json"
+  ],
+  "怪物图鉴": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物图鉴\n怪物石坛记录着在迷宫中见过的所有怪物，这些怪物正等待着您使用迷宫中的怪物石坛召唤他们战斗。\n\n怪物养成\n消耗素材强化这些怪物，玩家能够获得全局的属性加成。": [
+    "assets/ui/settings/guides.json"
   ],
   "怪物增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -11974,8 +13110,15 @@
     "assets/data/RelationshipAmplifyData.json"
   ],
   "怪物工作": [
+    "assets/ui/settings/guides.json",
     "scripts/presentation/camp_progression.gd",
     "scripts/world_interactions.gd"
+  ],
+  "怪物工作\n与符文巨石互动，使用它力量能使用它让魔物们去别的地方探索，并收获一些素材。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物工作加速次数已耗尽，进行一次迷宫探索后恢复。": [
+    "assets/data/DisplayTerms.json"
   ],
   "怪物工作废墟": [
     "scripts/presentation/camp_progression.gd"
@@ -11995,11 +13138,54 @@
   "怪物手册": [
     "assets/data/TalentTreeData.json"
   ],
+  "怪物技能": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "怪物护甲": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物护甲\n精英敌人拥有自身100%生命上限的护甲，护甲可以代替生命值承受伤害，并且在持有护甲时自身抗打断能力大幅提升。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物支援": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "怪物支援技": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物支援石坛可以选择专属遗物，这些遗物能用于强化怪物支援技能，或使用怪物支援技能后为玩家带来强大增益。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物支援通用遗物": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "怪物石坛": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物石坛\n与节点中的怪物石坛互动可以获得迷宫怪物的力量，在支援能量足够的情况下可以随时召唤怪物为自己的战斗添加助力。\n\n怪物支援技\n玩家可以选择一项怪物支援技能装备，玩家最多能够持有两种不同的怪物支援技能。\n\n专属遗物\n怪物支援石坛可以选择专属遗物，这些遗物能用于强化怪物支援技能，或使用怪物支援技能后为玩家带来强大增益。\n\n支援能量\n选择怪物支援技能后，可以通过攻击怪物增加支援能量，涨满后获得1点支援能量点，玩家可以消耗对应数量的支援能量点召唤怪物支援技。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物石坛的节点标识代表了该节点布置了可获取的怪物支援石坛。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物石坛记录着在迷宫中见过的所有怪物，这些怪物正等待着您使用迷宫中的怪物石坛召唤他们战斗。": [
+    "assets/ui/settings/guides.json"
+  ],
   "怪物研究员": [
     "assets/data/SubAchieveData.json"
   ],
   "怪物祭坛？我确实常常去检查。": [
     "assets/data/dialogue.json"
+  ],
+  "怪物详情": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "怪物魔化": [
+    "assets/ui/settings/guides.json"
+  ],
+  "怪物魔化\n受到【魔化】效果的怪物会获得若干强化词条，且自身招式与体型也会发生变化。\n\n不朽\n受到致命伤害时，将生命值锁定在20%，并在1秒内分四段恢复共40%最大生命值。\n\n魔盾\n敌人获得等同于100%最大生命值的护甲；精英在护甲未破碎且未满时，每秒恢复1%最大生命值的护甲，最多60次。\n\n狂暴\n生命值不高于50%时，攻击力提升50%，攻击间隔缩短50%。\n\n侵蚀\n被攻击时，有20%概率使20米范围内的冒险家治疗量降低50%，持续5秒。\n\n同生\n每5秒治疗4米范围内除自己和领主外的友方魔物5%最大生命值。\n\n屏障\n常态更不容易被打断；普通攻击期间受到的伤害降低50%。\n\n伏击\n造成的伤害提升25%，触发后冷却3秒。\n\n毒牙\n被怪物普通攻击命中后，每秒损失1点生命值，持续约5秒。\n\n嗜血\n对冒险家造成伤害后，恢复自身10%最大生命值，冷却1秒。\n\n锋利\n攻击力提升30%，造成的伤害提升30%。\n\n混沌\n初始获得18层减伤，每层提供5%全元素抗性；每次受到冒险家伤害减少1层。\n\n迟影\n被怪物命中后，5秒内该冒险家<#specinfo=shanbi>冷却时间延长50%。\n\n断脉\n被怪物命中后，5秒内该冒险家<#specinfo=baofajinengliang>充能效率降低20%。\n\n锁足\n被怪物命中后，5秒内该冒险家<#specinfo=yidongsudu>降低20%。": [
+    "assets/ui/settings/guides.json"
   ],
   "总之，在雪原冒险时不要只观察眼前的敌人，还要注意四周环境的变化。": [
     "assets/data/dialogue.json"
@@ -12011,17 +13197,46 @@
     "assets/data/dialogue.json"
   ],
   "总伤害": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/presentation/battle_readout.gd"
   ],
+  "总冒险次数": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "总承受伤害": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "总数量:": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "总治疗": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "总消费金币": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "总消费魔力精华": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "总等级:": [
+    "assets/data/DisplayTerms.json"
+  ],
   "恐惧战镰": [
     "assets/data/WeaponData.json"
+  ],
+  "恢复": [
+    "assets/data/DisplayTerms.json"
   ],
   "恢复体力。": [
     "assets/data/AdvantureEventData.json"
   ],
   "恢复内购": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/mall_page.gd"
+  ],
+  "恢复游戏": [
+    "assets/data/DisplayTerms.json"
   ],
   "恢复药水的<color=#56e20a><#specinfo=shengminghuifu>效率</color>提升。": [
     "assets/data/TalentTreeData.json"
@@ -12128,6 +13343,9 @@
   "您看，我写好了很多信想要和外面的朋友们分享呢。": [
     "assets/data/dialogue.json"
   ],
+  "您真是太有眼光啦！": [
+    "assets/data/DisplayTerms.json"
+  ],
   "您瞧，就算有营地的恢复魔法，也无法消除您在冒险的疲惫呢。": [
     "assets/data/dialogue.json"
   ],
@@ -12209,15 +13427,31 @@
   "悬赏信件": [
     "assets/data/MallTradeDetailsData.json"
   ],
+  "悬赏信件不足！": [
+    "assets/data/DisplayTerms.json"
+  ],
   "悬赏委托": [
+    "assets/ui/settings/guides.json",
     "scripts/presentation/adventure_prepare.gd",
     "scripts/world_interactions.gd"
+  ],
+  "悬赏委托\n消耗悬赏信件能够接取一些悬赏委托，完成后可以获得许多珍贵奖励。": [
+    "assets/ui/settings/guides.json"
   ],
   "悬赏委托是指一些贵富贵人家会指定一位冒险家去完成他们给出的委托任务。": [
     "assets/data/dialogue.json"
   ],
+  "悬赏委托栏将要达到上限，继续获取只能保留最大上限的委托，是否继续？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "悬赏委托栏已达上限，无法继续获得新的委托。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "悲鸣吧，霜狱": [
     "assets/data/combat.json"
+  ],
+  "情报显示这个节点有着强大的精英怪物，击败怪物后一定有更稀有的宝藏。": [
+    "assets/ui/settings/guides.json"
   ],
   "惊涛": [
     "assets/data/CharTalentData.json"
@@ -12225,11 +13459,17 @@
   "惩戒之徽": [
     "assets/data/AbilityItems.json"
   ],
+  "惩戒光柱": [
+    "assets/data/DisplayTerms.json"
+  ],
   "惩戒匕首": [
     "assets/data/AbilityItems.json"
   ],
   "惩戒同行": [
     "assets/data/CharTalentData.json"
+  ],
+  "惩戒标记": [
+    "assets/data/DisplayTerms.json"
   ],
   "惩戒水晶": [
     "assets/data/AbilityItems.json"
@@ -12553,6 +13793,9 @@
   "我的意思是，有其他冒险家大人报告，出现了一种散发可怕气息的魔物。": [
     "assets/data/dialogue.json"
   ],
+  "我的精灵伙伴！": [
+    "assets/ui/settings/guides.json"
+  ],
   "我看见传送阵有动静，怎么样朋友？冒险还顺利吗？": [
     "assets/data/dialogue.json"
   ],
@@ -12585,6 +13828,9 @@
   ],
   "我要超越白金级冒险家，达到更高的巅峰。": [
     "assets/data/dialogue.json"
+  ],
+  "我要靠自己！": [
+    "assets/data/AdvantureEventData.json"
   ],
   "我觉得一定是它命令的狼群出来破坏营地，这样的家伙能受到惩罚真是太好了。": [
     "assets/data/dialogue.json"
@@ -12663,9 +13909,12 @@
     "assets/data/AbilityItems.json"
   ],
   "战技": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
     "scripts/hud.gd",
     "scripts/menus.gd",
-    "scripts/presentation/character_page.gd"
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/touch_layout_editor.gd"
   ],
   "战损民兵头盔": [
     "assets/data/AbilityItems.json"
@@ -12680,7 +13929,16 @@
     "assets/data/AbilityItems.json"
   ],
   "战斗": [
-    "scripts/presentation/guild_page.gd"
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
+    "scripts/presentation/guild_page.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "战斗中无法打开云存档": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "战斗天赋-派生攻击": [
+    "assets/ui/settings/guides.json"
   ],
   "战斗失败": [
     "scripts/main.gd",
@@ -12689,10 +13947,11 @@
   "战斗胜利": [
     "scripts/main.gd"
   ],
-  "战斗表现": [
-    "scripts/menus.gd"
+  "战斗节点": [
+    "assets/data/DisplayTerms.json"
   ],
   "战斗风格": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/character_page.gd"
   ],
   "战狂能量剑": [
@@ -12767,11 +14026,25 @@
   "所谓遗迹，人们总会想到宝物或财富，谁又能想到，遗迹还有珍贵的研究价值呢？<br><br>为了证明这一点，就让我们从遗迹中获得<color=#426ab3>魔力精华</color>开始吧。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "所需材料": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "所需资源不足。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "手工宝石": [
     "assets/data/AdvantureEventData.json"
   ],
   "打听这些贵族的出行安排，准备给他们一个教训。": [
     "assets/data/MonsterWorkData.json"
+  ],
+  "打开": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd"
+  ],
+  "打开自定义": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "打烂它！<br>（持有200点以上<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
@@ -12875,13 +14148,29 @@
     "assets/data/AbilityItems.json"
   ],
   "护甲": [
-    "scripts/domain/systems.gd"
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
+    "scripts/domain/systems.gd",
+    "scripts/ground_loot.gd"
+  ],
+  "护甲\n护甲能够代替生命值承受伤害，当护甲受到过量伤害而碎裂时也不会扣除生命值。\n\n护盾\n护盾能够代替生命值承受伤害，除非特别说明，否则护盾上限无法超过生命上限，也无法带入下一节点。": [
+    "assets/ui/settings/guides.json"
   ],
   "护甲保修": [
     "assets/data/TalentTreeData.json"
   ],
   "护甲池": [
     "assets/data/ItemPoolData.json"
+  ],
+  "护甲破裂": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "护甲能够代替生命值承受伤害，当护甲受到过量伤害而碎裂时也不会扣除生命值。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "护盾": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
   ],
   "护盾增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -12897,6 +14186,12 @@
   "护盾增幅·贰": [
     "assets/data/AbilityItems.json",
     "assets/data/RelationshipAmplifyData.json"
+  ],
+  "护盾破碎": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "护盾能够代替生命值承受伤害，除非特别说明，否则护盾上限无法超过生命上限，也无法带入下一节点。": [
+    "assets/ui/settings/guides.json"
   ],
   "护身符": [
     "assets/data/TalentTreeData.json"
@@ -12932,6 +14227,9 @@
   "担忧，魔王军再次扫平了北方诸国中的一国，又有许多人流离失所。": [
     "assets/data/dialogue.json"
   ],
+  "拉取云存档数据": [
+    "scripts/presentation/settings_page.gd"
+  ],
   "招募": [
     "scripts/menus.gd"
   ],
@@ -12939,8 +14237,14 @@
     "assets/data/MallTradeData.json",
     "assets/data/MallTradeDetailsData.json"
   ],
+  "招募之证不足！": [
+    "assets/data/DisplayTerms.json"
+  ],
   "招募之证礼包": [
     "assets/data/MallTradeData.json"
+  ],
+  "招募伙伴吧！": [
+    "assets/ui/settings/guides.json"
   ],
   "招募光明使者": [
     "assets/data/SubAchieveData.json"
@@ -13071,6 +14375,12 @@
   "拿走<#specinfo=molijinghua>。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "持有": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "持有&s1&个": [
+    "assets/data/DisplayTerms.json"
+  ],
   "持有1000点<#specinfo=molijinghua>以上时，间歇召唤1道<#specinfo=shandian>攻击最近的敌人。<br>累计获得10000点<#specinfo=molijinghua>后进化。<color=#fdd033>（当前进度：<#backpack_progress>）</color>": [
     "assets/data/AbilityItems.json"
   ],
@@ -13179,11 +14489,24 @@
   "持有材料": [
     "scripts/presentation/reference_pages.gd"
   ],
+  "持有素材": [
+    "assets/data/DisplayTerms.json"
+  ],
   "持有遗物": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/reference_pages.gd"
   ],
   "持有魔物精华大于1万。": [
     "assets/data/UnlockData.json"
+  ],
+  "持续&s1&区域": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "持续&s1&战斗": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "持续&s1&节点": [
+    "assets/data/DisplayTerms.json"
   ],
   "持续10秒，持续期间<#specinfo=zhongji>命中能恢复<#specinfo=baofajinengliang>。": [
     "assets/data/CharTalentLevelData.json"
@@ -13216,13 +14539,20 @@
     "assets/data/AbilityItems.json"
   ],
   "指南": [
-    "scripts/menus.gd",
-    "scripts/presentation/reference_pages.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "指南h": [
+    "scripts/presentation/settings_page.gd"
   ],
   "按下新的按键": [
     "scripts/main.gd"
   ],
-  "挑便宜的。<br>（获得10点<color=#CF9333>【古铜护甲】</color>）": [
+  "按钮大小": [
+    "scripts/presentation/touch_layout_editor.gd"
+  ],
+  "挑便宜的。<br>（获得<color=#CF9333>【古铜护甲】</color>）": [
     "assets/data/AdvantureEventData.json"
   ],
   "挑完了吗？快快去冒险吧，不要耽误了自己的时间。<br><br>店员小姐说完后翻了个身子继续休息了。": [
@@ -13264,6 +14594,9 @@
   "据点建设": [
     "scripts/main.gd",
     "scripts/presentation/building_page.gd"
+  ],
+  "据点装饰": [
+    "assets/ui/settings/guides.json"
   ],
   "据说他将繁星的力量佩戴在武器上，这把武器也就成了现在的十字星剑。": [
     "assets/data/dialogue.json"
@@ -13308,12 +14641,18 @@
   "探索8次迷宫。": [
     "assets/data/UnlockData.json"
   ],
+  "探索区域": [
+    "assets/data/DisplayTerms.json"
+  ],
   "探索增幅·伍": [
     "assets/data/AbilityItems.json",
     "assets/data/RelationshipAmplifyData.json"
   ],
   "探索点": [
     "scripts/hud.gd"
+  ],
+  "探索迷宫吧！": [
+    "assets/ui/settings/guides.json"
   ],
   "接下来请继续探索吧冒险家大人，大家期待您的活跃表现。": [
     "assets/data/dialogue.json"
@@ -13330,17 +14669,35 @@
   "推开第二扇门。<br>（持有100点以上<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
   ],
+  "提交反馈": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "提升": [
+    "assets/data/DisplayTerms.json"
+  ],
   "提升<#LocalizationId=\"Keyword_HealingWater\">恢复之泉</LocalizationId><#specinfo=shengminghuifu>量。": [
     "assets/data/TalentTreeData.json"
   ],
   "提升<color=#e99f0d>陷阱</color>对怪物造成的伤害。": [
     "assets/data/TalentTreeData.json"
   ],
+  "提升好感！": [
+    "assets/ui/settings/guides.json"
+  ],
   "提升少许获得高级<#LocalizationId=\"keyword_MonsterPartnerSkill\">怪物支援技</LocalizationId>的概率。": [
     "assets/data/TalentTreeLevelData.json"
   ],
   "提升怪物们的风雪抗性，提高完成工作的奖励。": [
     "assets/data/MonsterWorkData.json"
+  ],
+  "提升祈愿遗物数量": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "提升禁用遗物数量": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "提升等级吧！": [
+    "assets/ui/settings/guides.json"
   ],
   "提升至1.5倍。": [
     "assets/data/CharTalentLevelData.json"
@@ -13350,6 +14707,9 @@
   ],
   "提升至3倍。": [
     "assets/data/CharTalentLevelData.json"
+  ],
+  "提示": [
+    "assets/data/DisplayTerms.json"
   ],
   "提示点": [
     "scripts/presentation/building_page.gd",
@@ -13384,6 +14744,9 @@
   "提高区域入口的<color=#f28e00>宝箱</color>质量。": [
     "assets/data/TalentTreeData.json"
   ],
+  "提高帧率将会提高大幅提高手机<color=#d91e1e>发热</color>和<color=#d91e1e>耗电</color>速度,是否确认?\n(如果出现最高帧率选项不可用或消失的情况,请检查游戏是否开启了高帧率模式)": [
+    "assets/data/DisplayTerms.json"
+  ],
   "提高支援技能<color=#e99f0d>充能效率</color>。": [
     "assets/data/TalentTreeData.json"
   ],
@@ -13396,7 +14759,7 @@
   "提高迷宫素材出现概率50%，且素材有25%概率双倍掉落。": [
     "assets/data/AbilityItems.json"
   ],
-  "插队！<br>（持有<#specinfo=molijinghua>少于50）": [
+  "插队！<br>（持有<#specinfo=molijinghua>少于300）": [
     "assets/data/AdvantureEventData.json"
   ],
   "搜索宝库地图，提高完成工作的奖励。": [
@@ -13405,17 +14768,38 @@
   "搞定后就一直往前走<color=#DE81FA>来营地入口传送门找我吧，</color>趁迷宫的灾害没有扩大，我们分头行动。": [
     "assets/data/dialogue.json"
   ],
+  "摇杆": [
+    "scripts/presentation/touch_layout_editor.gd"
+  ],
+  "摇杆固定模式": [
+    "scripts/domain/settings.gd"
+  ],
+  "摇杆方向": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "摘走卖掉。": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "撤退。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "操作按钮": [
+    "scripts/presentation/touch_layout_editor.gd"
   ],
   "操作暂不可用": [
     "scripts/main.gd"
   ],
   "操作配置": [
-    "scripts/menus.gd"
+    "scripts/main.gd",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "操纵骑士长枪挥动带有<color=#76A9FF>冰霜之力</color>的4段攻击。<br>\n<color=#76A9FF><#specinfo=zhongji>：龙魂突刺</color><br>\n长按攻击进入<color=#e99f0d>蓄力</color>状态，默认状态下可以达到2级蓄力等级，在<#specinfo=longhunshiqi>状态下可以达到3级蓄力等级。<br>\n<#specinfo=longhun>充满时在蓄力状态下进入<#specinfo=longhunshiqi>。<br>\n<#specinfo=putonggongji>在非<#specinfo=longhunshiqi>状态下造成伤害时获取10点<color=#76A9FF><#specinfo=longhun>能量</color>。": [
     "assets/data/combat.json"
+  ],
+  "支援同伴": [
+    "assets/data/DisplayTerms.json"
   ],
   "支援增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -13444,6 +14828,12 @@
   ],
   "支援物品冲突或达到上限": [
     "scripts/domain/systems.gd"
+  ],
+  "支援空缺": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "支援能量": [
+    "assets/ui/settings/guides.json"
   ],
   "收下快递。<br>（消耗300点<#specinfo=molijinghua>，获得【力量之庭快递盒】）": [
     "assets/data/AdvantureEventData.json"
@@ -13478,6 +14868,15 @@
   "收集地下城地图，让怪物们找到更多素材。": [
     "assets/data/MonsterWorkData.json"
   ],
+  "收集数量:": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "收集精灵吧！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "收集遗物吧！": [
+    "assets/ui/settings/guides.json"
+  ],
   "改进厨房": [
     "assets/data/TalentTreeData.json"
   ],
@@ -13489,8 +14888,16 @@
     "assets/data/RogueConfigData.json"
   ],
   "攻击": [
+    "assets/data/DisplayTerms.json",
     "scripts/hud.gd",
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/touch_layout_editor.gd"
+  ],
+  "攻击力": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "攻击力提升30%，造成的伤害提升30%。": [
+    "assets/ui/settings/guides.json"
   ],
   "攻击后使敌人叠加的<#specinfo=dongshang>层数提升40%。": [
     "assets/data/CharTalentLevelData.json"
@@ -13506,6 +14913,12 @@
   ],
   "攻击命中敌人时有30%概率获得1点<#specinfo=shengmingzhi>，<#specinfo=lengque>时间4秒。": [
     "assets/data/AbilityItems.json"
+  ],
+  "攻击型陷阱": [
+    "assets/ui/settings/guides.json"
+  ],
+  "攻击型陷阱\n迷宫中有着各式各样的陷阱，攻击型陷阱能够对角色或怪物造成伤害。\n\n侵蚀型陷阱\n侵蚀型陷阱能够对角色或怪物附加各种异常状态。": [
+    "assets/ui/settings/guides.json"
   ],
   "攻击增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -13528,7 +14941,15 @@
     "assets/data/RelationshipAmplifyData.json"
   ],
   "攻击宝石": [
-    "scripts/domain/systems.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/systems.gd",
+    "scripts/ground_loot.gd"
+  ],
+  "攻击时自动朝向敌人。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "攻击速度": [
+    "assets/data/DisplayTerms.json"
   ],
   "攻击造成的伤害提升50%，3秒后重置。": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
@@ -13610,6 +15031,9 @@
   "攻略迷宫3次。": [
     "assets/data/UnlockData.json"
   ],
+  "攻略迷宫次数": [
+    "assets/data/DisplayTerms.json"
+  ],
   "攻略魔法森林": [
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
@@ -13631,6 +15055,12 @@
   ],
   "放过它。": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "效果&s1&层": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "效果层数 &s1&/&s2&": [
+    "assets/data/DisplayTerms.json"
   ],
   "效果持续时间延长5秒。": [
     "assets/data/AbilityItems.json"
@@ -13682,6 +15112,9 @@
   "敌人每拥有1层<#specinfo=zhuoshao>，额外提高对其造成的伤害。": [
     "assets/data/CharTalentData.json"
   ],
+  "敌人获得等同于100%最大生命值的护甲；精英在护甲未破碎且未满时，每秒恢复1%最大生命值的护甲，最多60次。": [
+    "assets/ui/settings/guides.json"
+  ],
   "教授法书": [
     "assets/data/AbilityItems.json"
   ],
@@ -13691,7 +15124,11 @@
   "散发七彩光芒的神秘结晶，人们相信它一定是来自至高天界的祝福。<br><color=#DAA60B>获取途径：</color>击败领主开启领主宝箱收集。<br><color=#DAA60B>使用途径：</color>在商城购买礼包或开启冒险宝箱。": [
     "assets/data/MaterialData.json"
   ],
+  "敬请期待": [
+    "assets/data/DisplayTerms.json"
+  ],
   "数据统计": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/run_outcome.gd"
   ],
   "数量：%d": [
@@ -13711,6 +15148,7 @@
     "scripts/menus.gd"
   ],
   "料理材料不足": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
   ],
   "料理生活 - 升级篝火餐厅，解锁/升级菜谱": [
@@ -13726,6 +15164,7 @@
     "scripts/domain/systems.gd"
   ],
   "料理等级不存在": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
   ],
   "斧之雷约": [
@@ -13741,7 +15180,15 @@
     "assets/data/CharTalentData.json"
   ],
   "断脉": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "斯卡蒂之怒": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "斯卡蒂之怒能量": [
+    "assets/data/DisplayTerms.json"
   ],
   "新手引导 - 完成入门教程，击败森林怪物": [
     "assets/data/AchieveData.json"
@@ -13792,7 +15239,11 @@
   "无": [
     "assets/data/AbilityItems.json",
     "assets/data/AdvantureEventData.json",
-    "assets/data/MonsterPartnerData.json"
+    "assets/data/MonsterPartnerData.json",
+    "scripts/domain/settings.gd"
+  ],
+  "无云存档": [
+    "scripts/presentation/settings_page.gd"
   ],
   "无多选项时自动进入下一节点（含切层演出）": [
     "scripts/presentation/route_page.gd"
@@ -13806,8 +15257,15 @@
   "无尽战斗·雪原死斗": [
     "assets/data/campaign.json"
   ],
+  "无操作时进入省电模式": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "无效果。": [
     "assets/data/RogueConfigData.json"
+  ],
+  "无敌": [
+    "assets/data/DisplayTerms.json"
   ],
   "无敌时间提高50%。": [
     "assets/data/AbilityItems.json"
@@ -13829,6 +15287,12 @@
   ],
   "无法打开评价页面，请稍后重试": [
     "scripts/main.gd"
+  ],
+  "无法打开页面，请稍后重试": [
+    "scripts/main.gd"
+  ],
+  "无法治疗": [
+    "assets/data/DisplayTerms.json"
   ],
   "无法生成冒险路线": [
     "scripts/main.gd"
@@ -13860,8 +15324,12 @@
   "无论收获如何，平安才最重要。": [
     "assets/data/dialogue.json"
   ],
+  "无锁定": [
+    "scripts/domain/settings.gd"
+  ],
   "无限制": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "无额外掉落加成": [
     "scripts/presentation/adventure_prepare.gd"
@@ -13921,11 +15389,18 @@
   "旧日祭坛": [
     "scripts/world_interactions.gd"
   ],
+  "旧日遗物": [
+    "assets/data/DisplayTerms.json",
+    "scripts/presentation/choice_palette.gd"
+  ],
   "旧日遗物池": [
     "assets/data/ItemPoolData.json"
   ],
   "旧的不去新的不来啊伙计，可没有暗示你购置一些新道具哈。": [
     "assets/data/dialogue.json"
+  ],
+  "早上6:00刷新": [
+    "assets/data/DisplayTerms.json"
   ],
   "时光灯塔快递盒": [
     "assets/data/AbilityItems.json"
@@ -13938,6 +15413,24 @@
   ],
   "时蔬拼盘": [
     "assets/data/CatMealData.json"
+  ],
+  "时装": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "时装尚未解锁": [
+    "scripts/domain/character_fashion.gd"
+  ],
+  "时装已装备": [
+    "scripts/domain/character_fashion.gd"
+  ],
+  "时装已解锁": [
+    "scripts/domain/character_fashion.gd"
+  ],
+  "时装效果": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "时装解锁材料不足": [
+    "scripts/domain/character_fashion.gd"
   ],
   "时间胶囊": [
     "assets/data/AdvantureEventData.json"
@@ -13982,12 +15475,17 @@
     "assets/data/SubAchieveData.json",
     "assets/data/WeaponData.json"
   ],
+  "星尘杖充能完毕": [
+    "assets/data/DisplayTerms.json"
+  ],
   "星星大": [
     "scripts/presentation/adventure_prepare.gd",
-    "scripts/presentation/guild_page.gd"
+    "scripts/presentation/guild_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "星星底": [
-    "scripts/presentation/guild_page.gd"
+    "scripts/presentation/guild_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "星火之油": [
     "assets/data/AbilityItems.json"
@@ -14003,6 +15501,9 @@
   ],
   "星辰战斧": [
     "assets/data/WeaponData.json"
+  ],
+  "星辰战斧触发": [
+    "assets/data/DisplayTerms.json"
   ],
   "是不是该整理一下各位冒险家大人的行李呢？": [
     "assets/data/dialogue.json"
@@ -14022,6 +15523,24 @@
   "是吗。<br><br>既然如此，就让我用另外一种方式帮您吧。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "是否清空所有祈愿遗物?": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "是否清空所有禁用遗物?": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "是否确认取消该委托？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "是否确认解锁该角色?": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "是否获取新的悬赏委托？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "是否试用角色？<br>试用模式下，保留获得养成进度。<br>今日剩余试用次数：&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
   "是呀！为什么不问问神奇的<color=#1cf52b>迷宫宝珠</color>呢？<br><br>你取出迷宫宝珠，迷宫精灵从宝珠中安全飞过了这个村庄，甚至还给你找到了不少<color=#426ab3>魔力精华</color>。": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -14040,8 +15559,15 @@
   "是魔物精华噢，快去强化您的魔物伙伴吧！": [
     "assets/data/MallTradeData.json"
   ],
+  "显然修格斯对你的行为感到不解，但它仍然尊重你的决定。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "显示关卡计时": [
+    "scripts/domain/settings.gd"
+  ],
   "显示阴影": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "晦暗金币": [
     "assets/data/AbilityItems.json"
@@ -14072,12 +15598,18 @@
     "assets/data/campaign.json"
   ],
   "普通攻击": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
     "scripts/presentation/character_page.gd"
+  ],
+  "普通攻击\n轻按普通攻击按钮，实现能对敌人造成伤害的数次攻击。\n\n闪避攻击\n闪避过程中轻按普通攻击键，角色将释放一次闪避攻击。\n\n重击\n长按普通攻击键，角色将释放一次普通重击。\n\n强化重击\n当重击能量满足时，长按攻击键，角色将释放一次更为强大的重击。\n\n战技\n轻按战技按钮，释放独属于该角色的技能，释放后会进入冷却时间。\n\n爆发技\n爆发技能量充满时，轻按爆发技按钮，释放独属于该角色的强大技能，释放后会清空爆发技能量。": [
+    "assets/ui/settings/guides.json"
   ],
   "普通生命恢复药水": [
     "assets/data/AbilityItems.json"
   ],
   "普通遗物": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
   ],
   "普通遗物袋有概率变为高级遗物袋。": [
@@ -14119,12 +15651,10 @@
   "暂无可用商品": [
     "scripts/presentation/mall_page.gd"
   ],
-  "暂无可用角色": [
-    "scripts/presentation/character_page.gd"
-  ],
   "暂无可用项目": [
     "scripts/menus.gd",
-    "scripts/presentation/menu_page.gd"
+    "scripts/presentation/menu_page.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "暂无商品": [
     "scripts/presentation/room_shop.gd"
@@ -14132,11 +15662,17 @@
   "暂无技能信息": [
     "scripts/presentation/character_page.gd"
   ],
+  "暂无物品": [
+    "scripts/presentation/inventory_page.gd"
+  ],
   "暂无生效料理": [
     "scripts/menus.gd"
   ],
   "暂未接入支付，无法购买": [
     "scripts/presentation/mall_page.gd"
+  ],
+  "暂未解锁，请重建遗物研究所": [
+    "assets/data/DisplayTerms.json"
   ],
   "暗之刃": [
     "assets/data/AbilityItems.json"
@@ -14201,6 +15737,9 @@
   "暗蓝的金属勾勒出慑人的利器，据说制作者在打造过程中添加了一些风属性的材料。": [
     "assets/data/WeaponData.json"
   ],
+  "暗蚀": [
+    "assets/data/DisplayTerms.json"
+  ],
   "暗蚀·魂之镰": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
@@ -14228,6 +15767,7 @@
     "assets/data/RelationshipAmplifyData.json"
   ],
   "暴击伤害": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd"
   ],
   "暴击增幅·伍": [
@@ -14269,7 +15809,11 @@
     "assets/data/CharTalentLevelData.json"
   ],
   "暴击率": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd"
+  ],
+  "暴击率提升": [
+    "assets/data/DisplayTerms.json"
   ],
   "暴雷狂浪·澜电精灵": [
     "assets/data/AbilityItems.json"
@@ -14279,6 +15823,12 @@
   ],
   "更多冒险家大人是为了荣誉而来，冒险得来的财物大多都换成了更精良的装备，准备下一次冒险。": [
     "assets/data/dialogue.json"
+  ],
+  "更换据点外观": [
+    "assets/ui/settings/guides.json"
+  ],
+  "更换据点外观\n当据点全部建筑达到最高等级后，将解锁据点装饰功能。选择左侧建筑，再选择想要使用的装饰方案，点击确认后即可完成更换。": [
+    "assets/ui/settings/guides.json"
   ],
   "更改按键": [
     "scripts/menus.gd"
@@ -14298,8 +15848,14 @@
   "曾经的道路被混沌魔龙摧毁，已经没有退路了…": [
     "assets/data/dialogue.json"
   ],
+  "替换技能 %d": [
+    "scripts/main.gd"
+  ],
   "最后一个区域相当危险，游侠们不会在里面过多停留，接下来的一切就只能靠你自己了。": [
     "assets/data/dialogue.json"
+  ],
+  "最后等等看！": [
+    "assets/data/AdvantureEventData.json"
   ],
   "最后试试！<br>（消耗100点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
@@ -14322,10 +15878,8 @@
   "最多可叠加5层。": [
     "assets/data/CharTalentLevelData.json"
   ],
-  "最大<#specinfo=shengmingzhi>+3%，最多持有20件。": [
-    "assets/data/AbilityItems.json"
-  ],
   "最大伤害": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd"
   ],
   "最大层数+10层。": [
@@ -14348,6 +15902,12 @@
   ],
   "最好的贡品才配得上史莱姆王的赏赐，而魔力精华看上去就十分美味可口。": [
     "assets/data/dialogue.json"
+  ],
+  "最常用冒险家": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "最常用的武器": [
+    "assets/data/DisplayTerms.json"
   ],
   "最终在一场风暴后，那片地区变成了遗迹，已经没人在那生活了。": [
     "assets/data/dialogue.json"
@@ -14401,6 +15961,9 @@
   ],
   "有些感慨呢。": [
     "assets/data/dialogue.json"
+  ],
+  "有可装备的信物！": [
+    "assets/data/DisplayTerms.json"
   ],
   "有怪物把我画的迷宫地图偷走了，我一定要让他付出代价！": [
     "assets/data/dialogue.json"
@@ -14495,6 +16058,9 @@
   "未到达": [
     "scripts/main.gd"
   ],
+  "未发现": [
+    "assets/data/DisplayTerms.json"
+  ],
   "未建造营地任务栏": [
     "scripts/presentation/adventure_prepare.gd"
   ],
@@ -14510,6 +16076,9 @@
   "未支持的净化条件": [
     "scripts/domain/systems.gd"
   ],
+  "未登录": [
+    "assets/data/DisplayTerms.json"
+  ],
   "未知NPC功能": [
     "scripts/domain/systems.gd"
   ],
@@ -14524,6 +16093,9 @@
   ],
   "未知天赋": [
     "scripts/domain/systems.gd"
+  ],
+  "未知或不可用的时装": [
+    "scripts/domain/character_fashion.gd"
   ],
   "未知条件": [
     "scripts/domain/systems.gd"
@@ -14556,12 +16128,14 @@
     "assets/data/SubAchieveData.json"
   ],
   "未知节点": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/campaign.gd"
   ],
   "未知设施": [
     "scripts/domain/systems.gd"
   ],
   "未知领域": [
+    "assets/data/DisplayTerms.json",
     "assets/data/RegionMapData.json",
     "scripts/presentation/route_node.gd"
   ],
@@ -14574,24 +16148,42 @@
   "未获得遗物": [
     "scripts/presentation/run_outcome.gd"
   ],
+  "未装备伙伴技能": [
+    "scripts/domain/partner_skills.gd"
+  ],
   "未装备该伙伴": [
     "scripts/domain/systems.gd"
   ],
   "未解锁": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
-    "scripts/presentation/commission_board.gd"
+    "scripts/presentation/commission_board.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "未解锁<#LocalizationId=\"keyword_TalentTree\">公会支援表</LocalizationId>219。": [
     "assets/data/UnlockData.json"
   ],
+  "未解锁信物": [
+    "assets/data/DisplayTerms.json"
+  ],
   "未解锁信物功能": [
     "scripts/presentation/adventure_prepare.gd"
+  ],
+  "未达成": [
+    "assets/data/DisplayTerms.json"
   ],
   "本区域已享用料理": [
     "scripts/domain/systems.gd"
   ],
   "本地商城": [
     "scripts/menus.gd"
+  ],
+  "本地存档": [
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "本地存档上传至云端": [
+    "scripts/presentation/settings_page.gd"
   ],
   "本局存入次数已用完": [
     "scripts/presentation/room_shop.gd"
@@ -14618,10 +16210,14 @@
     "assets/data/AdvantureEventData.json"
   ],
   "本次餐单 %d / %d": [
+    "scripts/main.gd",
     "scripts/menus.gd"
   ],
   "本节点还有以下奖励未领取": [
     "scripts/presentation/unclaimed_prompt.gd"
+  ],
+  "材料": [
+    "assets/data/DisplayTerms.json"
   ],
   "材料不足": [
     "scripts/domain/systems.gd"
@@ -14657,7 +16253,10 @@
   "来自外界的委托传信，这样的委托人往往位高权重，虽然要求极高但奖励丰厚。<br><color=#DAA60B>获取途径：</color>开启公会支援箱或怪物工作获得。<br><color=#DAA60B>使用途径：</color>重建“悬赏委托”后，在悬赏委托栏消耗，用于接取悬赏任务。": [
     "assets/data/MaterialData.json"
   ],
-  "来都来了！（最大<#specinfo=shengmingzhi>大于120）": [
+  "来都来了！（<#specinfo=shengmingshangxian>大于120）": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "来！偷袭！": [
     "assets/data/AdvantureEventData.json"
   ],
   "来，拿上这个，本来是准备招募冒险家陪我去迷宫找素材的，不过现在看来我已经不需要了，还是给你拿去冒险用吧。": [
@@ -14672,8 +16271,17 @@
   "极寒风暴": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
+  "极少": [
+    "scripts/domain/settings.gd"
+  ],
   "极限挑战 - 攻略地下矿洞，拥有20只高共鸣怪物": [
     "assets/data/AchieveData.json"
+  ],
+  "极限闪避": [
+    "assets/ui/settings/guides.json"
+  ],
+  "极限闪避\n极限闪避挑战需要玩家在击败所有怪物的同时尽可能不受到任何伤害，上方的信息标明了当前挑战成功获得的奖励等级和剩余被击中的次数。": [
+    "assets/ui/settings/guides.json"
   ],
   "极限闪避·冰雪遗迹": [
     "assets/data/campaign.json"
@@ -14711,6 +16319,12 @@
   "极限闪避·风雪堡垒": [
     "assets/data/campaign.json"
   ],
+  "极限闪避挑战需要玩家在击败所有怪物的同时尽可能不受到任何伤害，上方的信息标明了当前挑战成功获得的奖励等级和剩余被击中的次数。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "极限闪避节点需要玩家在受到限定次数的伤害内击败所有怪物，被击中越少奖励越丰厚。": [
+    "assets/ui/settings/guides.json"
+  ],
   "果然你和我一样呢。<br><br>谢谢你喜欢我的<color=#f28e00>收藏品</color>，希望下次我还能记得你。<br><br>话音刚落，杂货店就在光芒下消失了。": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -14733,6 +16347,9 @@
   "某位弓造大师在观察上弦之月时获得灵感，以此打造了这把武器。": [
     "assets/data/WeaponData.json"
   ],
+  "某座孤岛的不远处，你发现了魔界花正在<color=#8dff4f>汲取岛屿的生命力</color>，等到汲取结束整座岛屿都会立刻解体。<br>它好像没有发现你，要不要<color=#ff4f4f>趁机偷袭</color>它？": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "柘木的弓身耐久与质地兼具，洁白的弓弦柔韧与回弹并存。": [
     "assets/data/WeaponData.json"
   ],
@@ -14744,6 +16361,9 @@
   ],
   "查看任务": [
     "scripts/menus.gd"
+  ],
+  "查看全部云端存档列表": [
+    "scripts/presentation/settings_page.gd"
   ],
   "查看全部材料": [
     "scripts/menus.gd"
@@ -14764,10 +16384,16 @@
   "查看完整属性": [
     "scripts/presentation/character_page.gd"
   ],
+  "查看怪物工作": [
+    "assets/data/DisplayTerms.json"
+  ],
   "查看战斗技能": [
     "scripts/presentation/character_page.gd"
   ],
   "查看觉醒": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "查看角色": [
     "scripts/presentation/character_page.gd"
   ],
   "查看角色与已获得的道具": [
@@ -14785,6 +16411,9 @@
   "查看资源": [
     "scripts/menus.gd"
   ],
+  "标记": [
+    "assets/data/DisplayTerms.json"
+  ],
   "栖息于雪山的天空巨龙，虽然还只是幼年期，但已经拥有足够实力去野外独立寻找猎物了。<br>巨龙贪婪的内心从未改变，一有机会，天空飞龙就会成群结队袭击附近的城堡掠夺宝藏。": [
     "assets/data/EnemyData.json"
   ],
@@ -14800,6 +16429,9 @@
   ],
   "核心秘密": [
     "assets/data/AchieveData.json"
+  ],
+  "格挡": [
+    "assets/data/DisplayTerms.json"
   ],
   "格里芬？您是说王国圣兽吗？": [
     "assets/data/dialogue.json"
@@ -14821,6 +16453,18 @@
   ],
   "检查支援物资": [
     "assets/data/SubAchieveData.json"
+  ],
+  "检查遗物": [
+    "assets/ui/settings/guides.json"
+  ],
+  "检查遗物\n遗物图鉴中记录着在迷宫中见过的所有遗物。\n\n祈愿遗物\n玩家能够消耗祈愿点，选择一样已解锁的遗物提升它的出现概率。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "检测到您正在进行非法操作，请立即停止。如果因为非法操作对游戏存档造成损害，将无法进行修复还原": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "检测到系统时间异常，已为您重置每日数据。": [
+    "assets/data/DisplayTerms.json"
   ],
   "检测完成初次对话_<#LocalizationId=\"NPCData_Name_1000\">露娜</LocalizationId>。": [
     "assets/data/UnlockData.json"
@@ -15125,16 +16769,30 @@
   "此后，它在迷宫各处出现帮助冒险家，希望有人击败这个破坏它家园的讨厌邻居。": [
     "assets/data/dialogue.json"
   ],
+  "此时装尚未恢复3D模型": [
+    "scripts/presentation/character_page.gd"
+  ],
   "此次冒险未获得材料": [
     "scripts/presentation/run_outcome.gd"
   ],
   "此次冒险获得": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/run_outcome.gd"
   ],
   "武器": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/character_page.gd",
-    "scripts/presentation/reference_pages.gd"
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "武器(未选择)": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "武器(选择)": [
+    "scripts/presentation/weapon_page.gd"
   ],
   "武器1": [
     "assets/data/WeaponData.json"
@@ -15151,12 +16809,18 @@
   "武器5": [
     "assets/data/WeaponData.json"
   ],
+  "武器信息": [
+    "assets/data/DisplayTerms.json"
+  ],
   "武器匠": [
     "assets/data/NPCData.json",
     "assets/data/dialogue.json"
   ],
   "武器在打造过程中会从矿石素材获得力量，也会跟随力量变化外形。": [
     "assets/data/dialogue.json"
+  ],
+  "武器奖励未激活": [
+    "assets/data/DisplayTerms.json"
   ],
   "武器尚未打造": [
     "scripts/domain/systems.gd"
@@ -15260,11 +16924,23 @@
   "每4次<#specinfo=putonggongji>召唤一轮<color=#76A9FF>【霜龙吐息】</color>。": [
     "assets/data/CharTalentLevelData.json"
   ],
+  "每5秒治疗4米范围内除自己和领主外的友方魔物5%最大生命值。": [
+    "assets/ui/settings/guides.json"
+  ],
   "每一份魔法道具都有自己传说故事，伙计你一定要相信我，毕竟不全是我乱编的。": [
     "assets/data/dialogue.json"
   ],
+  "每一位角色都有数种不同样式和能力的武器，达成解锁条件后，可以消耗矿石素材打造武器。": [
+    "assets/ui/settings/guides.json"
+  ],
   "每为敌人叠加5层<#specinfo=chaoshi>时会在敌人位置召唤1次<color=#529fff>【潮汐】</color>，对范围内的敌人造成伤害并附加<#specinfo=chaoshi>。": [
     "assets/data/CharTalentLevelData.json"
+  ],
+  "每位冒险伙伴都拥有各自的招募条件，达成后可以消耗招募之证解锁全新角色。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "每位角色拥有独立等级，分为古铜、黑铁、秘银、黄金、白金，每次提升等级都能增加该角色的生命、攻击力、防御力。": [
+    "assets/ui/settings/guides.json"
   ],
   "每使用1次<#specinfo=zhongji>，一定时间内<#specinfo=putonggongji>强化为召唤<color=#529fff>【水泡】</color>。": [
     "assets/data/CharTalentData.json"
@@ -15289,6 +16965,9 @@
   ],
   "每召唤三只<color=#76A9FF>【霜龙吐息】</color>后，额外召唤一只。": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "每名角色攻略每一级<color=#FF4040>混沌难度</color>都能在<color=#fdb933>难度选择处</color>领取<color=#c0b8ff>觉醒结晶</color>，使用<color=#c0b8ff>觉醒结晶</color>可以<color=#fdb933>提高</color>该角色的<color=#c0b8ff>觉醒等级</color>并获得<color=#c0b8ff>觉醒点数</color>。": [
+    "assets/ui/settings/guides.json"
   ],
   "每层+0.3%<#specinfo=gongjili>。": [
     "assets/data/CharTalentLevelData.json"
@@ -15439,6 +17118,9 @@
   ],
   "每层获得5%<#specinfo=baojishanghai>加成。": [
     "assets/data/CharTalentLevelData.json"
+  ],
+  "每层迷宫都生长着区域素材，这些素材有概率出现在各个节点，需要被攻击采集。": [
+    "assets/ui/settings/guides.json"
   ],
   "每层造成20%<#specinfo=gongjili>的伤害。": [
     "assets/data/CharTalentLevelData.json"
@@ -15760,7 +17442,9 @@
     "assets/data/combat.json"
   ],
   "毒牙": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "毕竟买的东西要和物资马车一起送来，那些不能长期保存的东西就只能丢掉了。": [
     "assets/data/dialogue.json"
@@ -15813,6 +17497,9 @@
   "水沼蛙": [
     "assets/data/EnemyData.json",
     "assets/data/combat.json"
+  ],
+  "水灵": [
+    "assets/data/DisplayTerms.json"
   ],
   "水灵之歌": [
     "assets/data/combat.json"
@@ -15907,6 +17594,9 @@
   "沃土惊澜·水岩精灵": [
     "assets/data/AbilityItems.json"
   ],
+  "沉稳": [
+    "assets/data/DisplayTerms.json"
+  ],
   "沉重的斧身，巨大的斧刃，无一不在宣告它的旧主拥有多么伟岸的身躯。": [
     "assets/data/WeaponData.json"
   ],
@@ -15915,6 +17605,9 @@
   ],
   "沙之蚀·破": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "沙之领域·全域": [
+    "assets/data/partner_skills.json"
   ],
   "沙域之刃": [
     "assets/data/AbilityItems.json"
@@ -15933,6 +17626,9 @@
   ],
   "沙域至宝": [
     "assets/data/AbilityItems.json"
+  ],
+  "沙影": [
+    "assets/data/DisplayTerms.json"
   ],
   "沙影再临": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -16006,11 +17702,18 @@
   "没有可结算的冒险派遣进度": [
     "scripts/domain/systems.gd"
   ],
+  "没有可触发的事件": [
+    "scripts/main.gd"
+  ],
   "没有可选天赋": [
     "scripts/domain/systems.gd"
   ],
   "没有可选物品": [
+    "scripts/domain/room_choices.gd",
     "scripts/domain/systems.gd"
+  ],
+  "没有可选的旧日遗物": [
+    "scripts/main.gd"
   ],
   "没有可选的诅咒遗物": [
     "scripts/main.gd"
@@ -16069,7 +17772,7 @@
   "没错，是非常眼熟的遗物口袋，没想到好运有一天会自己找上门。": [
     "assets/data/dialogue.json"
   ],
-  "没问题！<br>（持有3点及以上<#specinfo=keyinshengdian>）": [
+  "没问题！<br>（持有2点及以上<#specinfo=keyinshengdian>）": [
     "assets/data/AdvantureEventData.json"
   ],
   "治愈·冰晶泉水": [
@@ -16134,6 +17837,12 @@
     "assets/data/AbilityItems.json",
     "assets/data/RelationshipAmplifyData.json"
   ],
+  "治愈泉水": [
+    "assets/ui/settings/guides.json"
+  ],
+  "治疗冒字": [
+    "scripts/domain/settings.gd"
+  ],
   "泉之史莱姆": [
     "assets/data/AbilityItems.json"
   ],
@@ -16148,6 +17857,9 @@
   ],
   "泪灯果": [
     "assets/data/MallTradeDetailsData.json"
+  ],
+  "泰坦·撼地猛击": [
+    "assets/data/partner_skills.json"
   ],
   "泰坦巨像·阿特拉斯": [
     "assets/data/EnemyData.json",
@@ -16259,6 +17971,9 @@
   "流沙闪袭": [
     "assets/data/combat.json"
   ],
+  "流沙风暴": [
+    "assets/data/DisplayTerms.json"
+  ],
   "流浪水壶": [
     "assets/data/MaterialData.json"
   ],
@@ -16276,6 +17991,9 @@
   ],
   "测试用——增加怪物支援SP恢复速度": [
     "assets/data/AbilityItems.json"
+  ],
+  "测试账号": [
+    "assets/data/DisplayTerms.json"
   ],
   "浪花满溢": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -16384,6 +18102,22 @@
   "消耗<#specinfo=shuiling>时额外召唤1个环绕自身旋转的<color=#529fff>【浮游水灵】</color>，对触碰的敌人造成35%<#specinfo=gongjili>的伤害。": [
     "assets/data/CharTalentLevelData.json"
   ],
+  "消耗品": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "消耗悬赏信件能够接取一些悬赏委托，完成后可以获得许多珍贵奖励。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "消耗素材强化这些怪物，玩家能够获得全局的属性加成。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "消耗迷宫宝珠能够在有标识的地方纵向移动。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "消耗：": [
+    "assets/data/DisplayTerms.json"
+  ],
   "消费成功": [
     "assets/data/SubAchieveData.json"
   ],
@@ -16392,6 +18126,9 @@
   ],
   "消费结晶": [
     "assets/data/SubAchieveData.json"
+  ],
+  "消费记录": [
+    "assets/data/DisplayTerms.json"
   ],
   "涌流增幅": [
     "assets/data/CharTalentData.json"
@@ -16404,6 +18141,9 @@
   ],
   "涟漪连锁": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "深海狂袭": [
+    "assets/data/partner_skills.json"
   ],
   "深海狂鲨": [
     "assets/data/EnemyData.json",
@@ -16422,7 +18162,9 @@
     "assets/data/MonsterWorkData.json"
   ],
   "混沌": [
+    "assets/data/DisplayTerms.json",
     "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json",
     "scripts/presentation/adventure_prepare.gd"
   ],
   "混沌入口": [
@@ -16448,6 +18190,9 @@
   ],
   "混沌的力量笼罩了魔法森林…": [
     "assets/data/dialogue.json"
+  ],
+  "混沌等级": [
+    "assets/data/DisplayTerms.json"
   ],
   "混沌首通奖励已领取": [
     "scripts/domain/systems.gd"
@@ -16486,6 +18231,12 @@
   "清理街道的委托貌似少了很多，是因为城市变干净了吗？": [
     "assets/data/dialogue.json"
   ],
+  "清空所有祈愿遗物": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "清空所有禁用遗物": [
+    "assets/data/DisplayTerms.json"
+  ],
   "渡火之羽": [
     "assets/data/MaterialData.json"
   ],
@@ -16495,6 +18246,9 @@
   "渡鸦使者": [
     "assets/data/EnemyData.json",
     "assets/data/combat.json"
+  ],
+  "渡鸦来袭·聚": [
+    "assets/data/partner_skills.json"
   ],
   "游侠之证": [
     "assets/data/MaterialData.json"
@@ -16542,8 +18296,14 @@
     "scripts/startup.gd"
   ],
   "游戏性": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
     "scripts/menus.gd",
-    "scripts/presentation/reference_pages.gd"
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "游戏指南": [
+    "assets/data/DisplayTerms.json"
   ],
   "游戏数据加载失败，请重试": [
     "scripts/main.gd"
@@ -16566,6 +18326,9 @@
   "漂浮飞蛇": [
     "assets/data/EnemyData.json",
     "assets/data/combat.json"
+  ],
+  "潜伏着一般怪物的节点，可以相信的是这个节点一定有宝藏。": [
+    "assets/ui/settings/guides.json"
   ],
   "潜能点不足": [
     "scripts/domain/systems.gd"
@@ -16591,7 +18354,11 @@
   "潮汐锚链": [
     "assets/data/AbilityItems.json"
   ],
+  "潮湿": [
+    "assets/data/DisplayTerms.json"
+  ],
   "激活": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd"
   ],
   "激流冲击": [
@@ -16622,8 +18389,14 @@
   "灵巧增幅·叁": [
     "assets/data/RelationshipAmplifyData.json"
   ],
+  "灼烧": [
+    "assets/data/DisplayTerms.json"
+  ],
   "灼热之环": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "灼热剑气": [
+    "assets/data/DisplayTerms.json"
   ],
   "灾厄宫殿快递盒": [
     "assets/data/AbilityItems.json"
@@ -16670,6 +18443,7 @@
     "assets/data/UnlockData.json"
   ],
   "点餐": [
+    "scripts/main.gd",
     "scripts/menus.gd"
   ],
   "炽炎狼王：“来吧！让我看看你有多少长进。”": [
@@ -16722,8 +18496,17 @@
   "烈阳卷轴": [
     "assets/data/AbilityItems.json"
   ],
+  "烈风之加护": [
+    "assets/data/partner_skills.json"
+  ],
   "烈风初羽": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "烹饪食物": [
+    "assets/ui/settings/guides.json"
+  ],
+  "烹饪食物\n在每层迷宫入口处，玩家可以消耗素材烹饪已解锁的食谱，以获得辅助冒险的特殊效果。": [
+    "assets/ui/settings/guides.json"
   ],
   "焚世熔岩": [
     "assets/data/RegionMapData.json",
@@ -16779,10 +18562,19 @@
   ],
   "爆发": [
     "scripts/hud.gd",
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/touch_layout_editor.gd"
   ],
   "爆发技": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
     "scripts/presentation/character_page.gd"
+  ],
+  "爆发技能量": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "爆发技能量充满时，轻按爆发技按钮，释放独属于该角色的强大技能，释放后会清空爆发技能量。": [
+    "assets/ui/settings/guides.json"
   ],
   "爆炎斯尔巴尔": [
     "assets/data/AbilityItems.json"
@@ -16839,6 +18631,18 @@
   ],
   "片刻后，史莱姆王将一块完整宝石吐出，仔细观察宝石散发的魔力就知道，它已经完全与众不同了。": [
     "assets/data/dialogue.json"
+  ],
+  "物品不可领取": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "物品不在祭坛候选中": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "物品已解锁": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "物品已锁定": [
+    "scripts/domain/room_choices.gd"
   ],
   "物品未解锁、冲突或已达上限": [
     "scripts/domain/systems.gd"
@@ -16903,14 +18707,26 @@
   "特拉德：“这里可真危险，来买些宝贝为决战做准备吧。”": [
     "assets/data/dialogue.json"
   ],
+  "特效密度": [
+    "scripts/domain/settings.gd"
+  ],
+  "特效透明度": [
+    "scripts/domain/settings.gd"
+  ],
   "特权": [
     "scripts/presentation/mall_page.gd"
+  ],
+  "特殊事件": [
+    "scripts/world_interactions.gd"
   ],
   "特殊商品": [
     "scripts/menus.gd"
   ],
   "特殊商品支付暂不可用：尚未接入支付与权益验证": [
     "scripts/domain/systems.gd"
+  ],
+  "特殊遗物！": [
+    "assets/ui/settings/guides.json"
   ],
   "牺牲之符": [
     "assets/data/AbilityItems.json"
@@ -16932,7 +18748,9 @@
     "assets/data/SubAchieveData.json"
   ],
   "狂暴": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "狂暴之心": [
     "assets/data/AbilityItems.json"
@@ -16960,6 +18778,9 @@
   ],
   "狂风和沙尘，不带个面罩还真不好对付呢，不过再怎么说它也只是鸟类怪物，只要有足够的力量把它打至地面，一切都好说了。": [
     "assets/data/dialogue.json"
+  ],
+  "狩猎印记": [
+    "assets/data/DisplayTerms.json"
   ],
   "狩猎委托 - 击败龙鳞战士等沙漠怪物": [
     "assets/data/AchieveData.json"
@@ -17031,6 +18852,9 @@
     "assets/data/EnemyData.json",
     "assets/data/combat.json"
   ],
+  "狼王·炽焰之爪": [
+    "assets/data/partner_skills.json"
+  ],
   "狼王的灵魂是绝不会善罢甘休的，下次见面或许它已经完全恢复了，记得自己小心哪。": [
     "assets/data/dialogue.json"
   ],
@@ -17070,8 +18894,25 @@
     "scripts/presentation/style.gd"
   ],
   "猫饭料理": [
+    "scripts/main.gd",
     "scripts/menus.gd",
     "scripts/world_interactions.gd"
+  ],
+  "献祭": [
+    "scripts/main.gd"
+  ],
+  "献祭完成": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "献祭已结束": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "献祭祭坛": [
+    "scripts/main.gd",
+    "scripts/world_interactions.gd"
+  ],
+  "献祭结束": [
+    "scripts/domain/room_choices.gd"
   ],
   "獠牙": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
@@ -17104,11 +18945,26 @@
   "王女的宝物": [
     "assets/data/AbilityItems.json"
   ],
+  "玩家可以在黑暗石坛获取被侵蚀的遗物，这些遗物会限制玩家的战斗力或强化其他怪物，满足它们的净化条件后，这些遗物就能恢复原来的模样。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "玩家可以选择一项怪物支援技能装备，玩家最多能够持有两种不同的怪物支援技能。": [
+    "assets/ui/settings/guides.json"
+  ],
   "玩家每移动1米获得0.5%<#specinfo=yidongsudu>和1%<#specinfo=gongjili>，在造成伤害时消耗1层，最多存储10层，每层持续时间0.5秒。": [
     "assets/data/RelationshipTokenData.json"
   ],
   "玩家每移动1米获得1%<#specinfo=yidongsudu>和2%<#specinfo=gongjili>，在造成伤害时消耗1层，最多存储20层，每层持续时间0.5秒。": [
     "assets/data/RelationshipTokenData.json"
+  ],
+  "玩家能够在信物列表装备角色们赠送的特殊信物，以获得额外的冒险助力。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "玩家能够消耗祈愿点，选择一样已解锁的遗物提升它的出现概率。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "现在与迷宫领主战斗很不明智，还是暂时退下吧。<br>魔界花吸收了岛屿的生命力后钻向地底离开了，不过你在破碎的岛屿中找到了迷宫房间的核心。": [
+    "assets/data/AdvantureEventData.json"
   ],
   "现在可是休息时间，一起去餐厅享受一下吧！": [
     "assets/data/dialogue.json"
@@ -17153,7 +19009,17 @@
     "assets/data/WeaponData.json"
   ],
   "生命": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd"
+  ],
+  "生命上限": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "生命上限 -%d": [
+    "scripts/main.gd"
+  ],
+  "生命上限不足": [
+    "scripts/domain/room_choices.gd"
   ],
   "生命之树快递盒": [
     "assets/data/AbilityItems.json"
@@ -17163,6 +19029,15 @@
   ],
   "生命之源强化": [
     "assets/data/AbilityItems.json"
+  ],
+  "生命值": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "生命值不足，无法继续净化": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "生命值不高于50%时，攻击力提升50%，攻击间隔缩短50%。": [
+    "assets/ui/settings/guides.json"
   ],
   "生命吞噬之戒": [
     "assets/data/AbilityItems.json"
@@ -17194,10 +19069,14 @@
     "assets/data/RelationshipAmplifyData.json"
   ],
   "生命宝石": [
-    "scripts/domain/systems.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/systems.gd",
+    "scripts/ground_loot.gd"
   ],
   "生命药水": [
-    "scripts/domain/systems.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/systems.gd",
+    "scripts/ground_loot.gd"
   ],
   "生命药水<color=#56e20a><#specinfo=shengminghuifu>效率</color>+10%。": [
     "assets/data/TalentTreeLevelData.json"
@@ -17215,6 +19094,7 @@
     "assets/data/AbilityItems.json"
   ],
   "生存": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/guild_page.gd"
   ],
   "生锈骑士头盔": [
@@ -17235,11 +19115,19 @@
   "用圣典或魔法为自己的武器和防具附上魔力只能临时让这些装备拥有魔法力量，但终究只是临时的，而且对装备也是不小的负担。": [
     "assets/data/dialogue.json"
   ],
+  "用户界面宽度适配": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "用时": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/run_outcome.gd"
   ],
   "由不知名金属打造而成的长剑，因为拉风的名字而受到冒险者们的欢迎。": [
     "assets/data/WeaponData.json"
+  ],
+  "由公会委托管理员洛蒂负责的冒险委托栏，玩家可以完成委托中的任务获取奖励。": [
+    "assets/ui/settings/guides.json"
   ],
   "由神秘能量控制的浮岛，应该是混沌魔龙的杰作吧，如果它消失，在浮岛上的一切生灵都会坠毁消亡。": [
     "assets/data/dialogue.json"
@@ -17251,15 +19139,21 @@
     "assets/data/SubAchieveData.json",
     "assets/data/WeaponData.json"
   ],
+  "电光战斧触发": [
+    "assets/data/DisplayTerms.json"
+  ],
   "画笔画出了奇怪的符号，变出了100点<color=#426ab3>【魔力精华】</color>。": [
     "assets/data/AdvantureEventData.json"
   ],
   "画面": [
-    "scripts/menus.gd",
-    "scripts/presentation/reference_pages.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "画面质量": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "疾流穿刺": [
     "assets/data/CharTalentData.json"
@@ -17271,11 +19165,22 @@
   "疾风贯穿阴霾": [
     "assets/data/CharTalentData.json"
   ],
+  "登出": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "登录": [
+    "assets/data/DisplayTerms.json"
+  ],
   "白星标": [
-    "scripts/presentation/mall_page.gd"
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/mall_page.gd",
+    "scripts/presentation/settings_page.gd"
   ],
   "白金成就 - 完成全部指定成就": [
     "assets/data/AchieveData.json"
+  ],
+  "白金级": [
+    "assets/data/DisplayTerms.json"
   ],
   "白银制裁": [
     "assets/data/AbilityItems.json"
@@ -17306,6 +19211,10 @@
   ],
   "相信我们的力量，没人能从我们手里逃脱。": [
     "assets/data/dialogue.json"
+  ],
+  "相机震动": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "看上的宝贝就不要犹豫啦伙计，你不会吃亏的。": [
     "assets/data/dialogue.json"
@@ -17436,6 +19345,9 @@
   "真是没想到伙计，那头在聚魔之地盘旋的古龙真的被你击败了。": [
     "assets/data/dialogue.json"
   ],
+  "真是活久了什么都能看见。<br>史莱姆王修格斯居然在岸边钓鱼，不知道会钓上来什么样的鱼呢？还蛮期待的。": [
+    "assets/data/AdvantureEventData.json"
+  ],
   "真是诡异啊，还是小心一些吃<color=#d93a49>红色</color>的那边吧。<br><br>一口下去，你感觉身上的伤痛都减轻了不少！": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -17528,6 +19440,7 @@
     "assets/data/dialogue.json"
   ],
   "矿石素材": [
+    "assets/data/DisplayTerms.json",
     "assets/data/MallTradeDetailsData.json"
   ],
   "矿石素材获得量+0。": [
@@ -17548,6 +19461,9 @@
   "矿石素材获得量+5。": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
+  "矿脉": [
+    "assets/ui/settings/guides.json"
+  ],
   "矿脉的<color=#FF4040>【领主】</color>获得了全新的力量！": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
@@ -17565,6 +19481,15 @@
   ],
   "研究已满级": [
     "scripts/menus.gd"
+  ],
+  "研究所": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "研究所-怪物石坛": [
+    "assets/ui/settings/guides.json"
+  ],
+  "研究所-遗物图鉴": [
+    "assets/ui/settings/guides.json"
   ],
   "研究所|魔物石坛|强化石坛": [
     "assets/data/RogueConfigData.json"
@@ -17609,6 +19534,9 @@
   "破旧遗物布袋": [
     "assets/data/AbilityItems.json"
   ],
+  "破甲": [
+    "assets/data/DisplayTerms.json"
+  ],
   "破甲工艺": [
     "assets/data/TalentTreeData.json"
   ],
@@ -17636,20 +19564,55 @@
   "破败地牢": [
     "assets/data/MonsterWorkData.json"
   ],
+  "破！": [
+    "assets/data/DisplayTerms.json"
+  ],
   "确定": [
-    "scripts/main.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/main.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "确定要停止当前怪物工作吗？": [
+    "assets/data/DisplayTerms.json"
   ],
   "确实在冒险启程前带了<color=#009ad6>饮料</color>，但过了这么久早就不冰了，即便如此也好过没有，大家喝完后也向你送上了<color=#f28e00>回礼</color>！": [
     "assets/data/AdvantureEventData.json"
   ],
+  "确认升级&s1&吗？": [
+    "assets/data/DisplayTerms.json"
+  ],
   "确认离开": [
     "scripts/main.gd"
+  ],
+  "确认花费18元现金解锁该角色？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "确认解锁&s1&吗？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "确认购买该时装吗？": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "确认跳过&s1&选择？": [
+    "assets/data/DisplayTerms.json"
   ],
   "确认进入": [
     "scripts/main.gd"
   ],
+  "确认退出吗": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "确认退出当前游戏并返回标题？本地进度将自动保存。": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "碎冰": [
+    "assets/data/DisplayTerms.json"
+  ],
   "碎冰专精": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "碎！": [
+    "assets/data/DisplayTerms.json"
   ],
   "磐刃回旋": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -17669,11 +19632,20 @@
   "礼包商店": [
     "scripts/presentation/mall_page.gd"
   ],
+  "祈愿": [
+    "assets/data/DisplayTerms.json"
+  ],
   "祈愿之石": [
     "assets/data/SubAchieveData.json"
   ],
   "祈愿宝珠": [
     "assets/data/WeaponData.json"
+  ],
+  "祈愿遗物": [
+    "assets/ui/settings/guides.json"
+  ],
+  "祈愿：提升该遗物出现概率为2倍。<br>解锁1个祈愿上限数量需花费&s1&金币。": [
+    "assets/data/DisplayTerms.json"
   ],
   "祝你一路顺风！我就在这期待你下次会发现更多迷宫宝藏了。": [
     "assets/data/dialogue.json"
@@ -17697,7 +19669,6 @@
     "assets/data/dialogue.json"
   ],
   "祝福": [
-    "scripts/menus.gd",
     "scripts/presentation/mall_page.gd"
   ],
   "祝福您，我的朋友，先来这里好好休息一下再去冒险吧。": [
@@ -17710,6 +19681,7 @@
     "scripts/presentation/mall_page.gd"
   ],
   "祝福模式·觉醒": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/mall_page.gd"
   ],
   "祝福石牌": [
@@ -17736,6 +19708,15 @@
   "神话龙骑士考核": [
     "assets/data/SubAchieveData.json"
   ],
+  "祭坛": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "祭坛不可使用": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "祭坛已重选": [
+    "scripts/domain/room_choices.gd"
+  ],
   "禁卫骑士头盔": [
     "assets/data/AbilityItems.json"
   ],
@@ -17745,7 +19726,14 @@
   "禁咒匕首": [
     "assets/data/AbilityItems.json"
   ],
+  "禁用": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "禁用：该遗物将不会在局内随机池中被抽取。<br>解锁1个禁用上限数量需花费&s1&金币。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "离开": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
   ],
   "离开后将无法返回领取，是否继续？": [
@@ -17761,6 +19749,7 @@
     "assets/data/AdvantureEventData.json"
   ],
   "秒伤": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/battle_readout.gd"
   ],
   "秘剑·急速连斩": [
@@ -17796,6 +19785,9 @@
   "秘银护甲": [
     "assets/data/AbilityItems.json"
   ],
+  "秘银级": [
+    "assets/data/DisplayTerms.json"
+  ],
   "秘银级冒险家可是一个非常重要的标志，许多人都想到达这一评级来让伙伴们承认他的力量。": [
     "assets/data/dialogue.json"
   ],
@@ -17806,9 +19798,14 @@
     "assets/data/AdvantureEventData.json"
   ],
   "移出": [
+    "scripts/main.gd",
     "scripts/menus.gd"
   ],
+  "移动摇杆固定": [
+    "assets/data/DisplayTerms.json"
+  ],
   "移动速度": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/character_page.gd"
   ],
   "移速增幅·伍": [
@@ -17846,6 +19843,12 @@
   "穿云箭": [
     "assets/data/combat.json"
   ],
+  "穿戴": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "穿戴中": [
+    "assets/data/DisplayTerms.json"
+  ],
   "突然出现在森林中的一般魔物，按常理来说，这类魔物不应该主动出现在常常有人活动的区域，或许它们失去了自己曾经的家园，正在寻找新的栖息地。<br>从某种意义上来说，这群魔蝠才是森林最可怕魔物，对火魔法的亲和力让它们可以释放小火球这类低阶魔法，但在森林中的火球往往比一群盗贼更有威胁性不是吗？": [
     "assets/data/EnemyData.json"
   ],
@@ -17866,6 +19869,10 @@
   ],
   "符文巨斧": [
     "assets/data/WeaponData.json"
+  ],
+  "符文巨石": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
   ],
   "符文巨石|清理巨石|供奉药材": [
     "assets/data/RogueConfigData.json"
@@ -17891,6 +19898,12 @@
   "等有资源了，无论是建设营地还是在迷宫消费，就都不成问题了，": [
     "assets/data/dialogue.json"
   ],
+  "等等看！": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "等级": [
+    "assets/data/DisplayTerms.json"
+  ],
   "等级 %d    累计存入 %d\n%s": [
     "scripts/presentation/room_shop.gd"
   ],
@@ -17900,7 +19913,17 @@
   "等级%d": [
     "scripts/presentation/adventure_prepare.gd"
   ],
+  "等级%d：": [
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "等级%d：\n": [
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "等级&s1&：": [
+    "assets/data/DisplayTerms.json"
+  ],
   "等级详情": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/room_shop.gd"
   ],
   "等这个营地修建完毕，那个转移营地也终于要开始复工啦。": [
@@ -17908,6 +19931,9 @@
   ],
   "等迷宫出现更多遗物之后，我会帮你准备在马车里的，敬请期待吧。": [
     "assets/data/dialogue.json"
+  ],
+  "简写": [
+    "scripts/domain/settings.gd"
   ],
   "简直不可思议！你在这发现了一瓶从地上长出的<color=#56e20a>汽水</color>！<br><br>看着真是清甜可口，是否要<color=#56e20a>喝一瓶</color>呢？": [
     "assets/data/AdvantureEventData.json"
@@ -17946,6 +19972,15 @@
   "篝火酒馆废墟": [
     "assets/data/RogueConfigData.json",
     "scripts/presentation/camp_progression.gd"
+  ],
+  "篝火餐厅-烹饪": [
+    "assets/ui/settings/guides.json"
+  ],
+  "篝火餐厅-食谱": [
+    "assets/ui/settings/guides.json"
+  ],
+  "篝火餐厅<br>等待重建": [
+    "assets/data/DisplayTerms.json"
   ],
   "篝火餐厅|订购厨具|加长菜单": [
     "assets/data/RogueConfigData.json"
@@ -17994,6 +20029,9 @@
   "精华增幅·叁": [
     "assets/data/RelationshipAmplifyData.json"
   ],
+  "精灵": [
+    "assets/data/DisplayTerms.json"
+  ],
   "精灵之瓶": [
     "assets/data/AbilityItems.json"
   ],
@@ -18008,6 +20046,15 @@
   ],
   "精灵契约 - 与火水风雷光暗精灵相遇": [
     "assets/data/AchieveData.json"
+  ],
+  "精灵强化": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "精灵持续": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "精灵数量": [
+    "assets/data/DisplayTerms.json"
   ],
   "精灵树苗": [
     "assets/data/AbilityItems.json"
@@ -18027,7 +20074,15 @@
   "精灵泉水": [
     "assets/data/AbilityItems.json"
   ],
+  "精灵石坛": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "精灵石坛的节点标识代表了该节点布置了可获取的元素精灵石坛。": [
+    "assets/ui/settings/guides.json"
+  ],
   "精灵祭坛": [
+    "assets/data/DisplayTerms.json",
     "assets/data/ItemPoolData.json",
     "scripts/hud.gd",
     "scripts/main.gd",
@@ -18037,8 +20092,17 @@
   "精灵般的植物魔物，具有相当程度的智力与魔法亲和力，与其他利用魔力亲和力释放魔法战斗的魔物不同，它能够像魔法师一样由自己释放魔法。<br>妖花具有极强的威胁性，绝不会放过视线范围内的所有威胁，或许作为大自然的一员，它绝不容忍一切伤害花草的行为。": [
     "assets/data/EnemyData.json"
   ],
+  "精灵范围": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "精灵触发": [
+    "assets/data/DisplayTerms.json"
+  ],
   "精灵飞羽": [
     "assets/data/AbilityItems.json"
+  ],
+  "精炼": [
+    "assets/data/DisplayTerms.json"
   ],
   "精炼增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -18049,9 +20113,6 @@
   ],
   "精神战镰": [
     "assets/data/WeaponData.json"
-  ],
-  "精简特效": [
-    "scripts/menus.gd"
   ],
   "精美陶罐": [
     "assets/data/AdvantureEventData.json"
@@ -18083,8 +20144,14 @@
   "精英怪物行为树测试": [
     "assets/data/campaign.json"
   ],
+  "精英怪物！": [
+    "assets/ui/settings/guides.json"
+  ],
   "精英战士考核": [
     "assets/data/SubAchieveData.json"
+  ],
+  "精英敌人拥有自身100%生命上限的护甲，护甲可以代替生命值承受伤害，并且在持有护甲时自身抗打断能力大幅提升。": [
+    "assets/ui/settings/guides.json"
   ],
   "精英暗骑士考核": [
     "assets/data/SubAchieveData.json"
@@ -18110,6 +20177,13 @@
   "糟了！导师批的作业还没写呢！": [
     "assets/data/dialogue.json"
   ],
+  "系统": [
+    "assets/ui/settings/guides.json",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "素材不足，无法升级": [
+    "assets/data/DisplayTerms.json"
+  ],
   "素材出现概率+20%。": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
@@ -18130,6 +20204,19 @@
   ],
   "素材出现概率+80%。": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
+  ],
+  "素材增殖": [
+    "assets/ui/settings/guides.json"
+  ],
+  "素材增殖\n素材增殖的节点标识代表了该节点生长着更多的迷宫素材。\n\n魔力矿脉\n魔力矿脉的节点标识代表了该节点有着许多储存魔力精华的矿石。\n\n黄金矿脉\n黄金矿脉的节点标识代表了该节点有着许多珍贵的黄金矿石。\n\n精灵石坛\n精灵石坛的节点标识代表了该节点布置了可获取的元素精灵石坛。\n\n怪物石坛\n怪物石坛的节点标识代表了该节点布置了可获取的怪物支援石坛。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "素材增殖的节点标识代表了该节点生长着更多的迷宫素材。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "索敌模式": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "索敌距离": [
     "scripts/presentation/character_page.gd"
@@ -18474,6 +20561,7 @@
     "assets/data/AdvantureEventData.json"
   ],
   "经验值转化冒险凭证": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/run_outcome.gd"
   ],
   "结晶交易": [
@@ -18496,12 +20584,18 @@
   "结束本次冒险？": [
     "scripts/main.gd"
   ],
+  "结束献祭": [
+    "scripts/main.gd"
+  ],
   "结束训练": [
     "scripts/menus.gd",
     "scripts/presentation/camp_training_readout.gd"
   ],
   "结算奖励已领取或尚未结算": [
     "scripts/domain/systems.gd"
+  ],
+  "给予玩家一个<#specinfo=shengmingshangxian>10%的<#specinfo=hudun>。|获得的<#specinfo=hudun>提升至<#specinfo=shengmingshangxian>的20%，10秒内受到怪物伤害会向周围弹出数枚尖刺炸弹，尖刺炸弹命中造成1000%<#specinfo=shengmingshangxian>的伤害。|获得的<#specinfo=hudun>提升至<#specinfo=shengmingshangxian>的30%，10秒内受到怪物伤害额外增加玩家8点<#specinfo=hujia>。": [
+    "assets/data/partner_skills.json"
   ],
   "给出<color=#f28e00>高级宝石</color>的概率+10%。": [
     "assets/data/TalentTreeLevelData.json"
@@ -18555,11 +20649,17 @@
   "继续派遣": [
     "scripts/main.gd"
   ],
+  "继续献祭": [
+    "scripts/main.gd"
+  ],
   "继续训练": [
     "scripts/menus.gd"
   ],
   "维修公会研究所，解锁迷宫遗物图鉴。|整理魔物石坛，可用于强化怪物伙伴提升自己的力量。|升级魔物石坛，在迷宫中解锁来自魔物力量的强大支援技能。": [
     "assets/data/RogueConfigData.json"
+  ],
+  "综合": [
+    "assets/data/DisplayTerms.json"
   ],
   "绿宝石之泉": [
     "assets/data/TalentTreeData.json"
@@ -18652,6 +20752,17 @@
   "耐寒药剂最近非常抢手，看来得着手多购置一些了。": [
     "assets/data/dialogue.json"
   ],
+  "联系客服": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "联系方式": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "聚集毒元素后爆发，对周围敌人造成300%<#specinfo=gongjili>的伤害。|【孢子爆发】每命中一名敌人<#specinfo=shengminghuifu>5%<#specinfo=shengmingzhi>，最多<#specinfo=shengminghuifu>15%。|攻击范围提升50%且<#specinfo=shengmingzhi><#specinfo=shengminghuifu>效果翻倍。": [
+    "assets/data/partner_skills.json"
+  ],
   "聚风领域": [
     "assets/data/CharTalentData.json"
   ],
@@ -18678,9 +20789,16 @@
   "聚魔探索 - 采集初生紫兰": [
     "assets/data/AchieveData.json"
   ],
+  "胆怯": [
+    "assets/data/DisplayTerms.json"
+  ],
   "背包": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
     "scripts/presentation/character_page.gd",
-    "scripts/presentation/reference_pages.gd"
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "背后的力量": [
     "assets/data/AchieveData.json",
@@ -18700,6 +20818,9 @@
   ],
   "能够引导冰雪魔法的冰晶魔物，它们无需进食且只有最基础的智慧，会全力进攻那些踏入雪地的不速之客。<br>理论上来说冰晶怪拥有强大的魔力亲和力，但不知道为什么，冒险家们只见过它们挥舞四周的锋利冰晶战斗。": [
     "assets/data/EnemyData.json"
+  ],
+  "能量不足、冷却中或动作未结束": [
+    "scripts/domain/partner_skills.gd"
   ],
   "能量不足或冷却中": [
     "scripts/main.gd"
@@ -18728,14 +20849,42 @@
   "自制匕首强化": [
     "assets/data/AbilityItems.json"
   ],
+  "自动拾取规则": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "自动攻击": [
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/touch_layout_editor.gd"
+  ],
+  "自动攻击模式优先级": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "自动攻击：": [
     "scripts/hud.gd"
   ],
+  "自动衔接": [
+    "scripts/domain/settings.gd"
+  ],
+  "自动闪避": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "自定义搭配挑战提高冒险难度，需要注意的是当前武器到达需求的挑战等级后，超出的挑战等级并不能为这件武器解锁多项契约等级奖励。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "自定义搭配挑战赐福，提高奖励或全新流派搭配，赐福等级需要小于或等于挑战等级才允许开始冒险。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "自定义操作按钮": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "至于领主身后的那个宝箱，你不觉得看着就很可疑吗？反正我不愿意去开。": [
     "assets/data/dialogue.json"
+  ],
+  "致命一击": [
+    "assets/data/DisplayTerms.json"
   ],
   "致命连环": [
     "assets/data/CharTalentData.json"
@@ -18746,6 +20895,9 @@
   "舒适剑柄": [
     "assets/data/TalentTreeData.json"
   ],
+  "节点": [
+    "assets/data/DisplayTerms.json"
+  ],
   "节点内有10%概率出现<color=#5398ff>事件水晶球</color>。": [
     "assets/data/TalentTreeLevelData.json"
   ],
@@ -18754,6 +20906,21 @@
   ],
   "节点内有30%概率出现<color=#5398ff>事件水晶球</color>。": [
     "assets/data/TalentTreeLevelData.json"
+  ],
+  "节点内有概率出现黄金或魔力矿脉，击碎它们可以收集一些素材。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "节点增殖": [
+    "assets/ui/settings/guides.json"
+  ],
+  "节点增殖\n一些房间会有增殖标识，这代表了该房间出现增殖标识的材料或道具的概率大大增加。\n\n迷宫宝珠\n消耗迷宫宝珠能够在有标识的地方纵向移动。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "节点类型·其一": [
+    "assets/ui/settings/guides.json"
+  ],
+  "节点类型·其二": [
+    "assets/ui/settings/guides.json"
   ],
   "芭菲布丁": [
     "assets/data/CatMealData.json"
@@ -18860,6 +21027,9 @@
   "荒漠的<color=#FF4040>【领主】</color>获得了全新的力量！": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
+  "荒魂": [
+    "assets/data/DisplayTerms.json"
+  ],
   "荒魂乱舞": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
@@ -18907,11 +21077,32 @@
   "莉莉安娜：“诶？是冒险家大人？”": [
     "assets/data/dialogue.json"
   ],
+  "获取": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "获取信物吧！": [
+    "assets/ui/settings/guides.json"
+  ],
   "获取精灵": [
     "scripts/ground_loot.gd"
   ],
+  "获取精灵吧！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "获取精灵吧！\n迷宫中会随机出现孵化精灵蛋的神秘石坛，在没有触发战斗时，玩家可以与其互动获得一种元素精灵的力量，精灵仅在本次冒险生效。\n\n升级精灵吧！\n与精灵石坛互动时，如果已经持有精灵，则有概率能选择已拥有精灵的升级状态以提升该精灵的力量，每只精灵的最高等级为五星。\n\n收集精灵吧！\n达成解锁条件，并集齐两只力量相衬的五星精灵后，再次开启精灵石坛将可以出现最强大的精灵融合形态！": [
+    "assets/ui/settings/guides.json"
+  ],
   "获取结晶": [
     "assets/data/SubAchieveData.json"
+  ],
+  "获取遗物": [
+    "assets/ui/settings/guides.json"
+  ],
+  "获取遗物\n在迷宫内，玩家可以通过获取遗物布袋等方式，获取帮助玩家探索迷宫的特殊道具，这些道具仅在本次探索内生效。\n\n遗物等级\n通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。\n\n遗物合成\n一些遗物拥有自己的系列，集齐后将激活一件效果更强的遗物。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "获得": [
+    "assets/data/DisplayTerms.json"
   ],
   "获得10%<#specinfo=fangyuli>的<#specinfo=hudun>。": [
     "assets/data/CharTalentLevelData.json"
@@ -18979,7 +21170,8 @@
     "assets/data/AbilityItems.json"
   ],
   "获得500点<#specinfo=molijinghua>。": [
-    "assets/data/AbilityItems.json"
+    "assets/data/AbilityItems.json",
+    "assets/data/AdvantureEventData.json"
   ],
   "获得50点<color=#76A9FF><#specinfo=sikadizhinu>能量</color>。": [
     "assets/data/CharTalentLevelData.json"
@@ -18989,6 +21181,27 @@
   ],
   "获得5层<#specinfo=longlinkaijia>。": [
     "assets/data/CharTalentLevelData.json"
+  ],
+  "获得<color=#8dff4f>迷宫徽章。</color>": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "获得<color=#f28e00>【伊格德拉兰之核】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "获得<color=#f28e00>【北国战甲】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "获得<color=#f28e00>【北国碎刃】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "获得<color=#f28e00>【北国遗宝】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "获得<color=#f28e00>【史莱姆王的钓鱼竿】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "获得<color=#f28e00>【咸鱼剑】</color>。": [
+    "assets/data/AdvantureEventData.json"
   ],
   "获得<color=#f36c21>【<#specinfo=zhongji>能量：神力】</color>概率+10%。": [
     "assets/data/CharTalentLevelData.json"
@@ -19005,8 +21218,14 @@
   "获得以下物品": [
     "assets/data/MallTradeData.json"
   ],
+  "获得信物": [
+    "assets/data/DisplayTerms.json"
+  ],
   "获得信物后解锁": [
     "scripts/domain/systems.gd"
+  ],
+  "获得全部": [
+    "assets/data/DisplayTerms.json"
   ],
   "获得冒险凭证 × %d": [
     "scripts/domain/systems.gd"
@@ -19068,16 +21287,31 @@
   "获得时，选择一个诅咒<#LocalizationId=\"keyword_Relics\">遗物</LocalizationId>。": [
     "assets/data/AbilityItems.json"
   ],
+  "获得物品": [
+    "assets/data/DisplayTerms.json"
+  ],
   "获得矿石素材": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd"
   ],
   "获得等同于当前损失<#specinfo=shengmingzhi>百分比的<#specinfo=gongjili>。": [
     "assets/data/AbilityItems.json"
   ],
+  "获得素材": [
+    "assets/data/DisplayTerms.json"
+  ],
   "获得遗物": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/run_outcome.gd"
   ],
+  "获得遗物后可查看详情": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "获得遗物后可进行祈愿": [
+    "assets/data/DisplayTerms.json"
+  ],
   "获得金币": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd"
   ],
   "获得随机一个宝箱": [
@@ -19087,6 +21321,7 @@
     "assets/data/MallTradeData.json"
   ],
   "获得魔力精华": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd"
   ],
   "菲奥娜": [
@@ -19124,6 +21359,7 @@
   ],
   "营地": [
     "scripts/hud.gd",
+    "scripts/main.gd",
     "scripts/menus.gd"
   ],
   "营地冒险家公会等级达到3": [
@@ -19181,6 +21417,12 @@
   "营地的正门从内侧被撞开，一定是那只巨魔的杰作。": [
     "assets/data/dialogue.json"
   ],
+  "营地等级": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "营地管理": [
+    "assets/data/DisplayTerms.json"
+  ],
   "营地营地帐篷达到1级": [
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
@@ -19233,6 +21475,9 @@
   ],
   "落雷！惩戒罪人": [
     "assets/data/CharTalentData.json"
+  ],
+  "蓄势": [
+    "assets/data/DisplayTerms.json"
   ],
   "蓄势待发": [
     "assets/data/CharTalentData.json",
@@ -19375,6 +21620,12 @@
   "血棘圣枪": [
     "assets/data/WeaponData.json"
   ],
+  "衔接招式吧！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "衔接招式吧！\n选择一些特殊天赋后，根据该天赋描述释放普通攻击、战技或重击后轻按普通攻击按钮，能够立即释放一次特殊攻击。": [
+    "assets/ui/settings/guides.json"
+  ],
   "补充1点<#specinfo=keyinshengdian>。": [
     "assets/data/AbilityItems.json"
   ],
@@ -19393,8 +21644,23 @@
   "被怪物命中后，5秒内移动速度-20。": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
+  "被怪物命中后，5秒内该冒险家<#specinfo=baofajinengliang>充能效率降低20%。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "被怪物命中后，5秒内该冒险家<#specinfo=shanbi>冷却时间延长50%。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "被怪物命中后，5秒内该冒险家<#specinfo=yidongsudu>降低20%。": [
+    "assets/ui/settings/guides.json"
+  ],
   "被怪物命中后，5秒内闪避冷却时间延长50%。": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
+  ],
+  "被怪物普通攻击命中后，每秒损失1点生命值，持续约5秒。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "被攻击时，有20%概率使20米范围内的冒险家治疗量降低50%，持续5秒。": [
+    "assets/ui/settings/guides.json"
   ],
   "被那样的可怕的力量污染，它们也一直很痛苦吧，如果冒险家大人遇见，请一定要消灭它们。": [
     "assets/data/dialogue.json"
@@ -19411,14 +21677,32 @@
   "裂空战镰": [
     "assets/data/WeaponData.json"
   ],
+  "裂！": [
+    "assets/data/DisplayTerms.json"
+  ],
   "装备": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/character_page.gd"
+  ],
+  "装备信物！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "装备信物！\n玩家能够在信物列表装备角色们赠送的特殊信物，以获得额外的冒险助力。\n\n提升好感！\n向其他伙伴赠送礼物可以提高他们的好感度，或许还能获得他们的回礼噢。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "装备时装": [
+    "scripts/presentation/character_page.gd"
   ],
   "装备齐全": [
     "assets/data/SubAchieveData.json"
   ],
   "装甲强化": [
     "assets/data/TalentTreeData.json"
+  ],
+  "装饰品": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "西北诸国遗迹正是这样，覆盖黄沙与魔力。": [
     "assets/data/dialogue.json"
@@ -19530,6 +21814,9 @@
   "觉醒之力·陆": [
     "assets/data/AbilityItems.json"
   ],
+  "觉醒天赋": [
+    "assets/ui/settings/guides.json"
+  ],
   "觉醒尚未解锁": [
     "scripts/domain/systems.gd"
   ],
@@ -19542,11 +21829,20 @@
   "觉醒点不足": [
     "scripts/domain/systems.gd"
   ],
+  "觉醒点数": [
+    "assets/ui/settings/guides.json"
+  ],
   "觉醒等级": [
     "scripts/menus.gd"
   ],
   "觉醒等级不足": [
     "scripts/domain/systems.gd"
+  ],
+  "觉醒等级与潜能结晶": [
+    "assets/ui/settings/guides.json"
+  ],
+  "觉醒等级与潜能结晶\n每名角色攻略每一级<color=#FF4040>混沌难度</color>都能在<color=#fdb933>难度选择处</color>领取<color=#c0b8ff>觉醒结晶</color>，使用<color=#c0b8ff>觉醒结晶</color>可以<color=#fdb933>提高</color>该角色的<color=#c0b8ff>觉醒等级</color>并获得<color=#c0b8ff>觉醒点数</color>。\n\n觉醒天赋\n<color=#c0b8ff>觉醒天赋</color>的<color=#fdb933>解锁</color>与<color=#c0b8ff>觉醒等级</color>相关，<color=#fdb933>提高</color><color=#c0b8ff>觉醒等级</color>才能够<color=#fdb933>解锁</color>更多<color=#c0b8ff>觉醒天赋</color>。\n\n觉醒点数\n<color=#fdb933>解锁</color><color=#c0b8ff>觉醒天赋</color>后，在冒险之前<color=#fdb933>消耗</color>从<color=#c0b8ff>觉醒等级</color>获得的<color=#c0b8ff>觉醒点数</color><color=#fdb933>激活</color>该天赋，只有被<color=#fdb933>激活</color>的天赋才能够在冒险中<color=#fdb933>生效</color>。": [
+    "assets/ui/settings/guides.json"
   ],
   "觉醒结晶": [
     "assets/data/MallTradeDetailsData.json"
@@ -19555,11 +21851,14 @@
     "assets/data/MallTradeData.json"
   ],
   "角色": [
+    "assets/data/DisplayTerms.json",
     "scripts/hud.gd",
     "scripts/menus.gd",
     "scripts/presentation/character_page.gd",
+    "scripts/presentation/inventory_page.gd",
     "scripts/presentation/reference_pages.gd",
-    "scripts/presentation/talent_selection.gd"
+    "scripts/presentation/talent_selection.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "角色不可招募": [
     "scripts/domain/systems.gd"
@@ -19568,6 +21867,7 @@
     "scripts/menus.gd"
   ],
   "角色天赋": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/run_outcome.gd"
   ],
@@ -19607,8 +21907,14 @@
   "角色成长 - 阿克斯的冒险等级提升至5级": [
     "assets/data/AchieveData.json"
   ],
+  "角色时装": [
+    "scripts/presentation/character_page.gd"
+  ],
   "角色未解锁": [
     "scripts/domain/systems.gd"
+  ],
+  "角色现金解锁购买失败": [
+    "assets/data/DisplayTerms.json"
   ],
   "角色等级 ": [
     "scripts/domain/systems.gd"
@@ -19616,23 +21922,53 @@
   "角色等级不满足": [
     "scripts/domain/systems.gd"
   ],
+  "角色等阶": [
+    "assets/data/DisplayTerms.json"
+  ],
   "角色装备信物": [
     "scripts/presentation/adventure_prepare.gd"
   ],
   "角色觉醒": [
+    "assets/ui/settings/guides.json",
     "scripts/menus.gd",
     "scripts/world_interactions.gd"
   ],
+  "角色试用": [
+    "assets/data/DisplayTerms.json"
+  ],
   "角色详情": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/character_page.gd",
-    "scripts/presentation/reference_pages.gd"
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "角色详情(已选择3D)": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "角色详情(未选择)": [
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "角色详情(未选择3D)": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "角色详情分类(选择)": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "角色达到8级解锁": [
+    "assets/data/DisplayTerms.json"
   ],
   "角鹿测试": [
     "assets/data/campaign.json"
   ],
+  "解开徽章的限制，装载更多力量。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "解锁": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
+    "scripts/presentation/character_page.gd",
     "scripts/presentation/guild_page.gd"
   ],
   "解锁10种不同的<#LocalizationId=\"keyword_RelicsIllustrations\">遗物图鉴</LocalizationId>。": [
@@ -19863,6 +22199,15 @@
     "assets/data/SubAchieveData.json",
     "assets/data/UnlockData.json"
   ],
+  "解锁伙伴": [
+    "assets/ui/settings/guides.json"
+  ],
+  "解锁伙伴\n每位冒险伙伴都拥有各自的招募条件，达成后可以消耗招募之证解锁全新角色。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "解锁候选物": [
+    "scripts/presentation/reference_pages.gd"
+  ],
   "解锁冰冠之刺": [
     "assets/data/UnlockData.json"
   ],
@@ -19872,6 +22217,9 @@
   "解锁外观所需资源不足": [
     "scripts/domain/camp_decorations.gd"
   ],
+  "解锁天赋！": [
+    "assets/ui/settings/guides.json"
+  ],
   "解锁天辉圣裁": [
     "assets/data/SubAchieveData.json",
     "assets/data/UnlockData.json"
@@ -19879,6 +22227,9 @@
   "解锁日耀之牙。": [
     "assets/data/SubAchieveData.json",
     "assets/data/UnlockData.json"
+  ],
+  "解锁时装": [
+    "scripts/presentation/character_page.gd"
   ],
   "解锁月辉圣裁": [
     "assets/data/SubAchieveData.json",
@@ -19893,6 +22244,12 @@
   ],
   "解锁槽位": [
     "scripts/menus.gd"
+  ],
+  "解锁武器": [
+    "assets/ui/settings/guides.json"
+  ],
+  "解锁武器\n每一位角色都有数种不同样式和能力的武器，达成解锁条件后，可以消耗矿石素材打造武器。": [
+    "assets/ui/settings/guides.json"
   ],
   "解锁武器-十字星剑": [
     "assets/data/NPCFunctionData.json",
@@ -19913,6 +22270,9 @@
   "解锁武器-鹰眼弓": [
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
+  ],
+  "解锁武器后，可以消耗更多矿石素材升级武器获得更强的力量。": [
+    "assets/ui/settings/guides.json"
   ],
   "解锁武器独眼巨人斧": [
     "assets/data/NPCFunctionData.json",
@@ -19948,8 +22308,20 @@
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "解锁难度": [
+    "assets/ui/settings/guides.json"
+  ],
+  "解锁难度\n迷宫拥有许多难度等级，攻略所选迷宫等级后即可解锁下一难度，随着难度提升，怪物们将会获得各种强化。\n\n难度奖励\n随着难度提升，冒险获得的奖励也将更加丰厚。": [
+    "assets/ui/settings/guides.json"
+  ],
   "解锁雪原区域<#LocalizationId=\"Keyword_Boss\">迷宫领主</LocalizationId>节点的<#LocalizationId=\"Keyword_HealingWater\">恢复之泉</LocalizationId>。": [
     "assets/data/TalentTreeData.json"
+  ],
+  "解锁食谱": [
+    "assets/ui/settings/guides.json"
+  ],
+  "解锁食谱\n一些食谱需要达成解锁条件才能发现，发现该食谱后，需要消耗素材解锁。": [
+    "assets/ui/settings/guides.json"
   ],
   "触发<#specinfo=chengjiebiaoji>后有50%概率在原地留下一个<color=#f18800>【光灵】</color>，下次使用<#specinfo=baofaji>会激活所有<color=#f18800>【光灵】</color>攻击最近的敌人。": [
     "assets/data/CharTalentLevelData.json"
@@ -20029,6 +22401,9 @@
   "触摸石板。<br>（消耗1000点<#specinfo=molijinghua>，获得1枚<color=#FF8157>【复苏宝石】</color>）": [
     "assets/data/AdvantureEventData.json"
   ],
+  "警告": [
+    "assets/data/DisplayTerms.json"
+  ],
   "讨价还价": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -20073,6 +22448,9 @@
   ],
   "讨伐委托：迷幻妖姬": [
     "assets/data/SubAchieveData.json"
+  ],
+  "讨伐用时": [
+    "assets/data/DisplayTerms.json"
   ],
   "讨伐精英·\r炸弹穿山甲": [
     "assets/data/campaign.json"
@@ -20189,6 +22567,9 @@
   "许愿糖果": [
     "assets/data/AbilityItems.json"
   ],
+  "论坛抽奖活动": [
+    "scripts/presentation/settings_page.gd"
+  ],
   "设施已满级": [
     "scripts/domain/systems.gd"
   ],
@@ -20196,8 +22577,28 @@
     "assets/data/AchieveData.json"
   ],
   "设置": [
+    "assets/data/DisplayTerms.json",
     "scripts/hud.gd",
-    "scripts/menus.gd"
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "设置(激活)": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "设置保存失败，请重试": [
+    "scripts/main.gd"
+  ],
+  "设置显示": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "设置显示（激活）": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "设置音量": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "设置音量（激活）": [
+    "scripts/presentation/settings_page.gd"
   ],
   "诅咒·旧日祭坛": [
     "assets/data/campaign.json"
@@ -20206,8 +22607,10 @@
     "scripts/world_interactions.gd"
   ],
   "诅咒遗物": [
+    "assets/data/DisplayTerms.json",
     "assets/data/ItemPoolData.json",
-    "scripts/domain/systems.gd"
+    "scripts/domain/systems.gd",
+    "scripts/presentation/choice_palette.gd"
   ],
   "诅咒遗物布袋": [
     "assets/data/AbilityItems.json"
@@ -20238,6 +22641,12 @@
   ],
   "试炼尚未完成或奖励已领取": [
     "scripts/domain/systems.gd"
+  ],
+  "试用": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "试穿": [
+    "assets/data/DisplayTerms.json"
   ],
   "试试就试试！<br>（消耗100点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
@@ -20305,13 +22714,40 @@
   "该效果禁止刷新商店": [
     "scripts/domain/systems.gd"
   ],
+  "该时装不属于当前角色": [
+    "scripts/domain/character_fashion.gd"
+  ],
+  "该节点有着治愈伤势的泉水，神秘的史莱姆之王也常常出没在这里。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "该节点标记了许多陷阱，玩家必须穿过这些陷阱才能找到最终的宝藏，成功穿过所有陷阱还有额外的宝箱奖励。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "该角色现金解锁商品未配置": [
+    "assets/data/DisplayTerms.json"
+  ],
   "该遗物不能封印或已封印": [
     "scripts/domain/systems.gd"
+  ],
+  "详情": [
+    "assets/data/DisplayTerms.json"
   ],
   "语言": [
     "scripts/menus.gd",
     "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/settings_page.gd",
     "scripts/presentation/start_screen.gd"
+  ],
+  "语言设置保存失败，请重试": [
+    "scripts/main.gd",
+    "scripts/presentation/start_screen.gd"
+  ],
+  "语言选择": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "语音音量": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "说不定它是有剧毒的呢？伤到你就不好啦。": [
     "assets/data/dialogue.json"
@@ -20428,6 +22864,7 @@
     "scripts/camp_training.gd"
   ],
   "请先研究该料理等级": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
   ],
   "请先结束当前冒险": [
@@ -20436,8 +22873,18 @@
   "请先解锁外观": [
     "scripts/domain/camp_decorations.gd"
   ],
+  "请先解锁该角色": [
+    "scripts/domain/character_fashion.gd"
+  ],
+  "请先购买基础祝福模式": [
+    "assets/data/DisplayTerms.json"
+  ],
   "请先选择料理": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
+  ],
+  "请先通过对应关卡": [
+    "assets/data/DisplayTerms.json"
   ],
   "请先领取派遣奖励": [
     "scripts/domain/systems.gd"
@@ -20456,6 +22903,9 @@
   ],
   "请在冒险中存入": [
     "scripts/domain/systems.gd"
+  ],
+  "请在冒险中的料理商店点餐": [
+    "scripts/domain/room_meals.gd"
   ],
   "请在商店中封印": [
     "scripts/domain/systems.gd"
@@ -20550,6 +23000,9 @@
   "请来全村最好的工匠为冒险家们打造武器。|打造几只训练稻草人，测试自己的伤害和能力。|强化武器锻造台，解锁武器升级的能力。": [
     "assets/data/RogueConfigData.json"
   ],
+  "请求恢复成功以下内容成功:": [
+    "assets/data/DisplayTerms.json"
+  ],
   "请求海神的庇护，进入可移动的浮空状态，操控奔涌的水流持续向前喷射强力水柱，被击中的敌人将被施加<#specinfo=chaoshi>，持续4秒。<br><color=#DAA60B>海神之怒</color>同时也会激活<#specinfo=shuiling>。": [
     "assets/data/combat.json"
   ],
@@ -20568,6 +23021,22 @@
   "请继续探索吧冒险家大人，大家期待您的活跃表现。": [
     "assets/data/dialogue.json"
   ],
+  "请详细描写您遇到的问题": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "请详细描述您在什么场景遇见了什么问题，并留下您的联系方式，以帮助我们更好完善游戏内容，为所有冒险家带来更好的游戏体验。": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "请输入兑换码": [
+    "scripts/main.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "请输入反馈内容": [
+    "scripts/presentation/settings_page.gd"
+  ],
+  "请输入您的兑换码": [
+    "scripts/presentation/settings_page.gd"
+  ],
   "请返回主城后再交互": [
     "scripts/main.gd"
   ],
@@ -20585,6 +23054,7 @@
     "scripts/domain/systems.gd"
   ],
   "请适度娱乐，理性消费。": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/mall_page.gd"
   ],
   "请选择1、5、50或300个宝箱": [
@@ -20599,8 +23069,14 @@
   "请选择已拥有的角色": [
     "scripts/domain/systems.gd"
   ],
+  "请选择替换的技能": [
+    "scripts/domain/room_choices.gd"
+  ],
   "请选择精灵": [
     "scripts/ground_loot.gd"
+  ],
+  "请选择要装备的信物\n": [
+    "assets/data/DisplayTerms.json"
   ],
   "请通过广告奖励入口领取": [
     "scripts/domain/systems.gd"
@@ -20617,7 +23093,12 @@
   "谁知道里面有什么呢？最好还是别喝比较好。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "调整屏幕用户界面和画面边缘的距离。": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
   "调查点数": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
   ],
   "调查点数池": [
@@ -20698,10 +23179,19 @@
   "败血雷铠": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
+  "账户": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "账户h": [
+    "scripts/presentation/settings_page.gd"
+  ],
   "货币不足": [
     "scripts/domain/systems.gd"
   ],
   "购买": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd",
     "scripts/presentation/room_shop.gd"
   ],
@@ -20729,6 +23219,15 @@
   "购买二号盲盒。<br>（花费100点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
   ],
+  "购买后可领取": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "购买失败": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "购买失败。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "购买幸运卡片。<br>（花费100点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -20737,6 +23236,9 @@
   ],
   "购买幸运卡片。<br>（花费50点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "购买成功。": [
+    "assets/data/DisplayTerms.json"
   ],
   "购买按钮": [
     "scripts/presentation/mall_page.gd"
@@ -20789,8 +23291,8 @@
   "资深龙骑士考核": [
     "assets/data/SubAchieveData.json"
   ],
-  "资源不足": [
-    "scripts/domain/systems.gd"
+  "资源不足。": [
+    "assets/data/DisplayTerms.json"
   ],
   "资源与凭证": [
     "scripts/menus.gd"
@@ -20806,6 +23308,9 @@
   ],
   "赌博步骤不匹配": [
     "scripts/domain/systems.gd"
+  ],
+  "赞美<color=#ff4f4f>红宝石</color>！": [
+    "assets/data/AdvantureEventData.json"
   ],
   "赠礼": [
     "scripts/menus.gd"
@@ -20890,14 +23395,24 @@
   "起源精灵·风": [
     "assets/data/SubAchieveData.json"
   ],
+  "超值": [
+    "assets/data/DisplayTerms.json"
+  ],
   "超高": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "越战越勇": [
     "assets/data/CharTalentData.json"
   ],
+  "距离下一级:": [
+    "assets/data/DisplayTerms.json"
+  ],
   "距离下一级：": [
     "scripts/presentation/room_shop.gd"
+  ],
+  "距离升级还需要：": [
+    "assets/data/DisplayTerms.json"
   ],
   "路线": [
     "scripts/main.gd"
@@ -20918,6 +23433,7 @@
     "scripts/menus.gd"
   ],
   "跳过": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/boss_intro.gd",
     "scripts/presentation/dialogue_page.gd"
   ],
@@ -20951,6 +23467,15 @@
   "躲避陷阱·爆炎枯木": [
     "assets/data/campaign.json"
   ],
+  "轻按战技按钮，释放独属于该角色的技能，释放后会进入冷却时间。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "轻按普通攻击按钮，实现能对敌人造成伤害的数次攻击。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "输入内容不能为空哦！": [
+    "assets/data/DisplayTerms.json"
+  ],
   "辛苦啦冒险家大人，要一起偷个懒吗？": [
     "assets/data/dialogue.json"
   ],
@@ -20959,6 +23484,9 @@
   ],
   "达到效果的<#specinfo=linshi>遗物，不会显示在背包和图鉴中": [
     "assets/data/AbilityItems.json"
+  ],
+  "达成解锁条件，并集齐两只力量相衬的五星精灵后，再次开启精灵石坛将可以出现最强大的精灵融合形态！": [
+    "assets/ui/settings/guides.json"
   ],
   "迅影剑意": [
     "assets/data/CharTalentData.json"
@@ -21009,10 +23537,14 @@
     "assets/data/dialogue.json"
   ],
   "返回": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/character_page.gd",
+    "scripts/presentation/inventory_page.gd",
     "scripts/presentation/mall_page.gd",
     "scripts/presentation/route_page.gd",
-    "scripts/presentation/talent_selection.gd"
+    "scripts/presentation/settings_page.gd",
+    "scripts/presentation/talent_selection.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "返回主城": [
     "scripts/menus.gd",
@@ -21025,6 +23557,7 @@
     "scripts/menus.gd"
   ],
   "返回营地": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd",
     "scripts/main.gd"
   ],
@@ -21033,6 +23566,9 @@
   ],
   "返回营地菜单": [
     "scripts/presentation/menu_page.gd"
+  ],
+  "返回角色详情": [
+    "scripts/presentation/character_page.gd"
   ],
   "返回路线": [
     "scripts/main.gd"
@@ -21060,6 +23596,9 @@
   ],
   "还是等下次有缘见到再亲眼看看那些矿石吧，我想这一天一定很快就会来的。": [
     "assets/data/dialogue.json"
+  ],
+  "还是算了。": [
+    "assets/data/AdvantureEventData.json"
   ],
   "还是算了吧。": [
     "assets/data/AdvantureEventData.json"
@@ -21174,6 +23713,9 @@
   ],
   "这对我来讲也是一件好事呀，哪个商人会嫌弃顾客多呢？": [
     "assets/data/dialogue.json"
+  ],
+  "这就对了，拿上宝石继续前进吧！": [
+    "assets/data/AdvantureEventData.json"
   ],
   "这把武器的原型可是巨人族族长的武器，曾经可就是靠这把武器称霸了北方森林。": [
     "assets/data/dialogue.json"
@@ -21337,6 +23879,9 @@
   "进攻得并不顺利，但还是成功过来了。<br>获得50点<color=#426ab3>【魔力精华】</color>。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "进新区域后净化": [
+    "assets/data/DisplayTerms.json"
+  ],
   "进行中": [
     "scripts/presentation/commission_board.gd"
   ],
@@ -21383,7 +23928,9 @@
     "assets/data/TalentTreeLevelData.json"
   ],
   "迟影": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "迷失森林": [
     "assets/data/campaign.json"
@@ -21394,6 +23941,9 @@
   "迷宫世界有着自己的规则，在外界可以用金币做到许多事情，在迷宫世界也可以魔力精华做到许多事情。": [
     "assets/data/dialogue.json"
   ],
+  "迷宫中会随机出现孵化精灵蛋的神秘石坛，在没有触发战斗时，玩家可以与其互动获得一种元素精灵的力量，精灵仅在本次冒险生效。": [
+    "assets/ui/settings/guides.json"
+  ],
   "迷宫中可能出现<color=#5d93f5>魔力史莱姆</color>。": [
     "assets/data/TalentTreeLevelData.json"
   ],
@@ -21403,8 +23953,14 @@
   "迷宫中可能出现<color=#c37e00>黄金史莱姆</color>。": [
     "assets/data/TalentTreeLevelData.json"
   ],
+  "迷宫中有着各式各样的陷阱，攻击型陷阱能够对角色或怪物造成伤害。": [
+    "assets/ui/settings/guides.json"
+  ],
   "迷宫中的<color=#f28e00>陶罐</color>你已经打碎过非常多了，可是这一件你却觉得与众不同！<br><br>它真的是那种！是那种很好看的<color=#f28e00>陶罐</color>！<br><br>如果拿去卖给别人的话能换到不少<color=#f28e00>金币</color>吧，这次真的要打烂它吗？": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "迷宫中的宝藏，分为普通木宝箱、精致铁宝箱、华丽金宝箱、领主宝箱，越高级的宝箱掉落奖励越珍贵，获取难度也越高。": [
+    "assets/ui/settings/guides.json"
   ],
   "迷宫中的怪物我也相当好奇，如果有一座祭坛的话，说不定还能将它们的力量祝福给各位冒险家大人。": [
     "assets/data/dialogue.json"
@@ -21421,6 +23977,12 @@
   ],
   "迷宫内居然突然出现了一座空无一人的小镇？<br><br>显然这里的<color=#f28e00>宝藏</color>已经被幻影魔物占据了，要不要进去探索一番？": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "迷宫内生成的陷阱房间，在本节点中无法连续闪避，在一片陷阱后有着稀有宝藏。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "迷宫冒险": [
+    "assets/data/DisplayTerms.json"
   ],
   "迷宫出现了【天界彩虹弓】强化遗物<br><#specinfo=putonggongji>有25%概率获得<color=#42ffd0>【天之矢】</color>：召唤1支<#specinfo=zhuizongjian>攻击敌人。": [
     "assets/data/AbilityItems.json"
@@ -21473,6 +24035,9 @@
   "迷宫出现了【魔化】怪物！": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
+  "迷宫区域的入口，玩家可以这个节点休息，或与一些道具互动。": [
+    "assets/ui/settings/guides.json"
+  ],
   "迷宫发出震动的时候我就意识到你已经到达迷宫底层了，真是不容易。": [
     "assets/data/dialogue.json"
   ],
@@ -21482,9 +24047,14 @@
   "迷宫商人卖的遗物，大家会买吗？": [
     "assets/data/dialogue.json"
   ],
+  "迷宫商人带着他的马车出现在迷宫各处安全的节点售卖着迷宫遗物。": [
+    "assets/ui/settings/guides.json"
+  ],
   "迷宫商店": [
+    "assets/data/DisplayTerms.json",
     "assets/data/NPCData.json",
     "assets/data/dialogue.json",
+    "assets/ui/settings/guides.json",
     "scripts/main.gd",
     "scripts/presentation/reference_pages.gd",
     "scripts/presentation/room_shop.gd"
@@ -21499,8 +24069,16 @@
   "迷宫大亨": [
     "assets/data/SubAchieveData.json"
   ],
+  "迷宫契约": [
+    "assets/ui/settings/guides.json"
+  ],
+  "迷宫契约等级与武器挑战进度相关，达成当前武器需求的挑战等级并攻略迷宫后会自动提升契约等级，提升契约等级可以解锁更多挑战词条与更多赐福词条": [
+    "assets/ui/settings/guides.json"
+  ],
   "迷宫宝珠": [
-    "assets/data/AbilityItems.json"
+    "assets/data/AbilityItems.json",
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
   ],
   "迷宫宝珠项链": [
     "assets/data/AbilityItems.json"
@@ -21537,6 +24115,9 @@
   ],
   "迷宫意志愿意为您提供更丰厚的宝藏，那就请冒险家大人尽可能帮助它吧。": [
     "assets/data/dialogue.json"
+  ],
+  "迷宫拥有许多难度等级，攻略所选迷宫等级后即可解锁下一难度，随着难度提升，怪物们将会获得各种强化。": [
+    "assets/ui/settings/guides.json"
   ],
   "迷宫探索 - 首次抵达迷宫最深处": [
     "assets/data/AchieveData.json"
@@ -21584,17 +24165,32 @@
     "assets/data/RogueLevelDifficultyInfluencerData.json",
     "scripts/presentation/adventure_prepare.gd"
   ],
+  "迷宫的守层怪物，拥有极强的战力，只有击败它才能去往迷宫深处。": [
+    "assets/ui/settings/guides.json"
+  ],
   "迷宫的该区域正在被侦察队探索，暂不可进入。": [
     "assets/data/RegionMapData.json"
   ],
   "迷宫的遗物你也见过不少了，想必商店的遗物对你来说也是老朋友了对吧。": [
     "assets/data/dialogue.json"
   ],
+  "迷宫研究所<br>等待重建": [
+    "assets/data/DisplayTerms.json"
+  ],
   "迷宫精灵真的很喜欢您呢。": [
     "assets/data/dialogue.json"
   ],
+  "迷宫素材": [
+    "assets/data/DisplayTerms.json"
+  ],
   "迷宫绘画": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "迷宫营地": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "迷宫试炼": [
+    "assets/data/DisplayTerms.json"
   ],
   "迷宫诞生之地，强大的魔物都聚集在此。": [
     "assets/data/RegionMapData.json"
@@ -21622,6 +24218,10 @@
   ],
   "迷宫里面如果能更好获得矿石素材就好了，开采一颗矿石结晶浪费太多，我看着也于心不忍哪。": [
     "assets/data/dialogue.json"
+  ],
+  "迷宫难度": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
   ],
   "迷宫领主·\r泰坦魔像洞窟": [
     "assets/data/campaign.json"
@@ -21675,25 +24275,60 @@
   "追猎岩斩": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
+  "追踪箭": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "退出": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
   "退出按钮": [
     "scripts/presentation/adventure_prepare.gd",
     "scripts/presentation/character_page.gd",
+    "scripts/presentation/inventory_page.gd",
     "scripts/presentation/mall_page.gd",
     "scripts/presentation/menu_page.gd",
-    "scripts/presentation/talent_selection.gd"
+    "scripts/presentation/settings_page.gd",
+    "scripts/presentation/talent_selection.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "退出游戏": [
     "scripts/menus.gd"
+  ],
+  "退出账号": [
+    "assets/data/DisplayTerms.json",
+    "scripts/menus.gd",
+    "scripts/presentation/settings_page.gd"
+  ],
+  "送礼(金苹果:&s1&)": [
+    "assets/data/DisplayTerms.json"
   ],
   "送礼。": [
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "选中外发光": [
+    "scripts/presentation/character_page.gd"
+  ],
   "选择": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/menus.gd",
     "scripts/presentation/route_page.gd",
     "scripts/presentation/talent_selection.gd"
+  ],
+  "选择<color=#f28e00>【北国战甲】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "选择<color=#f28e00>【北国碎刃】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "选择<color=#f28e00>【北国遗宝】</color>。": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "选择<color=#f28e00>【咸鱼剑】</color>。": [
+    "assets/data/AdvantureEventData.json"
   ],
   "选择<color=#f28e00>天赋</color>时将有12%概率随机为一项<color=#f28e00>天赋</color>提升等级。": [
     "assets/data/TalentTreeLevelData.json"
@@ -21716,17 +24351,36 @@
   "选择【试吃糖果】": [
     "assets/data/AdvantureEventData.json"
   ],
+  "选择一些特殊天赋后，根据该天赋描述释放普通攻击、战技或重击后轻按普通攻击按钮，能够立即释放一次特殊攻击。": [
+    "assets/ui/settings/guides.json"
+  ],
   "选择一位同行的精灵": [
     "scripts/presentation/pickup_card.gd"
+  ],
+  "选择不存在": [
+    "scripts/domain/room_choices.gd"
   ],
   "选择优质药剂。<br>（花费100点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
   ],
+  "选择伙伴技能": [
+    "scripts/main.gd"
+  ],
   "选择冒险家支援道具": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd"
   ],
   "选择小药剂。": [
     "assets/data/AdvantureEventData.json"
+  ],
+  "选择已完成": [
+    "scripts/domain/room_choices.gd"
+  ],
+  "选择怪物支援技能后，可以通过攻击怪物增加支援能量，涨满后获得1点支援能量点，玩家可以消耗对应数量的支援能量点召唤怪物支援技。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "选择旧日遗物": [
+    "scripts/main.gd"
   ],
   "选择普通药剂。<br>（花费50点<#specinfo=molijinghua>）": [
     "assets/data/AdvantureEventData.json"
@@ -21737,18 +24391,37 @@
   "选择武器": [
     "scripts/world_interactions.gd"
   ],
+  "选择登录平台": [
+    "assets/data/DisplayTerms.json"
+  ],
   "选择角色": [
+    "scripts/presentation/character_page.gd",
     "scripts/world_interactions.gd"
   ],
+  "选择角色天赋": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "选择诅咒遗物": [
+    "scripts/main.gd"
+  ],
   "选择路线": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/presentation/route_page.gd"
+  ],
+  "选择路线！": [
+    "assets/ui/settings/guides.json"
   ],
   "选择适合自己的武器固然重要，但如果仅仅把它们当道具使用，就永远无法让它们的力量突破极限。": [
     "assets/data/dialogue.json"
   ],
+  "选择遗物": [
+    "assets/data/DisplayTerms.json"
+  ],
   "选择高亮": [
-    "scripts/presentation/building_page.gd"
+    "scripts/presentation/building_page.gd",
+    "scripts/presentation/inventory_page.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "选用": [
     "scripts/menus.gd"
@@ -21788,8 +24461,17 @@
   "通关难度 9 后解锁混沌模式": [
     "scripts/domain/systems.gd"
   ],
+  "通常情况下每件遗物都拥有自己的等级，星级越高效果越强，获取难度也越高。": [
+    "assets/ui/settings/guides.json"
+  ],
   "通常来说，这些委托相当重要，且奖励丰厚。": [
     "assets/data/dialogue.json"
+  ],
+  "通用": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "通用背景": [
+    "scripts/presentation/weapon_page.gd"
   ],
   "通行券": [
     "assets/data/MaterialData.json"
@@ -21887,6 +24569,9 @@
   "通过节点时，如果<#specinfo=shengmingzhi>大于90%，将<#specinfo=shengminghuifu>所有<#specinfo=shengmingzhi>。<br>进入2次<color=#8dff4f>泉水节点</color>后进化。<color=#fdd033>（当前进度：<#backpack_progress>）</color>": [
     "assets/data/AbilityItems.json"
   ],
+  "通过迷宫难度&s1&揭示隐藏能力。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "通道尚未开放": [
     "scripts/main.gd"
   ],
@@ -21920,22 +24605,48 @@
   "造成伤害提高50%。": [
     "assets/data/AbilityItems.json"
   ],
+  "造成的伤害提升25%，触发后冷却3秒。": [
+    "assets/ui/settings/guides.json"
+  ],
   "遇到强敌了请不要害怕，大家会和您一起面对的。": [
     "assets/data/dialogue.json"
   ],
   "遇到有困难的人及时上去帮忙，这才是我们冒险家该做的事。": [
     "assets/data/dialogue.json"
   ],
+  "道具": [
+    "assets/data/DisplayTerms.json",
+    "scripts/presentation/inventory_page.gd"
+  ],
+  "道具(未选择)": [
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/weapon_page.gd"
+  ],
+  "道路修理中<br>敬请期待": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "遗物": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
+    "scripts/ground_loot.gd"
+  ],
   "遗物使陷阱失效": [
     "scripts/main.gd"
   ],
+  "遗物合成": [
+    "assets/ui/settings/guides.json"
+  ],
   "遗物图鉴": [
+    "assets/data/DisplayTerms.json",
     "assets/data/RogueConfigData.json",
     "scripts/presentation/camp_progression.gd",
     "scripts/world_interactions.gd"
   ],
   "遗物图鉴Container": [
     "scripts/presentation/camp_progression.gd"
+  ],
+  "遗物图鉴中记录着在迷宫中见过的所有遗物。": [
+    "assets/ui/settings/guides.json"
   ],
   "遗物图鉴废墟": [
     "assets/data/RogueConfigData.json",
@@ -21953,6 +24664,9 @@
   "遗物摇一摇": [
     "assets/data/AdvantureEventData.json"
   ],
+  "遗物效果:&s1&": [
+    "assets/data/DisplayTerms.json"
+  ],
   "遗物清仓活动": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -21960,6 +24674,16 @@
     "assets/data/NPCData.json",
     "assets/data/SubAchieveData.json",
     "assets/data/dialogue.json"
+  ],
+  "遗物等级": [
+    "assets/ui/settings/guides.json"
+  ],
+  "遗物袋子": [
+    "assets/data/DisplayTerms.json",
+    "scripts/ground_loot.gd"
+  ],
+  "遭遇战": [
+    "assets/ui/settings/guides.json"
   ],
   "遭遇战·\r幽光晶窟": [
     "assets/data/campaign.json"
@@ -22208,7 +24932,7 @@
   "部落之盾强化": [
     "assets/data/AbilityItems.json"
   ],
-  "都是我的！<br>（最大<#specinfo=shengmingzhi>大于150）": [
+  "都是我的！<br>（<#specinfo=shengmingshangxian>大于150）": [
     "assets/data/AdvantureEventData.json"
   ],
   "采蘑菇的冒险家": [
@@ -22267,7 +24991,12 @@
   "里面没什么感觉吗？外面可是震得厉害呢，这段时间得加固一下营地。": [
     "assets/data/dialogue.json"
   ],
+  "重伤": [
+    "assets/data/DisplayTerms.json"
+  ],
   "重击": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json",
     "scripts/hud.gd",
     "scripts/menus.gd"
   ],
@@ -22301,6 +25030,14 @@
   "重新绕路。": [
     "assets/data/AdvantureEventData.json"
   ],
+  "重置": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd",
+    "scripts/presentation/touch_layout_editor.gd"
+  ],
+  "重置失败，请重试": [
+    "scripts/hud.gd"
+  ],
   "重置统计": [
     "scripts/menus.gd",
     "scripts/presentation/camp_training_readout.gd"
@@ -22316,6 +25053,7 @@
     "scripts/domain/systems.gd"
   ],
   "重选次数不足": [
+    "scripts/domain/room_choices.gd",
     "scripts/domain/systems.gd"
   ],
   "重铸三日月弓": [
@@ -22445,6 +25183,7 @@
     "scripts/presentation/mall_page.gd"
   ],
   "金币": [
+    "assets/data/DisplayTerms.json",
     "assets/data/MallTradeDetailsData.json"
   ],
   "金币 %d   魔力 %d   矿石 %d": [
@@ -22452,6 +25191,9 @@
   ],
   "金币不足": [
     "scripts/domain/systems.gd"
+  ],
+  "金币不足，无法升级": [
+    "assets/data/DisplayTerms.json"
   ],
   "金币复购": [
     "scripts/menus.gd"
@@ -22522,11 +25264,29 @@
   "金苹果？那我就心怀感激地收下啦。": [
     "assets/data/dialogue.json"
   ],
+  "鎏金幻匕": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "鎏金幻械": [
+    "assets/data/DisplayTerms.json"
+  ],
   "鎏金幻械·启": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
   "鎏金幻械·过载": [
     "assets/data/CharaTalentAwakeTreeData.json"
+  ],
+  "鎏金旋刃": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "鎏金环刃": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "钓鱼的史莱姆王·其一": [
+    "assets/data/AdvantureEventData.json"
+  ],
+  "钓鱼的史莱姆王·其二": [
+    "assets/data/AdvantureEventData.json"
   ],
   "钱袋不足": [
     "assets/data/SubAchieveData.json"
@@ -22538,8 +25298,18 @@
     "assets/data/dialogue.json"
   ],
   "铁匠铺": [
+    "assets/data/DisplayTerms.json",
     "assets/data/RogueConfigData.json",
     "scripts/presentation/camp_progression.gd"
+  ],
+  "铁匠铺-强化武器": [
+    "assets/ui/settings/guides.json"
+  ],
+  "铁匠铺-解锁武器": [
+    "assets/ui/settings/guides.json"
+  ],
+  "铁匠铺<br>等待重建": [
+    "assets/data/DisplayTerms.json"
   ],
   "铁匠铺Container": [
     "scripts/presentation/camp_progression.gd"
@@ -22550,6 +25320,9 @@
   "铁匠铺废墟": [
     "assets/data/RogueConfigData.json",
     "scripts/presentation/camp_progression.gd"
+  ],
+  "铁匠铺等级不足，无法升级。": [
+    "assets/data/DisplayTerms.json"
   ],
   "铁匠铺那边最近可真热闹，想必是刚造出强力的新武器吧。": [
     "assets/data/dialogue.json"
@@ -22576,14 +25349,24 @@
     "assets/data/TalentTreeData.json"
   ],
   "锁": [
-    "scripts/presentation/building_page.gd"
+    "scripts/presentation/building_page.gd",
+    "scripts/presentation/reference_pages.gd",
+    "scripts/presentation/weapon_page.gd"
   ],
   "锁头": [
     "scripts/presentation/adventure_prepare.gd",
     "scripts/presentation/guild_page.gd"
   ],
+  "锁定候选物，重选时保留": [
+    "scripts/presentation/reference_pages.gd"
+  ],
+  "锁定遮罩": [
+    "scripts/presentation/weapon_page.gd"
+  ],
   "锁足": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "锈蚀手甲": [
     "assets/data/AbilityItems.json"
@@ -22592,7 +25375,9 @@
     "assets/data/AbilityItems.json"
   ],
   "锋利": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "错误宝石": [
     "assets/data/AbilityItems.json"
@@ -22618,9 +25403,6 @@
   "镇守于雪原的强大领主，是迷宫外冰雪遗迹墙面刻画的强大魔兽。<br>幻影鹿王并非什么神秘魔兽，只要与冰雪相关的遗迹就必定有幻影鹿王的壁画和记载，一些强大的冒险家还在遗迹的藏宝室与幻影鹿王幻影战斗了一番，但一只又一只的幻影鹿王幻影将他们包围，只好暂时撤退。<br>即使在迷宫之外，大家也不知道这些遗迹的幻影鹿王幻影来自哪里，更不知道它的真身实力如何，只知道它与冰雪一体，即便暂时获胜，它还会一次又一次回来的。": [
     "assets/data/EnemyData.json"
   ],
-  "镜头震动": [
-    "scripts/menus.gd"
-  ],
   "镜子的声音模糊不轻，并在附近生成了不少<color=#426ab3>【魔力精华】</color>。": [
     "assets/data/AdvantureEventData.json"
   ],
@@ -22645,6 +25427,9 @@
   "长夜·月蚀": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
+  "长按普通攻击键，角色将释放一次普通重击。": [
+    "assets/ui/settings/guides.json"
+  ],
   "长枪宗师": [
     "assets/data/AchieveData.json"
   ],
@@ -22656,6 +25441,9 @@
   ],
   "闪焰雷光·雷焰精灵": [
     "assets/data/AbilityItems.json"
+  ],
+  "闪电": [
+    "assets/data/DisplayTerms.json"
   ],
   "闪电之舞": [
     "assets/data/AbilityItems.json"
@@ -22688,9 +25476,11 @@
     "assets/data/AbilityItems.json"
   ],
   "闪避": [
+    "assets/data/DisplayTerms.json",
     "scripts/hud.gd",
     "scripts/menus.gd",
-    "scripts/presentation/character_page.gd"
+    "scripts/presentation/character_page.gd",
+    "scripts/presentation/touch_layout_editor.gd"
   ],
   "闪避增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -22703,6 +25493,16 @@
   "闪避增幅·贰": [
     "assets/data/AbilityItems.json",
     "assets/data/RelationshipAmplifyData.json"
+  ],
+  "闪避攻击": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "闪避攻击优先级": [
+    "scripts/domain/settings.gd"
+  ],
+  "闪避过程中轻按普通攻击键，角色将释放一次闪避攻击。": [
+    "assets/ui/settings/guides.json"
   ],
   "问候，冒险还顺利吗？我的朋友。": [
     "assets/data/dialogue.json"
@@ -22717,8 +25517,18 @@
     "assets/data/NPCFunctionData.json",
     "assets/data/dialogue.json"
   ],
+  "队伍位置": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "队伍同伴": [
+    "assets/data/DisplayTerms.json"
+  ],
   "防御": [
+    "assets/data/DisplayTerms.json",
     "scripts/menus.gd"
+  ],
+  "防御力": [
+    "assets/data/DisplayTerms.json"
   ],
   "防御增幅·伍": [
     "assets/data/AbilityItems.json",
@@ -22741,7 +25551,9 @@
     "assets/data/RelationshipAmplifyData.json"
   ],
   "防御宝石": [
-    "scripts/domain/systems.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/systems.gd",
+    "scripts/ground_loot.gd"
   ],
   "阿克斯": [
     "assets/data/CharData.json",
@@ -22827,8 +25639,20 @@
   "降临之光": [
     "assets/data/CharTalentData.json"
   ],
+  "限制生命值": [
+    "assets/data/DisplayTerms.json"
+  ],
   "限制镣铐": [
     "assets/data/AbilityItems.json"
+  ],
+  "限时战斗": [
+    "assets/ui/settings/guides.json"
+  ],
+  "限时战斗\n限时战斗挑战需要玩家在限定时间内击败所有怪物，上方的信息标明了当前挑战成功获得的奖励等级和剩余时间。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "限时战斗\n限时战斗节点需要玩家在限定的时间内击败所有怪物，花费时间越短奖励越丰厚。\n\n极限闪避\n极限闪避节点需要玩家在受到限定次数的伤害内击败所有怪物，被击中越少奖励越丰厚。\n\n保护目标\n保护目标节点需要玩家在魔法基石被摧毁前击败所有怪物，魔法基石受到的伤害越少奖励越丰厚。": [
+    "assets/ui/settings/guides.json"
   ],
   "限时战斗·击破城堡": [
     "assets/data/campaign.json"
@@ -22866,10 +25690,20 @@
   "限时战斗·裂星晶洞": [
     "assets/data/campaign.json"
   ],
+  "限时战斗挑战需要玩家在限定时间内击败所有怪物，上方的信息标明了当前挑战成功获得的奖励等级和剩余时间。": [
+    "assets/ui/settings/guides.json"
+  ],
+  "限时战斗节点需要玩家在限定的时间内击败所有怪物，花费时间越短奖励越丰厚。": [
+    "assets/ui/settings/guides.json"
+  ],
   "陶罐猎手": [
     "assets/data/AbilityItems.json"
   ],
+  "随%s一并解锁": [
+    "scripts/domain/character_fashion.gd"
+  ],
   "随从": [
+    "assets/data/DisplayTerms.json",
     "scripts/domain/systems.gd"
   ],
   "随后她将宝珠轻轻举起，一道光闪烁后，宝珠消失在了半空中。": [
@@ -22898,6 +25732,12 @@
   ],
   "随着一道光芒闪烁而消失，随后在前方出现。<br><br><color=#DAA60B><#specinfo=shanbigongji></color><br>发射1道<color=#DAA60B>十字冲击波</color>，穿透敌人并持续造成伤害。": [
     "assets/data/combat.json"
+  ],
+  "随着冒险家评级的提升，角色也将解锁更多天赋供冒险选择！": [
+    "assets/ui/settings/guides.json"
+  ],
+  "随着难度提升，冒险获得的奖励也将更加丰厚。": [
+    "assets/ui/settings/guides.json"
   ],
   "隐私选项": [
     "scripts/menus.gd"
@@ -22939,6 +25779,10 @@
   ],
   "难度不存在": [
     "scripts/domain/systems.gd"
+  ],
+  "难度奖励": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
   ],
   "雕刻符文": [
     "assets/data/TalentTreeData.json"
@@ -23046,6 +25890,9 @@
   "雷霆！横扫一切": [
     "assets/data/CharTalentData.json"
   ],
+  "需获得过该遗物": [
+    "assets/data/DisplayTerms.json"
+  ],
   "需要【雪皇长剑】<br>敌人身上<#specinfo=dongshang>层数小于等于300层时每1秒增加4层。": [
     "assets/data/AbilityItems.json"
   ],
@@ -23088,6 +25935,9 @@
   "需通过商城完成付费与凭证验证": [
     "scripts/domain/systems.gd"
   ],
+  "需通过平台购买，当前版本尚未接入支付": [
+    "scripts/domain/character_fashion.gd"
+  ],
   "震雷裂土·岩雷精灵": [
     "assets/data/AbilityItems.json"
   ],
@@ -23114,6 +25964,9 @@
   ],
   "霜焰凛空·冰火精灵": [
     "assets/data/AbilityItems.json"
+  ],
+  "霜狱": [
+    "assets/data/DisplayTerms.json"
   ],
   "霜狱堡垒": [
     "assets/data/CharTalentData.json"
@@ -23162,6 +26015,9 @@
   "霹雳三板斧": [
     "assets/data/combat.json"
   ],
+  "非战斗节点": [
+    "assets/data/DisplayTerms.json"
+  ],
   "靠近物品后拾取": [
     "scripts/ground_loot.gd"
   ],
@@ -23174,8 +26030,16 @@
   "韧性增幅·壹": [
     "assets/data/AbilityItems.json"
   ],
-  "音量": [
-    "scripts/menus.gd"
+  "音乐音量": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "音效音量": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "顶部": [
+    "scripts/presentation/weapon_page.gd"
   ],
   "顶部被做成了星盘形状的法杖，用来砸人的话一定很疼。": [
     "assets/data/WeaponData.json"
@@ -23184,8 +26048,18 @@
     "assets/data/dialogue.json"
   ],
   "须知": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/adventure_prepare.gd",
     "scripts/presentation/building_page.gd"
+  ],
+  "预览": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "预览时装": [
+    "scripts/presentation/character_page.gd"
+  ],
+  "领主": [
+    "assets/ui/settings/guides.json"
   ],
   "领主地下城": [
     "assets/data/MonsterWorkData.json"
@@ -23203,19 +26077,30 @@
     "assets/data/AbilityItems.json"
   ],
   "领取": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/presentation/commission_board.gd"
   ],
   "领取 %d 次": [
     "scripts/menus.gd"
   ],
+  "领取失败": [
+    "assets/data/DisplayTerms.json"
+  ],
   "领取奖励": [
+    "assets/data/DisplayTerms.json",
     "scripts/main.gd",
     "scripts/menus.gd",
     "scripts/presentation/commission_board.gd"
   ],
+  "领取奖励(&s1&次)": [
+    "assets/data/DisplayTerms.json"
+  ],
   "领取成就奖励": [
     "scripts/menus.gd"
+  ],
+  "领取新的悬赏委托×&s1&": [
+    "assets/data/DisplayTerms.json"
   ],
   "领取材料不足": [
     "scripts/domain/systems.gd"
@@ -23250,7 +26135,7 @@
   "额外+1点<#specinfo=baofajinengliang>。": [
     "assets/data/CharTalentLevelData.json"
   ],
-  "额外+2%最大<#specinfo=shengmingzhi>，最多持有20件。": [
+  "额外+2%<#specinfo=shengmingshangxian>，最多持有20件。": [
     "assets/data/AbilityItems.json"
   ],
   "额外+2点<#specinfo=baofajinengliang>。": [
@@ -23259,7 +26144,7 @@
   "额外+3点<#specinfo=baofajinengliang>。": [
     "assets/data/CharTalentLevelData.json"
   ],
-  "额外+5%<#specinfo=fangyuli>和1%最大<#specinfo=shengmingzhi>，最多持有20件。": [
+  "额外+5%<#specinfo=fangyuli>和1%<#specinfo=shengmingshangxian>，最多持有20件。": [
     "assets/data/AbilityItems.json"
   ],
   "额外+5%<#specinfo=gongjili>，最多持有20件。": [
@@ -23274,10 +26159,10 @@
   "额外<color=#3bc16d>箭矢</color>造成60%<#specinfo=gongjili>的伤害。": [
     "assets/data/CharTalentLevelData.json"
   ],
-  "额外提高1%<#specinfo=baofajinengliang>充能效率，最多持有20件。": [
+  "额外提高15%最大<#specinfo=shengmingzhi>。": [
     "assets/data/AbilityItems.json"
   ],
-  "额外提高15%最大<#specinfo=shengmingzhi>。": [
+  "额外提高1<#specinfo=baofajinengliang>充能效率，最多持有20件。": [
     "assets/data/AbilityItems.json"
   ],
   "额外武器奖励（需要当前选择该武器激活）": [
@@ -23391,6 +26276,9 @@
   "风翼龙火炮": [
     "assets/data/AbilityItems.json"
   ],
+  "风蚀": [
+    "assets/data/DisplayTerms.json"
+  ],
   "风蚀共鸣": [
     "assets/data/CharaTalentAwakeTreeData.json"
   ],
@@ -23446,6 +26334,7 @@
     "assets/data/AbilityItems.json"
   ],
   "餐单最多选择 %d 道料理": [
+    "scripts/domain/room_meals.gd",
     "scripts/domain/systems.gd"
   ],
   "餐品": [
@@ -23456,6 +26345,9 @@
   ],
   "饮用<#LocalizationId=\"Keyword_HealingWater\">恢复之泉</LocalizationId>后可能掉落1颗<color=#56e20a>绿宝石碎片</color>。": [
     "assets/data/TalentTreeData.json"
+  ],
+  "饮用泉水": [
+    "scripts/world_interactions.gd"
   ],
   "首次击败<#LocalizationId=\"EnemyData_Name_12001\">森林蜥蜴</LocalizationId>。": [
     "assets/data/SubAchieveData.json",
@@ -23495,6 +26387,9 @@
     "assets/data/UnlockData.json",
     "assets/data/dialogue.json"
   ],
+  "首次击败该怪物解锁。": [
+    "assets/data/DisplayTerms.json"
+  ],
   "首次升级<#LocalizationId=\"EnvUnit_MonoData_BtnDisplayName_MonsterWork_Start\">怪物工作</LocalizationId>。": [
     "assets/data/UnlockData.json"
   ],
@@ -23528,7 +26423,11 @@
     "assets/data/AdvantureEventData.json"
   ],
   "高": [
-    "scripts/menus.gd"
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
+  ],
+  "高亮星标": [
+    "scripts/presentation/settings_page.gd"
   ],
   "高危区域": [
     "scripts/main.gd"
@@ -23549,7 +26448,6 @@
     "assets/data/combat.json"
   ],
   "高阶祝福": [
-    "scripts/menus.gd",
     "scripts/presentation/mall_page.gd"
   ],
   "高阶精灵": [
@@ -23621,7 +26519,15 @@
   "魔力矿工": [
     "assets/data/AdvantureEventData.json"
   ],
+  "魔力矿脉": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "魔力矿脉的节点标识代表了该节点有着许多储存魔力精华的矿石。": [
+    "assets/ui/settings/guides.json"
+  ],
   "魔力精华": [
+    "assets/data/DisplayTerms.json",
     "scripts/presentation/route_page.gd"
   ],
   "魔力精华和矿石素材": [
@@ -23665,6 +26571,9 @@
   ],
   "魔力饥渴": [
     "assets/data/AbilityItems.json"
+  ],
+  "魔化与强化词条": [
+    "assets/ui/settings/guides.json"
   ],
   "魔女的宝物": [
     "assets/data/AbilityItems.json"
@@ -23767,7 +26676,9 @@
     "assets/data/combat.json"
   ],
   "魔盾": [
-    "assets/data/RogueLevelDifficultyInfluencerData.json"
+    "assets/data/DisplayTerms.json",
+    "assets/data/RogueLevelDifficultyInfluencerData.json",
+    "assets/ui/settings/guides.json"
   ],
   "魔蝠": [
     "assets/data/EnemyData.json",
@@ -23776,9 +26687,15 @@
   "魔镜魔镜告诉我": [
     "assets/data/AdvantureEventData.json"
   ],
+  "魔龙·元素震荡": [
+    "assets/data/partner_skills.json"
+  ],
   "鹰眼弓": [
     "assets/data/SubAchieveData.json",
     "assets/data/WeaponData.json"
+  ],
+  "鹿王·风雪之魂": [
+    "assets/data/partner_skills.json"
   ],
   "黄油烤鱼": [
     "assets/data/CatMealData.json"
@@ -23793,11 +26710,21 @@
   "黄金手杖": [
     "assets/data/AbilityItems.json"
   ],
+  "黄金矿脉": [
+    "assets/data/DisplayTerms.json",
+    "assets/ui/settings/guides.json"
+  ],
+  "黄金矿脉的节点标识代表了该节点有着许多珍贵的黄金矿石。": [
+    "assets/ui/settings/guides.json"
+  ],
   "黄金符文棍": [
     "assets/data/AbilityItems.json"
   ],
   "黄金符文棍强化": [
     "assets/data/AbilityItems.json"
+  ],
+  "黄金级": [
+    "assets/data/DisplayTerms.json"
   ],
   "黑暗不息": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
@@ -23826,6 +26753,12 @@
   "黑暗膨胀2": [
     "assets/data/RogueLevelDifficultyInfluencerData.json"
   ],
+  "黑暗遗物": [
+    "assets/ui/settings/guides.json"
+  ],
+  "黑暗遗物\n玩家可以在黑暗石坛获取被侵蚀的遗物，这些遗物会限制玩家的战斗力或强化其他怪物，满足它们的净化条件后，这些遗物就能恢复原来的模样。\n\n净化遗物\n完成黑暗遗物的净化条件可以获得净化遗物，净化遗物的效果往往比普通的遗物更加强大。": [
+    "assets/ui/settings/guides.json"
+  ],
   "黑洞湮灭": [
     "assets/data/CharTalentData.json"
   ],
@@ -23834,6 +26767,13 @@
   ],
   "黑洞膨胀": [
     "assets/data/CharTalentData.json"
+  ],
+  "黑铁级": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "默认": [
+    "assets/data/DisplayTerms.json",
+    "scripts/domain/settings.gd"
   ],
   "鼹鼠出品，终生保修！": [
     "assets/data/dialogue.json"
@@ -23846,6 +26786,18 @@
   ],
   "龙骑士考核": [
     "assets/data/SubAchieveData.json"
+  ],
+  "龙魂": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "龙魂能量": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "龙魂誓契": [
+    "assets/data/DisplayTerms.json"
+  ],
+  "龙魂降临": [
+    "assets/data/DisplayTerms.json"
   ],
   "龙鳞·化身为矛": [
     "assets/data/CharaTalentAwakeTreeData.json"
@@ -23866,6 +26818,9 @@
   ],
   "龙鳞战士：“终于等到猎物啦！”": [
     "assets/data/dialogue.json"
+  ],
+  "龙鳞铠甲": [
+    "assets/data/DisplayTerms.json"
   ],
   "（后续路线）": [
     "scripts/presentation/route_node.gd"

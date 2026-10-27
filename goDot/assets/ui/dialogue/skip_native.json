@@ -1,0 +1,6881 @@
+{
+  "apk": "/Users/hanyu/U3D/City/1061664.apk",
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "native_sha256": "86481018e3b55575e27d0d99a5979299b7fbbdf718698918ab5ebfbbccb68944",
+  "metadata_sha256": "d4fb0878468562c03cd359fee2b8ed4ca31d569da8b9a6f7799d9bd3d7e7e15e",
+  "methods": [
+    {
+      "class": "NaninovelManager",
+      "signature": "public NaninovelManager() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x3017d30",
+      "address": "0x301bd30",
+      "length": 360,
+      "instructions": [
+        {
+          "address": "0x301bd30",
+          "instruction": "str x30, [sp, #-0x50]!"
+        },
+        {
+          "address": "0x301bd34",
+          "instruction": "stp x26, x25, [sp, #0x10]"
+        },
+        {
+          "address": "0x301bd38",
+          "instruction": "stp x24, x23, [sp, #0x20]"
+        },
+        {
+          "address": "0x301bd3c",
+          "instruction": "stp x22, x21, [sp, #0x30]"
+        },
+        {
+          "address": "0x301bd40",
+          "instruction": "stp x20, x19, [sp, #0x40]"
+        },
+        {
+          "address": "0x301bd44",
+          "instruction": "adrp x26, #0x6a64000"
+        },
+        {
+          "address": "0x301bd48",
+          "instruction": "adrp x24, #0x65d2000"
+        },
+        {
+          "address": "0x301bd4c",
+          "instruction": "adrp x25, #0x65ae000"
+        },
+        {
+          "address": "0x301bd50",
+          "instruction": "adrp x20, #0x65ae000"
+        },
+        {
+          "address": "0x301bd54",
+          "instruction": "adrp x23, #0x65d2000"
+        },
+        {
+          "address": "0x301bd58",
+          "instruction": "adrp x22, #0x65ac000"
+        },
+        {
+          "address": "0x301bd5c",
+          "instruction": "adrp x21, #0x65b1000"
+        },
+        {
+          "address": "0x301bd60",
+          "instruction": "ldr x24, [x24, #0x150]",
+          "literal": "Assets/[00002]Resource/NaninovelRes/StoryScripts",
+          "literal_source": {
+            "got": "0x65d2150",
+            "literal_index": 5307,
+            "metadata_offset": "0x59f8a"
+          }
+        },
+        {
+          "address": "0x301bd64",
+          "instruction": "ldrb w8, [x26, #0x263]"
+        },
+        {
+          "address": "0x301bd68",
+          "instruction": "ldr x25, [x25, #0x5a8]"
+        },
+        {
+          "address": "0x301bd6c",
+          "instruction": "ldr x20, [x20, #0x5b0]"
+        },
+        {
+          "address": "0x301bd70",
+          "instruction": "ldr x23, [x23, #0x158]"
+        },
+        {
+          "address": "0x301bd74",
+          "instruction": "ldr x22, [x22, #0xab8]"
+        },
+        {
+          "address": "0x301bd78",
+          "instruction": "ldr x21, [x21, #0x8a8]"
+        },
+        {
+          "address": "0x301bd7c",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x301bd80",
+          "instruction": "tbnz w8, #0, #0x301bde0"
+        },
+        {
+          "address": "0x301bd84",
+          "instruction": "adrp x0, #0x65d2000"
+        },
+        {
+          "address": "0x301bd88",
+          "instruction": "ldr x0, [x0, #0x158]"
+        },
+        {
+          "address": "0x301bd8c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bd90",
+          "instruction": "adrp x0, #0x65ae000"
+        },
+        {
+          "address": "0x301bd94",
+          "instruction": "ldr x0, [x0, #0x5b0]"
+        },
+        {
+          "address": "0x301bd98",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bd9c",
+          "instruction": "adrp x0, #0x65ae000"
+        },
+        {
+          "address": "0x301bda0",
+          "instruction": "ldr x0, [x0, #0x5a8]"
+        },
+        {
+          "address": "0x301bda4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bda8",
+          "instruction": "adrp x0, #0x65d2000"
+        },
+        {
+          "address": "0x301bdac",
+          "instruction": "ldr x0, [x0, #0x160]"
+        },
+        {
+          "address": "0x301bdb0",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bdb4",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x301bdb8",
+          "instruction": "ldr x0, [x0, #0x8a8]"
+        },
+        {
+          "address": "0x301bdbc",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bdc0",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x301bdc4",
+          "instruction": "ldr x0, [x0, #0xab8]"
+        },
+        {
+          "address": "0x301bdc8",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bdcc",
+          "instruction": "adrp x0, #0x65d2000"
+        },
+        {
+          "address": "0x301bdd0",
+          "instruction": "ldr x0, [x0, #0x150]",
+          "literal": "Assets/[00002]Resource/NaninovelRes/StoryScripts",
+          "literal_source": {
+            "got": "0x65d2150",
+            "literal_index": 5307,
+            "metadata_offset": "0x59f8a"
+          }
+        },
+        {
+          "address": "0x301bdd4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301bdd8",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x301bddc",
+          "instruction": "strb w8, [x26, #0x263]"
+        },
+        {
+          "address": "0x301bde0",
+          "instruction": "ldr x1, [x24]"
+        },
+        {
+          "address": "0x301bde4",
+          "instruction": "adrp x24, #0x65d2000"
+        },
+        {
+          "address": "0x301bde8",
+          "instruction": "ldr x24, [x24, #0x160]"
+        },
+        {
+          "address": "0x301bdec",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301bdf0",
+          "instruction": "str x1, [x0, #0x38]!"
+        },
+        {
+          "address": "0x301bdf4",
+          "instruction": "bl #0x2aa09a4",
+          "target_names": []
+        },
+        {
+          "address": "0x301bdf8",
+          "instruction": "ldr x0, [x25]"
+        },
+        {
+          "address": "0x301bdfc",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x301be00",
+          "instruction": "ldr x1, [x20]"
+        },
+        {
+          "address": "0x301be04",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x301be08",
+          "instruction": "bl #0x3bb26b0",
+          "target_names": []
+        },
+        {
+          "address": "0x301be0c",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301be10",
+          "instruction": "str x20, [x0, #0x40]!"
+        },
+        {
+          "address": "0x301be14",
+          "instruction": "mov x1, x20"
+        },
+        {
+          "address": "0x301be18",
+          "instruction": "bl #0x2aa09a4",
+          "target_names": []
+        },
+        {
+          "address": "0x301be1c",
+          "instruction": "ldr x0, [x23]"
+        },
+        {
+          "address": "0x301be20",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x301be24",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x301be28",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x301be2c",
+          "instruction": "bl #0x5156358",
+          "target_names": [
+            "Object.public object() { }"
+          ]
+        },
+        {
+          "address": "0x301be30",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301be34",
+          "instruction": "str x20, [x0, #0x88]!"
+        },
+        {
+          "address": "0x301be38",
+          "instruction": "mov x1, x20"
+        },
+        {
+          "address": "0x301be3c",
+          "instruction": "bl #0x2aa09a4",
+          "target_names": []
+        },
+        {
+          "address": "0x301be40",
+          "instruction": "ldr x8, [x22]"
+        },
+        {
+          "address": "0x301be44",
+          "instruction": "mov x20, x19"
+        },
+        {
+          "address": "0x301be48",
+          "instruction": "ldr x8, [x8, #0xb8]"
+        },
+        {
+          "address": "0x301be4c",
+          "instruction": "ldr x1, [x8]"
+        },
+        {
+          "address": "0x301be50",
+          "instruction": "str x1, [x20, #0x98]!"
+        },
+        {
+          "address": "0x301be54",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301be58",
+          "instruction": "bl #0x2aa09a4",
+          "target_names": []
+        },
+        {
+          "address": "0x301be5c",
+          "instruction": "mov w8, #0xc000"
+        },
+        {
+          "address": "0x301be60",
+          "instruction": "movk w8, #0xc479, lsl #16"
+        },
+        {
+          "address": "0x301be64",
+          "instruction": "str w8, [x20, #0xc]"
+        },
+        {
+          "address": "0x301be68",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x301be6c",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301be70",
+          "instruction": "cbnz w8, #0x301be78"
+        },
+        {
+          "address": "0x301be74",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301be78",
+          "instruction": "ldr x1, [x24]"
+        },
+        {
+          "address": "0x301be7c",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301be80",
+          "instruction": "ldp x20, x19, [sp, #0x40]"
+        },
+        {
+          "address": "0x301be84",
+          "instruction": "ldp x22, x21, [sp, #0x30]"
+        },
+        {
+          "address": "0x301be88",
+          "instruction": "ldp x24, x23, [sp, #0x20]"
+        },
+        {
+          "address": "0x301be8c",
+          "instruction": "ldp x26, x25, [sp, #0x10]"
+        },
+        {
+          "address": "0x301be90",
+          "instruction": "ldr x30, [sp], #0x50"
+        },
+        {
+          "address": "0x301be94",
+          "instruction": "b #0x3f7d3ec",
+          "target_names": [
+            "RSingleton_Mono`1.protected RSingleton_Mono`1() { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "private bool CanEnterSkipMode() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x30177b4",
+      "address": "0x301b7b4",
+      "length": 376,
+      "instructions": [
+        {
+          "address": "0x301b7b4",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x301b7b8",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b7bc",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x301b7c0",
+          "instruction": "adrp x20, #0x65c4000"
+        },
+        {
+          "address": "0x301b7c4",
+          "instruction": "ldrb w8, [x21, #0x25e]"
+        },
+        {
+          "address": "0x301b7c8",
+          "instruction": "ldr x20, [x20, #0x678]"
+        },
+        {
+          "address": "0x301b7cc",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x301b7d0",
+          "instruction": "tbnz w8, #0, #0x301b800"
+        },
+        {
+          "address": "0x301b7d4",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b7d8",
+          "instruction": "ldr x0, [x0, #0x680]"
+        },
+        {
+          "address": "0x301b7dc",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b7e0",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b7e4",
+          "instruction": "ldr x0, [x0, #0x678]"
+        },
+        {
+          "address": "0x301b7e8",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b7ec",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b7f0",
+          "instruction": "ldr x0, [x0, #0x6a0]"
+        },
+        {
+          "address": "0x301b7f4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b7f8",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x301b7fc",
+          "instruction": "strb w8, [x21, #0x25e]"
+        },
+        {
+          "address": "0x301b800",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x301b804",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301b808",
+          "instruction": "cbnz w8, #0x301b810"
+        },
+        {
+          "address": "0x301b80c",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301b810",
+          "instruction": "mov x0, xzr"
+        },
+        {
+          "address": "0x301b814",
+          "instruction": "bl #0x33c9434",
+          "target_names": [
+            "Engine.get { } //Length: 204",
+            "Engine.public static bool get_Initialized() { }"
+          ]
+        },
+        {
+          "address": "0x301b818",
+          "instruction": "tbz w0, #0, #0x301b90c"
+        },
+        {
+          "address": "0x301b81c",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x301b820",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301b824",
+          "instruction": "cbnz w8, #0x301b82c"
+        },
+        {
+          "address": "0x301b828",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301b82c",
+          "instruction": "adrp x8, #0x65c4000"
+        },
+        {
+          "address": "0x301b830",
+          "instruction": "ldr x8, [x8, #0x680]"
+        },
+        {
+          "address": "0x301b834",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x301b838",
+          "instruction": "bl #0x377fd20",
+          "target_names": [
+            "Engine.public static TService GetService() { }"
+          ]
+        },
+        {
+          "address": "0x301b83c",
+          "instruction": "cbz x0, #0x301b90c"
+        },
+        {
+          "address": "0x301b840",
+          "instruction": "adrp x21, #0x65c4000"
+        },
+        {
+          "address": "0x301b844",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x301b848",
+          "instruction": "ldr x21, [x21, #0x6a0]"
+        },
+        {
+          "address": "0x301b84c",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x301b850",
+          "instruction": "ldrh w9, [x8, #0x12e]"
+        },
+        {
+          "address": "0x301b854",
+          "instruction": "ldr x1, [x21]"
+        },
+        {
+          "address": "0x301b858",
+          "instruction": "cbz x9, #0x301b87c"
+        },
+        {
+          "address": "0x301b85c",
+          "instruction": "ldr x10, [x8, #0xb0]"
+        },
+        {
+          "address": "0x301b860",
+          "instruction": "add x10, x10, #8"
+        },
+        {
+          "address": "0x301b864",
+          "instruction": "ldur x11, [x10, #-8]"
+        },
+        {
+          "address": "0x301b868",
+          "instruction": "cmp x11, x1"
+        },
+        {
+          "address": "0x301b86c",
+          "instruction": "b.eq #0x301b88c"
+        },
+        {
+          "address": "0x301b870",
+          "instruction": "subs x9, x9, #1"
+        },
+        {
+          "address": "0x301b874",
+          "instruction": "add x10, x10, #0x10"
+        },
+        {
+          "address": "0x301b878",
+          "instruction": "b.ne #0x301b864"
+        },
+        {
+          "address": "0x301b87c",
+          "instruction": "mov w2, #0x10"
+        },
+        {
+          "address": "0x301b880",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b884",
+          "instruction": "bl #0x2b21698",
+          "target_names": []
+        },
+        {
+          "address": "0x301b888",
+          "instruction": "b #0x301b89c",
+          "target_names": []
+        },
+        {
+          "address": "0x301b88c",
+          "instruction": "ldr w9, [x10]"
+        },
+        {
+          "address": "0x301b890",
+          "instruction": "add w9, w9, #0x10"
+        },
+        {
+          "address": "0x301b894",
+          "instruction": "add x8, x8, w9, sxtw #4"
+        },
+        {
+          "address": "0x301b898",
+          "instruction": "add x0, x8, #0x138"
+        },
+        {
+          "address": "0x301b89c",
+          "instruction": "ldp x8, x1, [x0]"
+        },
+        {
+          "address": "0x301b8a0",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b8a4",
+          "instruction": "blr x8"
+        },
+        {
+          "address": "0x301b8a8",
+          "instruction": "tbz w0, #0, #0x301b90c"
+        },
+        {
+          "address": "0x301b8ac",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x301b8b0",
+          "instruction": "ldr x1, [x21]"
+        },
+        {
+          "address": "0x301b8b4",
+          "instruction": "ldrh w9, [x8, #0x12e]"
+        },
+        {
+          "address": "0x301b8b8",
+          "instruction": "cbz x9, #0x301b8dc"
+        },
+        {
+          "address": "0x301b8bc",
+          "instruction": "ldr x10, [x8, #0xb0]"
+        },
+        {
+          "address": "0x301b8c0",
+          "instruction": "add x10, x10, #8"
+        },
+        {
+          "address": "0x301b8c4",
+          "instruction": "ldur x11, [x10, #-8]"
+        },
+        {
+          "address": "0x301b8c8",
+          "instruction": "cmp x11, x1"
+        },
+        {
+          "address": "0x301b8cc",
+          "instruction": "b.eq #0x301b8ec"
+        },
+        {
+          "address": "0x301b8d0",
+          "instruction": "subs x9, x9, #1"
+        },
+        {
+          "address": "0x301b8d4",
+          "instruction": "add x10, x10, #0x10"
+        },
+        {
+          "address": "0x301b8d8",
+          "instruction": "b.ne #0x301b8c4"
+        },
+        {
+          "address": "0x301b8dc",
+          "instruction": "mov w2, #0x12"
+        },
+        {
+          "address": "0x301b8e0",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b8e4",
+          "instruction": "bl #0x2b21698",
+          "target_names": []
+        },
+        {
+          "address": "0x301b8e8",
+          "instruction": "b #0x301b8fc",
+          "target_names": []
+        },
+        {
+          "address": "0x301b8ec",
+          "instruction": "ldr w9, [x10]"
+        },
+        {
+          "address": "0x301b8f0",
+          "instruction": "add w9, w9, #0x12"
+        },
+        {
+          "address": "0x301b8f4",
+          "instruction": "add x8, x8, w9, sxtw #4"
+        },
+        {
+          "address": "0x301b8f8",
+          "instruction": "add x0, x8, #0x138"
+        },
+        {
+          "address": "0x301b8fc",
+          "instruction": "ldp x8, x1, [x0]"
+        },
+        {
+          "address": "0x301b900",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b904",
+          "instruction": "blr x8"
+        },
+        {
+          "address": "0x301b908",
+          "instruction": "tbz w0, #0, #0x301b91c"
+        },
+        {
+          "address": "0x301b90c",
+          "instruction": "mov w0, wzr"
+        },
+        {
+          "address": "0x301b910",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b914",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x301b918",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x301b91c",
+          "instruction": "ldrb w8, [x19, #0x68]"
+        },
+        {
+          "address": "0x301b920",
+          "instruction": "cmp w8, #0"
+        },
+        {
+          "address": "0x301b924",
+          "instruction": "cset w0, eq"
+        },
+        {
+          "address": "0x301b928",
+          "instruction": "b #0x301b910",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "public static bool get_IsSkipActive() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x301792c",
+      "address": "0x301b92c",
+      "length": 264,
+      "instructions": [
+        {
+          "address": "0x301b92c",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x301b930",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b934",
+          "instruction": "adrp x20, #0x6a64000"
+        },
+        {
+          "address": "0x301b938",
+          "instruction": "adrp x19, #0x65c4000"
+        },
+        {
+          "address": "0x301b93c",
+          "instruction": "ldrb w8, [x20, #0x25f]"
+        },
+        {
+          "address": "0x301b940",
+          "instruction": "ldr x19, [x19, #0x678]"
+        },
+        {
+          "address": "0x301b944",
+          "instruction": "tbnz w8, #0, #0x301b974"
+        },
+        {
+          "address": "0x301b948",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b94c",
+          "instruction": "ldr x0, [x0, #0x680]"
+        },
+        {
+          "address": "0x301b950",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b954",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b958",
+          "instruction": "ldr x0, [x0, #0x678]"
+        },
+        {
+          "address": "0x301b95c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b960",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b964",
+          "instruction": "ldr x0, [x0, #0x6a0]"
+        },
+        {
+          "address": "0x301b968",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b96c",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x301b970",
+          "instruction": "strb w8, [x20, #0x25f]"
+        },
+        {
+          "address": "0x301b974",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x301b978",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301b97c",
+          "instruction": "cbnz w8, #0x301b984"
+        },
+        {
+          "address": "0x301b980",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301b984",
+          "instruction": "mov x0, xzr"
+        },
+        {
+          "address": "0x301b988",
+          "instruction": "bl #0x33c9434",
+          "target_names": [
+            "Engine.get { } //Length: 204",
+            "Engine.public static bool get_Initialized() { }"
+          ]
+        },
+        {
+          "address": "0x301b98c",
+          "instruction": "tbz w0, #0, #0x301ba00"
+        },
+        {
+          "address": "0x301b990",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x301b994",
+          "instruction": "adrp x19, #0x65c4000"
+        },
+        {
+          "address": "0x301b998",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301b99c",
+          "instruction": "ldr x19, [x19, #0x680]"
+        },
+        {
+          "address": "0x301b9a0",
+          "instruction": "cbnz w8, #0x301b9a8"
+        },
+        {
+          "address": "0x301b9a4",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301b9a8",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x301b9ac",
+          "instruction": "bl #0x377fd20",
+          "target_names": [
+            "Engine.public static TService GetService() { }"
+          ]
+        },
+        {
+          "address": "0x301b9b0",
+          "instruction": "cbz x0, #0x301ba00"
+        },
+        {
+          "address": "0x301b9b4",
+          "instruction": "adrp x10, #0x65c4000"
+        },
+        {
+          "address": "0x301b9b8",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x301b9bc",
+          "instruction": "ldr x10, [x10, #0x6a0]"
+        },
+        {
+          "address": "0x301b9c0",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x301b9c4",
+          "instruction": "ldrh w9, [x8, #0x12e]"
+        },
+        {
+          "address": "0x301b9c8",
+          "instruction": "ldr x1, [x10]"
+        },
+        {
+          "address": "0x301b9cc",
+          "instruction": "cbz x9, #0x301b9f0"
+        },
+        {
+          "address": "0x301b9d0",
+          "instruction": "ldr x10, [x8, #0xb0]"
+        },
+        {
+          "address": "0x301b9d4",
+          "instruction": "add x10, x10, #8"
+        },
+        {
+          "address": "0x301b9d8",
+          "instruction": "ldur x11, [x10, #-8]"
+        },
+        {
+          "address": "0x301b9dc",
+          "instruction": "cmp x11, x1"
+        },
+        {
+          "address": "0x301b9e0",
+          "instruction": "b.eq #0x301ba10"
+        },
+        {
+          "address": "0x301b9e4",
+          "instruction": "subs x9, x9, #1"
+        },
+        {
+          "address": "0x301b9e8",
+          "instruction": "add x10, x10, #0x10"
+        },
+        {
+          "address": "0x301b9ec",
+          "instruction": "b.ne #0x301b9d8"
+        },
+        {
+          "address": "0x301b9f0",
+          "instruction": "mov w2, #0x12"
+        },
+        {
+          "address": "0x301b9f4",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301b9f8",
+          "instruction": "bl #0x2b21698",
+          "target_names": []
+        },
+        {
+          "address": "0x301b9fc",
+          "instruction": "b #0x301ba20",
+          "target_names": []
+        },
+        {
+          "address": "0x301ba00",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301ba04",
+          "instruction": "mov w0, wzr"
+        },
+        {
+          "address": "0x301ba08",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x301ba0c",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x301ba10",
+          "instruction": "ldr w9, [x10]"
+        },
+        {
+          "address": "0x301ba14",
+          "instruction": "add w9, w9, #0x12"
+        },
+        {
+          "address": "0x301ba18",
+          "instruction": "add x8, x8, w9, sxtw #4"
+        },
+        {
+          "address": "0x301ba1c",
+          "instruction": "add x0, x8, #0x138"
+        },
+        {
+          "address": "0x301ba20",
+          "instruction": "ldp x2, x1, [x0]"
+        },
+        {
+          "address": "0x301ba24",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301ba28",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301ba2c",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x301ba30",
+          "instruction": "br x2"
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "public Camera get_NaninovelUICamera() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x3016bec",
+      "address": "0x301abec",
+      "length": 220,
+      "instructions": [
+        {
+          "address": "0x301abec",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x301abf0",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301abf4",
+          "instruction": "adrp x20, #0x6a64000"
+        },
+        {
+          "address": "0x301abf8",
+          "instruction": "adrp x19, #0x65c4000"
+        },
+        {
+          "address": "0x301abfc",
+          "instruction": "ldrb w8, [x20, #0x253]"
+        },
+        {
+          "address": "0x301ac00",
+          "instruction": "ldr x19, [x19, #0x678]"
+        },
+        {
+          "address": "0x301ac04",
+          "instruction": "tbnz w8, #0, #0x301ac34"
+        },
+        {
+          "address": "0x301ac08",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301ac0c",
+          "instruction": "ldr x0, [x0, #0x710]"
+        },
+        {
+          "address": "0x301ac10",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301ac14",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301ac18",
+          "instruction": "ldr x0, [x0, #0x678]"
+        },
+        {
+          "address": "0x301ac1c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301ac20",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301ac24",
+          "instruction": "ldr x0, [x0, #0x750]"
+        },
+        {
+          "address": "0x301ac28",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301ac2c",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x301ac30",
+          "instruction": "strb w8, [x20, #0x253]"
+        },
+        {
+          "address": "0x301ac34",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x301ac38",
+          "instruction": "adrp x19, #0x65c4000"
+        },
+        {
+          "address": "0x301ac3c",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301ac40",
+          "instruction": "ldr x19, [x19, #0x710]"
+        },
+        {
+          "address": "0x301ac44",
+          "instruction": "cbnz w8, #0x301ac4c"
+        },
+        {
+          "address": "0x301ac48",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301ac4c",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x301ac50",
+          "instruction": "bl #0x377fd20",
+          "target_names": [
+            "Engine.public static TService GetService() { }"
+          ]
+        },
+        {
+          "address": "0x301ac54",
+          "instruction": "cbz x0, #0x301acc4"
+        },
+        {
+          "address": "0x301ac58",
+          "instruction": "adrp x10, #0x65c4000"
+        },
+        {
+          "address": "0x301ac5c",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x301ac60",
+          "instruction": "ldr x10, [x10, #0x750]"
+        },
+        {
+          "address": "0x301ac64",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x301ac68",
+          "instruction": "ldrh w9, [x8, #0x12e]"
+        },
+        {
+          "address": "0x301ac6c",
+          "instruction": "ldr x1, [x10]"
+        },
+        {
+          "address": "0x301ac70",
+          "instruction": "cbz x9, #0x301ac94"
+        },
+        {
+          "address": "0x301ac74",
+          "instruction": "ldr x10, [x8, #0xb0]"
+        },
+        {
+          "address": "0x301ac78",
+          "instruction": "add x10, x10, #8"
+        },
+        {
+          "address": "0x301ac7c",
+          "instruction": "ldur x11, [x10, #-8]"
+        },
+        {
+          "address": "0x301ac80",
+          "instruction": "cmp x11, x1"
+        },
+        {
+          "address": "0x301ac84",
+          "instruction": "b.eq #0x301aca4"
+        },
+        {
+          "address": "0x301ac88",
+          "instruction": "subs x9, x9, #1"
+        },
+        {
+          "address": "0x301ac8c",
+          "instruction": "add x10, x10, #0x10"
+        },
+        {
+          "address": "0x301ac90",
+          "instruction": "b.ne #0x301ac7c"
+        },
+        {
+          "address": "0x301ac94",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301ac98",
+          "instruction": "mov w2, wzr"
+        },
+        {
+          "address": "0x301ac9c",
+          "instruction": "bl #0x2b21698",
+          "target_names": []
+        },
+        {
+          "address": "0x301aca0",
+          "instruction": "b #0x301acb0",
+          "target_names": []
+        },
+        {
+          "address": "0x301aca4",
+          "instruction": "ldrsw x9, [x10]"
+        },
+        {
+          "address": "0x301aca8",
+          "instruction": "add x8, x8, x9, lsl #4"
+        },
+        {
+          "address": "0x301acac",
+          "instruction": "add x0, x8, #0x138"
+        },
+        {
+          "address": "0x301acb0",
+          "instruction": "ldp x2, x1, [x0]"
+        },
+        {
+          "address": "0x301acb4",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301acb8",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301acbc",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x301acc0",
+          "instruction": "br x2"
+        },
+        {
+          "address": "0x301acc4",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "public void RestoreTimeScaleIfSkipped() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x3016f40",
+      "address": "0x301af40",
+      "length": 232,
+      "instructions": [
+        {
+          "address": "0x301af40",
+          "instruction": "str x30, [sp, #-0x30]!"
+        },
+        {
+          "address": "0x301af44",
+          "instruction": "stp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x301af48",
+          "instruction": "stp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x301af4c",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x301af50",
+          "instruction": "adrp x22, #0x65ac000"
+        },
+        {
+          "address": "0x301af54",
+          "instruction": "adrp x20, #0x65d2000"
+        },
+        {
+          "address": "0x301af58",
+          "instruction": "adrp x19, #0x65b1000"
+        },
+        {
+          "address": "0x301af5c",
+          "instruction": "ldrb w8, [x21, #0x261]"
+        },
+        {
+          "address": "0x301af60",
+          "instruction": "ldr x22, [x22, #0x968]"
+        },
+        {
+          "address": "0x301af64",
+          "instruction": "ldr x20, [x20, #0x100]",
+          "literal": "[Naninovel] 退出跳过/对话，强制结算 Time.timeScale（防止残留加速）。退出前 timeScale={0:F3}",
+          "literal_source": {
+            "got": "0x65d2100",
+            "literal_index": 20513,
+            "metadata_offset": "0xdc7c3"
+          }
+        },
+        {
+          "address": "0x301af68",
+          "instruction": "ldr x19, [x19, #0x7c0]"
+        },
+        {
+          "address": "0x301af6c",
+          "instruction": "tbnz w8, #0, #0x301afa8"
+        },
+        {
+          "address": "0x301af70",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x301af74",
+          "instruction": "ldr x0, [x0, #0x7c0]"
+        },
+        {
+          "address": "0x301af78",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301af7c",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x301af80",
+          "instruction": "ldr x0, [x0, #0x968]"
+        },
+        {
+          "address": "0x301af84",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301af88",
+          "instruction": "adrp x0, #0x65c9000"
+        },
+        {
+          "address": "0x301af8c",
+          "instruction": "ldr x0, [x0, #0xa68]"
+        },
+        {
+          "address": "0x301af90",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301af94",
+          "instruction": "adrp x0, #0x65d2000"
+        },
+        {
+          "address": "0x301af98",
+          "instruction": "ldr x0, [x0, #0x100]",
+          "literal": "[Naninovel] 退出跳过/对话，强制结算 Time.timeScale（防止残留加速）。退出前 timeScale={0:F3}",
+          "literal_source": {
+            "got": "0x65d2100",
+            "literal_index": 20513,
+            "metadata_offset": "0xdc7c3"
+          }
+        },
+        {
+          "address": "0x301af9c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301afa0",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x301afa4",
+          "instruction": "strb w8, [x21, #0x261]"
+        },
+        {
+          "address": "0x301afa8",
+          "instruction": "adrp x21, #0x65c9000"
+        },
+        {
+          "address": "0x301afac",
+          "instruction": "ldr x21, [x21, #0xa68]"
+        },
+        {
+          "address": "0x301afb0",
+          "instruction": "mov x0, xzr"
+        },
+        {
+          "address": "0x301afb4",
+          "instruction": "bl #0x5ed1cb0",
+          "target_names": [
+            "Time.get { } //Length: 40",
+            "Time.public static float get_timeScale() { }"
+          ]
+        },
+        {
+          "address": "0x301afb8",
+          "instruction": "ldr x0, [x22]"
+        },
+        {
+          "address": "0x301afbc",
+          "instruction": "add x1, sp, #0xc"
+        },
+        {
+          "address": "0x301afc0",
+          "instruction": "str s0, [sp, #0xc]"
+        },
+        {
+          "address": "0x301afc4",
+          "instruction": "bl #0x2aa0b80",
+          "target_names": []
+        },
+        {
+          "address": "0x301afc8",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x301afcc",
+          "instruction": "mov x1, x0"
+        },
+        {
+          "address": "0x301afd0",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x301afd4",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x301afd8",
+          "instruction": "bl #0x4f00388",
+          "target_names": [
+            "String.public static string Format(string format, object arg0) { }"
+          ]
+        },
+        {
+          "address": "0x301afdc",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x301afe0",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x301afe4",
+          "instruction": "ldr w9, [x8, #0xe0]"
+        },
+        {
+          "address": "0x301afe8",
+          "instruction": "cbnz w9, #0x301aff4"
+        },
+        {
+          "address": "0x301afec",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x301aff0",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301aff4",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x301aff8",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x301affc",
+          "instruction": "bl #0x2f366c4",
+          "target_names": [
+            "LogMgr.public static void Log(string str) { }"
+          ]
+        },
+        {
+          "address": "0x301b000",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x301b004",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301b008",
+          "instruction": "cbnz w8, #0x301b010"
+        },
+        {
+          "address": "0x301b00c",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301b010",
+          "instruction": "mov x0, xzr"
+        },
+        {
+          "address": "0x301b014",
+          "instruction": "bl #0x310f140",
+          "target_names": [
+            "UIPanelTimeScaleScope.public static void ForceRestore() { }"
+          ]
+        },
+        {
+          "address": "0x301b018",
+          "instruction": "ldp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x301b01c",
+          "instruction": "ldp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b020",
+          "instruction": "ldr x30, [sp], #0x30"
+        },
+        {
+          "address": "0x301b024",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "public void SetSkipEventDel(Action del) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x3017698",
+      "address": "0x301b698",
+      "length": 8,
+      "instructions": [
+        {
+          "address": "0x301b698",
+          "instruction": "str x1, [x0, #0x60]!"
+        },
+        {
+          "address": "0x301b69c",
+          "instruction": "b #0x2aa09a4",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "public void SetSkipMode(bool enabled) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x30176a8",
+      "address": "0x301b6a8",
+      "length": 268,
+      "instructions": [
+        {
+          "address": "0x301b6a8",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x301b6ac",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b6b0",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x301b6b4",
+          "instruction": "ldrb w8, [x21, #0x260]"
+        },
+        {
+          "address": "0x301b6b8",
+          "instruction": "mov w19, w1"
+        },
+        {
+          "address": "0x301b6bc",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x301b6c0",
+          "instruction": "tbnz w8, #0, #0x301b6f0"
+        },
+        {
+          "address": "0x301b6c4",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b6c8",
+          "instruction": "ldr x0, [x0, #0x680]"
+        },
+        {
+          "address": "0x301b6cc",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b6d0",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b6d4",
+          "instruction": "ldr x0, [x0, #0x678]"
+        },
+        {
+          "address": "0x301b6d8",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b6dc",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x301b6e0",
+          "instruction": "ldr x0, [x0, #0x6a0]"
+        },
+        {
+          "address": "0x301b6e4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x301b6e8",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x301b6ec",
+          "instruction": "strb w8, [x21, #0x260]"
+        },
+        {
+          "address": "0x301b6f0",
+          "instruction": "tbz w19, #0, #0x301b700"
+        },
+        {
+          "address": "0x301b6f4",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b6f8",
+          "instruction": "bl #0x301b7b4",
+          "target_names": [
+            "NaninovelManager.private bool CanEnterSkipMode() { }"
+          ]
+        },
+        {
+          "address": "0x301b6fc",
+          "instruction": "tbz w0, #0, #0x301b79c"
+        },
+        {
+          "address": "0x301b700",
+          "instruction": "adrp x8, #0x65c4000"
+        },
+        {
+          "address": "0x301b704",
+          "instruction": "ldr x8, [x8, #0x678]"
+        },
+        {
+          "address": "0x301b708",
+          "instruction": "adrp x20, #0x65c4000"
+        },
+        {
+          "address": "0x301b70c",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x301b710",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x301b714",
+          "instruction": "ldr x20, [x20, #0x680]"
+        },
+        {
+          "address": "0x301b718",
+          "instruction": "cbnz w8, #0x301b720"
+        },
+        {
+          "address": "0x301b71c",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x301b720",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x301b724",
+          "instruction": "bl #0x377fd20",
+          "target_names": [
+            "Engine.public static TService GetService() { }"
+          ]
+        },
+        {
+          "address": "0x301b728",
+          "instruction": "cbz x0, #0x301b798"
+        },
+        {
+          "address": "0x301b72c",
+          "instruction": "adrp x10, #0x65c4000"
+        },
+        {
+          "address": "0x301b730",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x301b734",
+          "instruction": "ldr x10, [x10, #0x6a0]"
+        },
+        {
+          "address": "0x301b738",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x301b73c",
+          "instruction": "ldrh w9, [x8, #0x12e]"
+        },
+        {
+          "address": "0x301b740",
+          "instruction": "ldr x1, [x10]"
+        },
+        {
+          "address": "0x301b744",
+          "instruction": "cbz x9, #0x301b768"
+        },
+        {
+          "address": "0x301b748",
+          "instruction": "ldr x10, [x8, #0xb0]"
+        },
+        {
+          "address": "0x301b74c",
+          "instruction": "add x10, x10, #8"
+        },
+        {
+          "address": "0x301b750",
+          "instruction": "ldur x11, [x10, #-8]"
+        },
+        {
+          "address": "0x301b754",
+          "instruction": "cmp x11, x1"
+        },
+        {
+          "address": "0x301b758",
+          "instruction": "b.eq #0x301b778"
+        },
+        {
+          "address": "0x301b75c",
+          "instruction": "subs x9, x9, #1"
+        },
+        {
+          "address": "0x301b760",
+          "instruction": "add x10, x10, #0x10"
+        },
+        {
+          "address": "0x301b764",
+          "instruction": "b.ne #0x301b750"
+        },
+        {
+          "address": "0x301b768",
+          "instruction": "mov w2, #0x24"
+        },
+        {
+          "address": "0x301b76c",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b770",
+          "instruction": "bl #0x2b21698",
+          "target_names": []
+        },
+        {
+          "address": "0x301b774",
+          "instruction": "b #0x301b788",
+          "target_names": []
+        },
+        {
+          "address": "0x301b778",
+          "instruction": "ldr w9, [x10]"
+        },
+        {
+          "address": "0x301b77c",
+          "instruction": "add w9, w9, #0x24"
+        },
+        {
+          "address": "0x301b780",
+          "instruction": "add x8, x8, w9, sxtw #4"
+        },
+        {
+          "address": "0x301b784",
+          "instruction": "add x0, x8, #0x138"
+        },
+        {
+          "address": "0x301b788",
+          "instruction": "ldp x8, x2, [x0]"
+        },
+        {
+          "address": "0x301b78c",
+          "instruction": "and w1, w19, #1"
+        },
+        {
+          "address": "0x301b790",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x301b794",
+          "instruction": "blr x8"
+        },
+        {
+          "address": "0x301b798",
+          "instruction": "tbz w19, #0, #0x301b7a8"
+        },
+        {
+          "address": "0x301b79c",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b7a0",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x301b7a4",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x301b7a8",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x301b7ac",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x301b7b0",
+          "instruction": "b #0x301af40",
+          "target_names": [
+            "NaninovelManager.public void RestoreTimeScaleIfSkipped() { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "NaninovelManager",
+      "signature": "public void SkipDel(Message msg) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/RFrame/NaninovelManager.cs",
+      "file_offset": "0x30176a0",
+      "address": "0x301b6a0",
+      "length": 8,
+      "instructions": [
+        {
+          "address": "0x301b6a0",
+          "instruction": "mov w1, #1"
+        },
+        {
+          "address": "0x301b6a4",
+          "instruction": "b #0x301b6a8",
+          "target_names": [
+            "NaninovelManager.public void SetSkipMode(bool enabled) { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "BattleManager",
+      "signature": "private void <EnterStoryTalkingShow>b__191_0() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/BattleManager.cs",
+      "file_offset": "0x308ff04",
+      "address": "0x3093f04",
+      "length": 4,
+      "instructions": [
+        {
+          "address": "0x3093f04",
+          "instruction": "b #0x30932dc",
+          "target_names": [
+            "BattleManager.public void ExitStoryTalkingShowDel() { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "BattleManager",
+      "signature": "private void <ExitStoryTalkingShowDel>b__192_0(int x) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/BattleManager.cs",
+      "file_offset": "0x308ff08",
+      "address": "0x3093f08",
+      "length": 248,
+      "instructions": [
+        {
+          "address": "0x3093f08",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x3093f0c",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093f10",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x3093f14",
+          "instruction": "adrp x20, #0x65c1000"
+        },
+        {
+          "address": "0x3093f18",
+          "instruction": "ldrb w8, [x21, #0x6bf]"
+        },
+        {
+          "address": "0x3093f1c",
+          "instruction": "ldr x20, [x20, #0xce0]"
+        },
+        {
+          "address": "0x3093f20",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x3093f24",
+          "instruction": "tbnz w8, #0, #0x3093f48"
+        },
+        {
+          "address": "0x3093f28",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x3093f2c",
+          "instruction": "ldr x0, [x0, #0xcd8]"
+        },
+        {
+          "address": "0x3093f30",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093f34",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x3093f38",
+          "instruction": "ldr x0, [x0, #0xce0]"
+        },
+        {
+          "address": "0x3093f3c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093f40",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x3093f44",
+          "instruction": "strb w8, [x21, #0x6bf]"
+        },
+        {
+          "address": "0x3093f48",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x3093f4c",
+          "instruction": "adrp x20, #0x65c1000"
+        },
+        {
+          "address": "0x3093f50",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x3093f54",
+          "instruction": "ldr x20, [x20, #0xcd8]"
+        },
+        {
+          "address": "0x3093f58",
+          "instruction": "cbnz w8, #0x3093f60"
+        },
+        {
+          "address": "0x3093f5c",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x3093f60",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x3093f64",
+          "instruction": "bl #0x40daff4",
+          "target_names": [
+            "Singleton`1.get { } //Length: 824",
+            "Singleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x3093f68",
+          "instruction": "cbz x0, #0x3093ffc"
+        },
+        {
+          "address": "0x3093f6c",
+          "instruction": "ldr x0, [x0, #0x18]"
+        },
+        {
+          "address": "0x3093f70",
+          "instruction": "cbz x0, #0x3093ffc"
+        },
+        {
+          "address": "0x3093f74",
+          "instruction": "mov w1, #1"
+        },
+        {
+          "address": "0x3093f78",
+          "instruction": "mov w2, #1"
+        },
+        {
+          "address": "0x3093f7c",
+          "instruction": "mov w4, #1"
+        },
+        {
+          "address": "0x3093f80",
+          "instruction": "mov w3, wzr"
+        },
+        {
+          "address": "0x3093f84",
+          "instruction": "mov x5, xzr"
+        },
+        {
+          "address": "0x3093f88",
+          "instruction": "bl #0x30ecd90",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.public void SwitchModeGroupDisplay(bool battle, bool common, bool naninovel, bool rogueMainPage) { }"
+          ]
+        },
+        {
+          "address": "0x3093f8c",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x3093f90",
+          "instruction": "bl #0x40daff4",
+          "target_names": [
+            "Singleton`1.get { } //Length: 824",
+            "Singleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x3093f94",
+          "instruction": "cbz x0, #0x3093ffc"
+        },
+        {
+          "address": "0x3093f98",
+          "instruction": "ldr x8, [x0, #0x18]"
+        },
+        {
+          "address": "0x3093f9c",
+          "instruction": "cbz x8, #0x3093ffc"
+        },
+        {
+          "address": "0x3093fa0",
+          "instruction": "ldr x0, [x8, #0x160]"
+        },
+        {
+          "address": "0x3093fa4",
+          "instruction": "cbz x0, #0x3093ffc"
+        },
+        {
+          "address": "0x3093fa8",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x3093fac",
+          "instruction": "bl #0x3101dc8",
+          "target_names": [
+            "Box_InteractableBtnArea.public void ClearBtnData() { }"
+          ]
+        },
+        {
+          "address": "0x3093fb0",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x3093fb4",
+          "instruction": "bl #0x40daff4",
+          "target_names": [
+            "Singleton`1.get { } //Length: 824",
+            "Singleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x3093fb8",
+          "instruction": "cbz x0, #0x3093ffc"
+        },
+        {
+          "address": "0x3093fbc",
+          "instruction": "ldr x8, [x0, #0x18]"
+        },
+        {
+          "address": "0x3093fc0",
+          "instruction": "cbz x8, #0x3093ffc"
+        },
+        {
+          "address": "0x3093fc4",
+          "instruction": "ldr x0, [x8, #0x160]"
+        },
+        {
+          "address": "0x3093fc8",
+          "instruction": "cbz x0, #0x3093ffc"
+        },
+        {
+          "address": "0x3093fcc",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x3093fd0",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x3093fd4",
+          "instruction": "bl #0x3100be4",
+          "target_names": [
+            "Box_InteractableBtnArea.public void SwitchType(EDisplayType type) { }"
+          ]
+        },
+        {
+          "address": "0x3093fd8",
+          "instruction": "mov w1, #1"
+        },
+        {
+          "address": "0x3093fdc",
+          "instruction": "mov w2, #1"
+        },
+        {
+          "address": "0x3093fe0",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x3093fe4",
+          "instruction": "bl #0x308e5e8",
+          "target_names": [
+            "BattleManager.public void ChangePlayerCtrlEnable(bool enable, bool sametimeChangeHidePlayerCtrlBattlePanelDisplay = true) { }"
+          ]
+        },
+        {
+          "address": "0x3093fe8",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x3093fec",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093ff0",
+          "instruction": "mov w1, #2"
+        },
+        {
+          "address": "0x3093ff4",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x3093ff8",
+          "instruction": "b #0x308e010",
+          "target_names": [
+            "BattleManager.public void ChangeBattleState(BattleState state) { }"
+          ]
+        },
+        {
+          "address": "0x3093ffc",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "BattleManager",
+      "signature": "public void EnterStoryTalkingShow(string storyScriptsName) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/BattleManager.cs",
+      "file_offset": "0x308f0f8",
+      "address": "0x30930f8",
+      "length": 484,
+      "instructions": [
+        {
+          "address": "0x30930f8",
+          "instruction": "str x30, [sp, #-0x40]!"
+        },
+        {
+          "address": "0x30930fc",
+          "instruction": "stp x24, x23, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093100",
+          "instruction": "stp x22, x21, [sp, #0x20]"
+        },
+        {
+          "address": "0x3093104",
+          "instruction": "stp x20, x19, [sp, #0x30]"
+        },
+        {
+          "address": "0x3093108",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x309310c",
+          "instruction": "ldrb w8, [x21, #0x6b4]"
+        },
+        {
+          "address": "0x3093110",
+          "instruction": "mov x19, x1"
+        },
+        {
+          "address": "0x3093114",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x3093118",
+          "instruction": "tbnz w8, #0, #0x3093178"
+        },
+        {
+          "address": "0x309311c",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x3093120",
+          "instruction": "ldr x0, [x0, #0xf90]"
+        },
+        {
+          "address": "0x3093124",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093128",
+          "instruction": "adrp x0, #0x65d5000"
+        },
+        {
+          "address": "0x309312c",
+          "instruction": "ldr x0, [x0, #0xa58]"
+        },
+        {
+          "address": "0x3093130",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093134",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x3093138",
+          "instruction": "ldr x0, [x0, #0x8a0]"
+        },
+        {
+          "address": "0x309313c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093140",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x3093144",
+          "instruction": "ldr x0, [x0, #0x8a8]"
+        },
+        {
+          "address": "0x3093148",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x309314c",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x3093150",
+          "instruction": "ldr x0, [x0, #0xcd8]"
+        },
+        {
+          "address": "0x3093154",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093158",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x309315c",
+          "instruction": "ldr x0, [x0, #0xce0]"
+        },
+        {
+          "address": "0x3093160",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093164",
+          "instruction": "adrp x0, #0x65d5000"
+        },
+        {
+          "address": "0x3093168",
+          "instruction": "ldr x0, [x0, #0x8f0]",
+          "literal": "sys_idle",
+          "literal_source": {
+            "got": "0x65d58f0",
+            "literal_index": 27030,
+            "metadata_offset": "0xfb178"
+          }
+        },
+        {
+          "address": "0x309316c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093170",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x3093174",
+          "instruction": "strb w8, [x21, #0x6b4]"
+        },
+        {
+          "address": "0x3093178",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x309317c",
+          "instruction": "mov w2, #1"
+        },
+        {
+          "address": "0x3093180",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x3093184",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x3093188",
+          "instruction": "strb w8, [x20, #0xa1]"
+        },
+        {
+          "address": "0x309318c",
+          "instruction": "bl #0x308e5e8",
+          "target_names": [
+            "BattleManager.public void ChangePlayerCtrlEnable(bool enable, bool sametimeChangeHidePlayerCtrlBattlePanelDisplay = true) { }"
+          ]
+        },
+        {
+          "address": "0x3093190",
+          "instruction": "bl #0x307b924",
+          "target_names": [
+            "BattleManager.get { } //Length: 100",
+            "BattleManager.public BattleUnitMgr get_UnitMgr() { }"
+          ]
+        },
+        {
+          "address": "0x3093194",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x3093198",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x309319c",
+          "instruction": "bl #0x3125ec4",
+          "target_names": [
+            "BattleUnitMgr.public Player GetCurControlPlayer() { }"
+          ]
+        },
+        {
+          "address": "0x30931a0",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x30931a4",
+          "instruction": "ldr x0, [x0, #0xa8]"
+        },
+        {
+          "address": "0x30931a8",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x30931ac",
+          "instruction": "adrp x8, #0x65d5000"
+        },
+        {
+          "address": "0x30931b0",
+          "instruction": "ldr x8, [x8, #0x8f0]",
+          "literal": "sys_idle",
+          "literal_source": {
+            "got": "0x65d58f0",
+            "literal_index": 27030,
+            "metadata_offset": "0xfb178"
+          }
+        },
+        {
+          "address": "0x30931b4",
+          "instruction": "adrp x22, #0x65c1000"
+        },
+        {
+          "address": "0x30931b8",
+          "instruction": "adrp x21, #0x65c1000"
+        },
+        {
+          "address": "0x30931bc",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30931c0",
+          "instruction": "ldr x1, [x8]"
+        },
+        {
+          "address": "0x30931c4",
+          "instruction": "ldr x22, [x22, #0xce0]"
+        },
+        {
+          "address": "0x30931c8",
+          "instruction": "ldr x21, [x21, #0xcd8]"
+        },
+        {
+          "address": "0x30931cc",
+          "instruction": "bl #0x2fd685c",
+          "target_names": [
+            "ActionStatus.public void PreChangeAction(string actionId) { }"
+          ]
+        },
+        {
+          "address": "0x30931d0",
+          "instruction": "mov w1, #4"
+        },
+        {
+          "address": "0x30931d4",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30931d8",
+          "instruction": "bl #0x308e010",
+          "target_names": [
+            "BattleManager.public void ChangeBattleState(BattleState state) { }"
+          ]
+        },
+        {
+          "address": "0x30931dc",
+          "instruction": "ldr x0, [x22]"
+        },
+        {
+          "address": "0x30931e0",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30931e4",
+          "instruction": "cbnz w8, #0x30931ec"
+        },
+        {
+          "address": "0x30931e8",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30931ec",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30931f0",
+          "instruction": "bl #0x40daff4",
+          "target_names": [
+            "Singleton`1.get { } //Length: 824",
+            "Singleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x30931f4",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x30931f8",
+          "instruction": "ldr x0, [x0, #0x18]"
+        },
+        {
+          "address": "0x30931fc",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x3093200",
+          "instruction": "mov w3, #1"
+        },
+        {
+          "address": "0x3093204",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x3093208",
+          "instruction": "mov w2, wzr"
+        },
+        {
+          "address": "0x309320c",
+          "instruction": "mov w4, wzr"
+        },
+        {
+          "address": "0x3093210",
+          "instruction": "mov x5, xzr"
+        },
+        {
+          "address": "0x3093214",
+          "instruction": "bl #0x30ecd90",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.public void SwitchModeGroupDisplay(bool battle, bool common, bool naninovel, bool rogueMainPage) { }"
+          ]
+        },
+        {
+          "address": "0x3093218",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x309321c",
+          "instruction": "bl #0x40daff4",
+          "target_names": [
+            "Singleton`1.get { } //Length: 824",
+            "Singleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x3093220",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x3093224",
+          "instruction": "ldr x8, [x0, #0x18]"
+        },
+        {
+          "address": "0x3093228",
+          "instruction": "cbz x8, #0x30932d8"
+        },
+        {
+          "address": "0x309322c",
+          "instruction": "ldr x0, [x8, #0x160]"
+        },
+        {
+          "address": "0x3093230",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x3093234",
+          "instruction": "adrp x24, #0x65b1000"
+        },
+        {
+          "address": "0x3093238",
+          "instruction": "adrp x23, #0x65b1000"
+        },
+        {
+          "address": "0x309323c",
+          "instruction": "adrp x21, #0x65ac000"
+        },
+        {
+          "address": "0x3093240",
+          "instruction": "adrp x22, #0x65d5000"
+        },
+        {
+          "address": "0x3093244",
+          "instruction": "ldr x24, [x24, #0x8a8]"
+        },
+        {
+          "address": "0x3093248",
+          "instruction": "ldr x23, [x23, #0x8a0]"
+        },
+        {
+          "address": "0x309324c",
+          "instruction": "ldr x21, [x21, #0xf90]"
+        },
+        {
+          "address": "0x3093250",
+          "instruction": "ldr x22, [x22, #0xa58]"
+        },
+        {
+          "address": "0x3093254",
+          "instruction": "mov w1, #1"
+        },
+        {
+          "address": "0x3093258",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x309325c",
+          "instruction": "bl #0x3100be4",
+          "target_names": [
+            "Box_InteractableBtnArea.public void SwitchType(EDisplayType type) { }"
+          ]
+        },
+        {
+          "address": "0x3093260",
+          "instruction": "ldr x0, [x24]"
+        },
+        {
+          "address": "0x3093264",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x3093268",
+          "instruction": "cbnz w8, #0x3093270"
+        },
+        {
+          "address": "0x309326c",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x3093270",
+          "instruction": "ldr x0, [x23]"
+        },
+        {
+          "address": "0x3093274",
+          "instruction": "bl #0x3f7cc28",
+          "target_names": [
+            "RSingleton_Mono`1.get { } //Length: 88",
+            "RSingleton_Mono`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x3093278",
+          "instruction": "ldr x8, [x21]"
+        },
+        {
+          "address": "0x309327c",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x3093280",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x3093284",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x3093288",
+          "instruction": "ldr x2, [x22]"
+        },
+        {
+          "address": "0x309328c",
+          "instruction": "mov x1, x20"
+        },
+        {
+          "address": "0x3093290",
+          "instruction": "mov x3, xzr"
+        },
+        {
+          "address": "0x3093294",
+          "instruction": "mov x22, x0"
+        },
+        {
+          "address": "0x3093298",
+          "instruction": "bl #0x50120f8",
+          "target_names": [
+            "Action.public Action(object object, nint method) { }"
+          ]
+        },
+        {
+          "address": "0x309329c",
+          "instruction": "cbz x21, #0x30932d8"
+        },
+        {
+          "address": "0x30932a0",
+          "instruction": "str x22, [x21, #0x50]!"
+        },
+        {
+          "address": "0x30932a4",
+          "instruction": "mov x0, x21"
+        },
+        {
+          "address": "0x30932a8",
+          "instruction": "mov x1, x22"
+        },
+        {
+          "address": "0x30932ac",
+          "instruction": "bl #0x2aa09a4",
+          "target_names": []
+        },
+        {
+          "address": "0x30932b0",
+          "instruction": "ldr x0, [x23]"
+        },
+        {
+          "address": "0x30932b4",
+          "instruction": "bl #0x3f7cc28",
+          "target_names": [
+            "RSingleton_Mono`1.get { } //Length: 88",
+            "RSingleton_Mono`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x30932b8",
+          "instruction": "cbz x0, #0x30932d8"
+        },
+        {
+          "address": "0x30932bc",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x30932c0",
+          "instruction": "ldp x20, x19, [sp, #0x30]"
+        },
+        {
+          "address": "0x30932c4",
+          "instruction": "ldp x22, x21, [sp, #0x20]"
+        },
+        {
+          "address": "0x30932c8",
+          "instruction": "ldp x24, x23, [sp, #0x10]"
+        },
+        {
+          "address": "0x30932cc",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30932d0",
+          "instruction": "ldr x30, [sp], #0x40"
+        },
+        {
+          "address": "0x30932d4",
+          "instruction": "b #0x301b46c",
+          "target_names": [
+            "NaninovelManager.public void EnableNPCTalkingMode(string talkFileName) { }"
+          ]
+        },
+        {
+          "address": "0x30932d8",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "BattleManager",
+      "signature": "public void ExcuteNaninovelSwitchToNormalModeByHandle() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/BattleManager.cs",
+      "file_offset": "0x308f420",
+      "address": "0x3093420",
+      "length": 116,
+      "instructions": [
+        {
+          "address": "0x3093420",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x3093424",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093428",
+          "instruction": "adrp x20, #0x6a64000"
+        },
+        {
+          "address": "0x309342c",
+          "instruction": "adrp x19, #0x65b1000"
+        },
+        {
+          "address": "0x3093430",
+          "instruction": "ldrb w8, [x20, #0x6b6]"
+        },
+        {
+          "address": "0x3093434",
+          "instruction": "ldr x19, [x19, #0x8a8]"
+        },
+        {
+          "address": "0x3093438",
+          "instruction": "tbnz w8, #0, #0x309345c"
+        },
+        {
+          "address": "0x309343c",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x3093440",
+          "instruction": "ldr x0, [x0, #0x8a0]"
+        },
+        {
+          "address": "0x3093444",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093448",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x309344c",
+          "instruction": "ldr x0, [x0, #0x8a8]"
+        },
+        {
+          "address": "0x3093450",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093454",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x3093458",
+          "instruction": "strb w8, [x20, #0x6b6]"
+        },
+        {
+          "address": "0x309345c",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x3093460",
+          "instruction": "adrp x19, #0x65b1000"
+        },
+        {
+          "address": "0x3093464",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x3093468",
+          "instruction": "ldr x19, [x19, #0x8a0]"
+        },
+        {
+          "address": "0x309346c",
+          "instruction": "cbnz w8, #0x3093474"
+        },
+        {
+          "address": "0x3093470",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x3093474",
+          "instruction": "ldr x0, [x19]"
+        },
+        {
+          "address": "0x3093478",
+          "instruction": "bl #0x3f7cc28",
+          "target_names": [
+            "RSingleton_Mono`1.get { } //Length: 88",
+            "RSingleton_Mono`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x309347c",
+          "instruction": "cbz x0, #0x3093490"
+        },
+        {
+          "address": "0x3093480",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093484",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x3093488",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x309348c",
+          "instruction": "b #0x301b540",
+          "target_names": [
+            "NaninovelManager.public void DisableNPCTalkingMode() { }"
+          ]
+        },
+        {
+          "address": "0x3093490",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "BattleManager",
+      "signature": "public void ExitStoryTalkingShowDel() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/BattleManager.cs",
+      "file_offset": "0x308f2dc",
+      "address": "0x30932dc",
+      "length": 324,
+      "instructions": [
+        {
+          "address": "0x30932dc",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x30932e0",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30932e4",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x30932e8",
+          "instruction": "adrp x20, #0x65c1000"
+        },
+        {
+          "address": "0x30932ec",
+          "instruction": "ldrb w8, [x21, #0x6b5]"
+        },
+        {
+          "address": "0x30932f0",
+          "instruction": "ldr x20, [x20, #0xce0]"
+        },
+        {
+          "address": "0x30932f4",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x30932f8",
+          "instruction": "tbnz w8, #0, #0x309334c"
+        },
+        {
+          "address": "0x30932fc",
+          "instruction": "adrp x0, #0x65b0000"
+        },
+        {
+          "address": "0x3093300",
+          "instruction": "ldr x0, [x0, #0xde0]"
+        },
+        {
+          "address": "0x3093304",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093308",
+          "instruction": "adrp x0, #0x65d5000"
+        },
+        {
+          "address": "0x309330c",
+          "instruction": "ldr x0, [x0, #0xa60]"
+        },
+        {
+          "address": "0x3093310",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093314",
+          "instruction": "adrp x0, #0x65b0000"
+        },
+        {
+          "address": "0x3093318",
+          "instruction": "ldr x0, [x0, #0xdf0]"
+        },
+        {
+          "address": "0x309331c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093320",
+          "instruction": "adrp x0, #0x65b0000"
+        },
+        {
+          "address": "0x3093324",
+          "instruction": "ldr x0, [x0, #0xe00]"
+        },
+        {
+          "address": "0x3093328",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x309332c",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x3093330",
+          "instruction": "ldr x0, [x0, #0xcd8]"
+        },
+        {
+          "address": "0x3093334",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093338",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x309333c",
+          "instruction": "ldr x0, [x0, #0xce0]"
+        },
+        {
+          "address": "0x3093340",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093344",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x3093348",
+          "instruction": "strb w8, [x21, #0x6b5]"
+        },
+        {
+          "address": "0x309334c",
+          "instruction": "strb wzr, [x19, #0xa1]"
+        },
+        {
+          "address": "0x3093350",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x3093354",
+          "instruction": "adrp x20, #0x65c1000"
+        },
+        {
+          "address": "0x3093358",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x309335c",
+          "instruction": "ldr x20, [x20, #0xcd8]"
+        },
+        {
+          "address": "0x3093360",
+          "instruction": "cbnz w8, #0x3093368"
+        },
+        {
+          "address": "0x3093364",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x3093368",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x309336c",
+          "instruction": "bl #0x40daff4",
+          "target_names": [
+            "Singleton`1.get { } //Length: 824",
+            "Singleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x3093370",
+          "instruction": "cbz x0, #0x309341c"
+        },
+        {
+          "address": "0x3093374",
+          "instruction": "ldr x0, [x0, #0x18]"
+        },
+        {
+          "address": "0x3093378",
+          "instruction": "cbz x0, #0x309341c"
+        },
+        {
+          "address": "0x309337c",
+          "instruction": "adrp x21, #0x65b0000"
+        },
+        {
+          "address": "0x3093380",
+          "instruction": "adrp x20, #0x65b0000"
+        },
+        {
+          "address": "0x3093384",
+          "instruction": "ldr x21, [x21, #0xe00]"
+        },
+        {
+          "address": "0x3093388",
+          "instruction": "ldr x20, [x20, #0xdf0]"
+        },
+        {
+          "address": "0x309338c",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x3093390",
+          "instruction": "mov w2, wzr"
+        },
+        {
+          "address": "0x3093394",
+          "instruction": "mov w3, wzr"
+        },
+        {
+          "address": "0x3093398",
+          "instruction": "mov w4, wzr"
+        },
+        {
+          "address": "0x309339c",
+          "instruction": "mov x5, xzr"
+        },
+        {
+          "address": "0x30933a0",
+          "instruction": "bl #0x30ecd90",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.public void SwitchModeGroupDisplay(bool battle, bool common, bool naninovel, bool rogueMainPage) { }"
+          ]
+        },
+        {
+          "address": "0x30933a4",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30933a8",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30933ac",
+          "instruction": "cbnz w8, #0x30933b4"
+        },
+        {
+          "address": "0x30933b0",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30933b4",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x30933b8",
+          "instruction": "bl #0x3f7cc28",
+          "target_names": [
+            "RSingleton_Mono`1.get { } //Length: 88",
+            "RSingleton_Mono`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x30933bc",
+          "instruction": "cbz x0, #0x309341c"
+        },
+        {
+          "address": "0x30933c0",
+          "instruction": "adrp x8, #0x65b0000"
+        },
+        {
+          "address": "0x30933c4",
+          "instruction": "ldr x8, [x8, #0xde0]"
+        },
+        {
+          "address": "0x30933c8",
+          "instruction": "ldr x20, [x0, #0x30]"
+        },
+        {
+          "address": "0x30933cc",
+          "instruction": "adrp x21, #0x65d5000"
+        },
+        {
+          "address": "0x30933d0",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x30933d4",
+          "instruction": "ldr x21, [x21, #0xa60]"
+        },
+        {
+          "address": "0x30933d8",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x30933dc",
+          "instruction": "ldr x2, [x21]"
+        },
+        {
+          "address": "0x30933e0",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x30933e4",
+          "instruction": "mov x3, xzr"
+        },
+        {
+          "address": "0x30933e8",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x30933ec",
+          "instruction": "bl #0x4b33220",
+          "target_names": []
+        },
+        {
+          "address": "0x30933f0",
+          "instruction": "cbz x20, #0x309341c"
+        },
+        {
+          "address": "0x30933f4",
+          "instruction": "adrp x8, #0x1288000"
+        },
+        {
+          "address": "0x30933f8",
+          "instruction": "ldr d0, [x8, #0xe40]"
+        },
+        {
+          "address": "0x30933fc",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x3093400",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093404",
+          "instruction": "mov w2, #1"
+        },
+        {
+          "address": "0x3093408",
+          "instruction": "mov w3, #1"
+        },
+        {
+          "address": "0x309340c",
+          "instruction": "mov x1, x21"
+        },
+        {
+          "address": "0x3093410",
+          "instruction": "mov x4, xzr"
+        },
+        {
+          "address": "0x3093414",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x3093418",
+          "instruction": "b #0x302baf8",
+          "target_names": [
+            "PETimer.public int AddTimeTask(Action<int> callback, double delay, EPETimeUnit timeUnit = 1, int count = 1) { }"
+          ]
+        },
+        {
+          "address": "0x309341c",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "BattleManager",
+      "signature": "private void Msg_StoryTalkingShow(Message msg) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/BattleManager.cs",
+      "file_offset": "0x308f060",
+      "address": "0x3093060",
+      "length": 152,
+      "instructions": [
+        {
+          "address": "0x3093060",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x3093064",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3093068",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x309306c",
+          "instruction": "ldrb w8, [x21, #0x6b3]"
+        },
+        {
+          "address": "0x3093070",
+          "instruction": "mov x20, x1"
+        },
+        {
+          "address": "0x3093074",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x3093078",
+          "instruction": "tbnz w8, #0, #0x309309c"
+        },
+        {
+          "address": "0x309307c",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x3093080",
+          "instruction": "ldr x0, [x0, #0xab8]"
+        },
+        {
+          "address": "0x3093084",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093088",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x309308c",
+          "instruction": "ldr x0, [x0, #0x7f0]",
+          "literal": "Params1",
+          "literal_source": {
+            "got": "0x65c17f0",
+            "literal_index": 14332,
+            "metadata_offset": "0x9fd20"
+          }
+        },
+        {
+          "address": "0x3093090",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x3093094",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x3093098",
+          "instruction": "strb w8, [x21, #0x6b3]"
+        },
+        {
+          "address": "0x309309c",
+          "instruction": "cbz x20, #0x30930ec"
+        },
+        {
+          "address": "0x30930a0",
+          "instruction": "adrp x8, #0x65c1000"
+        },
+        {
+          "address": "0x30930a4",
+          "instruction": "ldr x8, [x8, #0x7f0]",
+          "literal": "Params1",
+          "literal_source": {
+            "got": "0x65c17f0",
+            "literal_index": 14332,
+            "metadata_offset": "0x9fd20"
+          }
+        },
+        {
+          "address": "0x30930a8",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30930ac",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30930b0",
+          "instruction": "ldr x1, [x8]"
+        },
+        {
+          "address": "0x30930b4",
+          "instruction": "bl #0x2f31d80",
+          "target_names": [
+            "Message.public object GetArg(string name) { }"
+          ]
+        },
+        {
+          "address": "0x30930b8",
+          "instruction": "mov x8, x0"
+        },
+        {
+          "address": "0x30930bc",
+          "instruction": "cbz x0, #0x30930d8"
+        },
+        {
+          "address": "0x30930c0",
+          "instruction": "adrp x9, #0x65ac000"
+        },
+        {
+          "address": "0x30930c4",
+          "instruction": "ldr x9, [x9, #0xab8]"
+        },
+        {
+          "address": "0x30930c8",
+          "instruction": "ldr x1, [x9]"
+        },
+        {
+          "address": "0x30930cc",
+          "instruction": "ldr x9, [x8]"
+        },
+        {
+          "address": "0x30930d0",
+          "instruction": "cmp x9, x1"
+        },
+        {
+          "address": "0x30930d4",
+          "instruction": "b.ne #0x30930f0"
+        },
+        {
+          "address": "0x30930d8",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x30930dc",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30930e0",
+          "instruction": "mov x1, x8"
+        },
+        {
+          "address": "0x30930e4",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x30930e8",
+          "instruction": "b #0x30930f8",
+          "target_names": [
+            "BattleManager.public void EnterStoryTalkingShow(string storyScriptsName) { }"
+          ]
+        },
+        {
+          "address": "0x30930ec",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        },
+        {
+          "address": "0x30930f0",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x30930f4",
+          "instruction": "bl #0x2aa101c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "Panel_PlayerBattleCtrl",
+      "signature": "private void <InitPanel_Battle>b__70_0() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/Panel_PlayerBattleCtrl.cs",
+      "file_offset": "0x30ee060",
+      "address": "0x30f2060",
+      "length": 44,
+      "instructions": [
+        {
+          "address": "0x30f2060",
+          "instruction": "stp x30, x19, [sp, #-0x10]!"
+        },
+        {
+          "address": "0x30f2064",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x30f2068",
+          "instruction": "ldr x0, [x0, #0x178]"
+        },
+        {
+          "address": "0x30f206c",
+          "instruction": "cbz x0, #0x30f2080"
+        },
+        {
+          "address": "0x30f2070",
+          "instruction": "fmov s0, wzr"
+        },
+        {
+          "address": "0x30f2074",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x30f2078",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30f207c",
+          "instruction": "bl #0x2d1b15c",
+          "target_names": [
+            "CanvasGroupExtension.public static void DisableCanvasGroup(CanvasGroup canvasGroup, float animHideTime = 0, bool endSetActiveFalse = false) { }"
+          ]
+        },
+        {
+          "address": "0x30f2080",
+          "instruction": "str wzr, [x19, #0x1cc]"
+        },
+        {
+          "address": "0x30f2084",
+          "instruction": "ldp x30, x19, [sp], #0x10"
+        },
+        {
+          "address": "0x30f2088",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "class": "Panel_PlayerBattleCtrl",
+      "signature": "private void <OnAwake_Battle>b__66_0() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/Panel_PlayerBattleCtrl.cs",
+      "file_offset": "0x30edf78",
+      "address": "0x30f1f78",
+      "length": 8,
+      "instructions": [
+        {
+          "address": "0x30f1f78",
+          "instruction": "fmov s0, #-1.00000000"
+        },
+        {
+          "address": "0x30f1f7c",
+          "instruction": "b #0x30ed764",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.public void SendMsgBattleCameraScale(float scale) { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "Panel_PlayerBattleCtrl",
+      "signature": "private void <OnAwake_Battle>b__66_1() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/Panel_PlayerBattleCtrl.cs",
+      "file_offset": "0x30edf80",
+      "address": "0x30f1f80",
+      "length": 224,
+      "instructions": [
+        {
+          "address": "0x30f1f80",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x30f1f84",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30f1f88",
+          "instruction": "adrp x21, #0x6a64000"
+        },
+        {
+          "address": "0x30f1f8c",
+          "instruction": "adrp x20, #0x65b1000"
+        },
+        {
+          "address": "0x30f1f90",
+          "instruction": "ldrb w8, [x21, #0x8f8]"
+        },
+        {
+          "address": "0x30f1f94",
+          "instruction": "ldr x20, [x20, #0x440]"
+        },
+        {
+          "address": "0x30f1f98",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x30f1f9c",
+          "instruction": "tbnz w8, #0, #0x30f1fd8"
+        },
+        {
+          "address": "0x30f1fa0",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x30f1fa4",
+          "instruction": "ldr x0, [x0, #0x440]"
+        },
+        {
+          "address": "0x30f1fa8",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f1fac",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x30f1fb0",
+          "instruction": "ldr x0, [x0, #0x448]"
+        },
+        {
+          "address": "0x30f1fb4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f1fb8",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x30f1fbc",
+          "instruction": "ldr x0, [x0, #0x450]"
+        },
+        {
+          "address": "0x30f1fc0",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f1fc4",
+          "instruction": "adrp x0, #0x65d2000"
+        },
+        {
+          "address": "0x30f1fc8",
+          "instruction": "ldr x0, [x0, #0xf8]",
+          "literal": "UI_Naninovel_Skip",
+          "literal_source": {
+            "got": "0x65d20f8",
+            "literal_index": 18722,
+            "metadata_offset": "0xc9093"
+          }
+        },
+        {
+          "address": "0x30f1fcc",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f1fd0",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x30f1fd4",
+          "instruction": "strb w8, [x21, #0x8f8]"
+        },
+        {
+          "address": "0x30f1fd8",
+          "instruction": "ldr x0, [x20]"
+        },
+        {
+          "address": "0x30f1fdc",
+          "instruction": "adrp x21, #0x65d2000"
+        },
+        {
+          "address": "0x30f1fe0",
+          "instruction": "adrp x20, #0x65b1000"
+        },
+        {
+          "address": "0x30f1fe4",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30f1fe8",
+          "instruction": "ldr x21, [x21, #0xf8]",
+          "literal": "UI_Naninovel_Skip",
+          "literal_source": {
+            "got": "0x65d20f8",
+            "literal_index": 18722,
+            "metadata_offset": "0xc9093"
+          }
+        },
+        {
+          "address": "0x30f1fec",
+          "instruction": "ldr x20, [x20, #0x450]"
+        },
+        {
+          "address": "0x30f1ff0",
+          "instruction": "cbnz w8, #0x30f1ff8"
+        },
+        {
+          "address": "0x30f1ff4",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30f1ff8",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30f1ffc",
+          "instruction": "adrp x21, #0x65b1000"
+        },
+        {
+          "address": "0x30f2000",
+          "instruction": "ldr x21, [x21, #0x448]"
+        },
+        {
+          "address": "0x30f2004",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30f2008",
+          "instruction": "bl #0x2f489f4",
+          "target_names": [
+            "Message.public static Message Get(string name) { }"
+          ]
+        },
+        {
+          "address": "0x30f200c",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x30f2010",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x30f2014",
+          "instruction": "ldr w9, [x8, #0xe0]"
+        },
+        {
+          "address": "0x30f2018",
+          "instruction": "cbnz w9, #0x30f2024"
+        },
+        {
+          "address": "0x30f201c",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x30f2020",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30f2024",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30f2028",
+          "instruction": "bl #0x3f7d66c",
+          "target_names": [
+            "RSingleton`1.get { } //Length: 88",
+            "RSingleton`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x30f202c",
+          "instruction": "cbz x0, #0x30f205c"
+        },
+        {
+          "address": "0x30f2030",
+          "instruction": "mov x1, x20"
+        },
+        {
+          "address": "0x30f2034",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30f2038",
+          "instruction": "bl #0x2f4423c",
+          "target_names": [
+            "MessageManager.public void Send(Message msg) { }"
+          ]
+        },
+        {
+          "address": "0x30f203c",
+          "instruction": "ldr x0, [x19, #0x168]"
+        },
+        {
+          "address": "0x30f2040",
+          "instruction": "cbz x0, #0x30f205c"
+        },
+        {
+          "address": "0x30f2044",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30f2048",
+          "instruction": "bl #0x5ec1444",
+          "target_names": [
+            "Component.get { } //Length: 60",
+            "Component.public GameObject get_gameObject() { }"
+          ]
+        },
+        {
+          "address": "0x30f204c",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30f2050",
+          "instruction": "mov x1, x0"
+        },
+        {
+          "address": "0x30f2054",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x30f2058",
+          "instruction": "b #0x30f1018",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.private void ClickBtn(GameObject btn) { }"
+          ]
+        },
+        {
+          "address": "0x30f205c",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "Panel_PlayerBattleCtrl",
+      "signature": "public void InitPanel_Battle() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/Panel_PlayerBattleCtrl.cs",
+      "file_offset": "0x30e505c",
+      "address": "0x30e905c",
+      "length": 764,
+      "instructions": [
+        {
+          "address": "0x30e905c",
+          "instruction": "str x30, [sp, #-0x30]!"
+        },
+        {
+          "address": "0x30e9060",
+          "instruction": "stp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x30e9064",
+          "instruction": "stp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x30e9068",
+          "instruction": "adrp x20, #0x6a64000"
+        },
+        {
+          "address": "0x30e906c",
+          "instruction": "ldrb w8, [x20, #0x8be]"
+        },
+        {
+          "address": "0x30e9070",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x30e9074",
+          "instruction": "tbnz w8, #0, #0x30e90e0"
+        },
+        {
+          "address": "0x30e9078",
+          "instruction": "adrp x0, #0x65d8000"
+        },
+        {
+          "address": "0x30e907c",
+          "instruction": "ldr x0, [x0, #0xb88]"
+        },
+        {
+          "address": "0x30e9080",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e9084",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x30e9088",
+          "instruction": "ldr x0, [x0, #0xec0]"
+        },
+        {
+          "address": "0x30e908c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e9090",
+          "instruction": "adrp x0, #0x65d8000"
+        },
+        {
+          "address": "0x30e9094",
+          "instruction": "ldr x0, [x0, #0xb90]"
+        },
+        {
+          "address": "0x30e9098",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e909c",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x30e90a0",
+          "instruction": "ldr x0, [x0, #0xd30]"
+        },
+        {
+          "address": "0x30e90a4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e90a8",
+          "instruction": "adrp x0, #0x65b8000"
+        },
+        {
+          "address": "0x30e90ac",
+          "instruction": "ldr x0, [x0, #0x7b8]"
+        },
+        {
+          "address": "0x30e90b0",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e90b4",
+          "instruction": "adrp x0, #0x65b8000"
+        },
+        {
+          "address": "0x30e90b8",
+          "instruction": "ldr x0, [x0, #0xd90]"
+        },
+        {
+          "address": "0x30e90bc",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e90c0",
+          "instruction": "adrp x0, #0x65b8000"
+        },
+        {
+          "address": "0x30e90c4",
+          "instruction": "ldr x0, [x0, #0xda0]"
+        },
+        {
+          "address": "0x30e90c8",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e90cc",
+          "instruction": "adrp x0, #0x65af000"
+        },
+        {
+          "address": "0x30e90d0",
+          "instruction": "ldr x0, [x0, #0xd68]"
+        },
+        {
+          "address": "0x30e90d4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e90d8",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x30e90dc",
+          "instruction": "strb w8, [x20, #0x8be]"
+        },
+        {
+          "address": "0x30e90e0",
+          "instruction": "ldr x0, [x19, #0x158]"
+        },
+        {
+          "address": "0x30e90e4",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e90e8",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x30e90ec",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e90f0",
+          "instruction": "ldp x9, x2, [x8, #0x1a8]"
+        },
+        {
+          "address": "0x30e90f4",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x30e90f8",
+          "instruction": "ldr x0, [x19, #0x160]"
+        },
+        {
+          "address": "0x30e90fc",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e9100",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x30e9104",
+          "instruction": "adrp x21, #0x65d8000"
+        },
+        {
+          "address": "0x30e9108",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e910c",
+          "instruction": "ldp x9, x2, [x8, #0x1a8]"
+        },
+        {
+          "address": "0x30e9110",
+          "instruction": "ldr x21, [x21, #0xb88]"
+        },
+        {
+          "address": "0x30e9114",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x30e9118",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30e911c",
+          "instruction": "ldr x20, [x19, #0x1b8]"
+        },
+        {
+          "address": "0x30e9120",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x30e9124",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e9128",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x30e912c",
+          "instruction": "bl #0x30ff5b4",
+          "target_names": [
+            "Box_BattleGetItemDisplayInfo.public ItemData() { }"
+          ]
+        },
+        {
+          "address": "0x30e9130",
+          "instruction": "cbz x20, #0x30e9354"
+        },
+        {
+          "address": "0x30e9134",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x30e9138",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e913c",
+          "instruction": "mov x1, x21"
+        },
+        {
+          "address": "0x30e9140",
+          "instruction": "ldp x9, x2, [x8, #0x1a8]"
+        },
+        {
+          "address": "0x30e9144",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x30e9148",
+          "instruction": "ldr x0, [x19, #0xd8]"
+        },
+        {
+          "address": "0x30e914c",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e9150",
+          "instruction": "adrp x21, #0x65b8000"
+        },
+        {
+          "address": "0x30e9154",
+          "instruction": "adrp x20, #0x65c1000"
+        },
+        {
+          "address": "0x30e9158",
+          "instruction": "ldr x21, [x21, #0x7b8]"
+        },
+        {
+          "address": "0x30e915c",
+          "instruction": "ldr x20, [x20, #0xd30]"
+        },
+        {
+          "address": "0x30e9160",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e9164",
+          "instruction": "bl #0x3102e98",
+          "target_names": [
+            "Box_MonsterSupportSkill.public void Init() { }"
+          ]
+        },
+        {
+          "address": "0x30e9168",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30e916c",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30e9170",
+          "instruction": "cbnz w8, #0x30e917c"
+        },
+        {
+          "address": "0x30e9174",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30e9178",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30e917c",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x30e9180",
+          "instruction": "ldr x9, [x0, #0xb8]"
+        },
+        {
+          "address": "0x30e9184",
+          "instruction": "adrp x21, #0x65b8000"
+        },
+        {
+          "address": "0x30e9188",
+          "instruction": "ldr w10, [x8, #0xe0]"
+        },
+        {
+          "address": "0x30e918c",
+          "instruction": "ldr w22, [x9, #0x68]"
+        },
+        {
+          "address": "0x30e9190",
+          "instruction": "ldr x21, [x21, #0xda0]"
+        },
+        {
+          "address": "0x30e9194",
+          "instruction": "cbnz w10, #0x30e91a4"
+        },
+        {
+          "address": "0x30e9198",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x30e919c",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30e91a0",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x30e91a4",
+          "instruction": "ldr x8, [x8, #0xb8]"
+        },
+        {
+          "address": "0x30e91a8",
+          "instruction": "str w22, [x8, #4]"
+        },
+        {
+          "address": "0x30e91ac",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30e91b0",
+          "instruction": "adrp x21, #0x65b8000"
+        },
+        {
+          "address": "0x30e91b4",
+          "instruction": "ldr x20, [x19, #0xd8]"
+        },
+        {
+          "address": "0x30e91b8",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30e91bc",
+          "instruction": "ldr x21, [x21, #0xd90]"
+        },
+        {
+          "address": "0x30e91c0",
+          "instruction": "cbnz w8, #0x30e91c8"
+        },
+        {
+          "address": "0x30e91c4",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30e91c8",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30e91cc",
+          "instruction": "bl #0x3f7cc28",
+          "target_names": [
+            "RSingleton_Mono`1.get { } //Length: 88",
+            "RSingleton_Mono`1.public static T get_Instance() { }"
+          ]
+        },
+        {
+          "address": "0x30e91d0",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e91d4",
+          "instruction": "ldr x8, [x0, #0x158]"
+        },
+        {
+          "address": "0x30e91d8",
+          "instruction": "cbz x8, #0x30e9354"
+        },
+        {
+          "address": "0x30e91dc",
+          "instruction": "ldr x8, [x8, #0x10]"
+        },
+        {
+          "address": "0x30e91e0",
+          "instruction": "cbz x8, #0x30e9354"
+        },
+        {
+          "address": "0x30e91e4",
+          "instruction": "ldr x8, [x8, #0x10]"
+        },
+        {
+          "address": "0x30e91e8",
+          "instruction": "cbz x8, #0x30e9354"
+        },
+        {
+          "address": "0x30e91ec",
+          "instruction": "ldr x8, [x8, #0x18]"
+        },
+        {
+          "address": "0x30e91f0",
+          "instruction": "cbz x8, #0x30e9354"
+        },
+        {
+          "address": "0x30e91f4",
+          "instruction": "ldr x0, [x8, #0x18]"
+        },
+        {
+          "address": "0x30e91f8",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e91fc",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e9200",
+          "instruction": "bl #0x2da0b7c",
+          "target_names": [
+            "RogueInGameInventory.public int GetCurPartnerEquipCount() { }"
+          ]
+        },
+        {
+          "address": "0x30e9204",
+          "instruction": "cbz x20, #0x30e9354"
+        },
+        {
+          "address": "0x30e9208",
+          "instruction": "adrp x21, #0x65ac000"
+        },
+        {
+          "address": "0x30e920c",
+          "instruction": "ldr x21, [x21, #0xec0]"
+        },
+        {
+          "address": "0x30e9210",
+          "instruction": "cmp w0, #0"
+        },
+        {
+          "address": "0x30e9214",
+          "instruction": "cset w1, gt"
+        },
+        {
+          "address": "0x30e9218",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e921c",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e9220",
+          "instruction": "bl #0x310482c",
+          "target_names": [
+            "Box_MonsterSupportSkill.public void SetDisplayActive(bool display) { }"
+          ]
+        },
+        {
+          "address": "0x30e9224",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x30e9228",
+          "instruction": "bl #0x30e9c28",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.public void RegisterBattleBtnDel() { }"
+          ]
+        },
+        {
+          "address": "0x30e922c",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x30e9230",
+          "instruction": "bl #0x30ea350",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.public void RegisterActSkillUIUpdate() { }"
+          ]
+        },
+        {
+          "address": "0x30e9234",
+          "instruction": "ldr x0, [x19, #0x178]"
+        },
+        {
+          "address": "0x30e9238",
+          "instruction": "cbz x0, #0x30e924c"
+        },
+        {
+          "address": "0x30e923c",
+          "instruction": "fmov s0, wzr"
+        },
+        {
+          "address": "0x30e9240",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x30e9244",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e9248",
+          "instruction": "bl #0x2d1b15c",
+          "target_names": [
+            "CanvasGroupExtension.public static void DisableCanvasGroup(CanvasGroup canvasGroup, float animHideTime = 0, bool endSetActiveFalse = false) { }"
+          ]
+        },
+        {
+          "address": "0x30e924c",
+          "instruction": "str wzr, [x19, #0x1cc]"
+        },
+        {
+          "address": "0x30e9250",
+          "instruction": "ldr x0, [x21]"
+        },
+        {
+          "address": "0x30e9254",
+          "instruction": "ldr x20, [x19, #0x180]"
+        },
+        {
+          "address": "0x30e9258",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30e925c",
+          "instruction": "cbnz w8, #0x30e9264"
+        },
+        {
+          "address": "0x30e9260",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30e9264",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e9268",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e926c",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e9270",
+          "instruction": "bl #0x5ec46e0",
+          "target_names": [
+            "Object.public static bool op_Inequality(Object x, Object y) { }"
+          ]
+        },
+        {
+          "address": "0x30e9274",
+          "instruction": "tbz w0, #0, #0x30e92c4"
+        },
+        {
+          "address": "0x30e9278",
+          "instruction": "ldr x8, [x19, #0x180]"
+        },
+        {
+          "address": "0x30e927c",
+          "instruction": "cbz x8, #0x30e9354"
+        },
+        {
+          "address": "0x30e9280",
+          "instruction": "ldr x20, [x8, #0x100]"
+        },
+        {
+          "address": "0x30e9284",
+          "instruction": "adrp x8, #0x65af000"
+        },
+        {
+          "address": "0x30e9288",
+          "instruction": "ldr x8, [x8, #0xd68]"
+        },
+        {
+          "address": "0x30e928c",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x30e9290",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x30e9294",
+          "instruction": "adrp x8, #0x65d8000"
+        },
+        {
+          "address": "0x30e9298",
+          "instruction": "ldr x8, [x8, #0xb90]"
+        },
+        {
+          "address": "0x30e929c",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x30e92a0",
+          "instruction": "mov x3, xzr"
+        },
+        {
+          "address": "0x30e92a4",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x30e92a8",
+          "instruction": "ldr x2, [x8]"
+        },
+        {
+          "address": "0x30e92ac",
+          "instruction": "bl #0x5ede814",
+          "target_names": [
+            "UnityAction.public UnityAction(object object, nint method) { }"
+          ]
+        },
+        {
+          "address": "0x30e92b0",
+          "instruction": "cbz x20, #0x30e9354"
+        },
+        {
+          "address": "0x30e92b4",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e92b8",
+          "instruction": "mov x1, x21"
+        },
+        {
+          "address": "0x30e92bc",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e92c0",
+          "instruction": "bl #0x5ede910",
+          "target_names": [
+            "UnityEvent.public void AddListener(UnityAction call) { }"
+          ]
+        },
+        {
+          "address": "0x30e92c4",
+          "instruction": "bl #0x30e78e4",
+          "target_names": [
+            "Panel_PlayerBattleCtrl.get { } //Length: 116",
+            "Panel_PlayerBattleCtrl.private BattlePartyData get_mBattlePartyData() { }"
+          ]
+        },
+        {
+          "address": "0x30e92c8",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e92cc",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e92d0",
+          "instruction": "bl #0x3123608",
+          "target_names": [
+            "BattlePartyData.get { } //Length: 8",
+            "BattlePartyData.public Player get_CurActiveChara() { }"
+          ]
+        },
+        {
+          "address": "0x30e92d4",
+          "instruction": "cbz x0, #0x30e9344"
+        },
+        {
+          "address": "0x30e92d8",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e92dc",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x30e92e0",
+          "instruction": "bl #0x315e98c",
+          "target_names": [
+            "Player.get { } //Length: 124",
+            "Player.public PlayerStaticStatus get_PlayerStaticStatus() { }"
+          ]
+        },
+        {
+          "address": "0x30e92e4",
+          "instruction": "cbz x0, #0x30e9344"
+        },
+        {
+          "address": "0x30e92e8",
+          "instruction": "ldr x21, [x19, #0x108]"
+        },
+        {
+          "address": "0x30e92ec",
+          "instruction": "cbz x21, #0x30e9344"
+        },
+        {
+          "address": "0x30e92f0",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e92f4",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e92f8",
+          "instruction": "bl #0x315e98c",
+          "target_names": [
+            "Player.get { } //Length: 124",
+            "Player.public PlayerStaticStatus get_PlayerStaticStatus() { }"
+          ]
+        },
+        {
+          "address": "0x30e92fc",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e9300",
+          "instruction": "ldr x1, [x0, #0x18]"
+        },
+        {
+          "address": "0x30e9304",
+          "instruction": "mov x0, x21"
+        },
+        {
+          "address": "0x30e9308",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e930c",
+          "instruction": "bl #0x30fdeb4",
+          "target_names": [
+            "Box_BattleCharaInspector.public void SetNameDisplay(string name) { }"
+          ]
+        },
+        {
+          "address": "0x30e9310",
+          "instruction": "ldr x19, [x19, #0x108]"
+        },
+        {
+          "address": "0x30e9314",
+          "instruction": "cbz x19, #0x30e9344"
+        },
+        {
+          "address": "0x30e9318",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e931c",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e9320",
+          "instruction": "bl #0x315e98c",
+          "target_names": [
+            "Player.get { } //Length: 124",
+            "Player.public PlayerStaticStatus get_PlayerStaticStatus() { }"
+          ]
+        },
+        {
+          "address": "0x30e9324",
+          "instruction": "cbz x0, #0x30e9354"
+        },
+        {
+          "address": "0x30e9328",
+          "instruction": "ldr x1, [x0, #0x40]"
+        },
+        {
+          "address": "0x30e932c",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x30e9330",
+          "instruction": "ldp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x30e9334",
+          "instruction": "ldp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x30e9338",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e933c",
+          "instruction": "ldr x30, [sp], #0x30"
+        },
+        {
+          "address": "0x30e9340",
+          "instruction": "b #0x30fdf54",
+          "target_names": [
+            "Box_BattleCharaInspector.public void SetCharaIconDisplay(string charaIconName) { }"
+          ]
+        },
+        {
+          "address": "0x30e9344",
+          "instruction": "ldp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x30e9348",
+          "instruction": "ldp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x30e934c",
+          "instruction": "ldr x30, [sp], #0x30"
+        },
+        {
+          "address": "0x30e9350",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x30e9354",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "Panel_PlayerBattleCtrl",
+      "signature": "public void Msg_NaninovelTalkStateChange(Message msg) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/Panel_PlayerBattleCtrl.cs",
+      "file_offset": "0x30ecf28",
+      "address": "0x30f0f28",
+      "length": 240,
+      "instructions": [
+        {
+          "address": "0x30f0f28",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x30f0f2c",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30f0f30",
+          "instruction": "adrp x20, #0x6a64000"
+        },
+        {
+          "address": "0x30f0f34",
+          "instruction": "ldrb w8, [x20, #0x8ed]"
+        },
+        {
+          "address": "0x30f0f38",
+          "instruction": "mov x19, x1"
+        },
+        {
+          "address": "0x30f0f3c",
+          "instruction": "tbnz w8, #0, #0x30f0f78"
+        },
+        {
+          "address": "0x30f0f40",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x30f0f44",
+          "instruction": "ldr x0, [x0, #0x930]"
+        },
+        {
+          "address": "0x30f0f48",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f0f4c",
+          "instruction": "adrp x0, #0x65b1000"
+        },
+        {
+          "address": "0x30f0f50",
+          "instruction": "ldr x0, [x0, #0x440]"
+        },
+        {
+          "address": "0x30f0f54",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f0f58",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x30f0f5c",
+          "instruction": "ldr x0, [x0, #0xa90]",
+          "literal": "UI_NpcTalkFavorite",
+          "literal_source": {
+            "got": "0x65c1a90",
+            "literal_index": 18723,
+            "metadata_offset": "0xc90a4"
+          }
+        },
+        {
+          "address": "0x30f0f60",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f0f64",
+          "instruction": "adrp x0, #0x65c1000"
+        },
+        {
+          "address": "0x30f0f68",
+          "instruction": "ldr x0, [x0, #0xcb0]",
+          "literal": "State",
+          "literal_source": {
+            "got": "0x65c1cb0",
+            "literal_index": 16525,
+            "metadata_offset": "0xb009f"
+          }
+        },
+        {
+          "address": "0x30f0f6c",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30f0f70",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x30f0f74",
+          "instruction": "strb w8, [x20, #0x8ed]"
+        },
+        {
+          "address": "0x30f0f78",
+          "instruction": "cbz x19, #0x30f1010"
+        },
+        {
+          "address": "0x30f0f7c",
+          "instruction": "adrp x8, #0x65c1000"
+        },
+        {
+          "address": "0x30f0f80",
+          "instruction": "ldr x8, [x8, #0xcb0]",
+          "literal": "State",
+          "literal_source": {
+            "got": "0x65c1cb0",
+            "literal_index": 16525,
+            "metadata_offset": "0xb009f"
+          }
+        },
+        {
+          "address": "0x30f0f84",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x30f0f88",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30f0f8c",
+          "instruction": "ldr x1, [x8]"
+        },
+        {
+          "address": "0x30f0f90",
+          "instruction": "bl #0x2f31d80",
+          "target_names": [
+            "Message.public object GetArg(string name) { }"
+          ]
+        },
+        {
+          "address": "0x30f0f94",
+          "instruction": "cbz x0, #0x30f1010"
+        },
+        {
+          "address": "0x30f0f98",
+          "instruction": "adrp x8, #0x65ac000"
+        },
+        {
+          "address": "0x30f0f9c",
+          "instruction": "ldr x8, [x8, #0x930]"
+        },
+        {
+          "address": "0x30f0fa0",
+          "instruction": "ldr x9, [x0]"
+        },
+        {
+          "address": "0x30f0fa4",
+          "instruction": "ldr x1, [x8]"
+        },
+        {
+          "address": "0x30f0fa8",
+          "instruction": "ldr x8, [x9, #0x40]"
+        },
+        {
+          "address": "0x30f0fac",
+          "instruction": "ldr x9, [x1, #0x40]"
+        },
+        {
+          "address": "0x30f0fb0",
+          "instruction": "cmp x8, x9"
+        },
+        {
+          "address": "0x30f0fb4",
+          "instruction": "b.ne #0x30f1014"
+        },
+        {
+          "address": "0x30f0fb8",
+          "instruction": "bl #0x2aa0b84",
+          "target_names": []
+        },
+        {
+          "address": "0x30f0fbc",
+          "instruction": "ldrb w8, [x0]"
+        },
+        {
+          "address": "0x30f0fc0",
+          "instruction": "cbz w8, #0x30f0fd0"
+        },
+        {
+          "address": "0x30f0fc4",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30f0fc8",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x30f0fcc",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x30f0fd0",
+          "instruction": "adrp x8, #0x65b1000"
+        },
+        {
+          "address": "0x30f0fd4",
+          "instruction": "ldr x8, [x8, #0x440]"
+        },
+        {
+          "address": "0x30f0fd8",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x30f0fdc",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x30f0fe0",
+          "instruction": "adrp x8, #0x65c1000"
+        },
+        {
+          "address": "0x30f0fe4",
+          "instruction": "ldr x8, [x8, #0xa90]",
+          "literal": "UI_NpcTalkFavorite",
+          "literal_source": {
+            "got": "0x65c1a90",
+            "literal_index": 18723,
+            "metadata_offset": "0xc90a4"
+          }
+        },
+        {
+          "address": "0x30f0fe8",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30f0fec",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x30f0ff0",
+          "instruction": "ldr x1, [x8]"
+        },
+        {
+          "address": "0x30f0ff4",
+          "instruction": "bl #0x2f441a0",
+          "target_names": [
+            "Message.public Message(string name) { }"
+          ]
+        },
+        {
+          "address": "0x30f0ff8",
+          "instruction": "cbz x19, #0x30f1010"
+        },
+        {
+          "address": "0x30f0ffc",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x30f1000",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x30f1004",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30f1008",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x30f100c",
+          "instruction": "b #0x2f4936c",
+          "target_names": [
+            "Message.public void Send() { }"
+          ]
+        },
+        {
+          "address": "0x30f1010",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        },
+        {
+          "address": "0x30f1014",
+          "instruction": "bl #0x2aa101c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "Panel_PlayerBattleCtrl",
+      "signature": "private void OnAwake_Battle() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Teamelo/ActionEngine/Panel_PlayerBattleCtrl.cs",
+      "file_offset": "0x30e39b4",
+      "address": "0x30e79b4",
+      "length": 356,
+      "instructions": [
+        {
+          "address": "0x30e79b4",
+          "instruction": "str x30, [sp, #-0x30]!"
+        },
+        {
+          "address": "0x30e79b8",
+          "instruction": "stp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x30e79bc",
+          "instruction": "stp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x30e79c0",
+          "instruction": "adrp x20, #0x6a64000"
+        },
+        {
+          "address": "0x30e79c4",
+          "instruction": "adrp x22, #0x65ac000"
+        },
+        {
+          "address": "0x30e79c8",
+          "instruction": "ldrb w8, [x20, #0x8ba]"
+        },
+        {
+          "address": "0x30e79cc",
+          "instruction": "ldr x22, [x22, #0xec0]"
+        },
+        {
+          "address": "0x30e79d0",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x30e79d4",
+          "instruction": "tbnz w8, #0, #0x30e7a10"
+        },
+        {
+          "address": "0x30e79d8",
+          "instruction": "adrp x0, #0x65ac000"
+        },
+        {
+          "address": "0x30e79dc",
+          "instruction": "ldr x0, [x0, #0xec0]"
+        },
+        {
+          "address": "0x30e79e0",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e79e4",
+          "instruction": "adrp x0, #0x65d8000"
+        },
+        {
+          "address": "0x30e79e8",
+          "instruction": "ldr x0, [x0, #0xaa0]"
+        },
+        {
+          "address": "0x30e79ec",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e79f0",
+          "instruction": "adrp x0, #0x65d8000"
+        },
+        {
+          "address": "0x30e79f4",
+          "instruction": "ldr x0, [x0, #0xaa8]"
+        },
+        {
+          "address": "0x30e79f8",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e79fc",
+          "instruction": "adrp x0, #0x65af000"
+        },
+        {
+          "address": "0x30e7a00",
+          "instruction": "ldr x0, [x0, #0xd68]"
+        },
+        {
+          "address": "0x30e7a04",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x30e7a08",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x30e7a0c",
+          "instruction": "strb w8, [x20, #0x8ba]"
+        },
+        {
+          "address": "0x30e7a10",
+          "instruction": "ldr x0, [x22]"
+        },
+        {
+          "address": "0x30e7a14",
+          "instruction": "ldr x20, [x19, #0x118]"
+        },
+        {
+          "address": "0x30e7a18",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30e7a1c",
+          "instruction": "cbnz w8, #0x30e7a24"
+        },
+        {
+          "address": "0x30e7a20",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30e7a24",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e7a28",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e7a2c",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e7a30",
+          "instruction": "bl #0x5ec46e0",
+          "target_names": [
+            "Object.public static bool op_Inequality(Object x, Object y) { }"
+          ]
+        },
+        {
+          "address": "0x30e7a34",
+          "instruction": "tbz w0, #0, #0x30e7a84"
+        },
+        {
+          "address": "0x30e7a38",
+          "instruction": "ldr x8, [x19, #0x118]"
+        },
+        {
+          "address": "0x30e7a3c",
+          "instruction": "cbz x8, #0x30e7b14"
+        },
+        {
+          "address": "0x30e7a40",
+          "instruction": "ldr x20, [x8, #0x100]"
+        },
+        {
+          "address": "0x30e7a44",
+          "instruction": "adrp x8, #0x65af000"
+        },
+        {
+          "address": "0x30e7a48",
+          "instruction": "ldr x8, [x8, #0xd68]"
+        },
+        {
+          "address": "0x30e7a4c",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x30e7a50",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x30e7a54",
+          "instruction": "adrp x8, #0x65d8000"
+        },
+        {
+          "address": "0x30e7a58",
+          "instruction": "ldr x8, [x8, #0xaa0]"
+        },
+        {
+          "address": "0x30e7a5c",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x30e7a60",
+          "instruction": "mov x3, xzr"
+        },
+        {
+          "address": "0x30e7a64",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x30e7a68",
+          "instruction": "ldr x2, [x8]"
+        },
+        {
+          "address": "0x30e7a6c",
+          "instruction": "bl #0x5ede814",
+          "target_names": [
+            "UnityAction.public UnityAction(object object, nint method) { }"
+          ]
+        },
+        {
+          "address": "0x30e7a70",
+          "instruction": "cbz x20, #0x30e7b14"
+        },
+        {
+          "address": "0x30e7a74",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e7a78",
+          "instruction": "mov x1, x21"
+        },
+        {
+          "address": "0x30e7a7c",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e7a80",
+          "instruction": "bl #0x5ede910",
+          "target_names": [
+            "UnityEvent.public void AddListener(UnityAction call) { }"
+          ]
+        },
+        {
+          "address": "0x30e7a84",
+          "instruction": "ldr x0, [x22]"
+        },
+        {
+          "address": "0x30e7a88",
+          "instruction": "ldr x20, [x19, #0x168]"
+        },
+        {
+          "address": "0x30e7a8c",
+          "instruction": "ldr w8, [x0, #0xe0]"
+        },
+        {
+          "address": "0x30e7a90",
+          "instruction": "cbnz w8, #0x30e7a98"
+        },
+        {
+          "address": "0x30e7a94",
+          "instruction": "bl #0x2aa0b78",
+          "target_names": []
+        },
+        {
+          "address": "0x30e7a98",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e7a9c",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x30e7aa0",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e7aa4",
+          "instruction": "bl #0x5ec46e0",
+          "target_names": [
+            "Object.public static bool op_Inequality(Object x, Object y) { }"
+          ]
+        },
+        {
+          "address": "0x30e7aa8",
+          "instruction": "tbz w0, #0, #0x30e7b04"
+        },
+        {
+          "address": "0x30e7aac",
+          "instruction": "ldr x8, [x19, #0x168]"
+        },
+        {
+          "address": "0x30e7ab0",
+          "instruction": "cbz x8, #0x30e7b14"
+        },
+        {
+          "address": "0x30e7ab4",
+          "instruction": "ldr x20, [x8, #0x100]"
+        },
+        {
+          "address": "0x30e7ab8",
+          "instruction": "adrp x8, #0x65af000"
+        },
+        {
+          "address": "0x30e7abc",
+          "instruction": "ldr x8, [x8, #0xd68]"
+        },
+        {
+          "address": "0x30e7ac0",
+          "instruction": "ldr x0, [x8]"
+        },
+        {
+          "address": "0x30e7ac4",
+          "instruction": "bl #0x2aa0c8c",
+          "target_names": []
+        },
+        {
+          "address": "0x30e7ac8",
+          "instruction": "adrp x8, #0x65d8000"
+        },
+        {
+          "address": "0x30e7acc",
+          "instruction": "ldr x8, [x8, #0xaa8]"
+        },
+        {
+          "address": "0x30e7ad0",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x30e7ad4",
+          "instruction": "mov x3, xzr"
+        },
+        {
+          "address": "0x30e7ad8",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x30e7adc",
+          "instruction": "ldr x2, [x8]"
+        },
+        {
+          "address": "0x30e7ae0",
+          "instruction": "bl #0x5ede814",
+          "target_names": [
+            "UnityAction.public UnityAction(object object, nint method) { }"
+          ]
+        },
+        {
+          "address": "0x30e7ae4",
+          "instruction": "cbz x20, #0x30e7b14"
+        },
+        {
+          "address": "0x30e7ae8",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x30e7aec",
+          "instruction": "mov x1, x21"
+        },
+        {
+          "address": "0x30e7af0",
+          "instruction": "ldp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x30e7af4",
+          "instruction": "ldp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x30e7af8",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x30e7afc",
+          "instruction": "ldr x30, [sp], #0x30"
+        },
+        {
+          "address": "0x30e7b00",
+          "instruction": "b #0x5ede910",
+          "target_names": [
+            "UnityEvent.public void AddListener(UnityAction call) { }"
+          ]
+        },
+        {
+          "address": "0x30e7b04",
+          "instruction": "ldp x20, x19, [sp, #0x20]"
+        },
+        {
+          "address": "0x30e7b08",
+          "instruction": "ldp x22, x21, [sp, #0x10]"
+        },
+        {
+          "address": "0x30e7b0c",
+          "instruction": "ldr x30, [sp], #0x30"
+        },
+        {
+          "address": "0x30e7b10",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x30e7b14",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "ControlPanelSkipButton_Custom",
+      "signature": "public ControlPanelSkipButton_Custom() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Naninovel/UI/ControlPanelSkipButton_Custom.cs",
+      "file_offset": "0x2e31d50",
+      "address": "0x2e35d50",
+      "length": 20,
+      "instructions": [
+        {
+          "address": "0x2e35d50",
+          "instruction": "adrp x8, #0x128c000"
+        },
+        {
+          "address": "0x2e35d54",
+          "instruction": "ldr q0, [x8, #0xb40]"
+        },
+        {
+          "address": "0x2e35d58",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x2e35d5c",
+          "instruction": "str q0, [x0, #0x90]"
+        },
+        {
+          "address": "0x2e35d60",
+          "instruction": "b #0x33b7d98",
+          "target_names": [
+            "ScriptableLabeledButton.public ScriptableLabeledButton() { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "ControlPanelSkipButton_Custom",
+      "signature": "private void HandleSkipModeChange(bool enabled) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Assembly-CSharp/Naninovel/UI/ControlPanelSkipButton_Custom.cs",
+      "file_offset": "0x2e31cf0",
+      "address": "0x2e35cf0",
+      "length": 96,
+      "instructions": [
+        {
+          "address": "0x2e35cf0",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x2e35cf4",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x2e35cf8",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x2e35cfc",
+          "instruction": "mov w20, w1"
+        },
+        {
+          "address": "0x2e35d00",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x2e35d04",
+          "instruction": "ldr x9, [x8, #0x4d8]"
+        },
+        {
+          "address": "0x2e35d08",
+          "instruction": "ldr x8, [x8, #0x4e0]"
+        },
+        {
+          "address": "0x2e35d0c",
+          "instruction": "mov x1, x8"
+        },
+        {
+          "address": "0x2e35d10",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x2e35d14",
+          "instruction": "fmov s3, #1.00000000"
+        },
+        {
+          "address": "0x2e35d18",
+          "instruction": "fmov s2, #1.00000000"
+        },
+        {
+          "address": "0x2e35d1c",
+          "instruction": "fmov s1, #1.00000000"
+        },
+        {
+          "address": "0x2e35d20",
+          "instruction": "fmov s0, #1.00000000"
+        },
+        {
+          "address": "0x2e35d24",
+          "instruction": "tbz w20, #0, #0x2e35d30"
+        },
+        {
+          "address": "0x2e35d28",
+          "instruction": "ldp s0, s1, [x19, #0x90]"
+        },
+        {
+          "address": "0x2e35d2c",
+          "instruction": "ldp s2, s3, [x19, #0x98]"
+        },
+        {
+          "address": "0x2e35d30",
+          "instruction": "cbz x0, #0x2e35d4c"
+        },
+        {
+          "address": "0x2e35d34",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x2e35d38",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x2e35d3c",
+          "instruction": "ldr x2, [x8, #0x418]"
+        },
+        {
+          "address": "0x2e35d40",
+          "instruction": "ldr x1, [x8, #0x420]"
+        },
+        {
+          "address": "0x2e35d44",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x2e35d48",
+          "instruction": "br x2"
+        },
+        {
+          "address": "0x2e35d4c",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "public void add_OnSkip(Action<bool> value) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f68c8",
+      "address": "0x33fa8c8",
+      "length": 176,
+      "instructions": [
+        {
+          "address": "0x33fa8c8",
+          "instruction": "str x30, [sp, #-0x40]!"
+        },
+        {
+          "address": "0x33fa8cc",
+          "instruction": "stp x24, x23, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fa8d0",
+          "instruction": "stp x22, x21, [sp, #0x20]"
+        },
+        {
+          "address": "0x33fa8d4",
+          "instruction": "stp x20, x19, [sp, #0x30]"
+        },
+        {
+          "address": "0x33fa8d8",
+          "instruction": "adrp x21, #0x6a66000"
+        },
+        {
+          "address": "0x33fa8dc",
+          "instruction": "ldrb w8, [x21, #0x43c]"
+        },
+        {
+          "address": "0x33fa8e0",
+          "instruction": "mov x19, x1"
+        },
+        {
+          "address": "0x33fa8e4",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x33fa8e8",
+          "instruction": "tbnz w8, #0, #0x33fa900"
+        },
+        {
+          "address": "0x33fa8ec",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x33fa8f0",
+          "instruction": "ldr x0, [x0, #0x690]"
+        },
+        {
+          "address": "0x33fa8f4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa8f8",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x33fa8fc",
+          "instruction": "strb w8, [x21, #0x43c]"
+        },
+        {
+          "address": "0x33fa900",
+          "instruction": "adrp x24, #0x65c4000"
+        },
+        {
+          "address": "0x33fa904",
+          "instruction": "ldr x21, [x20, #0x30]!"
+        },
+        {
+          "address": "0x33fa908",
+          "instruction": "ldr x24, [x24, #0x690]"
+        },
+        {
+          "address": "0x33fa90c",
+          "instruction": "mov x0, x21"
+        },
+        {
+          "address": "0x33fa910",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x33fa914",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x33fa918",
+          "instruction": "bl #0x515bf24",
+          "target_names": [
+            "Delegate.public static Delegate Combine(Delegate a, Delegate b) { }"
+          ]
+        },
+        {
+          "address": "0x33fa91c",
+          "instruction": "cbz x0, #0x33fa93c"
+        },
+        {
+          "address": "0x33fa920",
+          "instruction": "ldr x23, [x24]"
+        },
+        {
+          "address": "0x33fa924",
+          "instruction": "mov x22, x0"
+        },
+        {
+          "address": "0x33fa928",
+          "instruction": "mov x1, x23"
+        },
+        {
+          "address": "0x33fa92c",
+          "instruction": "bl #0x2aa0b7c",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa930",
+          "instruction": "mov x1, x0"
+        },
+        {
+          "address": "0x33fa934",
+          "instruction": "cbnz x0, #0x33fa940"
+        },
+        {
+          "address": "0x33fa938",
+          "instruction": "b #0x33fa96c",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa93c",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x33fa940",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x33fa944",
+          "instruction": "mov x2, x21"
+        },
+        {
+          "address": "0x33fa948",
+          "instruction": "bl #0x2ab4a44",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa94c",
+          "instruction": "cmp x21, x0"
+        },
+        {
+          "address": "0x33fa950",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x33fa954",
+          "instruction": "b.ne #0x33fa90c"
+        },
+        {
+          "address": "0x33fa958",
+          "instruction": "ldp x20, x19, [sp, #0x30]"
+        },
+        {
+          "address": "0x33fa95c",
+          "instruction": "ldp x22, x21, [sp, #0x20]"
+        },
+        {
+          "address": "0x33fa960",
+          "instruction": "ldp x24, x23, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fa964",
+          "instruction": "ldr x30, [sp], #0x40"
+        },
+        {
+          "address": "0x33fa968",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x33fa96c",
+          "instruction": "mov x0, x22"
+        },
+        {
+          "address": "0x33fa970",
+          "instruction": "mov x1, x23"
+        },
+        {
+          "address": "0x33fa974",
+          "instruction": "bl #0x2aa101c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "private void DisableSkip() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f7880",
+      "address": "0x33fb880",
+      "length": 20,
+      "instructions": [
+        {
+          "address": "0x33fb880",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x33fb884",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x33fb888",
+          "instruction": "ldr x3, [x8, #0x728]"
+        },
+        {
+          "address": "0x33fb88c",
+          "instruction": "ldr x2, [x8, #0x730]"
+        },
+        {
+          "address": "0x33fb890",
+          "instruction": "br x3"
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "private void EnableSkip() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f9914",
+      "address": "0x33fd914",
+      "length": 20,
+      "instructions": [
+        {
+          "address": "0x33fd914",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x33fd918",
+          "instruction": "mov w1, #1"
+        },
+        {
+          "address": "0x33fd91c",
+          "instruction": "ldr x3, [x8, #0x728]"
+        },
+        {
+          "address": "0x33fd920",
+          "instruction": "ldr x2, [x8, #0x730]"
+        },
+        {
+          "address": "0x33fd924",
+          "instruction": "br x3"
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "public virtual bool get_SkipActive() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f6e70",
+      "address": "0x33fae70",
+      "length": 8,
+      "instructions": [
+        {
+          "address": "0x33fae70",
+          "instruction": "ldrb w0, [x0, #0x58]"
+        },
+        {
+          "address": "0x33fae74",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "public virtual PlayerSkipMode get_SkipMode() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f6eac",
+      "address": "0x33faeac",
+      "length": 8,
+      "instructions": [
+        {
+          "address": "0x33faeac",
+          "instruction": "ldr w0, [x0, #0x5c]"
+        },
+        {
+          "address": "0x33faeb0",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "private bool GetSkipAllowed() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f90b0",
+      "address": "0x33fd0b0",
+      "length": 164,
+      "instructions": [
+        {
+          "address": "0x33fd0b0",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x33fd0b4",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fd0b8",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x33fd0bc",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x33fd0c0",
+          "instruction": "ldr x9, [x8, #0x568]"
+        },
+        {
+          "address": "0x33fd0c4",
+          "instruction": "ldr x1, [x8, #0x570]"
+        },
+        {
+          "address": "0x33fd0c8",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd0cc",
+          "instruction": "cmp w0, #1"
+        },
+        {
+          "address": "0x33fd0d0",
+          "instruction": "b.eq #0x33fd144"
+        },
+        {
+          "address": "0x33fd0d4",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd0d8",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd0dc",
+          "instruction": "ldr x9, [x8, #0x588]"
+        },
+        {
+          "address": "0x33fd0e0",
+          "instruction": "ldr x1, [x8, #0x590]"
+        },
+        {
+          "address": "0x33fd0e4",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd0e8",
+          "instruction": "cbz x0, #0x33fd144"
+        },
+        {
+          "address": "0x33fd0ec",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd0f0",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd0f4",
+          "instruction": "ldr x9, [x8, #0x588]"
+        },
+        {
+          "address": "0x33fd0f8",
+          "instruction": "ldr x1, [x8, #0x590]"
+        },
+        {
+          "address": "0x33fd0fc",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd100",
+          "instruction": "cbz x0, #0x33fd150"
+        },
+        {
+          "address": "0x33fd104",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x33fd108",
+          "instruction": "bl #0x5ec9314",
+          "target_names": [
+            "Object.get { } //Length: 116",
+            "Object.public string get_name() { }"
+          ]
+        },
+        {
+          "address": "0x33fd10c",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd110",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x33fd114",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd118",
+          "instruction": "ldr x9, [x8, #0x5c8]"
+        },
+        {
+          "address": "0x33fd11c",
+          "instruction": "ldr x1, [x8, #0x5d0]"
+        },
+        {
+          "address": "0x33fd120",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd124",
+          "instruction": "ldr x8, [x19, #0xc0]"
+        },
+        {
+          "address": "0x33fd128",
+          "instruction": "cbz x8, #0x33fd150"
+        },
+        {
+          "address": "0x33fd12c",
+          "instruction": "mov x1, x20"
+        },
+        {
+          "address": "0x33fd130",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fd134",
+          "instruction": "add w2, w0, #1"
+        },
+        {
+          "address": "0x33fd138",
+          "instruction": "mov x0, x8"
+        },
+        {
+          "address": "0x33fd13c",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x33fd140",
+          "instruction": "b #0x33f99d4",
+          "target_names": [
+            "PlayedScriptRegister.public bool IsIndexPlayed(string scriptName, int playlistIndex) { }"
+          ]
+        },
+        {
+          "address": "0x33fd144",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fd148",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x33fd14c",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x33fd150",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "public void remove_OnSkip(Action<bool> value) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f6978",
+      "address": "0x33fa978",
+      "length": 176,
+      "instructions": [
+        {
+          "address": "0x33fa978",
+          "instruction": "str x30, [sp, #-0x40]!"
+        },
+        {
+          "address": "0x33fa97c",
+          "instruction": "stp x24, x23, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fa980",
+          "instruction": "stp x22, x21, [sp, #0x20]"
+        },
+        {
+          "address": "0x33fa984",
+          "instruction": "stp x20, x19, [sp, #0x30]"
+        },
+        {
+          "address": "0x33fa988",
+          "instruction": "adrp x21, #0x6a66000"
+        },
+        {
+          "address": "0x33fa98c",
+          "instruction": "ldrb w8, [x21, #0x43d]"
+        },
+        {
+          "address": "0x33fa990",
+          "instruction": "mov x19, x1"
+        },
+        {
+          "address": "0x33fa994",
+          "instruction": "mov x20, x0"
+        },
+        {
+          "address": "0x33fa998",
+          "instruction": "tbnz w8, #0, #0x33fa9b0"
+        },
+        {
+          "address": "0x33fa99c",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x33fa9a0",
+          "instruction": "ldr x0, [x0, #0x690]"
+        },
+        {
+          "address": "0x33fa9a4",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa9a8",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x33fa9ac",
+          "instruction": "strb w8, [x21, #0x43d]"
+        },
+        {
+          "address": "0x33fa9b0",
+          "instruction": "adrp x24, #0x65c4000"
+        },
+        {
+          "address": "0x33fa9b4",
+          "instruction": "ldr x21, [x20, #0x30]!"
+        },
+        {
+          "address": "0x33fa9b8",
+          "instruction": "ldr x24, [x24, #0x690]"
+        },
+        {
+          "address": "0x33fa9bc",
+          "instruction": "mov x0, x21"
+        },
+        {
+          "address": "0x33fa9c0",
+          "instruction": "mov x1, x19"
+        },
+        {
+          "address": "0x33fa9c4",
+          "instruction": "mov x2, xzr"
+        },
+        {
+          "address": "0x33fa9c8",
+          "instruction": "bl #0x515c11c",
+          "target_names": [
+            "Delegate.public static Delegate Remove(Delegate source, Delegate value) { }"
+          ]
+        },
+        {
+          "address": "0x33fa9cc",
+          "instruction": "cbz x0, #0x33fa9ec"
+        },
+        {
+          "address": "0x33fa9d0",
+          "instruction": "ldr x23, [x24]"
+        },
+        {
+          "address": "0x33fa9d4",
+          "instruction": "mov x22, x0"
+        },
+        {
+          "address": "0x33fa9d8",
+          "instruction": "mov x1, x23"
+        },
+        {
+          "address": "0x33fa9dc",
+          "instruction": "bl #0x2aa0b7c",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa9e0",
+          "instruction": "mov x1, x0"
+        },
+        {
+          "address": "0x33fa9e4",
+          "instruction": "cbnz x0, #0x33fa9f0"
+        },
+        {
+          "address": "0x33fa9e8",
+          "instruction": "b #0x33faa1c",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa9ec",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x33fa9f0",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x33fa9f4",
+          "instruction": "mov x2, x21"
+        },
+        {
+          "address": "0x33fa9f8",
+          "instruction": "bl #0x2ab4a44",
+          "target_names": []
+        },
+        {
+          "address": "0x33fa9fc",
+          "instruction": "cmp x21, x0"
+        },
+        {
+          "address": "0x33faa00",
+          "instruction": "mov x21, x0"
+        },
+        {
+          "address": "0x33faa04",
+          "instruction": "b.ne #0x33fa9bc"
+        },
+        {
+          "address": "0x33faa08",
+          "instruction": "ldp x20, x19, [sp, #0x30]"
+        },
+        {
+          "address": "0x33faa0c",
+          "instruction": "ldp x22, x21, [sp, #0x20]"
+        },
+        {
+          "address": "0x33faa10",
+          "instruction": "ldp x24, x23, [sp, #0x10]"
+        },
+        {
+          "address": "0x33faa14",
+          "instruction": "ldr x30, [sp], #0x40"
+        },
+        {
+          "address": "0x33faa18",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x33faa1c",
+          "instruction": "mov x0, x22"
+        },
+        {
+          "address": "0x33faa20",
+          "instruction": "mov x1, x23"
+        },
+        {
+          "address": "0x33faa24",
+          "instruction": "bl #0x2aa101c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "private void set_SkipActive(bool value) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f6e78",
+      "address": "0x33fae78",
+      "length": 12,
+      "instructions": [
+        {
+          "address": "0x33fae78",
+          "instruction": "and w8, w1, #1"
+        },
+        {
+          "address": "0x33fae7c",
+          "instruction": "strb w8, [x0, #0x58]"
+        },
+        {
+          "address": "0x33fae80",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "public virtual void set_SkipMode(PlayerSkipMode value) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f6eb4",
+      "address": "0x33faeb4",
+      "length": 8,
+      "instructions": [
+        {
+          "address": "0x33faeb4",
+          "instruction": "str w1, [x0, #0x5c]"
+        },
+        {
+          "address": "0x33faeb8",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "public virtual void SetSkipEnabled(bool enable) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f8f04",
+      "address": "0x33fcf04",
+      "length": 428,
+      "instructions": [
+        {
+          "address": "0x33fcf04",
+          "instruction": "stp x30, x21, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x33fcf08",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fcf0c",
+          "instruction": "adrp x21, #0x6a66000"
+        },
+        {
+          "address": "0x33fcf10",
+          "instruction": "ldrb w8, [x21, #0x455]"
+        },
+        {
+          "address": "0x33fcf14",
+          "instruction": "mov w20, w1"
+        },
+        {
+          "address": "0x33fcf18",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x33fcf1c",
+          "instruction": "tbnz w8, #0, #0x33fcf34"
+        },
+        {
+          "address": "0x33fcf20",
+          "instruction": "adrp x0, #0x65c4000"
+        },
+        {
+          "address": "0x33fcf24",
+          "instruction": "ldr x0, [x0, #0x888]"
+        },
+        {
+          "address": "0x33fcf28",
+          "instruction": "bl #0x2aa0a00",
+          "target_names": []
+        },
+        {
+          "address": "0x33fcf2c",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x33fcf30",
+          "instruction": "strb w8, [x21, #0x455]"
+        },
+        {
+          "address": "0x33fcf34",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fcf38",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fcf3c",
+          "instruction": "ldr x9, [x8, #0x538]"
+        },
+        {
+          "address": "0x33fcf40",
+          "instruction": "ldr x1, [x8, #0x540]"
+        },
+        {
+          "address": "0x33fcf44",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fcf48",
+          "instruction": "and w8, w0, #1"
+        },
+        {
+          "address": "0x33fcf4c",
+          "instruction": "and w9, w20, #1"
+        },
+        {
+          "address": "0x33fcf50",
+          "instruction": "cmp w8, w9"
+        },
+        {
+          "address": "0x33fcf54",
+          "instruction": "b.eq #0x33fd0a0"
+        },
+        {
+          "address": "0x33fcf58",
+          "instruction": "tbz w20, #0, #0x33fcf90"
+        },
+        {
+          "address": "0x33fcf5c",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fcf60",
+          "instruction": "bl #0x33fd0b0",
+          "target_names": [
+            "ScriptPlayer.private bool GetSkipAllowed() { }"
+          ]
+        },
+        {
+          "address": "0x33fcf64",
+          "instruction": "tbz w0, #0, #0x33fd0a0"
+        },
+        {
+          "address": "0x33fcf68",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fcf6c",
+          "instruction": "mov w9, #1"
+        },
+        {
+          "address": "0x33fcf70",
+          "instruction": "strb w9, [x19, #0x58]"
+        },
+        {
+          "address": "0x33fcf74",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fcf78",
+          "instruction": "ldr x9, [x8, #0x508]"
+        },
+        {
+          "address": "0x33fcf7c",
+          "instruction": "ldr x1, [x8, #0x510]"
+        },
+        {
+          "address": "0x33fcf80",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fcf84",
+          "instruction": "cbz x0, #0x33fd0ac"
+        },
+        {
+          "address": "0x33fcf88",
+          "instruction": "ldr s0, [x0, #0x1c]"
+        },
+        {
+          "address": "0x33fcf8c",
+          "instruction": "b #0x33fcf98",
+          "target_names": []
+        },
+        {
+          "address": "0x33fcf90",
+          "instruction": "fmov s0, #1.00000000"
+        },
+        {
+          "address": "0x33fcf94",
+          "instruction": "strb wzr, [x19, #0x58]"
+        },
+        {
+          "address": "0x33fcf98",
+          "instruction": "mov x0, xzr"
+        },
+        {
+          "address": "0x33fcf9c",
+          "instruction": "bl #0x5ed1cd8",
+          "target_names": [
+            "Time.set { } //Length: 56",
+            "Time.public static void set_timeScale(float value) { }"
+          ]
+        },
+        {
+          "address": "0x33fcfa0",
+          "instruction": "ldr x8, [x19, #0x30]"
+        },
+        {
+          "address": "0x33fcfa4",
+          "instruction": "cbz x8, #0x33fcfbc"
+        },
+        {
+          "address": "0x33fcfa8",
+          "instruction": "ldr x9, [x8, #0x18]"
+        },
+        {
+          "address": "0x33fcfac",
+          "instruction": "ldr x0, [x8, #0x40]"
+        },
+        {
+          "address": "0x33fcfb0",
+          "instruction": "ldr x2, [x8, #0x28]"
+        },
+        {
+          "address": "0x33fcfb4",
+          "instruction": "and w1, w20, #1"
+        },
+        {
+          "address": "0x33fcfb8",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fcfbc",
+          "instruction": "tbz w20, #0, #0x33fd0a0"
+        },
+        {
+          "address": "0x33fcfc0",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fcfc4",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fcfc8",
+          "instruction": "ldr x9, [x8, #0x558]"
+        },
+        {
+          "address": "0x33fcfcc",
+          "instruction": "ldr x1, [x8, #0x560]"
+        },
+        {
+          "address": "0x33fcfd0",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fcfd4",
+          "instruction": "tbz w0, #0, #0x33fd068"
+        },
+        {
+          "address": "0x33fcfd8",
+          "instruction": "ldr x20, [x19, #0xb0]"
+        },
+        {
+          "address": "0x33fcfdc",
+          "instruction": "cbz x20, #0x33fd0ac"
+        },
+        {
+          "address": "0x33fcfe0",
+          "instruction": "adrp x10, #0x65c4000"
+        },
+        {
+          "address": "0x33fcfe4",
+          "instruction": "ldr x8, [x20]"
+        },
+        {
+          "address": "0x33fcfe8",
+          "instruction": "ldr x10, [x10, #0x888]"
+        },
+        {
+          "address": "0x33fcfec",
+          "instruction": "ldrh w9, [x8, #0x12e]"
+        },
+        {
+          "address": "0x33fcff0",
+          "instruction": "ldr x1, [x10]"
+        },
+        {
+          "address": "0x33fcff4",
+          "instruction": "cbz x9, #0x33fd018"
+        },
+        {
+          "address": "0x33fcff8",
+          "instruction": "ldr x10, [x8, #0xb0]"
+        },
+        {
+          "address": "0x33fcffc",
+          "instruction": "add x10, x10, #8"
+        },
+        {
+          "address": "0x33fd000",
+          "instruction": "ldur x11, [x10, #-8]"
+        },
+        {
+          "address": "0x33fd004",
+          "instruction": "cmp x11, x1"
+        },
+        {
+          "address": "0x33fd008",
+          "instruction": "b.eq #0x33fd028"
+        },
+        {
+          "address": "0x33fd00c",
+          "instruction": "subs x9, x9, #1"
+        },
+        {
+          "address": "0x33fd010",
+          "instruction": "add x10, x10, #0x10"
+        },
+        {
+          "address": "0x33fd014",
+          "instruction": "b.ne #0x33fd000"
+        },
+        {
+          "address": "0x33fd018",
+          "instruction": "mov w2, #0x26"
+        },
+        {
+          "address": "0x33fd01c",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x33fd020",
+          "instruction": "bl #0x2b21698",
+          "target_names": []
+        },
+        {
+          "address": "0x33fd024",
+          "instruction": "b #0x33fd038",
+          "target_names": []
+        },
+        {
+          "address": "0x33fd028",
+          "instruction": "ldr w9, [x10]"
+        },
+        {
+          "address": "0x33fd02c",
+          "instruction": "add w9, w9, #0x26"
+        },
+        {
+          "address": "0x33fd030",
+          "instruction": "add x8, x8, w9, sxtw #4"
+        },
+        {
+          "address": "0x33fd034",
+          "instruction": "add x0, x8, #0x138"
+        },
+        {
+          "address": "0x33fd038",
+          "instruction": "ldp x8, x1, [x0]"
+        },
+        {
+          "address": "0x33fd03c",
+          "instruction": "mov x0, x20"
+        },
+        {
+          "address": "0x33fd040",
+          "instruction": "blr x8"
+        },
+        {
+          "address": "0x33fd044",
+          "instruction": "cbz x0, #0x33fd050"
+        },
+        {
+          "address": "0x33fd048",
+          "instruction": "mov w8, #1"
+        },
+        {
+          "address": "0x33fd04c",
+          "instruction": "strb w8, [x0, #0x40]"
+        },
+        {
+          "address": "0x33fd050",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd054",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd058",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x33fd05c",
+          "instruction": "ldr x9, [x8, #0x748]"
+        },
+        {
+          "address": "0x33fd060",
+          "instruction": "ldr x2, [x8, #0x750]"
+        },
+        {
+          "address": "0x33fd064",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd068",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd06c",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd070",
+          "instruction": "ldr x9, [x8, #0x548]"
+        },
+        {
+          "address": "0x33fd074",
+          "instruction": "ldr x1, [x8, #0x550]"
+        },
+        {
+          "address": "0x33fd078",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd07c",
+          "instruction": "tbz w0, #0, #0x33fd0a0"
+        },
+        {
+          "address": "0x33fd080",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd084",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd088",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fd08c",
+          "instruction": "mov w1, wzr"
+        },
+        {
+          "address": "0x33fd090",
+          "instruction": "ldr x3, [x8, #0x738]"
+        },
+        {
+          "address": "0x33fd094",
+          "instruction": "ldr x2, [x8, #0x740]"
+        },
+        {
+          "address": "0x33fd098",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x33fd09c",
+          "instruction": "br x3"
+        },
+        {
+          "address": "0x33fd0a0",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x33fd0a4",
+          "instruction": "ldp x30, x21, [sp], #0x20"
+        },
+        {
+          "address": "0x33fd0a8",
+          "instruction": "ret "
+        },
+        {
+          "address": "0x33fd0ac",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    },
+    {
+      "class": "ScriptPlayer",
+      "signature": "private void ToggleSkip() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/ScriptPlayer.cs",
+      "file_offset": "0x33f9928",
+      "address": "0x33fd928",
+      "length": 56,
+      "instructions": [
+        {
+          "address": "0x33fd928",
+          "instruction": "stp x30, x19, [sp, #-0x10]!"
+        },
+        {
+          "address": "0x33fd92c",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x33fd930",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x33fd934",
+          "instruction": "ldr x9, [x8, #0x538]"
+        },
+        {
+          "address": "0x33fd938",
+          "instruction": "ldr x1, [x8, #0x540]"
+        },
+        {
+          "address": "0x33fd93c",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x33fd940",
+          "instruction": "ldr x8, [x19]"
+        },
+        {
+          "address": "0x33fd944",
+          "instruction": "ldr x3, [x8, #0x728]"
+        },
+        {
+          "address": "0x33fd948",
+          "instruction": "ldr x2, [x8, #0x730]"
+        },
+        {
+          "address": "0x33fd94c",
+          "instruction": "mvn w8, w0"
+        },
+        {
+          "address": "0x33fd950",
+          "instruction": "and w1, w8, #1"
+        },
+        {
+          "address": "0x33fd954",
+          "instruction": "mov x0, x19"
+        },
+        {
+          "address": "0x33fd958",
+          "instruction": "ldp x30, x19, [sp], #0x10"
+        },
+        {
+          "address": "0x33fd95c",
+          "instruction": "br x3"
+        }
+      ]
+    },
+    {
+      "class": "ControlPanelSkipButton",
+      "signature": "public ControlPanelSkipButton() { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/UI/ControlPanelSkipButton.cs",
+      "file_offset": "0x3433050",
+      "address": "0x3437050",
+      "length": 20,
+      "instructions": [
+        {
+          "address": "0x3437050",
+          "instruction": "adrp x8, #0x128c000"
+        },
+        {
+          "address": "0x3437054",
+          "instruction": "ldr q0, [x8, #0xb40]"
+        },
+        {
+          "address": "0x3437058",
+          "instruction": "mov x1, xzr"
+        },
+        {
+          "address": "0x343705c",
+          "instruction": "str q0, [x0, #0x90]"
+        },
+        {
+          "address": "0x3437060",
+          "instruction": "b #0x33b7d98",
+          "target_names": [
+            "ScriptableLabeledButton.public ScriptableLabeledButton() { }"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "ControlPanelSkipButton",
+      "signature": "private void HandleSkipModeChange(bool enabled) { }",
+      "stub": "/private/tmp/city-new-map-addresses/DiffableCs/Elringus.Naninovel.Runtime/Naninovel/UI/ControlPanelSkipButton.cs",
+      "file_offset": "0x3432ff0",
+      "address": "0x3436ff0",
+      "length": 96,
+      "instructions": [
+        {
+          "address": "0x3436ff0",
+          "instruction": "str x30, [sp, #-0x20]!"
+        },
+        {
+          "address": "0x3436ff4",
+          "instruction": "stp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x3436ff8",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x3436ffc",
+          "instruction": "mov w20, w1"
+        },
+        {
+          "address": "0x3437000",
+          "instruction": "mov x19, x0"
+        },
+        {
+          "address": "0x3437004",
+          "instruction": "ldr x9, [x8, #0x4d8]"
+        },
+        {
+          "address": "0x3437008",
+          "instruction": "ldr x8, [x8, #0x4e0]"
+        },
+        {
+          "address": "0x343700c",
+          "instruction": "mov x1, x8"
+        },
+        {
+          "address": "0x3437010",
+          "instruction": "blr x9"
+        },
+        {
+          "address": "0x3437014",
+          "instruction": "fmov s3, #1.00000000"
+        },
+        {
+          "address": "0x3437018",
+          "instruction": "fmov s2, #1.00000000"
+        },
+        {
+          "address": "0x343701c",
+          "instruction": "fmov s1, #1.00000000"
+        },
+        {
+          "address": "0x3437020",
+          "instruction": "fmov s0, #1.00000000"
+        },
+        {
+          "address": "0x3437024",
+          "instruction": "tbz w20, #0, #0x3437030"
+        },
+        {
+          "address": "0x3437028",
+          "instruction": "ldp s0, s1, [x19, #0x90]"
+        },
+        {
+          "address": "0x343702c",
+          "instruction": "ldp s2, s3, [x19, #0x98]"
+        },
+        {
+          "address": "0x3437030",
+          "instruction": "cbz x0, #0x343704c"
+        },
+        {
+          "address": "0x3437034",
+          "instruction": "ldr x8, [x0]"
+        },
+        {
+          "address": "0x3437038",
+          "instruction": "ldp x20, x19, [sp, #0x10]"
+        },
+        {
+          "address": "0x343703c",
+          "instruction": "ldr x2, [x8, #0x418]"
+        },
+        {
+          "address": "0x3437040",
+          "instruction": "ldr x1, [x8, #0x420]"
+        },
+        {
+          "address": "0x3437044",
+          "instruction": "ldr x30, [sp], #0x20"
+        },
+        {
+          "address": "0x3437048",
+          "instruction": "br x2"
+        },
+        {
+          "address": "0x343704c",
+          "instruction": "bl #0x2aa0c9c",
+          "target_names": []
+        }
+      ]
+    }
+  ],
+  "limitations": "Cpp2IL stubs supply declarations; instructions are independently decoded from packaged native bytes. Indirect targets may be unresolved."
+}

@@ -14,13 +14,21 @@ signal presentation_requested(kind: String, context: Dictionary)
 signal player_trigger_entered(trigger_id: int, context: Dictionary)
 
 const RULES_PATH := "res://assets/environment_rules.json"
+const AltarBillboards = preload("res://scripts/presentation/altar_billboards.gd")
 const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_AbilityItemTreasureBox", "EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan", "EEUT_Special_MonsterWork", "EEUT_BillBoard", "EEUT_UIInteractable", "EEUT_Protal", "EEUT_ProtectTarget"]
 const PASSIVE := ["EEUT_AreaInfoMarker", "EEUT_Door", "EEUT_CloseArea"]
 const PHASES := ["idle", "starting", "active", "ending", "finished", "destroyed"]
 const SPRITES_ALTAR := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
 const CURSE_ALTAR := "EnvUnit_MonoData_BtnDisplayName_CurseAltar"
+const OLD_DAY_ALTAR := "EnvUnit_MonoData_BtnDisplayName_OldDayAltar"
+const SACRIFICIAL_ALTAR := "EnvUnit_MonoData_BtnDisplayName_SacrificialAltar"
+const PARTNER_SELECTOR := "EnvUnit_MonoData_BtnDisplayName_MonsterPartnerSkillSelector"
+const SPRING := "EnvUnit_MonoData_BtnDisplayName_Spring"
+const ADVENTURE_EVENT := "EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent"
+const SPECIAL_EVENT := "EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent_Special"
+const MEAL_SHOP := "EnvUnit_MonoData_BtnDisplayName_CatMeal_Shop"
 const ALTAR_EGG := "sprite_abilityitemicon_14104"
-const ROOM_ACTIONS := {"EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent": "冒险事件", "EnvUnit_MonoData_BtnDisplayName_OldDayAltar": "旧日祭坛", CURSE_ALTAR: "诅咒祭坛"}
+const ROOM_ACTIONS := {ADVENTURE_EVENT: "冒险事件", SPECIAL_EVENT: "特殊事件", OLD_DAY_ALTAR: "旧日祭坛", CURSE_ALTAR: "诅咒祭坛", SACRIFICIAL_ALTAR: "献祭祭坛", PARTNER_SELECTOR: "伙伴技能", SPRING: "饮用泉水", MEAL_SHOP: "猫饭料理"}
 
 var diagnostics: Array[Dictionary] = []
 var scene := ""
@@ -78,14 +86,20 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		item["effect_states"] = {}
 		item["altar_eggs"] = []
 		item["curse_parts"] = []
-		if is_instance_valid(item.visual) and _is_sprites_altar(item):
+		if is_instance_valid(item.visual) and (_is_sprites_altar(item) or str(data.get("UIBtnName", "")) in [CURSE_ALTAR, OLD_DAY_ALTAR, SACRIFICIAL_ALTAR]):
 			for node in item.visual.find_children("*", "Node3D", true, false):
 				if str(node.name) == ALTAR_EGG or str(node.name).begins_with(ALTAR_EGG + "_u") or str(node.name).begins_with(ALTAR_EGG + "__u"):
+					AltarBillboards.restore(node, str(data.get("UIBtnName", "")))
 					item.altar_eggs.append({"node": node, "visible": node.visible})
-		if is_instance_valid(item.visual) and _is_curse_altar(item):
+		if is_instance_valid(item.visual) and _is_choice_altar(item):
 			for node in item.visual.find_children("*", "Node3D", true, false):
 				for part in ["Box_BillBoard", "Box_Effect", "Box_TiggerEnter"]:
 					if str(node.name) == part or str(node.name).begins_with(part + "_u") or str(node.name).begins_with(part + "__u"):
+						item.curse_parts.append({"node": node, "visible": node.visible})
+		if is_instance_valid(item.visual) and str(data.get("UIBtnName", "")) == SPRING:
+			for node in item.visual.find_children("*", "Node3D", true, false):
+				for part in ["24041501_fx_env_healingwater_symbol", "Box_TiggerEnter"]:
+					if str(node.name) == part or str(node.name).begins_with(part + "_"):
 						item.curse_parts.append({"node": node, "visible": node.visible})
 		if is_instance_valid(item.visual) and str(marker.get("Type", "")) == "EEUT_DoorController":
 			for node in item.visual.find_children("*", "Node3D", true, false):
@@ -168,6 +182,8 @@ func can_interact_at(marker_id: String, position: Vector3, radius: float = 3.0) 
 		if not _volumes(item, role).is_empty():
 			# Camp triggers extend down to the feet, including the sunken work stone.
 			return _contains(item, position + Vector3.UP * 0.35, 0.35, role)
+	if kind == "EEUT_UIInteractable" and ROOM_ACTIONS.has(str(item.data.get("UIBtnName", ""))) and not _volumes(item, "Box_TiggerEnter").is_empty():
+		return _contains(item, position + Vector3.UP * 0.8, 0.35, "Box_TiggerEnter")
 	if kind == "EEUT_StageChangeDoor" and not _volumes(item, "Box_TiggerEnter").is_empty() and not _contains(item, position + Vector3.UP * 0.8, 0.35, "Box_TiggerEnter"): return false
 	if kind == "EEUT_ProtectTarget" and not _contains(item, position + Vector3.UP * 0.8, 0, "Box_InteractArea"): return false
 	return position.distance_to(_world_position(item.position)) <= radius
@@ -185,22 +201,23 @@ func available_interactions(position: Vector3, radius: float = 3.0) -> Array[Dic
 const CAMP_ACTIONS := {
 	"camp_training": ["训练场", "training", "sprite_conversation_Scarecrow"],
 	"EnvUnit_MonoData_BtnDisplayName_ItemArchieve": ["遗物图鉴", "archive", "interaction_weapon"],
-	"keyword_Records": ["成就记录", "achievements", "interaction_quest"],
+	"keyword_Records": ["冒险档案", "history", "interaction_quest"],
 	"EnvUnit_MonoData_BtnDisplayName_SelectWeapon": ["选择武器", "weapons", "interaction_weapon"],
 	"EnvUnit_MonoData_BtnDisplayName_MonsterPartner": ["怪物伙伴", "partners", "interaction_quest"],
 	"EnvUnit_MonoData_BtnDisplayName_ChangeChara": ["选择角色", "characters", "interaction_quest"],
 	"EnvUnit_MonoData_BtnDisplayName_MainCityDeveloper": ["营地建设", "buildings", "interaction_blacksmith"],
-	"EnvUnit_MonoData_BtnDisplayName_Quest": ["委托任务", "tasks", "interaction_quest"],
+	"EnvUnit_MonoData_BtnDisplayName_Quest": ["委托板", "tasks", "sprite_conversation_mission"],
 	"EnvUnit_MonoData_BtnDisplayName_CatMeal": ["猫饭料理", "meals", "interaction_quest"],
 	"EnvUnit_MonoData_BtnDisplayName_StartNewRun": ["出发冒险", "primary", "interaction_weapon"],
 	"EnvUnit_MonoData_BtnDisplayName_TalentTree": ["角色觉醒", "awakening", "interaction_quest"],
 	"EnvUnit_MonoData_BtnDisplayName_DifficultlyLevel": ["冒险难度", "difficulty", "interaction_weapon"],
 	"ATPanel_RelationshipToken_Title": ["关系信物", "tokens", "interaction_quest"],
-	"Keyword_ExtraChallenge": ["悬赏委托", "tasks", "interaction_quest"]}
+	"Keyword_ExtraChallenge": ["悬赏委托", "extra_challenges", "sprite_conversation_Extra challenges"]}
 
 func prompt_for(item: Dictionary) -> Array:
 	var key := str(item.data.get("UIBtnName", ""))
-	if _is_sprites_altar(item): return ["精灵祭坛", "", "interaction_quest"]
+	if _is_sprites_altar(item): return ["精灵祭坛", "", str(item.data.get("UIBtnIcon", "sprite_conversation_get"))]
+	if key in [CURSE_ALTAR, OLD_DAY_ALTAR, SACRIFICIAL_ALTAR]: return [ROOM_ACTIONS[key], "", str(item.data.get("UIBtnIcon", "sprite_conversation_get"))]
 	if CAMP_ACTIONS.has(key): return CAMP_ACTIONS[key]
 	if ROOM_ACTIONS.has(key): return [ROOM_ACTIONS[key], "", "interaction_quest"]
 	match str(item.marker.get("Type", "")):
@@ -264,7 +281,7 @@ func interact(marker_id: String) -> Dictionary:
 		"EEUT_BillBoard": message_requested.emit(str(data.get("Text", "")), context)
 		"EEUT_UIInteractable":
 			if ROOM_ACTIONS.has(str(data.get("UIBtnName", ""))):
-				if _is_curse_altar(item) and item.state.used: return {"success": false, "reason": "already_used"}
+				if item.state.used: return {"success": false, "reason": "already_used"}
 				message_requested.emit("room_action", context)
 				return {"success": true, "context": context}
 			if _is_sprites_altar(item):
@@ -479,6 +496,16 @@ static func _is_sprites_altar(item: Dictionary) -> bool:
 static func _is_curse_altar(item: Dictionary) -> bool:
 	return str(item.get("marker", {}).get("Type", "")) == "EEUT_UIInteractable" and str(item.get("data", {}).get("UIBtnName", "")) == CURSE_ALTAR
 
+static func _is_choice_altar(item: Dictionary) -> bool:
+	return str(item.get("marker", {}).get("Type", "")) == "EEUT_UIInteractable" and str(item.get("data", {}).get("UIBtnName", "")) in [CURSE_ALTAR, OLD_DAY_ALTAR, SACRIFICIAL_ALTAR, PARTNER_SELECTOR]
+
+func set_room_action_consumed(marker_id: String) -> bool:
+	var item: Dictionary = _items.get(marker_id, {})
+	if item.is_empty() or not ROOM_ACTIONS.has(str(item.data.get("UIBtnName", ""))) or item.state.used: return false
+	item.state.used = true
+	_changed(item)
+	return true
+
 func set_curse_altar_consumed(marker_id: String) -> bool:
 	var item: Dictionary = _items.get(marker_id, {})
 	if item.is_empty() or not _is_curse_altar(item) or item.state.used: return false
@@ -529,11 +556,20 @@ func set_exit_enabled(active: bool) -> void:
 		item.state.enabled = active
 		_changed(item)
 
+func set_completion_chest_quality(quality: String) -> void:
+	if quality not in ["None", "Normal", "Unusual", "Luxury", "Curse", "Curse_Final"]: return
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_AbilityItemTreasureBox" or int(item.data.get("TreasureId", 0)) != 1 or item.data.has("TrialChestIndex"): continue
+		item.data["CompletionRewardAvailable"] = quality != "None"
+		if quality != "None": item.data["TreasureType"] = quality
+		else: item.state.enabled = false
+		_changed(item)
+
 func set_completion_chests_enabled(active: bool) -> void:
 	for item in _items.values():
 		if str(item.marker.get("Type", "")) != "EEUT_AbilityItemTreasureBox" or int(item.data.get("TreasureId", 0)) != 1: continue
 		if item.data.has("TrialChestIndex"): continue
-		item.state.enabled = active
+		item.state.enabled = active and bool(item.data.get("CompletionRewardAvailable", true))
 		_changed(item)
 
 func setup_trial_chests(side_offset: float) -> Vector3:

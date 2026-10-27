@@ -1,0 +1,1347 @@
+{
+  "schema": 1,
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "evidence_type": "Static serialized Unity sprites and prefab layout; no APK execution",
+  "rea_archive_evidence_id": "ev_89b63e484acc2e54de490487bd1b9889d08f547cd7c8ac0c50d782ab1acf0323",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+    "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+  },
+  "icons": {
+    "20210": {
+      "ability_id": 20210,
+      "name": "火精灵",
+      "description": "<#specinfo=zhanji>命中将在目标位置砸下<color=#e75326>陨石</color>，每枚造成150%<#specinfo=gongjili>伤害，<#specinfo=lengque>时间20秒。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20210.png",
+      "icon_name": "sprite_abilityitemicon_20210",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "0b0762433a191d23bfec45e33cb3af9918adb687ac2756ecabd1fc3338abf7cd",
+      "rgba_sha256": "3edf0545ff6e26963e02b74ee3d4a6fc465286c0dea2d7d23f6681e2786e5610",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20210.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "7083886808035673718",
+        "ability_source": {
+          "address": "AbilityItemCfg_20210",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20210.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "7172884516733476268",
+          "json_sha256": "25f8f6369a0355f66c3181386b2466513a4299d3aeb33c2ff0a686fd9a91698f"
+        }
+      }
+    },
+    "20211": {
+      "ability_id": 20211,
+      "name": "熔岩之舞",
+      "description": "【进阶火精灵】<br><#specinfo=zhanji>命中将在目标位置砸下2枚<color=#e75326>陨石</color>，每枚造成175%<#specinfo=gongjili>伤害，<color=#e75326>陨石</color>命中将附带<#specinfo=zhuoshao>，<#specinfo=lengque>时间18秒。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20211.png",
+      "icon_name": "sprite_abilityitemicon_20211",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "9a3beef1a11282fd3e2c8f69f84d207fe9c5b7fb033ebb5aa6a817ad901028a1",
+      "rgba_sha256": "6b61f24aa4d72e99363df56de9d2d66f693189306af38aaaad14dcf3df72763d",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20211.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-9116313803184148799",
+        "ability_source": {
+          "address": "AbilityItemCfg_20211",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20211.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-3579116820603708853",
+          "json_sha256": "28271221fe36ac7f1c60f66c3a1d4712736cc4ac25e5fb82240ebef663da8ae6"
+        }
+      }
+    },
+    "20212": {
+      "ability_id": 20212,
+      "name": "爆炎斯尔巴尔",
+      "description": "【进阶熔岩之舞】<br><#specinfo=zhanji>命中将在目标位置砸下5枚<color=#e75326>陨石</color>，每枚造成200%<#specinfo=gongjili>伤害，<color=#e75326>陨石</color>命中将附带<#specinfo=zhuoshao>，<#specinfo=lengque>时间15秒。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20212.png",
+      "icon_name": "sprite_abilityitemicon_20212",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "ca0403819c11ce28ddea8c49d68e757ab8575448391c47e77fea0c984c9dbc19",
+      "rgba_sha256": "5d7a550a4e5c4d3eac16445a6f6d81406d809963fe6d34c1d753899f586203be",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20212.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "3110229965858802804",
+        "ability_source": {
+          "address": "AbilityItemCfg_20212",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20212.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-4538458061981668935",
+          "json_sha256": "eff42dd22f694f95725170d0dd42127020932e45352f18d461259f9b58455835"
+        }
+      }
+    },
+    "20220": {
+      "ability_id": 20220,
+      "name": "水精灵",
+      "description": "每2次<#specinfo=putonggongji>命中累加1层，上限5层，在<#specinfo=zhongji>命中后消耗并生成对应数量的<color=#4f8dff>激流射线</color>，每道造成20%<#specinfo=gongjili>伤害。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20220.png",
+      "icon_name": "sprite_abilityitemicon_20220",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "3bb5a7a536dab0ef6efe8cb2dc4e1589d67bf50cdac6e8c421de237b0de372d6",
+      "rgba_sha256": "39ae8ef742f5f32461a24ee9016ebfc403f05e6ac2e25d3e1a76e4356d4aa09d",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20220.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "3760776090396127040",
+        "ability_source": {
+          "address": "AbilityItemCfg_20220",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20220.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-6254755681413062880",
+          "json_sha256": "62655f80e7f483e4de51ccd8f5e841711579c2b9e51191dd2f49a3c96a52ce40"
+        }
+      }
+    },
+    "20221": {
+      "ability_id": 20221,
+      "name": "涟漪之灵",
+      "description": "【进阶水精灵】<br>每2次<#specinfo=putonggongji>命中累加1层，上限7层，在<#specinfo=zhongji>命中后消耗并生成对应数量的<color=#4f8dff>激流射线</color>，每道造成20%<#specinfo=gongjili>伤害，有25%概率附加<#specinfo=chaoshi>。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20221.png",
+      "icon_name": "sprite_abilityitemicon_20221",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "6281c8ff766421fa589e8d748c99eddd115a75d59b655382fdf68fa18be8d0cf",
+      "rgba_sha256": "d5f8037ee0f230041c5f9c6d88c120adab4ae656142c3660186e9ab8a8350c53",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20221.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "7099488817935257730",
+        "ability_source": {
+          "address": "AbilityItemCfg_20221",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20221.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "6819349259283846975",
+          "json_sha256": "2f567796fae0db54f61b93cecb69e4a5a158185be48697599a4a0da916fc3563"
+        }
+      }
+    },
+    "20222": {
+      "ability_id": 20222,
+      "name": "洪流波塞冬",
+      "description": "【进阶涟漪之灵】<br>每2次<#specinfo=putonggongji>命中累加2层，上限10层，在<#specinfo=zhongji>命中后消耗并生成对应数量的<color=#4f8dff>激流射线</color>，每道造成20%<#specinfo=gongjili>伤害，有33%概率附加<#specinfo=chaoshi>，层满释放伤害额外根据目标<#specinfo=chaoshi>层数提升。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20222.png",
+      "icon_name": "sprite_abilityitemicon_20222",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "93c78432a5f227a95245e9fe601e10e65f512e7353319d178b58d06002a2b230",
+      "rgba_sha256": "ec1a7874601ffb3ff417db153c4440786457171a1ef67c0e29060d880ab3c45f",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20222.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "8856097672817694567",
+        "ability_source": {
+          "address": "AbilityItemCfg_20222",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20222.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-6164149887507831294",
+          "json_sha256": "c4091bfa72c7a502f1f2f22de61b4284363fa08d0b67ef3c68ffc74fc3f01010"
+        }
+      }
+    },
+    "20230": {
+      "ability_id": 20230,
+      "name": "风精灵",
+      "description": "<#specinfo=shanbigongji>命中后，有50%概率在目标位置生成<color=#4bba3c>风压奇点</color>缓慢跟随玩家移动，每个<color=#4bba3c>风压奇点</color>每次造成25%<#specinfo=gongjili>伤害，持续5秒。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20230.png",
+      "icon_name": "sprite_abilityitemicon_20230",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "924152638c160cf7d97d1dd86135842dcb85e51ede320c0744f6688793fd9020",
+      "rgba_sha256": "9b19963434a6539e61817d63cbb8623acc18f7753e2e6e918a01a703d7e36d5b",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20230.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-1844784398091883331",
+        "ability_source": {
+          "address": "AbilityItemCfg_20230",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20230.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "5258401852907301730",
+          "json_sha256": "725e73e7cb855a4b8dffe7e98109f8b10c295ca73484703b943589e04af96a29"
+        }
+      }
+    },
+    "20231": {
+      "ability_id": 20231,
+      "name": "狂风之影",
+      "description": "【进阶风精灵】<br><#specinfo=shanbigongji>命中后，有60%概率在目标位置生成<color=#4bba3c>风压奇点</color>缓慢跟随玩家移动，每个<color=#4bba3c>风压奇点</color>每次造成25%<#specinfo=gongjili>伤害，有5%概率施加<#specinfo=biaoji>，持续7.5秒，最多存在3颗<color=#4bba3c>风压奇点</color>。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20231.png",
+      "icon_name": "sprite_abilityitemicon_20231",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "b8e19837c062d22e3d12d565998525c7c1af1869452eb6840fe8bf3f89081bfd",
+      "rgba_sha256": "849d8b3f3661123eba12ebc756d33ef37345ec8110ee9b65282ce968142a8e22",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20231.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-6183477699539383032",
+        "ability_source": {
+          "address": "AbilityItemCfg_20231",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20231.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-4026591094869829914",
+          "json_sha256": "77d386b2a375f9a6b3a9f9c8f1528806c40d78d9c8cc3bf395d17c6ba2459b36"
+        }
+      }
+    },
+    "20232": {
+      "ability_id": 20232,
+      "name": "飓风芙蕾雅",
+      "description": "【进阶狂风之影】<br><#specinfo=shanbigongji>命中后，有70%概率在目标位置生成<color=#4bba3c>风压奇点</color>缓慢跟随玩家移动，每个<color=#4bba3c>风压奇点</color>每次造成25%<#specinfo=gongjili>伤害，命中时有10%概率施加<#specinfo=biaoji>，持续10秒，最多存在5颗<color=#4bba3c>风压奇点</color>。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20232.png",
+      "icon_name": "sprite_abilityitemicon_20232",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "2883d059cdd443ed57e19c05d18d9c0f6d02b79f4f8b07763545eb9058a718f6",
+      "rgba_sha256": "87a6c886c02cfbb3db11bcb51733f82e246f3cd2b6c3e0801579dd40514d9206",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20232.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "5658724708559215955",
+        "ability_source": {
+          "address": "AbilityItemCfg_20232",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20232.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-4904448304840894020",
+          "json_sha256": "0d7fa5501e804dd8953614544fed2af23fdbb74c6dd60995b4b0d9d0d6d23b28"
+        }
+      }
+    },
+    "20240": {
+      "ability_id": 20240,
+      "name": "雷精灵",
+      "description": "每隔7秒获得1层充能，当附近有敌人时消耗1层充能，引动<#specinfo=shandian>造成伤害，每道造成90%<#specinfo=gongjili>伤害，间隔3秒。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20240.png",
+      "icon_name": "sprite_abilityitemicon_20240",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "5ef73a11753c247e10246a7b005296563039f7e9919a37b47b351d5897128aac",
+      "rgba_sha256": "9fedcf9d74d90463826b5b48d58ea6ff80877cf9613fe91d0aef0efc35b3b74d",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20240.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "8914582177034630577",
+        "ability_source": {
+          "address": "AbilityItemCfg_20240",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20240.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "8396483018364166834",
+          "json_sha256": "0627353a9b0eeebb4ee3929ca82c4ab6b77e9ee4e96ae7ee54387ca3c8ab3eae"
+        }
+      }
+    },
+    "20241": {
+      "ability_id": 20241,
+      "name": "闪电之舞",
+      "description": "【进阶雷精灵】<br>每隔4秒获得1层充能，当附近有敌人时消耗1层充能，引动<#specinfo=shandian>造成伤害，每道造成90%<#specinfo=gongjili>伤害，间隔2秒。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20241.png",
+      "icon_name": "sprite_abilityitemicon_20241",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "0e62b90557b3a53099d52d21e61a6a0dee6235ca77bbac21c55dcdcbc85358f6",
+      "rgba_sha256": "8eb656f73ec34747a683531fc4143a791bb9c2171281f467e3627ed553d9f3a8",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20241.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-653458619072938157",
+        "ability_source": {
+          "address": "AbilityItemCfg_20241",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20241.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-4497945148116567013",
+          "json_sha256": "11284b3258d951d3c5d7c6bf50a87f68049d898655a828a3732d05dc53763920"
+        }
+      }
+    },
+    "20242": {
+      "ability_id": 20242,
+      "name": "狂雷索尔",
+      "description": "【进阶闪电之舞】<br>每隔2秒获得1层充能，当附近有敌人时消耗1层充能，引动<#specinfo=shandian>对附近3名敌人造成伤害，每道造成90%<#specinfo=gongjili>伤害，间隔1.5秒。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20242.png",
+      "icon_name": "sprite_abilityitemicon_20242",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "ade122499db7fdc93cd826ec2b7ee01ceb437e79cbc3a86254fc373688470cea",
+      "rgba_sha256": "7215f94fd339ec23aed324964f7b7e5d5c3e4f6415187827b01e6de5ccb4748e",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20242.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-1952803552632186462",
+        "ability_source": {
+          "address": "AbilityItemCfg_20242",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20242.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "6201609170906423981",
+          "json_sha256": "f6dea3c5239be88834bda1afaceb745b43c5471dd96b7d6d182589810c1f2821"
+        }
+      }
+    },
+    "20250": {
+      "ability_id": 20250,
+      "name": "光精灵",
+      "description": "每隔30秒，在角色周围生成1把<color=#f18800>光之剑</color>，每把造成100%<#specinfo=gongjili>伤害，持续5秒。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20250.png",
+      "icon_name": "sprite_abilityitemicon_20250",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "86adfdd7a5d082ca5a2f01a25238785676abd3c17f8d82d1486ac8750b11b471",
+      "rgba_sha256": "5cf42401783778c4fb036399495afe23bac99fcbc77190b2a3bfbc1b622ab3b6",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20250.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "7298433963520095786",
+        "ability_source": {
+          "address": "AbilityItemCfg_20250",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20250.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-3170581490206316209",
+          "json_sha256": "859bfe0f6f4dd8ebd76ef663dbaa1d363e550f39472303c9d9e4d3171b4cede2"
+        }
+      }
+    },
+    "20251": {
+      "ability_id": 20251,
+      "name": "星光之灵",
+      "description": "【进阶光精灵】<br>每隔30秒，在角色周围生成2把<color=#f18800>光之剑</color>，每把造成75%<#specinfo=gongjili>伤害，同时角色<#specinfo=fangyuli>增加30%，持续6秒。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20251.png",
+      "icon_name": "sprite_abilityitemicon_20251",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "7419179f7af8baae6a8a4e345379a9595f4be0afe6fb3f7d2302f4160f6e7acc",
+      "rgba_sha256": "e424ab98f2de7334854e0492a077ed4b7aabb9537f008d3fcac95f03653780cc",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20251.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-8391684802877306544",
+        "ability_source": {
+          "address": "AbilityItemCfg_20251",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20251.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-7044916558319863253",
+          "json_sha256": "6d7d75756ed9a2c17daebddee2f4483e37deeaa50e6704c71b4efcb9040fe020"
+        }
+      }
+    },
+    "20252": {
+      "ability_id": 20252,
+      "name": "光辉赫拉",
+      "description": "【进阶星光之灵】<br>每隔30秒，在角色周围生成4把<color=#f18800>光之巨剑</color>，每把造成60%<#specinfo=gongjili>伤害，同时角色<#specinfo=fangyuli>增加60%，持续8秒。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20252.png",
+      "icon_name": "sprite_abilityitemicon_20252",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "2e017563373e03b22546e686482bcd4b3de757f8640f509c6ab00ff2033a3cfb",
+      "rgba_sha256": "4c7ee4d15df0f8c6d80a3c81794416859270eb7cf9ff030862cfe56a14d0eec3",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20252.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "8614144678954172778",
+        "ability_source": {
+          "address": "AbilityItemCfg_20252",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20252.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "3435866655903325006",
+          "json_sha256": "31f95038d350dd0034ad9359276e979df4511045e2406f51736f24ff3e79ce5a"
+        }
+      }
+    },
+    "20255": {
+      "ability_id": 20255,
+      "name": "岩精灵",
+      "description": "每移动35米，在当前位置引发一次<color=#c98a4b>地震</color>，每次造成300%<#specinfo=gongjili>伤害，对范围内的敌人施加1层<#specinfo=zhongshang>。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20255.png",
+      "icon_name": "sprite_abilityitemicon_20255",
+      "size": [
+        195,
+        161
+      ],
+      "png_sha256": "3d59533efc2b5848af30e2d35960d05dfa56abb73b7b11d2732b15c2e871dfbd",
+      "rgba_sha256": "47d39621ed89ab74cf92d6c2304c25177c0ec7861dcbdb23740554b86635b8ed",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20255.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "1305440590095155024",
+        "ability_source": {
+          "address": "AbilityItemCfg_20255",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20255.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-6788841907807272750",
+          "json_sha256": "42125e4bc120325822a6fc6e92b5be7668f88185bfa76724848e69c800245708"
+        }
+      }
+    },
+    "20256": {
+      "ability_id": 20256,
+      "name": "磐岩之灵",
+      "description": "【进阶岩精灵】<br>每移动24米，在当前位置引发一次<color=#c98a4b>地震</color>，每次造成300%<#specinfo=gongjili>伤害，对范围内的敌人施加1层<#specinfo=zhongshang>。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20256.png",
+      "icon_name": "sprite_abilityitemicon_20256",
+      "size": [
+        249,
+        214
+      ],
+      "png_sha256": "0872343ac0a1e4cfd5aacf1abb645253d9a7a68bcf4e7dc96c95b3c0b8030d0d",
+      "rgba_sha256": "a64414f0aef06c9d96e71a2d519d67b687f92f6547031c7e8fc0f17c1e6ea1fa",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20256.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-9219335485629407341",
+        "ability_source": {
+          "address": "AbilityItemCfg_20256",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20256.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "2333167101607921181",
+          "json_sha256": "8b9a73d701b5a98ed64eee83318805e4ed30978f237530ace1586702669f6477"
+        }
+      }
+    },
+    "20257": {
+      "ability_id": 20257,
+      "name": "大地之灵",
+      "description": "【进阶磐岩之灵】<br>每移动24米，在当前位置引发一次<color=#c98a4b>地震</color>，每次造成300%<#specinfo=gongjili>伤害，对范围内的敌人施加2层<#specinfo=zhongshang>。对带<#specinfo=zhongshang>的敌人造成<#specinfo=shanbigongji>伤害后，在其位置引发一次<color=#c98a4b>地震</color>，每次造成300%<#specinfo=gongjili>伤害，<#specinfo=lengque>15秒。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20257.png",
+      "icon_name": "sprite_abilityitemicon_20257",
+      "size": [
+        251,
+        241
+      ],
+      "png_sha256": "b9a885aec05bf7bf637bfbb4ae49d028f071270cbc9bbf5474ec26b8bf31a8d3",
+      "rgba_sha256": "639ad201dfe1c74d02211712d2c0cf962f5fecc1993b705ef36b39bdf431e170",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20257.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "3496769649657334528",
+        "ability_source": {
+          "address": "AbilityItemCfg_20257",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20257.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-5354757385777242391",
+          "json_sha256": "d6217c0b6ca38f5aeccaeb9f8de581384355247ab4bf70b9494d9765e636dd72"
+        }
+      }
+    },
+    "20260": {
+      "ability_id": 20260,
+      "name": "暗精灵",
+      "description": "每隔30秒，<#specinfo=gongjisudu>+10，<#specinfo=putonggongji>伤害+60%，持续5秒。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20260.png",
+      "icon_name": "sprite_abilityitemicon_20260",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "f81ec1498be49013e6d98971b7f1cee4bff3cdc99ecbb95fe39b26ed99cca33d",
+      "rgba_sha256": "e3dd43166524f22fa88146ee54cd9c1094076185a82abfa02c2c5744e6763674",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20260.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-3595447032890110208",
+        "ability_source": {
+          "address": "AbilityItemCfg_20260",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20260.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-2624136530565468222",
+          "json_sha256": "4c55d70e539298a2f9dc3bee6168ab54b154652027b687ddb36582feb4fb27a3"
+        }
+      }
+    },
+    "20261": {
+      "ability_id": 20261,
+      "name": "暗影之妖",
+      "description": "【进阶暗精灵】<br>每隔30秒，<#specinfo=gongjisudu>+15，<#specinfo=putonggongji>伤害+80%，<#specinfo=putonggongji>命中有10%概率附加<#specinfo=anshi>，持续6秒。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20261.png",
+      "icon_name": "sprite_abilityitemicon_20261",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "c01221e6b7b914eeffa20b5e1c2aab57f887a2a08bf8c04e6236c2bcdc9b744e",
+      "rgba_sha256": "bc259bcd280a81dddd7b6f5432e1dd55a35850e96e67606958e74b0e60d04977",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20261.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "7018788329419933407",
+        "ability_source": {
+          "address": "AbilityItemCfg_20261",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20261.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "1635388517775111274",
+          "json_sha256": "695c719ce63d61d7bbc7552b805a089b5252dc58001dd1226af04fe038ec5086"
+        }
+      }
+    },
+    "20262": {
+      "ability_id": 20262,
+      "name": "混沌洛基",
+      "description": "【进阶暗影之妖】<br>每隔30秒，<#specinfo=gongjisudu>+20，<#specinfo=putonggongji>伤害+100%，<#specinfo=putonggongji>命中有20%概率附加<#specinfo=anshi>，持续8秒。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20262.png",
+      "icon_name": "sprite_abilityitemicon_20262",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "cc8ee048187a5dd2036a941b29b1827d94f193c753c475e80e2bfdd7928e8f24",
+      "rgba_sha256": "ea6a4b6d25233e14d666e0059185f06a5731cd5683fed3aff361d9400dd2efbe",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20262.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-8075153301453845839",
+        "ability_source": {
+          "address": "AbilityItemCfg_20262",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20262.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "3262876146729754664",
+          "json_sha256": "b851b9bb72e393fa64c414198c52a578ee344d4ffbbc4700850172988b43efc5"
+        }
+      }
+    },
+    "20265": {
+      "ability_id": 20265,
+      "name": "冰精灵",
+      "description": "每2秒储存1枚<color=#aacaff>冰刺</color>，上限4枚，储存满时使用<#specinfo=zhanji>释放全部储存的<color=#aacaff>冰刺</color>。使用<#specinfo=baofaji>直接召唤4枚<color=#aacaff>冰刺</color>，<#specinfo=lengque>30秒。<color=#aacaff>冰刺</color>围绕玩家旋转并向外扩散，持续3秒，每枚<color=#aacaff>冰刺</color>造成20%<#specinfo=gongjili>伤害，每次命中敌人施加2层<#specinfo=dongshang>。",
+      "rarity": 3,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20265.png",
+      "icon_name": "sprite_abilityitemicon_20265",
+      "size": [
+        202,
+        242
+      ],
+      "png_sha256": "1cc759cadc03830870798b08a984ba04909df5a94c4215acbebf51d32b340a8d",
+      "rgba_sha256": "a90b477603c2264b5587fdeb77e8e62f698482f0416299b2ac55153a7250ba03",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20265.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-5095660826372402278",
+        "ability_source": {
+          "address": "AbilityItemCfg_20265",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20265.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-8264991112642150026",
+          "json_sha256": "a07c7b9828b8dcecaac8f99267f0ff8b52555a5346abda005cff9524f5490485"
+        }
+      }
+    },
+    "20266": {
+      "ability_id": 20266,
+      "name": "霜华之灵",
+      "description": "【进阶冰精灵】<br>每2秒储存1枚<color=#aacaff>冰刺</color>，上限5枚，储存满时使用<#specinfo=zhanji>释放全部储存的<color=#aacaff>冰刺</color>。使用<#specinfo=baofaji>直接召唤5枚<color=#aacaff>冰刺</color>，<#specinfo=lengque>20秒。<color=#aacaff>冰刺</color>围绕玩家旋转并向外扩散，持续3秒，每枚<color=#aacaff>冰刺</color>造成20%<#specinfo=gongjili>伤害，每次命中敌人施加3层<#specinfo=dongshang>。",
+      "rarity": 4,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20266.png",
+      "icon_name": "sprite_abilityitemicon_20266",
+      "size": [
+        210,
+        236
+      ],
+      "png_sha256": "7a842f1aa8b9c61fc403fbeef448f03d602307a8aac3003b61ef147ce94da9ee",
+      "rgba_sha256": "1b091dd0a69b3cc11a2d0eb35aaaa00a5901c42d62da69177144cbf45ef6c0e5",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20266.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-4535449923291923904",
+        "ability_source": {
+          "address": "AbilityItemCfg_20266",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20266.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-8627360321733437614",
+          "json_sha256": "a36ba2bcb27840f0f7ccb364c18f0791d04269e247cecb9f2c4b2b1dd90180fc"
+        }
+      }
+    },
+    "20267": {
+      "ability_id": 20267,
+      "name": "凛冬霜灵",
+      "description": "【进阶霜华之灵】<br>每2秒储存1枚<color=#aacaff>冰刺</color>，上限6枚，储存满时使用<#specinfo=zhanji>释放全部储存的<color=#aacaff>冰刺</color>。使用<#specinfo=baofaji>直接召唤6枚<color=#aacaff>冰刺</color>，<#specinfo=lengque>15秒。<color=#aacaff>冰刺</color>围绕玩家旋转并向外扩散，持续3秒，每枚<color=#aacaff>冰刺</color>造成20%<#specinfo=gongjili>伤害，每次命中敌人施加4层<#specinfo=dongshang>。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20267.png",
+      "icon_name": "sprite_abilityitemicon_20267",
+      "size": [
+        246,
+        244
+      ],
+      "png_sha256": "10ac7643cf79546b26fef242a262a26320a6915aaf6f749ae9bd0de25c05f661",
+      "rgba_sha256": "99acb6141f30a486658f49810420cf89360518e99192d3ffbb0a7c7bf424a6a3",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20267.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "3333524633666689693",
+        "ability_source": {
+          "address": "AbilityItemCfg_20267",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20267.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-5657870542282582104",
+          "json_sha256": "ea0b475f61cce47e5b905b0b26828129eb819e036c65c2a0959077c36b5d573f"
+        }
+      }
+    },
+    "20270": {
+      "ability_id": 20270,
+      "name": "赤焰风舞·炎风精灵",
+      "description": "【融合精灵】<br>每4.5秒获得一层充能，最多3层；<#specinfo=zhanji>或<#specinfo=shanbigongji>命中目标后，消耗充能生成<color=#ff4f4f>【火种】</color>，每次造成25%<#specinfo=gongjili>伤害，并有10%概率附加<#specinfo=zhuoshao>，持续燃烧2秒后会<color=#ff4f4f>【引爆火种】</color>，引爆造成150%<#specinfo=gongjili>伤害，吸引附近敌人。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20270.png",
+      "icon_name": "sprite_abilityitemicon_20270",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "0caa99239ff6ba814d53b9a43d25ce05c6cf0f17b40da6b0e8e744719261718c",
+      "rgba_sha256": "273cd176aaf8382c2c9a983014f51c138d7841b9afc74a630c7c9cbb76385e47",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20270.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-3383727677199957438",
+        "ability_source": {
+          "address": "AbilityItemCfg_20270",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20270.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-3844299342495891663",
+          "json_sha256": "2987f9583c47c3ceeb5780b578b1c195ccabfa57de1fd16734899f232aac37be"
+        }
+      }
+    },
+    "20280": {
+      "ability_id": 20280,
+      "name": "闪焰雷光·雷焰精灵",
+      "description": "【融合精灵】<br>强化<#specinfo=shandian>为<color=#ff4f4f>【赤色闪电】</color>。每1.5秒召唤1道<color=#ff4f4f>【赤色闪电】</color>落下攻击附近敌人，每道造成150%<#specinfo=gongjili>伤害。<color=#ff4f4f>【赤色闪电】</color>命中后50%概率在目标位置脚下生成<color=#ff4f4f>【熔岩】</color>：每秒叠加一层<#specinfo=zhuoshao>，每次造成30%<#specinfo=gongjili>伤害，持续时间3秒，每层<#specinfo=zhuoshao>增加<color=#ff4f4f>【熔岩】</color>15%伤害。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20280.png",
+      "icon_name": "sprite_abilityitemicon_20280",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "b07f09fb7d21150b35bd021e27de2672c7034a39d4c021cd9413f58219e14347",
+      "rgba_sha256": "918423a16963665f30c7ecbc45c6b5f54473966ea8adca68056f162d0053c21c",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20280.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-5310596724223088289",
+        "ability_source": {
+          "address": "AbilityItemCfg_20280",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20280.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "2292488622666204282",
+          "json_sha256": "5efcee693ea49fce15394396b1a008cf58266cc81c4ab7ff2a891e0943bcd8d0"
+        }
+      }
+    },
+    "20290": {
+      "ability_id": 20290,
+      "name": "暴雷狂浪·澜电精灵",
+      "description": "【融合精灵】<br><#specinfo=putonggongji>和<#specinfo=zhongji>命中，有70%概率生成<color=#4f8dff>激流射线</color>，数量1道，每道造成20%<#specinfo=gongjili>伤害，命中后有40%概率附带<#specinfo=chaoshi>且重复命中目标将引动<#specinfo=shandian>，同时每层<#specinfo=chaoshi>提升5%<color=#4f8dff>激流射线</color>和<#specinfo=shandian>伤害。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20290.png",
+      "icon_name": "sprite_abilityitemicon_20290",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "4e2f47fc68d605c1c63cbd71c907beae779202eca260df4c89a34b820d0b3fb4",
+      "rgba_sha256": "d82c1e5b472d5491c00bce4aacc1fb3fd141df03e6b423dc25ba13179a2eed2f",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20290.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "-5793482087417985233",
+        "ability_source": {
+          "address": "AbilityItemCfg_20290",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20290.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-7364369351147866228",
+          "json_sha256": "40384fa337e931b4359c4895e24c288a46408513c3d7e12d02f282875116c559"
+        }
+      }
+    },
+    "20300": {
+      "ability_id": 20300,
+      "name": "游风波涌·涟风精灵",
+      "description": "【融合精灵】<br><#specinfo=shanbigongji>或<#specinfo=zhongji>时向前方吹出数枚<color=#42ffd0>泡泡</color>，每枚造成5%<#specinfo=gongjili>伤害，对触碰到的敌人有5%概率附加<#specinfo=chaoshi>，爆裂后再生成<color=#42ffd0>风刃</color>，每道造成20%<#specinfo=gongjili>伤害，并有5%概率附加<#specinfo=biaoji>，<#specinfo=lengque>时间1.5秒。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20300.png",
+      "icon_name": "sprite_abilityitemicon_20300",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "ec51f8018314d7c79047d508252f58c822bd97495151cbaa32099c73fbafd2ef",
+      "rgba_sha256": "8e8e4fe9b464d8f077f0e4672ad3f6f15fb3ba61f3b6fe6318f1b2218bf65f7f",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20300.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "5793961958245302254",
+        "ability_source": {
+          "address": "AbilityItemCfg_20300",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20300.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-4718395256849949921",
+          "json_sha256": "089f9ceec6e189e16e5a06423e63e31a1db4777fb5f8b0a1db634eb6296f132a"
+        }
+      }
+    },
+    "20310": {
+      "ability_id": 20310,
+      "name": "灵光幽影·辉暗双子",
+      "description": "【融合精灵】<br>每隔15秒，角色会在<color=#f18800>光</color>与<color=#b482ff>暗形态</color>之间转换。<color=#f18800>光形态</color>下，<#specinfo=fangyuli>+30%，并召唤出6把的<color=#f18800>光剑</color>，每把造成50%<#specinfo=gongjili>伤害；<color=#b482ff>暗形态</color>下，角色+30<#specinfo=gongjisudu>与<#specinfo=putonggongji>伤害+120%，且每1.5秒向附近敌人落下<color=#b482ff>暗之剑</color>，每把造成125%<#specinfo=gongjili>伤害，并附加<#specinfo=anshi>。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20310.png",
+      "icon_name": "sprite_abilityitemicon_20310",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "cc63e321e0afe362b6f47878d011032808766f0540c7396c51b3ac762cea299b",
+      "rgba_sha256": "c5fe052d180ab2a995cbb86a96234bc27ce424f5a83435139fed5120d0a40eb6",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20310.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "4902405223025933800",
+        "ability_source": {
+          "address": "AbilityItemCfg_20310",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20310.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-5021296610188938362",
+          "json_sha256": "f4f101c3361e7855937ab6fdcf44bcc0f89a5a499284cf38a88793a9c21ed6db"
+        }
+      }
+    },
+    "20320": {
+      "ability_id": 20320,
+      "name": "霜焰凛空·冰火精灵",
+      "description": "【融合精灵】<br>对敌人造成<#specinfo=zhanji>或<#specinfo=baofaji>伤害有10%概率使敌人<color=#ff4f4f>【爆燃】</color>，对其施加1层<#specinfo=zhuoshao>与10层<#specinfo=dongshang>，并向四周溅射<color=#4f8dff>【蓝火】</color>。<color=#4f8dff>【蓝火】</color>使地面燃烧2秒，每秒对地面上的敌人造成40%<#specinfo=gongjili>伤害，每受到4次蓝火伤害，将1层<#specinfo=dongshang>转化为<#specinfo=suibing>；敌人每拥有1层<#specinfo=zhuoshao>，受到的冰火精灵伤害提升10%，每拥有1层<#specinfo=dongshang>提升1%。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20320.png",
+      "icon_name": "sprite_abilityitemicon_20320",
+      "size": [
+        209,
+        256
+      ],
+      "png_sha256": "b4bdd7b01b7dec00b2f7e15b62ab9c86a2dbc2d01bcf7f0d72d0c28ce034aad9",
+      "rgba_sha256": "897d5c5f65e275c07209c79d584d72c5372f254cd49179ac8e1a358682c4da27",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20320.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "3829585433995498026",
+        "ability_source": {
+          "address": "AbilityItemCfg_20320",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20320.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-698141148265234330",
+          "json_sha256": "7daf41de749acce9c53c5443487575267d10df88b2e0226c12b942d445060276"
+        }
+      }
+    },
+    "20330": {
+      "ability_id": 20330,
+      "name": "霜风凛冽·冰风精灵",
+      "description": "【融合精灵】<br><#specinfo=shanbigongji>命中后，在目标位置生成<color=#4f8dff>【冰旋风】，</color>缓慢跟随玩家移动，持续10秒，最多存在3颗，每0.5秒对周围敌人造成24%<#specinfo=gongjili>的<color=#4f8dff>冰属性伤害</color>并向周围随机方向发射冰刺，每枚造成20%攻击力伤害，<color=#aacaff>冰刺</color>对命中的敌人施加1层<#specinfo=dongshang>，10%概率施加1层标记<#specinfo=biaoji>。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20330.png",
+      "icon_name": "sprite_abilityitemicon_20330",
+      "size": [
+        214,
+        256
+      ],
+      "png_sha256": "13f1f33cd2b2db956055888df22376f7065312fa55e9aa2207e25ce9340e2156",
+      "rgba_sha256": "7c0072fe1007a243bb62a8d03fd8ff85b18e93481abc386880a4dd3d3dec8f0a",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20330.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "7173969145071999588",
+        "ability_source": {
+          "address": "AbilityItemCfg_20330",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20330.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-352975537105832579",
+          "json_sha256": "b7e70acc5963afbf7355fa7b026f1df17e59a3a55ddb20fafdc7dc7b5d8f4ee1"
+        }
+      }
+    },
+    "20340": {
+      "ability_id": 20340,
+      "name": "震雷裂土·岩雷精灵",
+      "description": "【融合精灵】<br><#specinfo=shanbigongji>使被命中的敌人<color=#f7c631>【磁化】</color>，磁化持续10秒，每1.5秒受到<#specinfo=shandian>攻击，并施加1层<#specinfo=zhongshang>；敌人每受到5次<#specinfo=shandian>伤害，在其当前位置产生1次<color=#c98a4b>地震</color>，每次造成300%<#specinfo=gongjili>伤害，并施加10层<#specinfo=zhongshang>。敌人身上每层<#specinfo=zhongshang>使受到的<#specinfo=shandian>与<color=#c98a4b>地震</color>伤害提升0.2%。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20340.png",
+      "icon_name": "sprite_abilityitemicon_20340",
+      "size": [
+        256,
+        256
+      ],
+      "png_sha256": "e651da0decbbfb696c1d45d343e39c9958450007baa6bac77fb79355fd499bb2",
+      "rgba_sha256": "a1d78bfd3e34aaf617d491e20570657570753ab00b61a62ac9fab5693e57fa75",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20340.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "7746671953767729832",
+        "ability_source": {
+          "address": "AbilityItemCfg_20340",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20340.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-4034652280236123736",
+          "json_sha256": "5ef49b7c23a708fa43dac68f378476e9dac0c70f0e6bfbbd23da125735bca41b"
+        }
+      }
+    },
+    "20350": {
+      "ability_id": 20350,
+      "name": "沃土惊澜·水岩精灵",
+      "description": "【融合精灵】<br>每移动20米，在脚下生成一片<color=#c98a4b>【泥石流】</color>，持续6秒，每0.5秒造成20%<#specinfo=gongjili>伤害，并附加<#specinfo=chaoshi>；<#specinfo=shanbigongji>或<#specinfo=zhongji>命中<color=#c98a4b>【泥石流】</color>中的敌人时，附加3层<#specinfo=zhongshang>。",
+      "rarity": 5,
+      "show_ability_icon": false,
+      "icon": "res://assets/ui/pickup/sprite_abilityitemicon_20350.png",
+      "icon_name": "sprite_abilityitemicon_20350",
+      "size": [
+        256,
+        250
+      ],
+      "png_sha256": "179551529a23726d8b9905b1820e53e989a9b17480b0f03d0cfa0eecb00ca93f",
+      "rgba_sha256": "3c7d13da1befc85c9d6f67f57408dc42999109fdae222fab1de81d51ddc1bbc4",
+      "current_apk_pixels_match": true,
+      "source": {
+        "asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_abilityitemicon_20350.png",
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+        "sprite_path_id": "567865083202320173",
+        "ability_source": {
+          "address": "AbilityItemCfg_20350",
+          "asset": "Assets/[00002]Resource/ActionEngineCfg/AbilityItemData/SubCfg/AbilityItemCfg_20350.json",
+          "bundle": "assets/yoo/DefaultPackage/17774c9180b87adaff76b4bf287f96aa.bundle",
+          "bundle_sha256": "bc687702d26b68842cfb379ab00b62be008e969586301e3967ef39374107b32c",
+          "path_id": "-6259984929637970589",
+          "json_sha256": "79f7c3c79ff7186ae1718e88056f16d6e9e9dc93ce9941f6839094e410441dbf"
+        }
+      }
+    }
+  },
+  "ui": {
+    "prefab": {
+      "address": "Panel_PlayerStateMenu",
+      "path": "Assets/[00002]Resource/Prefabs/ProjectAT/Panel/Panel_PlayerStateMenu.prefab",
+      "bundle": 5387
+    },
+    "source": {
+      "member": "assets/yoo/DefaultPackage/aeecac70829d59d07c645aee68d05266.bundle",
+      "sha256": "c2ad218c76ad19b32f960ca8432836e51eb572e3daee33c04948bd2020b87520"
+    },
+    "layout": "res://assets/ui/role_character/panel/prefab-layout.json",
+    "layout_sha256": "28605eac2bb160985665b0ae6c673a4d822662084403106058fe924ef0144325",
+    "inventory_layout": "res://assets/ui/role_inventory/prefab-layout.json",
+    "transforms": [
+      {
+        "path": "Panel_PlayerStateMenu/ATPageBtnBox/Btn_Item",
+        "path_id": "-4461606669623883110",
+        "data": {
+          "m_GameObject": {
+            "m_FileID": 0,
+            "m_PathID": -6515235535342794086
+          },
+          "m_LocalRotation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.0,
+            "w": 1.0
+          },
+          "m_LocalPosition": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "m_LocalScale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "m_Children": [
+            {
+              "m_FileID": 0,
+              "m_PathID": -7011609855305905510
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -6045625840284202342
+            }
+          ],
+          "m_Father": {
+            "m_FileID": 0,
+            "m_PathID": 2659720857317149338
+          },
+          "m_AnchorMin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_AnchorMax": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_AnchoredPosition": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_SizeDelta": {
+            "x": 0.0,
+            "y": 125.0
+          },
+          "m_Pivot": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      },
+      {
+        "path": "Panel_PlayerStateMenu/Mode_Item",
+        "path_id": "-7330943193655211366",
+        "data": {
+          "m_GameObject": {
+            "m_FileID": 0,
+            "m_PathID": 458841612401117850
+          },
+          "m_LocalRotation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.0,
+            "w": 1.0
+          },
+          "m_LocalPosition": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "m_LocalScale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "m_Children": [
+            {
+              "m_FileID": 0,
+              "m_PathID": 8413501327364000410
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -159833924853626214
+            }
+          ],
+          "m_Father": {
+            "m_FileID": 0,
+            "m_PathID": -5538070248392488294
+          },
+          "m_AnchorMin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_AnchorMax": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_AnchoredPosition": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_SizeDelta": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_Pivot": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      },
+      {
+        "path": "Panel_PlayerStateMenu/Mode_Item/Box_Detail_ItemInfo",
+        "path_id": "-159833924853626214",
+        "data": {
+          "m_GameObject": {
+            "m_FileID": 0,
+            "m_PathID": 7585612181482244762
+          },
+          "m_LocalRotation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.0,
+            "w": 1.0
+          },
+          "m_LocalPosition": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "m_LocalScale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "m_Children": [
+            {
+              "m_FileID": 0,
+              "m_PathID": -8333669286940767590
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": 9065000596446186138
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -3021043895433622886
+            }
+          ],
+          "m_Father": {
+            "m_FileID": 0,
+            "m_PathID": -7330943193655211366
+          },
+          "m_AnchorMin": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "m_AnchorMax": {
+            "x": 1.0,
+            "y": 0.5
+          },
+          "m_AnchoredPosition": {
+            "x": 336.43896484375,
+            "y": -39.2255859375
+          },
+          "m_SizeDelta": {
+            "x": 605.0645751953125,
+            "y": 967.8206787109375
+          },
+          "m_Pivot": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      },
+      {
+        "path": "Panel_PlayerStateMenu/Mode_Item/Box_Detail_ItemInfo/Box_Detail/Box_NonEmpty",
+        "path_id": "2888382116504144538",
+        "data": {
+          "m_GameObject": {
+            "m_FileID": 0,
+            "m_PathID": -1386434465073788262
+          },
+          "m_LocalRotation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.0,
+            "w": 1.0
+          },
+          "m_LocalPosition": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "m_LocalScale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "m_Children": [
+            {
+              "m_FileID": 0,
+              "m_PathID": 399471923459787418
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -6811882968472810854
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -3585740775532066150
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -5661972934397982054
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": -9006864065734767974
+            }
+          ],
+          "m_Father": {
+            "m_FileID": 0,
+            "m_PathID": 9065000596446186138
+          },
+          "m_AnchorMin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_AnchorMax": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "m_AnchoredPosition": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_SizeDelta": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "m_Pivot": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      },
+      {
+        "path": "Panel_PlayerStateMenu/Mode_Item/Container/Scroll_ItenListGrid",
+        "path_id": "-851057096995829094",
+        "data": {
+          "m_GameObject": {
+            "m_FileID": 0,
+            "m_PathID": 2418249966486948506
+          },
+          "m_LocalRotation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.0,
+            "w": 1.0
+          },
+          "m_LocalPosition": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "m_LocalScale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "m_Children": [
+            {
+              "m_FileID": 0,
+              "m_PathID": -4877210672526718310
+            },
+            {
+              "m_FileID": 0,
+              "m_PathID": 644635229508602522
+            }
+          ],
+          "m_Father": {
+            "m_FileID": 0,
+            "m_PathID": 8413501327364000410
+          },
+          "m_AnchorMin": {
+            "x": 0.0,
+            "y": 1.0
+          },
+          "m_AnchorMax": {
+            "x": 0.0,
+            "y": 1.0
+          },
+          "m_AnchoredPosition": {
+            "x": 455.0,
+            "y": -654.08544921875
+          },
+          "m_SizeDelta": {
+            "x": 910.0,
+            "y": 608.1708984375
+          },
+          "m_Pivot": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    ],
+    "spirit_specific_paths_in_player_menu": []
+  },
+  "observations": [
+    "All 33 spirit icons already retained under assets/ui/pickup match current APK Sprite pixels exactly.",
+    "All 33 retained spirit AbilityItem raw records match current APK TextAssets exactly.",
+    "All 33 spirit AbilityItem source records set ShowIcon=false.",
+    "PlayerStateMenu has an item grid and selected-item icon/name/description/tag detail area."
+  ],
+  "design_boundary": [
+    "A spirit-only inventory filter, character attachment entry and upgrade/fusion preview are reconstruction usability choices.",
+    "ShowIcon=false does not prove the absence of every possible original buff-state indicator.",
+    "The selected player-menu hierarchy has no spirit-specific named control; this is a bounded search, not a runtime claim.",
+    "No original APK runtime capture establishes a dedicated spirit cooldown or charge HUD."
+  ]
+}
