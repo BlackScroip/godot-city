@@ -1,11 +1,13 @@
 extends Node3D
 
 var emitters: Array[Dictionary] = []
+var retained_particles: Array[Dictionary] = []
 var model_players: Array[Dictionary] = []
 var model_styles: Array[Dictionary] = []
 const ModelMaterialAnimation = preload("res://scripts/presentation/model_material_animation.gd")
 const Descriptors = preload("res://scripts/presentation/effect_descriptors.gd")
 const ChestSmokeVelocity = preload("res://scripts/presentation/chest_smoke_velocity.gd")
+const RetainedParticle = preload("res://scripts/presentation/retained_particle.gd")
 var age := 0.0
 var lifetime := 0.0
 var unsupported: Array = []
@@ -115,6 +117,7 @@ static func _integrated_motion(module: Dictionary, duration: float) -> CurveXYZT
 	return texture
 
 static func _layer_priority(layer: Dictionary) -> int:
+	if RetainedParticle.handles(layer): return 3
 	var name = str(layer.get("name", "")).to_lower()
 	# Retain the attack silhouette before optional haze and scatter in reduced mode.
 	if "smoke" in name or "dust" in name or "glow" in name: return 0
@@ -271,7 +274,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		var lifetime_range := scalar_range(initial.get("startLifetime", {}), 0.3)
 		particle.lifetime = clampf(lifetime_range.y, 0.02, 8)
 		particle.lifetime_randomness = clampf(1.0 - lifetime_range.x / particle.lifetime, 0, 1)
-		if wolf_embedded and bool(layer.get("prewarm", false)) and bool(layer.get("looping", false)):
+		if (wolf_embedded or str(layer.get("name", "")) == "24071901_void_helixline") and bool(layer.get("prewarm", false)) and bool(layer.get("looping", false)):
 			particle.preprocess = maxf(particle.lifetime, float(layer.get("duration", particle.lifetime)))
 		var count := 0.0
 		for burst in emission.get("m_Bursts", []): count += scalar(burst.get("countCurve", {}), 1)
@@ -486,6 +489,18 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			particle.material_override = recovered
 		particle.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		particle.extra_cull_margin = 8
+		if RetainedParticle.handles(layer):
+			# Unity PauseUntilReplaced keeps this stationary single-burst particle alive.
+			var retained := RetainedParticle.create(particle, layer)
+			node.add_child(retained)
+			var burst: Dictionary = emission.m_Bursts[0]
+			var speed := maxf(0.01, float(layer.get("simulation_speed", 1.0)))
+			retained_particles.append({"node": retained, "path": get_path_to(retained), "delay": (scalar(layer.get("start_delay", {})) + float(burst.get("time", 0.0))) / speed, "duration": particle.lifetime / speed, "angle": deg_to_rad(particle.angle_min)})
+			lifetime = maxf(lifetime, float(retained_particles.back().delay) + float(retained_particles.back().duration))
+			particle_count += 1
+			logical_emitter_count += 1
+			particle.free()
+			continue
 		node.add_child(particle)
 		var delay = maxf(0, scalar(layer.get("start_delay", {})))
 		var duration = maxf(particle.lifetime, float(layer.get("duration", particle.lifetime)))
@@ -523,7 +538,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		lifetime = maxf(lifetime, (delay + (duration if rate > 0 else 0.0) + particle.lifetime) / speed_scale)
 
 func set_visual_gain(value: float, crimson := false) -> void:
-	for emitter in emitters:
+	for emitter in emitters + retained_particles:
 		if emitter.node.material_override is ShaderMaterial:
 			emitter.node.material_override.set_shader_parameter("visual_gain", clampf(value, 0, 1))
 			emitter.node.material_override.set_shader_parameter("crimson_blade", crimson)
@@ -535,6 +550,12 @@ func instantiate_effect() -> Node3D:
 	instance.particle_count = particle_count
 	instance.unsupported = unsupported
 	for child in get_children(): instance.add_child(child.duplicate(0))
+	for source in retained_particles:
+		var entry = source.duplicate()
+		entry.node = instance.get_child(source.node.get_parent().get_index()).get_child(source.node.get_index())
+		entry.node.multimesh = RetainedParticle.duplicate_mesh(entry.node.multimesh)
+		entry.node.material_override = entry.node.material_override.duplicate()
+		instance.retained_particles.append(entry)
 	for source in model_players:
 		var entry = source.duplicate()
 		entry.node = instance.get_node(source.path)
@@ -556,6 +577,7 @@ func restart() -> void:
 	_running = true
 	show()
 	play_model_animation("")
+	for retained in retained_particles: retained.node.hide()
 	for emitter in emitters:
 		emitter.started = false
 		emitter.erase("next_burst")
@@ -584,6 +606,12 @@ func advance(delta: float, paused: bool, playback_rate := 1.0) -> void:
 				emitter.last_basis = basis_value
 	if paused or not _running: return
 	age += delta
+	for retained in retained_particles:
+		retained.node.visible = age >= float(retained.delay)
+		var phase := clampf((age - float(retained.delay)) / maxf(0.0001, float(retained.duration)), 0.0, 1.0)
+		retained.node.multimesh.set_instance_custom_data(0, Color(float(retained.angle), phase, 0.0, 0.0))
+		if retained.node.material_override is ShaderMaterial:
+			retained.node.material_override.set_shader_parameter("clock", age)
 	for emitter in emitters:
 		if (not emitter.started and age >= float(emitter.delay)) or (emitter.has("next_burst") and age >= float(emitter.next_burst)):
 			emitter.started = true
@@ -599,6 +627,7 @@ func stop() -> void:
 	_running = false
 	hide()
 	for emitter in emitters: emitter.node.emitting = false
+	for retained in retained_particles: retained.node.hide()
 	for entry in model_players: entry.node.stop()
 
 func play_model_animation(source_name: String) -> void:

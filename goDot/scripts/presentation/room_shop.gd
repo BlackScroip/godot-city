@@ -140,11 +140,14 @@ func _build() -> void:
 	refresh_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add_child(refresh_cost)
 	footer = _button("继续前进", "sprite_conversation_leave")
-	footer.pressed.connect(func(): command.emit("finish_noncombat", 0, 0))
+	footer.pressed.connect(func():
+		if context.get("return_to_room", false): closed.emit()
+		else: command.emit("finish_noncombat", 0, 0))
 	add_child(footer)
 	resized.connect(_layout)
 
 func _update_state() -> void:
+	footer.text = "返回房间" if context.get("return_to_room", false) else "继续前进"
 	var status: Dictionary = context.get("shop", {})
 	magic_text.text = str(context.get("magic", 0))
 	free_text.text = str(context.get("free", 0))

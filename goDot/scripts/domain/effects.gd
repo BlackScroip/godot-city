@@ -43,7 +43,7 @@ func ability_attributes(id: int, count: int, target: Dictionary, path: Array = [
 		for component in row.get("CombineDataList", []):
 			if not component.get("ConditionList", []).is_empty(): continue
 			var data = component.get("Data", {})
-			var component_count = description_state.component_factor(row, data, count) if bool(row.get("EnableCaculateAttributeSource", false)) else count
+			var component_count = description_state.component_factor(row, data, count)
 			match str(component.get("CombineDataType", "")):
 				"NormalModifyRogue": _sum(target, data.get("ModifyAttributeType", ""), float(data.get("ModifyAttributeValue", 0)) * component_count)
 				"NormalModifyBuff":

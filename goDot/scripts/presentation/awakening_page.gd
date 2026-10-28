@@ -263,7 +263,14 @@ func _show_detail(reset_scroll := true) -> void:
 	heading.add_child(title)
 	var state = "已激活" if selected_status.active else "已解锁" if selected_status.unlocked else "待解锁"
 	details.add_child(_label(state + " · 需要觉醒 Lv.%d" % int(row.unlock_awake_tree_level), 13 if _compact else 17, GREEN if selected_status.active else MUTED))
-	details.add_child(_label(DungeonCatalog.description(row), 14 if _compact else 18))
+	var description = SourceRichText.new()
+	description.name = "AwakeningDescription"
+	description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	description.add_theme_font_size_override("normal_font_size", 14 if _compact else 18)
+	description.add_theme_color_override("default_color", INK)
+	description.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
+	description.set_source(DungeonCatalog.description(row))
+	details.add_child(description)
 	var talent_id = int(row.get("link_chara_talent_id", 0))
 	if talent_id > 0: details.add_child(_label("关联天赋：" + DungeonCatalog.row_name(catalog.find("CharTalentData", talent_id)), 12 if _compact else 16, MUTED))
 	details.add_child(_label("激活消耗 %d 潜能点 · 剩余 %d" % [int(selected_status.cost_points), maxi(0, int(selected_status.points) - int(selected_status.used_points))], 13 if _compact else 17, GREEN))

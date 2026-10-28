@@ -363,9 +363,10 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(title)
 	if not str(row.get("description", "")).is_empty():
-		var description = DungeonStyle.label(str(row.description), 16 if compact else 18)
-		description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		description.modulate = Color("b9c8c5")
+		var description = SourceRichText.new()
+		description.add_theme_font_size_override("normal_font_size", 16 if compact else 18)
+		description.add_theme_color_override("default_color", Color("b9c8c5"))
+		description.set_source(str(row.get("source_description", row.description)))
 		item.add_child(description)
 	var commands = HFlowContainer.new()
 	commands.add_theme_constant_override("h_separation", 10)

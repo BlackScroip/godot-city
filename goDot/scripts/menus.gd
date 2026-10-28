@@ -128,7 +128,7 @@ func _material_row(id: int, amount: int) -> Dictionary:
 	row.merge({"material_id": id, "count": amount, "star_num": int(source.get("star_num", 1)), "item_type": str(source.get("item_type", "")), "source_description": DungeonCatalog.description(source)})
 	return row
 
-func open(page: String, id: int = 0) -> void:
+func open(page: String, id: int = 0, entry_context: Dictionary = {}) -> void:
 	var mall_category := "treasure" if page in ["treasure", "chests"] else ""
 	if not mall_category.is_empty(): page = "mall"
 	if page == "character_talents":
@@ -247,8 +247,8 @@ func open(page: String, id: int = 0) -> void:
 				rows.append(item(name_of(row) + "  Lv.%d" % rank, details, buttons))
 				rows.back()["weapon_id"] = int(row.id)
 				rows.back()["rank"] = rank
-				rows.back()["source_description"] = description(row)
-				rows.back()["effect_description"] = clean(row.get("effect_description", "")).replace("|", "\n")
+				rows.back()["source_description"] = DungeonCatalog.description(row)
+				rows.back()["effect_description"] = str(row.get("effect_description", ""))
 				rows.back()["in_run"] = bool(profile.data.run.active)
 				rows.back()["active_character"] = equipped_weapon == int(row.id)
 				if not profile.data.run.active and not systems.camp_feature_status("weapons" if rank == 0 else "weapon_upgrade").available: rows.back().buttons.append(command("前往建设", "page:buildings", 3))
@@ -631,10 +631,10 @@ func open(page: String, id: int = 0) -> void:
 			if page == "buildings" and (id <= 0 or id == int(hud.page.page_context.get("selected_id", 0))):
 				for key in ["selected_id", "selected_stage", "building_scroll"]:
 					if hud.page.page_context.has(key): context[key] = hud.page.page_context[key]
-			for key in ["group_id", "category", "selected_talent", "selected_character", "character_mode", "use_model", "selected_fashion", "fashion_open", "selected_weapon", "weapon_selector_open", "selected_inventory_key", "inventory_filter", "mall_category", "selected_offer", "mall_box_count", "awakening_character_id", "selected_awakening", "awakening_collection_scroll", "awakening_detail_scroll"]:
+			for key in ["group_id", "category", "selected_talent", "selected_character", "character_mode", "use_model", "selected_fashion", "fashion_open", "selected_weapon", "weapon_selector_open", "weapon_selector_direct", "selected_inventory_key", "inventory_filter", "mall_category", "selected_offer", "mall_box_count", "awakening_character_id", "selected_awakening", "awakening_collection_scroll", "awakening_detail_scroll"]:
 				if key == "group_id" and id > 0: continue
 				if page == "inventory" and id > 0 and key in ["selected_inventory_key", "inventory_filter"]: continue
-				if page == "weapons" and int(context.character_id) != int(hud.page.page_context.get("character_id", 0)) and key in ["selected_weapon", "weapon_selector_open"]: continue
+				if page == "weapons" and int(context.character_id) != int(hud.page.page_context.get("character_id", 0)) and key in ["selected_weapon", "weapon_selector_open", "weapon_selector_direct"]: continue
 				if hud.page.page_context.has(key): context[key] = hud.page.page_context[key]
 		if page == "characters" and id > 0: context["selected_character"] = id
 		if page == "awakening" and id > 0: context["awakening_character_id"] = id
@@ -672,6 +672,9 @@ func open(page: String, id: int = 0) -> void:
 		context["resources"] = [["material:101", str(systems.material(101))], ["material:108", str(systems.material(108))], ["material:90002", str(systems.material(90002))]]
 	if page == "npcs": context["resources"] = [["material:106", str(systems.material(106))]]
 	if page.begins_with("extra_challenge"): context["resources"] = [["material:40001", str(systems.material(40001))]]
+	context.merge(entry_context, true)
+	if page == "weapons" and context.get("weapon_selector_direct", false):
+		context.resources.append(["material:103", str(systems.material(103))])
 	hud.show_page(title, rows, layout, context)
 
 func _relationship_sockets(token_id: int) -> Array:
@@ -684,7 +687,7 @@ func _relationship_sockets(token_id: int) -> Array:
 			buttons.append(command("镶嵌", "page:amplifiers", token_id, int(socket.index)))
 			if int(socket.amplifier_id) > 0: buttons.append(command("拆卸", "op:unequip_amplifier", token_id, int(socket.index)))
 		else: buttons.append(command("解锁", "op:unlock_amplifier_slot", token_id, int(socket.index), not socket.can_unlock))
-		result.append({"title": name_of(amplifier) if not amplifier.is_empty() else "空槽" if socket.unlocked else "未解锁", "icon": str(amplifier.get("icon_name", "icon_addnum" if socket.unlocked else "锁")), "description": description(amplifier) if socket.unlocked else price_text(socket.price) + "\n" + str(socket.reason), "buttons": buttons})
+		result.append({"title": name_of(amplifier) if not amplifier.is_empty() else "空槽" if socket.unlocked else "未解锁", "icon": str(amplifier.get("icon_name", "icon_addnum" if socket.unlocked else "锁")), "description": SourceRichText.source_field("RelationshipAmplifyData", int(socket.amplifier_id), "description", DungeonCatalog.description(amplifier)) if socket.unlocked else price_text(socket.price) + "\n" + str(socket.reason), "buttons": buttons})
 	return result
 
 func _relationship_rows(page: String) -> Array:
@@ -705,6 +708,7 @@ func _relationship_rows(page: String) -> Array:
 			var available = systems.relationship_tokens.available(amplifier_id)
 			var quote = systems.amplifier_compose_quote({"groups": {str(amplifier_id): 1}})
 			var row = item(name_of(source) + " ×%d" % systems.material(amplifier_id), description(source) + "\n未镶嵌 %d\n五合一费用：%s\n%s" % [available, price_text(quote.price), str(quote.reason)], [command("镶嵌", "op:equip_amplifier", amplifier_id, {}, available <= 0), command("合成预览", "page:token_compose_preview", amplifier_id, 0, not quote.success)])
+			row["source_description"] = SourceRichText.source_field("RelationshipAmplifyData", amplifier_id, "description", DungeonCatalog.description(source)) + "\n未镶嵌 %d\n五合一费用：%s\n%s" % [available, price_text(quote.price), str(quote.reason)]
 			row["icon"] = str(source.get("icon_name", ""))
 			rows.append(row)
 	return rows

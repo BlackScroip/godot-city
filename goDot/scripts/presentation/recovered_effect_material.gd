@@ -43,6 +43,12 @@ static func apply_source(material: ShaderMaterial, source: Dictionary, textures:
 	material.set_shader_parameter("source_polar_uv", "POLARUV_ON" in keywords)
 	material.set_shader_parameter("source_tint", _color(colors.get("_Color", {})))
 	material.set_shader_parameter("source_alpha", float(floats.get("_Alpha", 1.0)))
+	if str(source.get("name", "")) == "mat_fx_24071901_void_sphere":
+		material.set_shader_parameter("source_cull", int(floats.get("_CullingOption", 0)))
+		material.set_shader_parameter("source_rim", "RIM_ON" in keywords)
+		material.set_shader_parameter("source_rim_color", _color(colors.get("_RimColor", {})))
+		material.set_shader_parameter("source_rim_shape", Vector3(floats.get("_RimBias", 0.0), floats.get("_RimScale", 1.0), floats.get("_RimPower", 1.0)))
+		material.set_shader_parameter("source_rim_blend", Vector3(floats.get("_RimIntensity", 1.0), floats.get("_RimAddAmount", 1.0), floats.get("_RimErodesAlpha", 0.0)))
 	material.set_shader_parameter("timing_seed", float(floats.get("_TimingSeed", 0.0)))
 	for i in 3:
 		var index := str(i + 1)

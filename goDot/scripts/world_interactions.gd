@@ -72,6 +72,10 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		if not data is Dictionary:
 			_diagnose(id, "invalid_data", "Marker DataJson is not an object")
 			data = {}
+		# These APK components register their NPC identity independently of DataJson.
+		if str(data.get("NpcId", "")).is_empty():
+			if str(marker.get("Type", "")) == "EEUT_Special_Trader": data["NpcId"] = "2000"
+			elif str(marker.get("Type", "")) == "EEUT_Special_GemShopMan": data["NpcId"] = "2100"
 		var binding: Dictionary = _bindings.get(scene + ":" + id, {})
 		var definition: Dictionary = _definitions.get(str(binding.get("ConfigId", "")), {})
 		var item := {"id": id, "marker": marker, "data": data, "binding": binding, "definition": definition,
@@ -102,6 +106,12 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		if is_instance_valid(item.visual) and str(data.get("UIBtnName", "")) == SPRING:
 			for node in item.visual.find_children("*", "Node3D", true, false):
 				for part in ["24041501_fx_env_healingwater_symbol", "Box_TiggerEnter"]:
+					if str(node.name) == part or str(node.name).begins_with(part + "_"):
+						item.curse_parts.append({"node": node, "visible": node.visible})
+		if is_instance_valid(item.visual) and str(data.get("UIBtnName", "")) in [ADVENTURE_EVENT, SPECIAL_EVENT]:
+			# APK UObjectGroupMark disables these Effect/Trigger members, retaining the sphere and carpet.
+			for node in item.visual.find_children("*", "Node3D", true, false):
+				for part in ["24071901_void_line", "24071901_void_outsidestarchain", "24071901_void_energy", "24071901_void_glow", "Box_TiggerEnter"]:
 					if str(node.name) == part or str(node.name).begins_with(part + "_"):
 						item.curse_parts.append({"node": node, "visible": node.visible})
 		if is_instance_valid(item.visual) and str(marker.get("Type", "")) == "EEUT_DoorController":

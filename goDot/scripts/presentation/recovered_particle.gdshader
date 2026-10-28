@@ -43,6 +43,11 @@ uniform float clock = 0.0;
 uniform float timing_seed = 0.0;
 uniform vec4 source_tint : source_color = vec4(1.0);
 uniform float source_alpha = 1.0;
+uniform bool source_rim = false;
+uniform int source_cull = 0;
+uniform vec4 source_rim_color : source_color = vec4(1.0);
+uniform vec3 source_rim_shape = vec3(0.0, 1.0, 1.0);
+uniform vec3 source_rim_blend = vec3(1.0, 1.0, 0.0);
 uniform vec4 shape1_st = vec4(1.0, 1.0, 0.0, 0.0);
 uniform vec4 shape2_st = vec4(1.0, 1.0, 0.0, 0.0);
 uniform vec4 shape3_st = vec4(1.0, 1.0, 0.0, 0.0);
@@ -133,6 +138,8 @@ varying float life_phase;
 varying float world_height;
 varying vec2 stream0;
 varying vec2 stream1;
+varying vec3 rim_normal;
+varying vec3 rim_view;
 
 vec2 signed_fraction(vec2 value) {
     return sign(value) * fract(abs(value));
@@ -225,9 +232,17 @@ void vertex() {
     }
     MODELVIEW_MATRIX[3].xyz += (VIEW_MATRIX * vec4(world_offset, 0.0)).xyz;
     world_height = (INV_VIEW_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).y;
+    if (source_rim) {
+        vec3 rotated_normal = ry * rx * NORMAL;
+        float angle = INSTANCE_CUSTOM.x;
+        rotated_normal.xy = mat2(vec2(cos(angle), sin(angle)), vec2(-sin(angle), cos(angle))) * rotated_normal.xy;
+        rim_normal = normalize(MODEL_NORMAL_MATRIX * rotated_normal);
+        rim_view = PROJECTION_MATRIX[3].w == 0.0 ? normalize(CAMERA_POSITION_WORLD - (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz) : INV_VIEW_MATRIX[2].xyz;
+    }
 }
 
 void fragment() {
+    if ((source_cull == 2 && !FRONT_FACING) || (source_cull == 1 && FRONT_FACING)) discard;
     float frame = min(floor(clamp(animation_frame, 0.0, 0.999999) * sheet.x * sheet.y), sheet.x * sheet.y - 1.0);
     // Repeat authored UVs inside their frame instead of sampling neighbouring tiles.
     vec2 local_uv = fract(UV * uv_scale + uv_offset);
@@ -324,6 +339,13 @@ void fragment() {
         }
         ALBEDO = combined.rgb * source_tint.rgb * COLOR.rgb * visual_gain;
         opacity = combined.a * COLOR.a * source_alpha;
+        if (source_rim) {
+            // Exact APK RIM_ON GLES variant: Fresnel shape, additive/multiplicative blend, alpha erosion.
+            float rim = clamp(source_rim_shape.y * pow(max(1.0 - abs(dot(rim_normal, rim_view)), 0.0), source_rim_shape.z) + source_rim_shape.x, 0.0, 1.0);
+            vec3 glow = rim * source_rim_color.rgb * source_rim_blend.x * visual_gain;
+            ALBEDO = mix(ALBEDO * (vec3(1.0) + glow), ALBEDO + glow, source_rim_blend.y);
+            opacity *= 1.0 - rim * source_rim_blend.z;
+        }
         if (use_source_fade) {
             vec2 fade_base = distorted_uv + vec2(seed) + signed_fraction(source_fade_scroll * (clock + seed));
             float fade_sample = source_sample(source_fade, fade_base * source_fade_st.xy + source_fade_st.zw, source_fade_wrap).r;

@@ -221,6 +221,7 @@ def main():
                 layers.append({"name": data.get("m_Name", ""), "source_file_id": str(ps.path_id), "active": active,
                     "transform_chain": chain, "duration": system.get("lengthInSec", 1), "simulation_speed": system.get("simulationSpeed", 1),
                     "looping": bool(system.get("looping")), "play_on_awake": bool(system.get("playOnAwake")), "prewarm": bool(system.get("prewarm")),
+                    "ring_buffer_mode": int(system.get("ringBufferMode", 0)), "ring_buffer_loop_range": system.get("ringBufferLoopRange", {}),
                     "start_delay": compact(system.get("startDelay", {})), "simulation_space": system.get("moveWithTransform", 0),
                     "initial": compact(system.get("InitialModule", {})), "emission": compact(system.get("EmissionModule", {})),
                     "shape": compact(system.get("ShapeModule", {})), "modules": modules,

@@ -104,7 +104,7 @@ func register_anchor(anchor: Node3D, address: String, autoplay := true) -> Dicti
 	if definition.get("layers", []).is_empty(): return {}
 	var entry := {"anchor": anchor, "address": address, "definition": definition, "effect": null, "active": false, "finished": false, "transient": false, "loop": false}
 	for layer in definition.layers:
-		if bool(layer.get("active", true)) and bool(layer.get("looping", false)): entry.loop = true
+		if bool(layer.get("active", true)) and (bool(layer.get("looping", false)) or int(layer.get("ring_buffer_mode", 0)) != 0): entry.loop = true
 	bindings.append(entry)
 	_priority_refresh = 0.0
 	return entry
@@ -156,6 +156,24 @@ func _focus() -> Vector3:
 	var camera := get_viewport().get_camera_3d()
 	return camera.global_position if camera else _world.global_position
 
+func _bind_orb_layers(entry: Dictionary) -> void:
+	entry["source_layers"] = []
+	if entry.address != "24071901_fx_env_void": return
+	var source_nodes: Array[Node] = entry.anchor.find_children("*", "Node3D", true, false)
+	for layer in entry.effect.get_children():
+		var source_name := str(layer.get_meta("source_layer", ""))
+		if source_name.is_empty(): continue
+		for source_node in source_nodes:
+			if entry.effect.is_ancestor_of(source_node): continue
+			if str(source_node.name) == source_name or str(source_node.name).begins_with(source_name + "_"):
+				entry.source_layers.append({"source": source_node, "visual": layer})
+				break
+
+func _sync_source_layers(entry: Dictionary) -> void:
+	for layer in entry.get("source_layers", []):
+		if is_instance_valid(layer.source) and is_instance_valid(layer.visual):
+			layer.visual.visible = _source_active(layer.source)
+
 func _refresh_priorities(focus: Vector3) -> void:
 	if _priority_refresh > 0.0 and focus.distance_squared_to(_priority_focus) < PRIORITY_FOCUS_DISTANCE_SQUARED: return
 	_priority_refresh = PRIORITY_REFRESH_INTERVAL
@@ -189,6 +207,7 @@ func _process(delta: float) -> void:
 			index -= 1
 			continue
 		var source_active := _source_active(entry.anchor)
+		_sync_source_layers(entry)
 		if not source_active:
 			if is_instance_valid(entry.effect): entry.effect.stop()
 			entry.active = false
@@ -222,6 +241,8 @@ func _process(delta: float) -> void:
 				for emitter in visual.emitters:
 					emitter.node.preprocess = emitter.node.lifetime
 			entry.effect = visual
+			_bind_orb_layers(entry)
+			_sync_source_layers(entry)
 		if active_particle_count + entry.effect.particle_count > budget:
 			entry.effect.hide()
 			entry.effect.advance(0, true)

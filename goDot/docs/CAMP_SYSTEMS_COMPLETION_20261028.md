@@ -30,6 +30,7 @@
 
 ## 返回与页面状态
 
+- 铸剑设施的“选择武器”直接进入独立选择页：棕色原背景、左侧可滚动武器列表、中央模型、右侧各级效果与底部操作。装备、升级后保留该页和选中武器；返回箭头及取消键直接回营地。从角色详情打开武器仍保留原有详情及二级选择流程。
 - 使用同一张原包箭头、透明按钮背景和统一安全边距。缩放后点击区域至少 44 像素。
 - 建设页和角色属性详情的左上关闭符号统一为返回箭头；时装、角色、武器、背包、商城等使用相同返回组件。
 - 顶级页面关闭后回营地；派遣详情返回派遣列表；从角色进入觉醒后返回原角色；从准备页进入信物/增幅后返回准备页。
@@ -87,7 +88,7 @@
 | `page_back_flow_test` | 142 |
 | `camp_completion_ui_test` | 220（实际渲染）；最终集成无界面 187 |
 | `character_page_test` | 105（最终代码无界面；招募、升级、属性与时装） |
-| `role_pages_integration_test` | 245（实际渲染；含招募确认、跨角色装备、公会按钮比例与解锁） |
+| `role_pages_integration_test` | 309（实际渲染；含招募确认、跨角色装备、公会按钮比例与解锁，以及铸剑入口、操作刷新、三尺寸布局与返回） |
 | `weapon_page_test` | 200（实际渲染；含原特效动画像素与模型边缘检查） |
 | `adventure_prepare_layout_test` | 1663（实际渲染）；1648（无界面）；五尺寸、三种状态与满信物槽 |
 | `adventure_prepare_flow_test` | 41（实际进入、退出冒险流程） |
@@ -117,6 +118,7 @@
 - [准备页窄屏混沌状态](../reports/adventure-prepare-chaos-667x375.png)
 - [公会按钮手机横屏](../reports/role-camp-talents-844x390.png)
 - [跨角色武器预览手机横屏](../reports/role-camp-other-weapons-844x390.png)
+- [铸剑武器选择手机横屏](../reports/role-forge-weapons-844x390.png)
 - 其余返回截图：`reports/camp-navigation-{page}-{width}x{height}.png`。
 
 ## 验收边界

@@ -183,7 +183,13 @@ func _show_detail() -> void:
 		var icon = DungeonStyle.picture(str(slot.get("icon", "锁")), Vector2(38, 38) if compact else Vector2(60, 60))
 		column.add_child(icon)
 		column.add_child(_label(caption, 14 if compact else 17))
-		if not str(slot.get("description", "")).is_empty(): column.add_child(_label(str(slot.description), 14, MUTED))
+		if not str(slot.get("description", "")).is_empty():
+			var description = SourceRichText.new()
+			description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			description.add_theme_font_size_override("normal_font_size", 14)
+			description.add_theme_color_override("default_color", MUTED)
+			description.set_source(str(slot.description))
+			column.add_child(description)
 		for entry in slot.get("buttons", []):
 			var button = _command_button(entry)
 			button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

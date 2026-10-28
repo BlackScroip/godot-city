@@ -6,7 +6,7 @@ signal command(kind: String, id: Variant, extra: Variant)
 var portrait: TextureRect
 var dialogue_band: Panel
 var speaker_label: Label
-var text_label: Label
+var text_label: SourceRichText
 var text_scroll: ScrollContainer
 var skip_button: Button
 var next_button: Button
@@ -69,7 +69,12 @@ func configure(_host: DungeonMenuPage, _rows: Array, context: Dictionary) -> voi
 	text_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	text_scroll.mouse_filter = Control.MOUSE_FILTER_PASS
 	add_child(text_scroll)
-	text_label = _label(DungeonCatalog.clean(str(context.get("text", ""))), 24, Color("fffdf4"))
+	text_label = SourceRichText.new()
+	text_label.add_theme_color_override("default_color", Color("fffdf4"))
+	text_label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.85))
+	text_label.add_theme_constant_override("shadow_offset_x", 1)
+	text_label.add_theme_constant_override("shadow_offset_y", 2)
+	text_label.set_source(str(context.get("text", "")))
 	text_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	text_scroll.add_child(text_label)
 	skip_button = Button.new()
@@ -183,7 +188,10 @@ func _layout() -> void:
 	_divider.position = speaker_label.position + Vector2(-_divider.size.x - (6 if compact else 10), (speaker_label.size.y - _divider.size.y) * 0.5)
 	text_scroll.position = Vector2(text_x, size.y * 0.75)
 	text_scroll.size = Vector2(text_width, maxf(40, size.y - text_scroll.position.y - (20 if compact else 38)))
-	text_label.add_theme_font_size_override("font_size", maxi(16, roundi(38 * unit)))
+	var text_size = maxi(16, roundi(38 * unit))
+	for font in ["normal_font_size", "bold_font_size", "italics_font_size", "bold_italics_font_size"]:
+		text_label.add_theme_font_size_override(font, text_size)
+	text_label.set_source(text_label.source_text)
 	skip_button.position = Vector2(42, 49.84) * unit
 	skip_button.size = Vector2(200, 141.76) * unit
 	_skip_icon.position = Vector2(38.55, 0) * unit

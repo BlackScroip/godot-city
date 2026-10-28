@@ -110,6 +110,20 @@ func _message_layers() -> void:
 	check(not systems.effects.dispatch_message("UnknownBackpackTestMessage"), "Unknown source messages remain unhandled")
 	check(changes[0] == 1, "An unknown message does not publish a change")
 	systems.changed.disconnect(callback)
+	var cover = catalog.find("AbilityItems", 20119).duplicate(true)
+	cover.ID = "993021"
+	cover.CombineDataList[0].Data.TriggerEventType = "Message"
+	cover.CombineDataList[0].Data.MessageName = "BackpackCoverFixture"
+	cover.CombineDataList[0].Data.IsNewValCoverOldVal = true
+	catalog.tables.AbilityItems.append(cover)
+	catalog._indices.AbilityItems["993021"] = cover
+	var loot = {"id": 993021, "ability_item_id": 993021, "loot_type": "ordinary", "unlock_data_id": 0}
+	catalog.tables.LootData.append(loot)
+	catalog._indices.LootData["993021"] = loot
+	var replacement = fresh([993021])
+	replacement.effects.dispatch_message("BackpackCoverFixture", {"Arg1": "50"})
+	replacement.effects.dispatch_message("BackpackCoverFixture", {"Arg1": "25"})
+	check(int(replacement.profile.data.run.counters.get("effect:993021:0:record", 0)) == 25 and int(replacement.profile.data.run.counters.get("rogue-event-buff:50201190", 0)) == 1, "Cover mode replaces the record and sets its absolute buff layer")
 
 func _reward_records() -> void:
 	for id in [20584, 23024]:
@@ -181,6 +195,11 @@ func _state_changes() -> void:
 	check(rooms.rank(rooms.profile.data.run.inventory, 20417) == 1, "Duplicate room entry cannot advance upgrade progress")
 	rooms.record_node_entry_effects("shop-two", "3", false)
 	check(rooms.rank(rooms.profile.data.run.inventory, 20418) == 1, "Second matching room entry completes the ordinary upgrade")
+	var kills = fresh([20138])
+	for index in 99: kills.record_kill(11001)
+	check(kills.rank(kills.profile.data.run.inventory, 20138) == 1, "Real kill adapter retains the seed before one hundred kills")
+	kills.record_kill(11001)
+	check(kills.rank(kills.profile.data.run.inventory, 20139) == 1, "Real kill adapter completes the seed upgrade at one hundred kills")
 	var conflict = fresh([20162, 20163])
 	conflict.grant_material(102, 1000)
 	check(conflict.rank(conflict.profile.data.run.inventory, 20162) == 1 and conflict.rank(conflict.profile.data.run.inventory, 20163) == 1, "A blocked upgrade restores its source item")

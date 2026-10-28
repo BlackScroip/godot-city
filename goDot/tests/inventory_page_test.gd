@@ -82,7 +82,7 @@ func _run() -> void:
 		await process_frame
 		view._adapt()
 		var factor = minf(dimensions.x / 2048.0, dimensions.y / 900.0)
-		var expected_back = Rect2(Vector2(20, 14) * factor, Vector2(120, 100) * factor)
+		var expected_back = Rect2((Vector2(20, 14) * factor).max(Vector2(12, 8)), (Vector2(120, 100) * factor).max(Vector2(44, 44)))
 		check(view._back.get_global_rect().is_equal_approx(expected_back), "warehouse uses the shared role back bounds %s" % dimensions)
 		check(view._back.get_node("Arrow").texture == DungeonInventoryPage.ROLE_NAVIGATION.BACK_TEXTURE, "warehouse uses the original role arrow")
 	canvas.size = Vector2i(1600, 900)

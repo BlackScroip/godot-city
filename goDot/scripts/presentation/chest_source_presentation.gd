@@ -43,7 +43,9 @@ func attach(anchor: Node3D, entry: Dictionary) -> void:
 			if recovered == null and materials.size() == 1: recovered = materials.values()[0]
 			if recovered != null: node.set_surface_override_material(surface, recovered)
 	if bool(entry.item.state.opened):
-		apply_pose(entry, float(entry.item.get("chest_disappear_seconds", 1.0)))
+		var duration := float(entry.item.get("chest_disappear_seconds", 1.0))
+		var remaining := clampf(float(entry.item.get("chest_open_remaining", 0.0)), 0.0, duration)
+		apply_pose(entry, duration - remaining)
 
 func apply_pose(entry: Dictionary, elapsed: float) -> void:
 	if not entry.has("source_model"): return

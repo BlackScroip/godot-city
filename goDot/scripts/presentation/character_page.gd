@@ -464,7 +464,15 @@ func _build_battle_style() -> void:
 		var title = _label(categories[index] + "  " + DungeonCatalog.clean(skill.get("name", "")), 27)
 		title.add_theme_color_override("font_color", GOLD)
 		detail.add_child(title)
-		detail.add_child(_label(DungeonCatalog.clean(skill.get("description", "")), 22))
+		var description = SourceRichText.new()
+		description.name = "SkillDescription"
+		description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		for font in ["normal_font_size", "bold_font_size", "italics_font_size", "bold_italics_font_size"]:
+			description.add_theme_font_size_override(font, 22)
+		description.add_theme_color_override("default_color", PAPER)
+		description.add_theme_color_override("font_shadow_color", Color("422c23"))
+		description.set_source(SourceRichText.source_field("AttackData", int(skill.get("id", 0)), "description", str(skill.get("description", ""))))
+		detail.add_child(description)
 		if float(skill.get("cooldown", 0)) >= 1: detail.add_child(_label("冷却  %.1f 秒" % float(skill.cooldown), 20))
 		detail.add_child(HSeparator.new())
 	if skills.is_empty(): detail.add_child(_label("暂无技能信息", 24))

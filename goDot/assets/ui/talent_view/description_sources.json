@@ -1,0 +1,784 @@
+{
+  "WeaponData": {
+    "101": {
+      "name": "暗月刀",
+      "description": "由不知名金属打造而成的长剑，因为拉风的名字而受到冒险者们的欢迎。",
+      "effect_description": "\n<#specinfo=gongjili>+5%。<br>|\n<#specinfo=gongjili>+15%。<br>|\n<#specinfo=gongjili>+30%。<br>|\n<#specinfo=gongjili>+50%，<#specinfo=zhanji>会额外获得1点<color=#fb701d>【<#specinfo=zhongji>能量：剑意】</color>。<br>|\n<#specinfo=gongjili>+75%，<#specinfo=zhanji>会额外获得1点<color=#fb701d>【<#specinfo=zhongji>能量：剑意】</color>。<color=#fdb933>【强化<#specinfo=zhongji>】</color>范围扩大30%，对<color=#bb0000>【领主】</color>伤害+100%。"
+    },
+    "102": {
+      "name": "斗士之剑",
+      "description": "强大的斗气附着于长剑，这是独属于斗者的奖赏。",
+      "effect_description": "\n<#specinfo=gongjisudu>+20，<color=#56e20a>基础<#specinfo=shengmingshangxian></color>-20。<br>|\n<#specinfo=gongjisudu>+20，<#specinfo=putonggongji>命中后有概率<#specinfo=shengminghuifu>1点<#specinfo=shengmingzhi>。<br>|\n<#specinfo=gongjisudu>+20，每损失20%<#specinfo=shengmingzhi>使<#specinfo=putonggongji>命中<#specinfo=shengminghuifu>1点<#specinfo=shengmingzhi>的效果有30%概率再次触发。<br>|\n<#specinfo=gongjisudu>+20，每损失20%<#specinfo=shengmingzhi>使<#specinfo=putonggongji>命中<#specinfo=shengminghuifu>2点<#specinfo=shengmingzhi>的效果有40%概率再次触发。<br>|\n<#specinfo=gongjisudu>+20，<#specinfo=putonggongji>有10%概率获得<#specinfo=jianxin>，每损失20%<#specinfo=shengmingzhi>使<#specinfo=putonggongji>命中<#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>的效果有50%概率再次触发。"
+    },
+    "103": {
+      "name": "炎牙刃",
+      "description": "据说是用【炎牙狼】如金属般坚硬的骨骼打造，十分锋利。",
+      "effect_description": "\n每层<#specinfo=zhuoshao>使目标受到的伤害+1%。<br>|\n每层<#specinfo=zhuoshao>使目标受到的伤害+2%。<br>|\n每层<#specinfo=zhuoshao>使目标受到的伤害+3%，20层后会向附近扩散，<br><#specinfo=zhongji>命中使敌人15%+1层<#specinfo=zhuoshao>。<br>|\n<#specinfo=zhanji>第2段攻击给予的<#specinfo=zhuoshao>+1层。每层<#specinfo=zhuoshao>使目标受到的伤害+5%，15层后会向附近扩散，<#specinfo=zhongji>命中使敌人20%+1层<#specinfo=zhuoshao>。<br>|\n<#specinfo=zhanji>两段攻击给予的<#specinfo=zhuoshao>+1层。每层<#specinfo=zhuoshao>使目标受到的伤害+5%，10层后会向附近扩散，<#specinfo=zhongji>命中使敌人25%+1层<#specinfo=zhuoshao>，+10层<#specinfo=zhuoshao>最大层数。"
+    },
+    "104": {
+      "name": "十字星剑",
+      "description": "如同一枚巨大十字星的长剑，挥舞时反射的光线也是武器的一部分。",
+      "effect_description": "\n<#specinfo=shanbigongji>伤害+20%。<br>|\n<#specinfo=shanbigongji>范围+15%、伤害+40%。<br>|\n<#specinfo=shanbigongji>范围+20%、伤害+60%，同时召唤<color=#ff4f4f>幻影</color>追击<color=#fdb933>剑气</color>。<br>|\n<#specinfo=shanbigongji>范围+20%、伤害+100%，同时召唤<color=#ff4f4f>幻影</color>追击<color=#fdb933>剑气</color>。<br>|\n<#specinfo=shanbigongji>范围+20%、伤害+160%，同时召唤<color=#ff4f4f>幻影</color>追击<color=#fdb933>剑气</color>。<br><#specinfo=shanbi>+1层<#specinfo=zhuorejianqi>，冷却3秒。"
+    },
+    "105": {
+      "name": "守护者之剑",
+      "description": "王国的至宝之一，守护者之剑是王国【权力】的象征。",
+      "effect_description": "\n<#specinfo=zhanji>能够<#specinfo=gedang><color=#E12929>敌人的攻击</color>后返还<#specinfo=zhanji>施放次数。<br>|\n<#specinfo=zhanji>能够<#specinfo=gedang><color=#E12929>敌人的攻击</color>后返还<#specinfo=zhanji>施放次数，同时<#specinfo=shengminghuifu><#specinfo=shengmingzhi>。<br>|\n<#specinfo=zhanji>能够<#specinfo=gedang><color=#E12929>敌人的攻击</color>后返还<#specinfo=zhanji>施放次数，同时<#specinfo=shengminghuifu><#specinfo=shengmingzhi>。<br><#specinfo=gedang>后命中敌人会增加<color=#E12929>【易伤】</color>。<br>|\n<#specinfo=zhanji>能够<#specinfo=gedang><color=#E12929>敌人的攻击</color>后返还<#specinfo=zhanji>施放次数，同时<#specinfo=shengminghuifu><#specinfo=shengmingzhi>，和临时50%<#specinfo=fangyuli>。<br><#specinfo=gedang>后命中敌人会增加<color=#E12929>【易伤】</color>。<br>|\n<#specinfo=zhanji>能够<#specinfo=gedang><color=#E12929>敌人的攻击</color>后返还<#specinfo=zhanji>施放次数，同时<#specinfo=shengminghuifu><#specinfo=shengmingzhi>，和临时100%<#specinfo=fangyuli>。<br><#specinfo=gedang>后命中敌人会增加<color=#E12929>【易伤】</color>。"
+    },
+    "201": {
+      "name": "恐惧战镰",
+      "description": "收割者挥舞着镰刀，撒播名为【战栗】的情绪——武器宣传语是这么写。",
+      "effect_description": "\n<color=#a358ff>【降临状态】</color>下每秒+2%<#specinfo=gongjili>。<br>|\n<color=#a358ff>【降临状态】</color>下每秒+3%<#specinfo=gongjili>。<br>|\n<color=#a358ff>【降临状态】</color>下每秒+5%<#specinfo=gongjili>。<color=#a358ff>【降临状态】</color>下使用<#specinfo=baofaji>刷新<color=#a358ff>【降临状态】</color>持续时间。<br>|\n<color=#a358ff>【降临状态】</color>下每秒+8%<#specinfo=gongjili>，并在<color=#a358ff>【降临状态】</color>结束后维持15秒增益。<color=#a358ff>【降临状态】</color>下使用<#specinfo=baofaji>刷新<color=#a358ff>【降临状态】</color>持续时间。<br>|\n<color=#a358ff>【降临状态】</color>下每秒+10%<#specinfo=gongjili>，并在<color=#a358ff>【降临状态】</color>结束后维持30秒增益。<color=#a358ff>【降临状态】</color>下使用<#specinfo=baofaji>刷新<color=#a358ff>【降临状态】</color>持续时间。"
+    },
+    "202": {
+      "name": "裂空战镰",
+      "description": "暗蓝的金属勾勒出慑人的利器，据说制作者在打造过程中添加了一些风属性的材料。",
+      "effect_description": "\n<#specinfo=shanbigongji>距离延长并能穿透敌人。<br>|\n<#specinfo=shanbigongji>距离延长并能穿透敌人。重复命中能附加最高100%的<color=#af0000>【易伤】</color>。<br>|\n<#specinfo=shanbigongji>距离延长并能穿透敌人。重复命中能附加最高200%的<color=#af0000>【易伤】</color>。<br>同时命中2个敌人将返还<#specinfo=shanbi>。<#specinfo=shanbi>次数+1。<br>|\n<#specinfo=shanbigongji>伤害+30%，距离延长并能穿透敌人；重复命中能附加最高200%的<color=#af0000>【易伤】</color>。<br>同时命中2个敌人或<color=#bb0000>【领主】</color>时将返还<#specinfo=shanbi>，<color=#bb0000>【领主】</color>返还<#specinfo=shanbi>有4秒冷却。<#specinfo=shanbi>次数+1。<br>|\n<#specinfo=shanbigongji>伤害+50%，距离延长并能穿透敌人；重复命中能附加最高200%的<color=#af0000>【易伤】</color>。<br>同时命中2个敌人或<color=#bb0000>【领主】</color>时将返还<#specinfo=shanbi>，<color=#bb0000>【领主】</color>返还<#specinfo=shanbi>有3秒冷却。<#specinfo=shanbi>次数+1。<br><#specinfo=shanbigongji>开始时获得0.5秒<#specinfo=shanbi>。"
+    },
+    "203": {
+      "name": "魔导战镰",
+      "description": "有着精妙机械结构的华丽巨镰，这些精密的结构带来了更大的力量，也因为经常磨损而带走了大量金钱。",
+      "effect_description": "\n<#specinfo=shanbi>成功后+1点<color=#a358ff>【降临能量·聚魂】</color>。<br>|\n<#specinfo=shanbi>成功后+1点<color=#a358ff>【降临能量·聚魂】</color>。<color=#a358ff>【降临状态】</color>每秒+3%<#specinfo=zidongshanbi>概率，触发<#specinfo=zidongshanbi>后概率清空。<br>|\n<#specinfo=shanbi>成功后+1点<color=#a358ff>【降临能量·聚魂】</color>。<color=#a358ff>【降临状态】</color>每秒+4%<#specinfo=zidongshanbi>概率，触发<#specinfo=zidongshanbi>后概率清空。<br>|\n<#specinfo=shanbi>成功后+2点<color=#a358ff>【降临能量·聚魂】</color>。<color=#a358ff>【降临状态】</color>每秒+5%<#specinfo=zidongshanbi>概率，触发<#specinfo=zidongshanbi>后概率清空。<#specinfo=shanbi>成功后的下1次<#specinfo=shanbigongji>范围+100%，伤害+500%。<br>|\n<#specinfo=shanbi>成功后+2点<color=#a358ff>【降临能量·聚魂】</color>。<color=#a358ff>【降临状态】</color>每秒+6%<#specinfo=zidongshanbi>概率，触发<#specinfo=zidongshanbi>后概率清空。<#specinfo=shanbi>成功后的下2次<#specinfo=shanbigongji>范围+100%，伤害+500%。"
+    },
+    "204": {
+      "name": "精神战镰",
+      "description": "近古时代某位法师的武器，代表精神的蓝与隐喻灵魂的紫相互交融，共同造就了这柄宣告黑暗来袭的兵刃。",
+      "effect_description": "\n<#specinfo=zhongji>伤害+10%。<br>|\n<#specinfo=zhongji>伤害+15%，<#specinfo=zhongji>第2击会追击1道<color=#a358ff>【镰刀幻影】</color>。<br>|\n<#specinfo=zhongji>伤害+25%，<#specinfo=zhongji>会追击2道<color=#a358ff>【镰刀幻影】</color>。<br>|\n<#specinfo=zhongji>伤害+40%，速度增加。<#specinfo=zhongji>会追击2道<color=#a358ff>【镰刀幻影】</color>。<br>所有攻击20%概率获得1点<color=#a358ff>【渡鸦点数】</color>，<#specinfo=zhongji>消耗20层<color=#a358ff>【渡鸦点数】</color>召唤<color=#a358ff>【渡鸦】</color>攻击。<br>|\n<#specinfo=zhongji>伤害+60%，速度增加。<#specinfo=zhongji>会追击2道<color=#a358ff>【镰刀幻影】</color>。<br>所有攻击25%概率获得1点<color=#a358ff>【渡鸦点数】</color>，<#specinfo=zhongji>消耗20层<color=#a358ff>【渡鸦点数】</color>召唤<color=#a358ff>【渡鸦】</color>攻击。"
+    },
+    "205": {
+      "name": "守护者之镰",
+      "description": "王国的至宝之一，守护者之镰是王国【礼仪】的象征。",
+      "effect_description": "\n<#specinfo=zhanji>范围+20%，并吸引敌人。<br>|\n<#specinfo=zhanji>范围+40%，并吸引敌人。<br><#specinfo=putonggongji>命中+1层<color=#a358ff>【献祭】</color>，15层后下次<#specinfo=zhanji>会消耗全部<color=#a358ff>【献祭】</color>生成1次<color=#a358ff>【暗灵爆发】</color>。<br>|\n<#specinfo=zhanji>范围+60%，并吸引敌人。<br><#specinfo=putonggongji>和<#specinfo=zhanji>命中+1层<color=#a358ff>【献祭】</color>，10层后下次<#specinfo=zhanji>会消耗全部<color=#a358ff>【献祭】</color>生成1次<color=#a358ff>【暗灵爆发】</color>。<br><color=#a358ff>【暗灵爆发】</color>追加<#specinfo=shengminghuifu>1%+10点<#specinfo=shengmingzhi>的效果。<br>|\n<#specinfo=zhanji>范围+80%，伤害+15%，并吸引敌人。<br><#specinfo=putonggongji>和<#specinfo=zhanji>命中+1层<color=#a358ff>【献祭】</color>，10层后下次<#specinfo=zhanji>会消耗全部<color=#a358ff>【献祭】</color>生成1次<color=#a358ff>【暗灵爆发】</color>。<br><color=#a358ff>【暗灵爆发】</color>追加<#specinfo=shengminghuifu>2%+10点<#specinfo=shengmingzhi>的效果。<br>|\n<#specinfo=zhanji>范围+100%，伤害+30%，并吸引敌人。<br><#specinfo=putonggongji>和<#specinfo=zhanji>命中+1层<color=#a358ff>【献祭】</color>，10层后下次<#specinfo=zhanji>会消耗全部<color=#a358ff>【献祭】</color>生成1次<color=#a358ff>【暗灵爆发】</color>。<br><color=#a358ff>【暗灵爆发】</color>追加<#specinfo=shengminghuifu>3%+20点<#specinfo=shengmingzhi>的效果。"
+    },
+    "301": {
+      "name": "破碎者",
+      "description": "仅从破碎石头这方面来看，它的表现符合它的名字。",
+      "effect_description": "\n<#specinfo=fangyuli>+1%，击败敌人<#specinfo=shengminghuifu>1点<#specinfo=shengmingzhi>。<br>|\n<#specinfo=fangyuli>+2%，击败敌人<#specinfo=shengminghuifu>2点<#specinfo=shengmingzhi>。<br>|\n<#specinfo=fangyuli>+2%，击败敌人<#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>，击败敌人获得1点<#specinfo=hujia>。<br>|\n<#specinfo=fangyuli>+3%，击败敌人<#specinfo=shengminghuifu>4点<#specinfo=shengmingzhi>，击败敌人获得2点<#specinfo=hujia>，<#specinfo=hujia>大于20获得<#specinfo=jianyi>。<br>|\n<#specinfo=fangyuli>+4%，击败敌人<#specinfo=shengminghuifu>5点<#specinfo=shengmingzhi>，击败敌人获得3点<#specinfo=hujia>，<#specinfo=hujia>大于10获得<#specinfo=jianyi>。"
+    },
+    "302": {
+      "name": "电光战斧",
+      "description": "经受电光洗礼的战斧，银白的斧身上有闪电留下的痕迹。",
+      "effect_description": "\n<#specinfo=baofaji>结束后，<#specinfo=gongjisudu>+20，<#specinfo=putonggongji>和<#specinfo=shanbigongji>命中敌人会召唤<#specinfo=shandian>，持续5秒。<br>|\n<#specinfo=baofaji>结束后，<#specinfo=gongjisudu>+30，<#specinfo=putonggongji>和<#specinfo=shanbigongji>命中敌人会召唤<#specinfo=shandian>，持续10秒。<br>|\n<#specinfo=baofaji>结束后，<#specinfo=gongjisudu>+30，<#specinfo=putonggongji>和<#specinfo=shanbigongji>命中敌人会召唤<#specinfo=shandian>，持续10秒。<br>|\n<#specinfo=baofaji>结束后，<#specinfo=gongjisudu>+40，<#specinfo=putonggongji>和<#specinfo=shanbigongji>命中敌人会召唤<#specinfo=shandian>，持续15秒。<br>|\n<#specinfo=baofaji>结束后，<#specinfo=gongjisudu>+40，<#specinfo=putonggongji>和<#specinfo=shanbigongji>命中敌人会召唤<#specinfo=shandian>，持续15秒。<#specinfo=putonggongji>命中额外+1<#specinfo=baofaji>充能。<br>"
+    },
+    "303": {
+      "name": "符文巨斧",
+      "description": "沉重的斧身，巨大的斧刃，无一不在宣告它的旧主拥有多么伟岸的身躯。",
+      "effect_description": "\n<#specinfo=zhongji>伤害+10%，每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>+2%<#specinfo=zhongji>伤害和0.5%释放速度，最大5层持续5秒。<br>|\n<#specinfo=zhongji>伤害+15%，每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>+4%<#specinfo=zhongji>伤害和0.5%释放速度，最大10层持续5秒。<br>|\n<#specinfo=zhongji>伤害+20%，每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>+6%<#specinfo=zhongji>伤害和1%释放速度，最大15层持续5秒。<br>|\n<#specinfo=zhongji>伤害+20%，每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>+8%<#specinfo=zhongji>伤害和1.5%释放速度，最大20层持续5秒。当前节点每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>获得1%<#specinfo=zhongji>伤害。<br>|\n<#specinfo=zhongji>伤害+30%，每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>+10%<#specinfo=zhongji>伤害和2%释放速度，最大20层持续5秒。当前节点每消耗1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>获得2%<#specinfo=zhongji>伤害。普攻第2段攻击命中敌人获得1点<color=#f36c21>【<#specinfo=zhongji>能量·神力】</color>。"
+    },
+    "304": {
+      "name": "星辰战斧",
+      "description": "在宽大斧面上点缀的流星似乎不仅是好看那么简单。",
+      "effect_description": "\n<color=#56e20a>基础<#specinfo=shengmingshangxian></color>+20。<br>|\n<color=#56e20a>基础<#specinfo=shengmingshangxian></color>+25。<br><#specinfo=putonggongji>命中敌人获得1点临时<#specinfo=shengmingshangxian>，<#specinfo=shengmingzhi>低于50%时效果翻倍。<br>|\n<color=#56e20a>基础<#specinfo=shengmingshangxian></color>+30。<br><#specinfo=putonggongji>命中敌人获得1点临时<#specinfo=shengmingshangxian>，<#specinfo=shengmingzhi>低于50%时效果翻倍。<br><color=#fdb933>【<#specinfo=zhongji>终结技】</color>命中敌人后获得等于<#specinfo=shengmingshangxian>1%的<#specinfo=hudun>。<br>|\n<color=#56e20a>基础<#specinfo=shengmingshangxian></color>+40。<br><#specinfo=putonggongji>命中敌人获得2点临时<#specinfo=shengmingshangxian>，<#specinfo=shengmingzhi>低于50%时效果翻倍。<br><color=#fdb933>【<#specinfo=zhongji>终结技】</color>命中敌人后获得等于<#specinfo=shengmingshangxian>1%的<#specinfo=hudun>。<br><#specinfo=baofaji>扣除<#specinfo=shengmingzhi>的一半获得等量<#specinfo=gongjili>，持续10秒。<br><#specinfo=putonggongji>范围+20%。<#specinfo=gongjisudu>+20。<br>|\n<color=#56e20a>基础<#specinfo=shengmingshangxian></color>+50。<br><#specinfo=putonggongji>或<#specinfo=zhanji>命中敌人获得3点临时<#specinfo=shengmingshangxian>，<#specinfo=shengmingzhi>低于50%时效果翻倍。<br><color=#fdb933>【<#specinfo=zhongji>终结技】</color>命中敌人后获得等于<#specinfo=shengmingshangxian>2%的<#specinfo=hudun>。<br><#specinfo=baofaji>扣除<color=#56e20a>当前<#specinfo=shengmingzhi></color>的一半并获得等量<#specinfo=gongjili>，持续15秒。<br><#specinfo=putonggongji>范围+40%。<#specinfo=gongjisudu>+30。"
+    },
+    "305": {
+      "name": "守护者之斧",
+      "description": "王国的至宝之一，守护者之斧是王国【力量】的象征。",
+      "effect_description": "\n<#specinfo=putonggongji>命中叠加10点<#specinfo=fangyuli>，最高50点，受伤时降低此增益20点。<br>|\n<#specinfo=putonggongji>命中叠加10点<#specinfo=fangyuli>，最高100点，受伤时降低此增益15点。<br>|\n<#specinfo=putonggongji>命中叠加20点<#specinfo=fangyuli>，最高200点，受伤时降低此增益20点，<color=#fdb933>【第3、4段<#specinfo=putonggongji>】</color>造成<#specinfo=fangyuli>的额外伤害。<br>|\n<#specinfo=putonggongji>命中叠加20点<#specinfo=fangyuli>，最高400点，受伤时降低此增益15点，<color=#fdb933>【第3、4段<#specinfo=putonggongji>】</color>造成<#specinfo=fangyuli>的额外伤害。<br>|\n<#specinfo=putonggongji>命中叠加30点<#specinfo=fangyuli>，最高600点，受伤时降低此增益10点，<color=#fdb933>【第3、4段<#specinfo=putonggongji>】</color>造成<#specinfo=fangyuli>的额外伤害。"
+    },
+    "401": {
+      "name": "森林之杖",
+      "description": "用上好木材制作的法杖，握在手中能感受到森林的芬芳。",
+      "effect_description": "\n<#specinfo=gongjili>+5%。<br>|\n<#specinfo=gongjili>+5%，<#specinfo=zhongji>命中后+0.5<#specinfo=gongjisudu>，最高+10。<br>|\n<#specinfo=gongjili>+5%，<#specinfo=zhongji>命中后+1<#specinfo=gongjisudu>，最高+20。<br>|\n<#specinfo=gongjili>+10%，<#specinfo=zhongji>命中后+1.5<#specinfo=gongjisudu>，最高+30。<br>|\n<#specinfo=gongjili>+20%，<#specinfo=zhongji>命中后+2<#specinfo=gongjisudu>，最高+40。"
+    },
+    "402": {
+      "name": "水星魔杖",
+      "description": "受到【水之精灵】祝福的武器，在御使【水】的力量时更加得心应手。",
+      "effect_description": "\n<#specinfo=zhanji>伤害+10%。<br>|\n<#specinfo=zhanji>伤害+15%，<color=#529fff>【激流弹】</color>每次命中-0.5%<#specinfo=zhanji><#specinfo=lengque>时间。<br>|\n<#specinfo=zhanji>伤害+20%，<color=#529fff>【激流弹】</color>每次命中-1%<#specinfo=zhanji><#specinfo=lengque>时间，且有小概率附加1层<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>潮湿</color></link>。<br>|\n<#specinfo=zhanji>伤害+30%，<color=#529fff>【激流弹】</color>每次命中-1%<#specinfo=zhanji><#specinfo=lengque>时间，且有小概率附加1层<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>潮湿</color></link>，每层<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>潮湿</color></link>+5%敌人受到的<color=#529fff>【激流弹】</color>伤害。<br>|\n<#specinfo=zhanji>伤害+40%，<color=#529fff>【激流弹】</color>每次命中-1%<#specinfo=zhanji><#specinfo=lengque>时间，且有小概率附加1层<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>潮湿</color></link>，每层<UI_MsgType=\"Buff\"><link=\"info_buffdescription_chaoshi\"><sprite name=\"buff_chaoshi\"><color=#53aaf2>潮湿</color></link>+10%敌人受到的<color=#529fff>【激流弹】</color>伤害。"
+    },
+    "403": {
+      "name": "星尘杖",
+      "description": "顶部被做成了星盘形状的法杖，用来砸人的话一定很疼。",
+      "effect_description": "\n<#specinfo=zhongji>伤害+10%。<br>|\n<#specinfo=zhongji>伤害+15%，<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>充满时使用<#specinfo=zhongji>将获得3秒<color=#fdb933>【无限<#specinfo=zhongji>】</color>，时间到后清空所有<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>。<br>|\n<#specinfo=zhongji>范围随飞行距离逐渐增大，伤害+20%，<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>充满时使用<#specinfo=zhongji>将获得4秒<color=#fdb933>【无限<#specinfo=zhongji>】</color>，时间到后清空所有<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>。<br>|\n<#specinfo=zhongji>范围随飞行距离逐渐增大，伤害+30%，<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>充满时使用<#specinfo=zhongji>将获得5秒<color=#fdb933>【无限<#specinfo=zhongji>】</color>，时间到后清空所有<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>。<br>|\n<#specinfo=zhongji>范围随飞行距离逐渐增大，伤害+50%，<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>充满时使用<#specinfo=zhongji>将获得6秒<color=#fdb933>【无限<#specinfo=zhongji>】</color>，时间到后清空所有<color=#529fff>【<#specinfo=zhongji>能量：水元素】</color>。"
+    },
+    "404": {
+      "name": "凝水杖",
+      "description": "据说充当其核心的是传说中的凝水珠。",
+      "effect_description": "\n<#specinfo=shanbigongji>伤害+10%。<br>|\n<#specinfo=shanbigongji>伤害+20%，<#specinfo=shanbi>落地时将额外踏出1圈<color=#529fff>【水纹】</color>。<br>|\n<#specinfo=shanbigongji>伤害+30%，<#specinfo=shanbi>落地时将额外踏出2圈<color=#529fff>【水纹】</color>。<br><color=#529fff>【水纹】</color>追加2次更大范围的<color=#529fff>【小水纹】</color>。<br>|\n<#specinfo=shanbigongji>伤害+60%，<#specinfo=shanbi>落地时将额外踏出2圈<color=#529fff>【水纹】</color>。<br><color=#529fff>【水纹】</color>追加2次更大范围的<color=#529fff>【小水纹】</color>。<br>|\n<#specinfo=shanbigongji>伤害+100%，<#specinfo=shanbi>落地时将额外踏出2圈<color=#529fff>【水纹】</color>。<br><color=#529fff>【水纹】</color>追加2次更大范围的<color=#529fff>【小水纹】</color>。"
+    },
+    "405": {
+      "name": "守护者法杖",
+      "description": "王国的至宝之一，守护者法杖是王国【智慧】的象征。",
+      "effect_description": "\n<#specinfo=putonggongji>会逐渐将60%<#specinfo=yidongsudu>转换为10点<#specinfo=gongjisudu>和15%<#specinfo=fangyuli>。<br>|\n<#specinfo=putonggongji>会逐渐将60%<#specinfo=yidongsudu>转换为15点<#specinfo=gongjisudu>和25%<#specinfo=fangyuli>。<br>|\n<#specinfo=putonggongji>会逐渐将60%<#specinfo=yidongsudu>转换为20点<#specinfo=gongjisudu>和50%<#specinfo=fangyuli>。<br>满层后每次<#specinfo=putonggongji>有50%的概率召唤1枚<color=#529fff>【激流弹】</color>。<br>|\n<#specinfo=putonggongji>会更快将60%<#specinfo=yidongsudu>转换为30点<#specinfo=gongjisudu>和80%<#specinfo=fangyuli>。<br>满层后每次<#specinfo=putonggongji>有50%的概率召唤1枚<color=#529fff>【激流弹】</color>。<br>|\n<#specinfo=putonggongji>会更快将60%<#specinfo=yidongsudu>转换为40点<#specinfo=gongjisudu>和120%<#specinfo=fangyuli>。<br>满层后每次<#specinfo=putonggongji>有50%的概率召唤1枚<color=#529fff>【激流弹】</color>。"
+    },
+    "501": {
+      "name": "复合弓",
+      "description": "柘木的弓身耐久与质地兼具，洁白的弓弦柔韧与回弹并存。",
+      "effect_description": "\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+5点。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+10点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+1.5%。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+10点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+3%。<br>满<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color>时额外+20%<#specinfo=gongjili>。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+15点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+4.5%。<br>满<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color>时额外+30%<#specinfo=gongjili>，<#specinfo=putonggongji>有20%概率获得<#specinfo=baofajinengliang>。<br>|\r\n<color=#ff4f4f>基础<#specinfo=gongjili></color>+20点，每拥有1点<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color><#specinfo=gongjili>+6%。<br>满<color=#3bc16d>【<#specinfo=zhongji>能量：箭魂】</color>时额外+40%<#specinfo=gongjili>，<#specinfo=putonggongji>有40%概率获得<#specinfo=baofajinengliang>。\r<br><br><br><br>"
+    },
+    "502": {
+      "name": "三日月弓",
+      "description": "某位弓造大师在观察上弦之月时获得灵感，以此打造了这把武器。",
+      "effect_description": "\n<#specinfo=gongjisudu>+5。<br>|\r\n<#specinfo=gongjisudu>+10，<#specinfo=putonggongji>第3击能够贯穿1个目标，且箭矢消失时产生<color=#3bc16d>【爆炸】</color>，造成<#specinfo=zhongji>伤害。<br>|\r\n<#specinfo=gongjisudu>+10，<#specinfo=putonggongji>均能贯穿1个目标，且箭矢消失时产生<color=#3bc16d>【爆炸】</color>，造成<#specinfo=zhongji>伤害，箭矢飞行距离-50%。<br>|\r\n<#specinfo=gongjisudu>+20，<#specinfo=putonggongji>均能贯穿1个目标，且箭矢消失时产生<color=#3bc16d>【爆炸】</color>，造成<#specinfo=zhongji>伤害，箭矢飞行距离-50%。<br>|\r\n<#specinfo=gongjisudu>+30，<#specinfo=putonggongji>均能贯穿1个目标，且箭矢消失时产生<color=#3bc16d>【爆炸】</color>，造成<#specinfo=zhongji>伤害，箭矢飞行距离-50%。"
+    },
+    "503": {
+      "name": "鹰眼弓",
+      "description": "以超远射程著名的长弓，但能否射那么远主要还是看弓手的力气。",
+      "effect_description": "\n<#specinfo=zhanji>伤害+10%。<br>|\r\n<#specinfo=zhanji>伤害+15%，<#specinfo=zhanji>每次命中敌人都能召唤1道<color=#3bc16d>【龙卷风】</color>追击敌人。<br>|\r\n<#specinfo=zhanji>伤害+20%，<#specinfo=zhanji>改为<color=#3bc16d>【分裂穿云箭】</color>，且每次命中敌人都能召唤1道<color=#3bc16d>【龙卷风】</color>追击敌人，但<#specinfo=zhanji>基础伤害-60%。<br>|\r\n<#specinfo=zhanji>伤害+30%，<#specinfo=zhanji>改为<color=#3bc16d>【分裂穿云箭】</color>，且每次命中敌人都能召唤1道<color=#3bc16d>【龙卷风】</color>追击敌人，但<#specinfo=zhanji>基础伤害-55%。<br>|\r\n<#specinfo=zhanji>伤害+40%，<#specinfo=zhanji>改为<color=#3bc16d>【分裂穿云箭】</color>，且每次命中敌人都能召唤1道<color=#3bc16d>【龙卷风】</color>追击敌人，但<#specinfo=zhanji>基础伤害-50%。"
+    },
+    "504": {
+      "name": "真理之弓",
+      "description": "大贤者曾使用这把长弓射猎，学习可不只是读书而已。",
+      "effect_description": "\n<#specinfo=zhongji>伤害+10%。<color=#fdb933>【强化<#specinfo=zhongji>】</color>替换为<color=#3bc16d>【速射】</color>：原地速射20只箭矢。<br>|\r\n<#specinfo=zhongji>伤害+15%。<color=#fdb933>【强化<#specinfo=zhongji>】</color>替换为<color=#3bc16d>【速射】</color>：原地速射20只箭矢，命中敌人能增加后续伤害，最高40%。<br>|\r\n<#specinfo=zhongji>伤害+20%。<color=#fdb933>【强化<#specinfo=zhongji>】</color>替换为<color=#3bc16d>【速射】</color>：原地速射30只箭矢，命中敌人能增加后续伤害，最高60%。<br>|\r\n<#specinfo=zhongji>伤害+30%。<color=#fdb933>【强化<#specinfo=zhongji>】</color>替换为<color=#3bc16d>【速射】</color>：原地速射30只箭矢，命中敌人能增加后续伤害，最高90%。<br>|\r\n<#specinfo=zhongji>伤害+40%。<color=#fdb933>【强化<#specinfo=zhongji>】</color>替换为<color=#3bc16d>【速射】</color>：原地速射30只箭矢，命中敌人能增加后续伤害，最高120%。"
+    },
+    "505": {
+      "name": "守护者之弓",
+      "description": "王国的至宝之一，守护者之弓是王国【领土】的象征。",
+      "effect_description": "\n<#specinfo=putonggongji>瞄准时间延长并射出<color=#3bc16d>【贯穿矢】</color>，最终伤害+20%。<br>|\r\n<#specinfo=putonggongji>瞄准时间延长并射出<color=#3bc16d>【贯穿矢】</color>，最终伤害+30%。<br>|\r\n<#specinfo=putonggongji>瞄准时间延长并射出<color=#3bc16d>【贯穿矢】</color>，最终伤害+40%。<br><#specinfo=shanbigongji>结束后释放<#specinfo=putonggongji>能快速发射<color=#3bc16d>【贯穿矢】</color>。<br>|\r\n<#specinfo=putonggongji>瞄准时间延长并射出<color=#3bc16d>【贯穿矢】</color>，最终伤害+80%。<br><#specinfo=shanbigongji>结束后释放<#specinfo=putonggongji>能快速发射<color=#3bc16d>【贯穿矢】</color>。<br>|\r\n<#specinfo=putonggongji>瞄准时间延长并射出<color=#3bc16d>【贯穿矢】</color>，最终伤害+100%。<br><#specinfo=shanbigongji>结束后释放<#specinfo=putonggongji>能快速发射<color=#3bc16d>【贯穿矢】</color>。"
+    },
+    "601": {
+      "name": "琉璃珠",
+      "description": "琉璃宝石打造的宝珠法器，透亮的宝石内闪烁着来自地下矿脉的神秘力量。",
+      "effect_description": "\n<#specinfo=zhanji>与<#specinfo=baofaji>伤害+10%。<br>|\r\n<#specinfo=zhanji>与<#specinfo=baofaji>伤害+15%，<#specinfo=putonggongji>命中-1%<#specinfo=zhanji><#specinfo=lengque>时间。<br>|\r\n<#specinfo=zhanji>与<#specinfo=baofaji>伤害+15%，<#specinfo=putonggongji>命中-2%<#specinfo=zhanji><#specinfo=lengque>时间。<br>|\r\n<#specinfo=zhanji>与<#specinfo=baofaji>伤害+25%，<#specinfo=putonggongji>命中-3%<#specinfo=zhanji><#specinfo=lengque>时间。<br>|\r\n<#specinfo=zhanji>与<#specinfo=baofaji>伤害+40%，<#specinfo=putonggongji>命中-4%<#specinfo=zhanji><#specinfo=lengque>时间。\r"
+    },
+    "602": {
+      "name": "风暴宝珠",
+      "description": "蕴含着狂风之力的宝石，在合适的人手里能引发风暴的力量。",
+      "effect_description": "\n<#specinfo=shanbigongji>伤害+10%。<br>|\r\n<#specinfo=shanbigongji>伤害和攻击范围+10%，<#specinfo=shanbigongji>十字冲击波飞行更缓慢。<br>消失前十字冲击波将加速发射。<br>|\r\n<#specinfo=shanbigongji>伤害和攻击范围+15%，<#specinfo=shanbigongji>十字冲击波飞行更缓慢。<br>消失前会分裂3个十字冲击波加速发射。<br>|\r\n<#specinfo=shanbigongji>伤害和攻击范围+25%，<#specinfo=shanbigongji>十字冲击波飞行更缓慢。<br>消失前会分裂4个十字冲击波加速发射。<br>|\r\n<#specinfo=shanbigongji>伤害和攻击范围+40%，<#specinfo=shanbigongji>十字冲击波飞行更缓慢。<br>消失前会分裂5个十字冲击波加速发射。"
+    },
+    "603": {
+      "name": "祈愿宝珠",
+      "description": "能听懂人言的星辰之石，经常夸它的话可以在一定程度上增幅其威能。",
+      "effect_description": "\n<color=#f18800>【黑洞】</color>伤害+10%，<#specinfo=shanbi>在起始位置生成1颗<color=#f18800>【黑洞】</color>，最多同时存在1个。<br>|\r\n<color=#f18800>【黑洞】</color>伤害+15%，<#specinfo=shanbi>在起始位置生成1颗<color=#f18800>【黑洞】</color>，持续时间翻倍并最多同时存在3个。<br>|\r\n<color=#f18800>【黑洞】</color>伤害+20%，<#specinfo=shanbi>在起始位置生成1颗会追踪敌人的<color=#f18800>【黑洞】</color>，持续时间翻倍。<br>|\r\n<color=#f18800>【黑洞】</color>伤害+35%，<#specinfo=shanbi>在起始位置生成1颗会追踪敌人的<color=#f18800>【黑洞】</color>，持续时间翻倍。<br>|\r\n<color=#f18800>【黑洞】</color>伤害+50%，<#specinfo=shanbi>在起始与落地位置生成1颗会追踪敌人的<color=#f18800>【黑洞】</color>，持续时间翻倍。\r"
+    },
+    "604": {
+      "name": "明镜宝珠",
+      "description": "光洁如镜的珠玉，能在战斗的时候通过镜面保持仪态，或许是它的另一个用处。",
+      "effect_description": "\n<#specinfo=putonggongji>伤害+10%，<#specinfo=putonggongji>改为召唤【光辉长矛】贯穿目标。<br>|\r\n<#specinfo=putonggongji>伤害+15%，<#specinfo=putonggongji>改为召唤【光辉长矛】贯穿目标，第2击召唤的【光辉长矛】数量增加。<br>|\r\n<#specinfo=putonggongji>伤害+15%，<#specinfo=putonggongji>改为召唤【光辉长矛】贯穿目标，第2第3击召唤的【光辉长矛】数量增加。<br>施放<#specinfo=baofaji>后15秒内<#specinfo=putonggongji>伤害+50%。<br>|\r\n<#specinfo=putonggongji>伤害+30%，<#specinfo=putonggongji>改为召唤【光辉长矛】贯穿目标，第2第3击召唤的【光辉长矛】数量增加。<br>施放<#specinfo=baofaji>后15秒内<#specinfo=putonggongji>范围+25%，伤害+50%。<br>|\r\n<#specinfo=putonggongji>伤害+50%，<#specinfo=putonggongji>改为召唤【光辉长矛】贯穿目标，第2第3击召唤的【光辉长矛】数量额外增加。<br>施放<#specinfo=baofaji>后15秒内<#specinfo=putonggongji>范围+25%，伤害+50%。\r"
+    },
+    "605": {
+      "name": "守护者宝珠",
+      "description": "王国的至宝之一，守护者宝珠是王国【荣誉】的象征。",
+      "effect_description": "\n使用<color=#fdb933>【强化<#specinfo=zhongji>】</color>或击败敌人时生成1枚能阻挡小型远程攻击的<color=#f18800>【护身黑洞】</color>并+20%<#specinfo=fangyuli>，持续10秒，最多1枚。<br>|\r\n使用<color=#fdb933>【强化<#specinfo=zhongji>】</color>或击败敌人时生成1枚能阻挡小型远程攻击的<color=#f18800>【护身黑洞】</color>并+30%<#specinfo=fangyuli>，持续10秒，最多2枚。<br><color=#f18800>【护身黑洞】</color>溢出后击败敌人将<#specinfo=shengminghuifu>1点<#specinfo=shengmingzhi>。<br>|\r\n使用<color=#fdb933>【强化<#specinfo=zhongji>】</color>或击败敌人时生成1枚能阻挡小型远程攻击的<color=#f18800>【护身黑洞】</color>并+40%<#specinfo=fangyuli>，持续10秒，最多3枚。<br><color=#f18800>【护身黑洞】</color>溢出后击败敌人将<#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>并发射<color=#f18800>【护身黑洞】</color>。<br>|\r\n使用<color=#fdb933>【强化<#specinfo=zhongji>】</color>或击败敌人时生成1枚能阻挡小型远程攻击的<color=#f18800>【护身黑洞】</color>并+50%<#specinfo=fangyuli>，持续20秒，最多4枚。<br><color=#f18800>【护身黑洞】</color>溢出后击败敌人将<#specinfo=shengminghuifu>5点<#specinfo=shengmingzhi>并发射<color=#f18800>【护身黑洞】</color>。<br>|\r\n使用<color=#fdb933>【强化<#specinfo=zhongji>】</color>或击败敌人时生成1枚能阻挡小型远程攻击的<color=#f18800>【护身黑洞】</color>并+60%<#specinfo=fangyuli>，持续20秒，最多4枚。<br><color=#f18800>【护身黑洞】</color>溢出后击败敌人将<#specinfo=shengminghuifu>7点<#specinfo=shengmingzhi>并发射2个<color=#f18800>【护身黑洞】</color>。\r<br>|\r"
+    },
+    "701": {
+      "name": "冰冠之刺",
+      "description": "冰之王冠铸成的枪尖。",
+      "effect_description": "<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>10%伤害，持续15秒，最大可叠加5层。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>15%伤害，持续15秒，最大可叠加5层。<#specinfo=longhunshiqi>状态下可以额外<color=#76A9FF>【蓄力】</color>5次，每次提升10%<#specinfo=zhongji>造成的伤害。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>15%伤害，持续15秒，最大可叠加10层。<#specinfo=longhunshiqi>状态下可以额外<color=#76A9FF>【蓄力】</color>5次，每次提升20%<#specinfo=zhongji>造成的伤害。\r<br>|\r\n<color=#76A9FF><#specinfo=zhongji>【蓄力】</color>时<#specinfo=yidongsudu>提高，<color=#76A9FF>【蓄力等级】</color>到达3级后提升<#specinfo=zhongji>20%伤害，持续15秒，最大可叠加10层。<#specinfo=longhunshiqi>状态下可以额外<color=#76A9FF>【蓄力】</color>5次，每次提升30%<#specinfo=zhongji>造成的伤害。<br><#specinfo=sikadizhinu>提供的强化效果增加1。<br><br>"
+    },
+    "702": {
+      "name": "血棘圣枪",
+      "description": "它曾属于守护王国的圣骑士，在主人堕落后，圣枪也染上了无法消散的血色。",
+      "effect_description": "<#specinfo=baofaji>充能需求量减少50%，且能直接打出第三段攻击。<br>|\r\n<#specinfo=baofaji>充能需求量减少50%，且能直接打出第三段攻击。<#specinfo=baofaji>第三段攻击能转化20层<#specinfo=dongshang>触发<#specinfo=suibing>。<br>|\r\n<#specinfo=baofaji>充能需求量减少50%，且能直接打出第三段攻击。<#specinfo=baofaji>第三段攻击能转化20层<#specinfo=dongshang>触发<#specinfo=suibing>。<#specinfo=baofaji>第三段攻击额外造成240%<#specinfo=fangyuli>的伤害。<br>|\r\n<#specinfo=baofaji>充能需求量减少50%，且能直接打出第三段攻击。<#specinfo=baofaji>第三段攻击能转化20层<#specinfo=dongshang>触发<#specinfo=suibing>。<#specinfo=baofaji>第三段攻击额外造成480%<#specinfo=fangyuli>的伤害。<br>|\r\n<#specinfo=baofaji>充能需求量减少50%，且能直接打出第三段攻击。<#specinfo=baofaji>第三段攻击能转化20层<#specinfo=dongshang>触发<#specinfo=suibing>。<#specinfo=baofaji>第三段攻击额外造成720%<#specinfo=fangyuli>的伤害。<#specinfo=baofaji>第三段攻击对敌人造成伤害使敌人受到的<#specinfo=baofaji>伤害永久提升30%。"
+    },
+    "703": {
+      "name": "月辉圣裁",
+      "description": "古老传说中，月之神为了守护人间，将自己的第一缕月光铸造成此剑。持有者挥动它时，黑暗中的一切都会被月辉照亮。",
+      "effect_description": "<#specinfo=putonggongji>变为快速横扫，<#specinfo=putonggongji>命中后+0.2<#specinfo=gongjisudu>，该效果持续5秒，最多叠加100层，每0.25秒最多触发一次。<br>|\r\n<#specinfo=putonggongji>变为快速横扫，<#specinfo=putonggongji>命中后+0.4<#specinfo=gongjisudu>，该效果持续5秒，最多叠加100层，每0.25秒最多触发一次。攻击中可以移动。<br>|\r\n<#specinfo=putonggongji>变为快速横扫，<#specinfo=putonggongji>命中后+0.6<#specinfo=gongjisudu>，该效果持续5秒，最多叠加100层，每0.25秒最多触发一次。攻击中可以移动。<#specinfo=putonggongji>命中时下次<#specinfo=zhongji>伤害提高1%，最大叠加100层，<#specinfo=zhongji>命中时20秒内<#specinfo=putonggongji>伤害提高60%。<br>|\r\n<#specinfo=putonggongji>变为快速横扫，<#specinfo=putonggongji>命中后+0.8<#specinfo=gongjisudu>，该效果持续5秒，最多叠加100层，每0.25秒最多触发一次。攻击中可以移动。<#specinfo=putonggongji>命中时下次<#specinfo=zhongji>伤害提高2%，最大叠加100层，<#specinfo=zhongji>命中时20秒内<#specinfo=putonggongji>伤害提高120%。<br>|\r\n<#specinfo=putonggongji>变为快速横扫，<#specinfo=putonggongji>命中后+1<#specinfo=gongjisudu>，该效果持续5秒，最多叠加100层，每0.25秒最多触发一次，持续时间结束后降低10层效果。攻击中可以移动。<#specinfo=putonggongji>命中时下次<#specinfo=zhongji>伤害提高3%，最大叠加100层，<#specinfo=zhongji>命中时20秒内<#specinfo=putonggongji>伤害提高180%。\r"
+    },
+    "704": {
+      "name": "森罗注魂针",
+      "description": "传说这把武器能够抽取生命，也能够赋予生命。因此它既被称为救世之器，也被称为禁忌之物。",
+      "effect_description": "<#specinfo=zhanji>冷却时间增加100%，长按<#specinfo=zhanji>进入持续冲锋状态，最多持续4秒，点按<#specinfo=zhanji>返还一半冷却时间。<br>|\r\n<#specinfo=zhanji>冷却时间增加100%，长按<#specinfo=zhanji>进入持续冲锋状态，最多持续4秒，点按<#specinfo=zhanji>返还一半冷却时间。冲锋中每0.5秒提升5%<#specinfo=zhanji>伤害，持续2秒，最多叠加99层。<br>|\r\n<#specinfo=zhanji>冷却时间增加100%，长按<#specinfo=zhanji>进入持续冲锋状态，最多持续4秒，点按<#specinfo=zhanji>返还一半冷却时间。冲锋中每0.5秒提升10%<#specinfo=zhanji>伤害，持续2秒，最多叠加99层。<#specinfo=zhanji>期间受到伤害降低12%。<br>|\r\n<#specinfo=zhanji>冷却时间增加100%，长按<#specinfo=zhanji>进入持续冲锋状态，最多持续4秒，点按<#specinfo=zhanji>返还一半冷却时间。冲锋中每0.5秒提升15%<#specinfo=zhanji>伤害，持续2秒，最多叠加99层。<#specinfo=zhanji>期间受到伤害降低24%。<br>|\r\n<#specinfo=zhanji>冷却时间增加100%，长按<#specinfo=zhanji>进入持续冲锋状态，最多持续4秒，点按<#specinfo=zhanji>返还一半冷却时间。冲锋中每0.5秒提升20%<#specinfo=zhanji>伤害，持续2秒，最多叠加99层。<#specinfo=zhanji>期间受到伤害降低40%。<#specinfo=zhanji>造成伤害频率提高2倍。"
+    },
+    "705": {
+      "name": "天辉圣裁",
+      "description": "在第一次神魔战争中，天空之神将自己的光辉铸入剑身，赐予第一位圣骑士。传说当它举起之时，天空会回应持剑者的意志。",
+      "effect_description": "<#specinfo=longhunshiqi>状态下<#specinfo=shanbigongji>消耗1点<#specinfo=longhun>，并强化为龙爪附魔，龙爪附魔附加0.4秒<#specinfo=gedang>效果。\r<br>|\r\n<#specinfo=longhunshiqi>状态下<#specinfo=shanbigongji>消耗1点<#specinfo=longhun>，并强化为龙爪附魔，龙爪附魔附加0.4秒<#specinfo=gedang>效果。<#specinfo=putonggongji>在<#specinfo=longhunshiqi>状态下获得1点<color=#76A9FF><#specinfo=longhun>能量</color>。\r<br>|\r\n<#specinfo=longhunshiqi>状态下<#specinfo=shanbigongji>消耗1点<#specinfo=longhun>，并强化为龙爪附魔，龙爪附魔附加0.4秒<#specinfo=gedang>效果。<#specinfo=putonggongji>在<#specinfo=longhunshiqi>状态下获得1点<color=#76A9FF><#specinfo=longhun>能量</color>。<#specinfo=longhunshiqi>状态永久持续。\r<br>|\r\n<#specinfo=longhunshiqi>状态下<#specinfo=shanbigongji>消耗1点<#specinfo=longhun>，并强化为龙爪附魔，龙爪附魔附加0.4秒<#specinfo=gedang>效果。<#specinfo=putonggongji>在<#specinfo=longhunshiqi>状态下获得2点<color=#76A9FF><#specinfo=longhun>能量</color>。<#specinfo=longhunshiqi>状态永久持续。\r<br>|\r\n<#specinfo=longhunshiqi>状态下<#specinfo=shanbigongji>消耗1点<#specinfo=longhun>，并强化为龙爪附魔，龙爪附魔附加0.4秒<#specinfo=gedang>效果。<#specinfo=putonggongji>在<#specinfo=longhunshiqi>状态下获得3点<color=#76A9FF><#specinfo=longhun>能量</color>。<#specinfo=longhunshiqi>状态永久持续。<#specinfo=gedang>成功后获得10点<color=#76A9FF><#specinfo=longhun>能量</color>。"
+    },
+    "801": {
+      "name": "王墓遗刃",
+      "description": "沉睡于古王陵寝中的双刃，曾随最后一任君王一同埋葬。千百年过去，刀锋依旧锋利，仿佛仍在等待新的主人。",
+      "effect_description": "<#specinfo=fengshi>强化<#specinfo=putonggongji>，使用<#specinfo=putonggongji>后0.5秒再次触发该次<#specinfo=putonggongji>，持续10秒。<br>|\n<#specinfo=fengshi>强化<#specinfo=putonggongji>，使用<#specinfo=putonggongji>后0.5秒再次触发该次<#specinfo=putonggongji>，持续10秒。在强化状态下<#specinfo=gongjisudu>+20。<br>|\n<#specinfo=fengshi>强化<#specinfo=putonggongji>，使用<#specinfo=putonggongji>后0.5秒再次触发该次<#specinfo=putonggongji>，持续10秒。在强化状态下<#specinfo=gongjisudu>+30。每提升50连击数，<#specinfo=putonggongji>伤害+10%。<br>|\n<#specinfo=fengshi>强化<#specinfo=putonggongji>，使用<#specinfo=putonggongji>后0.5秒再次触发该次<#specinfo=putonggongji>，持续10秒。在强化状态下<#specinfo=gongjisudu>+40。每提升50连击数，<#specinfo=putonggongji>伤害+15%。<br>|\n<#specinfo=fengshi>强化<#specinfo=putonggongji>，使用<#specinfo=putonggongji>后0.5秒再次触发该次<#specinfo=putonggongji>，持续10秒。在强化状态下<#specinfo=gongjisudu>+50。每提升50连击数，<#specinfo=putonggongji>伤害+20%。<#specinfo=putonggongji>范围+30%。"
+    },
+    "802": {
+      "name": "猎王双刃",
+      "description": "为猎杀荒原上的王者而铸造的双刃。它们从不属于王座，只属于追逐王座的人。",
+      "effect_description": "<#specinfo=fengshi>强化<#specinfo=shanbigongji>，进入<#specinfo=shanbigongji>后<#specinfo=shanbigongji>造成双倍伤害，持续5秒。<br>|\n<#specinfo=fengshi>强化<#specinfo=shanbigongji>，进入<#specinfo=shanbigongji>后<#specinfo=shanbigongji>造成双倍伤害，持续5秒。消耗3点<#specinfo=huanghun>可以继续使用<#specinfo=shanbigongji>。<br>|\n<#specinfo=fengshi>强化<#specinfo=shanbigongji>，进入<#specinfo=shanbigongji>后<#specinfo=shanbigongji>造成双倍伤害，持续5秒。消耗3点<#specinfo=huanghun>可以继续使用<#specinfo=shanbigongji>。强化后的<#specinfo=shanbigongji>有50%概率召唤6把<#specinfo=liujinhuanbi>攻击敌人。<br>|\n<#specinfo=fengshi>强化<#specinfo=shanbigongji>，进入<#specinfo=shanbigongji>后<#specinfo=shanbigongji>造成双倍伤害，持续5秒。消耗3点<#specinfo=huanghun>可以继续使用<#specinfo=shanbigongji>。强化后的<#specinfo=shanbigongji>召唤6把<#specinfo=liujinhuanbi>攻击敌人。<br>|\n<#specinfo=fengshi>强化<#specinfo=shanbigongji>，进入<#specinfo=shanbigongji>后<#specinfo=shanbigongji>造成双倍伤害，持续5秒。消耗3点<#specinfo=huanghun>可以继续使用<#specinfo=shanbigongji>。强化后的<#specinfo=shanbigongji>召唤6把<#specinfo=liujinhuanbi>攻击敌人。触发<#specinfo=shoulieyinji>后也能召唤6把<#specinfo=liujinhuanbi>，每召唤6把<#specinfo=liujinhuanbi>获得1点<#specinfo=huanghun>。"
+    },
+    "803": {
+      "name": "日耀之牙",
+      "description": "以耀阳之石淬炼而成的短刃，刀锋在阳光下如烈日般炽亮。传说它能刺穿荒漠中最坚硬的甲胄。",
+      "effect_description": "<#specinfo=fengshi>强化<#specinfo=zhongji>，消耗的<#specinfo=huanghun>数量-1。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhongji>，消耗的<#specinfo=huanghun>数量-1。<#specinfo=daozhen>造成伤害时获得1点<#specinfo=huanghun>。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhongji>，消耗的<#specinfo=huanghun>数量-1。<#specinfo=daozhen>造成伤害时获得1点<#specinfo=huanghun>。<#specinfo=zhongji>强化后叠加<#specinfo=luanwu>的速度提升15%。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhongji>，消耗的<#specinfo=huanghun>数量-1。<#specinfo=daozhen>造成伤害时获得1点<#specinfo=huanghun>。<#specinfo=zhongji>强化后叠加<#specinfo=luanwu>的速度提升30%。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhongji>，消耗的<#specinfo=huanghun>数量-1。<#specinfo=daozhen>造成伤害时获得1点<#specinfo=huanghun>。<#specinfo=zhongji>强化后叠加<#specinfo=luanwu>的速度提升50%。<#specinfo=zhongji>终结技也能触发<#specinfo=shoulieyinji>。"
+    },
+    "804": {
+      "name": "苍穹之刺",
+      "description": "传说自天穹坠落的神秘利刃，剑身铭刻着无人能够解读的星纹。每一次挥动，都仿佛能触及遥远的苍穹。",
+      "effect_description": "<#specinfo=fengshi>强化<#specinfo=zhanji>，使用<#specinfo=zhanji>能刷新<#specinfo=zhanji>冷却时间。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhanji>，使用<#specinfo=zhanji>能刷新<#specinfo=zhanji>冷却时间。使用<#specinfo=zhanji>后提升5%<#specinfo=zhanji>伤害，持续15秒，最多叠加20层。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhanji>，使用<#specinfo=zhanji>能刷新<#specinfo=zhanji>冷却时间。使用<#specinfo=zhanji>后提升5%<#specinfo=zhanji>伤害，持续15秒，最多叠加20层。每造成200次伤害召唤一件<#specinfo=liujinxuanren>。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhanji>，使用<#specinfo=zhanji>能刷新<#specinfo=zhanji>冷却时间。使用<#specinfo=zhanji>后提升10%<#specinfo=zhanji>伤害，持续15秒，最多叠加20层。每造成150次伤害召唤一件<#specinfo=liujinxuanren>。<br>|\n<#specinfo=fengshi>强化<#specinfo=zhanji>，使用<#specinfo=zhanji>能刷新<#specinfo=zhanji>冷却时间。使用<#specinfo=zhanji>后提升10%<#specinfo=zhanji>伤害，持续15秒，最多叠加20层。每造成150次伤害召唤一件<#specinfo=liujinxuanren>。每召唤一件<#specinfo=liujinxuanren>+10%攻击力，持续20秒，最多叠加30层。"
+    },
+    "805": {
+      "name": "不灭之牙",
+      "description": "历经无数战场仍未曾折断的传奇之刃。它曾被烈火灼烧、被巨兽撕裂，却始终如初，仿佛连时间也无法磨灭它的锋芒。",
+      "effect_description": "<#specinfo=fengshi>强化<#specinfo=baofaji>，使用<#specinfo=baofaji>后每层<#specinfo=fengshi>召唤一个追踪式<#specinfo=liujinhuanren>。<#specinfo=baofaji>变更为【刀锋旋刃】，可使用次数为3，<#specinfo=baofaji>使用期间为<#specinfo=gedang>状态。<br>|\n<#specinfo=fengshi>强化<#specinfo=baofaji>，使用<#specinfo=baofaji>后每层<#specinfo=fengshi>召唤一个追踪式<#specinfo=liujinhuanren>。<#specinfo=baofaji>变更为【刀锋旋刃】，可使用次数为3，<#specinfo=baofaji>使用期间为<#specinfo=gedang>状态。每使用一次<#specinfo=baofaji>提升10%<#specinfo=baofaji>伤害，持续10秒，最多可叠加20层。<br>|\n<#specinfo=fengshi>强化<#specinfo=baofaji>，使用<#specinfo=baofaji>后每层<#specinfo=fengshi>召唤一个追踪式<#specinfo=liujinhuanren>。<#specinfo=baofaji>变更为【刀锋旋刃】，可使用次数为3，<#specinfo=baofaji>使用期间为<#specinfo=gedang>状态。每使用一次<#specinfo=baofaji>提升15%<#specinfo=baofaji>伤害，持续10秒，最多可叠加20层。<#specinfo=baofaji>额外召唤一个<#specinfo=liujinhuanren>。<br>|\n<#specinfo=fengshi>强化<#specinfo=baofaji>，使用<#specinfo=baofaji>后每层<#specinfo=fengshi>召唤一个追踪式<#specinfo=liujinhuanren>。<#specinfo=baofaji>变更为【刀锋旋刃】，可使用次数为3，<#specinfo=baofaji>使用期间为<#specinfo=gedang>状态。每使用一次<#specinfo=baofaji>提升20%<#specinfo=baofaji>伤害，持续10秒，最多可叠加30层。<#specinfo=baofaji>额外召唤一个<#specinfo=liujinhuanren>。<br>|\n<#specinfo=fengshi>强化<#specinfo=baofaji>，使用<#specinfo=baofaji>后每层<#specinfo=fengshi>召唤一个追踪式<#specinfo=liujinhuanren>。<#specinfo=baofaji>变更为【刀锋旋刃】，可使用次数为3，<#specinfo=baofaji>使用期间为<#specinfo=gedang>状态。每使用一次<#specinfo=baofaji>提升20%<#specinfo=baofaji>伤害，持续10秒，最多可叠加30层。<#specinfo=baofaji>额外召唤一个<#specinfo=liujinhuanren>。每触发3次<#specinfo=gedang>获得1层<#specinfo=fengshi>。"
+    }
+  },
+  "AttackData": {
+    "110001": {
+      "name": "烈炎剑法",
+      "description": "犹如炙热火焰般的4段攻击。<br><br><color=#DAA60B><#specinfo=zhongji>：秘剑·拔刀术</color><br>向目标所在区域快速释放多道攻击。若持有<color=#DAA60B>5层<#LocalizationId=\"CharaJP_1\">剑意</LocalizationId></color>，则消耗<color=#DAA60B>全部<#LocalizationId=\"CharaJP_1\">剑意</LocalizationId></color>，释放攻击段数更多的强化攻击，造成大量伤害，并获得1层<#specinfo=zhuorejianqi>。<br><color=#DAA60B><#LocalizationId=\"CharaJP_1\">剑意</LocalizationId></color>持有上限为5，获取规则如下：<br>1. 第4段<#specinfo=putonggongji>命中时获得<color=#DAA60B>1点<#LocalizationId=\"CharaJP_1\">剑意</LocalizationId></color>。<br>2. 使用烈焰突进后获得<color=#DAA60B>2点<#LocalizationId=\"CharaJP_1\">剑意</LocalizationId></color>。<br>"
+    },
+    "110003": {
+      "name": "剑闪",
+      "description": "向前方快速垫步。<br><br><#specinfo=shanbigongji><br>朝前方释放出交叉攻击。"
+    },
+    "110011": {
+      "name": "烈焰突进",
+      "description": "向前快速位移并进行2段烈焰攻击，每段附加1层<#specinfo=zhuoshao>效果。"
+    },
+    "110012": {
+      "name": "天火·拔刀术",
+      "description": "短暂蓄力后迅速拔剑，爆发出强大的烈焰攻击附近的敌人。"
+    },
+    "120001": {
+      "name": "暗夜镰术",
+      "description": "牵引黑暗力量的4连击。<br><br><color=#DAA60B><#specinfo=zhongji>：夺萃之镰/永夜降临</color><br>纵身上挑，挥动镰刀收割敌人。若<color=#DAA60B><#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId>充满</color>，<color=#DAA60B>继续长按攻击键</color>将进入<color=#DAA60B>降临形态</color>，获得<#specinfo=gongjili>和<#specinfo=yidongsudu>加成，并<color=#DAA60B>强化夺萃之镰</color>。处于<color=#DAA60B>降临形态</color>时持续消耗且<color=#DAA60B>无法获得<#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId></color>，直至<color=#DAA60B><#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId>降为0时</color>解除形态。<br><color=#DAA60B><#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId></color>持有上限为20，获取规则如下：<br>1. <#specinfo=putonggongji>第2段与第4段命中时获得1点<color=#DAA60B><#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId></color>。<br>2. <color=#DAA60B><#specinfo=zhanji>：夜光圆舞</color>击中敌人时获得3点<color=#DAA60B><#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId></color>。<br>3. 使用<color=#DAA60B><#specinfo=baofaji>：<#LocalizationId=\"AttackData_Name_120012\">断界</LocalizationId></color>后获得5点<color=#DAA60B><#LocalizationId=\"CharaJP_2\">聚魂</LocalizationId></color>。"
+    },
+    "120003": {
+      "name": "侧身闪",
+      "description": "以迅捷的速度向前方发起冲刺。<br><br><color=#DAA60B><#specinfo=shanbigongji></color><br>手持镰刀旋转一圈攻击敌人。"
+    },
+    "120011": {
+      "name": "夜光圆舞",
+      "description": "向前冲刺并横扫周围的敌人，对敌人附加<#specinfo=anshi>。"
+    },
+    "120012": {
+      "name": "断界",
+      "description": "化身虚影遁入虚空，从黑暗中锁定目标，在虚影状态下瞬间对目标区域发起多段攻击，随后破空而出，撕裂虚空并造成大范围伤害。"
+    },
+    "130001": {
+      "name": "三连劈",
+      "description": "大开大合的3连击，第3段会奋力下砸造成大范围打击。<br><br><color=#DAA60B><#specinfo=zhongji>：旋风雷霆</color><br>抡起斧头不断旋转造成伤害，每圈消耗1点<color=#DAA60B><#LocalizationId=\"CharaJP_3\">神力</LocalizationId></color>，当旋风雷霆消耗<color=#DAA60B><#LocalizationId=\"CharaJP_3\">神力</LocalizationId></color>值达到5点时，<color=#DAA60B>旋风雷霆</color>结束后会释放<color=#fdb933>【<#specinfo=zhongji>终结技】</color>，该攻击每命中一个敌人<color=#DAA60B><#specinfo=shengminghuifu>3点<#specinfo=shengmingzhi>。<br><#LocalizationId=\"CharaJP_3\">神力</LocalizationId></color>持有上限为10，获取规则如下：<br>1. 第3段<color=#DAA60B><#specinfo=putonggongji></color>命中时获得1点<color=#DAA60B><#LocalizationId=\"CharaJP_3\">神力</LocalizationId></color>。<br>2. 使用<#specinfo=zhanji>：<color=#DAA60B>裂地冲击波</color>时获得3点<color=#DAA60B><#LocalizationId=\"CharaJP_3\">神力</LocalizationId></color>。<br>3. 使用<#specinfo=baofaji>：<color=#DAA60B>霹雳三板斧</color>时获得5点<color=#DAA60B><#LocalizationId=\"CharaJP_3\">神力</LocalizationId></color>。"
+    },
+    "130003": {
+      "name": "铁山靠",
+      "description": "以强大的内力推动身体向前猛冲。<br><br><color=#DAA60B><#specinfo=shanbigongji></color><br>挥动斧头施展上挑攻击。"
+    },
+    "130011": {
+      "name": "裂地冲击波",
+      "description": "挥斧上挑，在地面产生1道<color=#DAA60B>冲击波</color>，对命中的敌人施加<#specinfo=pojia>。"
+    },
+    "130012": {
+      "name": "霹雳三板斧",
+      "description": "释放时获得<#specinfo=jianyi>，使出如雷霆震怒般的三板斧。"
+    },
+    "140001": {
+      "name": "水弹射击",
+      "description": "不断发射魔法水弹，<#specinfo=putonggongji>时能够慢速移动。<br><br><color=#DAA60B><#specinfo=zhongji>：水刃</color><br>消耗25点<color=#DAA60B><#LocalizationId=\"CharaJP_4\">水元素</LocalizationId></color>，将魔法水弹转为具有穿透能力的<color=#DAA60B>水刃。<br><#LocalizationId=\"CharaJP_4\">水元素</LocalizationId></color>持有上限为100点，获取规则如下：<br>1. <#specinfo=putonggongji>每次命中获得3点<color=#DAA60B><#LocalizationId=\"CharaJP_4\">水元素</LocalizationId></color>，冷却0.2秒。<br>2. 消耗<#specinfo=shuiling>时获得10点<color=#DAA60B><#LocalizationId=\"CharaJP_4\">水元素</LocalizationId></color>，<#specinfo=lengque>1秒。<br>3. <#specinfo=baofaji>：<color=#DAA60B>海神之怒</color>每次命中获得5点<color=#DAA60B><#LocalizationId=\"CharaJP_4\">水元素</LocalizationId></color>，<#specinfo=lengque>0.5秒。<br><color=#DAA60B>魔法水弹</color>与<color=#DAA60B>水刃</color>对<#specinfo=chaoshi>目标的伤害增加10%乘以<#specinfo=chaoshi>层数。"
+    },
+    "140003": {
+      "name": "奔浪",
+      "description": "脚下涌现波涛，化作浪影飞驰，在终点留下1圈水纹，水纹视为<color=#DAA60B><#specinfo=shanbigongji></color>范围伤害。"
+    },
+    "140011": {
+      "name": "水灵之歌",
+      "description": "释放1圈涟漪对周围敌人造成伤害，随后召唤3颗<#specinfo=shuiling>环绕在身边。"
+    },
+    "140012": {
+      "name": "海神之怒",
+      "description": "请求海神的庇护，进入可移动的浮空状态，操控奔涌的水流持续向前喷射强力水柱，被击中的敌人将被施加<#specinfo=chaoshi>，持续4秒。<br><color=#DAA60B>海神之怒</color>同时也会激活<#specinfo=shuiling>。"
+    },
+    "150001": {
+      "name": "凌风弓法",
+      "description": "3连射击，箭矢如疾风般掠过，精准命中目标。<br><br><color=#DAA60B><#specinfo=zhongji>：【风影翻射】<br>【箭魂】</color>不满时，向后空翻，同时向下射出1支旋风箭矢，在前方固定距离爆炸<br><color=#DAA60B>【箭魂】</color>充满时，空翻后连续在空中射击，对前方地面射出多只强化爆炸箭矢。<br><br><color=#DAA60B>【箭魂】</color>持有上限为10点，获取规则如下： <color=#DAA60B><#specinfo=putonggongji></color>第3击命中时获得1点<color=#DAA60B>【箭魂】</color>。"
+    },
+    "150003": {
+      "name": "滑步",
+      "description": "大步向前飞跃，随后以滑铲动作停下。<br><br><color=#DAA60B><#specinfo=shanbigongji></color><br>向前旋转，同时向外随机射出箭矢，对周围敌人造成伤害。"
+    },
+    "150011": {
+      "name": "穿云箭",
+      "description": "向前方蓄力发射1只具有强大击退力的<color=#DAA60B>贯穿矢</color>，获得3点<color=#DAA60B>【箭魂】</color>，每命中1名敌人获得10层<#specinfo=huixin>。"
+    },
+    "150012": {
+      "name": "暴风箭雨",
+      "description": "向天上射出1只分裂箭，随后在前方区域降下<color=#DAA60B>暴风箭雨</color>，每次命中时附加<#specinfo=biaoji>。"
+    },
+    "160001": {
+      "name": "光芒爆发",
+      "description": "利用宝珠凝聚光之能量，在敌人所在位置引发强烈爆炸，对范围内的所有敌人造成伤害。<br><br><color=#DAA60B><#specinfo=zhongji>：黑洞<br><#LocalizationId=\"CharaJP_6\">信仰</LocalizationId></color>不满时，快速生成并发射1个能量球，命中后爆炸并生成<color=#DAA60B>小型黑洞。<br><#LocalizationId=\"CharaJP_6\">信仰</LocalizationId></color>充满时，按住攻击键可以持续引导，牵引附近的敌人并持续造成伤害，结束后将发射1个大能量球，命中后爆炸并生成<color=#DAA60B>【光辉黑洞】。<br><br><#LocalizationId=\"CharaJP_6\">信仰</LocalizationId></color>持有上限为30点，<#specinfo=putonggongji>每次命中获得1点<color=#DAA60B><#LocalizationId=\"CharaJP_6\">信仰</LocalizationId></color>。"
+    },
+    "160003": {
+      "name": "闪烁",
+      "description": "随着一道光芒闪烁而消失，随后在前方出现。<br><br><color=#DAA60B><#specinfo=shanbigongji></color><br>发射1道<color=#DAA60B>十字冲击波</color>，穿透敌人并持续造成伤害。"
+    },
+    "160011": {
+      "name": "光柱降临",
+      "description": "召唤1个从天而降的<color=#DAA60B>光之柱</color>，对砸中的敌人造成伤害，随后不断向四周随机发射<color=#DAA60B>光波</color>，持续5秒。"
+    },
+    "160012": {
+      "name": "光芒降临",
+      "description": "以自身为中心释放出1个大范围的<color=#DAA60B>领域</color>，持续10秒。每隔1秒，领域内的敌人会受到<#specinfo=chengjieguangzhu>攻击。"
+    },
+    "170001": {
+      "name": "龙骑士枪术",
+      "description": "操纵骑士长枪挥动带有<color=#76A9FF>冰霜之力</color>的4段攻击。<br>\n<color=#76A9FF><#specinfo=zhongji>：龙魂突刺</color><br>\n长按攻击进入<color=#e99f0d>蓄力</color>状态，默认状态下可以达到2级蓄力等级，在<#specinfo=longhunshiqi>状态下可以达到3级蓄力等级。<br>\n<#specinfo=longhun>充满时在蓄力状态下进入<#specinfo=longhunshiqi>。<br>\n<#specinfo=putonggongji>在非<#specinfo=longhunshiqi>状态下造成伤害时获取10点<color=#76A9FF><#specinfo=longhun>能量</color>。"
+    },
+    "170003": {
+      "name": "冰龙旋尾",
+      "description": "凝聚冰霜之力快速向前冲刺。<br><br><color=#76A9FF><#specinfo=shanbigongji></color><br>紧握骑士长枪发起突刺并追击横扫。"
+    },
+    "170011": {
+      "name": "寒霜强袭",
+      "description": "立刻释放<color=#76A9FF>冰霜之力</color>发起长枪突袭贯穿敌人。<br>\n<#specinfo=zhanji>对<#specinfo=dongshang>的敌人造成伤害时，消耗4层<#specinfo=dongshang>造成额外伤害并转换为<#specinfo=suibing>层数。"
+    },
+    "170012": {
+      "name": "悲鸣吧，霜狱",
+      "description": "将<color=#76A9FF>冰霜之力</color>释放出来发动连续攻击，腾空后奋力将长枪砸下，召唤<#specinfo=shuangyu>。"
+    },
+    "180001": {
+      "name": "沙域刀法",
+      "description": "快速挥舞短刀对敌人发动5段斩击，造成共计477%<#specinfo=gongjili>的伤害。<br>\n使命中的敌人叠加<#specinfo=shoulieyinji>充能，每100点充能转化为1层<#specinfo=shoulieyinji>。<br><#specinfo=zhongji>：乱舞<br>跃入空中持续旋转攻击敌人，每持续一轮攻击消耗3点<#specinfo=huanghun>并获得1层<#specinfo=luanwu>，每段造成30%<#specinfo=gongjili>的伤害，消耗完所有<#specinfo=huanghun>或松开攻击键发动<#specinfo=zhongji>乱舞终结技，造成120%<#specinfo=gongjili>的伤害，每消耗一轮荒魂都会使该伤害提升。之后召唤<#specinfo=daozhen>。<br><#specinfo=daozhen>非展开状态下每秒获得1点<#specinfo=huanghun>。<br>每造成10次<#specinfo=putonggongji>伤害获得1点<#specinfo=huanghun>。"
+    },
+    "180003": {
+      "name": "流沙闪袭",
+      "description": "以迅雷之势俯身穿过敌人。<br>\n<#specinfo=shanbigongji>：<br>\n拔出双刀快速穿过敌人，造成88%<#specinfo=gongjili>的伤害，并引爆<#specinfo=shoulieyinji>叠加到3层以上的敌人。<br>\n成功引爆3层以上<#specinfo=shoulieyinji>时使自身获得<#specinfo=fengshi>。"
+    },
+    "180011": {
+      "name": "双刃轮舞",
+      "description": "高速向前旋转切割路径上的敌人，对敌人造成共计290%<#specinfo=gongjili>的伤害，之后斩击敌人造成130%<#specinfo=gongjili>的伤害，并在身边聚集沙砾形成<#specinfo=liushafengbao>将其发射出去，对敌人造成总计400%<#specinfo=gongjili>的伤害。"
+    },
+    "180012": {
+      "name": "呼啸吧，鎏金之刃",
+      "description": "将双刃组合高速旋转攻击敌人，造成总计1425%<#specinfo=gongjili>的伤害，最后召唤<#specinfo=liujinhuanren>环绕自身，<#specinfo=liujinhuanren>对命中的敌人造成<#specinfo=zhongshang>。"
+    },
+    "612003": {
+      "name": "孢子爆发",
+      "description": "聚集毒元素后爆发，对周围敌人造成300%<#specinfo=gongjili>的伤害。|【孢子爆发】每命中一名敌人<#specinfo=shengminghuifu>5%<#specinfo=shengmingzhi>，最多<#specinfo=shengminghuifu>15%。|攻击范围提升50%且<#specinfo=shengmingzhi><#specinfo=shengminghuifu>效果翻倍。"
+    },
+    "613001": {
+      "name": "狼王·炽焰之爪",
+      "description": "召唤炽焰狼王连续释放爪击，爪击每段造成300%<#specinfo=gongjili>的伤害。|爪击能够发射【火焰爪痕】对敌人造成<#specinfo=zhuoshao>，火焰爪痕每段造成200%<#specinfo=gongjili>的伤害。|爪击结束后释放【狼吼】给敌人施加<#specinfo=danqie>，狼吼造成200%<#specinfo=gongjili>的伤害。"
+    },
+    "622002": {
+      "name": "沙之领域·全域",
+      "description": "向前方展开一片持续10秒的流沙之域，敌人进入后每0.25秒累加1%减速。|敌人进入领域累计3秒后被施加<#specinfo=pojia>。|领域每次向敌人施加减速时为玩家提高1点<#specinfo=fangyuli>，最多99层，持续5秒。"
+    },
+    "623001": {
+      "name": "圣兽·飓风飞弹",
+      "description": "召唤荒漠圣兽落下数枚风弹，风弹命中造成1000%<#specinfo=gongjili>的伤害。|荒漠圣兽落下风弹后会腾空并留下1道龙卷风，龙卷每段造成200%<#specinfo=gongjili>的伤害。|荒漠圣兽腾空后会向前发射1道【分裂龙卷风】，分裂造成的伤害减半。"
+    },
+    "632001": {
+      "name": "烈风之加护",
+      "description": "以飓风围绕自身，提升玩家50<#specinfo=yidongsudu>和50<#specinfo=gongjisudu>，持续20秒。|飓风能阻挡敌人靠近。|飓风能阻挡部分弹幕攻击。"
+    },
+    "633001": {
+      "name": "鹿王·风雪之魂",
+      "description": "召唤幻影鹿王向敌人发起数道幻影冲锋，每段造成200%<#specinfo=gongjili>的伤害，命中增加一层<#specinfo=dongshang>。|幻影冲锋会定期在地面留下寒冰法阵延迟爆炸，造成300%<#specinfo=gongjili>的伤害，命中增加一层<#specinfo=dongshang>。|幻影鹿王在发起幻影冲锋后会释放【极寒风雪】，每段造成100%<#specinfo=gongjili>的伤害，命中增加一层<#specinfo=dongshang>。"
+    },
+    "642001": {
+      "name": "岩盾爆炸",
+      "description": "给予玩家一个<#specinfo=shengmingshangxian>10%的<#specinfo=hudun>。|获得的<#specinfo=hudun>提升至<#specinfo=shengmingshangxian>的20%，10秒内受到怪物伤害会向周围弹出数枚尖刺炸弹，尖刺炸弹命中造成1000%<#specinfo=shengmingshangxian>的伤害。|获得的<#specinfo=hudun>提升至<#specinfo=shengmingshangxian>的30%，10秒内受到怪物伤害额外增加玩家8点<#specinfo=hujia>。"
+    },
+    "643001": {
+      "name": "泰坦·撼地猛击",
+      "description": "召唤泰坦巨像快速向前进行拍击，并在地上扩散尖刺，尖刺每段造成100%<#specinfo=gongjili>的伤害。|尖刺命中时增加自身1%<#specinfo=gongjili>，最大50层，持续8秒。|拍击结束后自身体型变大并用力砸下，造成500%<#specinfo=gongjili>的伤害，并对敌人附加<#specinfo=pojia>。"
+    },
+    "652001": {
+      "name": "三相图腾",
+      "description": "在身旁召唤1根图腾，图腾会留在原地自动进行攻击，持续20秒，图腾每次命中造成100%（冰弹）、50%（冰阵）、100%（火弹）、300%（毒爆）的伤害。|图腾数量增加。|图腾数量再增加，命中时造成异常效果。"
+    },
+    "652002": {
+      "name": "深海狂袭",
+      "description": "召唤深渊狂鲨扑向敌人，之后获得25次召唤次数，<#specinfo=putonggongji>或<#specinfo=zhongji>命中时必定触发（<#specinfo=lengque>1秒）召唤1条深渊迷你鲨冲向敌人。深渊狂鲨造成150%<#specinfo=gongjili>的伤害，深渊迷你鲨造成75%<#specinfo=gongjili>的伤害。|深渊迷你鲨离开后有概率再次浮出重新造成伤害。|深渊迷你鲨每次命中小概率召唤深渊狂鲨跃出，造成500%<#specinfo=gongjili>的巨额伤害。"
+    },
+    "652003": {
+      "name": "渡鸦来袭·聚",
+      "description": "召唤乌鸦围绕自身，对附近的敌人造成伤害，持续10秒，每只渡鸦命中后造成50%<#specinfo=gongjili>的伤害。|被乌鸦累计击中10次后，为目标附上<#specinfo=sishengbiaoji>。|乌鸦数量增加5只，且乌鸦每次命中提升玩家1%<#specinfo=gongjili>，持续15秒。"
+    },
+    "653001": {
+      "name": "魔龙·元素震荡",
+      "description": "召唤混沌魔龙唤出落雷，落雷造成300%<#specinfo=gongjili>的伤害，后聚集火元素爆发，造成1000%<#specinfo=gongjili>的伤害。|使用后返还1点<#specinfo=guaiwuzhiyuan>点数。|召唤落雷后混沌魔龙改为释放【灭世龙息】，总共造成2400%<#specinfo=gongjili>的伤害，对【首领】伤害翻倍。"
+    }
+  },
+  "RelationshipAmplifyData": {
+    "60001": {
+      "name": "攻击增幅·壹",
+      "description": "<#specinfo=gongjili>+5%"
+    },
+    "60002": {
+      "name": "防御增幅·壹",
+      "description": "<#specinfo=fangyuli>+10%"
+    },
+    "60003": {
+      "name": "生命增幅·壹",
+      "description": "<#specinfo=shengmingshangxian>+5%"
+    },
+    "60004": {
+      "name": "暴击增幅·壹",
+      "description": "<#specinfo=baojilv>+1%"
+    },
+    "60005": {
+      "name": "暴伤增幅·壹",
+      "description": "<#specinfo=baojishanghai>+4%"
+    },
+    "60006": {
+      "name": "移速增幅·壹",
+      "description": "<#specinfo=yidongsudu>+2%"
+    },
+    "60007": {
+      "name": "支援增幅·壹",
+      "description": "<#specinfo=guaiwuzhiyuan>充能效率+5"
+    },
+    "60008": {
+      "name": "治愈增幅·壹",
+      "description": "<color=#8dff4f><#specinfo=shengminghuifu>效率</color>+10%"
+    },
+    "60009": {
+      "name": "破盾增幅·壹",
+      "description": "<#specinfo=hujia>击破效率+15%"
+    },
+    "60010": {
+      "name": "护盾增幅·壹",
+      "description": "<#specinfo=hujia>击破效率+5%，<#specinfo=gongjili>+5%"
+    },
+    "60101": {
+      "name": "攻击增幅·贰",
+      "description": "<#specinfo=gongjili>+8%"
+    },
+    "60102": {
+      "name": "防御增幅·贰",
+      "description": "<#specinfo=fangyuli>+15%"
+    },
+    "60103": {
+      "name": "生命增幅·贰",
+      "description": "<#specinfo=shengmingshangxian>+10%"
+    },
+    "60104": {
+      "name": "暴击增幅·贰",
+      "description": "<#specinfo=baojilv>+1.5%"
+    },
+    "60105": {
+      "name": "暴伤增幅·贰",
+      "description": "<#specinfo=baojishanghai>+6%"
+    },
+    "60106": {
+      "name": "移速增幅·贰",
+      "description": "<#specinfo=yidongsudu>+3%"
+    },
+    "60107": {
+      "name": "支援增幅·贰",
+      "description": "<#specinfo=guaiwuzhiyuan>充能效率+10"
+    },
+    "60108": {
+      "name": "治愈增幅·贰",
+      "description": "<color=#8dff4f><#specinfo=shengminghuifu>效率</color>+15%"
+    },
+    "60109": {
+      "name": "护盾增幅·贰",
+      "description": "<#specinfo=hujia>击破效率+10%，<#specinfo=gongjili>+5%"
+    },
+    "60110": {
+      "name": "闪避增幅·贰",
+      "description": "<#specinfo=shanbi><#specinfo=lengque>速率+5"
+    },
+    "60201": {
+      "name": "攻击增幅·叁",
+      "description": "<#specinfo=gongjili>+10%"
+    },
+    "60202": {
+      "name": "防御增幅·叁",
+      "description": "<#specinfo=fangyuli>+20%"
+    },
+    "60203": {
+      "name": "生命增幅·叁",
+      "description": "<#specinfo=shengmingshangxian>+15%"
+    },
+    "60204": {
+      "name": "暴击增幅·叁",
+      "description": "<#specinfo=baojilv>+2%"
+    },
+    "60205": {
+      "name": "暴伤增幅·叁",
+      "description": "<#specinfo=baojishanghai>+8%"
+    },
+    "60206": {
+      "name": "移速增幅·叁",
+      "description": "<#specinfo=yidongsudu>+4%"
+    },
+    "60207": {
+      "name": "支援增幅·叁",
+      "description": "<#specinfo=guaiwuzhiyuan>充能效率+15"
+    },
+    "60208": {
+      "name": "治愈增幅·叁",
+      "description": "<color=#8dff4f><#specinfo=shengminghuifu>效率</color>+20%"
+    },
+    "60209": {
+      "name": "精华增幅·叁",
+      "description": "<#specinfo=molijinghua>掉落+5%"
+    },
+    "60210": {
+      "name": "灵巧增幅·叁",
+      "description": "<#specinfo=shanbi><#specinfo=lengque>速率+7"
+    },
+    "60211": {
+      "name": "蓄能增幅·叁",
+      "description": "初始<#specinfo=molijinghua>+50"
+    },
+    "60212": {
+      "name": "风行增幅·叁",
+      "description": "路线<color=#fdb933>竖向</color>移动概率+5%"
+    },
+    "60213": {
+      "name": "奇遇增幅·叁",
+      "description": "普通随机事件出现概率+5%"
+    },
+    "60214": {
+      "name": "宝石增幅·叁",
+      "description": "供奉史莱姆国王获得高级宝石概率+5%"
+    },
+    "60215": {
+      "name": "急速增幅·叁",
+      "description": "<#specinfo=gongjisudu>+3"
+    },
+    "60301": {
+      "name": "攻击增幅·肆",
+      "description": "<#specinfo=gongjili>+12%"
+    },
+    "60302": {
+      "name": "防御增幅·肆",
+      "description": "<#specinfo=fangyuli>+22%"
+    },
+    "60303": {
+      "name": "生命增幅·肆",
+      "description": "<#specinfo=shengmingshangxian>+20%"
+    },
+    "60304": {
+      "name": "暴击增幅·肆",
+      "description": "<#specinfo=baojilv>+3%"
+    },
+    "60305": {
+      "name": "暴伤增幅·肆",
+      "description": "<#specinfo=baojishanghai>+12%"
+    },
+    "60306": {
+      "name": "移速增幅·肆",
+      "description": "<#specinfo=yidongsudu>+5%"
+    },
+    "60307": {
+      "name": "怪物增幅·肆",
+      "description": "<#specinfo=guaiwuzhiyuan>充能效率+20"
+    },
+    "60308": {
+      "name": "治愈增幅·肆",
+      "description": "<color=#8dff4f><#specinfo=shengminghuifu>效率</color>+25%"
+    },
+    "60309": {
+      "name": "复苏增幅·肆",
+      "description": "<color=#8dff4f>治愈之泉</color><#specinfo=shengminghuifu>+25%，进入新节点<#specinfo=shengminghuifu>2%<#specinfo=shengmingzhi>"
+    },
+    "60310": {
+      "name": "洞见增幅·肆",
+      "description": "初始天赋<color=#fdb933>刷新</color>次数+1，<#specinfo=molijinghua>掉落+6%"
+    },
+    "60311": {
+      "name": "重击增幅·肆",
+      "description": "<#specinfo=zhongji>伤害+22%"
+    },
+    "60312": {
+      "name": "蓄能增幅·肆",
+      "description": "初始<#specinfo=molijinghua>+80，进入新节点获得<#specinfo=molijinghua>+20"
+    },
+    "60313": {
+      "name": "风行增幅·肆",
+      "description": "路线<color=#fdb933>竖向</color>移动概率+7%"
+    },
+    "60314": {
+      "name": "奇遇增幅·肆",
+      "description": "普通随机事件出现概率+8%"
+    },
+    "60315": {
+      "name": "急速增幅·肆",
+      "description": "<#specinfo=gongjisudu>+4"
+    },
+    "60316": {
+      "name": "普攻增幅·肆",
+      "description": "<#specinfo=putonggongji>伤害+22%"
+    },
+    "60317": {
+      "name": "闪避增幅·肆",
+      "description": "<#specinfo=shanbigongji>伤害+22%"
+    },
+    "60318": {
+      "name": "技能增幅·肆",
+      "description": "<#specinfo=zhanji>伤害+22%"
+    },
+    "60319": {
+      "name": "大招增幅·肆",
+      "description": "<#specinfo=baofaji>伤害+22%"
+    },
+    "60320": {
+      "name": "怪物增幅·肆",
+      "description": "<#specinfo=guaiwuzhiyuan>伤害+20%"
+    },
+    "60321": {
+      "name": "遗物增幅·肆",
+      "description": "敌人<color=#fdb933>低阶遗物</color>掉落几率增幅8%"
+    },
+    "60322": {
+      "name": "天赋增幅·肆",
+      "description": "<color=#fdb933>天赋</color>额外升级概率+5%"
+    },
+    "60323": {
+      "name": "宝石增幅·肆",
+      "description": "供奉史莱姆国王获得高级宝石概率+8%"
+    },
+    "60324": {
+      "name": "首领增幅·肆",
+      "description": "对<color=#FF4040>【领主】</color>伤害+15%"
+    },
+    "60325": {
+      "name": "护盾增幅·肆",
+      "description": "<#specinfo=hujia>击破效率+20%"
+    },
+    "60401": {
+      "name": "攻击增幅·伍",
+      "description": "<#specinfo=gongjili>+15%"
+    },
+    "60402": {
+      "name": "防御增幅·伍",
+      "description": "<#specinfo=fangyuli>+25%"
+    },
+    "60403": {
+      "name": "生命增幅·伍",
+      "description": "<#specinfo=shengmingshangxian>+25%"
+    },
+    "60404": {
+      "name": "暴击增幅·伍",
+      "description": "<#specinfo=baojilv>+4%"
+    },
+    "60405": {
+      "name": "暴伤增幅·伍",
+      "description": "<#specinfo=baojishanghai>+15%"
+    },
+    "60406": {
+      "name": "移速增幅·伍",
+      "description": "<#specinfo=yidongsudu>+6%"
+    },
+    "60407": {
+      "name": "支援增幅·伍",
+      "description": "<#specinfo=guaiwuzhiyuan>充能效率+28"
+    },
+    "60408": {
+      "name": "治愈增幅·伍",
+      "description": "<color=#8dff4f><#specinfo=shengminghuifu>效率</color>+30%"
+    },
+    "60409": {
+      "name": "重击增幅·伍",
+      "description": "<#specinfo=zhongji>伤害+25%"
+    },
+    "60410": {
+      "name": "寻材增幅·伍",
+      "description": "<color=#45b97c>素材</color>出现概率+8%"
+    },
+    "60411": {
+      "name": "蓄能增幅·伍",
+      "description": "初始<#specinfo=molijinghua>+200，进入新节点获得<#specinfo=molijinghua>+20"
+    },
+    "60412": {
+      "name": "风行增幅·伍",
+      "description": "路线<color=#fdb933>竖向</color>移动概率+10%"
+    },
+    "60413": {
+      "name": "奇遇增幅·伍",
+      "description": "普通随机事件出现概率+10%"
+    },
+    "60414": {
+      "name": "战利增幅·伍",
+      "description": "<color=#FF4040>【领主】</color>掉落<color=#fdb933>额外遗物</color>概率+25%，每满100%额外多掉落1个"
+    },
+    "60415": {
+      "name": "急速增幅·伍",
+      "description": "<#specinfo=gongjisudu>+5"
+    },
+    "60416": {
+      "name": "普攻增幅·伍",
+      "description": "<#specinfo=putonggongji>伤害+25%"
+    },
+    "60417": {
+      "name": "闪避增幅·伍",
+      "description": "<#specinfo=shanbigongji>伤害+25%"
+    },
+    "60418": {
+      "name": "技能增幅·伍",
+      "description": "<#specinfo=zhanji>伤害+25%"
+    },
+    "60419": {
+      "name": "大招增幅·伍",
+      "description": "<#specinfo=baofaji>伤害+25%"
+    },
+    "60420": {
+      "name": "怪物增幅·伍",
+      "description": "<#specinfo=guaiwuzhiyuan>伤害+25%"
+    },
+    "60421": {
+      "name": "遗物增幅·伍",
+      "description": "敌人<color=#fdb933>低阶遗物</color>掉落几率增幅12%"
+    },
+    "60422": {
+      "name": "灵巧增幅·伍",
+      "description": "<#specinfo=shanbi><#specinfo=lengque>速率+10"
+    },
+    "60423": {
+      "name": "天赋增幅·伍",
+      "description": "<color=#fdb933>天赋</color>额外升级概率+8%"
+    },
+    "60424": {
+      "name": "首领增幅·伍",
+      "description": "对<color=#FF4040>【领主】</color>伤害+20%"
+    },
+    "60425": {
+      "name": "护盾增幅·伍",
+      "description": "<#specinfo=hujia>击破效率+25%"
+    },
+    "60426": {
+      "name": "精炼增幅·伍",
+      "description": "<#specinfo=fangyuli>+15%，<#specinfo=shengmingshangxian>+15%"
+    },
+    "60427": {
+      "name": "狂战增幅·伍",
+      "description": "<#specinfo=gongjili>+10%，<#specinfo=baojilv>+1%"
+    },
+    "60428": {
+      "name": "坚韧增幅·伍",
+      "description": "进入房间获得<#specinfo=hujia>+50"
+    },
+    "60429": {
+      "name": "疾风增幅·伍",
+      "description": "<#specinfo=yidongsudu>+3%，<#specinfo=gongjisudu>+2"
+    },
+    "60430": {
+      "name": "元素增幅·伍",
+      "description": "初始<#specinfo=molijinghua>+100，<#specinfo=molijinghua>掉落+5%"
+    },
+    "60431": {
+      "name": "幸运增幅·伍",
+      "description": "<#specinfo=baojilv>+2%，<#specinfo=baojishanghai>+9%"
+    },
+    "60432": {
+      "name": "魔力增幅·伍",
+      "description": "<#specinfo=zhanji>伤害+15%，<#specinfo=baofaji>伤害+15%"
+    },
+    "60433": {
+      "name": "守护增幅·伍",
+      "description": "<#specinfo=hujia>击破效率+20%，<color=#8dff4f><#specinfo=shengminghuifu>效率</color>+20%"
+    },
+    "60434": {
+      "name": "猎手增幅·伍",
+      "description": "对<color=#FF4040>【精英】</color>造成的伤害+20%"
+    },
+    "60435": {
+      "name": "探索增幅·伍",
+      "description": "<#specinfo=jinglingjitan>出现概率+10%"
+    },
+    "60436": {
+      "name": "商贾增幅·伍",
+      "description": "<#specinfo=shangdianjiage>-5%。"
+    },
+    "60437": {
+      "name": "矿工增幅·伍",
+      "description": "<color=#426ab3><#specinfo=molijinghua>矿脉</color>出现概率+10%"
+    },
+    "60438": {
+      "name": "采集增幅·伍",
+      "description": "<color=#FF4040>【精英】</color>和<color=#FF4040>【挑战】</color>节点出现概率+10%"
+    },
+    "60439": {
+      "name": "冒险增幅·伍",
+      "description": "普通随机事件出现概率+8%，进入新节点获得<#specinfo=molijinghua>+20"
+    },
+    "60440": {
+      "name": "复苏增幅·伍",
+      "description": "<color=#b482ff><#specinfo=guaiwuzhiyuan>祭坛</color>出现概率+10%"
+    }
+  }
+}

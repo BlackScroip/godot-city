@@ -1489,7 +1489,7 @@ func _gather_ability_buffs(id: int, count: int, roots: Dictionary, counted: Arra
 		for component in row.get("CombineDataList", []):
 			var data = component.get("Data", {})
 			if component.get("CombineDataType", "") == "NormalModifyBuff" and component.get("ConditionList", []).is_empty() and data.get("TargetType", "") == "Player" and int(data.get("ModifyBuffChance", 0)) >= 1000:
-				var component_count = description_state.component_factor(row, data, count) if bool(row.get("EnableCaculateAttributeSource", false)) else count
+				var component_count = description_state.component_factor(row, data, count)
 				for buff in Catalog.ids(data.get("ModifyBuff", "")):
 					_gather_buffs(buff, description_state.capped_buff_layers(buff, component_count), roots, counted)
 	for child in Catalog.ids(row.get("ExtraAbilityItemIDList", "")): _gather_ability_buffs(child, count, roots, counted, next_path)

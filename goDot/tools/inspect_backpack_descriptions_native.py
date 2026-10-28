@@ -27,7 +27,7 @@ def inspect(binary, stubs, apk):
         "AbilityItemLootData": ["GetDisplayEffectLayer", "GetDisplayBuffId", "GetBuffLayer", "get_IsCostAfterGet", "get_StarNum"],
         "AbilityItemRecordProgressData": ["get_CurLayer"],
         "ATGameManager": ["ReplaceBuffStr"],
-        "RogueInGameInventory": ["GetLootCount", "GetAllLootDataList"],
+        "RogueInGameInventory": ["GetLootCount", "GetAllLootDataList", "GetKeepTargetTypeAbilityItemCount"],
         "BattleGlobalSysAttribute_Rogue": ["GetAttribute(ERogueAttributeType", "<GetAttribute>b__13_"],
     })
     native.SELECTED_OFFSETS.update({0x2FC8F5C, 0x2FC12CC, 0x2FC4988, 0x2FC4D30, 0x2FC56EC, 0x2FC583C, 0x2FC6310, 0x2FC63F0})

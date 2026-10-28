@@ -3,6 +3,8 @@ extends RefCounted
 const Catalog = preload("res://scripts/domain/catalog.gd")
 const TOKENS := "<#(backpack_(?:layer|progress|record_trigger|buff_layer))(?::(\\d+))?>"
 const PREVIEW_STATUS := "<color=[^>]*>\\s*（[^）]*<#backpack_[^>]*>[^）]*）\\s*</color>"
+const PREVIEW_STATUS_EN := "(?i)\\s*\\(\\s*(?:current(?:ly)?(?:\\s+(?:progress|stacks))?|when\\s+move\\s+forward(?:\\s+degrees)?|triggered)\\s*[.:]?\\s*\\)?\\s*\\.?\\s*" + TOKENS + "(?:\\s*stacks\\s*\\)|\\s*\\)|\\s*\\(a\\)\\s*Number of reports)\\s*$"
+const PREVIEW_UNLABELED_EN := "(?i)<#backpack_(?:record_trigger>\\s*\\(a\\)\\s*Number of reports|progress>\\s*\\))\\s*$"
 
 var _owner: WeakRef
 var systems:
@@ -24,6 +26,9 @@ func source(ability_id: int, loot_id := 0, combat: RefCounted = null) -> String:
 	# The APK strips backpack-only status clauses from previews without an owned item.
 	if not bool(systems.profile.data.run.active) or int(systems.profile.data.run.inventory.get(str(loot_id), 0)) <= 0:
 		text = RegEx.create_from_string(PREVIEW_STATUS).sub(text, "", true)
+		# Supplemental English translations split some status parentheses around the token.
+		text = RegEx.create_from_string(PREVIEW_STATUS_EN).sub(text, "", true)
+		text = RegEx.create_from_string(PREVIEW_UNLABELED_EN).sub(text, "", true)
 		return tokens.sub(text, "", true)
 	for token in tokens.search_all(text):
 		var id := int(token.get_string(2))
@@ -80,9 +85,9 @@ func source_attribute(kind: String) -> int:
 				if category == "高级随从": total += 7
 				elif category == "随从": total += {3: 1, 4: 2, 5: 3}.get(rarity, 0)
 			"LootAllStarNum":
-				if not bool(ability.get("IsTriggerFinishCost", false)): total += rarity
+				if category not in ["金币", "魔力精华", "矿石素材", "调查点数", "天赋卷轴", "遗物袋子", "生命药水", "护甲"]: total += rarity
 			"MonsterPartnerGeneralCount":
-				if category == "怪物支援通用遗物": total += count
+				if bool(loot.get("is_visible", false)) and category == "怪物支援通用遗物": total += count
 	return total
 
 func _ability_count(id: int) -> int:

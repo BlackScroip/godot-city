@@ -143,11 +143,14 @@ func _ready() -> void:
 	world.environment_action.connect(_environment_action)
 	world.environment_sound.connect(func(name): resource_audio.play_named(name))
 	world.world_message.connect(func(message, context):
+		_sync_live_combat()
 		var handled: bool = systems.effects.dispatch_message(message, context)
 		if message == "camp_page":
 			if context.page == "primary":
 				if profile.data.run.active: _primary()
 				else: menus.open("difficulty")
+			elif context.page == "weapons":
+				menus.open("weapons", selected_character, {"weapon_selector_open": true, "weapon_selector_direct": true})
 			else: menus.open(str(context.page))
 		elif message == "room_action":
 			_room_interaction(context)
@@ -766,22 +769,22 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 			_apply_growth()
 			if result.success and not systems.pending_character_talent_reward().is_empty(): _talent_rewards()
 			elif result.success and profile.data.run.rewards.size() > rewards_before: _rewards(str(profile.data.run.rewards[rewards_before].key))
-			else: _room_action()
+			else: _show_room_shop(campaign.current_room())
 			_save()
 		"refresh_room_shop":
 			var result = systems.refresh_room_shop(_room_key)
 			hud.toast(str(result.get("message", "")))
-			_room_action()
+			_show_room_shop(campaign.current_room())
 		"invest_room_shop":
 			var result = systems.invest_shop(int(id))
 			hud.toast(str(result.get("message", "")))
-			_room_action()
+			_show_room_shop(campaign.current_room())
 		"room_shop_mode": _room_shop_mode = str(id)
 		"seal_room_loot":
 			var result = systems.seal_room_loot(_room_key, int(id))
 			hud.toast(str(result.get("message", "")))
 			_apply_growth()
-			_room_action()
+			_show_room_shop(campaign.current_room())
 		"choose_loot":
 			var result = systems.choose_loot_reward(str(extra), int(id))
 			hud.toast(str(result.get("message", "")))
@@ -1262,9 +1265,11 @@ func _update_battle_presentation(delta: float) -> void:
 	hud.battle_readout.update_enemies(world.actors, world.camera, delta if not world.paused else 0.0)
 
 func _enemy_defeated(enemy_id: int) -> void:
+	_sync_live_combat()
 	systems.record_kill(enemy_id, 0)
 	if str(catalog.find("EnemyData", enemy_id).get("enemy_rate", "")) == "Boss":
 		systems.record_boss_rating(enemy_id, 3 if world.received_hits == 0 else 1)
+	_apply_growth()
 	_save()
 
 func _wave_cleared() -> void:
@@ -1515,7 +1520,7 @@ func _show_room_shop(room: Dictionary) -> void:
 			"source_description": _loot_source_description(int(held)),
 			"icon": "loot:" + str(held), "loot_id": int(held), "rarity": int(quote.rarity), "price": int(quote.magic), "count": int(quote.count), "action": "seal_room_loot"})
 	seal_rows.sort_custom(func(a, b): return int(a.loot_id) < int(b.loot_id))
-	hud.show_page("迷宫商店", rows, "room_shop", {"shop": systems.room_shop_status(_room_key), "magic": systems.material(102), "free": free, "seal_rows": seal_rows, "mode": _room_shop_mode})
+	hud.show_page("迷宫商店", rows, "room_shop", {"shop": systems.room_shop_status(_room_key), "magic": systems.material(102), "free": free, "seal_rows": seal_rows, "mode": _room_shop_mode, "return_to_room": str(room.get("flow", "")) != "Shop"})
 	_save()
 
 func _player_defeated() -> void:
@@ -1783,7 +1788,7 @@ func _start_dialogue(function_id: int) -> void:
 	menus.current_page = "npc"
 	menus.current_id = int(row.get("npc_index", 0))
 	if str(row.get("func_msg_name", "")) == "Rogue_OpenShop":
-		if profile.data.run.active: _room_action()
+		if profile.data.run.active: _show_room_shop(campaign.current_room())
 		else: menus.open("mall")
 		return
 	var seed_value = int(profile.data.run.get("seed", 0)) + systems.stat("npc:executions:" + str(function_id)) + function_id
@@ -1909,7 +1914,7 @@ func _show_dialogue() -> void:
 		var greeting = dialogue.read_story(str(catalog.find("NPCFunctionData", _npc_entry(npc_id)).get("talk_file_entry", "")), npc_id)
 		if not greeting.is_empty(): author = str(greeting[0].get("AuthorId", ""))
 	var choices = _npc_choices(npc_id, function_id) if choosing else []
-	var context = {"speaker": str(line.get("Speaker", npc.get("name", ""))), "text": menus.clean(line.get("Text", npc.get("title", ""))), "portrait": "characterillustration_" + author + "_normal", "npc_id": npc_id, "choices": choices, "can_skip": true, "show_relationship": not profile.data.run.active and not str(npc.get("relationship_entryid", "")).is_empty(), "relationship": systems.stat("relationship:" + str(npc_id))}
+	var context = {"speaker": str(line.get("Speaker", npc.get("name", ""))), "text": str(line.get("Text", npc.get("title", ""))), "portrait": "characterillustration_" + author + "_normal", "npc_id": npc_id, "choices": choices, "can_skip": true, "show_relationship": not profile.data.run.active and not str(npc.get("relationship_entryid", "")).is_empty(), "relationship": systems.stat("relationship:" + str(npc_id))}
 	hud.show_page(context.speaker, [], "dialogue", context)
 	world.paused = true
 
@@ -2005,6 +2010,7 @@ func _environment_action(kind: String, context: Dictionary) -> void:
 		"trial_complete": _finish_chest_trial()
 		"auto_loot":
 			resource_audio.play_event("pickup_coin" if context.get("coin", false) else "pickup_material")
+			_apply_growth()
 			_save()
 		"npc":
 			if str(context.get("type", "")) == "EEUT_Special_GemShopMan": _show_gem_offering(context)
@@ -2460,6 +2466,7 @@ func _claim_destroyable(context: Dictionary) -> void:
 	if not profile.data.run.active: return
 	var key := "destroyable:" + _room_key + ":" + str(context.get("marker_id", ""))
 	if profile.data.run.counters.get(key, false): return
+	_sync_live_combat()
 	profile.data.run.counters[key] = true
 	systems.effects.dispatch("DestroyDestroyableObject", str(context.get("config_id", "")))
 	var drops: Array = preload("res://scripts/domain/breakable_rewards.gd").new(systems).destroyable(str(context.get("config_id", "")), systems.attributes())
@@ -2474,6 +2481,7 @@ func _claim_destroyable(context: Dictionary) -> void:
 			world.show_material_gain(point, int(drop.id), int(drop.amount))
 		else:
 			world.ground_loot.spawn(int(drop.id), point + Vector3(index * 0.35, 0, 0), int(drop.amount), bool(drop.material))
+	_apply_growth()
 	_save()
 
 func _drop_treasure(point: Vector3, quality := "Normal", treasure_id := 1) -> void:

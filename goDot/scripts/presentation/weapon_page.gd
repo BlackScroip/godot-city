@@ -118,22 +118,23 @@ var weapon_buttons: Dictionary = {}
 var action_buttons: Array[Button] = []
 var name_label: Label
 var rank_label: Label
-var effect_label: Label
-var biography: Label
+var effect_label: SourceRichText
+var biography: SourceRichText
 var detail_scroll: ScrollContainer
 var selector: Control
 var selector_name: Label
-var selector_effect: Label
-var selector_description: Label
+var selector_effect: SourceRichText
+var selector_description: SourceRichText
 var selector_status: Label
-var selector_actions: VBoxContainer
+var selector_actions: BoxContainer
 var _catalog: DungeonCatalog
 var _resources: HBoxContainer
 var _selector_resources: HBoxContainer
 var _selector_background: TextureRect
 var _selector_base: ColorRect
 var _selector_top: TextureRect
-var _selector_strip: HBoxContainer
+var _selector_strip: BoxContainer
+var _selector_scroll: ScrollContainer
 var _selector_inside: MarginContainer
 var _paper_parts: Array[Control] = []
 var _map: Dictionary = {}
@@ -194,7 +195,7 @@ func _build_header(parent: Control, is_selector: bool) -> void:
 	var back = ROLE_NAVIGATION.create_back_button()
 	_place(parent, back, ROLE_NAVIGATION.BACK_RECT)
 	back.pressed.connect(func():
-		if is_selector: set_selector_open(false)
+		if is_selector: _leave_selector()
 		else: back_requested.emit())
 	var title = _picture("武器" if is_selector else "角色详情", is_selector)
 	var title_width := (230 if not is_selector else 140) if DungeonLocale.current_locale() == "zh_CN" else 650
@@ -271,26 +272,20 @@ func _build_detail() -> void:
 	stack.add_child(_main_effect_stack)
 	rank_label = _label("", 25)
 	_main_effect_stack.add_child(rank_label)
-	var effect_line = HBoxContainer.new()
-	effect_line.add_theme_constant_override("separation", 10)
-	_main_effect_stack.add_child(effect_line)
-	var icon = _picture("icon_atk_white")
-	icon.modulate = Color("c84633")
-	icon.custom_minimum_size = Vector2(33, 33)
-	effect_line.add_child(icon)
-	effect_label = _label("", 26)
-	effect_label.add_theme_color_override("font_color", Color("d45335"))
+	effect_label = _rich_label("", 26)
+	effect_label.add_theme_color_override("default_color", Color("d45335"))
 	effect_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	effect_line.add_child(effect_label)
+	_main_effect_stack.add_child(effect_label)
 	var divider = _picture("18")
 	divider.custom_minimum_size.y = 3
 	divider.stretch_mode = TextureRect.STRETCH_SCALE
 	stack.add_child(divider)
-	biography = _label("", 25)
-	biography.add_theme_constant_override("line_spacing", 2)
+	biography = _rich_label("", 25)
+	biography.add_theme_constant_override("line_separation", 2)
 	stack.add_child(biography)
 
 func _build_selector() -> void:
+	var direct: bool = context.get("weapon_selector_direct", false)
 	selector = Control.new()
 	selector.name = "OriginalWeaponSelector"
 	_place(canvas, selector, Rect2(Vector2.ZERO, DESIGN))
@@ -299,7 +294,7 @@ func _build_selector() -> void:
 	base.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_place(selector, base, Rect2(Vector2.ZERO, DESIGN))
 	_selector_base = base
-	var background = _picture("通用背景", true)
+	var background = _picture("charamenumask_1" if direct else "通用背景", not direct)
 	_place(selector, background, Rect2(Vector2.ZERO, DESIGN))
 	background.stretch_mode = TextureRect.STRETCH_SCALE
 	_selector_background = background
@@ -307,17 +302,24 @@ func _build_selector() -> void:
 	top.stretch_mode = TextureRect.STRETCH_SCALE
 	_place(selector, top, Rect2(0, 0, 2048, 110))
 	_selector_top = top
+	top.visible = not direct
 	_build_header(selector, true)
 	selector_preview = WeaponPreview.new()
 	selector_preview.name = "SelectorWeaponModel"
 	_place(selector, selector_preview, Rect2(200, 115, 1065, 570))
 	selector_artwork = _picture("")
 	_place(selector, selector_artwork, Rect2(200, 115, 1065, 570))
-	var strip = HBoxContainer.new()
+	var strip: BoxContainer = VBoxContainer.new() if direct else HBoxContainer.new()
 	strip.add_theme_constant_override("separation", 20)
 	strip.alignment = BoxContainer.ALIGNMENT_CENTER
 	_place(selector, strip, Rect2(290, 695, 975, 155))
 	_selector_strip = strip
+	if direct:
+		_selector_scroll = ScrollContainer.new()
+		_selector_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		_place(selector, _selector_scroll, Rect2(40, 140, 175, 700))
+		strip.reparent(_selector_scroll)
+		strip.alignment = BoxContainer.ALIGNMENT_BEGIN
 	for row in rows:
 		var id = _id(row)
 		var button = Button.new()
@@ -357,6 +359,7 @@ func _build_selector() -> void:
 	var middle_paper = _patch("详情_底框_2", Vector4(0, 72, 0, 70))
 	_place(selector, middle_paper, Rect2(1569, 135, 162, 615))
 	_paper_parts.assign([left_paper, right_paper, middle_paper])
+	for part in _paper_parts: part.visible = not direct
 	var inside = MarginContainer.new()
 	for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]: inside.add_theme_constant_override(side, 35)
 	_place(selector, inside, Rect2(1360, 143, 580, 595))
@@ -376,8 +379,8 @@ func _build_selector() -> void:
 	information.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	information.add_theme_constant_override("separation", 18)
 	scroll.add_child(information)
-	selector_effect = _label("", 27)
-	selector_effect.add_theme_color_override("font_color", INK)
+	selector_effect = _rich_label("", 27)
+	selector_effect.add_theme_color_override("default_color", INK)
 	selector_effect.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
 	information.add_child(selector_effect)
 	var divider = _picture("18", true)
@@ -385,17 +388,25 @@ func _build_selector() -> void:
 	divider.stretch_mode = TextureRect.STRETCH_SCALE
 	divider.modulate = INK
 	information.add_child(divider)
-	selector_description = _label("", 25)
-	selector_description.add_theme_color_override("font_color", INK)
+	selector_description = _rich_label("", 25)
+	selector_description.add_theme_color_override("default_color", INK)
 	selector_description.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
 	information.add_child(selector_description)
 	selector_status = _label("", 22)
 	selector_status.add_theme_color_override("font_color", Color("7a5044"))
 	selector_status.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
 	information.add_child(selector_status)
-	selector_actions = VBoxContainer.new()
+	selector_actions = HBoxContainer.new() if direct else VBoxContainer.new()
 	selector_actions.add_theme_constant_override("separation", 10)
 	stack.add_child(selector_actions)
+	if direct:
+		selector_actions.reparent(selector)
+		selector_actions.alignment = BoxContainer.ALIGNMENT_CENTER
+		selector_description.hide()
+		divider.hide()
+		selector_name.add_theme_color_override("font_color", PAPER)
+		selector_effect.add_theme_color_override("default_color", Color("edbca5"))
+		selector_status.add_theme_color_override("font_color", PAPER)
 
 func select_weapon(id: int) -> void:
 	var row = _row(id)
@@ -406,8 +417,8 @@ func select_weapon(id: int) -> void:
 	name_label.text = _title(row)
 	var rank = int(row.get("rank", 0))
 	rank_label.text = "等级%d：" % maxi(1, rank)
-	effect_label.text = _effect(row)
-	biography.text = str(row.get("source_description", row.get("description", ""))).strip_edges()
+	effect_label.set_source(_effect(row))
+	biography.set_source(SourceRichText.source_field("WeaponData", id, "description", str(row.get("source_description", row.get("description", "")))).strip_edges())
 	preview.show_model(str(row.get("model", "")))
 	selector_preview.show_model(str(row.get("model", "")))
 	artwork.texture = _fallback_art(row)
@@ -415,12 +426,19 @@ func select_weapon(id: int) -> void:
 	artwork.visible = not selector_open and not preview.has_model and artwork.texture != null
 	selector_artwork.visible = not selector_preview.has_model and selector_artwork.texture != null
 	selector_name.text = _title(row)
-	selector_effect.text = ("等级%d：\n" % maxi(1, rank)) + _effect(row)
-	selector_description.text = biography.text
+	selector_effect.set_source(("等级%d：\n" % maxi(1, rank)) + _effect(row))
+	selector_description.set_source(biography.source_text)
 	var all_effects = DungeonCatalog.clean(str(row.get("effect_description", ""))).replace("|", "\n").strip_edges()
+	if context.get("weapon_selector_direct", false):
+		var source = _catalog.find("WeaponData", id) if _catalog else {}
+		var levels = SourceRichText.source_field("WeaponData", id, "effect_description", str(source.get("effect_description", row.get("effect_description", "")))).split("|")
+		var descriptions: PackedStringArray = []
+		for index in levels.size(): descriptions.append("等级%d：\n%s" % [index + 1, levels[index].strip_edges()])
+		selector_effect.set_source("\n".join(descriptions))
 	var details = str(row.get("description", "")).strip_edges()
 	if not all_effects.is_empty(): details = details.trim_suffix(all_effects).strip_edges()
-	selector_status.text = details.trim_prefix(biography.text).strip_edges()
+	var catalog_description = str(row.get("source_description", biography.source_text))
+	selector_status.text = details.trim_prefix(DungeonCatalog.clean(catalog_description)).strip_edges()
 	if selector_status.text.is_empty() and rank == 0: selector_status.text = "未解锁"
 	if int(context.get("equipped_weapon", 0)) == id:
 		selector_status.text = "已装备" + ("\n" + selector_status.text if not selector_status.text.is_empty() else "")
@@ -433,7 +451,9 @@ func select_weapon(id: int) -> void:
 		button.text = str(entry.get("text", ""))
 		button.tooltip_text = selector_status.text
 		button.custom_minimum_size = Vector2(0, 55)
+		if context.get("weapon_selector_direct", false): button.custom_minimum_size = Vector2(250, 70)
 		button.add_theme_font_size_override("font_size", 27)
+		if context.get("weapon_selector_direct", false): button.add_theme_font_size_override("font_size", 40)
 		button.add_theme_color_override("font_color", INK)
 		button.add_theme_color_override("font_hover_color", INK)
 		button.add_theme_color_override("font_pressed_color", INK)
@@ -455,6 +475,10 @@ func select_weapon(id: int) -> void:
 func open_selector() -> void:
 	set_selector_open(true)
 
+func _leave_selector() -> void:
+	if context.get("weapon_selector_direct", false): back_requested.emit()
+	else: set_selector_open(false)
+
 func set_selector_open(value: bool) -> void:
 	selector_open = value
 	for child in canvas.get_children():
@@ -470,7 +494,7 @@ func _emit_entry(entry: Dictionary) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and selector_open:
-		set_selector_open(false)
+		_leave_selector()
 		get_viewport().set_input_as_handled()
 
 func _adapt() -> void:
@@ -498,26 +522,42 @@ func _adapt() -> void:
 	selector_preview.size = Vector2(width - 983, height - 330)
 	selector_artwork.position = selector_preview.position
 	selector_artwork.size = selector_preview.size
-	_selector_strip.position.y = height - 205
-	_selector_strip.size.x = width - 1073
+	if not context.get("weapon_selector_direct", false):
+		_selector_strip.position.y = height - 205
+		_selector_strip.size.x = width - 1073
 	_paper_parts[0].position.x = width - 698
 	_paper_parts[1].position.x = width - 98
 	_paper_parts[2].position.x = width - 479
 	for part in _paper_parts: part.size.y = height - 285
 	_selector_inside.position.x = width - 688
 	_selector_inside.size.y = height - 305
+	if context.get("weapon_selector_direct", false):
+		_selector_scroll.position = Vector2(40, 140)
+		_selector_scroll.size = Vector2(180, height - 190)
+		_selector_strip.custom_minimum_size = Vector2(145, 0)
+		selector_preview.position = Vector2(250, 150)
+		selector_preview.size = Vector2(width - 850, height - 330)
+		selector_artwork.position = selector_preview.position
+		selector_artwork.size = selector_preview.size
+		_selector_inside.position = Vector2(width - 550, 150)
+		_selector_inside.size = Vector2(510, height - 200)
+		var action_height = maxf(80, 44 / ratio)
+		selector_actions.position = Vector2(260, height - action_height - 35)
+		selector_actions.size = Vector2(width - 890, action_height)
+		for button in action_buttons: button.custom_minimum_size.y = action_height
 
 func _effect(row: Dictionary) -> String:
 	var source = _catalog.find("WeaponData", _id(row)) if _catalog else {}
-	var text = str(source.get("effect_description", row.get("effect_description", "")))
+	var text = SourceRichText.source_field("WeaponData", _id(row), "effect_description", str(source.get("effect_description", row.get("effect_description", ""))))
 	var ranks = text.split("|")
 	if ranks.size() > 1:
 		text = ranks[clampi(int(row.get("rank", 1)) - 1, 0, ranks.size() - 1)]
-	return DungeonCatalog.clean(text).strip_edges()
+	return text.strip_edges()
 
 func _title(row: Dictionary) -> String:
 	var source = _catalog.find("WeaponData", _id(row)) if _catalog else {}
-	return DungeonCatalog.clean(DungeonCatalog.row_name(source)) if not source.is_empty() else str(row.get("title", "")).split("  ")[0]
+	var fallback = DungeonCatalog.row_name(source) if not source.is_empty() else str(row.get("title", "")).split("  ")[0]
+	return DungeonCatalog.clean(SourceRichText.source_field("WeaponData", _id(row), "name", fallback))
 
 func _fallback_art(row: Dictionary) -> Texture2D:
 	var source = _catalog.find("WeaponData", _id(row)) if _catalog else {}
@@ -562,6 +602,16 @@ func _label(text: String, font_size: int) -> Label:
 	result.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	result.add_theme_color_override("font_color", PAPER)
 	result.add_theme_color_override("font_shadow_color", Color(0.1, 0.05, 0.03, 0.65))
+	return result
+
+func _rich_label(text: String, font_size: int) -> SourceRichText:
+	var result = SourceRichText.new()
+	result.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	for font in ["normal_font_size", "bold_font_size", "italics_font_size", "bold_italics_font_size"]:
+		result.add_theme_font_size_override(font, font_size)
+	result.add_theme_color_override("default_color", PAPER)
+	result.add_theme_color_override("font_shadow_color", Color(0.1, 0.05, 0.03, 0.65))
+	result.set_source(text)
 	return result
 
 func _icon_button(key: String, hint: String, minimum: Vector2) -> Button:

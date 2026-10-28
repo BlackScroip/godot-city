@@ -32,6 +32,7 @@ func _run() -> void:
 	source = JSON.parse_string(FileAccess.get_file_as_string(PRESENTER.CATALOG_PATH))
 	check(source.apk_sha256 == "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505", "Models retain the selected APK identity")
 	check(source.models.Curse_Final.path == source.models.Curse.path, "Final curse uses the native rendering alias")
+	await _verify_refresh_preserves_opening()
 	for size in [Vector2i(1600, 900), Vector2i(844, 390)]:
 		await _verify_size(size, OS.get_cmdline_user_args().has("--capture"))
 	var result := {"checks": checks, "failures": failures, "passed": failures.is_empty(), "captures": captures}
@@ -40,6 +41,35 @@ func _run() -> void:
 	file.close()
 	print("CHEST_SOURCE_PRESENTATION ", JSON.stringify(result))
 	quit(0 if failures.is_empty() else 1)
+
+func _verify_refresh_preserves_opening() -> void:
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(256, 256)
+	viewport.own_world_3d = true
+	root.add_child(viewport)
+	for quality in QUALITIES:
+		var view := _build_world(viewport, quality)
+		check(bool(view.world.interactions.interact("chest").get("success", false)), quality + " refresh fixture opens through interaction")
+		for delta in [0.25, 0.5]:
+			view.props._process(delta)
+			var before: Dictionary = view.props.props[0]
+			var basis: Basis = before.source_lid.basis
+			var position: Vector3 = before.source_lid.position
+			var remaining: float = before.item.chest_open_remaining
+			view.props.refresh_chests()
+			var rebuilt: Dictionary = view.props.props[0]
+			check(rebuilt.source_lid.basis.is_equal_approx(basis), quality + " refresh restores the current opening pose")
+			check(rebuilt.source_lid.position.is_equal_approx(position), quality + " refresh retains the source hinge position")
+			check(is_equal_approx(float(rebuilt.item.chest_open_remaining), remaining), quality + " refresh retains the opening timer")
+			check(rebuilt.item.visual.visible and not rebuilt.effect_anchor.visible, quality + " refresh keeps the opening chest visible and ambient hidden")
+			view.props._process(0.0)
+			check(rebuilt.source_lid.basis.is_equal_approx(basis), quality + " rebuilt pose is continuous with the next tick")
+		view.props._process(0.3)
+		view.props.refresh_chests()
+		check(not view.props.props[0].item.visual.visible, quality + " refresh never revives a disposed chest")
+		view.world.free()
+	viewport.queue_free()
+	await process_frame
 
 func _verify_size(size: Vector2i, capture: bool) -> void:
 	var timeline := {"size": [size.x, size.y], "timing": "Script and CPUParticles3D advance together once per rendered engine frame; particles are paused while screenshots are read back. Simulated seconds use the engine frame delta, not wall time.", "engine_arguments": OS.get_cmdline_args(), "stages": {}}

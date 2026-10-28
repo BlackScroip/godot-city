@@ -55,6 +55,61 @@ func snapshot(page: String, mode: String, dimensions: Vector2i, character_id := 
 		check(not frame.is_empty(), "Rendered image exists for " + page)
 		frame.save_png("res://reports/role-%s-%s-%dx%d.png" % [mode, page, dimensions.x, dimensions.y])
 
+func verify_forge_selector() -> void:
+	game.hud.close_page()
+	game.world.world_message.emit("camp_page", {"page": "weapons"})
+	check(game.menus.current_page == "weapons" and game.hud.page.weapon_view.selector_open, "Forge interaction opens the weapon selector directly")
+	check(game.hud.page.weapon_view.selector.is_visible_in_tree() and not game.hud.page.weapon_view.navigation[0].is_visible_in_tree(), "Forge entry shows the selection view instead of the role homepage")
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]:
+		await snapshot("weapons", "forge", dimensions, 1)
+		var view = game.hud.page.weapon_view
+		check(view._selector_strip is VBoxContainer and view._selector_scroll.visible, "Forge uses the reference vertical weapon roster")
+		check(view._paper_parts.all(func(part): return not part.visible), "Forge detail does not show the old paper panel")
+		check("等级5" in view.selector_effect.text, "Forge shows the complete weapon level progression")
+		check(view._selector_resources.get_child_count() == 2, "Forge header shows gold and weapon ore")
+		for control in [view._selector_scroll, view.selector_preview, view._selector_inside, view.selector_actions]:
+			check(view.get_global_rect().grow(1).encloses(control.get_global_rect()), "Forge section fits " + str(dimensions))
+		for button in view.action_buttons:
+			check(button.get_global_rect().size.y >= 43.9, "Forge actions retain a 44px touch target " + str(dimensions))
+		var last: Control = view._selector_strip.get_child(-1)
+		view._selector_scroll.ensure_control_visible(last)
+		await settle()
+		check(view._selector_scroll.get_global_rect().grow(1).encloses(last.get_global_rect()), "Final forge weapon is reachable by vertical scrolling")
+		view._selector_scroll.scroll_vertical = 0
+	game.hud.page.weapon_view.select_weapon(102)
+	for button in game.hud.page.weapon_view.action_buttons:
+		if button.text == "装备":
+			button.pressed.emit()
+			break
+	check(game.selected_weapon == 102 and game.hud.page.weapon_view.selector_open, "Forge equipment refresh stays in the selector")
+	game.hud.page.weapon_view.select_weapon(101)
+	var quote: Dictionary = game.systems.weapon_upgrade_status(101)
+	for key in quote.price: game.systems.grant_material(int(key), maxi(0, int(quote.price[key]) - game.systems.material(int(key))))
+	game.menus.open("weapons", 1)
+	var rank: int = game.systems.stat("weapon:101")
+	for button in game.hud.page.weapon_view.action_buttons:
+		if button.text == "升级":
+			check(not button.disabled, "Forge upgrade is available when its actual costs are covered")
+			button.pressed.emit()
+			break
+	check(game.systems.stat("weapon:101") == rank + 1 and game.hud.page.weapon_view.selector_open, "Forge upgrade applies and retains the selector")
+	check(game.hud.page.weapon_view.selected_weapon == 101, "Forge upgrade retains the selected weapon")
+	game._action("equip_weapon", 101, 1)
+	game.hud.page.weapon_view.selector.get_node("RoleBackButton").pressed.emit()
+	check(not game.hud.modal_open and game.world._camp_camera, "Forge selector back returns directly to camp")
+	game.world.world_message.emit("camp_page", {"page": "weapons"})
+	var cancel = InputEventAction.new()
+	cancel.action = "ui_cancel"
+	cancel.pressed = true
+	game.hud.page.weapon_view._unhandled_input(cancel)
+	check(not game.hud.modal_open, "Forge selector cancel returns directly to camp")
+	game.menus.open("weapons", 1)
+	check(not game.hud.page.weapon_view.selector_open, "Regular role weapon entry keeps its existing detail view")
+	game.hud.page.weapon_view.open_selector()
+	game.hud.page.weapon_view.selector.get_node("RoleBackButton").pressed.emit()
+	check(game.hud.modal_open and not game.hud.page.weapon_view.selector_open, "Nested selector back retains the role weapon detail view")
+	game.hud.close_page()
+
 func verify_inactive_character_weapon() -> void:
 	game.profile.data.character_levels["2"] = 3
 	game.systems.set_record("weapon:201", 1)
@@ -169,6 +224,7 @@ func _run() -> void:
 	game.world.refresh_camp_progression()
 	game.profile.data.materials.merge({"101": 1378, "102": 77, "10101": 10, "10102": 5, "801": 3, "50011": 1}, true)
 	game.systems.set_record("weapon:102", 1)
+	await verify_forge_selector()
 	game.menus.open("characters")
 	check(game.hud.page.page_context.role_navigation.map(func(entry): return entry.page) == ["characters", "weapons", "storage"], "Camp has exactly the three source navigation entries")
 	game.hud.page.character_view.navigation[1].pressed.emit()

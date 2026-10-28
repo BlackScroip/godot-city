@@ -3,9 +3,11 @@ extends RichTextLabel
 
 const TERMS_PATH := "res://assets/ui/talent_view/specinfo.json"
 const INLINE_PATH := "res://assets/ui/talent_view/inline_map.json"
+const DESCRIPTIONS_PATH := "res://assets/ui/talent_view/description_sources.json"
 
 static var _terms: Dictionary = {}
 static var _sprites: Dictionary = {}
+static var _descriptions: Dictionary = {}
 static var _tokens: RegEx
 static var _semantic: RegEx
 static var _localization: RegEx
@@ -13,6 +15,10 @@ static var _attributes: RegEx
 static var _loaded := false
 
 var source_text := ""
+
+static func source_field(table: String, row_id: int, field: String, fallback := "") -> String:
+	_load_source()
+	return str(_descriptions.get(table, {}).get(str(row_id), {}).get(field, fallback))
 
 func _init() -> void:
 	bbcode_enabled = true
@@ -122,6 +128,8 @@ static func _load_source() -> void:
 			if row is Dictionary: _terms[str(row.get("key", ""))] = row
 	var sprites: Variant = JSON.parse_string(FileAccess.get_file_as_string(INLINE_PATH))
 	if sprites is Dictionary: _sprites = sprites
+	var descriptions: Variant = JSON.parse_string(FileAccess.get_file_as_string(DESCRIPTIONS_PATH))
+	if descriptions is Dictionary: _descriptions = descriptions
 	_tokens = RegEx.create_from_string("</?(?:#[A-Za-z0-9]|[A-Za-z])[^>]*>")
 	_semantic = RegEx.create_from_string("(?i)<#(?:specinfo|LocalizationId)=[\"']?([^>\"']+)[\"']?>")
 	_localization = RegEx.create_from_string("(?is)<#LocalizationId=[\"']?([^>\"']+)[\"']?>((?:(?!<#LocalizationId=).)*?)</LocalizationId>")

@@ -1096,6 +1096,7 @@ func use_skill(slot: int, pressed := true) -> Dictionary:
 		if slot in [5, 6]:
 			result = _partner_controller().request(player.combat, slot - 5) if pressed and systems else {"success": not pressed}
 			if pressed and result.get("success", false):
+				_sync_run_player_health()
 				systems.effects.dispatch_message("Rogue_MonsterPartnerSkillUsed", {"slot": slot - 5})
 				var target := _nearest_enemy(player.position)
 				if is_instance_valid(target) and player.position.distance_squared_to(target.position) <= 400.0 and int(runtime_settings.get("target_mode", 0)) != 2:
@@ -1103,6 +1104,12 @@ func use_skill(slot: int, pressed := true) -> Dictionary:
 		else: result = intent.attack_button(player.combat, pressed) if slot == 0 else intent.request(player.combat, slot, pressed)
 	skill_request_resolved.emit(slot, result)
 	return result
+
+func _sync_run_player_health() -> void:
+	if not systems or not systems.profile.data.run.active or not is_instance_valid(player): return
+	systems.profile.data.run.health = maxf(0, player.combat.health)
+	systems.profile.data.run.max_health = player.combat.max_health
+	systems.profile.data.run.armor = player.combat.armor
 
 func _partner_controller() -> RefCounted:
 	if _partner_skill_rules == null:
@@ -1328,6 +1335,7 @@ func _physics_process(delta: float) -> void:
 	_tick_room_sequence(delta)
 	trial_room.advance(delta)
 	if systems and not player.dead:
+		_sync_run_player_health()
 		var collected := ground_loot.advance_collection(delta, player.position, systems)
 		if not collected.is_empty():
 			environment_action.emit("auto_loot", {"coin": collected.any(func(entry): return int(entry.get("id", 0)) == 101)})
