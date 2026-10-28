@@ -50,6 +50,7 @@ var authored_builds := 0
 var authored_reuses := 0
 var _sound_serial := 0
 var _summon_serial := 0
+var _summon_effects: Dictionary = {}
 var prewarmed_heavy_sounds: Dictionary = {}
 const Telegraph = preload("res://scripts/presentation/attack_telegraph.gd")
 const AuthoredEffect = preload("res://scripts/presentation/authored_effect.gd")
@@ -789,7 +790,10 @@ func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3, facin
 	var effect := _attack_effect_definition(actor, entity.get("EffectTriggerDef", {}), hit)
 	var emitted_before = spawned
 	var attached = str(raw.get("MotionAnimatorType", "")) in ["EMAT_FollowOwner", "EMAT_RotateOwner"]
-	if not str(effect.get("EffectName", "")).is_empty() and (raw.get("EntityType", "") != "EET_Physical" or attached): trigger(actor, effect, int(hit.get("sequence", -1)), origin, true, _source_style(actor, hit) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat), facing)
+	# An explicit projectile model is independent of the creation effect. Without
+	# one, projectile_started owns EffectTriggerDef as the moving visual.
+	var has_projectile_model = not str(entity.get("ModlePrefab", "")).is_empty()
+	if not str(effect.get("EffectName", "")).is_empty() and (raw.get("EntityType", "") != "EET_Physical" or attached or has_projectile_model): trigger(actor, effect, int(hit.get("sequence", -1)), origin, true, _source_style(actor, hit) or preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(hit, actor.combat), facing)
 	if spawned > emitted_before:
 		if preload("res://scripts/presentation/impact_profiles.gd").ranged(hit): active.back().clock_sequence = -1
 	play_sound(str(entity.get("CreateSound", {}).get("SoundName", "")), origin, actor, int(hit.get("sequence", -1)))
@@ -899,6 +903,7 @@ func summon_started(actor: DungeonActor, raw: Dictionary, point: Vector3, facing
 	_summon_serial += 1
 	var entry: Dictionary = active.back()
 	entry.summon_token = _summon_serial
+	_summon_effects[_summon_serial] = entry
 	entry.detached = true
 	entry.duration = INF
 	if entry.authored: entry.authored.scale = dimensions
@@ -939,16 +944,14 @@ func summon_disposed(actor: DungeonActor, raw: Dictionary, point: Vector3, sourc
 	play_sound(str(raw.get("DestroySoundTriggerDef", {}).get("SoundName", "")), point, actor)
 
 func _summon_effect_index(token: int) -> int:
-	if token <= 0: return -1
-	for index in active.size():
-		if int(active[index].get("summon_token", 0)) == token: return index
-	return -1
+	var entry: Dictionary = _summon_effects.get(token, {})
+	return -1 if entry.is_empty() else active.find(entry)
 
 func summon_updated(token: int, point: Vector3, facing := Vector3.ZERO) -> void:
-	var index = _summon_effect_index(token)
-	if index < 0: return
-	active[index].root.global_position = point
-	if not facing.is_zero_approx(): active[index].root.global_rotation = Vector3(0, atan2(facing.x, facing.z), 0)
+	var entry: Dictionary = _summon_effects.get(token, {})
+	if entry.is_empty(): return
+	entry.root.global_position = point
+	if not facing.is_zero_approx(): entry.root.global_rotation = Vector3(0, atan2(facing.x, facing.z), 0)
 
 func summon_ended(token: int) -> void:
 	var index = _summon_effect_index(token)
@@ -1201,6 +1204,7 @@ func _effect_clock_rate(effect: Dictionary) -> float:
 
 func _recycle(index: int) -> void:
 	var effect = active[index]
+	_summon_effects.erase(int(effect.get("summon_token", 0)))
 	if effect.authored:
 		var authored = effect.authored
 		_active_particles -= authored.particle_count
@@ -1235,6 +1239,7 @@ func clear() -> void:
 		if actor: actor.clear_telegraph_aim()
 	while not telegraphs.is_empty(): _remove_telegraph(telegraphs.size() - 1)
 	while not active.is_empty(): _recycle(active.size() - 1)
+	_summon_effects.clear()
 	sound_queue.clear()
 	for voice in voices: voice.stop()
 

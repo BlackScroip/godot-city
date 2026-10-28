@@ -24605,7 +24605,7 @@
   "sprites": [
     {
       "name": "星星底",
-      "path": "res://assets/ui/camp/room_shop/____db6e5bd6e3.png",
+      "path": "res://assets/ui/room_shop/____db6e5bd6e3.png",
       "sprite_path_id": "-2772862117838662624",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -24623,7 +24623,7 @@
     },
     {
       "name": "商店按钮_底",
-      "path": "res://assets/ui/camp/room_shop/_______dd24d75bc3.png",
+      "path": "res://assets/ui/room_shop/_______dd24d75bc3.png",
       "sprite_path_id": "-8548341121348774352",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -24641,7 +24641,7 @@
     },
     {
       "name": "光点",
-      "path": "res://assets/ui/camp/room_shop/___04489f8c8c.png",
+      "path": "res://assets/ui/room_shop/___04489f8c8c.png",
       "sprite_path_id": "4101759798074445387",
       "source": {
         "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
@@ -24659,7 +24659,7 @@
     },
     {
       "name": "减号按钮",
-      "path": "res://assets/ui/camp/room_shop/_____54b659420f.png",
+      "path": "res://assets/ui/room_shop/_____54b659420f.png",
       "sprite_path_id": "-2453844321401970427",
       "source": {
         "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
@@ -24677,7 +24677,7 @@
     },
     {
       "name": "几何ui-椭圆白色按钮",
-      "path": "res://assets/ui/camp/room_shop/__ui-_______39ebe9c97d.png",
+      "path": "res://assets/ui/room_shop/__ui-_______39ebe9c97d.png",
       "sprite_path_id": "-1055889953380836409",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -24695,7 +24695,7 @@
     },
     {
       "name": "商品_底框",
-      "path": "res://assets/ui/camp/room_shop/______e366cdeda7.png",
+      "path": "res://assets/ui/room_shop/______e366cdeda7.png",
       "sprite_path_id": "-3554907844068885275",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -24713,7 +24713,7 @@
     },
     {
       "name": "星星大",
-      "path": "res://assets/ui/camp/room_shop/____d1b367e11c.png",
+      "path": "res://assets/ui/room_shop/____d1b367e11c.png",
       "sprite_path_id": "-814199833485362129",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -24731,7 +24731,7 @@
     },
     {
       "name": "18",
-      "path": "res://assets/ui/camp/room_shop/18.png",
+      "path": "res://assets/ui/room_shop/18.png",
       "sprite_path_id": "-742374628967678081",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -24749,7 +24749,7 @@
     },
     {
       "name": "sprite_circle_128x128",
-      "path": "res://assets/ui/camp/room_shop/sprite_circle_128x128.png",
+      "path": "res://assets/ui/room_shop/sprite_circle_128x128.png",
       "sprite_path_id": "3717008950918333285",
       "source": {
         "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
@@ -24767,7 +24767,7 @@
     },
     {
       "name": "商店升级详情选项_底",
-      "path": "res://assets/ui/camp/room_shop/___________e8ac0d7cfb.png",
+      "path": "res://assets/ui/room_shop/___________e8ac0d7cfb.png",
       "sprite_path_id": "-6630464209429331135",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -24785,7 +24785,7 @@
     },
     {
       "name": "货币_底",
-      "path": "res://assets/ui/camp/room_shop/_____a5692cce8c.png",
+      "path": "res://assets/ui/room_shop/_____a5692cce8c.png",
       "sprite_path_id": "8416506778996739775",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -24803,7 +24803,7 @@
     },
     {
       "name": "已解锁遗物",
-      "path": "res://assets/ui/camp/room_shop/______4ea7516569.png",
+      "path": "res://assets/ui/room_shop/______4ea7516569.png",
       "sprite_path_id": "-2261858111698382500",
       "source": {
         "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
@@ -24821,7 +24821,7 @@
     },
     {
       "name": "ArtLineDown_white",
-      "path": "res://assets/ui/camp/room_shop/ArtLineDown_white.png",
+      "path": "res://assets/ui/room_shop/ArtLineDown_white.png",
       "sprite_path_id": "-8762395212316568769",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -24839,7 +24839,7 @@
     },
     {
       "name": "slotfg_rare_square_1_v2",
-      "path": "res://assets/ui/camp/room_shop/slotfg_rare_square_1_v2.png",
+      "path": "res://assets/ui/room_shop/slotfg_rare_square_1_v2.png",
       "sprite_path_id": "-6259846521885095785",
       "source": {
         "member": "assets/yoo/DefaultPackage/85405f110074a3b101657bdb61c1d6db.bundle",
@@ -24857,7 +24857,7 @@
     },
     {
       "name": "sprite_materialicon_22000031",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_22000031.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_22000031.png",
       "sprite_path_id": "-8439550479510106903",
       "source": {
         "member": "assets/yoo/DefaultPackage/1e3d23a4fab0f94320c8d38dde91759a.bundle",
@@ -24875,7 +24875,7 @@
     },
     {
       "name": "sprite_materialicon_102",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_102.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_102.png",
       "sprite_path_id": "3894177138201564098",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -24893,7 +24893,7 @@
     },
     {
       "name": "商品_底框_1",
-      "path": "res://assets/ui/camp/room_shop/______1_55e5a7548f.png",
+      "path": "res://assets/ui/room_shop/______1_55e5a7548f.png",
       "sprite_path_id": "-3900858155577361709",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -24911,7 +24911,7 @@
     },
     {
       "name": "bg装饰",
-      "path": "res://assets/ui/camp/room_shop/bg___effdc594aa.png",
+      "path": "res://assets/ui/room_shop/bg___effdc594aa.png",
       "sprite_path_id": "5221211053828565629",
       "source": {
         "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
@@ -24929,7 +24929,7 @@
     },
     {
       "name": "迷宫商店",
-      "path": "res://assets/ui/camp/room_shop/_____0ab904d162.png",
+      "path": "res://assets/ui/room_shop/_____0ab904d162.png",
       "sprite_path_id": "-1091158287306321217",
       "source": {
         "member": "assets/yoo/DefaultPackage/422a764f3207c84b49cba942f6ee255a.bundle",
@@ -24947,7 +24947,7 @@
     },
     {
       "name": "达成",
-      "path": "res://assets/ui/camp/room_shop/___f7dae40499.png",
+      "path": "res://assets/ui/room_shop/___f7dae40499.png",
       "sprite_path_id": "6621753393871301348",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -24965,7 +24965,7 @@
     },
     {
       "name": "已售罄图标",
-      "path": "res://assets/ui/camp/room_shop/______1350204abf.png",
+      "path": "res://assets/ui/room_shop/______1350204abf.png",
       "sprite_path_id": "3535773245025238652",
       "source": {
         "member": "assets/yoo/DefaultPackage/08484b1496037a1fac0cf285efb071d4.bundle",
@@ -24983,7 +24983,7 @@
     },
     {
       "name": "提示点",
-      "path": "res://assets/ui/camp/room_shop/____e75be5f55f.png",
+      "path": "res://assets/ui/room_shop/____e75be5f55f.png",
       "sprite_path_id": "3080528424784802588",
       "source": {
         "member": "assets/yoo/DefaultPackage/2bcd3e513d666d5b16999288d558b077.bundle",
@@ -25001,7 +25001,7 @@
     },
     {
       "name": "sprite_rect_128x128",
-      "path": "res://assets/ui/camp/room_shop/sprite_rect_128x128.png",
+      "path": "res://assets/ui/room_shop/sprite_rect_128x128.png",
       "sprite_path_id": "3483957996699903255",
       "source": {
         "member": "assets/yoo/DefaultPackage/47edbdb630b0fa1128f2f17a41738187.bundle",
@@ -25019,7 +25019,7 @@
     },
     {
       "name": "高亮星标",
-      "path": "res://assets/ui/camp/room_shop/_____9ff016794a.png",
+      "path": "res://assets/ui/room_shop/_____9ff016794a.png",
       "sprite_path_id": "-862410151406753683",
       "source": {
         "member": "assets/yoo/DefaultPackage/2cec4d6a703e31a087ce975d04fa4f12.bundle",
@@ -25037,7 +25037,7 @@
     },
     {
       "name": "白星标",
-      "path": "res://assets/ui/camp/room_shop/____45d48c752b.png",
+      "path": "res://assets/ui/room_shop/____45d48c752b.png",
       "sprite_path_id": "-347511828128864971",
       "source": {
         "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
@@ -25055,7 +25055,7 @@
     },
     {
       "name": "icon_addnum",
-      "path": "res://assets/ui/camp/room_shop/icon_addnum.png",
+      "path": "res://assets/ui/room_shop/icon_addnum.png",
       "sprite_path_id": "-1575747556048610155",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25073,7 +25073,7 @@
     },
     {
       "name": "sprite_materialicon_90002",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_90002.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_90002.png",
       "sprite_path_id": "6651430658684800665",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25091,7 +25091,7 @@
     },
     {
       "name": "几何ui-背景用渐变圆角矩形",
-      "path": "res://assets/ui/camp/room_shop/__ui-__________647acc3b20.png",
+      "path": "res://assets/ui/room_shop/__ui-__________647acc3b20.png",
       "sprite_path_id": "-581522297785427559",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25109,7 +25109,7 @@
     },
     {
       "name": "sprite_abilityitemicon_22041",
-      "path": "res://assets/ui/camp/room_shop/sprite_abilityitemicon_22041.png",
+      "path": "res://assets/ui/room_shop/sprite_abilityitemicon_22041.png",
       "sprite_path_id": "3370596451277625098",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25127,7 +25127,7 @@
     },
     {
       "name": "商店存储选项_底(未激活)",
-      "path": "res://assets/ui/camp/room_shop/______________46114c9a95.png",
+      "path": "res://assets/ui/room_shop/______________46114c9a95.png",
       "sprite_path_id": "-4251049369206980729",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25145,7 +25145,7 @@
     },
     {
       "name": "6",
-      "path": "res://assets/ui/camp/room_shop/6.png",
+      "path": "res://assets/ui/room_shop/6.png",
       "sprite_path_id": "-8645510521729199701",
       "source": {
         "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
@@ -25163,7 +25163,7 @@
     },
     {
       "name": "几何ui-白圆角矩形",
-      "path": "res://assets/ui/camp/room_shop/__ui-______083f833001.png",
+      "path": "res://assets/ui/room_shop/__ui-______083f833001.png",
       "sprite_path_id": "6661574081893680522",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25181,7 +25181,7 @@
     },
     {
       "name": "6_1",
-      "path": "res://assets/ui/camp/room_shop/6_1.png",
+      "path": "res://assets/ui/room_shop/6_1.png",
       "sprite_path_id": "8957735846151656560",
       "source": {
         "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
@@ -25199,7 +25199,7 @@
     },
     {
       "name": "滚动条按钮白 竖直",
-      "path": "res://assets/ui/camp/room_shop/__________bb3b9b4f72.png",
+      "path": "res://assets/ui/room_shop/__________bb3b9b4f72.png",
       "sprite_path_id": "4370416204254005540",
       "source": {
         "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
@@ -25217,7 +25217,7 @@
     },
     {
       "name": "几何ui-暗圆角矩形",
-      "path": "res://assets/ui/camp/room_shop/__ui-______b937919bba.png",
+      "path": "res://assets/ui/room_shop/__ui-______b937919bba.png",
       "sprite_path_id": "-5329703775576750254",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25235,7 +25235,7 @@
     },
     {
       "name": "选择高亮",
-      "path": "res://assets/ui/camp/room_shop/_____8efb0fde4e.png",
+      "path": "res://assets/ui/room_shop/_____8efb0fde4e.png",
       "sprite_path_id": "-495095694787399995",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25253,7 +25253,7 @@
     },
     {
       "name": "sprite_abilityitemicon_20150",
-      "path": "res://assets/ui/camp/room_shop/sprite_abilityitemicon_20150.png",
+      "path": "res://assets/ui/room_shop/sprite_abilityitemicon_20150.png",
       "sprite_path_id": "-8605081392566469402",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25271,7 +25271,7 @@
     },
     {
       "name": "buff_zhuoshao",
-      "path": "res://assets/ui/camp/room_shop/buff_zhuoshao.png",
+      "path": "res://assets/ui/room_shop/buff_zhuoshao.png",
       "sprite_path_id": "-6020944075478032396",
       "source": {
         "member": "assets/yoo/DefaultPackage/8436f224a97f2ad232d14ba46d2bfbd8.bundle",
@@ -25289,7 +25289,7 @@
     },
     {
       "name": "sprite_attackicon_300033",
-      "path": "res://assets/ui/camp/room_shop/sprite_attackicon_300033.png",
+      "path": "res://assets/ui/room_shop/sprite_attackicon_300033.png",
       "sprite_path_id": "-3686439076997110730",
       "source": {
         "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
@@ -25307,7 +25307,7 @@
     },
     {
       "name": "Button_Refresh",
-      "path": "res://assets/ui/camp/room_shop/Button_Refresh.png",
+      "path": "res://assets/ui/room_shop/Button_Refresh.png",
       "sprite_path_id": "-6038045242417917250",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25325,7 +25325,7 @@
     },
     {
       "name": "characterillustration_shangdian_normal",
-      "path": "res://assets/ui/camp/room_shop/characterillustration_shangdian_normal.png",
+      "path": "res://assets/ui/room_shop/characterillustration_shangdian_normal.png",
       "sprite_path_id": "-4415770224651339852",
       "source": {
         "member": "assets/yoo/DefaultPackage/886ee18982c87b68a0042c9e4266edf6.bundle",
@@ -25343,7 +25343,7 @@
     },
     {
       "name": "sprite_abilityitemicon_15101",
-      "path": "res://assets/ui/camp/room_shop/sprite_abilityitemicon_15101.png",
+      "path": "res://assets/ui/room_shop/sprite_abilityitemicon_15101.png",
       "sprite_path_id": "4722616278204564780",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25361,7 +25361,7 @@
     },
     {
       "name": "锁定遮罩",
-      "path": "res://assets/ui/camp/room_shop/_____c317ca9908.png",
+      "path": "res://assets/ui/room_shop/_____c317ca9908.png",
       "sprite_path_id": "918722314435250836",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25379,7 +25379,7 @@
     },
     {
       "name": "等级提升箭头",
-      "path": "res://assets/ui/camp/room_shop/_______30c93dd505.png",
+      "path": "res://assets/ui/room_shop/_______30c93dd505.png",
       "sprite_path_id": "-7023510334697786413",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25397,7 +25397,7 @@
     },
     {
       "name": "AwakenSkillBg_1",
-      "path": "res://assets/ui/camp/room_shop/AwakenSkillBg_1.png",
+      "path": "res://assets/ui/room_shop/AwakenSkillBg_1.png",
       "sprite_path_id": "3839955108537925876",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25415,7 +25415,7 @@
     },
     {
       "name": "锁",
-      "path": "res://assets/ui/camp/room_shop/__4f62f920d6.png",
+      "path": "res://assets/ui/room_shop/__4f62f920d6.png",
       "sprite_path_id": "-7779187746478388713",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25433,7 +25433,7 @@
     },
     {
       "name": "箭头白",
-      "path": "res://assets/ui/camp/room_shop/____edaacdc6ad.png",
+      "path": "res://assets/ui/room_shop/____edaacdc6ad.png",
       "sprite_path_id": "4384636787489496816",
       "source": {
         "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
@@ -25451,7 +25451,7 @@
     },
     {
       "name": "sprite_materialicon_103",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_103.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_103.png",
       "sprite_path_id": "-2847287226865223873",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25469,7 +25469,7 @@
     },
     {
       "name": "分割线-框内",
-      "path": "res://assets/ui/camp/room_shop/___-___cfccdbee8c.png",
+      "path": "res://assets/ui/room_shop/___-___cfccdbee8c.png",
       "sprite_path_id": "-2960675743438711179",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25487,7 +25487,7 @@
     },
     {
       "name": "Button_tujian",
-      "path": "res://assets/ui/camp/room_shop/Button_tujian.png",
+      "path": "res://assets/ui/room_shop/Button_tujian.png",
       "sprite_path_id": "-4674775848316908148",
       "source": {
         "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
@@ -25505,7 +25505,7 @@
     },
     {
       "name": "sprite_materialicon_108",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_108.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_108.png",
       "sprite_path_id": "-6886311129609553285",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25523,7 +25523,7 @@
     },
     {
       "name": "sprite_abilityitemicon_20434",
-      "path": "res://assets/ui/camp/room_shop/sprite_abilityitemicon_20434.png",
+      "path": "res://assets/ui/room_shop/sprite_abilityitemicon_20434.png",
       "sprite_path_id": "7809211013404901278",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25541,7 +25541,7 @@
     },
     {
       "name": "边框上",
-      "path": "res://assets/ui/camp/room_shop/____0c43befd0e.png",
+      "path": "res://assets/ui/room_shop/____0c43befd0e.png",
       "sprite_path_id": "7895338744128560519",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25559,7 +25559,7 @@
     },
     {
       "name": "35",
-      "path": "res://assets/ui/camp/room_shop/35.png",
+      "path": "res://assets/ui/room_shop/35.png",
       "sprite_path_id": "3255351583719715302",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25577,7 +25577,7 @@
     },
     {
       "name": "31",
-      "path": "res://assets/ui/camp/room_shop/31.png",
+      "path": "res://assets/ui/room_shop/31.png",
       "sprite_path_id": "3870909522108855738",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25595,7 +25595,7 @@
     },
     {
       "name": "退出按钮",
-      "path": "res://assets/ui/camp/room_shop/_____395376c50f.png",
+      "path": "res://assets/ui/room_shop/_____395376c50f.png",
       "sprite_path_id": "-7962153020995228324",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25613,7 +25613,7 @@
     },
     {
       "name": "sprite_materialicon_502",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_502.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_502.png",
       "sprite_path_id": "8462504211962514845",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25631,7 +25631,7 @@
     },
     {
       "name": "sprite_materialicon_40001",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_40001.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_40001.png",
       "sprite_path_id": "-7693951651999609644",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25649,7 +25649,7 @@
     },
     {
       "name": "等级提升",
-      "path": "res://assets/ui/camp/room_shop/_____9443d81a40.png",
+      "path": "res://assets/ui/room_shop/_____9443d81a40.png",
       "sprite_path_id": "5332119992912707436",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25667,7 +25667,7 @@
     },
     {
       "name": "UIMask",
-      "path": "res://assets/ui/camp/room_shop/UIMask.png",
+      "path": "res://assets/ui/room_shop/UIMask.png",
       "sprite_path_id": "-426171492875694260",
       "source": {
         "member": "assets/yoo/DefaultPackage/8eccb5d4feb48e8e3ed6bbfd6441e914.bundle",
@@ -25685,7 +25685,7 @@
     },
     {
       "name": "商店储存名_底",
-      "path": "res://assets/ui/camp/room_shop/________67e2d8ba2b.png",
+      "path": "res://assets/ui/room_shop/________67e2d8ba2b.png",
       "sprite_path_id": "1534230080518643188",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25703,7 +25703,7 @@
     },
     {
       "name": "解锁",
-      "path": "res://assets/ui/camp/room_shop/___70fba17fff.png",
+      "path": "res://assets/ui/room_shop/___70fba17fff.png",
       "sprite_path_id": "-6283099718281574574",
       "source": {
         "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
@@ -25721,7 +25721,7 @@
     },
     {
       "name": "商店对话框",
-      "path": "res://assets/ui/camp/room_shop/______df1886ae10.png",
+      "path": "res://assets/ui/room_shop/______df1886ae10.png",
       "sprite_path_id": "5342556400856675714",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25739,7 +25739,7 @@
     },
     {
       "name": "sprite_materialicon_101",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_101.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_101.png",
       "sprite_path_id": "-4929560618279763517",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
@@ -25757,7 +25757,7 @@
     },
     {
       "name": "24",
-      "path": "res://assets/ui/camp/room_shop/24.png",
+      "path": "res://assets/ui/room_shop/24.png",
       "sprite_path_id": "5985676854447024116",
       "source": {
         "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
@@ -25775,7 +25775,7 @@
     },
     {
       "name": "商店升级提示_底",
-      "path": "res://assets/ui/camp/room_shop/_________3529135645.png",
+      "path": "res://assets/ui/room_shop/_________3529135645.png",
       "sprite_path_id": "-7847200717602009539",
       "source": {
         "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
@@ -25793,7 +25793,7 @@
     },
     {
       "name": "sprite_materialicon_90001",
-      "path": "res://assets/ui/camp/room_shop/sprite_materialicon_90001.png",
+      "path": "res://assets/ui/room_shop/sprite_materialicon_90001.png",
       "sprite_path_id": "-8314781698419631035",
       "source": {
         "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
