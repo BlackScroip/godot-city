@@ -122,9 +122,10 @@ func _run() -> void:
 					"map_mode": scope, "name": "Forest", "world_icon": "森林图标", "IconName": "icon_stagerewardtypeicon_Normal"})
 			var page = _page(layout_rows, {"map_scope": scope, "first_layer": 0, "current_layer": 5})
 			await _settle()
-			var focus = page.nodes[5 if scope == "world" else 4]
-			var center: float = focus.get_rect().get_center().x if scope == "world" else focus.get_rect().end.x
-			check(absf(center - page.scroll.scroll_horizontal - page.scroll.size.x * 0.5) <= 1.0, "%s uses APK focus alignment at %s" % [scope, dimensions])
+			for index in [4, 5]:
+				var bounds: Rect2 = page.nodes[index].get_rect()
+				var glow: float = page._graph_margin if scope == "rooms" and index == 5 else 0.0
+				check(bounds.position.x - glow >= page.scroll.scroll_horizontal - 1 and bounds.end.x + glow <= page.scroll.scroll_horizontal + page.scroll.size.x + 1, "%s shows current and next nodes at %s" % [scope, dimensions])
 			check(page.get_rect().encloses(page.header.get_rect()) and page.get_rect().encloses(page.footer.get_rect()), "Controls stay inside %s" % dimensions)
 			check(page.scroll.get_rect().end.y <= page.footer.position.y, "Graph stays above controls at %s" % dimensions)
 			page.scroll.scroll_horizontal += 110
@@ -145,6 +146,7 @@ func _run() -> void:
 			page.queue_free()
 			await process_frame
 	await _check_completed_room_positions()
+	await _check_world_positions()
 	await _check_game(campaign, fixture, duplicate)
 	canvas.queue_free()
 	display.queue_free()
@@ -175,13 +177,18 @@ func _check_completed_room_positions() -> void:
 			var page = _page(rows, {"map_scope": "rooms", "first_layer": 0, "current_layer": int(campaign.state.layer_index), "portrait": "sprite_cardicon_square_jiannan"})
 			await _settle()
 			var reachable := 0
+			var anchors := 0
 			for index in page.nodes.size():
+				if page.rows[index].is_anchor:
+					anchors += 1
+					var anchor_bounds = page.nodes[index].get_rect()
+					check(anchor_bounds.position.x >= page.scroll.scroll_horizontal - 1 and anchor_bounds.end.x <= page.scroll.scroll_horizontal + page.scroll.size.x + 1, "Current room remains visible after room %d at %s" % [cleared, dimensions])
 				if not page.rows[index].available: continue
 				reachable += 1
 				var bounds = page.nodes[index].get_rect()
 				var glow = bounds.size.x * (DungeonRouteNode.SELECTED_FRAME_SIZE.x * DungeonRouteNode.SELECTION_PEAK_SCALE - 1.0) * 0.5
 				check(bounds.position.x - glow >= page.scroll.scroll_horizontal - 1 and bounds.end.x + glow <= page.scroll.scroll_horizontal + page.scroll.size.x + 1, "Next selectable room fits with its highlight after room %d at %s" % [cleared, dimensions])
-			check(reachable > 0 and page.selected_id == 0 and not page.confirm.visible, "Next column is visible without preselecting a room")
+			check(anchors == 1 and reachable > 0 and page.selected_id == 0 and not page.confirm.visible, "Current and next columns are visible without preselecting a room")
 			check(campaign.snapshot() == snapshot, "Opening completed-room selection preserves progress")
 			if cleared == 3 and dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(1000, 900), Vector2i(640, 900)] and DisplayServer.get_name() != "headless":
 				await create_timer(0.8).timeout
@@ -189,6 +196,24 @@ func _check_completed_room_positions() -> void:
 				var path = "res://reports/map-next-room-%dx%d.png" % [dimensions.x, dimensions.y]
 				canvas.get_texture().get_image().save_png(path)
 				captures.append(path)
+			page.queue_free()
+			await process_frame
+
+func _check_world_positions() -> void:
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(640, 900)]:
+		canvas.size = dimensions
+		for pending in [false, true]:
+			var rows: Array = []
+			for column in 8:
+				rows.append({"node_id": column + 1, "config_id": column + 1, "layer_index": column + 1,
+					"lane": 0, "lane_count": 1, "available": pending and column == 4,
+					"selectable": pending and column == 4, "is_anchor": column == 3,
+					"current": not pending and column == 3, "map_mode": "world", "name": "Forest", "world_icon": "森林图标"})
+			var page = _page(rows, {"map_scope": "world", "first_layer": 1, "current_layer": 5 if pending else 4, "preview": not pending})
+			await _settle()
+			for index in [3, 4]:
+				var bounds: Rect2 = page.nodes[index].get_rect()
+				check(bounds.position.x >= page.scroll.scroll_horizontal - 1 and bounds.end.x <= page.scroll.scroll_horizontal + page.scroll.size.x + 1, "World current and next regions visible at %s pending=%s" % [dimensions, pending])
 			page.queue_free()
 			await process_frame
 

@@ -12,10 +12,12 @@ var chosen := false:
 var visited := false
 var portrait: Texture2D
 const GOLD = Color("dcc58b")
-# The selected sprite includes glow padding around its visible outline.
-const SELECTED_FRAME_SIZE = Vector2(1.32, 1.50)
-const SELECTION_PEAK_SCALE = 1.05
 const ROOM_CONTENT_SCALE = 0.94
+# Align the bright outer stroke, excluding the sprite's transparent glow padding.
+const ROOM_OUTLINE_UV = Rect2(21.0 / 331.0, 21.0 / 190.0, 289.0 / 331.0, 148.0 / 190.0)
+const SELECTED_FRAME_SIZE = Vector2(ROOM_CONTENT_SCALE / ROOM_OUTLINE_UV.size.x, ROOM_CONTENT_SCALE / ROOM_OUTLINE_UV.size.y)
+const SELECTION_PEAK_SCALE = 1.055
+const WORLD_SELECTED_FRAME_SCALE = 1.12
 const BADGE_ART = "res://assets/ui/route/badges/"
 const BADGE_IDS = {"gold": "70001", "magic": "70002", "mineral": "10000", "partner": "13006", "spirit": "13008"}
 const BADGE_ICON_SIZES = {"gold": Vector2(1, 55.0 / 60), "magic": Vector2(1, 55.0 / 60), "mineral": Vector2(46.0 / 60, 55.0 / 60), "partner": Vector2(54.0 / 60, 55.0 / 60), "spirit": Vector2(44.0 / 60, 57.5 / 60)}
@@ -26,6 +28,14 @@ var _selection_scale := 1.0:
 var _reveal_scale := 1.0:
 	set(value):
 		_reveal_scale = value
+		queue_redraw()
+var _reveal_offset := 0.0:
+	set(value):
+		_reveal_offset = value
+		queue_redraw()
+var _badge_alpha := 1.0:
+	set(value):
+		_badge_alpha = value
 		queue_redraw()
 var _selection_tween: Tween
 var _reveal_tween: Tween
@@ -53,36 +63,62 @@ func _notification(what: int) -> void:
 func _animate_selection() -> void:
 	if _selection_tween: _selection_tween.kill()
 	_selection_scale = 1.0
-	if not chosen or not is_visible_in_tree() or room.get("map_mode", "rooms") == "world": return
-	_selection_scale = 0.96
+	if not chosen or not is_visible_in_tree(): return
 	_selection_tween = create_tween()
-	_selection_tween.tween_property(self, "_selection_scale", SELECTION_PEAK_SCALE, 0.16).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_selection_tween.tween_property(self, "_selection_scale", 1.0, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_selection_tween.tween_property(self, "_selection_scale", SELECTION_PEAK_SCALE, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_selection_tween.tween_property(self, "_selection_scale", 1.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_selection_tween.finished.connect(_pulse_selection)
 
 func _pulse_selection() -> void:
 	if not chosen or not is_visible_in_tree(): return
 	_selection_tween = create_tween().set_loops()
 	_selection_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	_selection_tween.tween_property(self, "_selection_scale", 1.025, 0.75)
-	_selection_tween.tween_property(self, "_selection_scale", 1.0, 0.75)
+	_selection_tween.tween_property(self, "_selection_scale", SELECTION_PEAK_SCALE, 0.5)
+	_selection_tween.tween_property(self, "_selection_scale", 1.0, 0.5)
 
 func prepare_reveal() -> void:
 	modulate.a = 0.0
 	_reveal_scale = 0.86
+	_reveal_offset = -0.12
+	_badge_alpha = 0.0
 
 func reveal(delay: float) -> void:
 	if _reveal_tween: _reveal_tween.kill()
 	_reveal_tween = create_tween().set_parallel()
-	_reveal_tween.tween_property(self, "modulate:a", 1.0, 0.22).set_delay(delay)
-	_reveal_tween.tween_property(self, "_reveal_scale", 1.0, 0.34).set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_reveal_tween.tween_property(self, "modulate:a", 1.0, 0.333).set_delay(delay)
+	_reveal_tween.tween_property(self, "_reveal_scale", 1.0, 0.45).set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_reveal_tween.tween_property(self, "_reveal_offset", 0.0, 0.333).set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_reveal_tween.tween_property(self, "_reveal_offset", 0.04, 0.017).from(0.0).set_delay(delay + 0.333)
+	_reveal_tween.tween_property(self, "_reveal_offset", 0.0, 0.1).from(0.04).set_delay(delay + 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_reveal_tween.tween_property(self, "_badge_alpha", 1.0, 0.167).set_delay(delay + 0.833)
 
 func _reveal_transform() -> Transform2D:
-	return Transform2D(0, Vector2.ONE * _reveal_scale, 0, size * (1.0 - _reveal_scale) * 0.5)
+	return Transform2D(0, Vector2.ONE * _reveal_scale, 0, size * (1.0 - _reveal_scale) * 0.5 + Vector2(0, size.y * _reveal_offset))
 
-func _selected_frame_rect() -> Rect2:
-	var dimensions = size * SELECTED_FRAME_SIZE * (_selection_scale if chosen else 1.0)
-	return Rect2((size - dimensions) * 0.5, dimensions)
+func _selected_frame_rect(at_scale: float = -1.0) -> Rect2:
+	var frame_scale = at_scale if at_scale >= 0 else _selection_scale if chosen else 1.0
+	if room.get("map_mode", "rooms") == "world":
+		var base = _world_frame_rect()
+		var dimensions = base.size * WORLD_SELECTED_FRAME_SCALE * frame_scale
+		return Rect2(base.get_center() - dimensions * 0.5, dimensions)
+	var dimensions = size * SELECTED_FRAME_SIZE * frame_scale
+	return Rect2(size * 0.5 - (ROOM_OUTLINE_UV.position + ROOM_OUTLINE_UV.size * 0.5) * dimensions, dimensions)
+
+func _selection_outline_rect() -> Rect2:
+	var frame = _selected_frame_rect()
+	if room.get("map_mode", "rooms") == "world": return frame
+	return Rect2(frame.position + frame.size * ROOM_OUTLINE_UV.position, frame.size * ROOM_OUTLINE_UV.size)
+
+func selection_bounds(peak := true) -> Rect2:
+	var bounds = Rect2(Vector2.ZERO, size).merge(_selected_frame_rect(SELECTION_PEAK_SCALE if peak else -1.0))
+	if room.get("map_mode", "rooms") != "world":
+		for badge in _badge_rects(): bounds = bounds.merge(badge)
+	if room.get("current", false) and size.y >= 60: bounds = bounds.merge(Rect2(Vector2(0, size.y + 2), Vector2(size.x, 20)))
+	return bounds
+
+func _world_frame_rect() -> Rect2:
+	var radius = maxf(14, minf(size.x * 0.44, (size.y - 24) * 0.5))
+	return Rect2(Vector2(size.x * 0.5 - radius, 3), Vector2.ONE * radius * 2)
 
 func _room_rect() -> Rect2:
 	var dimensions = size * ROOM_CONTENT_SCALE
@@ -93,14 +129,15 @@ func _draw() -> void:
 	if room.get("map_mode", "rooms") != "world":
 		_draw_room()
 		return
-	var radius = maxf(14, minf(size.x * 0.44, (size.y - 24) * 0.5))
-	var center = Vector2(size.x * 0.5, radius + 3)
+	var frame_rect = _world_frame_rect()
+	var radius = frame_rect.size.x * 0.5
+	var center = frame_rect.get_center()
 	var locked = bool(room.get("locked", false))
 	var unknown = bool(room.get("unknown", false))
 	var tint = Color("e64d36") if locked else GOLD
 	var diamond = PackedVector2Array([center + Vector2(0, -radius), center + Vector2(radius, 0), center + Vector2(0, radius), center + Vector2(-radius, 0)])
 	var frame = DungeonStyle.texture("res://assets/ui/route/world_node_frame_active.png" if chosen else "res://assets/ui/route/world_node_frame.png")
-	if frame: draw_texture_rect(frame, Rect2(center - Vector2.ONE * radius, Vector2.ONE * radius * 2), false, Color.WHITE if chosen else Color(1, 1, 1, 0.45))
+	if frame: draw_texture_rect(frame, _selected_frame_rect() if chosen else frame_rect, false, Color.WHITE if chosen else Color(1, 1, 1, 0.45))
 	else:
 		draw_colored_polygon(diamond, Color(0.08, 0.09, 0.06, 0.42))
 		diamond.append(diamond[0])
@@ -129,9 +166,6 @@ func _draw() -> void:
 	draw_string(font, Vector2(0, baseline), caption, HORIZONTAL_ALIGNMENT_CENTER, size.x, font_size, Color("fff4d7"))
 	if visited and portrait == null:
 		draw_polyline(PackedVector2Array([center + Vector2(radius - 16, 0), center + Vector2(radius - 10, 6), center + Vector2(radius + 1, -6)]), Color("d7f29b"), 3, true)
-	if chosen:
-		var x = size.x * 0.5
-		draw_colored_polygon(PackedVector2Array([Vector2(x - 6, 1), Vector2(x, 7), Vector2(x + 6, 1)]), Color("ffe9a0"))
 
 func _world_artwork() -> Texture2D:
 	var names = {"森林图标": "forest", "沙漠图标": "desert", "雪山图标": "snow", "矿场图标": "mine", "封魔图标": "seal", "海岛图标": "island", "熔岩图标": "lava", "未知图标": "unknown"}
@@ -177,14 +211,15 @@ func _badges() -> void:
 	var types := _badge_types()
 	var areas := _badge_rects()
 	var frame = DungeonStyle.texture(BADGE_ART + "frame.png")
+	var tint = Color(1, 1, 1, _badge_alpha)
 	for index in types.size():
 		var area = areas[index]
-		if frame: draw_texture_rect(frame, area, false)
+		if frame: draw_texture_rect(frame, area, false, tint)
 		var icon = DungeonStyle.texture(BADGE_ART + types[index] + ".png")
 		if icon:
 			var dimensions = area.size * BADGE_ICON_SIZES[types[index]]
 			var offset = Vector2(0, -area.size.y * (1.25 if types[index] == "spirit" else 2.5) / 60.0)
-			draw_texture_rect(icon, Rect2(area.get_center() + offset - dimensions * 0.5, dimensions), false)
+			draw_texture_rect(icon, Rect2(area.get_center() + offset - dimensions * 0.5, dimensions), false, tint)
 
 func _badge_rects() -> Array[Rect2]:
 	var result: Array[Rect2] = []

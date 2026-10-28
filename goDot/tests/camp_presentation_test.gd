@@ -35,6 +35,7 @@ func _run() -> void:
 		var definition: Dictionary = source_materials[material.resource_name]
 		var tint: Dictionary = definition.source_colors._Color
 		check(material.get_shader_parameter("source_tint") == Color(tint.r, tint.g, tint.b, tint.a), "Portal material retains exact APK tint " + material.resource_name)
+		check(is_equal_approx(material.get_shader_parameter("visual_gain"), 0.65), "Portal surface glow is softened")
 		check(material.get_shader_parameter("use_shape2") == ("SHAPE2_ON" in definition.keywords), "Portal material retains original second shape switch")
 		var main_map: Dictionary = definition.textures.filter(func(slot): return slot.property == "_MainTex")[0]
 		check(material.get_shader_parameter("shape1_st") == Vector4(main_map.scale.x, main_map.scale.y, main_map.offset.x, main_map.offset.y), "Portal material retains original UV scale and offset")
@@ -42,6 +43,13 @@ func _run() -> void:
 	var environment_fx = game.world.environment_root.get_node("EnvironmentEffects")
 	var portal_bindings: Array = environment_fx.bindings.filter(func(entry): return entry.address == "24102301_fx_env_maincityprotal")
 	check(portal_bindings.size() == int(fx.bindings.get("portal", 0)), "Every camp portal uses exactly one APK particle binding")
+	for entry in portal_bindings:
+		var floor_layers: Array = entry.definition.layers.filter(func(layer): return str(layer.name).ends_with("_floorglow"))
+		check(floor_layers.size() == 1, "Portal retains its floor glow")
+		if not floor_layers.is_empty():
+			var floor_layer: Dictionary = floor_layers[0]
+			check(floor_layer.emission.m_Bursts.is_empty() and floor_layer.emission.rateOverTime.scalar > 0, "Portal floor glow emits continuously without burst restarts")
+			check(floor_layer.simulation_speed < 1.0 and floor_layer.initial.startLifetime.scalar >= 4.0, "Portal floor glow changes slowly")
 	check(fx.find_children("RunicCircle", "MeshInstance3D", true, false).is_empty() and fx.find_children("SpiralFlow", "MeshInstance3D", true, false).is_empty(), "Portal adds no invented ring or cylinder geometry")
 	_check_portal_material_scope()
 	check(fx.bindings.get("campfire", 0) > 0, "Campfires have flame, ember and smoke emitters")

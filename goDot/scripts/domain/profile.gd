@@ -29,9 +29,19 @@ static func new_run(seed_value: int = 0, character: int = 1, health_value: float
 func validate() -> bool:
 	if not _number(data.get("version")) or data.version != 1 or not data.get("run") is Dictionary:
 		return false
+	if not data.has("camp_schema_version"):
+		for field in ["char_equipped_tokens", "char_token_amplifier_slots", "token_amplifier_unlocked_slots", "token_amplifier_presets", "amplifier_draw_state"]:
+			if data.has(field): return false
 	if not preload("res://scripts/domain/relationship_tokens.gd").validate_state(data): return false
 	if not preload("res://scripts/domain/camp_history.gd").validate(data): return false
 	if data.has("extra_challenges") and not preload("res://scripts/domain/extra_challenges.gd").validate_state(data.extra_challenges): return false
+	if data.has("ad_rewards") and not _ad_rewards_state(data.ad_rewards): return false
+	if data.has("dialogue_state") and not _dialogue_state(data.dialogue_state): return false
+	for field in ["selected_character", "selected_weapon"]:
+		if data.has(field) and not _integer(data[field], 1): return false
+	for field in ["selected_meal", "meal_rank"]:
+		if data.has(field) and not _integer(data[field]): return false
+	if data.has("selected_difficulty") and (not _integer(data.selected_difficulty) or data.selected_difficulty > 10): return false
 	for key in ["materials", "stats", "talents", "character_levels", "partners", "work_levels", "buildings", "recipes"]:
 		if not data.get(key) is Dictionary:
 			return false
@@ -143,6 +153,32 @@ func validate() -> bool:
 static func _number(value: Variant) -> bool:
 	return (value is int or value is float) and is_finite(float(value))
 
+static func _integer(value: Variant, minimum := 0) -> bool:
+	return _number(value) and value >= minimum and value <= 2147483647 and float(value) == floor(float(value))
+
+static func _ad_rewards_state(value: Variant) -> bool:
+	if not value is Dictionary: return false
+	if value.is_empty(): return true
+	if not _integer(value.get("day"), -2147483648) or not _integer(value.get("skips")) or value.skips > 3: return false
+	if not value.get("counts") is Dictionary or not value.get("receipts") is Array: return false
+	if not _integer(value.get("reset_version", 0)) or value.get("reset_version", 0) > 1: return false
+	for point in value.counts:
+		if not point is String or point.is_empty() or not _integer(value.counts[point]): return false
+	for receipt in value.receipts:
+		if not receipt is String or receipt.is_empty(): return false
+	return true
+
+static func _dialogue_state(value: Variant) -> bool:
+	if not value is Dictionary: return false
+	if value.is_empty(): return true
+	if not _integer(value.get("function_id"), 1) or not _integer(value.get("index")): return false
+	if value.has("npc_id") and not _integer(value.npc_id, 1): return false
+	if not value.get("lines") is Array or value.get("stage", "story") not in ["story", "choices"]: return false
+	for line in value.lines:
+		if not line is Dictionary: return false
+	var maximum = maxi(0, value.lines.size() - 1) if value.get("stage", "story") == "choices" else value.lines.size() - 1
+	return value.index <= maximum
+
 static func _ids(values: Array) -> bool:
 	for value in values:
 		if not _number(value) or value < 0 or float(value) != floor(float(value)): return false
@@ -164,6 +200,15 @@ static func attack_mode(value: Dictionary) -> String:
 
 func normalize_ids() -> void:
 	preload("res://scripts/domain/relationship_tokens.gd").normalize_saved_ids(data)
+	for field in ["selected_character", "selected_weapon", "selected_difficulty", "selected_meal", "meal_rank"]:
+		if data.has(field): data[field] = int(data[field])
+	for field in ["function_id", "npc_id", "index"]:
+		if data.get("dialogue_state", {}).has(field): data.dialogue_state[field] = int(data.dialogue_state[field])
+	var ad_rewards: Dictionary = data.get("ad_rewards", {})
+	if not ad_rewards.is_empty():
+		for field in ["day", "skips", "reset_version"]:
+			if ad_rewards.has(field): ad_rewards[field] = int(ad_rewards[field])
+		for point in ad_rewards.counts: ad_rewards.counts[point] = int(ad_rewards.counts[point])
 	var marks: Array = []
 	for id in data.get("marked_character_talents", []):
 		if not marks.has(int(id)): marks.append(int(id))

@@ -61,6 +61,7 @@ var pickup_icon: TextureRect
 var reference_vitals: Control
 var objective_guide: Control
 var region_notice: Control
+var battle_complete: Control
 var readiness_suspended := false
 var low_effects := false
 var adventure_mode := false
@@ -131,6 +132,7 @@ func _ready() -> void:
 	camp_button.expand_icon = true
 	camp_button.add_theme_constant_override("icon_max_width", 28)
 	camp_button.tooltip_text = "营地设施与资源"
+	camp_button.hide()
 	root.add_child(camp_button)
 	counters.minimum_size_changed.connect(func(): _layout_camp_button.call_deferred())
 	pickup_panel = preload("res://scripts/presentation/pickup_card.gd").new()
@@ -186,6 +188,9 @@ func _ready() -> void:
 	region_notice.z_index = 10
 	root.add_child(region_notice)
 	region_notice.visibility_changed.connect(_layout_toast)
+	battle_complete = preload("res://scripts/presentation/battle_complete.gd").new()
+	battle_complete.z_index = 11
+	root.add_child(battle_complete)
 	joystick = DungeonJoystick.new()
 	root.add_child(joystick)
 	skill_cluster = Control.new()
@@ -287,7 +292,7 @@ func _ready() -> void:
 	root.add_child(page)
 	page.command.connect(func(kind, id, extra): action.emit(kind, id, extra))
 	page.closed.connect(func(): action.emit("close_page", 0, 0))
-	page.back_requested.connect(func(): action.emit("camp", 0, 0))
+	page.back_requested.connect(func(): action.emit(str(page.page_context.get("back_action", "close_page")), page.page_context.get("back_id", 0), 0))
 	page_title = page.title_label
 	page_rows = page.rows_host
 	close_page()
@@ -447,7 +452,8 @@ func show_interaction_prompts(prompts: Array) -> void:
 func show_page(title: String, rows: Array, layout := "list", context: Dictionary = {}) -> void:
 	cancel_touch_customization()
 	region_notice.clear()
-	message_label.visible = layout not in ["outcome", "dialogue", "unclaimed"]
+	battle_complete.clear()
+	message_label.visible = layout not in ["outcome", "dialogue", "unclaimed", "adventure_event"]
 	page.display(title, rows, layout, context)
 	page.show()
 	shade.visible = layout not in ["route", "dialogue"]
@@ -480,8 +486,9 @@ func close_page() -> void:
 	if interaction_secondary: interaction_secondary.hide()
 
 func _set_navigation_visible(value: bool) -> void:
-	for control in [navigation, title_label, status_label, resources_label, camp_button]:
+	for control in [navigation, title_label, status_label, resources_label]:
 		if is_instance_valid(control): control.visible = value
+	camp_button.hide()
 	if counters: counters.visible = value
 	if pickup_panel and not value: pickup_panel.hide()
 
@@ -735,7 +742,7 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 	status_label.visible = false
 	resources_label.visible = false
 	counters.visible = not modal_open
-	camp_button.visible = camp and not modal_open
+	camp_button.hide()
 	armor.max_value = maxf(1, combat.max_health)
 	armor.value = combat.armor
 	armor.visible = combat.armor > 0

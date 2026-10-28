@@ -22,11 +22,12 @@ func view_for(page: String) -> Control:
 	match page:
 		"characters": return game.hud.page.character_view
 		"weapons": return game.hud.page.weapon_view
+		"talents": return game.hud.page.guild_view
 		_: return game.hud.page.inventory_view
 
-func snapshot(page: String, mode: String, dimensions: Vector2i) -> void:
+func snapshot(page: String, mode: String, dimensions: Vector2i, character_id := 0) -> void:
 	canvas.size = dimensions
-	game.menus.open(page)
+	game.menus.open(page, character_id)
 	game.hud._layout()
 	await settle()
 	var host = game.hud.page
@@ -34,9 +35,10 @@ func snapshot(page: String, mode: String, dimensions: Vector2i) -> void:
 	check(is_instance_valid(view) and host.special == null, "Dedicated APK page opens: %s/%s" % [mode, page])
 	check(Rect2(Vector2.ZERO, Vector2(dimensions)).encloses(host.get_global_rect()), "Host fits %s/%s %s" % [mode, page, dimensions])
 	check(host.get_global_rect().encloses(view.get_global_rect()), "Page fits host %s/%s %s" % [mode, page, dimensions])
-	check(host.page_context.in_run == (mode == "run"), "Actual scene determines the role-page mode")
-	var expected_labels: Array = host.page_context.role_navigation.map(func(entry): return str(entry.label))
-	check(view.navigation.map(func(button): return button.text) == expected_labels, "Visible navigation matches APK mode %s/%s" % [mode, page])
+	check(bool(host.page_context.get("in_run", false)) == (mode == "run"), "Actual scene determines the role-page mode")
+	if page != "talents":
+		var expected_labels: Array = host.page_context.role_navigation.map(func(entry): return str(entry.label))
+		check(view.navigation.map(func(button): return button.text) == expected_labels, "Visible navigation matches APK mode %s/%s" % [mode, page])
 	if render_check:
 		var deadline := Time.get_ticks_msec() + 2000
 		while host.modulate.a < 0.999 and Time.get_ticks_msec() < deadline: await process_frame
@@ -45,6 +47,93 @@ func snapshot(page: String, mode: String, dimensions: Vector2i) -> void:
 		var frame = canvas.get_texture().get_image()
 		check(not frame.is_empty(), "Rendered image exists for " + page)
 		frame.save_png("res://reports/role-%s-%s-%dx%d.png" % [mode, page, dimensions.x, dimensions.y])
+
+func verify_inactive_character_weapon() -> void:
+	game.profile.data.character_levels["2"] = 3
+	game.systems.set_record("weapon:201", 1)
+	game.systems.set_record("weapon:202", 1)
+	game.systems.grant_material(103, 100)
+	game.menus.open("weapons", 2)
+	check(game.hud.page.page_context.character_id == 2 and game.hud.page.weapon_view.selected_weapon == 201, "Other character weapon page starts from its own equipment")
+	game.hud.page.weapon_view.select_weapon(202)
+	game.hud.page.weapon_view.open_selector()
+	var equip_buttons: Array = game.hud.page.weapon_view.action_buttons.filter(func(button): return button.text == "装备")
+	check(equip_buttons.size() == 1 and not equip_buttons[0].disabled, "Owned inactive character can equip a compatible crafted weapon")
+	if not equip_buttons.is_empty(): equip_buttons[0].pressed.emit()
+	check(game.selected_character == 1 and game.selected_weapon == 102, "Equipping the browsed character preserves the active actor and weapon")
+	check(game.systems.equipped_weapon(2) == 202 and int(game.save_store.load_profile().selected_weapons["2"]) == 202, "Inactive character equipment is applied and immediately persisted")
+	check(game.menus.current_id == 2 and game.hud.page.page_context.character_id == 2 and game.hud.page.weapon_view.selected_weapon == 202, "Equipment refresh retains the viewed character and selected weapon")
+	var quote: Dictionary = game.systems.weapon_upgrade_status(202)
+	var ore_before: int = game.systems.material(103)
+	var upgrade_buttons: Array = game.hud.page.weapon_view.action_buttons.filter(func(button): return button.text == "升级")
+	check(upgrade_buttons.size() == 1 and not upgrade_buttons[0].disabled, "Source level-three character gate enables the viewed weapon upgrade")
+	if not upgrade_buttons.is_empty(): upgrade_buttons[0].pressed.emit()
+	check(game.systems.stat("weapon:202") == 2 and game.systems.material(103) == ore_before - int(quote.price["103"]), "Other character weapon upgrade consumes the exact source cost once")
+	check(game.menus.current_id == 2 and game.hud.page.page_context.character_id == 2 and game.hud.page.weapon_view.selected_weapon == 202, "Upgrade refresh retains the viewed character and weapon")
+	check(int(game.save_store.load_profile().stats["weapon:202"]) == 2, "Viewed weapon upgrade is saved immediately")
+	game.hud.page.weapon_view.set_selector_open(false)
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]: await snapshot("weapons", "camp-other", dimensions, 2)
+	game.menus.open("characters", 1)
+	game.hud.page.character_view.picker_button.pressed.emit()
+	game.hud.page.character_view.selections[1].pressed.emit()
+	check(game.selected_character == 2 and game.selected_weapon == 202, "Real roster selection restores the browsed character's remembered weapon")
+	var saved: Dictionary = game.save_store.load_profile()
+	check(int(saved.selected_character) == 2 and int(saved.selected_weapon) == 202, "Roster selection saves both actor and remembered equipment")
+	game.hud.page.character_view.picker_button.pressed.emit()
+	game.hud.page.character_view.selections[0].pressed.emit()
+	check(game.selected_character == 1 and game.selected_weapon == 102, "Switching back preserves the original character equipment")
+	game.systems.set_record("weapon:302", 1)
+	game.menus.open("weapons", 3)
+	game.hud.page.weapon_view.select_weapon(302)
+	game.hud.page.weapon_view.open_selector()
+	equip_buttons = game.hud.page.weapon_view.action_buttons.filter(func(button): return button.text == "装备")
+	check(equip_buttons.size() == 1 and equip_buttons[0].disabled, "A crafted weapon cannot be equipped on an unowned character")
+	var recruitment: Dictionary = game.systems.character_recruit_status(3)
+	for key in recruitment.price: game.systems.grant_material(int(key), maxi(0, int(recruitment.price[key]) - game.systems.material(int(key))))
+	game.menus.open("characters", 1)
+	game.hud.page.character_view.picker_button.pressed.emit()
+	game.hud.page.character_view.selections[2].pressed.emit()
+	check(game.selected_character == 1 and game.hud.page.page_context.selected_character == 3, "Browsing an unowned character retains the active actor")
+	game.hud.page.character_view.action_bar.get_child(0).pressed.emit()
+	check(game.systems.rank(game.profile.data.character_levels, 3) == 1 and int(game.save_store.load_profile().character_levels["3"]) == 1, "Browsed character recruitment is applied and saved")
+	check(game.hud.page.page_context.selected_character == 3 and game.selected_character == 1, "Recruitment refresh retains the browsed character without changing the active actor")
+	var growth: Dictionary = game.systems.character_upgrade_status(3)
+	for key in growth.price: game.systems.grant_material(int(key), maxi(0, int(growth.price[key]) - game.systems.material(int(key))))
+	game.menus.open("characters")
+	game.hud.page.character_view.action_bar.get_child(0).pressed.emit()
+	check(is_instance_valid(game.hud.page.character_view._upgrade_overlay), "Newly recruited inactive character opens its upgrade confirmation")
+	if is_instance_valid(game.hud.page.character_view._upgrade_overlay): game.hud.page.character_view._upgrade_overlay.confirm_button.pressed.emit()
+	check(game.systems.rank(game.profile.data.character_levels, 3) == 2 and int(game.save_store.load_profile().character_levels["3"]) == 2, "Newly recruited character upgrade changes and saves the browsed target")
+	check(game.hud.page.page_context.selected_character == 3 and game.selected_character == 1, "Character upgrade refresh preserves the browsed target and active actor")
+	game.menus.open("weapons", 1)
+
+func verify_guild_upgrade() -> void:
+	game.menus.open("talents")
+	check(game.hud.page.guild_view != null and game.hud.page.special == null, "Real camp opens the dedicated guild page")
+	var guild = game.hud.page.guild_view
+	guild.select_talent(102)
+	check(guild.upgrade_button.disabled, "Guild child node initially respects its source prerequisite")
+	guild.select_talent(101)
+	var quote: Dictionary = game.systems.global_talent_status(101)
+	for key in quote.price: game.systems.grant_material(int(key), maxi(0, int(quote.price[key]) - game.systems.material(int(key))))
+	game.menus.open("talents")
+	guild = game.hud.page.guild_view
+	check(not guild.upgrade_button.disabled, "Funded guild parent has an enabled upgrade action")
+	guild.upgrade_button.pressed.emit()
+	check(game.systems.rank(game.profile.data.talents, 101) == 1 and int(game.save_store.load_profile().talents["101"]) == 1, "Guild upgrade applies and saves the selected parent talent")
+	guild = game.hud.page.guild_view
+	check(guild.selected_category == 1 and guild.selected_talent == 101, "Guild transaction preserves category and selected node")
+	guild.select_talent(102)
+	quote = game.systems.global_talent_status(102)
+	for key in quote.price: game.systems.grant_material(int(key), maxi(0, int(quote.price[key]) - game.systems.material(int(key))))
+	game.menus.open("talents")
+	guild = game.hud.page.guild_view
+	check(guild.selected_talent == 102 and not guild.upgrade_button.disabled, "Learning the parent enables the selected child after refresh")
+	guild.upgrade_button.pressed.emit()
+	check(game.systems.rank(game.profile.data.talents, 102) == 1 and int(game.save_store.load_profile().talents["102"]) == 1, "Guild child upgrade is applied and saved")
+	game.hud.page.guild_view.select_category(3)
+	check(game.hud.page.guild_view.node_buttons.size() == 19 and game.hud.page.guild_view.selected_talent == 301, "Actual guild page can navigate to its complete third source branch")
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]: await snapshot("talents", "camp", dimensions)
 
 func _run() -> void:
 	render_check = "--render-check" in OS.get_cmdline_user_args()
@@ -83,6 +172,7 @@ func _run() -> void:
 	check(game.selected_weapon == 102 and int(game.profile.data.selected_weapon) == 102, "Weapon page command updates actual equipment")
 	check(int(game.save_store.load_profile().selected_weapon) == 102, "Weapon page equipment is persisted immediately")
 	check(int(game.hud.page.page_context.get("selected_weapon", 0)) == 102, "Equipment refresh preserves the viewed weapon")
+	await verify_inactive_character_weapon()
 	game.hud.page.weapon_view.set_selector_open(false)
 	game.hud.page.weapon_view.navigation[2].pressed.emit()
 	check(game.menus.current_page == "storage" and game.hud.page.inventory_view != null, "Weapon navigation reaches the dedicated warehouse")
@@ -113,6 +203,7 @@ func _run() -> void:
 	check(int(game.hud.page.page_context.fashion_equipped["1"]) == 1002, "Fashion operation refreshes the actual role-page context")
 	check(int(game.save_store.load_profile().fashion_equipped["1"]) == 1002, "Equipped fashion is saved immediately")
 	game.hud.page.character_view.command.emit("op:equip_character_fashion", 1001, 1)
+	await verify_guild_upgrade()
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]:
 		for page in ["characters", "weapons", "storage"]: await snapshot(page, "camp", dimensions)
 	game.hud.page.inventory_view.back_requested.emit()
@@ -122,8 +213,14 @@ func _run() -> void:
 	check(not regions.is_empty(), "A real adventure has an entrance choice")
 	if not regions.is_empty(): game._select_region(int(regions[0].node_id))
 	deadline = Time.get_ticks_msec() + 60000
-	while game._transitioning and Time.get_ticks_msec() < deadline: await process_frame
-	check(not game._transitioning and not game.world._camp_camera and game.profile.data.run.active, "Transition reaches an actual level")
+	while game._transitioning and Time.get_ticks_msec() < deadline:
+		game.world._background = false
+		await process_frame
+	var entered_level: bool = not game._transitioning and not game.world._camp_camera and game.profile.data.run.active
+	check(entered_level, "Transition reaches an actual level")
+	if not entered_level:
+		await finish()
+		return
 	game.world.set_physics_process(false)
 	game.world._background = false
 	game.profile.data.run.inventory = {"10000": 2, "10100": 1}
@@ -144,6 +241,9 @@ func _run() -> void:
 	game.menus.open("weapons")
 	game.hud.page.weapon_view.back_requested.emit()
 	check(not game.hud.modal_open and not game.world._camp_camera, "Level weapon back returns to the room without opening a camp menu")
+	await finish()
+
+func finish() -> void:
 	game.queue_free()
 	await process_frame
 	canvas.queue_free()

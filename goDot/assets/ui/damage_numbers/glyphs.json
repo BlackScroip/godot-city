@@ -1,0 +1,1763 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "asset": {
+    "address": "PopEffect_Damage",
+    "path": "Assets/[00002]Resource/Prefabs/BattleSys/UI/UIItem/PopEffect_Damage.prefab",
+    "bundle": 5126
+  },
+  "glyphs": {
+    "dark0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "dark9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "darkK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "darkM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fire9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fireK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "fireM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "heal9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "healK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "healM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurt9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurtK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "hurtM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "ice9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "iceK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "iceM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "light9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "lightK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "lightM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normal9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normalK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "normalM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soil9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soilK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "soilM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunder9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunderK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "thunderM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxin9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxinK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "toxinM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "water9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "waterK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "waterM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind0": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind1": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind2": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind3": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind4": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind5": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind6": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind7": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind8": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "wind9": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.0,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "windK": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "windM": {
+      "width": 56,
+      "height": 68,
+      "scale": 1.5,
+      "metrics": {
+        "m_Width": 56.0,
+        "m_Height": 68.0,
+        "m_HorizontalBearingX": -28.0,
+        "m_HorizontalBearingY": 34.0,
+        "m_HorizontalAdvance": 56.0
+      }
+    },
+    "bgcrit": {
+      "width": 256,
+      "height": 256,
+      "scale": 1.7000000476837158,
+      "metrics": {
+        "m_Width": 256.0,
+        "m_Height": 256.0,
+        "m_HorizontalBearingX": -128.0,
+        "m_HorizontalBearingY": 128.0,
+        "m_HorizontalAdvance": 256.0
+      }
+    },
+    "buff_shanbi": {
+      "width": 128,
+      "height": 128,
+      "scale": 1.2999999523162842,
+      "metrics": {
+        "m_Width": 128.0,
+        "m_Height": 128.0,
+        "m_HorizontalBearingX": 15.0,
+        "m_HorizontalBearingY": 100.0,
+        "m_HorizontalAdvance": 150.0
+      }
+    }
+  },
+  "evidence": "Static Unity TMP sprite tables and texture pixels; no APK runtime observation."
+}

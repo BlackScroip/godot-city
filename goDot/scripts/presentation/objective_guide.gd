@@ -4,6 +4,7 @@ const FRAME = preload("res://assets/ui/battle_guide/a41506fc3ce34bb6.png")
 const DISK = preload("res://assets/ui/battle_guide/8fa4213008a292a6.png")
 const NEEDLE = preload("res://assets/ui/battle_guide/efda071a81a2db5e.png")
 const FADE_SECONDS := 0.3
+const DISK_TINT := Color(1.5, 1.5, 1.5, 1.0)
 
 var center := Vector2.ZERO
 var direction := Vector2.UP
@@ -80,7 +81,7 @@ func update_screen_target(point: Vector2, screen: Vector2, behind := false) -> v
 	queue_redraw()
 
 func _draw() -> void:
-	draw_texture_rect(DISK, Rect2(center - Vector2.ONE * 40 * art_scale, Vector2.ONE * 80 * art_scale), false)
+	draw_texture_rect(DISK, Rect2(center - Vector2.ONE * 40 * art_scale, Vector2.ONE * 80 * art_scale), false, DISK_TINT)
 	draw_texture_rect(FRAME, Rect2(center - Vector2.ONE * 54.4 * art_scale, Vector2.ONE * 108.8 * art_scale), false)
 	draw_set_transform(center, direction.angle() + PI * 0.5, Vector2.ONE * art_scale)
 	draw_texture_rect(NEEDLE, Rect2(Vector2(-17.2, -107), Vector2(34.4, 64)), false)

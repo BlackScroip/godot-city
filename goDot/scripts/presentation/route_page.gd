@@ -11,6 +11,9 @@ var confirm: Button
 var automatic: CheckBox
 var header: HBoxContainer
 var footer: HBoxContainer
+var back_button: Button
+var route_title: Label
+var resource_counters: VBoxContainer
 var nodes: Array[DungeonRouteNode] = []
 var origin: DungeonRouteNode
 var selected_id := 0
@@ -28,6 +31,9 @@ var _last_layout_scroll := 0
 var _preserve_browsing := false
 var _opening_started := false
 var _opening_tween: Tween
+var _selection_detail_tween: Tween
+var _confirm_tween: Tween
+var _focused_node: DungeonRouteNode
 var _opening_alpha := 0.0:
 	set(value):
 		_opening_alpha = value
@@ -61,6 +67,7 @@ void fragment() {
 	header.add_theme_constant_override("separation", 18)
 	add_child(header)
 	var back = Button.new()
+	back_button = back
 	back.custom_minimum_size = Vector2(68, 58)
 	back.tooltip_text = "返回"
 	for state in ["normal", "hover", "pressed", "focus"]: back.add_theme_stylebox_override(state, StyleBoxEmpty.new())
@@ -71,12 +78,14 @@ void fragment() {
 	back.pressed.connect(func(): back_requested.emit())
 	header.add_child(back)
 	var title = DungeonStyle.label("区域路线" if context.get("preview", false) else "选择路线", 30)
+	route_title = title
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	header.add_child(title)
 	map_switch = Button.new()
 	map_switch.text = "小地图" if is_world_map() else "大地图"
 	map_switch.tooltip_text = "查看区域内路线" if is_world_map() else "查看区域总览"
 	map_switch.custom_minimum_size = Vector2(94, 44)
+	map_switch.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	map_switch.visible = not is_world_map() or bool(context.get("can_view_rooms", false))
 	map_switch.pressed.connect(func(): command.emit("route_rooms" if is_world_map() else "route_world", 0, 0))
 	header.add_child(map_switch)
@@ -84,6 +93,7 @@ void fragment() {
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(spacer)
 	var counters = VBoxContainer.new()
+	resource_counters = counters
 	counters.add_theme_constant_override("separation", 8)
 	header.add_child(counters)
 	_counter(counters, "魔力精华", str(context.get("magic", 0)), Color("4898ee"))
@@ -117,12 +127,17 @@ void fragment() {
 			key.portrait = origin.portrait
 		key.disabled = not _can_select(row)
 		key.pressed.connect(func(): _select(int(row.node_id), int(row.layer_index)))
-		key.focus_entered.connect(func(): scroll.ensure_control_visible(key))
+		key.focus_entered.connect(func():
+			_focused_node = key
+			_ensure_node_visible.call_deferred(key))
+		key.focus_exited.connect(func():
+			if _focused_node == key: _focused_node = null)
 		graph.add_child(key)
 		key.prepare_reveal()
 		if row.get("current", false):
 			key.tooltip_text = str(row.get("name", "")) + "（当前位置）"
 			var marker = DungeonStyle.label("当前位置", 14)
+			marker.name = "CurrentMarker"
 			marker.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			marker.add_theme_color_override("font_color", Color("f2d790"))
@@ -188,30 +203,53 @@ func _layout() -> void:
 	if not is_instance_valid(scroll): return
 	var browsing = _scroll_initialized and (_preserve_browsing or scroll.scroll_horizontal != _last_layout_scroll)
 	var center_column = (scroll.scroll_horizontal + _scroll_view_width * 0.5 - _graph_margin - node_size.x * 0.5) / column_width if browsing else NAN
-	header.position = Vector2(30, 20)
-	header.size = Vector2(maxf(0, size.x - 60), 74)
-	footer.size = footer.get_combined_minimum_size().max(Vector2(size.x - 48, 56))
 	var compact = size.x < 1000
+	var short_view = size.y < 540
+	header.add_theme_constant_override("separation", 10 if compact else 18)
+	back_button.custom_minimum_size = Vector2(52 if compact else 68, 58)
+	route_title.add_theme_font_size_override("font_size", 24 if compact else 30)
+	map_switch.custom_minimum_size.x = 82 if compact else 94
+	for bar in resource_counters.get_children(): bar.custom_minimum_size.x = 144 if compact else 200
+	header.position = Vector2(24 if compact else 30, 10 if short_view else 20)
+	header.size = Vector2(maxf(0, size.x - header.position.x * 2), 68 if short_view else 84)
+	footer.add_theme_constant_override("separation", 12 if compact else 24)
 	automatic.text = "单一路线自动进入" if compact else "无多选项时自动进入下一节点（含切层演出）"
-	confirm.custom_minimum_size.x = 190 if compact else 360 if size.x >= 1800 else 260
+	automatic.add_theme_font_size_override("font_size", 15 if size.x < 700 else 17)
+	confirm.custom_minimum_size = Vector2(160 if size.x < 700 else 190 if compact else 360 if size.x >= 1800 else 260, 44 if short_view else 56)
 	footer.get_child(0).custom_minimum_size.x = automatic.get_combined_minimum_size().x + 24 if size.x >= 1100 else 0
-	footer.position = Vector2(24, size.y - 82)
-	footer.size.x = maxf(0, size.x - 48)
-	selection_detail.position = Vector2(30, 96)
+	footer.position = Vector2(24, size.y - (56 if short_view else 82))
+	footer.size = Vector2(maxf(0, size.x - 48), 44 if short_view else 56)
+	selection_detail.position = Vector2(30, 80 if short_view else 96)
 	selection_detail.size = Vector2(maxf(0, size.x - 60), 24)
-	scroll.position = Vector2(24, 126)
-	scroll.size = Vector2(maxf(0, size.x - 48), maxf(160, size.y - 234))
+	scroll.position = Vector2(24, 110 if short_view else 126)
+	scroll.size = Vector2(maxf(0, size.x - 48), maxf(120, footer.position.y - scroll.position.y - 12))
 	_scroll_view_width = scroll.size.x
 	var height = maxf(120, scroll.size.y - 20)
 	var card_height = clampf(height * (0.29 if is_world_map() else 0.20), 80 if is_world_map() else 40, 170 if is_world_map() else 132)
-	node_size = Vector2(maxf(100, card_height * (1.15 if is_world_map() else 2.15)), card_height)
-	var frame_margin = node_size * (DungeonRouteNode.SELECTED_FRAME_SIZE * DungeonRouteNode.SELECTION_PEAK_SCALE - Vector2.ONE) * 0.5 if not is_world_map() else Vector2.ZERO
+	var gap = clampf(size.x * 0.1, 90, 220)
+	var width_ratio = 1.15 if is_world_map() else 2.15
+	var frame_ratio = 1.0 if is_world_map() else DungeonRouteNode.SELECTED_FRAME_SIZE.x * DungeonRouteNode.SELECTION_PEAK_SCALE
+	card_height = minf(card_height, maxf(1.0, (scroll.size.x - gap - 8.0) / (width_ratio * (1.0 + frame_ratio))))
+	if not is_world_map():
+		var lanes := 1
+		for row in rows: lanes = maxi(lanes, int(row.get("lane_count", 1)))
+		var peak_height = DungeonRouteNode.SELECTED_FRAME_SIZE.y * DungeonRouteNode.SELECTION_PEAK_SCALE
+		card_height = minf(card_height, (height - 12 - (lanes - 1) * 18) / (lanes * peak_height))
+	node_size = Vector2(card_height * width_ratio, card_height)
+	var frame_margin := Vector2.ZERO
+	origin.size = node_size
+	for node in nodes:
+		node.size = node_size
+		var marker = node.get_node_or_null("CurrentMarker")
+		if marker: marker.visible = node_size.y >= 60
+		var bounds = node.selection_bounds()
+		frame_margin = frame_margin.max(-bounds.position).max(bounds.end - node_size)
+	frame_margin += Vector2.ONE * 6
 	_graph_margin = maxf(36, frame_margin.x)
-	column_width = node_size.x + clampf(size.x * 0.1, 90, 220)
+	column_width = node_size.x + gap
 	var first_column = int(context.get("first_layer", 0))
 	var last_column = first_column
 	origin.position = Vector2(_graph_margin, height * 0.5 - node_size.y * 0.5)
-	origin.size = node_size
 	for index in rows.size():
 		var row: Dictionary = rows[index]
 		var column = int(row.layer_index)
@@ -219,10 +257,10 @@ func _layout() -> void:
 		var lane = int(row.lane)
 		var count = int(row.lane_count)
 		var margin = (0.25 if is_world_map() else 0.14) if compact else 0.18
+		if not is_world_map() and short_view: margin = (node_size.y * 0.5 + frame_margin.y) / height
 		var y = height * (0.5 if count == 1 else margin + (1.0 - margin * 2.0) * lane / maxf(1, count - 1))
 		y = clampf(y, node_size.y * 0.5 + frame_margin.y, height - node_size.y * 0.5 - frame_margin.y)
 		nodes[index].position = Vector2(_graph_margin + (column - first_column + int(origin.visible)) * column_width, y - node_size.y * 0.5)
-		nodes[index].size = node_size
 	graph.custom_minimum_size = Vector2(_graph_margin * 2 + (last_column - first_column + int(origin.visible)) * column_width + node_size.x, height)
 	edges.clear()
 	var by_id: Dictionary = {}
@@ -261,6 +299,18 @@ func _restore_scroll(center_column: float) -> void:
 		_preserve_browsing = true
 		_set_scroll_center(_graph_margin + center_column * column_width + node_size.x * 0.5)
 	_scroll_initialized = true
+	if is_instance_valid(_focused_node): _ensure_node_visible(_focused_node)
+	elif selected_index >= 0: _ensure_node_visible(nodes[selected_index])
+
+func _ensure_node_visible(node: DungeonRouteNode) -> void:
+	if not is_inside_tree() or not is_instance_valid(node) or graph.size.x <= 0: return
+	var bounds = node.selection_bounds().grow(4)
+	bounds.position += node.position
+	var target = float(scroll.scroll_horizontal)
+	if bounds.position.x < target: target = bounds.position.x
+	elif bounds.end.x > target + scroll.size.x: target = bounds.end.x - scroll.size.x
+	scroll.scroll_horizontal = roundi(clampf(target, 0, maxf(0, graph.size.x - scroll.size.x)))
+	_last_layout_scroll = scroll.scroll_horizontal
 
 func _set_scroll_center(center: float) -> void:
 	var maximum = maxf(0, graph.size.x - scroll.size.x)
@@ -269,25 +319,39 @@ func _set_scroll_center(center: float) -> void:
 
 func _scroll_to_current() -> void:
 	_preserve_browsing = false
-	if not is_world_map():
-		for index in rows.size():
-			if rows[index].get("is_anchor", false):
-				_scroll_to_room(nodes[index])
-				return
+	for index in rows.size():
+		if rows[index].get("is_anchor", false):
+			_scroll_to_anchor(nodes[index])
+			return
+	if is_world_map() and int(context.get("current_layer", 0)) <= int(context.get("first_layer", 0)) and not rows.any(func(row): return bool(row.get("current", false))):
+		_scroll_to_anchor(origin)
+		return
 	for index in rows.size():
 		if int(rows[index].layer_index) == int(context.get("current_layer", 0)):
-			if is_world_map(): _set_scroll_center(nodes[index].get_rect().get_center().x)
-			else: _scroll_to_room(nodes[index])
+			_scroll_to_anchor(nodes[index])
 			return
 	_set_scroll_center(0)
 
-func _scroll_to_room(anchor: DungeonRouteNode) -> void:
-	# The APK centers the active node's right edge; its Unity pivot is 0.5.
-	var center = anchor.get_rect().end.x
-	if not context.get("preview", false):
-		for node in nodes:
-			if node.available and not node.room.get("vertical", false) and int(node.room.layer_index) > int(anchor.room.layer_index):
-				center = maxf(center, node.get_rect().end.x + _graph_margin - scroll.size.x * 0.5)
+func _scroll_to_anchor(anchor: DungeonRouteNode) -> void:
+	var bounds = anchor.selection_bounds()
+	bounds.position += anchor.position
+	var anchor_layer = int(anchor.room.get("layer_index", int(context.get("first_layer", 0)) - 1))
+	var next_layer = 2147483647
+	for node in nodes:
+		var layer = int(node.room.layer_index)
+		if layer > anchor_layer: next_layer = mini(next_layer, layer)
+	for node in nodes:
+		if int(node.room.layer_index) != next_layer: continue
+		var target = node.selection_bounds()
+		target.position += node.position
+		if not is_world_map() and node.available:
+			target = target.grow_individual(_graph_margin, 0, _graph_margin, 0)
+		bounds = bounds.merge(target)
+	var center = anchor.get_rect().get_center().x if is_world_map() else anchor.get_rect().end.x
+	var min_center = bounds.end.x - scroll.size.x * 0.5
+	var max_center = bounds.position.x + scroll.size.x * 0.5
+	if min_center <= max_center: center = clampf(center, min_center, max_center)
+	else: center = (bounds.position.x + bounds.end.x) * 0.5
 	_set_scroll_center(center)
 
 func _draw_paths() -> void:
@@ -322,6 +386,7 @@ func _path_geometry(edge: Dictionary) -> Dictionary:
 	var direction = signf(end.y - start.y)
 	var state = _path_state(edge)
 	var sprite = "path_" + state
+	var thickness = (56.0 if state == "available" else 42.0 if state == "passed" else 38.0) * clampf(node_size.y / (200.0 if is_world_map() else 140.0), 0.35, 1.0)
 	if is_world_map():
 		start.y = source.position.y + _world_center_y(source)
 		end.y = target.position.y + _world_center_y(target)
@@ -336,6 +401,10 @@ func _path_geometry(edge: Dictionary) -> Dictionary:
 			end.y -= direction * target.size.y * 0.16
 			sprite = "world_path_dotted_passed" if state == "passed" else "world_path_dotted"
 	else:
+		# Keep the whole arrow, including its head, outside the peak selection glow.
+		var clearance = thickness * 0.5 + 4
+		start.x = source.position.x + source.selection_bounds().end.x + clearance
+		end.x = target.position.x + target.selection_bounds().position.x - clearance
 		start.y += direction * source.size.y * 0.32
 		end.y -= direction * target.size.y * 0.24
 	var texture = DungeonStyle.texture(PATH_ART + sprite + ".png")
@@ -354,7 +423,6 @@ func _path_geometry(edge: Dictionary) -> Dictionary:
 		draw_size = image_size
 		draw_position = start - (image_start * draw_scale).rotated(rotation)
 	else:
-		var thickness = (56.0 if state == "available" else 42.0 if state == "passed" else 38.0) * clampf(node_size.y / (200.0 if is_world_map() else 140.0), 0.35, 1.0)
 		draw_size = Vector2(length, thickness)
 		draw_position = start - Vector2(0, thickness * 0.5).rotated(rotation)
 	var area = Rect2(draw_position, Vector2.ZERO)
@@ -388,11 +456,13 @@ func _vertical_path_rects(edge: Dictionary) -> Array[Rect2]:
 	var target: DungeonRouteNode = edge.to
 	var top = source if source.position.y < target.position.y else target
 	var bottom = target if top == source else source
-	var gap = bottom.position.y - top.get_rect().end.y
+	var top_edge = top.position.y + top.selection_bounds().end.y + 3
+	var bottom_edge = bottom.position.y + bottom.selection_bounds().position.y - 3
+	var gap = bottom_edge - top_edge
 	var height = minf(gap, maxf(8, minf(node_size.y * 0.65, gap * 0.75)))
 	if height <= 0: return []
 	var dimensions = Vector2(height * 47.0 / 74.0, height)
-	var middle = Vector2(top.position.x + top.size.x * 0.5, top.get_rect().end.y + gap * 0.5)
+	var middle = Vector2(top.position.x + top.size.x * 0.5, (top_edge + bottom_edge) * 0.5)
 	var result: Array[Rect2] = []
 	for index in 2:
 		result.append(Rect2(middle + Vector2((-0.7 if index == 0 else 0.7) * dimensions.x, 0) - dimensions * 0.5, dimensions))
@@ -419,10 +489,21 @@ func _select(id: int, layer := -1) -> void:
 		if key.chosen: confirm.text = "换路 · %d" % int(key.room.get("shift_cost", 1)) if key.room.get("vertical", false) else "选择"
 	var row: Dictionary = rows[selected_index]
 	confirm.disabled = not bool(row.get("available", false))
+	var first_selection = not confirm.visible
 	confirm.visible = true
 	selection_detail.text = DungeonCatalog.clean(str(row.get("display_name", row.get("name", ""))))
 	if is_world_map() and confirm.disabled: selection_detail.text += "  " + DungeonCatalog.clean(str(row.get("lock_reason", "")))
 	selection_detail.tooltip_text = selection_detail.text
+	_ensure_node_visible(nodes[selected_index])
+	if _selection_detail_tween: _selection_detail_tween.kill()
+	selection_detail.modulate.a = 0.35
+	_selection_detail_tween = create_tween()
+	_selection_detail_tween.tween_property(selection_detail, "modulate:a", 1.0, 0.18)
+	if first_selection:
+		confirm.modulate.a = 0.0
+		if _confirm_tween: _confirm_tween.kill()
+		_confirm_tween = create_tween()
+		_confirm_tween.tween_property(confirm, "modulate:a", 1.0, 0.18)
 
 func _confirm() -> void:
 	if selected_index < 0 or context.get("preview", false) or _selection_submitted: return

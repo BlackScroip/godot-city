@@ -84,6 +84,9 @@ func status(id: int, character_id := 0) -> Dictionary:
 		"reason": reason, "equip_reason": equip_reason, "grant_owner_id": _grant_owner(id)}
 
 func unlock(id: int, character_id := 0) -> Dictionary:
+	return systems._camp_transaction(_unlock.bind(id, character_id))
+
+func _unlock(id: int, character_id: int) -> Dictionary:
 	var quote = status(id, character_id)
 	if not quote.can_unlock:
 		return systems._fail("时装已解锁" if quote.owned else quote.reason)
@@ -93,6 +96,9 @@ func unlock(id: int, character_id := 0) -> Dictionary:
 	return systems._done("时装已解锁", id)
 
 func equip(id: int, character_id := 0) -> Dictionary:
+	return systems._camp_transaction(_equip.bind(id, character_id))
+
+func _equip(id: int, character_id: int) -> Dictionary:
 	var quote = status(id, character_id)
 	if not quote.equip_reason.is_empty(): return systems._fail(quote.equip_reason)
 	if quote.equipped: return systems._ok("时装已装备", id)

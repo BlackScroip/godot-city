@@ -48,21 +48,21 @@ func partner_name(id: int) -> String:
 	return clean(name_of(catalog.find("EnemyData", int(partner.get("enemy_id", id)))))
 
 func tick(delta: float) -> void:
-	if not hud.modal_open or current_page != "work": return
+	if not hud.modal_open or current_page not in ["work", "dispatch"]: return
 	_work_refresh += delta
 	if _work_refresh < 1.0: return
 	_work_refresh = 0.0
-	var states: Array = []
-	for order in profile.data.work:
-		var status = systems.work_status(int(order.work_id))
-		states.append([order.work_id, maxi(0, ceili(float(status.get("next_claim_seconds", status.remaining_seconds)) / 60.0)), status.get("claimable_quantity", 0), status.completed_quantity, status.daily_remaining])
+	var states: Array = [current_page, current_id]
+	for row in catalog.rows("MonsterWorkData"):
+		var status = systems.work_status(int(row.id))
+		states.append([int(row.id), maxi(0, ceili(float(status.get("next_claim_seconds", status.remaining_seconds)) / 60.0)), status.get("claimable_quantity", 0), status.completed_quantity, status.daily_remaining, status.can_start, status.can_upgrade])
 	var signature = str(states)
 	if signature == _work_signature: return
 	_work_signature = signature
 	var source_scroll = hud.page.camp_service_view.collection_scroll if is_instance_valid(hud.page.camp_service_view) else hud.page.list_scroll
 	var scroll = source_scroll.scroll_vertical
 	var detail_scroll = hud.page.camp_service_view.detail_scroll.scroll_vertical if is_instance_valid(hud.page.camp_service_view) else 0
-	open("work")
+	open(current_page, current_id)
 	if is_instance_valid(hud.page.camp_service_view):
 		hud.page.camp_service_view.collection_scroll.set_deferred("scroll_vertical", scroll)
 		hud.page.camp_service_view.detail_scroll.set_deferred("scroll_vertical", detail_scroll)
@@ -117,6 +117,8 @@ func _material_row(id: int, amount: int) -> Dictionary:
 	return row
 
 func open(page: String, id: int = 0) -> void:
+	var mall_category := "treasure" if page in ["treasure", "chests"] else ""
+	if not mall_category.is_empty(): page = "mall"
 	if page == "character_talents":
 		if not hud.modal_open or not is_instance_valid(hud.page.character_view) or (id > 0 and hud.page.character_view._character_id() != id):
 			open("characters", id)
@@ -147,7 +149,7 @@ func open(page: String, id: int = 0) -> void:
 			title = "训练场"
 			var feature = systems.camp_feature_status("training")
 			var state: Dictionary = game.world.camp_training_status()
-			var details = "命中 %d 次 · 总伤害 %.0f\n训练 %.1f 秒 · 每秒伤害 %.1f · 最高单次 %.0f" % [state.hits, state.total_damage, state.elapsed, state.dps, state.maximum_hit]
+			var details = ""
 			var buttons: Array = []
 			if state.active:
 				buttons = [command("继续训练", "close_page"), command("重置统计", "reset_training"), command("结束训练", "end_training")]
@@ -158,16 +160,30 @@ func open(page: String, id: int = 0) -> void:
 				if not str(state.reason).is_empty(): details += "\n" + str(state.reason)
 				buttons = [command("前往训练场", "camp_navigate", "training"), command("开始训练", "start_training", 0, 0, not state.can_start)]
 			rows.append(item("训练稻草人", details, buttons))
+			rows.back().merge({"service_key": "training:session", "icon": "sprite_conversation_Scarecrow", "metrics": [["训练时间", "%.1f 秒" % float(state.elapsed)], ["命中次数", str(state.hits)], ["总伤害", "%.0f" % float(state.total_damage)], ["每秒伤害", "%.1f" % float(state.dps)], ["最高单次", "%.0f" % float(state.maximum_hit)], ["训练状态", "训练中" if state.active else "待训练" if state.can_start else "未就绪"]]})
 		"resources", "resource":
 			title = "资源与凭证"
-			for resource in systems.resource_summary():
+			var resources: Array = systems.resource_summary()
+			if page == "resource" and not resources.any(func(resource): return int(resource.id) == id):
+				var source = catalog.find("MaterialData", id)
+				if not source.is_empty(): resources.append({"id": id, "name": name_of(source), "amount": systems.material(id), "description": description(source), "earned": systems.stat("get:" + str(id)), "spent": systems.stat("spent:" + str(id))})
+				elif id == 12101:
+					var loot = catalog.find("LootData", id)
+					var ability = catalog.find("AbilityItems", int(loot.get("ability_item_id", id)))
+					resources.append({"id": id, "name": loot_name(id), "amount": systems.search_point_count(), "description": description(ability), "earned": systems.stat("get:" + str(id)), "spent": systems.stat("spent:" + str(id))})
+			for resource in resources:
 				if page == "resource" and int(resource.id) != id: continue
 				var details = clean(resource.description)
 				if int(resource.id) == 501: details += "\n冒险结束后，结算经验也会转化为冒险凭证。"
-				details += "\n累计获得 %d · 累计消耗 %d" % [resource.earned, resource.spent]
 				rows.append(item("%s  ×%d" % [clean(resource.name), resource.amount], details, _resource_routes(int(resource.id))))
 				rows.back()["material_id"] = int(resource.id)
-			rows.append(item("仓库", "", [command("查看全部材料", "page:storage")]))
+				rows.back().merge({"service_key": "resource:%d" % int(resource.id), "filter_primary": int(resource.amount) > 0, "metrics": [["当前持有", str(resource.amount)], ["累计获得", str(resource.earned)], ["累计消耗", str(resource.spent)]]})
+				rows.back()["category"] = "角色成长" if int(resource.id) in [501, 502, 503, 504] else "营地资源"
+				if int(resource.id) == 12101: rows.back()["icon"] = "loot:12101"
+			if page == "resources":
+				rows.append(item("仓库", "", [command("查看全部材料", "page:storage")]))
+				rows.back().merge({"service_key": "resource:storage", "service_filterable": false, "icon": "sprite_conversation_warehouse"})
+			elif not rows.is_empty(): rows[0].buttons.append(command("查看全部材料", "page:storage"))
 		"characters":
 			title = "角色详情"
 			for row in catalog.rows("CharData"):
@@ -202,7 +218,10 @@ func open(page: String, id: int = 0) -> void:
 				rows.back()["active_character"] = cid == game.selected_character
 		"weapons":
 			title = "角色详情"
-			var character = catalog.find("CharData", id if id > 0 else game.selected_character)
+			var character_id = id if id > 0 else game.selected_character
+			var character = catalog.find("CharData", character_id)
+			var equipped_weapon = systems.equipped_weapon(character_id)
+			var owned_character = systems.rank(profile.data.character_levels, character_id) > 0
 			var allowed = str(character.get("can_equip_weapon_id_list", "")).split(",")
 			for row in catalog.rows("WeaponData"):
 				if not str(int(row.id)) in allowed: continue
@@ -212,14 +231,14 @@ func open(page: String, id: int = 0) -> void:
 				if not profile.data.run.active:
 					var quote = systems.weapon_upgrade_status(int(row.id))
 					details += "\n" + price_text(quote.price) + "\n" + clean(quote.reason)
-					buttons = [command("打造" if rank == 0 else "升级", "op:upgrade_weapon", int(row.id), 0, not quote.can_upgrade), command("已装备" if int(profile.data.selected_weapon) == int(row.id) else "装备", "equip_weapon", int(row.id), 0, rank == 0 or int(profile.data.selected_weapon) == int(row.id))]
+					buttons = [command("打造" if rank == 0 else "升级", "op:upgrade_weapon", int(row.id), 0, not quote.can_upgrade), command("已装备" if equipped_weapon == int(row.id) else "装备", "equip_weapon", int(row.id), character_id, rank == 0 or equipped_weapon == int(row.id) or not owned_character)]
 				rows.append(item(name_of(row) + "  Lv.%d" % rank, details, buttons))
 				rows.back()["weapon_id"] = int(row.id)
 				rows.back()["rank"] = rank
 				rows.back()["source_description"] = description(row)
 				rows.back()["effect_description"] = clean(row.get("effect_description", "")).replace("|", "\n")
 				rows.back()["in_run"] = bool(profile.data.run.active)
-				rows.back()["active_character"] = int(profile.data.selected_weapon) == int(row.id)
+				rows.back()["active_character"] = equipped_weapon == int(row.id)
 				if not profile.data.run.active and not systems.camp_feature_status("weapons" if rank == 0 else "weapon_upgrade").available: rows.back().buttons.append(command("前往建设", "page:buildings", 3))
 		"talents", "character_talents":
 			title = "公会支援表" if page == "talents" else "角色天赋"
@@ -249,11 +268,12 @@ func open(page: String, id: int = 0) -> void:
 				if rank > 0: buttons.append(command("卸下" if status.equipped else "装备", "op:" + ("unequip_partner" if status.equipped else "equip_partner"), pid, 0, not status.equipped and not status.can_equip))
 				rows.append(item(name_of(enemy) + "  Lv.%d / %d" % [rank, status.max_level], progress, buttons))
 				rows.back()["partner_status"] = status
+				rows.back().merge({"service_key": "partner:%d" % pid, "filter_primary": rank > 0})
 		"work":
 			title = "伙伴派遣"
 			for row in catalog.rows("MonsterWorkData"):
 				var state = systems.work_status(int(row.id))
-				var progress = "%s\n每次产出：%s ×%d\n耗时 %d 分钟 · 领取消耗：%s\n今日剩余 %d / %d 次" % [description(row), clean(systems.material_name(int(state.reward.id))), int(state.reward.amount), ceili(state.duration_seconds / 60.0), price_text(state.price), int(state.daily_remaining), int(state.daily_limit)]
+				var progress = "%s\n每次产出：%s ×%d\n耗时 %d 分钟 · 领取消耗：%s\n今日剩余 %d / %d 次" % [description(row), clean(systems.material_name(int(state.reward.id))), int(state.reward.amount), ceili(state.duration_seconds / 60.0), "无消耗" if state.price.is_empty() else price_text(state.price), int(state.daily_remaining), int(state.daily_limit)]
 				var buttons = [command("开始工作", "op:start_work", int(row.id), 0, not state.can_start), command("领取 %d 次" % int(state.claimable_quantity), "op:collect_work", int(row.id), 0, not state.ready), command("升级", "op:upgrade_work", int(row.id), 0, not state.can_upgrade)]
 				if not state.order.is_empty():
 					progress += "\n已储存 %d / %d 次" % [int(state.completed_quantity), int(state.queue_max)]
@@ -267,6 +287,7 @@ func open(page: String, id: int = 0) -> void:
 					progress += "\n升级消耗：" + price_text(state.upgrade_price)
 					if not state.can_upgrade: progress += "\n" + clean(state.upgrade_reason)
 				if not state.unlocked: buttons.append(command("营地建设", "page:buildings", 6))
+				buttons.append(command("派遣详情", "page:dispatch", int(row.id)))
 				var acceleration = game.ad_rewards.quote({"kind": "work", "id": int(row.id)})
 				if acceleration.success:
 					if game.ads.available(): buttons.append(command("看广告加速 30 分钟", "ad:work", int(row.id)))
@@ -276,6 +297,7 @@ func open(page: String, id: int = 0) -> void:
 				rows.back()["progress"] = int(state.completed_quantity)
 				rows.back()["required"] = int(state.queue_max)
 				rows.back()["category"] = "派遣中" if not state.order.is_empty() else "待派遣"
+				rows.back().merge({"service_key": "work:%d" % int(row.id), "filter_primary": not state.order.is_empty()})
 		"decorations":
 			title = "主城装饰"
 			var gate = systems.decorations.global_status()
@@ -291,10 +313,20 @@ func open(page: String, id: int = 0) -> void:
 					rows.back()["icon"] = str(option.row.get("icon_name", ""))
 					rows.back()["category"] = str(slot.get("name", "设施%d" % int(slot.slot_id)))
 					rows.back()["decoration_slot"] = int(slot.slot_id)
+					rows.back().merge({"service_key": "decoration:%d" % int(option.id), "filter_primary": bool(option.selected)})
 		"dispatch":
 			title = "伙伴派遣"
 			var state = systems.work_status(id)
-			rows.append(item(state.name, "每次产出：%s ×%d\n领取消耗：%s\n储存上限 %d 次" % [clean(systems.material_name(int(state.reward.id))), state.reward.amount, price_text(state.price), int(state.queue_max)], [command("开始工作", "op:start_work", id, 0, not state.can_start), command("返回派遣", "page:work")]))
+			var actions = [command("开始工作", "op:start_work", id, 0, not state.can_start), command("领取 %d 次" % int(state.claimable_quantity), "op:collect_work", id, 0, not state.ready), command("升级", "op:upgrade_work", id, 0, not state.can_upgrade)]
+			if not state.order.is_empty(): actions.append(command("停止派遣", "confirm_stop_work", id, 0, state.ready))
+			if not state.unlocked: actions.append(command("营地建设", "page:buildings", 6))
+			var details = "每次产出：%s ×%d\n领取消耗：%s" % [clean(systems.material_name(int(state.reward.id))), state.reward.amount, "无消耗" if state.price.is_empty() else price_text(state.price)]
+			if int(state.level) + 1 < int(state.max_level): details += "\n升级消耗：" + price_text(state.upgrade_price)
+			if not str(state.reason).is_empty(): details += "\n" + clean(state.reason)
+			if not state.order.is_empty() and not str(state.claim_reason).is_empty(): details += "\n" + clean(state.claim_reason)
+			if not state.can_upgrade: details += "\n" + clean(state.upgrade_reason)
+			rows.append(item(state.name, details, actions))
+			rows.back().merge({"service_key": "work:%d" % id, "material_id": int(state.reward.id), "progress": int(state.completed_quantity), "required": int(state.queue_max), "metrics": [["派遣等级", "%d / %d" % [int(state.level) + 1, int(state.max_level)]], ["已储存", "%d / %d" % [int(state.completed_quantity), int(state.queue_max)]], ["今日可领", "%d / %d" % [int(state.daily_remaining), int(state.daily_limit)]], ["下次产出", "%d 分钟" % ceili(float(state.next_claim_seconds) / 60.0) if not state.order.is_empty() else "待派遣"]]})
 		"meals":
 			title = "猫饭料理"
 			var order = systems.meal_order_status()
@@ -303,6 +335,7 @@ func open(page: String, id: int = 0) -> void:
 				order_lines.append("%s Lv.%d" % [name_of(catalog.find("CatMealData", int(key))), int(order.meals[key])])
 			rows.append(item("本次餐单 %d / %d" % [int(order.count), int(order.limit)], "\n".join(order_lines) + "\n合计：" + price_text(order.price) + "\n" + clean(order.reason), [command("点餐", "op:buy_meal", 0, 0, not order.can_buy)]))
 			rows.back()["icon"] = "icon_maincitybulid_restaurant"
+			rows.back().merge({"service_key": "meal:order", "service_filterable": false})
 			var last_order = systems.meal_order_status(true)
 			if not last_order.meals.is_empty():
 				var last_lines: Array[String] = []
@@ -314,6 +347,7 @@ func open(page: String, id: int = 0) -> void:
 				if game.ad_rewards.free_skips() > 0: buttons.append(command("免广告复购", "ad_skip:meal", 0, 0, not ad_quote.success))
 				rows.append(item("上次餐单", "\n".join(last_lines) + "\n" + price_text(last_order.price) + "\n" + clean(last_order.reason), buttons))
 				rows.back()["icon"] = "icon_maincitybulid_restaurant"
+				rows.back().merge({"service_key": "meal:previous", "service_filterable": false})
 			for row in catalog.rows("CatMealData"):
 				var meal_id = DungeonCatalog.row_id(row)
 				var research = systems.meal_status(meal_id)
@@ -325,6 +359,7 @@ func open(page: String, id: int = 0) -> void:
 					details += "\nLv.%d：%s%s\n%s" % [level, price_text(quote.price), " · 已生效" if quote.purchased else " · 餐单已选" if quote.selected else "", clean(quote.description)]
 				rows.append(item(name_of(row), details, buttons))
 				rows.back()["icon"] = str(row.get("IconName", ""))
+				rows.back().merge({"service_key": "meal:%d" % meal_id, "filter_primary": int(research.researched_level) > 0})
 		"meal_buffs":
 			title = "料理效果"
 			if profile.data.run.active:
@@ -371,6 +406,7 @@ func open(page: String, id: int = 0) -> void:
 				rows.back()["icon"] = str(row.get("floating_icon", "信物"))
 				rows.back()["progress"] = systems.stat("relationship:" + str(int(row.id)))
 				rows.back()["required"] = DungeonCatalog.ids(row.get("relationship_talkid", "")).size()
+				rows.back()["service_key"] = "npc:%d" % int(row.id)
 		"npc":
 			var npc = catalog.find("NPCData", id)
 			title = name_of(npc)
@@ -463,6 +499,7 @@ func open(page: String, id: int = 0) -> void:
 				rows.back()["count"] = count
 				rows.back()["star_num"] = int(ability.get("Rare", ability.get("star_num", 1)))
 				rows.back()["category"] = "%d星" % int(rows.back().star_num)
+				rows.back().merge({"service_key": "loot:%d" % int(row.id), "filter_primary": int(row.id) in profile.data.discovered_loot})
 		"mall":
 			title = "商城"
 			for row in catalog.rows("MallTradeData"):
@@ -532,18 +569,32 @@ func open(page: String, id: int = 0) -> void:
 				row.buttons.append(command("前往建设", "page:buildings", feature.building_id))
 	_enrich(page, rows)
 	var specialized = {"inventory": "inventory", "storage": "inventory", "characters": "character", "weapons": "weapon", "settings": "settings", "talents": "guild", "tasks": "commission", "achievements": "commission", "character_talents": "tree", "awakening": "awakening", "buildings": "buildings", "difficulty": "prepare", "mall": "shop"}
-	for service in ["partners", "work", "meals", "npcs", "decorations", "archive", "history", "extra_challenges", "extra_challenges_receive", "extra_challenge_delete", "token_compose_preview", "token_reroll_preview"]: specialized[service] = "camp_service"
+	for service in ["partners", "work", "dispatch", "meals", "npcs", "decorations", "archive", "history", "extra_challenges", "extra_challenges_receive", "extra_challenge_delete", "token_compose_preview", "token_reroll_preview", "resources", "resource", "training"]: specialized[service] = "camp_service"
 	specialized["tokens"] = "tokens"
 	specialized["amplifiers"] = "tokens"
 	var layout = str(specialized.get(page, "model" if page == "partners" else "grid" if page in ["camp", "inventory", "archive", "tokens", "amplifiers", "meals"] else "list"))
+	var previous_context: Dictionary = hud.page.page_context if hud.modal_open and is_instance_valid(hud.page) else {}
 	var context: Dictionary = {"page": page, "selected_id": id, "camp": not profile.data.run.active}
+	var back_pages = {"dispatch": "work", "resource": "resources", "awakening": "characters", "token_compose_preview": "amplifiers", "token_reroll_preview": "amplifiers", "extra_challenges_receive": "extra_challenges", "extra_challenge_delete": "extra_challenges"}
+	if back_pages.has(page):
+		var parent: String = back_pages[page]
+		var previous_page = str(previous_context.get("page", ""))
+		if page not in ["resource", "awakening"] or previous_page == parent or (previous_page == page and previous_context.get("back_action") == "page:" + parent):
+			context["back_action"] = "page:" + parent
+			if page == "awakening": context["back_id"] = int(previous_context.get("back_id", previous_context.get("selected_character", id)))
+	if page in ["tokens", "amplifiers", "token_compose_preview", "token_reroll_preview"] and hud.modal_open and is_instance_valid(hud.page):
+		var previous: Dictionary = hud.page.page_context
+		if previous.get("page", "") == "difficulty" or previous.get("prepare_return", false):
+			context["prepare_return"] = true
+			if page in ["tokens", "amplifiers"]: context["back_action"] = "page:difficulty"
 	if page in ["inventory", "characters", "weapons", "storage"]:
 		context["in_run"] = _role_in_run()
 		context["camp"] = not context.in_run
 		context["role_navigation"] = _role_navigation(context.in_run)
 		context["partner_navigation"] = context.in_run and systems.rank(profile.data.buildings, 4) >= 3
-		context["selected_weapon"] = int(profile.data.selected_weapon)
-		context["equipped_weapon"] = int(profile.data.selected_weapon)
+		var character_id = id if page == "weapons" and id > 0 else game.selected_character
+		context["selected_weapon"] = systems.equipped_weapon(character_id)
+		context["equipped_weapon"] = systems.equipped_weapon(character_id)
 		if page == "characters":
 			context["fashion_owned"] = systems.character_fashion_owned()
 			context["fashion_equipped"] = systems.character_fashion_equipped()
@@ -556,26 +607,32 @@ func open(page: String, id: int = 0) -> void:
 	if page == "settings":
 		context["in_run"] = bool(profile.data.run.active)
 		context["local_save_time"] = FileAccess.get_modified_time(game.save_store.path) if FileAccess.file_exists(game.save_store.path) else 0
-	if layout in ["buildings", "guild", "commission", "character", "weapon", "inventory", "shop", "tokens", "camp_service"]:
+	if layout in ["buildings", "guild", "commission", "character", "weapon", "inventory", "shop", "tokens", "camp_service", "awakening"]:
 		context["systems"] = systems
 		context["catalog"] = catalog
 		context["group_id"] = id
-		context["character_id"] = game.selected_character
+		context["character_id"] = id if page == "weapons" and id > 0 else game.selected_character
 		if hud.modal_open and is_instance_valid(hud.page) and current_page == str(hud.page.page_context.get("page", "")):
 			if page == "buildings" and (id <= 0 or id == int(hud.page.page_context.get("selected_id", 0))):
 				for key in ["selected_id", "selected_stage", "building_scroll"]:
 					if hud.page.page_context.has(key): context[key] = hud.page.page_context[key]
-			for key in ["group_id", "category", "selected_talent", "selected_character", "character_mode", "use_model", "selected_fashion", "fashion_open", "selected_weapon", "weapon_selector_open", "selected_inventory_key", "inventory_filter", "mall_category", "selected_offer", "mall_box_count"]:
+			for key in ["group_id", "category", "selected_talent", "selected_character", "character_mode", "use_model", "selected_fashion", "fashion_open", "selected_weapon", "weapon_selector_open", "selected_inventory_key", "inventory_filter", "mall_category", "selected_offer", "mall_box_count", "awakening_character_id", "selected_awakening", "awakening_collection_scroll", "awakening_detail_scroll"]:
 				if key == "group_id" and id > 0: continue
 				if page == "inventory" and id > 0 and key in ["selected_inventory_key", "inventory_filter"]: continue
+				if page == "weapons" and int(context.character_id) != int(hud.page.page_context.get("character_id", 0)) and key in ["selected_weapon", "weapon_selector_open"]: continue
 				if hud.page.page_context.has(key): context[key] = hud.page.page_context[key]
 		if page == "characters" and id > 0: context["selected_character"] = id
+		if page == "awakening" and id > 0: context["awakening_character_id"] = id
 		if hud.modal_open and is_instance_valid(hud.page):
-			for key in ["token_selected", "token_slot", "token_preset_index"]:
+			for key in ["token_selected", "token_slot", "token_preset_index", "token_presets_open"]:
 				if hud.page.page_context.has(key): context[key] = hud.page.page_context[key]
-			if page == str(hud.page.page_context.get("page", "")): context["service_selection"] = hud.page.page_context.get("service_selection", 0)
+			if page == str(hud.page.page_context.get("page", "")):
+				for key in ["service_selection", "service_selected_key", "service_query", "service_filter", "service_category", "service_collection_scroll", "service_detail_scroll"]:
+					if hud.page.page_context.has(key): context[key] = hud.page.page_context[key]
 		if layout == "tokens":
-			if id > 0: context.token_selected = id
+			if id > 0:
+				context.token_selected = id
+				context.erase("service_selected_key")
 			context["token_state"] = _relationship_context(page, context)
 			if page == "tokens":
 				for index in rows.size():
@@ -593,7 +650,9 @@ func open(page: String, id: int = 0) -> void:
 	if not profile.data.run.active and page not in ["inventory", "characters", "weapons", "storage", "settings"]:
 		context["resources"] = [["sprite_materialicon_101", str(systems.material(101))], ["sprite_materialicon_501", str(systems.material(501))], ["sprite_materialicon_90002", str(systems.material(90002))]]
 		if page == "difficulty": context["resources"] = [["sprite_materialicon_101", str(systems.material(101))], ["sprite_materialicon_90002", str(systems.material(90002))]]
-	if page == "mall": context["resources"] = [["sprite_materialicon_90002", str(systems.material(90002))]]
+	if page == "mall":
+		context["resources"] = [["sprite_materialicon_90002", str(systems.material(90002))]]
+		if not mall_category.is_empty(): context["mall_category"] = mall_category
 	if page in ["tokens", "amplifiers", "token_compose_preview", "token_reroll_preview"]:
 		context["resources"] = [["material:101", str(systems.material(101))], ["material:108", str(systems.material(108))], ["material:90002", str(systems.material(90002))]]
 	if page == "npcs": context["resources"] = [["material:106", str(systems.material(106))]]
@@ -607,7 +666,7 @@ func _relationship_sockets(token_id: int) -> Array:
 		var buttons: Array = []
 		if socket.unlocked:
 			buttons.append(command("选择槽位", "token_socket_select", token_id, int(socket.index)))
-			buttons.append(command("镶嵌", "page:amplifiers", token_id))
+			buttons.append(command("镶嵌", "page:amplifiers", token_id, int(socket.index)))
 			if int(socket.amplifier_id) > 0: buttons.append(command("拆卸", "op:unequip_amplifier", token_id, int(socket.index)))
 		else: buttons.append(command("解锁", "op:unlock_amplifier_slot", token_id, int(socket.index), not socket.can_unlock))
 		result.append({"title": name_of(amplifier) if not amplifier.is_empty() else "空槽" if socket.unlocked else "未解锁", "icon": str(amplifier.get("icon_name", "icon_addnum" if socket.unlocked else "锁")), "description": description(amplifier) if socket.unlocked else price_text(socket.price) + "\n" + str(socket.reason), "buttons": buttons})
@@ -672,6 +731,7 @@ func _extra_challenge_rows() -> Array:
 	buttons.append_array(_bounty_ads("extra_challenge_receive"))
 	if not state.unlocked: buttons.append(command("营地建设", "page:buildings", 5))
 	rows.append(item("悬赏 %d / %d" % [state.count, state.capacity], "悬赏信件 %d\n%s" % [state.letters, str(state.reason)], buttons))
+	rows.back().merge({"service_key": "bounty:summary", "service_filterable": false})
 	for quote in systems.extra_challenges.entries():
 		var row: Dictionary = quote.row
 		var detail = description(row) + "\n进度 %d / %d\n奖励：%s" % [quote.current, quote.required, price_text(quote.reward)]
@@ -680,6 +740,7 @@ func _extra_challenge_rows() -> Array:
 		actions.append_array(_bounty_ads("extra_challenge_double" if quote.complete else "extra_challenge_finish", int(quote.id)))
 		rows.append(item(name_of(row), detail, actions))
 		rows.back().merge({"progress": quote.current, "required": quote.required, "icon": "icon_maincitybulid_Extra challenges"})
+		rows.back().merge({"service_key": "bounty:%d" % int(quote.id), "filter_primary": bool(quote.can_claim)})
 	return rows
 
 func _history_rows() -> Array:
@@ -691,11 +752,13 @@ func _history_rows() -> Array:
 	if int(summary.most_used_weapon) > 0: overview += "\n常用武器：" + name_of(catalog.find("WeaponData", int(summary.most_used_weapon)))
 	for character_id in summary.characters: overview += "\n%s：%d次（已记录战绩）" % [name_of(catalog.find("CharData", int(character_id))), int(summary.characters[character_id])]
 	var rows = [item("冒险总览", overview)]
+	rows.back().merge({"service_key": "history:summary", "service_filterable": false})
 	for record in systems.history.records():
 		var result = "胜利" if record.victory else "撤退" if str(record.reason) == "retreat" else "战败"
 		rows.append(item("%s · %s" % [result, name_of(catalog.find("CharData", int(record.character_id)))], "难度 %d · 区域 %d · 房间 %d\n时间 %d分%d秒 · 击败 %d\n金苹果 %d" % [record.difficulty, record.region, record.rooms, int(record.elapsed / 60), int(record.elapsed) % 60, record.kills, record.gold_apples], [command("查看战绩", "history_detail", int(record.id))]))
 		rows.back()["outcome"] = "victory" if record.victory else str(record.reason)
 		rows.back()["icon"] = "menu_adventure"
+		rows.back().merge({"service_key": "history:%d" % int(record.id), "filter_primary": bool(record.victory)})
 		for region in systems.history.region_summary(record): rows.back().description += "\n区域%d：完成%d个房间" % [int(region.region), int(region.rooms)]
 	if rows.size() == 1: rows.append(item("暂无战绩", "完成一次冒险后记录战绩。"))
 	return rows
@@ -778,7 +841,7 @@ func _enrich(page: String, rows: Array) -> void:
 		if page == "work":
 			var material_id = int(source.get("materia_id", 0))
 			row.icon = "sprite_mosterwork_%d" % (0 if material_id <= 9999 else int((material_id % 10000) / 100))
-		if row.has("material_id"): row.icon = "material:" + str(row.material_id)
+		if row.has("material_id"): row.icon = "loot:12101" if int(row.material_id) == 12101 else "material:" + str(row.material_id)
 		for field in ["square_icon_name", "icon_name", "icon", "Icon", "IconName", "sprite_name"]:
 			var key = str(source.get(field, ""))
 			if page == "buildings": key = systems._part(key, mini(int(profile.data.buildings.get(str(id), 0)), maxi(0, int(source.get("max_level", 1)) - 1)))

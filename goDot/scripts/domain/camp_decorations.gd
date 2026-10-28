@@ -77,6 +77,9 @@ func status(decoration_id: int) -> Dictionary:
 	return {"id": decoration_id, "row": row, "slot_id": int(row.get("slot_id", 0)), "valid": valid, "is_ruins": is_ruins, "is_default": is_default, "owned": owned, "selected": selected, "price": price, "unlock_id": unlock_id, "unlock_reason": unlock_reason, "reason": reason, "can_unlock": reason.is_empty() and not owned, "can_equip": reason.is_empty() and owned and prefab_valid}
 
 func unlock(decoration_id: int) -> Dictionary:
+	return systems._camp_transaction(_unlock.bind(decoration_id))
+
+func _unlock(decoration_id: int) -> Dictionary:
 	var quote = status(decoration_id)
 	if not quote.reason.is_empty(): return systems._fail(quote.reason)
 	if quote.owned: return systems._ok("外观已解锁", decoration_id)
@@ -85,6 +88,9 @@ func unlock(decoration_id: int) -> Dictionary:
 	return systems._done("外观已解锁", decoration_id)
 
 func equip(slot_id: int, decoration_id: int) -> Dictionary:
+	return systems._camp_transaction(_equip.bind(slot_id, decoration_id))
+
+func _equip(slot_id: int, decoration_id: int) -> Dictionary:
 	var quote = status(decoration_id)
 	if not quote.valid or int(quote.slot_id) != slot_id: return systems._fail("外观与装饰位置不匹配")
 	if not quote.reason.is_empty(): return systems._fail(quote.reason)

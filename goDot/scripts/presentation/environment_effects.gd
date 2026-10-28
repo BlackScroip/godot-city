@@ -17,9 +17,11 @@ var _quality_refresh := 0.0
 var _event_effects: Dictionary = {}
 var _priority_refresh := 0.0
 var _priority_focus := Vector3.INF
+var _camp := false
 
 func configure(world: Node3D, camp := false) -> void:
 	_world = world
+	_camp = camp
 	_low_quality = world.low_effects or int(DungeonStyle.read_options().quality) == 0
 	if FileAccess.file_exists(CATALOG):
 		var catalog = JSON.parse_string(FileAccess.get_file_as_string(CATALOG))
@@ -95,6 +97,8 @@ func register_anchor(anchor: Node3D, address: String, autoplay := true) -> Dicti
 	for entry in bindings:
 		if entry.anchor == anchor and entry.address == address: return entry
 	var definition: Dictionary = effects[address].duplicate(true)
+	if _camp and address == "24102301_fx_env_maincityprotal":
+		_soften_camp_portal(definition)
 	if autoplay:
 		definition.layers = definition.get("layers", []).filter(func(layer): return bool(layer.get("play_on_awake", true)))
 	if definition.get("layers", []).is_empty(): return {}
@@ -104,6 +108,24 @@ func register_anchor(anchor: Node3D, address: String, autoplay := true) -> Dicti
 	bindings.append(entry)
 	_priority_refresh = 0.0
 	return entry
+
+func _soften_camp_portal(definition: Dictionary) -> void:
+	for layer in definition.get("layers", []):
+		if not bool(layer.get("looping", false)): continue
+		layer.simulation_speed = float(layer.get("simulation_speed", 1.0)) * 0.6
+		for material in layer.get("materials", []):
+			material.alpha = float(material.get("alpha", 1.0)) * 0.55
+			var shape: Dictionary = material.get("shape_color", {})
+			for channel in ["r", "g", "b"]:
+				if shape.has(channel): shape[channel] = minf(float(shape[channel]), 2.0)
+			if material.has("source_floats"):
+				material.source_floats["_Alpha"] = float(material.source_floats.get("_Alpha", 1.0)) * 0.55
+				material.source_floats["_FadeBurnGlow"] = minf(float(material.source_floats.get("_FadeBurnGlow", 0.0)), 1.0)
+		if str(layer.get("name", "")).ends_with("_floorglow"):
+			layer.initial.startLifetime = {"minMaxState": 0, "scalar": 4.0}
+			layer.emission.rateOverTime = {"minMaxState": 0, "scalar": 0.75}
+			layer.emission.m_Bursts = []
+			layer.emission.m_BurstCount = 0
 
 func trigger_at(address: String, point: Vector3, parent: Node3D = null) -> Dictionary:
 	if not effects.has(address): return {}
@@ -196,6 +218,9 @@ func _process(delta: float) -> void:
 			entry.anchor.add_child(visual)
 			cache_textures(entry.definition)
 			visual.configure(entry.definition, _low_quality, texture_cache)
+			if _camp and entry.address == "24102301_fx_env_maincityprotal":
+				for emitter in visual.emitters:
+					emitter.node.preprocess = emitter.node.lifetime
 			entry.effect = visual
 		if active_particle_count + entry.effect.particle_count > budget:
 			entry.effect.hide()

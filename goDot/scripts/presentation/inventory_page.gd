@@ -392,7 +392,7 @@ func _adapt() -> void:
 	var slot := grid_width / 6.4
 	var gap := slot * 0.08
 	ROLE_NAVIGATION.place_back_button(_back, ROLE_NAVIGATION.scale_factor(size))
-	_place(_title_art, Vector2(size.x * 0.078, size.y * 0.025), Vector2(300, 105) * unit)
+	_place(_title_art, Vector2(_back.get_rect().end.x + 12, _back.position.y), Vector2(300 * unit, _back.size.y))
 	if DungeonLocale.current_locale() != "zh_CN":
 		_title_art.size.x = size.x * 0.4
 		DungeonStyle.fit_label_text(title_label, roundi(54 * unit), 10)

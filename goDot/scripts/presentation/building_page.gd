@@ -1,6 +1,7 @@
 extends Control
 
 signal command(kind: String, id: Variant, extra: Variant)
+const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 const PAPER := Color("faf9f6")
 const INK := Color("604324")
 var host: Control
@@ -71,7 +72,7 @@ func configure(owner_page: Control, _rows: Array, context: Dictionary) -> void:
 	title.add_theme_color_override("font_outline_color", Color("392818"))
 	title.add_theme_constant_override("outline_size", 5)
 	canvas.add_child(title)
-	close_button = art_button("X", "关闭")
+	close_button = ROLE_NAVIGATION.create_back_button("返回主城")
 	close_button.pressed.connect(go_back)
 	canvas.add_child(close_button)
 	help_button = art_button("须知", "修复营地吧！")
@@ -438,9 +439,10 @@ func _layout() -> void:
 	decoration_canvas.scale = Vector2.ONE * factor
 	board.position = Vector2(38, 30)
 	board.size = _logical_size - Vector2(70, 65)
-	title.position = Vector2(136, 68)
-	close_button.position = Vector2(16, 10)
-	close_button.size = Vector2(104, 104)
+	ROLE_NAVIGATION.place_back_button(close_button, ROLE_NAVIGATION.scale_factor(size) / factor)
+	title.position = Vector2(close_button.get_rect().end.x + 16, close_button.position.y)
+	title.size.y = close_button.size.y
+	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	help_button.position = Vector2(_logical_size.x - 114, 66)
 	help_button.size = Vector2(48, 48)
 	var width = _logical_size.x - 160

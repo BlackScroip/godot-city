@@ -130,7 +130,7 @@ func _capture(canvas: SubViewport, page: DungeonMenuPage, label: String) -> void
 		rendered.save_png(path)
 		for part in selection.parts:
 			var sample_uv = Vector2(0.07, 0.5)
-			var position = part.panel.global_position + part.panel.size * sample_uv
+			var position = part.panel.get_global_transform() * (part.panel.size * sample_uv)
 			var actual = rendered.get_pixelv(Vector2i(position))
 			var source = part.panel.background.get_image()
 			var expected = source.get_pixelv(Vector2i(Vector2(source.get_size()) * sample_uv)) * part.panel.background_color()

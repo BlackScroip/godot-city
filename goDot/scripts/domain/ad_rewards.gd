@@ -5,9 +5,10 @@ var systems
 func _init(source) -> void:
 	systems = source
 
-func _state() -> Dictionary:
+func _state(now: int = -1) -> Dictionary:
 	var data: Dictionary = systems.profile.data
-	var day = floori((float(systems.utc_now.call()) - 22 * 3600) / 86400.0)
+	if now < 0: now = int(systems.utc_now.call())
+	var day = floori((float(now) - 22 * 3600) / 86400.0)
 	if not data.get("ad_rewards", {}) is Dictionary: data.ad_rewards = {}
 	var saved: Dictionary = data.get("ad_rewards", {})
 	if saved.is_empty():
@@ -24,6 +25,9 @@ func free_skips() -> int:
 	return maxi(0, 3 - int(_state().skips))
 
 func quote(context: Dictionary) -> Dictionary:
+	return _quote(context, int(systems.utc_now.call()))
+
+func _quote(context: Dictionary, now: int) -> Dictionary:
 	var kind = str(context.get("kind", ""))
 	var id = int(context.get("id", 0))
 	var point = ""
@@ -32,7 +36,7 @@ func quote(context: Dictionary) -> Dictionary:
 		var row: Dictionary = systems.catalog.find("MallTradeData", id)
 		if not row.get("Enable", false) or row.get("GoodsPayType", "") != "Ad": return _fail("商品不可用")
 		if systems._mall_reward_options(row).is_empty(): return _fail("奖励配置不可用")
-		var period = str(int(int(systems.utc_now.call()) / 86400)) if row.RefreshMode == "OneDay" else str(systems.stat("runs")) if row.RefreshMode == "OneBattle" else "never"
+		var period = str(int(now / 86400)) if row.RefreshMode == "OneDay" else str(systems.stat("runs")) if row.RefreshMode == "OneBattle" else "never"
 		var purchase = "purchase:" + str(id) + ":" + period
 		if int(row.GoodsNum) >= 0 and systems.stat(purchase) >= int(row.GoodsNum): return _fail("已达领取上限")
 		point = "Mall_" + str(id)
@@ -54,16 +58,21 @@ func quote(context: Dictionary) -> Dictionary:
 	else:
 		return _fail("奖励入口不可用")
 	var maximum = int(systems.catalog.config.get("AdsDailyLimitConfig", {}).get(point, 0))
-	if maximum <= 0 or int(_state().counts.get(point, 0)) >= maximum: return _fail("今日次数已用完")
+	if maximum <= 0 or int(_state(now).counts.get(point, 0)) >= maximum: return _fail("今日次数已用完")
 	return {"success": true, "point": point, "meals": meal_order}
 
 func claim(context: Dictionary, receipt: String, skip: bool = false) -> Dictionary:
-	var state = _state()
+	return systems._camp_transaction(func(): return _claim_transaction(context, receipt, skip))
+
+func _claim_transaction(context: Dictionary, receipt: String, skip: bool) -> Dictionary:
+	# Quote and commit against one daily ledger even across the refresh boundary.
+	var now = int(systems.utc_now.call())
+	var state = _state(now)
 	if receipt.is_empty() or state.receipts.has(receipt): return _fail("奖励已处理")
-	var check = quote(context)
+	var check = _quote(context, now)
 	if not check.success: return check
-	if skip and free_skips() == 0: return _fail("今日免广告次数已用完")
-	var id = int(context.id)
+	if skip and int(state.skips) >= 3: return _fail("今日免广告次数已用完")
+	var id = int(context.get("id", 0))
 	if context.kind == "mall":
 		var row: Dictionary = systems.catalog.find("MallTradeData", id)
 		for option in systems._mall_reward_options(row):
@@ -76,15 +85,14 @@ func claim(context: Dictionary, receipt: String, skip: bool = false) -> Dictiona
 	elif context.kind == "work":
 		systems.add_work_progress(id, 30 * 60)
 	elif str(context.kind).begins_with("extra_challenge_"):
-		var bounty = systems.extra_challenges.apply_ad(str(context.kind).trim_prefix("extra_challenge_"), id)
+		var bounty = systems.extra_challenges._apply_ad_transaction(str(context.kind).trim_prefix("extra_challenge_"), id)
 		if not bounty.success: return bounty
 	state.counts[check.point] = int(state.counts.get(check.point, 0)) + 1
 	if skip: state.skips += 1
 	state.receipts.append(receipt)
 	# Receipts cover duplicate SDK delivery without growing saves indefinitely.
 	while state.receipts.size() > 256: state.receipts.pop_front()
-	systems.changed.emit()
-	return {"success": true, "message": "奖励已领取"}
+	return systems._done("奖励已领取")
 
 func _fail(text: String) -> Dictionary:
 	return {"success": false, "message": text}

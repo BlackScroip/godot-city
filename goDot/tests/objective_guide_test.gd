@@ -22,6 +22,7 @@ func _initialize() -> void:
 	_run.call_deferred()
 
 func _run() -> void:
+	check(Guide.DISK_TINT.r > 1.0 and Guide.DISK_TINT.r == Guide.DISK_TINT.g and Guide.DISK_TINT.g == Guide.DISK_TINT.b and Guide.DISK_TINT.a == 1.0, "Guide disk is brightened without shifting its hue or opacity")
 	var canvas := SubViewport.new()
 	canvas.size = Vector2i(1600, 900)
 	root.add_child(canvas)

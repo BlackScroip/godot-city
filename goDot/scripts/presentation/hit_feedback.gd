@@ -1,10 +1,59 @@
 extends RefCounted
 
+const CACHE_CAPACITY := 2048
+static var _cache: Dictionary = {}
+static var _cache_keys: Array[String] = []
+static var _cache_cursor := 0
+
 # Retain source units: StopFrameWeight is not a duration in seconds.
 static func normalize(definition: Dictionary) -> Dictionary:
-	var raw: Variant = definition.get("raw", definition)
-	if raw is String: raw = JSON.parse_string(raw)
-	if not raw is Dictionary: raw = {}
+	var value: Variant = definition.get("raw", definition)
+	if value is String: return read(definition).duplicate(true)
+	return _normalize(value if value is Dictionary else {})
+
+# Internal readers share immutable payloads. Dictionary inputs may change between calls.
+static func read(definition: Dictionary) -> Dictionary:
+	var value: Variant = definition.get("raw", definition)
+	if value is String:
+		var entry := _cached(value)
+		if not entry.has("feedback"):
+			entry["feedback"] = _normalize(entry.raw)
+			_freeze(entry.feedback)
+		return entry.feedback
+	var result := _normalize(value if value is Dictionary else {})
+	_freeze(result)
+	return result
+
+static func raw(definition: Dictionary) -> Dictionary:
+	var value: Variant = definition.get("raw", definition)
+	if value is String: return _cached(value).raw
+	var result: Dictionary = value.duplicate(true) if value is Dictionary else {}
+	_freeze(result)
+	return result
+
+static func _cached(encoded: String) -> Dictionary:
+	if _cache.has(encoded): return _cache[encoded]
+	var parsed: Variant = JSON.parse_string(encoded)
+	var entry := {"raw": parsed if parsed is Dictionary else {}}
+	_freeze(entry.raw)
+	if _cache_keys.size() < CACHE_CAPACITY:
+		_cache_keys.append(encoded)
+	else:
+		_cache.erase(_cache_keys[_cache_cursor])
+		_cache_keys[_cache_cursor] = encoded
+		_cache_cursor = (_cache_cursor + 1) % CACHE_CAPACITY
+	_cache[encoded] = entry
+	return entry
+
+static func _freeze(value: Variant) -> void:
+	if value is Dictionary:
+		for child in value.values(): _freeze(child)
+		value.make_read_only()
+	elif value is Array:
+		for child in value: _freeze(child)
+		value.make_read_only()
+
+static func _normalize(raw: Dictionary) -> Dictionary:
 	var result := {"camera_shakes": [], "hit_stops": [], "hit_actions": [], "material_flash": false, "material_flashes": [], "hit_sounds": [], "hit_effects": [], "unknown": []}
 	var entries: Variant = raw.get("FeedbackList", [])
 	if not entries is Array: return result

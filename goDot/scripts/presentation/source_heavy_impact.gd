@@ -3,7 +3,9 @@ extends RefCounted
 const Original = preload("res://scripts/presentation/hit_feedback.gd")
 
 static func collect(hit: Dictionary, source: RefCounted = null) -> Dictionary:
-	var feedback := Original.normalize(hit.get("definition", {}))
+	var profile: Dictionary = hit.get("profile", {})
+	var feedback: Dictionary = profile.get("source_feedback", {})
+	if feedback.is_empty(): feedback = Original.read(hit.get("definition", {}))
 	var result := {"effects": [], "sounds": [], "camera_shakes": feedback.camera_shakes, "hit_stops": feedback.hit_stops, "hit_actions": feedback.hit_actions, "material_flashes": feedback.material_flashes}
 	var owner: Variant = source if source != null else hit.get("source")
 	var summon_id := str(hit.get("summon_id", ""))
@@ -28,6 +30,11 @@ static func collect(hit: Dictionary, source: RefCounted = null) -> Dictionary:
 
 static func present(presentation: Node, source: Node3D, target: Node3D, hit: Dictionary, point: Vector3) -> void:
 	var plan := collect(hit, source.get("combat"))
+	if bool(hit.get("resolved_accepted", true)) and target.has_method("start_source_model_shake"):
+		for action in plan.hit_actions:
+			if bool(action.get("model_shake", false)):
+				target.start_source_model_shake()
+				break
 	for effect in plan.effects:
 		var position: Vector3 = target.impact_anchor(target.position + Vector3.UP * 0.65) if effect.unit_center else point
 		var before: int = presentation.spawned

@@ -10,14 +10,19 @@ var character_button: Button
 var back_button: Button
 var heading: Label
 var toolbar: HBoxContainer
+var selection_effect: Control
+var _selection_tween: Tween
+var _submitted := false
 
 const Palette = preload("res://scripts/presentation/choice_palette.gd")
+const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
+const SELECTED_SCALE := 1.08
 
 func configure(page: DungeonMenuPage, rows: Array) -> void:
 	host = page
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
-	back_button = _tool_button("", "退出按钮", "返回")
+	back_button = ROLE_NAVIGATION.create_back_button()
 	back_button.pressed.connect(func(): host.closed.emit())
 	add_child(back_button)
 	heading = _label(host.title_label.text, 40, Color.WHITE, true)
@@ -36,6 +41,8 @@ func configure(page: DungeonMenuPage, rows: Array) -> void:
 			refresh_button.disabled = bool(entry.get("disabled", false))
 			refresh_button.pressed.connect(func(): command.emit(str(entry.action), entry.get("id", ""), entry.get("extra", "")))
 			toolbar.add_child(refresh_button)
+	selection_effect = preload("res://scripts/presentation/talent_selection_effect.gd").new()
+	add_child(selection_effect)
 	cards = HBoxContainer.new()
 	cards.alignment = BoxContainer.ALIGNMENT_CENTER
 	add_child(cards)
@@ -78,7 +85,6 @@ func _build_card(row: Dictionary) -> void:
 	panel.set_meta("talent_marked", marked)
 	if marked:
 		panel.tooltip_text = "已标记天赋"
-	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	panel.focus_mode = Control.FOCUS_ALL
 	panel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	panel.gui_input.connect(func(event):
@@ -86,7 +92,13 @@ func _build_card(row: Dictionary) -> void:
 			_select(index)
 			panel.accept_event())
 	panel.focus_entered.connect(func(): _select(index))
-	cards.add_child(panel)
+	var slot = Control.new()
+	slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cards.add_child(slot)
+	slot.add_child(panel)
+	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	panel.resized.connect(func(): _refresh_selection_geometry.call_deferred())
 	var stack = VBoxContainer.new()
 	stack.mouse_filter = Control.MOUSE_FILTER_PASS
 	panel.add_child(stack)
@@ -160,10 +172,16 @@ func _build_card(row: Dictionary) -> void:
 	for entry in row.get("buttons", []):
 		choose.disabled = bool(entry.get("disabled", false))
 		choose.pressed.connect(func():
-			_select(index)
+			if _submitted or selected != index or choose.disabled: return
+			_submitted = true
+			for part in parts: part.choose.disabled = true
 			command.emit(str(entry.action), entry.get("id", ""), entry.get("extra", "")))
-	stack.add_child(choose)
-	parts.append({"panel": panel, "stack": stack, "icon": icon, "icon_frame": icon_frame, "tag": tag, "title": title, "description": description, "level_description": level_description, "scroll": scroll, "choose": choose, "upper_line": upper_line, "lower_line": lower_line})
+	var footer = CenterContainer.new()
+	footer.mouse_filter = Control.MOUSE_FILTER_PASS
+	stack.add_child(footer)
+	footer.add_child(choose)
+	choose.hide()
+	parts.append({"slot": slot, "panel": panel, "stack": stack, "icon": icon, "icon_frame": icon_frame, "tag": tag, "title": title, "description": description, "level_description": level_description, "scroll": scroll, "choose": choose, "footer": footer, "upper_line": upper_line, "lower_line": lower_line})
 
 func _is_marked(row: Dictionary) -> bool:
 	if row.has("marked"): return bool(row.marked)
@@ -180,8 +198,32 @@ func _label(value: String, font_size: int, color: Color, outlined := false) -> L
 	return label
 
 func _select(index: int) -> void:
+	if index < 0 or index >= parts.size() or _submitted: return
+	if selected == index: return
 	selected = index
-	for i in parts.size(): parts[i].panel.selected = i == index
+	if _selection_tween and _selection_tween.is_valid(): _selection_tween.kill()
+	_selection_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	for i in parts.size():
+		var part: Dictionary = parts[i]
+		part.panel.selected = i == index
+		part.panel.pivot_offset = part.panel.size * 0.5
+		part.slot.z_index = 1 if i == index else 0
+		part.choose.visible = i == index
+		_selection_tween.tween_property(part.panel, "scale", Vector2.ONE * (SELECTED_SCALE if i == index else 1.0), 0.16)
+	selection_effect.set_active(true)
+	_refresh_selection_geometry()
+	_update_separators.call_deferred()
+
+func _refresh_selection_geometry() -> void:
+	for part in parts: part.panel.pivot_offset = part.panel.size * 0.5
+	if selected < 0 or selected >= parts.size() or not is_instance_valid(selection_effect): return
+	var part: Dictionary = parts[selected]
+	var card_size: Vector2 = part.panel.size * SELECTED_SCALE
+	var origin: Vector2 = cards.position + part.slot.position - (card_size - part.panel.size) * 0.5
+	var sides := card_size.x * 0.14
+	var height := card_size.y * 0.15
+	selection_effect.position = origin - Vector2(sides, height)
+	selection_effect.size = card_size + Vector2(sides * 2.0, height * 2.0)
 
 func _adapt() -> void:
 	if not is_inside_tree() or not is_instance_valid(host) or size.y < 1: return
@@ -192,11 +234,10 @@ func _adapt() -> void:
 	var pad = maxf(12, 28 * scale_factor)
 	var tool_width = maxf(42, 96 * scale_factor)
 	var tool_height = maxf(46, 124 * scale_factor)
-	back_button.position = Vector2(pad, 18 * scale_factor)
-	back_button.size = Vector2(138 * scale_factor, tool_height)
-	back_button.add_theme_constant_override("icon_max_width", int(134 * scale_factor))
-	heading.position = Vector2(back_button.get_rect().end.x + 22 * scale_factor, 34 * scale_factor)
-	heading.size = Vector2(maxf(0, size.x - heading.position.x - tool_width * toolbar.get_child_count() - pad * 2), tool_height * 0.6)
+	ROLE_NAVIGATION.place_back_button(back_button, ROLE_NAVIGATION.scale_factor(size))
+	heading.position = Vector2(back_button.get_rect().end.x + 12, back_button.position.y)
+	heading.size = Vector2(maxf(0, size.x - heading.position.x - tool_width * toolbar.get_child_count() - pad * 2), back_button.size.y)
+	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	heading.add_theme_font_size_override("font_size", maxi(18, int(44 * scale_factor)))
 	toolbar.add_theme_constant_override("separation", int(20 * scale_factor))
 	for button in toolbar.get_children():
@@ -215,6 +256,7 @@ func _adapt() -> void:
 		part.level_description.add_theme_font_size_override("font_size", maxi(14, int(27 * scale_factor)))
 		part.description.add_theme_constant_override("outline_size", 3 if compact else 4)
 		part.choose.custom_minimum_size.y = maxi(26, int(44 * scale_factor))
+		part.footer.custom_minimum_size.y = part.choose.custom_minimum_size.y
 		part.choose.add_theme_font_size_override("font_size", maxi(16, int(29 * scale_factor)))
 		part.upper_line.custom_minimum_size.y = maxi(5, int(16 * scale_factor))
 		part.lower_line.custom_minimum_size.y = maxi(5, int(16 * scale_factor))
@@ -235,11 +277,13 @@ func _fit_cards() -> void:
 	var card_width = minf(420 * scale_factor, (size.x - maxf(12, 28 * scale_factor) * 2 - gap * (count - 1)) / count)
 	cards.size = Vector2(card_width * count + gap * (count - 1), size.y * 0.75)
 	cards.position = Vector2((size.x - cards.size.x) * 0.5, size.y * 0.17)
+	_refresh_selection_geometry.call_deferred()
 	_update_separators.call_deferred()
 
 func _update_separators() -> void:
 	for part in parts:
-		part.panel.dividers = PackedFloat32Array([part.upper_line.global_position.y - part.panel.global_position.y + part.upper_line.size.y * 0.5, part.lower_line.global_position.y - part.panel.global_position.y + part.lower_line.size.y * 0.5])
+		var inverse: Transform2D = part.panel.get_global_transform().affine_inverse()
+		part.panel.dividers = PackedFloat32Array([(inverse * part.upper_line.get_global_transform().origin).y + part.upper_line.size.y * 0.5, (inverse * part.lower_line.get_global_transform().origin).y + part.lower_line.size.y * 0.5])
 		part.panel.queue_redraw()
 
 func _draw() -> void:

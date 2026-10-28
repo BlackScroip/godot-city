@@ -457,6 +457,8 @@ func _adapt() -> void:
 	canvas.size = size / ratio
 	canvas.scale = Vector2.ONE * ratio
 	canvas.position = Vector2.ZERO
+	ROLE_NAVIGATION.place_back_button(canvas.get_node("RoleBackButton"))
+	ROLE_NAVIGATION.place_back_button(selector.get_node("RoleBackButton"))
 	var width = canvas.size.x
 	var height = canvas.size.y
 	_resources.position.x = width - 1069

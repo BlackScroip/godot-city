@@ -75,11 +75,7 @@ func _build_card(row: Dictionary) -> void:
 	text_stack.add_child(description)
 	text_stack.move_child(description, 0)
 	part.description = description
-	var footer := CenterContainer.new()
-	footer.mouse_filter = Control.MOUSE_FILTER_PASS
-	part.stack.remove_child(part.choose)
-	footer.add_child(part.choose)
-	part.stack.add_child(footer)
+	var footer: CenterContainer = part.footer
 	part.choose.text = str(row.get("buttons", [{}])[0].get("text", "选择")) if not row.get("buttons", []).is_empty() else "选择"
 	part.choose.visible = false
 	part["footer"] = footer

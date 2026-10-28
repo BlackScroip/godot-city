@@ -10,6 +10,8 @@ const RARITIES = [Color("737b79"), Color("56893c"), Color("3280a4"), Color("a045
 var rows: Array = []
 var context: Dictionary = {}
 var header: Control
+var magic_text: Label
+var free_text: Label
 var merchant: TextureRect
 var investment: PanelContainer
 var level_text: Label
@@ -37,6 +39,8 @@ func configure(data: Array, state: Dictionary) -> void:
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	if not _built: _build()
+	_close_modal()
+	_update_state()
 	_select_mode(str(context.get("mode", "buy")), false)
 	_layout.call_deferred()
 
@@ -67,7 +71,10 @@ func _build() -> void:
 		line.add_theme_constant_override("separation", 6)
 		resources.add_child(line)
 		line.add_child(DungeonStyle.picture(item[0], Vector2(30, 30)))
-		line.add_child(_label(item[1], 24, PAPER))
+		var value = _label(item[1], 24, PAPER)
+		line.add_child(value)
+		if magic_text == null: magic_text = value
+		else: free_text = value
 	merchant = DungeonStyle.picture("res://assets/ui/camp/portraits/characterillustration_shangdian_normal.png", Vector2.ZERO)
 	merchant.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	add_child(merchant)
@@ -95,7 +102,7 @@ func _build() -> void:
 	deposit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	deposit.disabled = bool(status.get("max_level", false)) or int(status.get("remaining", 0)) <= 0 or int(context.get("magic", 0)) < int(status.get("deposit", 0))
 	deposit.tooltip_text = "本局存入次数已用完" if int(status.get("remaining", 0)) <= 0 else "魔力不足" if int(context.get("magic", 0)) < int(status.get("deposit", 0)) else "商店已达最高等级" if status.get("max_level", false) else "存入商店"
-	deposit.pressed.connect(func(): command.emit("invest_room_shop", int(status.get("deposit", 0)), 0))
+	deposit.pressed.connect(func(): command.emit("invest_room_shop", int(context.get("shop", {}).get("deposit", 0)), 0))
 	actions.add_child(deposit)
 	tabs = HBoxContainer.new()
 	tabs.add_theme_constant_override("separation", 0)
@@ -136,6 +143,20 @@ func _build() -> void:
 	footer.pressed.connect(func(): command.emit("finish_noncombat", 0, 0))
 	add_child(footer)
 	resized.connect(_layout)
+
+func _update_state() -> void:
+	var status: Dictionary = context.get("shop", {})
+	magic_text.text = str(context.get("magic", 0))
+	free_text.text = str(context.get("free", 0))
+	level_text.text = str(status.get("level", 1))
+	next_text.text = "最高等级" if status.get("max_level", false) else str(status.get("next_needed", 0))
+	remaining_text.text = str(status.get("remaining", 0))
+	deposit.text = "%d 存入" % int(status.get("deposit", 0))
+	deposit.disabled = bool(status.get("max_level", false)) or int(status.get("remaining", 0)) <= 0 or int(context.get("magic", 0)) < int(status.get("deposit", 0))
+	deposit.tooltip_text = "商店已达最高等级" if status.get("max_level", false) else "本局存入次数已用完" if int(status.get("remaining", 0)) <= 0 else "魔力不足" if int(context.get("magic", 0)) < int(status.get("deposit", 0)) else "存入商店"
+	refresh.disabled = not bool(status.get("can_refresh", int(status.get("refresh_remaining", 0)) > 0))
+	refresh.tooltip_text = str(status.get("refresh_reason", "")) if refresh.disabled else "刷新商品 · 剩余 %d 次" % int(status.get("refresh_remaining", 0))
+	refresh_cost.text = "%d 魔力" % int(status.get("refresh_cost", 0)) if int(status.get("refresh_cost", 0)) > 0 else ""
 
 func _label(value: String, font_size: int, color: Color) -> Label:
 	var label = DungeonStyle.label(value, font_size)
@@ -376,9 +397,14 @@ func _show_item(row: Dictionary) -> void:
 	body.add_child(description)
 	var seal = str(row.get("action", "")) == "seal_room_loot"
 	var confirm = _button("封印 · +%d 魔力" % int(row.price) if seal else "免费领取" if row.get("free", false) else "购买 · %d 魔力" % int(row.price))
-	confirm.disabled = not str(row.get("status", "")).is_empty()
-	if confirm.disabled: confirm.text = str(row.status)
-	confirm.pressed.connect(func(): command.emit(str(row.get("action", "buy_room")), int(row.get("loot_id", 0)), 0))
+	confirm.name = "Confirm"
+	var reason = str(row.get("status", ""))
+	if reason.is_empty(): reason = "已售罄" if row.get("sold", false) else "物品不兼容" if not row.get("compatible", true) else "魔力不足" if not row.get("affordable", true) else ""
+	confirm.disabled = not reason.is_empty()
+	if confirm.disabled: confirm.text = reason
+	confirm.pressed.connect(func():
+		_close_modal()
+		command.emit(str(row.get("action", "buy_room")), int(row.get("loot_id", 0)), 0))
 	stack.add_child(confirm)
 
 func _show_levels() -> void:

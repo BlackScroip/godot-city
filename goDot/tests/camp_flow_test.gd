@@ -33,7 +33,7 @@ func snapshot(page: String, dimensions: Vector2i) -> void:
 		check(game.hud.page.building_view.nodes.size() == 21, "Seven facilities expose three construction stages each")
 		check(game.hud.page.page_context.selected_id == 3, "Requested facility remains selected")
 	if page == "world":
-		check(game.hud.camp_button.visible, "Camp overview remains reachable")
+		check(not game.hud.camp_button.visible, "Camp hides the redundant top-left camp badge")
 		check(game.hud.counter_buttons.map(func(key): return key.get_meta("resource_id")) == [101, 102, 103, 12101, 90002, 108], "Camp keeps the six APK resource identities without a permanent voucher slot")
 	if render_check:
 		await RenderingServer.frame_post_draw

@@ -36,11 +36,58 @@ func _run() -> void:
 			check(page.get_global_rect().encloses(control.get_global_rect()), "Preparation control fits %s: %s" % [dimensions, control.get_class()])
 		check(page.list.size.y > 90, "Difficulty list remains scrollable %s" % dimensions)
 		check(page.equipment.get_child(0).get_child(0).get_global_rect().end.y <= page.equipment.get_global_rect().end.y, "Equipment content fits its card %s" % dimensions)
+		check(page.left.get_global_rect().encloses(page.token_slots.get_global_rect()), "Token slots fit the preparation panel %s" % dimensions)
+		page._show_help()
+		for frame in 3: await process_frame
+		check(page.get_global_rect().encloses(page.help_overlay.get_child(1).get_global_rect()), "Help panel fits %s" % dimensions)
+		if DisplayServer.get_name() != "headless":
+			await create_timer(0.2).timeout
+			await RenderingServer.frame_post_draw
+			canvas.get_texture().get_image().save_png("/private/tmp/adventure-help-%dx%d.png" % [dimensions.x, dimensions.y])
+		page._close_help()
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
 			var picture = canvas.get_texture().get_image()
 			check(not picture.is_empty(), "Rendered preparation pixels")
 			picture.save_png("/private/tmp/adventure-prepare-%dx%d.png" % [dimensions.x, dimensions.y])
+	page.list.scroll_vertical = 0
+	var origin: Vector2 = page.list.get_global_rect().get_center()
+	var press = InputEventScreenTouch.new()
+	press.index = 0
+	press.position = origin
+	press.pressed = true
+	page._input(press)
+	var drag = InputEventScreenDrag.new()
+	drag.index = 0
+	drag.position = origin - Vector2(0, 60)
+	drag.relative = Vector2(0, -60)
+	page._input(drag)
+	var release = InputEventScreenTouch.new()
+	release.index = 0
+	release.position = drag.position
+	page._input(release)
+	check(page.selected == 1 and page.list.scroll_vertical == 60, "Touch drag scrolls without selecting a difficulty")
+	page._process(0.016)
+	check(page.list.scroll_vertical > 60, "Released drag continues with inertia")
+	page._set_scroll(100000)
+	check(page.list.scroll_vertical <= page.list.get_v_scroll_bar().max_value - page.list.get_v_scroll_bar().page + 1, "Inertial scroll clamps at list bounds")
+	page.scroll_velocity = 0
+	page._set_scroll(0)
+	var mouse_press = InputEventMouseButton.new()
+	mouse_press.button_index = MOUSE_BUTTON_LEFT
+	mouse_press.pressed = true
+	mouse_press.position = page.row_buttons[0].get_global_rect().get_center()
+	canvas.push_input(mouse_press)
+	var mouse_drag = InputEventMouseMotion.new()
+	mouse_drag.button_mask = MOUSE_BUTTON_MASK_LEFT
+	mouse_drag.relative = Vector2(0, -40)
+	mouse_drag.position = mouse_press.position + mouse_drag.relative
+	canvas.push_input(mouse_drag)
+	var mouse_release = InputEventMouseButton.new()
+	mouse_release.button_index = MOUSE_BUTTON_LEFT
+	mouse_release.position = mouse_drag.position
+	canvas.push_input(mouse_release)
+	check(page.selected == 1 and page.list.scroll_vertical == 40, "Actual mouse drag over a button scrolls without a click")
 	canvas.queue_free()
 	await process_frame
 	systems.decorations = null

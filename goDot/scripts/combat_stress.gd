@@ -59,6 +59,9 @@ var barrage := false
 var _save_pending := false
 var _save_wait := 0.0
 var startup_ms := 0.0
+var ignore_focus := false
+var fixed_fps := -1
+var confirmed_impacts := 0
 
 func _ready() -> void:
 	var startup := Time.get_ticks_usec()
@@ -73,11 +76,15 @@ func _ready() -> void:
 		if argument == "--low-effects": low = true
 		if argument == "--barrage": barrage = true
 		if argument == "--no-barrage": barrage = false
+		if argument == "--ignore-focus": ignore_focus = true
+		if argument.begins_with("--fps="): fixed_fps = clampi(int(argument.get_slice("=", 1)), 0, 120)
 	seed(SEED)
 	Engine.physics_ticks_per_second = 60
 	world = MeasuredWorld.new() if OS.has_feature("combat_stress_short") or "--profile-cpu" in OS.get_cmdline_user_args() else DungeonWorld.new()
 	add_child(world)
 	DungeonStyle.apply_options(world)
+	if fixed_fps >= 0: Engine.max_fps = fixed_fps
+	if ignore_focus: world._background = false
 	world.paused = true
 	world.low_effects = low
 	world.presentation.audio_enabled = false
@@ -113,12 +120,18 @@ func _ready() -> void:
 	combat.max_health = 1000000000
 	combat.health = combat.max_health
 	world.create_player(combat, 1, Vector3.ZERO)
+	world.set_attack_mode("normal")
+	world.fighting = true
+	world.impact_confirmed.connect(func(_hit): confirmed_impacts += 1)
 	_spawn(24)
 	world.prepare_enemy_media([11001, 13001])
 	while world.presentation.has_pending_preparation():
 		world.presentation.prepare_step()
 		await get_tree().process_frame
 	await world.prepare_feedback_rendering()
+	if fixed_fps >= 0:
+		world.get_node("SettingsEffects").settings["fps"] = fixed_fps
+		Engine.max_fps = fixed_fps
 	world.environment_action.connect(func(kind, _payload):
 		if kind == "auto_loot": _save_sample("pickup_save"))
 	world.paused = false
@@ -152,6 +165,8 @@ func _spawn(count: int) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not ready_to_run or finish_requested: return
+	# Automated measurements must explicitly opt out of desktop focus suspension.
+	if ignore_focus: world._background = false
 	ticks += 1
 	if ticks % 120 == 1:
 		world.use_skill(2)
@@ -191,6 +206,7 @@ func _save_sample(kind: String) -> void:
 
 func _process(_delta: float) -> void:
 	if not ready_to_run or finish_requested: return
+	if ignore_focus: world._background = false
 	frames += 1
 	metrics.sample(world, "cold" if ticks < 600 else "warm")
 	hud.update_combat(world.player.combat, false)
@@ -238,6 +254,8 @@ func _finish() -> void:
 	result["fixture"] = "extended-barrage" if barrage else "initial-baseline"
 	if OS.has_feature("combat_source_crowd") or "--no-barrage" in OS.get_cmdline_user_args(): result["fixture"] = "source-crowd"
 	result["save_error"] = store.warning
+	result["activity"] = {"confirmed_impacts": confirmed_impacts, "player_casts": world.player.combat._cast_sequence, "effects_spawned": world.presentation.spawned, "ignore_focus": ignore_focus}
+	result["valid_combat_sample"] = confirmed_impacts > 0 and world.presentation.spawned > 0
 	result["viewport"] = [get_viewport().get_visible_rect().size.x, get_viewport().get_visible_rect().size.y]
 	result["scope"] = "Fixed physics-tick combat workload, rendered wall frame times. Headless results are CPU diagnostics only. Device thermal state must be recorded externally."
 	var file := FileAccess.open(output, FileAccess.WRITE)
@@ -247,7 +265,8 @@ func _finish() -> void:
 	if result.has("cpu_scopes"): print("COMBAT_STRESS_CPU ", JSON.stringify(result.cpu_scopes))
 	print("COMBAT_STRESS_RENDER ", JSON.stringify(result.render_timing))
 	print("COMBAT_STRESS_DEVICE ", JSON.stringify({"device": result.device, "platform": result.platform, "os_version": result.os_version, "renderer": result.renderer, "renderer_method": result.renderer_method, "renderer_driver": result.renderer_driver, "debug": result.debug, "fixture": result.fixture, "quality": result.quality, "startup_preparation_ms": startup_ms, "save_error": store.warning, "ai_backends": result.ai_backends}))
-	get_tree().quit(0 if file else 1)
+	print("COMBAT_STRESS_ACTIVITY ", JSON.stringify(result.activity))
+	get_tree().quit(0 if file and result.valid_combat_sample else 1)
 
 func _exit_tree() -> void:
 	store.flush()

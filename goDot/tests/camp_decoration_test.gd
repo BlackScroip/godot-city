@@ -44,7 +44,7 @@ func _run() -> void:
 	var reentry = {"success": false}
 	var listener = func(): reentry.success = decorations.unlock(1002).success
 	systems.changed.connect(listener)
-	check(decorations.unlock(1002).success and reentry.success and systems.material(101) == 0 and profile.data.unlocked_camp_decorations.count(1002) == 1, "unlock records ownership before change listeners can retry and charges once")
+	check(decorations.unlock(1002).success and not reentry.success and systems.material(101) == 0 and profile.data.unlocked_camp_decorations.count(1002) == 1, "unlock commits ownership before change listeners and rejects nested transactions")
 	systems.changed.disconnect(listener)
 	check(decorations.unlock(1002).success and systems.material(101) == 0, "owned appearances remain idempotent when the wallet is empty")
 	check(decorations.equip(1, 1002).success and decorations.current_id(1) == 1002, "purchased appearance can be equipped in its matching slot")

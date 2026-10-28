@@ -167,6 +167,9 @@ func status(token_id: int, character_id := 0) -> Dictionary:
 	return {"id": token_id, "name": Catalog.clean(systems.material_name(token_id)), "icon": str(row.get("icon_name", "")), "level": level, "max_level": 6, "effect": Catalog.clean(row.get("effect_desc", "")) if level > 0 else "", "next_effect": Catalog.clean(next.get("effect_desc", "")), "unlock_description": Catalog.clean(row.get("unlcok_desc", "")), "price": price, "can_upgrade": reason.is_empty(), "reason": reason, "equipped": selected.has(token_id), "can_equip": equip_reason.is_empty(), "equip_reason": equip_reason, "sockets": socket_statuses(token_id, character_id)}
 
 func upgrade(token_id: int) -> Dictionary:
+	return systems._camp_transaction(_upgrade.bind(token_id))
+
+func _upgrade(token_id: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var state := status(token_id)
 	if not state.can_upgrade: return systems._fail(state.reason)
@@ -178,6 +181,9 @@ func upgrade(token_id: int) -> Dictionary:
 	return _finish_transaction("信物等级 " + str(int(state.level) + 1), token_id)
 
 func equip(token_id: int) -> Dictionary:
+	return systems._camp_transaction(_equip.bind(token_id))
+
+func _equip(token_id: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var state := status(token_id)
 	if not state.can_equip: return systems._fail(state.equip_reason)
@@ -205,6 +211,9 @@ func socket_statuses(token_id: int, character_id := 0) -> Array:
 	return result
 
 func unlock_socket(token_id: int, index: int) -> Dictionary:
+	return systems._camp_transaction(_unlock_socket.bind(token_id, index))
+
+func _unlock_socket(token_id: int, index: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	if index < 0 or index >= 3 or level_row(token_id, 1).is_empty(): return systems._fail("增幅槽不存在")
 	var state: Dictionary = socket_statuses(token_id)[index]
@@ -226,6 +235,9 @@ func available(amplifier_id: int, character_id := 0) -> int:
 	return maxi(0, systems.material(amplifier_id) - used)
 
 func equip_amplifier(character_id: int, token_id: int, index: int, amplifier_id: int) -> Dictionary:
+	return systems._camp_transaction(_equip_amplifier.bind(character_id, token_id, index, amplifier_id))
+
+func _equip_amplifier(character_id: int, token_id: int, index: int, amplifier_id: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var reason: String = systems._camp_action_reason("tokens")
 	if not reason.is_empty(): return systems._fail(reason)
@@ -240,6 +252,9 @@ func equip_amplifier(character_id: int, token_id: int, index: int, amplifier_id:
 	return systems._done("增幅已镶嵌", amplifier_id)
 
 func unequip(token_id: int, index: int) -> Dictionary:
+	return systems._camp_transaction(_unequip.bind(token_id, index))
+
+func _unequip(token_id: int, index: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var reason: String = systems._camp_action_reason("tokens")
 	if not reason.is_empty(): return systems._fail(reason)
@@ -252,6 +267,9 @@ func unequip(token_id: int, index: int) -> Dictionary:
 	return systems._done("增幅已卸下", token_id)
 
 func unequip_all(token_id := 0) -> Dictionary:
+	return systems._camp_transaction(_unequip_all.bind(token_id))
+
+func _unequip_all(token_id: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var reason: String = systems._camp_action_reason("tokens")
 	if not reason.is_empty(): return systems._fail(reason)
@@ -332,6 +350,9 @@ func _draw(tier: int) -> int:
 	return int(candidates[random.randi_range(0, candidates.size() - 1)].id)
 
 func compose(request: Dictionary) -> Dictionary:
+	return systems._camp_transaction(_compose.bind(request))
+
+func _compose(request: Dictionary) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var state: Dictionary = systems.profile.data.amplifier_draw_state
 	if request.has("revision") and int(request.revision) != int(state.revision): return systems._fail("合成预览已更新，请重新确认")
@@ -372,6 +393,9 @@ func reroll_quote() -> Dictionary:
 	return {"success": reason.is_empty(), "reason": reason, "price": price, "outputs": outputs.duplicate(), "rerolls": int(last.get("rerolls", 0))}
 
 func reroll() -> Dictionary:
+	return systems._camp_transaction(_reroll)
+
+func _reroll() -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var quote := reroll_quote()
 	if not quote.success: return systems._fail(quote.reason)
@@ -398,12 +422,15 @@ func reroll() -> Dictionary:
 	return _finish_transaction("重选完成", int(outputs.keys()[0]))
 
 func _finish_transaction(message: String, id: int) -> Dictionary:
-	# Resource and changed signals are synchronous; retain the lock through both.
+	# The shared camp transaction retains its guard while publishing notifications.
 	var result: Dictionary = systems._done(message, id)
 	_mutating = false
 	return result
 
 func save_preset(index: int) -> Dictionary:
+	return systems._camp_transaction(_save_preset.bind(index))
+
+func _save_preset(index: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var reason: String = systems._camp_action_reason("tokens")
 	if not reason.is_empty(): return systems._fail(reason)
@@ -412,6 +439,9 @@ func save_preset(index: int) -> Dictionary:
 	return systems._done("已保存预设 " + str(index + 1))
 
 func load_preset(index: int) -> Dictionary:
+	return systems._camp_transaction(_load_preset.bind(index))
+
+func _load_preset(index: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var reason: String = systems._camp_action_reason("tokens")
 	if not reason.is_empty(): return systems._fail(reason)
@@ -424,6 +454,9 @@ func load_preset(index: int) -> Dictionary:
 	return systems._done("预设已应用，未解锁或数量不足的项目已跳过")
 
 func delete_preset(index: int) -> Dictionary:
+	return systems._camp_transaction(_delete_preset.bind(index))
+
+func _delete_preset(index: int) -> Dictionary:
 	if _mutating: return systems._fail("信物交易处理中")
 	var reason: String = systems._camp_action_reason("tokens")
 	if not reason.is_empty(): return systems._fail(reason)

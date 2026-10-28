@@ -42,7 +42,8 @@ var _projectile_visual_pool: Array[MeshInstance3D] = []
 var _projectile_state_pool: Array[DungeonProjectile] = []
 var _projectile_mesh: SphereMesh
 var _projectile_materials: Array[StandardMaterial3D] = []
-var _number_pool: Array[Label3D] = []
+const DamageNumber = preload("res://scripts/presentation/damage_number.gd")
+var _number_pool: Array[Node3D] = []
 var _numbers: Array[Dictionary] = []
 var _budget_warnings: Dictionary = {}
 var _physics_serial := 0
@@ -255,6 +256,7 @@ func apply_settings(settings: Dictionary) -> void:
 	_refresh_dodge_settings()
 	for index in range(_numbers.size() - 1, -1, -1):
 		var entry: Dictionary = _numbers[index]
+		if entry.get("dodge", false): continue
 		var mode := int(settings.get("healing_numbers" if entry.get("healing", false) else "damage_numbers", 0))
 		if mode == 2:
 			entry.node.hide()
@@ -355,6 +357,7 @@ func load_environment(id: Variant, camp := false, completion_chest_quality: Stri
 		camp_decorations.apply(environment_root, systems.decorations)
 	_load_collisions(path)
 	if camp:
+		_close_camp_portal_boundary()
 		var training_marker: Dictionary = camp_training.marker(environment_root)
 		if not training_marker.is_empty(): semantic_markers.append(training_marker)
 		if systems: semantic_markers.append_array(camp_visitors.markers(self))
@@ -394,9 +397,13 @@ func load_environment(id: Variant, camp := false, completion_chest_quality: Stri
 		camp_camera.configure(camera, environment_entry)
 		_camera_offset = camp_camera.offset()
 		_apply_camp_interaction_states()
+		camp_visitors.refresh(self)
 
 func _camp_navigation_key() -> String:
-	return "10000:" + camp_progression.signature
+	var colliders: Array = []
+	for body in environment_root.find_children("*", "StaticBody3D", true, false):
+		colliders.append([str(environment_root.get_path_to(body)), body.collision_layer, body.collision_mask, str(body.transform)])
+	return "10000:" + JSON.stringify(colliders).sha256_text()
 
 func _apply_camp_interaction_states() -> void:
 	if not interactions: return
@@ -424,7 +431,7 @@ func _apply_camp_interaction_states() -> void:
 	for label in environment_root.find_children("*", "Label3D", true, false):
 		if not label.has_meta("camp_marker_id"): continue
 		var item: Dictionary = interactions._items.get(str(label.get_meta("camp_marker_id")), {})
-		label.visible = not item.is_empty() and bool(item.get("visible", false))
+		label.visible = not item.is_empty() and bool(item.get("visible", false)) and bool(item.state.enabled)
 
 func refresh_camp_progression() -> void:
 	if not _camp_camera or not systems or not is_instance_valid(environment_root): return
@@ -437,9 +444,6 @@ func refresh_camp_progression() -> void:
 			body.collision_layer = 1 if camp_progression.collider_active(marker) else 0
 	_apply_camp_interaction_states()
 	camp_visitors.refresh(self)
-	if is_instance_valid(navigation_region):
-		environment_root.remove_child(navigation_region)
-		navigation_region.queue_free()
 	_build_navigation(_camp_navigation_key())
 	_event_refresh_at = 0
 	if is_instance_valid(player): camp_training.refresh()
@@ -466,6 +470,10 @@ func _load_collisions(path: String) -> void:
 			continue
 		if int(item.get("kind", 0)) not in [64, 65, 135, 136]: continue
 		var matrix = unity_matrix(item.get("world_matrix", []))
+		if _camp_camera and str(item.get("path", "")).ends_with("/EnvColliderItem_Wall (67)"):
+			# 1061664 MainCity bundle, BoxCollider 7645: updated riverbank wall.
+			var rotation := Quaternion(0.00028932225541211665, -0.26370468735694885, 0.00009007633343571797, 0.9646034836769104)
+			matrix = Transform3D(Basis(rotation) * Basis.from_scale(Vector3(0.9440160989761353, 16, 6.1600260734558105)), Vector3(35.349998474121094, 0, 68.73999786376953))
 		var body = StaticBody3D.new()
 		body.name = "Collider_" + str(item.get("fileID", ""))
 		body.position = matrix.origin
@@ -519,14 +527,35 @@ func _load_collisions(path: String) -> void:
 		environment_root.add_child(body)
 		collision_report.loaded += 1
 
+func _close_camp_portal_boundary() -> void:
+	for marker in semantic_markers:
+		if str(marker.get("ObjectName", "")) != "EnvUnit_Interactable_StartNewRun": continue
+		# The imported bridge side walls end behind this trigger. Close their
+		# open rear seam so the shared flat floor cannot lead onto the river.
+		var body := StaticBody3D.new()
+		body.name = "CampPortalRearBoundary"
+		body.position = unity_matrix(marker.get("world_matrix", [])).origin + Vector3(0, 0, 1.0)
+		body.collision_layer = 1
+		var collider := CollisionShape3D.new()
+		var box := BoxShape3D.new()
+		box.size = Vector3(3.2, 16.0, 0.5)
+		collider.shape = box
+		body.add_child(collider)
+		environment_root.add_child(body)
+		collision_report["camp_portal_boundary"] = true
+		return
+
 static func unity_matrix(values: Array) -> Transform3D:
 	if values.size() != 16: return Transform3D.IDENTITY
 	return Transform3D(Basis(Vector3(values[0], values[4], values[8]), Vector3(values[1], values[5], values[9]), Vector3(values[2], values[6], values[10])), Vector3(values[3], values[7], values[11]))
 
 func _build_navigation(key: String) -> void:
-	navigation_region = NavigationRegion3D.new()
-	environment_root.add_child(navigation_region)
+	if not is_instance_valid(navigation_region) or navigation_region.get_parent() != environment_root:
+		navigation_region = NavigationRegion3D.new()
+		environment_root.add_child(navigation_region)
 	var mesh: NavigationMesh = _navigation_cache.get(key)
+	if mesh != null and navigation_region.navigation_mesh == mesh:
+		return
 	if mesh == null:
 		mesh = NavigationMesh.new()
 		mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
@@ -1365,7 +1394,7 @@ func _physics_process(delta: float) -> void:
 	if interactions:
 		var targets: Array = []
 		for actor in actors:
-			if is_instance_valid(actor) and not actor.dead and not actor.is_player: targets.append({"id": str(actor.combat.actor_key), "position": actor.position, "camp": 1})
+			if is_instance_valid(actor) and not actor.dead and not actor.is_player: targets.append({"id": str(actor.combat.actor_key), "position": actor.position, "camp": 3})
 		interactions.tick(delta, player.position, targets)
 	_tick_wave_clear(delta)
 
@@ -1533,6 +1562,8 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 			if actor.is_player and systems: _partner_controller().charge(event.get("settings", {}))
 		"heal":
 			if float(event.get("amount", 0)) > 0: _healing_number(actor.position + Vector3.UP * 1.8, float(event.amount))
+		"evaded_hit":
+			if str(event.get("dodge_type", "")) != "Block": _dodge_number(actor)
 		"area":
 			_consume_area(actor, event)
 		"command":
@@ -1762,7 +1793,10 @@ func _environment_hit_id(source: DungeonActor, hit: Dictionary) -> String:
 	return str(source.combat.actor_key) + ":" + ImpactProfiles.instance_id(hit)
 
 func _apply_hit(source: DungeonActor, target: DungeonActor, hit: Dictionary) -> void:
-	if target.dead or target.invulnerability > 0: return
+	if target.dead: return
+	if target.invulnerability > 0:
+		if target.dodge_elapsed >= 0: _dodge_number(target)
+		return
 	if target.get_meta("camp_training", false) and not camp_training.active: return
 	_bind_impact(target)
 	hit["source"] = source.combat
@@ -1811,7 +1845,7 @@ func _on_impact(hit: Dictionary, target: DungeonActor) -> void:
 			else:
 				_queue_impact_shake(profile, point)
 	if damage > 0:
-		_damage_number(target.position + Vector3.UP * 1.8, damage, target.is_player)
+		_damage_number(target.position + Vector3.UP * 1.8, damage, target.is_player, bool(hit.get("resolved_critical", false)), str(hit.get("definition", {}).get("element", "Physical")))
 		if target.is_player and not camp_training.active: received_hits += 1
 	if not camp_training.active and not target.get_meta("camp_training", false): impact_confirmed.emit(hit)
 
@@ -2027,8 +2061,8 @@ func _diagnostic(message: String) -> void:
 	if not diagnostics.has(message): diagnostics.append(message)
 
 static func _raw_definition(definition: Dictionary) -> Dictionary:
-	var raw = JSON.parse_string(str(definition.get("raw", "{}")))
-	return raw if raw is Dictionary else {}
+	# Callers may edit commands, including nested fields; keep their payload private.
+	return HitFeedback.raw({"raw": definition.get("raw", "{}")}).duplicate(true)
 
 func _actor_by_key(key: String) -> DungeonActor:
 	if key.is_empty(): return null
@@ -2389,16 +2423,26 @@ func _environment_trap(context: Dictionary) -> void:
 	var emission = "environment:%s" % _impact_serial
 	for actor in actors:
 		if not is_instance_valid(actor) or actor.dead: continue
+		if not DungeonWorldInteractions.camp_allows(str(context.get("camp_mask", "111")), 2 if actor.is_player else 3): continue
 		var target_id = str(context.get("target_id", ""))
 		if not target_id.is_empty():
 			if target_id != ("player" if actor.is_player else str(actor.combat.actor_key)): continue
 		else:
-			if not DungeonWorldInteractions.camp_allows(str(context.get("camp_mask", "")), 2 if actor.is_player else 1): continue
 			if actor.position.distance_to(vector(context.get("position", {}))) > float(context.get("radius", 0)): continue
 		_bind_impact(actor)
-		var previous = actor.combat.health
-		actor.combat.add_buff(str(context.get("buff_id", "")), int(context.get("layers", 1)))
-		actor.combat.confirm_direct_damage(previous, {"source_key": "environment", "emission": emission, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
+		var buff_id := str(context.get("buff_id", ""))
+		var definition: Dictionary = actor.combat._buff_index.get(buff_id, {})
+		var layers := maxi(1, int(context.get("layers", 1)))
+		# Instant environment hits use the same immunity, shield and on-hit rules as attacks.
+		# Retaining a zero-lifetime status until the next tick loses its recipient-specific damage tier.
+		if str(definition.get("type", "")) == "EBT_SpecialTriggerRangeDamage" and float(definition.get("duration", -1)) == 0 and float(definition.get("firstDelay", 0)) == 0:
+			var area: Dictionary = actor.combat._status_area(definition, null)
+			actor.combat._status_range_visual(definition, null)
+			_consume_area(actor, {"type": "area", "id": buff_id, "host_key": actor.combat.actor_key, "source_key": "environment", "definition": area, "layers": layers, "caster_attack": actor.combat.effective_attack_power(), "damage": float(area.get("damage", 0)) * layers, "emission": emission + ":" + str(actor.combat.actor_key), "continuous": false, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
+		else:
+			var previous = actor.combat.health
+			actor.combat.add_buff(buff_id, layers)
+			actor.combat.confirm_direct_damage(previous, {"source_key": "environment", "emission": emission, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
 		if actor.combat.health <= 0: _die(actor)
 
 func _drop_reward_slime(actor: DungeonActor, event: String) -> void:
@@ -2449,8 +2493,14 @@ func _enemy_count() -> int:
 		if is_instance_valid(actor) and not actor.is_player and not actor.dead: count += 1
 	return count
 
-func _damage_number(point: Vector3, amount: float, received: bool) -> void:
-	_spawn_number(point, amount, received, false)
+func _damage_number(point: Vector3, amount: float, received: bool, critical := false, element := "Physical") -> void:
+	_spawn_number(point, amount, received, false, critical, element)
+
+func _dodge_number(actor: DungeonActor) -> void:
+	if not actor.is_player or actor.dead: return
+	if _impact_clock - float(actor.get_meta("last_dodge_caption", -10.0)) < 0.18: return
+	actor.set_meta("last_dodge_caption", _impact_clock)
+	_spawn_number(actor.position + Vector3.UP * 1.8, 1.0, false, false, false, "Physical", true)
 
 func _healing_number(point: Vector3, amount: float) -> void:
 	_spawn_number(point, amount, false, true)
@@ -2462,24 +2512,33 @@ static func number_text(amount: float, mode: int, healing := false) -> String:
 		elif amount >= 1000: value = ("%.1f" % (amount / 1000.0)).trim_suffix(".0") + "K"
 	return ("+" if healing else "") + value
 
-func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool) -> void:
+func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool, critical := false, element := "Physical", dodge := false) -> void:
 	var mode := int(runtime_settings.get("healing_numbers" if healing else "damage_numbers", 0))
-	if mode == 2 or amount <= 0.0: return
-	var text: Label3D
+	if (mode == 2 and not dodge) or amount <= 0.0: return
+	var text: Node3D
 	if not _number_pool.is_empty(): text = _number_pool.pop_back()
 	elif _numbers.size() < FEEL.damage_number_budget: text = _make_damage_number()
 	else: text = _numbers.pop_front().node
-	text.text = number_text(amount, mode, healing)
-	text.modulate = Color("88f7ac") if healing else Color("ff9b80") if received else Color("fff1a6")
-	text.position = point
+	var style := element.to_lower()
+	if style not in ["fire", "water", "wind", "thunder", "light", "dark", "soil", "ice", "toxin"]: style = "normal"
+	if healing: style = "heal"
+	elif received: style = "hurt"
+	if dodge: style = "dodge"
+	text.configure("闪避" if dodge else number_text(amount, mode, healing), style, critical and not dodge and not healing)
+	var nearby := 0
+	for entry in _numbers:
+		if entry.age < 0.25 and entry.origin.distance_squared_to(point) < 1.0: nearby += 1
+	var right := camera.global_basis.x if is_instance_valid(camera) else Vector3.RIGHT
+	var up := camera.global_basis.y if is_instance_valid(camera) else Vector3.UP
+	var lane := float((nearby % 3) - 1)
+	var origin := point + right * lane * 0.45 + up * float(nearby / 3) * 0.25
+	text.position = origin
+	text.scale = Vector3.ONE
 	text.show()
-	_numbers.append({"node": text, "origin": point, "age": 0.0, "amount": amount, "healing": healing})
+	_numbers.append({"node": text, "origin": origin, "travel": right * lane * 0.65 + up * 1.1, "age": 0.0, "amount": amount, "healing": healing, "dodge": dodge})
 
-func _make_damage_number() -> Label3D:
-	var text := Label3D.new()
-	text.font_size = 48
-	text.pixel_size = 0.008
-	text.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+func _make_damage_number() -> Node3D:
+	var text := DamageNumber.new()
 	add_child(text)
 	text.hide()
 	return text
@@ -2488,13 +2547,15 @@ func _tick_damage_numbers(delta: float) -> void:
 	for index in range(_numbers.size() - 1, -1, -1):
 		var entry = _numbers[index]
 		entry.age += delta
-		if entry.age >= 0.7:
+		if entry.age >= 1.0:
 			entry.node.hide()
 			_number_pool.append(entry.node)
 			_numbers.remove_at(index)
 		else:
-			entry.node.position = entry.origin + Vector3.UP * (1.2 * entry.age / 0.7)
-			entry.node.modulate.a = 1.0 - entry.age / 0.7
+			var progress := clampf(float(entry.age) / 0.5, 0.0, 1.0)
+			entry.node.position = entry.origin + entry.travel * (1.0 - pow(1.0 - progress, 3.0))
+			entry.node.scale = Vector3.ONE * lerpf(1.0, 2.205, minf(float(entry.age) / 0.1, 1.0))
+			entry.node.modulate = Color(1, 1, 1, minf(float(entry.age) / 0.05, 1.0) * clampf((1.0 - float(entry.age)) / 0.2, 0.0, 1.0))
 
 func show_material_gain(point: Vector3, id: int, amount: int) -> void:
 	var feedback := Node3D.new()

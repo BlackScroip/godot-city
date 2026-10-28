@@ -10,6 +10,7 @@ const TEXTURES = {
 }
 var emitters: Array[CPUParticles3D] = []
 var circles: Array[ShaderMaterial] = []
+var north_portal_surfaces: Array[ShaderMaterial] = []
 var lights: Array[OmniLight3D] = []
 var bindings: Dictionary = {}
 var clock := 0.0
@@ -30,6 +31,8 @@ func configure(world: Node3D) -> void:
 		var key = str(anchor.name).to_lower()
 		if key.begins_with("24102301_fx_env_maincityprotal"):
 			_portal(anchor)
+		elif key.begins_with("23121601_fx_env_portalblue"):
+			_north_portal(anchor)
 		elif key.begins_with("24111405_fx_env_campfire"):
 			_campfire(anchor)
 		elif key.begins_with("23042001_fx_env_forestleafatmosphere"):
@@ -152,11 +155,27 @@ func _portal(source: Node3D) -> void:
 			var material_path := "res://scripts/presentation/recovered_effect_material.gd"
 			if not ResourceLoader.exists(material_path): continue
 			var material: ShaderMaterial = load(material_path).create(_portal_materials[original.resource_name], _portal_textures)
+			material.set_shader_parameter("visual_gain", 0.65)
+			material.set_shader_parameter("source_alpha", float(material.get_shader_parameter("source_alpha")) * 0.7)
 			material.resource_name = original.resource_name
 			mesh.set_surface_override_material(surface, material)
 			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			circles.append(material)
 			portal_surface_count += 1
+
+func _north_portal(source: Node3D) -> void:
+	var definitions: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment_effects/camp_north_portal_materials.json")).materials
+	var factory = preload("res://scripts/presentation/recovered_effect_material.gd")
+	for mesh in source.find_children("*", "MeshInstance3D", true, false):
+		if mesh.mesh == null: continue
+		for surface in mesh.mesh.get_surface_count():
+			var original: Material = mesh.get_active_material(surface)
+			if original == null or not definitions.has(original.resource_name): continue
+			var material: ShaderMaterial = factory.create(definitions[original.resource_name], _portal_textures)
+			material.resource_name = original.resource_name
+			mesh.set_surface_override_material(surface, material)
+			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			north_portal_surfaces.append(material)
 
 func _light(parent: Node3D, color: Color, radius: float, energy: float) -> void:
 	var light = OmniLight3D.new()
@@ -236,6 +255,7 @@ func _process(delta: float) -> void:
 	if paused: return
 	clock += delta
 	for material in circles: material.set_shader_parameter("clock", clock)
+	for material in north_portal_surfaces: material.set_shader_parameter("clock", clock)
 	for i in lights.size():
 		lights[i].light_energy = float(lights[i].get_meta("energy")) * (0.93 + 0.07 * sin(clock * 8.7 + i) + 0.035 * sin(clock * 17.3))
 	_refresh -= delta

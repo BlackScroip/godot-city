@@ -10,6 +10,11 @@ func check(value: bool, message: String) -> void:
 	checks += 1
 	if not value: failures.append(message)
 
+func visitor_label(world, seat: int) -> Label3D:
+	for label in world.environment_root.find_children("*", "Label3D", true, false):
+		if label.get_meta("camp_marker_id", "") == "camp:visitor:%d" % seat: return label
+	return null
+
 func _run() -> void:
 	var catalog := DungeonCatalog.new()
 	catalog.load_all()
@@ -34,12 +39,16 @@ func _run() -> void:
 		var actor = item.visual.get_node_or_null("CampVisitor")
 		check(actor != null and actor.visual_loaded, "original character model loaded " + str(seat))
 		check(actor != null and actor.animation != null and actor.animation.is_playing(), "visitor idle animation plays " + str(seat))
+		var label := visitor_label(world, seat)
+		check(label != null and label.visible and label.text == str(catalog.find("NPCData", int(item.data.NpcId)).get("name", "")), "visitor label matches visible NPC " + str(seat))
 	profile.data.selected_character = 2
 	world.camp_visitors.refresh(world)
 	check(not world.interactions.is_interaction_available(world.interactions._items["camp:visitor:1"]), "selected visitor hidden")
+	check(not visitor_label(world, 1).visible, "selected visitor label hidden")
 	profile.data.selected_character = 1
 	world.camp_visitors.refresh(world)
 	check(world.interactions.is_interaction_available(world.interactions._items["camp:visitor:1"]), "switching away restores same visitor")
+	check(visitor_label(world, 1).visible, "switching away restores visitor label")
 	var positions: Array = []
 	for seat in range(1, 4): positions.append(world.interactions._items["camp:visitor:%d" % seat].position)
 	world.camp_visitors.preserve_once = true
@@ -48,6 +57,22 @@ func _run() -> void:
 		var item: Dictionary = world.interactions._items["camp:visitor:%d" % seat]
 		check(item.position == positions[seat - 1], "recreated camp retains original anchor")
 		check(item.visual.find_children("CampVisitor", "CharacterBody3D", false, false).size() == 1, "visitor model not duplicated")
+	profile.data.buildings["1"] = 1
+	world.refresh_camp_progression()
+	for seat in range(1, 4):
+		var item: Dictionary = world.interactions._items["camp:visitor:%d" % seat]
+		check(not item.state.enabled and not visitor_label(world, seat).visible, "empty seat and label hidden " + str(seat))
+		check(item.visual.get_node_or_null("CampVisitor") == null, "empty seat removes old visitor " + str(seat))
+	profile.data.buildings["1"] = 3
+	world.camp_visitors._random.seed = 1
+	world.refresh_camp_progression()
+	check(not world.camp_visitors.choices.is_empty(), "upgraded camp generates visitors")
+	for seat in range(1, 4):
+		var item: Dictionary = world.interactions._items["camp:visitor:%d" % seat]
+		var label := visitor_label(world, seat)
+		check(label.visible == bool(item.state.enabled), "upgraded seat label follows state " + str(seat))
+		if item.state.enabled:
+			check(label.text == str(catalog.find("NPCData", int(item.data.NpcId)).get("name", "")), "upgraded seat label follows NPC " + str(seat))
 	var capture_path := ""
 	if DisplayServer.get_name() != "headless":
 		root.size = Vector2i(1600, 900)

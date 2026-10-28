@@ -16,7 +16,10 @@ var hurt_timer := 0.0
 var animations: Array[String] = []
 var animation_aliases: Dictionary = {}
 var visual_base_y := 0.0
-var suspended := false
+var suspended := false:
+	set(value):
+		suspended = value
+		if value: _reset_source_model_shake()
 var simulation_scale := 1.0
 var impulse := Vector3.ZERO
 var weapon: Node3D
@@ -54,6 +57,11 @@ var knockback_direction := Vector3.ZERO
 var _telegraph_sequence := -1
 var _telegraph_turn_speed := 0.0
 var impact_bounds := AABB(Vector3(-0.35, 0, -0.35), Vector3(0.7, 1.5, 0.7))
+var _model_shake_root: Node3D
+var _model_shake_active := false
+var _model_shake_elapsed := 0.0
+var _model_shake_count := 0
+var _model_shake_rng := RandomNumberGenerator.new()
 
 func begin_death() -> void:
 	clear_impact_state()
@@ -116,6 +124,7 @@ func _ready() -> void:
 		add_child(direction_indicator)
 
 func set_visual(path: String, metadata: Dictionary = {}, prepared_scene: PackedScene = null) -> void:
+	_reset_source_model_shake()
 	animation = null
 	animations.clear()
 	animation_aliases.clear()
@@ -146,7 +155,12 @@ func set_visual(path: String, metadata: Dictionary = {}, prepared_scene: PackedS
 		material.albedo_color = Color("54b7ad") if is_player else Color("c88376")
 		mesh.material_override = material
 		visual.add_child(mesh)
-	add_child(visual)
+	if not is_instance_valid(_model_shake_root):
+		_model_shake_root = Node3D.new()
+		_model_shake_root.name = "HitModelShake"
+		_model_shake_root.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+		add_child(_model_shake_root)
+	_model_shake_root.add_child(visual)
 	# Position follows the physics body; facing still updates at render frequency.
 	visual.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	_flash_visible = false
@@ -438,6 +452,7 @@ func _action_displacement() -> Vector3:
 	return displacement
 
 func clear_impact_state() -> void:
+	_reset_source_model_shake()
 	knockback_elapsed = -1.0
 	knockback_distance = 0.0
 	impulse = Vector3.ZERO
@@ -467,8 +482,37 @@ static func dodge_progress(t: float) -> float:
 func hit_flash(duration := 0.08) -> void:
 	hurt_timer = maxf(hurt_timer, duration)
 
+func start_source_model_shake() -> void:
+	if dead or suspended or not is_instance_valid(visual) or not is_instance_valid(_model_shake_root): return
+	_model_shake_active = true
+	_model_shake_elapsed = 0.0
+	_model_shake_count = 0
+
+func _reset_source_model_shake() -> void:
+	_model_shake_active = false
+	_model_shake_elapsed = 0.0
+	_model_shake_count = 0
+	if is_instance_valid(_model_shake_root): _model_shake_root.position = Vector3.ZERO
+
+func _advance_source_model_shake(delta: float) -> void:
+	if not _model_shake_active: return
+	if dead or suspended or not is_instance_valid(visual) or not is_instance_valid(_model_shake_root):
+		_reset_source_model_shake()
+		return
+	_model_shake_elapsed += delta
+	# APK URoleUnit.UpdateShake: strict interval, one sample per render update.
+	if _model_shake_elapsed <= 0.02: return
+	_model_shake_elapsed = 0.0
+	_model_shake_count += 1
+	if _model_shake_count > 5:
+		_reset_source_model_shake()
+		return
+	# Unity's integer Range(-1, 1) excludes 1; visual RNG leaves combat rolls alone.
+	_model_shake_root.position = Vector3(_model_shake_rng.randi_range(-1, 0) * 0.05, 0.0, _model_shake_rng.randi_range(-1, 0) * 0.05)
+
 func _process(delta: float) -> void:
 	if suspended: return
+	_advance_source_model_shake(delta)
 	delta *= simulation_scale
 	hurt_timer = maxf(0.0, hurt_timer - delta)
 	var flashing := hurt_timer > 0

@@ -249,6 +249,7 @@ func _show_help() -> void:
 
 func _layout() -> void:
 	if not is_instance_valid(_details): return
+	NAVIGATION.place_back_button(get_node("RoleBackButton"))
 	host._rect(_list, 44, 133, 165, size.y - 173)
 	host._rect(_art, 340, 70, maxf(600, size.x - 1070), size.y - 78)
 	host._rect(_details, size.x - 565, 15, 525, size.y - 25)

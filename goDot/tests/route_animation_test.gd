@@ -91,7 +91,7 @@ func _run() -> void:
 			check(inner.size.x < node.size.x and inner.size.y < node.size.y, "Inner card leaves additional space around its artwork")
 			var badges: Array[Rect2] = node._badge_rects()
 			for index in badges.size():
-				check(node._selected_frame_rect().encloses(badges[index]), "Reward badge stays inside the reserved outer frame")
+				check(node.selection_bounds().encloses(badges[index]), "Reward badge stays inside the reserved drawing bounds")
 				for other in range(index + 1, badges.size()):
 					check(not badges[index].intersects(badges[other]), "Reward badges remain individually readable")
 			var peak_size = node.size * DungeonRouteNode.SELECTED_FRAME_SIZE * DungeonRouteNode.SELECTION_PEAK_SCALE

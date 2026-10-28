@@ -1061,6 +1061,7 @@ func receive(hit: Dictionary, caster_attack: float = 0.0) -> float:
 		return 0.0
 	if invincible > 0 or _dodge_time > 0 or _block_time > 0 or health <= 0 or (bool(hit.get("attack_collision", true)) and not can_receive_attack()):
 		if health > 0 and (_dodge_time > 0 or _block_time > 0 or _current_slot == 1):
+			_emit_event("evaded_hit", {"dodge_type": "Block" if _block_time > 0 else "BeHiterAutoDodge" if _dodge_time > 0 else "Dodge"})
 			notify_gameplay("dodge", {"definition": hit.get("definition", {}), "attacker": hit.get("source"), "dodge_type": "Block" if _block_time > 0 else "BeHiterAutoDodge" if _dodge_time > 0 else "Dodge"})
 		return 0.0
 	var definition: Dictionary = hit.get("definition", {}).duplicate()

@@ -25,9 +25,7 @@ static func is_source_heavy(hit: Dictionary, source: RefCounted = null) -> bool:
 	return _source_heavy_actions.has(str(hit.get("action", "")))
 
 static func raw(hit: Dictionary) -> Dictionary:
-	var value: Variant = hit.get("definition", {}).get("raw", {})
-	if value is String: value = JSON.parse_string(value)
-	return value if value is Dictionary else {}
+	return Original.raw({"raw": hit.get("definition", {}).get("raw", {})})
 
 static func ranged(hit: Dictionary) -> bool:
 	if hit.has("ranged"): return bool(hit.ranged)
@@ -41,11 +39,11 @@ static func ranged(hit: Dictionary) -> bool:
 
 static func resolve(hit: Dictionary, source: RefCounted = null) -> Dictionary:
 	if is_source_heavy(hit, source):
-		return {"source_only": true, "source_heavy": true, "category": "source", "stop": 0.0, "shake": 0.0, "amplitude": 0.0, "distance": 0.0, "travel": 0.0, "stagger": 0.0, "flash": 0.0, "scale": 1.0, "gain": 1.0, "ranged": ranged(hit), "finisher": false, "critical": bool(hit.get("resolved_critical", false)), "source_feedback": Original.normalize(hit.get("definition", {}))}
+		return {"source_only": true, "source_heavy": true, "category": "source", "stop": 0.0, "shake": 0.0, "amplitude": 0.0, "distance": 0.0, "travel": 0.0, "stagger": 0.0, "flash": 0.0, "scale": 1.0, "gain": 1.0, "ranged": ranged(hit), "finisher": false, "critical": bool(hit.get("resolved_critical", false)), "source_feedback": Original.read(hit.get("definition", {}))}
 	var action = str(hit.get("action", ""))
 	var category = str(hit.get("impact_category", "light"))
 	if int(hit.get("slot", 0)) == 4: category = "heavy"
-	var original = Original.normalize(hit.get("definition", {}))
+	var original = Original.read(hit.get("definition", {}))
 	for stop in original.hit_stops:
 		if float(stop.weight) >= 0.25: category = "heavy"
 	var override: Dictionary = FEEL.action_overrides.get(action, {}).duplicate()

@@ -67,6 +67,9 @@ func entry(id: int) -> Dictionary:
 	return {"id": id, "row": row, "active": active, "material_request": material_request, "materials": materials, "reward": reward, "current": mini(current, required), "required": required, "complete": complete, "reason": reason, "can_claim": reason.is_empty() and complete, "can_finish_ad": reason.is_empty() and not complete, "can_double_ad": reason.is_empty() and complete}
 
 func receive() -> Dictionary:
+	return systems._camp_transaction(_receive_transaction)
+
+func _receive_transaction() -> Dictionary:
 	var quote = status()
 	if not quote.reason.is_empty(): return systems._fail(quote.reason)
 	if not quote.can_receive or not systems.spend(quote.price): return systems._fail("需要一封悬赏信件")
@@ -76,6 +79,9 @@ func receive() -> Dictionary:
 	return result
 
 func remove(id: int) -> Dictionary:
+	return systems._camp_transaction(func(): return _remove_transaction(id))
+
+func _remove_transaction(id: int) -> Dictionary:
 	var quote = entry(id)
 	if not quote.reason.is_empty(): return systems._fail(quote.reason)
 	_state().active.erase(str(id))
@@ -83,6 +89,9 @@ func remove(id: int) -> Dictionary:
 	return systems._done("已放弃悬赏", id)
 
 func claim(id: int) -> Dictionary:
+	return systems._camp_transaction(func(): return _claim_transaction(id))
+
+func _claim_transaction(id: int) -> Dictionary:
 	var quote = entry(id)
 	if not quote.can_claim: return systems._fail(quote.reason if not quote.reason.is_empty() else "悬赏尚未完成")
 	return _claim(quote, false, true)
@@ -101,6 +110,9 @@ func ad_quote(action: String, id: int = 0) -> Dictionary:
 
 # Only the receipt-validating ad service calls this after a rewarded callback.
 func apply_ad(action: String, id: int = 0) -> Dictionary:
+	return systems._camp_transaction(func(): return _apply_ad_transaction(action, id))
+
+func _apply_ad_transaction(action: String, id: int = 0) -> Dictionary:
 	var quote = ad_quote(action, id)
 	if not quote.success: return quote
 	if action == "receive":
@@ -162,5 +174,5 @@ func _claim(quote: Dictionary, doubled: bool, commit_materials: bool) -> Diction
 	# Remove before issuing rewards so reentrant events cannot reward it twice.
 	_state().active.erase(str(int(quote.id)))
 	for key in quote.reward: systems.grant_material(int(key), int(quote.reward[key]) * (2 if doubled else 1))
-	systems.gameplay_event.emit({"type": "extra_challenge_claimed", "id": int(quote.id)})
+	systems._emit_gameplay_event({"type": "extra_challenge_claimed", "id": int(quote.id)})
 	return systems._done("悬赏奖励已领取", int(quote.id))

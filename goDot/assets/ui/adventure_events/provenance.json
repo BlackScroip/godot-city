@@ -1,0 +1,444 @@
+{
+  "panel_panel": {
+    "layout": "panel/prefab-layout.json",
+    "source": {
+      "member": "assets/yoo/DefaultPackage/bcef453e18025e267bfb27390b4bf99b.bundle",
+      "sha256": "920f0c5d67b3f20b3eea8b658d7954f1b86ff5ebc8b4fb4e4a6706bb5699337a"
+    },
+    "sprites": [
+      {
+        "name": "货币_底",
+        "path": "res://assets/ui/adventure_events/panel/_____a5692cce8c.png",
+        "sprite_path_id": "8416506778996739775",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+          "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+        },
+        "width": 249,
+        "height": 51,
+        "border": {
+          "x": 125.0,
+          "y": 25.0,
+          "z": 124.0,
+          "w": 26.0
+        },
+        "png_sha256": "8637e4e85bc5cf905943031f7a48c503dab670432b5148fe5e811e285ff0381a"
+      },
+      {
+        "name": "sprite_materialicon_90002",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_90002.png",
+        "sprite_path_id": "6651430658684800665",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "df45ad6d7354fae2868550eeb052f03d09fdc25ad59745c7b289cb1619c73148"
+      },
+      {
+        "name": "几何ui-暗圆角矩形",
+        "path": "res://assets/ui/adventure_events/panel/__ui-______b937919bba.png",
+        "sprite_path_id": "-5329703775576750254",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 39.0,
+          "z": 38.0,
+          "w": 39.0
+        },
+        "png_sha256": "28f640d8e13f44b4843e4d4344ecb9e82d6f1598fe521222832bec4605ed3eb4"
+      },
+      {
+        "name": "确认_底",
+        "path": "res://assets/ui/adventure_events/panel/_____d402bbdb80.png",
+        "sprite_path_id": "3679178057169518771",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 160,
+        "height": 164,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "373d0e905afb021a0dde999adee74b2c800d064942334a135421437a20d45798"
+      },
+      {
+        "name": "事件1背景",
+        "path": "res://assets/ui/adventure_events/panel/__1___aeeea37d45.png",
+        "sprite_path_id": "8533541654442964214",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 1024,
+        "height": 512,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "27749e526529bb3061967ac5c36de1ce10d557d231015b679f461c279caefdf7"
+      },
+      {
+        "name": "事件2故事_底",
+        "path": "res://assets/ui/adventure_events/panel/__2_____a0749a5600.png",
+        "sprite_path_id": "-7361104617775673972",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 414,
+        "height": 512,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "b43271826545859df44109cfbd0d3ad1ad5f5281c5462159f008376a53e6fda6"
+      },
+      {
+        "name": "sprite_materialicon_90001",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_90001.png",
+        "sprite_path_id": "-8314781698419631035",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "a4af50f4bcedee204c3fcc7ada6d5d21f6181d799e6068a54a24765b4ca2e2ed"
+      },
+      {
+        "name": "事件2_分割线",
+        "path": "res://assets/ui/adventure_events/panel/__2_____92aecbb2c9.png",
+        "sprite_path_id": "7743757582745993308",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 172,
+        "height": 4,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "2513a561e402b063a535239746ce805a46df8053982c37f0c4697edb546719c8"
+      },
+      {
+        "name": "高亮星标_淡蓝",
+        "path": "res://assets/ui/adventure_events/panel/________499b5a89c0.png",
+        "sprite_path_id": "-4798255945278789206",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/2cec4d6a703e31a087ce975d04fa4f12.bundle",
+          "sha256": "393d9a05bccc7a223cc9836d87c2667d7a504a58378c5fbf7eebac236f4e118a"
+        },
+        "width": 92,
+        "height": 92,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "08ebe66f32a6dcdcbc0cd14db1ceedbec846e3937be8a81362712332835df8a8"
+      },
+      {
+        "name": "sprite_materialicon_102",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_102.png",
+        "sprite_path_id": "3894177138201564098",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "8c0e26cdfc8d76be9762019a6b3a2f82e7f8f4b1aa42f3d1bdb9bd714b84a37d"
+      },
+      {
+        "name": "几何ui-白圆角矩形",
+        "path": "res://assets/ui/adventure_events/panel/__ui-______083f833001.png",
+        "sprite_path_id": "6661574081893680522",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+          "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+        },
+        "width": 108,
+        "height": 108,
+        "border": {
+          "x": 38.0,
+          "y": 40.0,
+          "z": 38.0,
+          "w": 38.0
+        },
+        "png_sha256": "5da31697287b91cf637f660dea59954cce842134beb548417fcb49778e4f42cb"
+      },
+      {
+        "name": "sprite_abilityitemicon_13103",
+        "path": "res://assets/ui/adventure_events/panel/sprite_abilityitemicon_13103.png",
+        "sprite_path_id": "-3162654979087943034",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0b9205f33d9cd59e4555be25a9ef73745856935e39527a8ac03e414af52e2f43"
+      },
+      {
+        "name": "sprite_materialicon_108",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_108.png",
+        "sprite_path_id": "-6886311129609553285",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "98887778f026ffc2dc812e953514433d58a4cce7c117d7d97bb24e25f9cb42cb"
+      },
+      {
+        "name": "sprite_abilityitemicon_15101",
+        "path": "res://assets/ui/adventure_events/panel/sprite_abilityitemicon_15101.png",
+        "sprite_path_id": "4722616278204564780",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 128,
+        "height": 128,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "4f29ad319730261e525c403835a003e1a95f1fe1765804bb7dfdaae1b7640201"
+      },
+      {
+        "name": "事件2背景",
+        "path": "res://assets/ui/adventure_events/panel/__2___3ace3bfb06.png",
+        "sprite_path_id": "-6643953725650071791",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 1024,
+        "height": 512,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "f40c941693ed6f4746d797d24716bb134f1cffb168e04f038717a1f12c1b56da"
+      },
+      {
+        "name": "事件圆形遮罩",
+        "path": "res://assets/ui/adventure_events/panel/_______45b932aa48.png",
+        "sprite_path_id": "-4364715487069683070",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+          "sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687"
+        },
+        "width": 512,
+        "height": 288,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "513bbe14a60119a16c3ab42de5ee99b2ddff129f09ff7db8ac97c9f9ef55869a"
+      },
+      {
+        "name": "UIMask",
+        "path": "res://assets/ui/adventure_events/panel/UIMask.png",
+        "sprite_path_id": "-426171492875694260",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/bcef453e18025e267bfb27390b4bf99b.bundle",
+          "sha256": "920f0c5d67b3f20b3eea8b658d7954f1b86ff5ebc8b4fb4e4a6706bb5699337a"
+        },
+        "width": 28,
+        "height": 28,
+        "border": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0,
+          "w": 10.0
+        },
+        "png_sha256": "6b9a19efbdf70c33d05c0e1d927377a4bb032a87b2acd94aa9abaf4edb909969"
+      },
+      {
+        "name": "事件1_分割线",
+        "path": "res://assets/ui/adventure_events/panel/__1_____a572d95781.png",
+        "sprite_path_id": "4881754577030283554",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 172,
+        "height": 4,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "7c5c8b56712e1a460fccaaded4ac370dea857942561a19d54db86b1f4669f63d"
+      },
+      {
+        "name": "sprite_materialicon_101",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_101.png",
+        "sprite_path_id": "-4929560618279763517",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "6bad02912188f5aca0b14de5cbf6be37ac6343105118a48437d866c025cf3f93"
+      },
+      {
+        "name": "sprite_materialicon_103",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_103.png",
+        "sprite_path_id": "-2847287226865223873",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "3064adbcecaa556b27161d2369a5ed3ba6d0f41aa6c5f330765e671750300c32"
+      },
+      {
+        "name": "11",
+        "path": "res://assets/ui/adventure_events/panel/11.png",
+        "sprite_path_id": "-6834239046390293204",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 372,
+        "height": 27,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "ee4e63560ef72a93f75d3129f826461d0db027db4b06a539a3d3c1d979e7a33d"
+      },
+      {
+        "name": "sprite_materialicon_40001",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_40001.png",
+        "sprite_path_id": "-7693951651999609644",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "66ca2f57e43c0dd1e4620f7b1e73920cef2d5281459724c04067a056550a9c08"
+      },
+      {
+        "name": "事件1故事_底",
+        "path": "res://assets/ui/adventure_events/panel/__1_____e850e26c1b.png",
+        "sprite_path_id": "3708137153758306741",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+          "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+        },
+        "width": 414,
+        "height": 512,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "0fe0a72af3e4e40ad0ab0aae56986c3970e8f869612bf52b5c777cd3dfd50fa0"
+      },
+      {
+        "name": "sprite_materialicon_502",
+        "path": "res://assets/ui/adventure_events/panel/sprite_materialicon_502.png",
+        "sprite_path_id": "8462504211962514845",
+        "source": {
+          "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+          "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+        },
+        "width": 256,
+        "height": 256,
+        "border": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.0
+        },
+        "png_sha256": "64517341db825a02ab7a4fb297a8a7941cd6ae0e5bde7cfab5fb9d5f01b304a3"
+      }
+    ],
+    "errors": []
+  }
+}

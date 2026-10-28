@@ -1,5 +1,6 @@
 extends Control
 
+const NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 var host
 var _header: Control
 var _scroll: ScrollContainer
@@ -15,19 +16,11 @@ func configure(page) -> void:
 	shade.color = Color(0, 0, 0, 0.73)
 	add_child(shade)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var close = host._icon_button("纯白关闭按钮", "返回角色详情", Vector2(120, 100))
-	close.icon = null
-	var close_circle = host._picture("sprite_circle_128x128", Vector2.ZERO)
-	close.add_child(close_circle)
-	host._rect(close_circle, 9, 2, 104, 104)
-	var close_mark = host._picture("纯白关闭按钮", Vector2.ZERO)
-	close_mark.modulate = Color("24273a")
-	close.add_child(close_mark)
-	host._rect(close_mark, 29, 22, 64, 64)
+	var close = NAVIGATION.create_back_button("返回角色详情")
 	close.name = "CloseAttributes"
 	close.pressed.connect(func(): host._dismiss_overlay(self))
 	add_child(close)
-	preload("res://scripts/presentation/role_navigation.gd").place_back_button(close)
+	NAVIGATION.place_back_button(close)
 	_header = Control.new()
 	add_child(_header)
 	for entry in [["属性", 130, 0.0], ["类型", 0, 0.64], ["当前值", 0, 0.865]]:
@@ -127,6 +120,7 @@ func _add_row(caption: String, value: String, category: String, icon: String, he
 
 func _layout() -> void:
 	if not is_instance_valid(_scroll): return
+	NAVIGATION.place_back_button(get_node("CloseAttributes"))
 	var width = size.x - 590
 	host._rect(_header, 335, 43, width, 68)
 	for title in _header.get_children():

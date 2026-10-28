@@ -4,6 +4,7 @@ extends PanelContainer
 signal command(kind: String, id: Variant, extra: Variant)
 signal closed
 signal back_requested
+const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 var title_label: Label
 var rows_host: VBoxContainer
 var grid: GridContainer
@@ -33,6 +34,8 @@ var weapon_view: Control
 var inventory_view: Control
 var shop_view: Control
 var camp_service_view: Control
+var awakening_view: Control
+var adventure_event_view: Control
 var page_context: Dictionary = {}
 var _open_tween: Tween
 
@@ -48,14 +51,12 @@ func _ready() -> void:
 	add_child(stack)
 	var heading = HBoxContainer.new()
 	stack.add_child(heading)
-	var back = Button.new()
-	back.text = "‹"
-	back.tooltip_text = "返回营地菜单"
-	back.custom_minimum_size = Vector2(48, 48)
+	var back = ROLE_NAVIGATION.create_header_back_button(size, "关闭")
 	back.pressed.connect(func(): back_requested.emit())
 	heading.add_child(back)
 	title_label = DungeonStyle.label("", 28)
 	title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	heading.add_child(title_label)
 	var heading_art = DungeonStyle.picture("gold_line_top", Vector2.ZERO)
 	title_label.add_child(heading_art)
@@ -68,7 +69,10 @@ func _ready() -> void:
 	var close = Button.new()
 	close.text = "×"
 	close.tooltip_text = "关闭"
-	close.custom_minimum_size = Vector2(48, 48)
+	close.custom_minimum_size = Vector2(44, 44)
+	close.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		close.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	close.pressed.connect(func(): closed.emit())
 	heading.add_child(close)
 	var divider = TextureRect.new()
@@ -113,25 +117,21 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		line.custom_minimum_size.x = 130
 		resource_bar.add_child(line)
 		line.add_child(DungeonStyle.picture(str(resource[0]), Vector2(36, 36)))
-		line.add_child(DungeonStyle.label(str(resource[1]), 22))
+		var amount = DungeonStyle.label(str(resource[1]), 22)
+		amount.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		line.add_child(amount)
 	title_label.text = title
 	var reference = layout in ["commission", "guild"]
 	for decoration in title_label.get_children(): decoration.visible = not reference
 	title_label.add_theme_color_override("font_shadow_color", Color.TRANSPARENT if reference else Color(0, 0, 0, 0.8))
 	var back: Button = stack.get_child(0).get_child(0)
-	back.text = "" if reference else "‹"
-	back.icon = DungeonStyle.texture("退出按钮") if reference else null
-	back.expand_icon = reference
-	back.custom_minimum_size = Vector2(58, 48) if reference else Vector2(48, 48)
-	for state in ["normal", "hover", "pressed"]:
-		if reference: back.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-		else: back.remove_theme_stylebox_override(state)
+	ROLE_NAVIGATION.configure_header_back_button(back, size, "返回" if context.has("back_action") else "关闭")
 	_rows = rows
 	_layout = layout
 	_choices.clear()
 	_clear(rows_host)
 	_clear(detail)
-	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view, room_shop_view, unclaimed_view, character_view, weapon_view, inventory_view, shop_view, camp_service_view]:
+	for view in [building_view, commission_view, guild_view, dialogue_view, prepare_view, room_shop_view, unclaimed_view, character_view, weapon_view, inventory_view, shop_view, camp_service_view, awakening_view, adventure_event_view]:
 		if is_instance_valid(view):
 			stack.remove_child(view)
 			view.queue_free()
@@ -147,6 +147,8 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	inventory_view = null
 	shop_view = null
 	camp_service_view = null
+	awakening_view = null
+	adventure_event_view = null
 	if is_instance_valid(outcome_view):
 		stack.remove_child(outcome_view)
 		outcome_view.queue_free()
@@ -162,19 +164,34 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	stack.get_child(0).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "altar", "talent", "support", "room_shop", "unclaimed", "character", "weapon", "inventory", "shop", "settings"]
 	stack.get_child(1).visible = layout not in ["route", "outcome", "buildings", "dialogue", "prepare", "altar", "talent", "support", "room_shop", "unclaimed", "character", "weapon", "inventory", "shop", "settings"]
 	stack.add_theme_constant_override("separation", 0 if layout in ["route", "outcome"] else 16)
-	if layout in ["tokens", "camp_service"]:
+	if layout == "adventure_event":
 		stack.get_child(0).hide()
 		stack.get_child(1).hide()
 		backdrop.hide()
 		body.hide()
 		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 		stack.add_theme_constant_override("separation", 0)
-		camp_service_view = load("res://scripts/presentation/" + ("token_page" if layout == "tokens" else "camp_services_page") + ".gd").new()
-		stack.add_child(camp_service_view)
-		camp_service_view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
-		camp_service_view.closed.connect(func(): closed.emit())
-		camp_service_view.back_requested.connect(func(): back_requested.emit())
-		camp_service_view.configure(self, rows, context)
+		adventure_event_view = load("res://scripts/presentation/adventure_event_page.gd").new()
+		stack.add_child(adventure_event_view)
+		adventure_event_view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+		adventure_event_view.closed.connect(func(): closed.emit())
+		adventure_event_view.configure(self, rows, context)
+		return
+	if layout in ["tokens", "camp_service", "awakening"]:
+		stack.get_child(0).hide()
+		stack.get_child(1).hide()
+		backdrop.hide()
+		body.hide()
+		add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+		stack.add_theme_constant_override("separation", 0)
+		var view = load("res://scripts/presentation/" + {"tokens": "token_page", "camp_service": "camp_services_page", "awakening": "awakening_page"}[layout] + ".gd").new()
+		if layout == "awakening": awakening_view = view
+		else: camp_service_view = view
+		stack.add_child(view)
+		view.command.connect(func(kind, id, extra): command.emit(kind, id, extra))
+		view.closed.connect(func(): closed.emit())
+		view.back_requested.connect(func(): back_requested.emit())
+		view.configure(self, rows, context)
 		return
 	if layout in ["character", "weapon", "inventory", "shop"]:
 		backdrop.hide()
@@ -385,11 +402,18 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 
 func _adapt() -> void:
 	var compact = size.x < 1000
+	ROLE_NAVIGATION.configure_header_back_button(stack.get_child(0).get_child(0), size, "返回" if page_context.has("back_action") else "关闭")
 	if (page_context.get("camp", false) or page_context.get("room_activity", false)) and _layout in ["list", "grid", "model"]:
 		var style = DungeonStyle.box(Color("172d30"), DungeonStyle.GOLD, 2) if get_viewport_rect().size.y < 600 else DungeonStyle.panel().duplicate()
 		style.set_content_margin_all(16 if get_viewport_rect().size.y < 600 else 62)
 		add_theme_stylebox_override("panel", style)
 		stack.add_theme_constant_override("separation", 8 if get_viewport_rect().size.y < 600 else 16)
+	if stack.get_child(0).visible:
+		var panel = get_theme_stylebox("panel").duplicate()
+		var header_margin = ROLE_NAVIGATION.header_margin(size)
+		panel.set_content_margin(SIDE_LEFT, header_margin.x)
+		panel.set_content_margin(SIDE_TOP, header_margin.y)
+		add_theme_stylebox_override("panel", panel)
 	resource_bar.add_theme_constant_override("separation", 6 if compact else 12)
 	for line in resource_bar.get_children():
 		line.custom_minimum_size.x = 74 if compact else 130

@@ -472,10 +472,14 @@ func emit_effect(actor: DungeonActor, name: String, point: Vector3, dimensions :
 		return
 	var cache_key = _authored_cache_key(key, source_only)
 	var authored: Node3D
-	if not definition.get("layers", []).is_empty() or not definition.get("models", []).is_empty(): authored = _take_authored(key, cache_key, low_quality, source_only)
-	if not _reserve_effect(authored.particle_count if authored else 0, authored.emitters.size() if authored else 0, important, priority):
-		if authored: _store_authored(cache_key, authored)
-		return
+	var has_authored: bool = not definition.get("layers", []).is_empty() or not definition.get("models", []).is_empty()
+	if has_authored:
+		# Reserve first: eviction can return the exact instance this cast needs.
+		var retained: Array = authored_pool.get(cache_key, [])
+		var prototype: Node3D = retained.back() if not retained.is_empty() else _authored_template(key, cache_key, low_quality, source_only)
+		if not _reserve_effect(prototype.particle_count, prototype.emitters.size(), important, priority): return
+		authored = _take_authored(key, cache_key, low_quality, source_only)
+	elif not _reserve_effect(0, 0, important, priority): return
 	var entry: Dictionary = pool.pop_back()
 	entry.erase("buff_style")
 	var textures: Array = media.get("effects", {}).get(key, {}).get("textures", [])
@@ -1064,10 +1068,11 @@ func _process(delta: float) -> void:
 				continue
 		var fraction = effect.age / effect.duration
 		if effect.body_burst: effect.burst_material.set_shader_parameter("phase", fraction)
-		var color: Color = effect.color
-		color.a = 0.65 if effect.important else (0.8 + sin(effect.age * 18) * 0.2) if effect.loop else 1.0 - fraction
-		color.a *= float(effect.get("settings_opacity", 1.0))
-		effect.material.albedo_color = color
+		if effect.mesh.visible:
+			var color: Color = effect.color
+			color.a = 0.65 if effect.important else (0.8 + sin(effect.age * 18) * 0.2) if effect.loop else 1.0 - fraction
+			color.a *= float(effect.get("settings_opacity", 1.0))
+			effect.material.albedo_color = color
 		if not effect.authored and not effect.body_burst and not effect.important and not effect.loop: effect.root.scale = Vector3.ONE * (1.0 + fraction * 0.35)
 	sound_queue.sort_custom(func(a, b): return not bool(a.get("priority", false)) and bool(b.get("priority", false)))
 	for i in range(sound_queue.size() - 1, -1, -1):

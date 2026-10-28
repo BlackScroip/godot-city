@@ -223,7 +223,8 @@ func prompt_for(item: Dictionary) -> Array:
 	match str(item.marker.get("Type", "")):
 		"EEUT_Special_MonsterWork": return ["怪物工作", "work", "sprite_conversation_monsterwork"]
 		"EEUT_ProtectTarget": return ["启动守护", "", "interaction_quest"]
-		"EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan": return ["交谈", "npc", "interaction_quest"]
+		"EEUT_Special_GemShopMan": return ["宝石供奉", "", "sprite_conversation_get"]
+		"EEUT_NPC", "EEUT_Special_Trader": return ["交谈", "npc", "interaction_quest"]
 		"EEUT_AbilityItemTreasureBox": return ["普通宝箱" if str(item.data.get("TreasureType", "Normal")) == "Normal" else "珍贵宝箱", "", "interaction_quest"]
 		"EEUT_DoorController": return ["开启机关", "", "interaction_blacksmith"]
 		"EEUT_StageChangeDoor", "EEUT_Protal": return ["进入通道", "", "interaction_weapon"]
@@ -274,6 +275,7 @@ func interact(marker_id: String) -> Dictionary:
 			transition_requested.emit(context)
 		"EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan":
 			var npc_id := str(data.get("NpcId", ""))
+			if npc_id.is_empty() and str(item.marker.get("Type", "")) == "EEUT_Special_GemShopMan": npc_id = "2100"
 			var catalog = _services.get("catalog")
 			if npc_id.is_empty() or catalog == null or not catalog.has_method("find") or catalog.find("NPCData", npc_id).is_empty():
 				return {"success": false, "reason": "missing_npc_config"}

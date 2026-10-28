@@ -2,6 +2,7 @@ class_name DungeonMallPage
 extends Control
 
 signal command(kind: String, id: Variant, extra: Variant)
+const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 
 const INK := Color("604b36")
 const GOLD := Color("d4b667")
@@ -30,6 +31,8 @@ var _board_size := Vector2(1120, 690)
 var _detail: VBoxContainer
 var _canvas_scale := 1.0
 var _layout_pending := false
+var _back: Button
+var _title_art: TextureRect
 
 func configure(owner_page: Control, data: Array, context: Dictionary) -> void:
 	host = owner_page
@@ -151,12 +154,13 @@ func _build() -> void:
 	add_child(canvas)
 	canvas.size = _logical_size
 	portrait = _picture(canvas, "characterillustration_tianfushu_normal", Rect2(180, 40, 595, 900))
-	var back = _art_button(canvas, "退出按钮", "返回", Rect2(28, 18, 108, 90))
-	back.pressed.connect(func():
+	_back = ROLE_NAVIGATION.create_back_button()
+	canvas.add_child(_back)
+	_back.pressed.connect(func():
 		if is_instance_valid(host): host.back_requested.emit()
 		else: command.emit("close_page", 0, 0))
-	var title_art := _picture(canvas, "商城", Rect2(135, 24, 230, 102))
-	DungeonStyle.localize_artwork_title(title_art, "商城", 60)
+	_title_art = _picture(canvas, "商城", Rect2(135, 24, 230, 102))
+	DungeonStyle.localize_artwork_title(_title_art, "商城", 60)
 	_label(canvas, "请适度娱乐，理性消费。", Rect2(138, 118, 310, 30), 18, Color("e7e8da"))
 	var wallet_x = _logical_size.x - 330
 	_picture(canvas, "货币_底", Rect2(wallet_x, 20, 280, 48))
@@ -535,6 +539,12 @@ func _apply_canvas_transform() -> void:
 	if not is_instance_valid(canvas): return
 	canvas.scale = Vector2.ONE * _canvas_scale
 	canvas.position = Vector2((size.x - _logical_size.x * _canvas_scale) * 0.5, (size.y - 900 * _canvas_scale) * 0.5)
+	if is_instance_valid(_back):
+		ROLE_NAVIGATION.place_back_button(_back, ROLE_NAVIGATION.scale_factor(size) / _canvas_scale)
+		_back.position -= canvas.position / _canvas_scale
+	if is_instance_valid(_title_art):
+		_title_art.position = Vector2(_back.get_rect().end.x + 12 / _canvas_scale, _back.position.y)
+		_title_art.size.y = _back.size.y
 
 func refresh() -> void:
 	_build()

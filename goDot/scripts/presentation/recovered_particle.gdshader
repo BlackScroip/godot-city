@@ -36,6 +36,7 @@ uniform bool use_motion_curve = false;
 uniform bool world_motion = false;
 uniform mat3 emitter_basis = mat3(1.0);
 uniform bool source_shapes = false;
+uniform bool source_polar_uv = false;
 uniform float clock = 0.0;
 uniform float timing_seed = 0.0;
 uniform vec4 source_tint : source_color = vec4(1.0);
@@ -277,7 +278,12 @@ void fragment() {
             float distortion = (source_sample(source_distort, noise_uv, source_distort_wrap).r - 0.5) * 0.2 * source_distort_amount;
             distorted_uv += vec2(distortion);
         }
-        vec2 primary_uv = source_uv(distorted_uv, shape1_st, shape1_scroll, shape1_rotation, shape1_stream_offset);
+        vec2 shape_base = distorted_uv;
+        if (source_polar_uv) {
+            vec2 centered = distorted_uv - vec2(0.5);
+            shape_base = vec2(atan(centered.y, centered.x) / 6.28318530718 + 0.5, length(centered) * 2.0);
+        }
+        vec2 primary_uv = source_uv(shape_base, shape1_st, shape1_scroll, shape1_rotation, shape1_stream_offset);
         primary_uv += source_distortion(UV, shape1_distort, shape1_distort_st, shape1_distort_scroll, shape1_distort_amount, shape1_distort_wrap);
         vec2 source_sheet_uv = (primary_uv + frame_cell) / sheet;
         vec4 first_sample = source_sample(main_texture, source_sheet_uv, shape1_wrap);
@@ -285,12 +291,12 @@ void fragment() {
         vec4 combined = first_shape;
         if (use_shape2 || use_shape3) combined *= shape1_weight;
         if (use_shape2) {
-            vec2 shape_uv = source_uv(distorted_uv, shape2_st, shape2_scroll, shape2_rotation, shape2_stream_offset);
+            vec2 shape_uv = source_uv(shape_base, shape2_st, shape2_scroll, shape2_rotation, shape2_stream_offset);
             shape_uv += source_distortion(UV, shape2_distort, shape2_distort_st, shape2_distort_scroll, shape2_distort_amount, shape2_distort_wrap);
             combined *= source_shape(source_sample(shape2_texture, shape_uv, shape2_wrap), shape2_color, shape2_color_mode, shape2_contrast) * shape2_weight;
         }
         if (use_shape3) {
-            vec2 shape_uv = source_uv(distorted_uv, shape3_st, shape3_scroll, shape3_rotation, shape3_stream_offset);
+            vec2 shape_uv = source_uv(shape_base, shape3_st, shape3_scroll, shape3_rotation, shape3_stream_offset);
             shape_uv += source_distortion(UV, shape3_distort, shape3_distort_st, shape3_distort_scroll, shape3_distort_amount, shape3_distort_wrap);
             combined *= source_shape(source_sample(shape3_texture, shape_uv, shape3_wrap), shape3_color, shape3_color_mode, shape3_contrast) * shape3_weight;
         }

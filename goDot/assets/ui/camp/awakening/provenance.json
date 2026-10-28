@@ -1,0 +1,787 @@
+{
+  "apk": "/Users/hanyu/U3D/City/1061664.apk",
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+    "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+  },
+  "config_sources": {
+    "CharaTalentAwakeTreeData": {
+      "asset": "Assets/[00002]Resource/MasterCfg/Luban_AT/CharaTalentAwakeTreeData.json",
+      "member": "assets/yoo/DefaultPackage/9688f7e4f49c90ce4119c9758d061ae5.bundle",
+      "bundle_sha256": "7e7b2b9cf5f01ae13c870b0e8b8540d682caca51a378a3e13a08ca499370c45e",
+      "path_id": "-1819282614603575775",
+      "text_sha256": "5a91d5844ab110b9a4c4105157380d0625beb20ba957a8efd629657a8264ca92"
+    },
+    "RelationshipTokenData": {
+      "asset": "Assets/[00002]Resource/MasterCfg/Luban_AT/RelationshipTokenData.json",
+      "member": "assets/yoo/DefaultPackage/9688f7e4f49c90ce4119c9758d061ae5.bundle",
+      "bundle_sha256": "7e7b2b9cf5f01ae13c870b0e8b8540d682caca51a378a3e13a08ca499370c45e",
+      "path_id": "849208217773215143",
+      "text_sha256": "8529e2ecd3ab52b856ebea4ce1722750a2ad422789cb33d8d22d0622b5258a99"
+    }
+  },
+  "public_awakening_nodes": 110,
+  "requested_names": [
+    "sprite_awake_111",
+    "sprite_awake_112",
+    "sprite_awake_113",
+    "sprite_awake_114",
+    "sprite_awake_115",
+    "sprite_awake_311",
+    "sprite_awake_312",
+    "sprite_awake_313",
+    "sprite_awake_314",
+    "sprite_awake_315",
+    "sprite_awake_511",
+    "sprite_awake_512",
+    "sprite_awake_513",
+    "sprite_awake_514",
+    "sprite_awake_515",
+    "sprite_awake_611",
+    "sprite_awake_612",
+    "sprite_awake_613",
+    "sprite_awake_614",
+    "sprite_awake_615",
+    "sprite_awake_801",
+    "sprite_awake_802",
+    "sprite_awake_803",
+    "sprite_awake_804",
+    "sprite_awake_805",
+    "sprite_awake_806",
+    "sprite_awake_807",
+    "sprite_awake_808",
+    "sprite_awake_809",
+    "sprite_awake_810",
+    "sprite_awake_811",
+    "sprite_awake_812",
+    "sprite_awake_813",
+    "sprite_awake_814",
+    "sprite_awake_815",
+    "sprite_tokenicon_50081"
+  ],
+  "sprites": [
+    {
+      "name": "sprite_awake_111",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_111.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_111.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-1688992373600868860",
+      "width": 115,
+      "height": 128,
+      "alpha_bounds": [
+        0,
+        7,
+        113,
+        128
+      ],
+      "rgba_sha256": "7a2186091bfd65088edbf96ede5ea7fd963b09a4dc9d78a21f834800ee246ce1",
+      "png_sha256": "9e3a7ad981c814935b99dbbd2c05db0df9c7ad7d5efe985624e80d60c8007c50"
+    },
+    {
+      "name": "sprite_awake_112",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_112.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_112.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-3106320078528016311",
+      "width": 108,
+      "height": 128,
+      "alpha_bounds": [
+        10,
+        6,
+        100,
+        128
+      ],
+      "rgba_sha256": "e8b551d0e70413126444fd1db250f55804e431c62b5be71c4bd4e54b7b99954d",
+      "png_sha256": "a534fb9dac40f4c5034a9829998541ac4483e4914c4bdd67e5a416016e4baefa"
+    },
+    {
+      "name": "sprite_awake_113",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_113.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_113.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-2624250121644209674",
+      "width": 128,
+      "height": 89,
+      "alpha_bounds": [
+        0,
+        9,
+        128,
+        86
+      ],
+      "rgba_sha256": "00713e38eac7a51e0a396ceb4eee86e1312f8cfba2cbf2c25d008fe3970d61e4",
+      "png_sha256": "fd0ace9dbac82f2cb85d05c03cee234797778882ca75c024b2f53db9db851cb1"
+    },
+    {
+      "name": "sprite_awake_114",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_114.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_114.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-6675611081983056705",
+      "width": 118,
+      "height": 117,
+      "alpha_bounds": [
+        2,
+        6,
+        116,
+        115
+      ],
+      "rgba_sha256": "6bb97c2ec49040f26a0fd5ace0cbaa686341175b9ee892b448003b047986b02b",
+      "png_sha256": "3950f91c8cb9284cfcff213d77aeb61a3044926d71977e5c6897b5ae3b4c3e2e"
+    },
+    {
+      "name": "sprite_awake_115",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_115.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_115.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-6354245059275165734",
+      "width": 128,
+      "height": 128,
+      "alpha_bounds": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "rgba_sha256": "d85f14e66c93675605273133a65bc1bf9ad1a15afd4afaa5c4b5693a67b5162c",
+      "png_sha256": "71d6a0bd22f8690b0e08e67508cd58750530c1516e7e1f88d0faff98675318f6"
+    },
+    {
+      "name": "sprite_awake_311",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_311.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_311.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-1585181952624587575",
+      "width": 122,
+      "height": 124,
+      "alpha_bounds": [
+        3,
+        2,
+        119,
+        122
+      ],
+      "rgba_sha256": "ce4443f485cbae85e0e4650507274b82915cd4398fcea3293fca16ae809e7fab",
+      "png_sha256": "8bc0e6b900d673fd38a52317d137d14833d62a96655b063a6553d36475024992"
+    },
+    {
+      "name": "sprite_awake_312",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_312.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_312.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-996476407819432124",
+      "width": 124,
+      "height": 116,
+      "alpha_bounds": [
+        2,
+        2,
+        123,
+        114
+      ],
+      "rgba_sha256": "8e76e8c47bc5aa1ee309656db9b4d027cd91e46dd8a9253ae099125df691386f",
+      "png_sha256": "2804e66abba97f688f63c97d5fc34b2a2b8ef9d6498e5989dc498f99961e8d27"
+    },
+    {
+      "name": "sprite_awake_313",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_313.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_313.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-4080741059675759266",
+      "width": 108,
+      "height": 127,
+      "alpha_bounds": [
+        2,
+        0,
+        105,
+        125
+      ],
+      "rgba_sha256": "20f1bfeb4bcbfb1a66aba066dfc7d558fbc83b6b9bf26463faa823ed750ea8ab",
+      "png_sha256": "027aa11c7556d0b18dfa73c5e7e0da88e309a52a0abe476e2e046dd8f275dfe6"
+    },
+    {
+      "name": "sprite_awake_314",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_314.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_314.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-5043507743971491771",
+      "width": 124,
+      "height": 124,
+      "alpha_bounds": [
+        2,
+        2,
+        122,
+        122
+      ],
+      "rgba_sha256": "46ca55e3445a2b395e325d44e3bbca632162b8ffc58c8b7ba19e594732638fdc",
+      "png_sha256": "b1abf2f90428b4c0431b001340fd75253684ed100fc7d52328a9448845123163"
+    },
+    {
+      "name": "sprite_awake_315",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_315.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_315.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "6682468223366162354",
+      "width": 92,
+      "height": 127,
+      "alpha_bounds": [
+        2,
+        1,
+        90,
+        125
+      ],
+      "rgba_sha256": "d1b76c1eefe9ed55678864d3705e9c77152815a3f03d1134f223d840f932c231",
+      "png_sha256": "d2b7c9d8adb4d477a69798fe725b5fddbedae332d5c43f76870d8fbba0d60ec0"
+    },
+    {
+      "name": "sprite_awake_511",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_511.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_511.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "288085331649046629",
+      "width": 118,
+      "height": 127,
+      "alpha_bounds": [
+        2,
+        1,
+        116,
+        125
+      ],
+      "rgba_sha256": "5b5fa3c62455e8c286fc44d5f68a4da62c4c225dc2a5e496275b886709e98dae",
+      "png_sha256": "c826a20a807ba875d89be3ecd7d7940f4ac724754fc4814b9700016129cc7aa6"
+    },
+    {
+      "name": "sprite_awake_512",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_512.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_512.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-9193467709529772396",
+      "width": 102,
+      "height": 123,
+      "alpha_bounds": [
+        2,
+        2,
+        99,
+        120
+      ],
+      "rgba_sha256": "a4c18131a3ba253354e76f884b8254f13e826bfb3c47843e875e99134875029e",
+      "png_sha256": "66e3416b60f3c540d59c835bcb4db1be7c702b213390da139260143d6db1ce68"
+    },
+    {
+      "name": "sprite_awake_513",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_513.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_513.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "7053016863600019456",
+      "width": 123,
+      "height": 126,
+      "alpha_bounds": [
+        3,
+        2,
+        120,
+        124
+      ],
+      "rgba_sha256": "aca7c702782ee287511765391874d24857b72dbac75ea46d1a1d0736773b9c4e",
+      "png_sha256": "01eafb72d5ff33b4c80e79eafe2eedb491b53d0817b9a726e4d307a995a5aca1"
+    },
+    {
+      "name": "sprite_awake_514",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_514.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_514.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-1451372118671976585",
+      "width": 124,
+      "height": 124,
+      "alpha_bounds": [
+        2,
+        2,
+        122,
+        122
+      ],
+      "rgba_sha256": "233c7ddc78112a93ac53f3b8eb244a1bde75ca5b648ce2a571fa039cd8b466ae",
+      "png_sha256": "d36d987c507898fe1a15a278bce4d38bab80a28183f963abda6f813385e89f66"
+    },
+    {
+      "name": "sprite_awake_515",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_515.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_515.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "8003484381667571199",
+      "width": 110,
+      "height": 115,
+      "alpha_bounds": [
+        3,
+        1,
+        107,
+        112
+      ],
+      "rgba_sha256": "4282aa5ea2a71738b5154c49a27506bb3672bd3837f047c3d1a7f0c9d6df68eb",
+      "png_sha256": "a0e4e337781b294d86586e44ef414598b1bc068face8eb18633ddf638ca84e04"
+    },
+    {
+      "name": "sprite_awake_611",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_611.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_611.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "7780595444895082485",
+      "width": 114,
+      "height": 126,
+      "alpha_bounds": [
+        2,
+        0,
+        112,
+        124
+      ],
+      "rgba_sha256": "7b3fdc81172ff46870d401b7d2e21b1c26d9dac22f22f5276f302750510e9b6b",
+      "png_sha256": "d1611b49d5ea181524cd666bea5b049c971761944f9846cfa5acfb66ea468f59"
+    },
+    {
+      "name": "sprite_awake_612",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_612.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_612.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "1906976227201030596",
+      "width": 122,
+      "height": 124,
+      "alpha_bounds": [
+        2,
+        2,
+        120,
+        122
+      ],
+      "rgba_sha256": "405a2eb916e516bf83e478e6aa9646a0975a5de7335fbb9451091d75f023fdee",
+      "png_sha256": "9d46196141932a1b32ad797493e66ed97e76b42f800c1b7688e9bb53b67ac060"
+    },
+    {
+      "name": "sprite_awake_613",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_613.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_613.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-233979504603968454",
+      "width": 116,
+      "height": 116,
+      "alpha_bounds": [
+        2,
+        2,
+        114,
+        114
+      ],
+      "rgba_sha256": "60556a8ebcef5fd75dca88d86a8ae0f431a935299da72218085abcdab8b70c10",
+      "png_sha256": "d210c905f6766472ab40829a060614b480c549d754fc38e5a1c4029f6fbde9cf"
+    },
+    {
+      "name": "sprite_awake_614",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_614.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_614.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-7767248969398737097",
+      "width": 115,
+      "height": 115,
+      "alpha_bounds": [
+        3,
+        2,
+        113,
+        113
+      ],
+      "rgba_sha256": "068ccad680ae87969f73c7508151811c27ef37d6a76ff46f71fe7ca2390465f0",
+      "png_sha256": "9802ed3b0852b647b87023536fef7076bff6b8c85948911fda3be6db10ae107a"
+    },
+    {
+      "name": "sprite_awake_615",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_615.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_615.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "659174140311522629",
+      "width": 115,
+      "height": 118,
+      "alpha_bounds": [
+        2,
+        2,
+        113,
+        116
+      ],
+      "rgba_sha256": "ad9cbbfb83e5d5bb1ff0c03b6c21334501780a7f02576e9996955203b2f9f90d",
+      "png_sha256": "20f454304e5eb7501ad3f3975a5c9d4365760715714cc7de0678ff9d204dbd7f"
+    },
+    {
+      "name": "sprite_awake_801",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_801.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_801.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "7095391013973539142",
+      "width": 104,
+      "height": 104,
+      "alpha_bounds": [
+        3,
+        2,
+        101,
+        102
+      ],
+      "rgba_sha256": "65cf391b69a9676d47c9ac45d2a61c6c80ac11bd8b6e04f6a04775768ffe5f73",
+      "png_sha256": "d0975b2eafe228a87966934a7bd4924a3398e16f23e7f6e7495310ca8c90b425"
+    },
+    {
+      "name": "sprite_awake_802",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_802.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_802.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "682103709918522322",
+      "width": 104,
+      "height": 104,
+      "alpha_bounds": [
+        2,
+        2,
+        102,
+        102
+      ],
+      "rgba_sha256": "d4815e5689cc8b983ba13a3bc0c51929676b1ef04e9c319c0f2b9fb4ba858251",
+      "png_sha256": "04fc4f674d74c8c052dc94825861bc6c99d7ff7e38948692150f9f2f7ad7d725"
+    },
+    {
+      "name": "sprite_awake_803",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_803.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_803.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-2306988101020698053",
+      "width": 112,
+      "height": 110,
+      "alpha_bounds": [
+        2,
+        2,
+        112,
+        108
+      ],
+      "rgba_sha256": "621430e7109e9639086e71615b2f3ec9049ec274ba0a41a4b3b37bcc56165907",
+      "png_sha256": "b1ccfce7e11ea1abe9a223838052ffbc45049ed996c68554d717ebfeaca502e2"
+    },
+    {
+      "name": "sprite_awake_804",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_804.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_804.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "8616639995453976571",
+      "width": 112,
+      "height": 110,
+      "alpha_bounds": [
+        2,
+        2,
+        110,
+        108
+      ],
+      "rgba_sha256": "1721f290117a0a53c0644d37205eb17da132b5aac131943d4b4dbe59a0bc1b90",
+      "png_sha256": "fe82b2d00f6fcbe3a9ba412889cbd12b7fb29255652130ae1aee9bee2c02223a"
+    },
+    {
+      "name": "sprite_awake_805",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_805.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_805.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-7107009429345301776",
+      "width": 116,
+      "height": 124,
+      "alpha_bounds": [
+        3,
+        3,
+        113,
+        122
+      ],
+      "rgba_sha256": "2b717a71090c9d1bebfe4823341c9851b0e3938f84830580e5e9db7189fc14d1",
+      "png_sha256": "2076c998b97ae6a29ad61a330f6ed903c0effa679c33eb3da8b5ceb3351942f6"
+    },
+    {
+      "name": "sprite_awake_806",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_806.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_806.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "4687708766011538202",
+      "width": 102,
+      "height": 119,
+      "alpha_bounds": [
+        2,
+        3,
+        100,
+        117
+      ],
+      "rgba_sha256": "fdf675a82b6bc5c7b3746d324a3f0b36a961722bbb717d8927b030339bc1af52",
+      "png_sha256": "865fcfc887092a861d8e6f8cf74ece42482ad12d3e1ba7fffd14a626acd34c08"
+    },
+    {
+      "name": "sprite_awake_807",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_807.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_807.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "1449159848652523724",
+      "width": 121,
+      "height": 110,
+      "alpha_bounds": [
+        2,
+        2,
+        119,
+        108
+      ],
+      "rgba_sha256": "0c97c8546e52801ea5eb7ad716b34085735adc95c4f975e76042df7a165ad759",
+      "png_sha256": "1ea0ae542d5022e9d1af9bbc70f78992569c2091ee0837033358968ba7daa96a"
+    },
+    {
+      "name": "sprite_awake_808",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_808.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_808.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-3577316404830092722",
+      "width": 114,
+      "height": 116,
+      "alpha_bounds": [
+        2,
+        3,
+        112,
+        113
+      ],
+      "rgba_sha256": "d9546e67acb0633c85b47b39cd522e0a38fc7e424cb8c03d7955f4453fbc45a2",
+      "png_sha256": "c0b4967b69703da10f6eb8e60b01e4fe1ff6403f73967f372432f003f52eeb12"
+    },
+    {
+      "name": "sprite_awake_809",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_809.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_809.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "6135615703989306301",
+      "width": 124,
+      "height": 118,
+      "alpha_bounds": [
+        2,
+        1,
+        122,
+        117
+      ],
+      "rgba_sha256": "b8091938fa1a3b8ea14fcb33f76286dbd2ba75ce6d46b7e77a17f8bf8b84a075",
+      "png_sha256": "fd8a3e6f5c84e1680b04eb63caefc1e326604a33e4c5b6abbb6c986aa7964270"
+    },
+    {
+      "name": "sprite_awake_810",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_810.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_810.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "172322045419994855",
+      "width": 113,
+      "height": 110,
+      "alpha_bounds": [
+        3,
+        2,
+        111,
+        108
+      ],
+      "rgba_sha256": "d8fe6d6b4d1c2f9901a67ba16255d8d4f87461e29f320eaf185b5441830789ec",
+      "png_sha256": "2d94d5cad7f08ce809acafe7d921d0f27d6dfa1265f2a5949b1344b4125e5ea0"
+    },
+    {
+      "name": "sprite_awake_811",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_811.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_811.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "5762689171563786004",
+      "width": 113,
+      "height": 112,
+      "alpha_bounds": [
+        2,
+        2,
+        110,
+        110
+      ],
+      "rgba_sha256": "df78f493c7023bf80c7986b9bcdeb876b9ac0a65aaf3c22b871664cb10c357ac",
+      "png_sha256": "fd10c7fe20afb88559f4ab1f253d53865e8a26a53f52b1503c00f24e68f71654"
+    },
+    {
+      "name": "sprite_awake_812",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_812.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_812.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-7774239412718709361",
+      "width": 112,
+      "height": 108,
+      "alpha_bounds": [
+        2,
+        2,
+        110,
+        106
+      ],
+      "rgba_sha256": "04ab1d2d76b6ee8e0b4df37b8fb0c0d1fae2b09cd391cc2fc7b9202d0911666a",
+      "png_sha256": "6791508eb625b7768062dc031fbf7265fea01f3b9d210b492f6030f994791d00"
+    },
+    {
+      "name": "sprite_awake_813",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_813.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_813.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "6888668185689200241",
+      "width": 112,
+      "height": 116,
+      "alpha_bounds": [
+        2,
+        2,
+        110,
+        114
+      ],
+      "rgba_sha256": "626c6366aa81ad77fce84948c81cd53a25f18016555bb874f25bea78a7edbad6",
+      "png_sha256": "0e28dec65ecd5f1295dd7829f45568d4f46a6218b05d4fa4311d9fd8654179af"
+    },
+    {
+      "name": "sprite_awake_814",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_814.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_814.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "1670590370274681357",
+      "width": 116,
+      "height": 114,
+      "alpha_bounds": [
+        2,
+        3,
+        114,
+        111
+      ],
+      "rgba_sha256": "270ca3b5ed85283f1698f1e52dc70288e5abde0b08adbce6a0ebf758da52b671",
+      "png_sha256": "59b348511ffe0ecb48c1c1f2162ed7752bd9d41ef30891bc9f6e6b80479757e1"
+    },
+    {
+      "name": "sprite_awake_815",
+      "path": "res://assets/ui/camp/awakening/sprite_awake_815.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Skill/sprite_awake_815.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/19753c31c80244111fe133e60d62d274.bundle",
+        "bundle_sha256": "fb5eaec2809f8d7188e9ca53d54215f3cef807d53839150ff99d224513b8025c"
+      },
+      "sprite_path_id": "-8867338339810735686",
+      "width": 118,
+      "height": 104,
+      "alpha_bounds": [
+        2,
+        2,
+        116,
+        102
+      ],
+      "rgba_sha256": "1bc6bb0429e7a05ac09d57597270e6ed0a7c69acd23933563fb60588b415dc76",
+      "png_sha256": "ae02c919e04a4a73c319d29a58c23b76b37a07e4cf8e555f66409ac72beb2709"
+    },
+    {
+      "name": "sprite_tokenicon_50081",
+      "path": "res://assets/ui/camp/relationship_tokens/sprite_tokenicon_50081.png",
+      "source_asset": "Assets/[00002]Resource/Texture/ProjectAT/Icon/Item/sprite_tokenicon_50081.png",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "sprite_path_id": "-3448526049440418464",
+      "width": 174,
+      "height": 242,
+      "alpha_bounds": [
+        0,
+        0,
+        172,
+        240
+      ],
+      "rgba_sha256": "515196859c243c788b5c0c65a87029f89bb5caffc2f0cf34cfc4c003652aed5a",
+      "png_sha256": "05f79c90a9b728c1c048558130b3f7d74405c30c533d20e15203b083c079c26e"
+    }
+  ],
+  "missing": [],
+  "limits": "Static addressed Sprite decoding from the verified APK. No generated or redrawn pixels, target execution, or visual/runtime parity claim."
+}

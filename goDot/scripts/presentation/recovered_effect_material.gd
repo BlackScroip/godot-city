@@ -40,6 +40,7 @@ static func apply_source(material: ShaderMaterial, source: Dictionary, textures:
 	var maps: Dictionary = {}
 	for entry in source.get("textures", []): maps[str(entry.property)] = entry
 	material.set_shader_parameter("source_shapes", true)
+	material.set_shader_parameter("source_polar_uv", "POLARUV_ON" in keywords)
 	material.set_shader_parameter("source_tint", _color(colors.get("_Color", {})))
 	material.set_shader_parameter("source_alpha", float(floats.get("_Alpha", 1.0)))
 	material.set_shader_parameter("timing_seed", float(floats.get("_TimingSeed", 0.0)))

@@ -1,15 +1,20 @@
 extends Control
 
+const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
+
 signal command(kind: String, id: Variant, extra: Variant)
 
 const PAPER := Color("fcfcfa")
 const INK := Color("65491d")
 const SELECTED := Color("444f5f")
 const TRACK := Color("b0adaa")
+const SETTINGS_SCROLL = preload("res://scripts/presentation/settings_scroll.gd")
+const SETTINGS_SEGMENT = preload("res://scripts/presentation/settings_segment.gd")
 const SECTIONS := ["游戏性", "画面", "声音", "账户", "指南"]
 const ICONS := {"游戏性": "menu_settings", "画面": "设置显示", "声音": "设置音量", "账户": "账户", "指南": "指南"}
 const ACTIVE_ICONS := {"游戏性": "设置(激活)", "画面": "设置显示（激活）", "声音": "设置音量（激活）", "账户": "账户h", "指南": "指南h"}
 const SOURCE_BORDERS := {
+	"按钮未选择": Vector4(66, 28, 66, 28),
 	"几何形状-白色粉边椭圆": Vector4(30, 0, 30, 0),
 	"几何ui-暗圆角矩形": Vector4(38, 39, 38, 39),
 	"几何ui-椭圆白色按钮": Vector4(71.4, 0, 75.75, 0),
@@ -43,7 +48,9 @@ var _dialog_panel: PanelContainer
 var _dialog_kind := ""
 var _logical_size := Vector2(2048, 900)
 var _art: Dictionary = {}
-var _buttons: Array[Button] = []
+var _segments: Array[HBoxContainer] = []
+var _section_scroll: Dictionary = {}
+var _section_motion: Tween
 var _slider_thumb: Texture2D
 var _dark_pill: Texture2D
 
@@ -81,7 +88,7 @@ func configure(owner_page: DungeonMenuPage, data: Array) -> void:
 	add_child(blur)
 	canvas = Control.new()
 	add_child(canvas)
-	back = _art_button("退出按钮", "返回", "")
+	back = ROLE_NAVIGATION.create_back_button()
 	back.pressed.connect(go_back)
 	canvas.add_child(back)
 	title = _text("设置", 52, Color("725124"))
@@ -102,7 +109,7 @@ func configure(owner_page: DungeonMenuPage, data: Array) -> void:
 	rail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rail.add_theme_constant_override("separation", 0)
 	rail_scroll.add_child(rail)
-	scroll = ScrollContainer.new()
+	scroll = SETTINGS_SCROLL.new()
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var scrollbar := scroll.get_v_scroll_bar()
@@ -126,12 +133,15 @@ func configure(owner_page: DungeonMenuPage, data: Array) -> void:
 		var button := Button.new()
 		button.text = str(entry[0])
 		button.tooltip_text = str(entry[0])
+		button.clip_text = true
 		button.icon = _texture(str(entry[1]))
 		button.expand_icon = true
 		button.add_theme_constant_override("icon_max_width", 62)
 		button.add_theme_constant_override("h_separation", 18)
-		button.custom_minimum_size = Vector2(358, 62)
+		button.custom_minimum_size = Vector2(0, 62)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.add_theme_font_size_override("font_size", 30)
+		button.resized.connect(func(): _fit_button(button, 30))
 		button.add_theme_color_override("font_color", Color("262831"))
 		button.add_theme_color_override("font_outline_color", PAPER)
 		button.add_theme_constant_override("outline_size", 4)
@@ -208,6 +218,10 @@ func _clear(node: Node) -> void:
 func show_section(value: String) -> void:
 	close_dialog()
 	if value == "存档": value = "账户"
+	if value == section and detail.get_child_count() > 0:
+		refresh_values()
+		return
+	_section_scroll[section] = scroll.scroll_vertical
 	if value != "指南" and section != "指南": previous_section = value
 	section = value
 	host.page_context["settings_section"] = section
@@ -216,6 +230,11 @@ func show_section(value: String) -> void:
 	_refresh_rail()
 	_rebuild_rows()
 	_layout()
+	scroll.reset_motion.call_deferred(float(_section_scroll.get(section, 0)))
+	if is_instance_valid(_section_motion): _section_motion.kill()
+	detail.modulate.a = 0.45
+	_section_motion = create_tween()
+	_section_motion.tween_property(detail, "modulate:a", 1.0, 0.16 / float(DungeonSettings.read_options().ui_speed))
 
 func _refresh_rail() -> void:
 	_clear(rail)
@@ -237,7 +256,7 @@ func _refresh_rail() -> void:
 		key.alignment = HORIZONTAL_ALIGNMENT_CENTER
 		key.autowrap_mode = TextServer.AUTOWRAP_OFF
 		key.clip_text = true
-		key.resized.connect(func(): _fit_button(key, 30))
+		key.resized.connect(func(): _fit_rail_button(key))
 		var style := DungeonStyle.box(Color(0.9, 0.75, 0.32, 0.28) if active else Color.TRANSPARENT)
 		style.border_width_top = 2
 		style.border_width_bottom = 2
@@ -253,6 +272,7 @@ func _refresh_rail() -> void:
 		key.add_theme_color_override("icon_normal_color", Color("ffd77c") if active else Color("e4e2d6"))
 		key.pressed.connect(func():
 			if section == "指南":
+				if guide_category == name: return
 				guide_category = name
 				guide_article = ""
 				_refresh_rail()
@@ -263,8 +283,8 @@ func _refresh_rail() -> void:
 func _rebuild_rows() -> void:
 	_clear(detail)
 	controls.clear()
-	_buttons.clear()
-	scroll.scroll_vertical = 0
+	_segments.clear()
+	scroll.reset_motion()
 	footer.visible = section != "指南"
 	detail.add_theme_constant_override("separation", 28 if section == "指南" else 10)
 	if section == "指南":
@@ -317,13 +337,18 @@ func _build_row(row: Dictionary) -> void:
 		group.add_theme_constant_override("separation", 0)
 		line.add_child(group)
 		var track := PanelContainer.new()
-		track.custom_minimum_size.x = options.size() * 166
+		panel.set_meta("option_track", track)
+		panel.set_meta("option_count", options.size())
+		track.custom_minimum_size.x = minf(options.size() * 166, maxf(240, (scroll.size.x - 68) * 0.48))
 		track.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		track.add_theme_stylebox_override("panel", _pill(TRACK, Color.TRANSPARENT, 0))
+		var track_style := _source_box("按钮未选择", 28, _pill(TRACK, Color.TRANSPARENT, 0))
+		track_style.set_content_margin_all(0)
+		track.add_theme_stylebox_override("panel", track_style)
 		group.add_child(track)
-		var segments := HBoxContainer.new()
-		segments.add_theme_constant_override("separation", 0)
+		var segments := SETTINGS_SEGMENT.new()
+		segments.selection_style = _source_box("几何ui-暗圆角矩形", 24, _pill(SELECTED, Color("c6a763"), 2))
 		track.add_child(segments)
+		_segments.append(segments)
 		for option in options:
 			var button := Button.new()
 			button.text = str(option.text)
@@ -339,8 +364,9 @@ func _build_row(row: Dictionary) -> void:
 				command.emit(str(option.action), option.get("id", 0), option.get("extra", 0))
 				refresh_values())
 			segments.add_child(button)
-			_buttons.append(button)
-			_segment_style(button, bool(option.get("selected", false)))
+			for state in ["normal", "hover", "pressed", "disabled"]: button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+			button.add_theme_stylebox_override("focus", _pill(Color(1, 1, 1, 0.08), Color("e2c879"), 1))
+			if bool(option.get("selected", false)): segments.select_index(button.get_index(), false)
 		if row.has("key"): controls[str(row.key)] = segments
 		return
 	for entry in row.get("controls", []):
@@ -413,13 +439,6 @@ func _build_row(row: Dictionary) -> void:
 			button.custom_minimum_size = Vector2(225, 46)
 			actions.add_child(button)
 
-func _segment_style(button: Button, selected: bool) -> void:
-	for state in ["normal", "hover", "pressed", "focus"]:
-		var style: StyleBox = _pill(SELECTED if selected else Color.TRANSPARENT, Color("c6a763") if selected else Color.TRANSPARENT, 2 if selected else 0)
-		if selected: style = _source_box("几何ui-暗圆角矩形", 24, style)
-		style.set_content_margin_all(4)
-		button.add_theme_stylebox_override(state, style)
-
 func _button(label: String, action: String, id: Variant = 0, extra: Variant = 0) -> Button:
 	var button := Button.new()
 	button.text = label
@@ -453,6 +472,15 @@ func _fit_button(button: Button, maximum: int) -> void:
 	if button.get_theme_font_size("font_size") != chosen:
 		button.add_theme_font_size_override("font_size", chosen)
 
+func _fit_rail_button(button: Button) -> void:
+	var compact := button.size.x < 230
+	button.add_theme_constant_override("icon_max_width", 48 if compact else 68)
+	button.add_theme_constant_override("h_separation", 12 if compact else 18)
+	var style := button.get_theme_stylebox("normal")
+	style.content_margin_left = 16 if compact else 32
+	style.content_margin_right = 12 if compact else 24
+	_fit_button(button, 30)
+
 func _language_control(entry: Dictionary) -> OptionButton:
 	var selector := OptionButton.new()
 	selector.name = "LanguageSelect"
@@ -473,16 +501,25 @@ func _language_control(entry: Dictionary) -> OptionButton:
 
 func refresh_values() -> void:
 	var values := DungeonSettings.read_options()
-	for button in _buttons:
-		var entry: Dictionary = button.get_meta("entry")
-		var key := str(entry.action).trim_prefix("setting:")
-		if values.has(key): _segment_style(button, values[key] == entry.id)
+	for segments in _segments:
+		for button in segments.get_children():
+			var entry: Dictionary = button.get_meta("entry")
+			var key := str(entry.action).trim_prefix("setting:")
+			if (values.has(key) and values[key] == entry.id) or (not values.has(key) and bool(entry.get("selected", false))):
+				segments.select_index(button.get_index())
+				break
 	for key in controls:
 		var control: Variant = controls[key]
 		if control is Dictionary and control.has("slider") and values.has(key):
 			control.slider.set_value_no_signal(float(values[key]))
 			control.label.text = str(values[key])
 		elif control is CheckBox and values.has(key): control.set_pressed_no_signal(bool(values[key]))
+
+func refresh_action(action: String, value: Variant) -> void:
+	for row in rows:
+		for option in row.get("options", []):
+			if str(option.action) == action: option["selected"] = option.id == value
+	refresh_values()
 
 func _build_guides() -> void:
 	for article in guide_data:
@@ -593,6 +630,8 @@ func go_back() -> void:
 
 func open_dialog(kind: String) -> void:
 	close_dialog()
+	scroll.reset_motion(float(scroll.scroll_vertical))
+	scroll.set_process_input(false)
 	_dialog_kind = kind
 	dialog = Control.new()
 	dialog.name = "SettingsDialog"
@@ -710,6 +749,7 @@ func close_dialog() -> void:
 	_dialog_panel = null
 	if _dialog_kind == "guide": guide_article = ""
 	_dialog_kind = ""
+	if is_instance_valid(scroll): scroll.set_process_input(true)
 
 func _layout_dialog() -> void:
 	if not is_instance_valid(_dialog_panel): return
@@ -724,11 +764,11 @@ func _layout() -> void:
 	canvas.size = _logical_size
 	canvas.scale = Vector2.ONE * factor
 	var width := _logical_size.x
-	back.position = Vector2(24, 16)
-	back.size = Vector2(116, 96)
-	title.position = Vector2(152, 20)
+	ROLE_NAVIGATION.place_back_button(back, ROLE_NAVIGATION.scale_factor(size) / factor)
+	title.position = Vector2(back.get_rect().end.x + 12 / factor, back.position.y)
 	var title_width := title.get_theme_font("font").get_string_size(tr(title.text), HORIZONTAL_ALIGNMENT_LEFT, -1, title.get_theme_font_size("font_size")).x + 8
-	title.size = Vector2(minf(maxf(210, title_width), width - 190), 70)
+	title.size = Vector2(minf(maxf(210, title_width), width - title.position.x - 20), back.size.y)
+	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	var underline := canvas.get_node("TitleUnderline") as ColorRect
 	underline.position = Vector2(150, 98)
 	underline.size = Vector2(maxf(165, title.size.x - 45), 4)
@@ -737,8 +777,12 @@ func _layout() -> void:
 	var guide := section == "指南"
 	scroll.position = Vector2(width * (0.247 if guide else 0.192), 122 if guide else 170)
 	scroll.size = Vector2(width * (0.743 if guide else 0.745), 738 if guide else 588)
-	footer.position = Vector2(width * 0.315, 780)
-	footer.size = Vector2(width * 0.58, 62)
+	for panel in detail.get_children():
+		if panel.has_meta("option_track"):
+			var track: PanelContainer = panel.get_meta("option_track")
+			track.custom_minimum_size.x = minf(int(panel.get_meta("option_count")) * 166, maxf(240, (scroll.size.x - 68) * 0.48))
+	footer.size = Vector2(minf(850, scroll.size.x - 40), 62)
+	footer.position = Vector2(scroll.position.x + (scroll.size.x - footer.size.x) * 0.5, 780)
 	version.position = Vector2(0, 866)
 	version.size = Vector2(width * 0.6, 32)
 	_layout_dialog()

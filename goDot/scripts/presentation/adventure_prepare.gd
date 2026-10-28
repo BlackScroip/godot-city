@@ -2,6 +2,7 @@ extends Control
 
 signal command(kind: String, id: Variant, extra: Variant)
 signal closed
+const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 var context: Dictionary
 var rows: Array
 var assets: Dictionary
@@ -20,6 +21,17 @@ var chaos: HBoxContainer
 var equipment: HBoxContainer
 var token_title: Label
 var row_buttons: Array[Button] = []
+var token_slots: HBoxContainer
+var help_overlay: Control
+var help_page := 0
+var selection_tween: Tween
+var scroll_velocity := 0.0
+var scroll_position := 0.0
+var pointer_down := false
+var dragging := false
+var pointer_start := Vector2.ZERO
+var pointer_index := -1
+var motion_time := 0
 const INK = Color("535966")
 const PAPER = Color("eee9cc")
 
@@ -44,15 +56,14 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 	header = HBoxContainer.new()
 	header.add_theme_constant_override("separation", 14)
 	add_child(header)
-	var back = _button("", "退出按钮", func(): closed.emit())
-	back.tooltip_text = "返回主城"
-	back.custom_minimum_size = Vector2(64, 48)
+	var back = ROLE_NAVIGATION.create_header_back_button(size, "返回主城")
+	back.pressed.connect(func(): closed.emit())
 	header.add_child(back)
 	var title = _picture("冒险准备", Vector2(230, 60))
+	title.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	header.add_child(title)
 	DungeonStyle.localize_artwork_title(title, "冒险准备", 36)
-	var help = _button("", "须知", func():
-		reason.text = "通关前一难度后解锁下一难度；混沌首通奖励按角色领取。")
+	var help = _button("", "须知", _show_help)
 	help.tooltip_text = "冒险须知"
 	help.custom_minimum_size = Vector2(40, 40)
 	header.add_child(help)
@@ -85,14 +96,23 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 	token_title.clip_text = true
 	summary.add_child(token_title)
 	var prep: Dictionary = context.preparation
-	var tokens = _button("已装备信物 %d" % int(prep.token_count) if prep.tokens_unlocked else "未解锁信物功能", "", func(): command.emit("page:tokens", 0, 0))
-	tokens.disabled = not prep.tokens_unlocked
-	tokens.tooltip_text = str(prep.tokens_reason)
-	tokens.size_flags_vertical = SIZE_EXPAND_FILL
-	summary.add_child(tokens)
+	token_slots = HBoxContainer.new()
+	token_slots.add_theme_constant_override("separation", 8)
+	summary.add_child(token_slots)
+	var equipped: Array = systems.relationship_tokens.equipped()
+	for index in maxi(4, systems.token_slots()):
+		var token_id = int(equipped[index]) if index < equipped.size() else 0
+		var state: Dictionary = systems.token_status(token_id) if token_id > 0 else {}
+		var slot = _button("", str(state.get("icon", "icon_addnum" if index < systems.token_slots() else "锁")), func(): command.emit("page:tokens", token_id, 0))
+		slot.size_flags_horizontal = SIZE_EXPAND_FILL
+		slot.tooltip_text = str(state.get("name", "添加信物" if index < systems.token_slots() else "扩展信物槽"))
+		for style_state in ["normal", "hover", "pressed"]:
+			slot.add_theme_stylebox_override(style_state, DungeonStyle.box(Color("495957"), Color("c4bc96"), 2))
+		token_slots.add_child(slot)
 	summary.add_child(HSeparator.new())
 	var tasks = _button("悬赏委托" if prep.extra_challenge_unlocked else "未建造营地任务栏", "", func(): command.emit("page:extra_challenges" if prep.extra_challenge_unlocked else "page:buildings", 0 if prep.extra_challenge_unlocked else 5, 0))
 	tasks.tooltip_text = str(prep.extra_challenge_reason)
+	tasks.custom_minimum_size.y = 44
 	tasks.size_flags_vertical = SIZE_EXPAND_FILL
 	summary.add_child(tasks)
 	right = VBoxContainer.new()
@@ -118,6 +138,7 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 		if status.is_empty(): continue
 		var level = int(status.difficulty)
 		var key = _button("", "", func(): _select(level))
+		key.mouse_filter = MOUSE_FILTER_PASS
 		key.custom_minimum_size.y = 116
 		key.size_flags_horizontal = SIZE_EXPAND_FILL
 		key.tooltip_text = str(status.reason)
@@ -249,10 +270,18 @@ func _fit_equipment_caption(caption: Label) -> void:
 		caption.add_theme_font_size_override("font_size", font_size)
 
 func _select(level: int) -> void:
+	if dragging: return
 	selected = level
 	var status = systems.difficulty_status(level)
-	if status.can_start: command.emit("difficulty", level, 0)
-	else: _refresh()
+	if status.can_start: command.emit("difficulty", level, {"prepare_in_place": true})
+	_refresh()
+	if selection_tween: selection_tween.kill()
+	for key in row_buttons: key.modulate = Color.WHITE
+	reward_bar.modulate.a = 0.35
+	row_buttons[level].modulate = Color(1.35, 1.35, 1.12)
+	selection_tween = create_tween().set_parallel(true)
+	selection_tween.tween_property(row_buttons[level], "modulate", Color.WHITE, 0.3)
+	selection_tween.tween_property(reward_bar, "modulate:a", 1.0, 0.24)
 
 func _refresh() -> void:
 	var status: Dictionary = systems.difficulty_status(selected)
@@ -302,12 +331,23 @@ func _refresh() -> void:
 	start.disabled = not status.can_start
 	reason.text = str(status.reason)
 	if selected == 10: reason.text += "  已通关 %d 层" % int(status.chaos_cleared)
+	_fit_rewards()
+
+func _fit_rewards() -> void:
+	var compact = size.y < 600
+	for child in reward_bar.get_children():
+		if child is Label: child.add_theme_font_size_override("font_size", 16 if compact else 20)
+		if child is VBoxContainer:
+			child.get_child(0).custom_minimum_size = Vector2(24, 24) if compact else Vector2(42, 42)
+			child.get_child(1).add_theme_font_size_override("font_size", 16 if compact else 20)
 
 func _adapt() -> void:
 	var compact = size.y < 600
-	header.position = Vector2(18, 12)
-	header.size = Vector2(size.x - 36, 46 if compact else 66)
-	var top = 68 if compact else 98
+	var header_margin = ROLE_NAVIGATION.header_margin(size)
+	ROLE_NAVIGATION.configure_header_back_button(header.get_child(0), size, "返回主城")
+	header.position = header_margin
+	header.size = Vector2(size.x - header_margin.x * 2, ROLE_NAVIGATION.header_button_size(size).y)
+	var top = maxf(68 if compact else 98, header.position.y + header.size.y + 12)
 	var margin = 18 if compact else 34
 	var gap = 24 if compact else 54
 	var left_width = size.x * 0.34
@@ -318,8 +358,9 @@ func _adapt() -> void:
 	left.add_theme_stylebox_override("panel", paper_style)
 	left.get_child(0).add_theme_constant_override("separation", 6 if compact else 16)
 	token_title.add_theme_font_size_override("font_size", 18 if compact else 21)
-	token_title.custom_minimum_size.y = 54 if compact else 64
+	token_title.custom_minimum_size.y = 30 if compact else 64
 	equipment.custom_minimum_size.y = 122 if compact else 225
+	token_slots.custom_minimum_size.y = 48 if compact else 82
 	for key in equipment.get_children():
 		var item = key.get_child(0)
 		item.offset_left = 8 if compact else 14
@@ -339,11 +380,7 @@ func _adapt() -> void:
 		if counter is HBoxContainer: counter.custom_minimum_size.x = 72 if compact else 112
 	reward_bar.custom_minimum_size.y = 32 if compact else 62
 	reward_bar.get_parent().add_theme_stylebox_override("panel", _paper("底框_木元素", 10 if compact else 18))
-	for child in reward_bar.get_children():
-		if child is Label: child.add_theme_font_size_override("font_size", 16 if compact else 20)
-		if child is VBoxContainer:
-			child.get_child(0).custom_minimum_size = Vector2(24, 24) if compact else Vector2(42, 42)
-			child.get_child(1).add_theme_font_size_override("font_size", 16 if compact else 20)
+	_fit_rewards()
 	reason.add_theme_font_size_override("font_size", 16 if compact else 18)
 	right.add_theme_constant_override("separation", 6 if compact else 16)
 	choices.add_theme_constant_override("separation", 10 if compact else 18)
@@ -358,3 +395,169 @@ func _adapt() -> void:
 	DungeonStyle.fit_button_text(start, 17 if compact else 22)
 	left.set_deferred("size", Vector2(left_width, size.y - top - margin))
 	_reveal_selected.call_deferred()
+	if is_instance_valid(help_overlay): _layout_help()
+
+func _process(delta: float) -> void:
+	if not is_instance_valid(list) or pointer_down or absf(scroll_velocity) < 1.0: return
+	var before = scroll_position
+	_set_scroll(scroll_position + scroll_velocity * delta)
+	scroll_velocity *= exp(-8.0 * delta)
+	if is_equal_approx(before, scroll_position): scroll_velocity = 0.0
+
+func _set_scroll(value: float) -> void:
+	var bar = list.get_v_scroll_bar()
+	scroll_position = clampf(value, 0.0, maxf(0.0, bar.max_value - bar.page))
+	list.scroll_vertical = roundi(scroll_position)
+
+func _input(event: InputEvent) -> void:
+	if not is_visible_in_tree(): return
+	if is_instance_valid(help_overlay):
+		if event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause_game"):
+			_close_help()
+			get_viewport().set_input_as_handled()
+		return
+	if event is InputEventMouseButton and list.get_global_rect().has_point(event.position):
+		if event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+			if event.pressed:
+				scroll_position = list.scroll_vertical
+				scroll_velocity += (-1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.0) * 700.0 * event.factor
+			get_viewport().set_input_as_handled()
+			return
+	if event is InputEventPanGesture and list.get_global_rect().has_point(event.position):
+		scroll_velocity = 0
+		_set_scroll(list.scroll_vertical + event.delta.y * 28.0)
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventScreenTouch or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
+		var touch = event is InputEventScreenTouch
+		if event.pressed:
+			if pointer_down or not list.get_global_rect().has_point(event.position): return
+			# Leave the scrollbar available for native thumb dragging.
+			if list.get_v_scroll_bar().get_global_rect().has_point(event.position): return
+			pointer_down = true
+			pointer_index = event.index if touch else -1
+			pointer_start = event.position
+			dragging = false
+			scroll_velocity = 0
+			scroll_position = list.scroll_vertical
+			motion_time = Time.get_ticks_msec()
+		elif pointer_down and pointer_index == (event.index if touch else -1):
+			pointer_down = false
+			if Time.get_ticks_msec() - motion_time > 100: scroll_velocity = 0
+			if touch and not dragging:
+				for index in row_buttons.size():
+					if list.get_global_rect().has_point(event.position) and row_buttons[index].get_global_rect().has_point(event.position):
+						_select(index)
+			if dragging or touch:
+				for key in row_buttons: key.set_pressed_no_signal(false)
+				get_viewport().set_input_as_handled()
+			dragging = false
+		if touch: get_viewport().set_input_as_handled()
+	elif pointer_down and (event is InputEventMouseMotion and pointer_index == -1 or event is InputEventScreenDrag and event.index == pointer_index):
+		if event.position.distance_to(pointer_start) > 8: dragging = true
+		if dragging:
+			var now = Time.get_ticks_msec()
+			var elapsed = maxf(float(now - motion_time) / 1000.0, 0.008)
+			_set_scroll(scroll_position - event.relative.y)
+			scroll_velocity = clampf(-event.relative.y / elapsed, -2200, 2200)
+			motion_time = now
+			get_viewport().set_input_as_handled()
+
+func _close_help() -> void:
+	if is_instance_valid(help_overlay):
+		remove_child(help_overlay)
+		help_overlay.queue_free()
+		help_overlay = null
+	header.get_child(2).grab_focus()
+
+func _show_help() -> void:
+	if is_instance_valid(help_overlay): return
+	scroll_velocity = 0
+	pointer_down = false
+	dragging = false
+	help_overlay = Control.new()
+	help_overlay.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	add_child(help_overlay)
+	var shade = ColorRect.new()
+	shade.color = Color(0, 0, 0, 0.72)
+	shade.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	help_overlay.add_child(shade)
+	shade.gui_input.connect(func(event):
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT: _close_help())
+	var panel = PanelContainer.new()
+	panel.add_theme_stylebox_override("panel", DungeonStyle.box(Color("444e5b"), Color("d0b675"), 2))
+	help_overlay.add_child(panel)
+	var stack = VBoxContainer.new()
+	stack.add_theme_constant_override("separation", 12)
+	panel.add_child(stack)
+	var top = HBoxContainer.new()
+	stack.add_child(top)
+	var title = DungeonStyle.label("迷宫难度", 26)
+	title.size_flags_horizontal = SIZE_EXPAND_FILL
+	top.add_child(title)
+	var close = _button("×", "", _close_help)
+	close.add_theme_color_override("font_color", Color.WHITE)
+	close.tooltip_text = "关闭"
+	close.custom_minimum_size = Vector2(48, 40)
+	top.add_child(close)
+	stack.add_child(HSeparator.new())
+	var scroll = ScrollContainer.new()
+	scroll.size_flags_vertical = SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	stack.add_child(scroll)
+	var content = VBoxContainer.new()
+	content.size_flags_horizontal = SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation", 10 if size.y < 600 else 18)
+	scroll.add_child(content)
+	content.add_child(DungeonStyle.label("解锁难度" if help_page == 0 else "奖励与冒险准备", 23))
+	if help_page == 0:
+		for level in 2:
+			var preview = PanelContainer.new()
+			preview.add_theme_stylebox_override("panel", DungeonStyle.box(Color("667480") if level == 0 else Color("649338"), Color("d6dfb8"), 1))
+			content.add_child(preview)
+			var preview_row = HBoxContainer.new()
+			preview_row.add_theme_constant_override("separation", 16)
+			preview.add_child(preview_row)
+			preview_row.add_child(DungeonStyle.label("等级%d" % level, 20))
+			var caption = DungeonStyle.label("迷宫的力量相对平静。" if level == 0 else "通关等级0后解锁", 17)
+			caption.size_flags_horizontal = SIZE_EXPAND_FILL
+			caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			preview_row.add_child(caption)
+			if level == 1: preview_row.add_child(_picture("锁头", Vector2(24, 28)))
+	else:
+		var rewards = HBoxContainer.new()
+		rewards.alignment = BoxContainer.ALIGNMENT_CENTER
+		rewards.add_theme_constant_override("separation", 32)
+		content.add_child(rewards)
+		for icon in ["sprite_abilityitemicon_11003", "sprite_materialicon_90002", "sprite_materialicon_108"]:
+			rewards.add_child(_picture(icon, Vector2(44, 44)))
+	var description = DungeonStyle.label("迷宫拥有多个难度等级。通关当前难度后，即可解锁下一难度。\n\n难度提升后，领主和怪物会获得新的强化。点击等级可查看强化内容；未解锁的等级可以预览，但无法进入。" if help_page == 0 else "选择难度时，上方会显示该难度的额外掉落加成。\n\n出发前可以更换角色、武器与信物。点击信物槽可查看、装备或卸下信物。\n\n混沌层数逐层解锁，首通奖励按角色领取。", 17 if size.y < 600 else 20)
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content.add_child(description)
+	content.move_child(description, 1)
+	var pages = HBoxContainer.new()
+	pages.alignment = BoxContainer.ALIGNMENT_CENTER
+	stack.add_child(pages)
+	for index in 2:
+		var dot = _button("●" if index == help_page else "○", "", func():
+			help_page = index
+			_close_help()
+			_show_help())
+		dot.custom_minimum_size = Vector2(48, 40)
+		dot.add_theme_color_override("font_color", Color("f5d875"))
+		dot.tooltip_text = "第%d页" % (index + 1)
+		pages.add_child(dot)
+	close.focus_next = close.get_path_to(pages.get_child(0))
+	close.focus_previous = close.get_path_to(pages.get_child(1))
+	pages.get_child(0).focus_previous = pages.get_child(0).get_path_to(close)
+	pages.get_child(1).focus_next = pages.get_child(1).get_path_to(close)
+	_layout_help()
+	close.grab_focus()
+	help_overlay.modulate.a = 0
+	create_tween().tween_property(help_overlay, "modulate:a", 1.0, 0.16)
+
+func _layout_help() -> void:
+	var panel = help_overlay.get_child(1)
+	var width = size.x * (0.76 if size.y < 600 else 0.6)
+	panel.position = Vector2((size.x - width) * 0.5, 24)
+	panel.size = Vector2(width, size.y - 48)

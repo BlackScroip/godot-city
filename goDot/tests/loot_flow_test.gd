@@ -82,11 +82,14 @@ func _run() -> void:
 	game.world.ground_loot.spawn(102, game.world.player.position + Vector3(18, 0, 0), 5, true)
 	game.world.ground_loot.spawn(20103, game.world.player.position + Vector3(15, 0, 0))
 	game.world.ground_loot.spawn_altar(game.world.player.position + Vector3(16, 0, 0), "altar:leave-prompt-test")
+	var pending_altar_key: String = "altar:" + game._room_key + ":pending-test"
+	game.systems.create_loot_reward(30301, pending_altar_key, 3)
+	game.profile.data.run.counters["SelectLootRemainCount_Sprites"] = 1
 	game._environment_action("transition", {})
 	check(game.campaign.state.phase == "reward" and game.hud.page.title_label.text == "确认离开", "Unclaimed room items require leave confirmation")
 	check(game.hud.page._layout == "unclaimed" and game.hud.page.unclaimed_view != null, "Unclaimed room rewards use the dedicated prompt")
 	var pending_rows: Array = game.hud.page._rows
-	check(pending_rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 1), "Generated altar is listed separately")
+	check(pending_rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 2), "Generated and pending altars are listed separately from loot")
 	check(pending_rows.any(func(row): return row.title == "未拾取的物品" and int(row.count) == 1), "Altar does not inflate the ground item count")
 	check(int(game.systems.material(101)) == gold, "Coins are not settled before leave confirmation")
 	game.hud.page.unclaimed_view.return_button.pressed.emit()
@@ -95,14 +98,14 @@ func _run() -> void:
 	var source_altar = {"source_item": {"state": {"enabled": true, "used": false, "broken": false}}}
 	game.world.ground_loot.source_altars.append(source_altar)
 	game._environment_action("transition", {})
-	check(game.hud.page._rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 2), "Available source altar is included once")
+	check(game.hud.page._rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 3), "Available source altar is included once")
 	source_altar.source_item.state.used = true
 	game._environment_action("transition", {})
-	check(game.hud.page._rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 1), "Claimed source altar is excluded")
+	check(game.hud.page._rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 2), "Claimed source altar is excluded")
 	source_altar.source_item.state.used = false
 	source_altar.source_item.state.enabled = false
 	game._environment_action("transition", {})
-	check(game.hud.page._rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 1), "Inactive source altar is excluded")
+	check(game.hud.page._rows.any(func(row): return row.title == "精灵祭坛" and int(row.count) == 2), "Inactive source altar is excluded")
 	game.world.ground_loot.source_altars.erase(source_altar)
 	game._environment_action("transition", {})
 	if DisplayServer.get_name() != "headless":
@@ -112,6 +115,7 @@ func _run() -> void:
 	game.hud.page.unclaimed_view.continue_button.pressed.emit()
 	await wait_transition(game)
 	check(game.campaign.state.phase == "route" and game.hud.modal_open, "Confirmed room portal opens route directly")
+	check(not game.profile.data.run.rewards.any(func(reward): return str(reward.key) == pending_altar_key) and int(game.profile.data.run.counters.get("SelectLootRemainCount_Sprites", -1)) == 0, "Confirmed exit discards pending altar choice and counter")
 	check(int(game.systems.material(101)) == gold + 17, "Portal settles attracted coins before leaving")
 	check(int(game.systems.material(102)) == magic + 5, "Portal settles remaining magic material")
 	game._action("close_page", 0, 0)

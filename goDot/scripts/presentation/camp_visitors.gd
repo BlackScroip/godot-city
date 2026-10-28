@@ -25,7 +25,7 @@ func markers(world) -> Array:
 		for choice in choices:
 			if int(choice.seat) == seat: character_id = int(choice.character_id)
 		var npc_id: int = world.systems.social.visitor_npc_id(character_id) if character_id > 0 else 1
-		if character_id > 0: _install(world, anchor, npc_id)
+		_install(world, anchor, npc_id if character_id > 0 else 0)
 		var point: Vector3 = root.to_local(anchor.global_position)
 		result.append({"SourceGameObjectId": "camp:visitor:%d" % seat, "SceneName": "EnvDesignMap_MainCity",
 			"ObjectName": str(anchor.name), "Type": "EEUT_NPC", "exported_node_name": str(anchor.name),
@@ -38,6 +38,7 @@ func _install(world, anchor: Node3D, character_id: int) -> void:
 	if old != null:
 		anchor.remove_child(old)
 		old.queue_free()
+	if character_id <= 0: return
 	var actor := DungeonActor.new()
 	actor.name = "CampVisitor"
 	actor.actor_id = character_id
@@ -70,3 +71,11 @@ func refresh(world) -> void:
 		if item.is_empty(): continue
 		item.state.enabled = int(choice.character_id) != int(world.systems.profile.data.selected_character)
 		world.interactions._apply(item)
+	for label in world.environment_root.find_children("*", "Label3D", true, false):
+		var marker_id := str(label.get_meta("camp_marker_id", ""))
+		if not marker_id.begins_with("camp:visitor:"): continue
+		var item: Dictionary = world.interactions._items.get(marker_id, {})
+		label.visible = not item.is_empty() and bool(item.visible) and bool(item.state.enabled)
+		if not item.is_empty():
+			var npc: Dictionary = world.systems.catalog.find("NPCData", int(item.data.get("NpcId", 0)))
+			label.text = str(npc.get("name", ""))

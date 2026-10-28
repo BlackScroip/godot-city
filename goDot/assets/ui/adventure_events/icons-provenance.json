@@ -1,0 +1,170 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "icons": [
+    {
+      "name": "AdventureEventIcon_10001",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-5402759097203568152",
+      "png_sha256": "5255f28950dcca69a180f9fff2aad81e06f59f2c53924b21aaa8a4530084afbd"
+    },
+    {
+      "name": "AdventureEventIcon_10002",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-3619213553676180389",
+      "png_sha256": "73aada92e73fbd0e3e96b617de642d2f73bcf32584a5045e4e99dbbcbc89938e"
+    },
+    {
+      "name": "AdventureEventIcon_10003",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-5545552792191096272",
+      "png_sha256": "45d46cf61edd42808a867d4563dea482a48c3428bb532210595a3af6e484e746"
+    },
+    {
+      "name": "AdventureEventIcon_10004",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-7022140681899361112",
+      "png_sha256": "12b81f73312810f4855242c56a9417ae5cc39ca1670ffe932c6760bc87441e88"
+    },
+    {
+      "name": "AdventureEventIcon_10005",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-8892149778031078014",
+      "png_sha256": "206a2de4de99d371d7a020c92f30a263621467f60746bcffe359888dcb99e50c"
+    },
+    {
+      "name": "AdventureEventIcon_10006",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-1345189508904457028",
+      "png_sha256": "14125e09f3b66a06809cbc85e8521dd3205ae1b403fcd8b7a7201d6876dea45b"
+    },
+    {
+      "name": "AdventureEventIcon_10007",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "965158860389648805",
+      "png_sha256": "0c7076366a0790f700b18a0800412956eb45751db4c38f63ee58173cfc03adb4"
+    },
+    {
+      "name": "AdventureEventIcon_10008",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-5514468826189676308",
+      "png_sha256": "e1b07c1d30af9b2516c6e163d6c89877db98a5fd87c8f1a23befbabdff280a12"
+    },
+    {
+      "name": "AdventureEventIcon_10009",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "5479180089133089449",
+      "png_sha256": "7cca92b2aaa1eb221e5f7fe4cc00375dbd921b4565563fcfdffbc7dbbbf8047a"
+    },
+    {
+      "name": "AdventureEventIcon_1010100",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-2187381020924208769",
+      "png_sha256": "f29bb7e8c6ffd2b7ea6d4d43e86e869897afc42c40f1d3d247c20087e259da86"
+    },
+    {
+      "name": "AdventureEventIcon_1020100",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "4494360269433129103",
+      "png_sha256": "10748ef38356163d3579eedc56e814d47ed812ed0a0dedb12f12e664fcac9a46"
+    },
+    {
+      "name": "AdventureEventIcon_1030100",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "3694331158744133432",
+      "png_sha256": "188190c0e1e11ce74928669d134487705fb14fefbadccf898d7b6625f5969b44"
+    },
+    {
+      "name": "AdventureEventIcon_1040100",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "2583834628296017569",
+      "png_sha256": "bea3c6e205168a59b2652188f9fd2296b49e7e00458d685d9f9acca2d98272da"
+    },
+    {
+      "name": "Normal_AdventureEventIcon_10001",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-4450497464251608683",
+      "png_sha256": "c244a6d8581b61b22c0279339e6f1d16fd01ea65a4a8f2d9522e6aeed39a32e8"
+    },
+    {
+      "name": "Normal_AdventureEventIcon_10002",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-6808212452426353847",
+      "png_sha256": "a25c53011c1c1901a377f0026b1dbaa77e7ca4963ee0f9cc45ce98e79b3741b8"
+    },
+    {
+      "name": "Normal_AdventureEventIcon_10003",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-7856453112166630658",
+      "png_sha256": "1fca8d0153d4bc9b66b94a83fd597d8617e7c86fdd13033ed36d500a03324822"
+    },
+    {
+      "name": "Normal_AdventureEventIcon_10004",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "-1594607863497992193",
+      "png_sha256": "2ed9964472c2ba4b98f2f338cf5bdbc0368f6a689bf18518830e7ce606509baa"
+    },
+    {
+      "name": "Normal_AdventureEventIcon_10006",
+      "member": "assets/yoo/DefaultPackage/c1e11c3e99ddfaf8041e0afc80ba3c39.bundle",
+      "bundle_sha256": "dccbc712201248bb25b2347efe9593363b876ddb70da6ce3038f3e565db60687",
+      "path_id": "6318540165973344593",
+      "png_sha256": "75befb9ecf7e46d1674f9003589532ad1a3d655f93955c389c436195be61af70"
+    },
+    {
+      "name": "sprite_abilityitemicon_10002",
+      "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+      "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+      "path_id": "-5304257852446689178",
+      "png_sha256": "775df1819b332c16b702f57353c8bb6c7e630cf5b7113336a6feeb0fe3ec0408"
+    },
+    {
+      "name": "sprite_abilityitemicon_13103",
+      "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+      "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+      "path_id": "-3162654979087943034",
+      "png_sha256": "0b9205f33d9cd59e4555be25a9ef73745856935e39527a8ac03e414af52e2f43"
+    },
+    {
+      "name": "sprite_abilityitemicon_21180",
+      "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+      "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+      "path_id": "-3655610228082374584",
+      "png_sha256": "865fee64d2991f1f57ddfae263831a50a3b37b58c2f66c41ed063c0dcace5927"
+    },
+    {
+      "name": "sprite_abilityitemicon_21182",
+      "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+      "bundle_sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032",
+      "path_id": "6511433463079793573",
+      "png_sha256": "9fe7732b70a9d0c6aa664ea8dd126796a13bbaa1c80cdaf1ca91621d913a6935"
+    },
+    {
+      "name": "Sprite_shop_2001",
+      "member": "assets/yoo/DefaultPackage/8bdbd2bbe66cbf319765d94386fac0dd.bundle",
+      "bundle_sha256": "603a8cb4aee20ded24e0611af9f05ac2e5ff41a60860ea814a649f09c65ede32",
+      "path_id": "3804584888330721204",
+      "png_sha256": "9d205b94d461d38234405157f6345194d9a32e12ade729cbf1978cb8c369b150"
+    }
+  ],
+  "missing": [],
+  "limitations": [
+    "Serialized artwork only; original Android runtime not observed."
+  ]
+}

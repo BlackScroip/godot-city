@@ -41,6 +41,7 @@ func _run() -> void:
 	world.presentation.set_process(false)
 	var player := _actor(world, "player", true)
 	var target := _actor(world, "target")
+	target.set_visual("")
 	world.player = player
 	target.position = Vector3(0, 0, -1)
 	var baseline := Combat.new()
@@ -59,6 +60,7 @@ func _run() -> void:
 	check(target.knockback_elapsed < 0 and is_zero_approx(target.combat.stagger_remaining) and target.velocity.is_zero_approx(), "Source-heavy contact adds no unconverted push, upper force or stagger")
 	check(is_zero_approx(target.hurt_timer), "Source-heavy contact does not invent a material-flash duration")
 	var feedback := Feedback.normalize(hit.definition)
+	check(target._model_shake_active == feedback.hit_actions.any(func(action): return bool(action.model_shake)), "Source-heavy contact applies exactly the authored model-shake flag")
 	check(world._camera_impulses.size() == feedback.camera_shakes.size(), "Heavy contact queues exactly the original hit-camera entries")
 	for index in feedback.camera_shakes.size():
 		var actual: Dictionary = world._camera_impulses[index]

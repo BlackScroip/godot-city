@@ -23,6 +23,9 @@ func meal_status(id: int, level: int = 1) -> Dictionary:
 	return {"id": id, "level": level, "max_level": maximum, "researched_level": researched, "selected": selected, "purchased": systems.rank(systems.purchased_meals(), id) == level, "price": price, "can_cook": buy_reason.is_empty(), "can_select": select_reason.is_empty(), "select_reason": select_reason, "reason": buy_reason, "description": Catalog.clean(systems._part(row.get("Description", ""), level - 1))}
 
 func select_meal(id: int, level: int = 1) -> Dictionary:
+	return systems._camp_transaction(_select_meal.bind(id, level))
+
+func _select_meal(id: int, level: int) -> Dictionary:
 	var status := meal_status(id, level)
 	if not status.can_select: return systems._fail(status.select_reason)
 	var selection: Dictionary = systems.profile.data.get("meal_selection", {}).duplicate()
@@ -54,6 +57,9 @@ func order_status(order: Dictionary = {}) -> Dictionary:
 	return {"meals": meals, "price": price, "count": meals.size(), "limit": systems.meal_order_limit(), "can_buy": reason.is_empty(), "reason": reason}
 
 func buy(id: int = 0, level: int = 1) -> Dictionary:
+	return systems._camp_transaction(_buy.bind(id, level))
+
+func _buy(id: int, level: int) -> Dictionary:
 	var status := order_status({str(id): level} if id > 0 else {})
 	if not status.can_buy: return systems._fail(status.reason)
 	if not systems.spend(status.price): return systems._fail("料理材料不足")
