@@ -64,6 +64,11 @@ func verify_forge_selector() -> void:
 		await snapshot("weapons", "forge", dimensions, 1)
 		var view = game.hud.page.weapon_view
 		check(view._selector_strip is VBoxContainer and view._selector_scroll.visible, "Forge uses the reference vertical weapon roster")
+		var first_frame: Control = view.weapon_buttons[101].get_node("Selected")
+		var first_tile: Control = view.weapon_buttons[101].get_node("SlotFrame")
+		var inner := Rect2(first_frame.position + first_frame.size * Vector2(8.0 / 68.0, 9.0 / 68.0), first_frame.size * Vector2(52.0 / 68.0, 51.0 / 68.0))
+		check(inner.is_equal_approx(first_tile.get_rect()), "Forge highlight's bright inner edge surrounds the whole weapon tile")
+		check(view._selector_scroll.get_global_rect().grow(1).encloses(first_frame.get_global_rect()), "First forge highlight and glow stay inside the scroll viewport")
 		check(view._paper_parts.all(func(part): return not part.visible), "Forge detail does not show the old paper panel")
 		check("等级5" in view.selector_effect.text, "Forge shows the complete weapon level progression")
 		check(view._selector_resources.get_child_count() == 2, "Forge header shows gold and weapon ore")
@@ -72,9 +77,13 @@ func verify_forge_selector() -> void:
 		for button in view.action_buttons:
 			check(button.get_global_rect().size.y >= 43.9, "Forge actions retain a 44px touch target " + str(dimensions))
 		var last: Control = view._selector_strip.get_child(-1)
-		view._selector_scroll.ensure_control_visible(last)
+		var last_id: int = int(view.weapon_buttons.keys().back())
+		view.select_weapon(last_id)
 		await settle()
 		check(view._selector_scroll.get_global_rect().grow(1).encloses(last.get_global_rect()), "Final forge weapon is reachable by vertical scrolling")
+		check(view._selector_scroll.get_global_rect().grow(1).encloses(last.get_node("Selected").get_global_rect()), "Final forge highlight and glow remain visible")
+		view.select_weapon(101)
+		await settle()
 		view._selector_scroll.scroll_vertical = 0
 	game.hud.page.weapon_view.select_weapon(102)
 	for button in game.hud.page.weapon_view.action_buttons:

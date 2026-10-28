@@ -78,7 +78,8 @@ static func source_to_bbcode(value: String, icon_size := 28) -> String:
 static func sprite_path(sprite_name: String) -> String:
 	_load_source()
 	var path := str(_sprites.get(sprite_name, ""))
-	return path if path.begins_with("res://") and FileAccess.file_exists(path) else ""
+	# Exported textures resolve through import remaps without the original PNG file.
+	return path if path.begins_with("res://") and ResourceLoader.exists(path, "Texture2D") else ""
 
 static func _expand(value: String, depth := 0) -> String:
 	if depth >= 8: return value

@@ -146,6 +146,7 @@ func _run() -> void:
 			page.queue_free()
 			await process_frame
 	await _check_completed_room_positions()
+	await _check_menu_room_position()
 	await _check_world_positions()
 	await _check_game(campaign, fixture, duplicate)
 	canvas.queue_free()
@@ -198,6 +199,32 @@ func _check_completed_room_positions() -> void:
 				captures.append(path)
 			page.queue_free()
 			await process_frame
+
+func _check_menu_room_position() -> void:
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
+		canvas.size = dimensions
+		var rows: Array = []
+		for column in 12:
+			rows.append({"node_id": column + 1, "config_id": column + 1, "layer_index": column,
+				"lane": 0, "lane_count": 1, "available": column == 7, "is_anchor": column == 6,
+				"name": "Room", "IconName": "icon_stagerewardtypeicon_Normal"})
+		var menu = DungeonMenuPage.new()
+		menu.theme = DungeonStyle.theme()
+		canvas.add_child(menu)
+		menu.size = Vector2(dimensions)
+		menu.display("选择路线", rows, "route", {"map_scope": "rooms", "first_layer": 0, "current_layer": 7})
+		await _settle()
+		var page = menu.route_view
+		var bounds = page.nodes[6].selection_bounds()
+		bounds.position += page.nodes[6].position
+		var next = page.nodes[7].selection_bounds()
+		next.position += page.nodes[7].position
+		next = next.grow_individual(page._graph_margin, 0, page._graph_margin, 0)
+		bounds = bounds.merge(next)
+		check(bounds.position.x >= page.scroll.scroll_horizontal - 1 and bounds.end.x <= page.scroll.scroll_horizontal + page.scroll.size.x + 1, "Menu shows current and next rooms at %s" % dimensions)
+		check(absf(bounds.get_center().x - (page.scroll.scroll_horizontal + page.scroll.size.x * 0.5)) <= 1, "Menu centers current and next rooms at %s" % dimensions)
+		menu.queue_free()
+		await process_frame
 
 func _check_world_positions() -> void:
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(640, 900)]:

@@ -72,6 +72,7 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		if not data is Dictionary:
 			_diagnose(id, "invalid_data", "Marker DataJson is not an object")
 			data = {}
+		var identity_data: Dictionary = data.duplicate(true)
 		# These APK components register their NPC identity independently of DataJson.
 		if str(data.get("NpcId", "")).is_empty():
 			if str(marker.get("Type", "")) == "EEUT_Special_Trader": data["NpcId"] = "2000"
@@ -127,7 +128,7 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 			var body = _nodes.get("Collider_" + str(collider.get("fileID", "")))
 			if body is CollisionObject3D: item.bodies.append({"node": body, "layer": body.collision_layer, "mask": body.collision_mask})
 		_items[id] = item
-		identities.append([id, str(marker.get("Type", "")), data, str(binding.get("ConfigId", ""))])
+		identities.append([id, str(marker.get("Type", "")), identity_data, str(binding.get("ConfigId", ""))])
 		_validate_binding(item)
 		_apply(item)
 	_cache_trap_environment_contacts()

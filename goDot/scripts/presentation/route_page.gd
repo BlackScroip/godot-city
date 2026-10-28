@@ -453,7 +453,7 @@ func _scroll_to_anchor(anchor: DungeonRouteNode) -> void:
 		if not is_world_map() and node.available:
 			target = target.grow_individual(_graph_margin, 0, _graph_margin, 0)
 		bounds = bounds.merge(target)
-	var center = anchor.get_rect().get_center().x if is_world_map() else anchor.get_rect().end.x
+	var center = anchor.get_rect().get_center().x if is_world_map() else bounds.get_center().x
 	var min_center = bounds.end.x - scroll.size.x * 0.5
 	var max_center = bounds.position.x + scroll.size.x * 0.5
 	if min_center <= max_center: center = clampf(center, min_center, max_center)

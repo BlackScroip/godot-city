@@ -10,6 +10,7 @@ const GOLD := Color("f0ce70")
 const ITEM_ART = preload("res://scripts/presentation/item_art.gd")
 const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 const SOURCE_RICH_TEXT = preload("res://scripts/presentation/source_rich_text.gd")
+const SELECTION_HIGHLIGHT = preload("res://scripts/presentation/selection_highlight.gd")
 
 var owner_page: DungeonMenuPage
 var rows: Array = []
@@ -20,6 +21,7 @@ var navigation: Array[Button] = []
 var selections: Array[Button] = []
 var resource_bar: HBoxContainer
 var item_scroll: ScrollContainer
+var _grid_padding: MarginContainer
 var grid: GridContainer
 var detail_scroll: ScrollContainer
 var detail: VBoxContainer
@@ -179,17 +181,22 @@ func _build_items() -> void:
 	item_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	item_scroll.follow_focus = true
 	add_child(item_scroll)
+	_grid_padding = MarginContainer.new()
+	_grid_padding.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	item_scroll.add_child(_grid_padding)
 	grid = GridContainer.new()
 	grid.columns = 6
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	item_scroll.add_child(grid)
+	_grid_padding.add_child(grid)
 	for index in rows.size():
 		var row: Dictionary = rows[index]
 		var button := Button.new()
 		button.tooltip_text = _item_name(row)
 		button.focus_mode = Control.FOCUS_ALL
 		_clear_button(button)
-		button.pressed.connect(func(): select_item(index))
+		button.pressed.connect(func():
+			select_item(index)
+			item_scroll.call_deferred("ensure_control_visible", _selection_frames[index]))
 		grid.add_child(button)
 		selections.append(button)
 		var rare := clampi(int(row.get("star_num", 1)), 1, 5)
@@ -216,8 +223,10 @@ func _build_items() -> void:
 		_count_labels.append(count)
 		var selection := _picture("选择高亮")
 		selection.stretch_mode = TextureRect.STRETCH_SCALE
+		selection.z_index = 1
 		button.add_child(selection)
 		_selection_frames.append(selection)
+		button.resized.connect(func(): SELECTION_HIGHLIGHT.place(selection, button.size))
 	empty_label = _label("暂无物品", 25)
 	empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	empty_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -394,8 +403,10 @@ func _adapt() -> void:
 	var detail_width := size.x * 0.22
 	var grid_left := size.x * 0.25
 	var grid_width := size.x * 0.435
-	var slot := grid_width / 6.4
+	var slot := grid_width / 6.8
 	var gap := slot * 0.08
+	var padding := ceili(slot * 0.18)
+	for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]: _grid_padding.add_theme_constant_override(side, padding)
 	ROLE_NAVIGATION.place_back_button(_back, ROLE_NAVIGATION.scale_factor(size))
 	_place(_title_art, Vector2(_back.get_rect().end.x + 12, _back.position.y), Vector2(300 * unit, _back.size.y))
 	if DungeonLocale.current_locale() != "zh_CN":
@@ -432,7 +443,8 @@ func _adapt() -> void:
 		var count_y := slot - count_height - 3 * unit
 		_place(selections[index].get_node("CountBackground"), Vector2(slot * 0.025, count_y), Vector2(slot * 0.95, count_height))
 		_place(_count_labels[index], Vector2(slot * 0.025, count_y), Vector2(slot * 0.95, count_height))
-		_place(_selection_frames[index], Vector2(-slot * 0.06, -slot * 0.06), Vector2(slot * 1.12, slot * 1.12))
+		var tile_size := selections[index].size if selections[index].size.x > 0 else Vector2(slot, slot)
+		SELECTION_HIGHLIGHT.place(_selection_frames[index], tile_size)
 	_place(empty_label, item_scroll.position, item_scroll.size)
 	_place_slice(_paper_frame, Vector2(detail_left, size.y * 0.116), Vector2(detail_width, size.y * 0.86), unit / 2.0)
 	_place_slice(_paper, Vector2(detail_left + 7 * unit, size.y * 0.116 + 7 * unit), Vector2(detail_width - 14 * unit, size.y * 0.86 - 14 * unit), unit / 2.0)

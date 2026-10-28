@@ -10,6 +10,7 @@ const GOLD := Color("edbd53")
 const INK := Color("413b3a")
 const DESIGN := Vector2(2048, 900)
 const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
+const SELECTION_HIGHLIGHT = preload("res://scripts/presentation/selection_highlight.gd")
 
 class WeaponPreview extends SubViewportContainer:
 
@@ -318,7 +319,11 @@ func _build_selector() -> void:
 		_selector_scroll = ScrollContainer.new()
 		_selector_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 		_place(selector, _selector_scroll, Rect2(40, 140, 175, 700))
-		strip.reparent(_selector_scroll)
+		var padding = MarginContainer.new()
+		padding.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]: padding.add_theme_constant_override(side, 26)
+		_selector_scroll.add_child(padding)
+		strip.reparent(padding)
 		strip.alignment = BoxContainer.ALIGNMENT_BEGIN
 	for row in rows:
 		var id = _id(row)
@@ -328,13 +333,18 @@ func _build_selector() -> void:
 		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
 			button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 		strip.add_child(button)
-		_place(button, _picture("slotfg_rare_square_1_v2", true), Rect2(0, 0, 145, 145))
+		var slot_frame = _picture("slotfg_rare_square_1_v2", true)
+		slot_frame.name = "SlotFrame"
+		_place(button, slot_frame, Rect2(0, 0, 145, 145))
 		var source = _catalog.find("WeaponData", id) if _catalog else {}
 		var icon = _picture(str(source.get("square_icon_name", row.get("icon", "sprite_weaponicon_square_" + str(id)))), true)
 		_place(button, icon, Rect2(8, 5, 129, 129))
 		var highlight = _picture("选择高亮", true)
 		highlight.name = "Selected"
-		_place(button, highlight, Rect2(-4, -4, 153, 153))
+		highlight.stretch_mode = TextureRect.STRETCH_SCALE
+		highlight.z_index = 1
+		button.add_child(highlight)
+		SELECTION_HIGHLIGHT.place(highlight, slot_frame.size)
 		if int(row.get("rank", 0)) == 0:
 			var mask = _picture("锁定遮罩", true)
 			mask.modulate = Color(0, 0, 0, 0.349)
@@ -470,6 +480,8 @@ func select_weapon(id: int) -> void:
 		action_buttons.append(button)
 	for weapon_id in weapon_buttons:
 		weapon_buttons[weapon_id].get_node("Selected").visible = int(weapon_id) == id
+	if is_instance_valid(_selector_scroll) and weapon_buttons.has(id):
+		_selector_scroll.call_deferred("ensure_control_visible", weapon_buttons[id].get_node("Selected"))
 	detail_scroll.scroll_vertical = 0
 
 func open_selector() -> void:
@@ -532,8 +544,8 @@ func _adapt() -> void:
 	_selector_inside.position.x = width - 688
 	_selector_inside.size.y = height - 305
 	if context.get("weapon_selector_direct", false):
-		_selector_scroll.position = Vector2(40, 140)
-		_selector_scroll.size = Vector2(180, height - 190)
+		_selector_scroll.position = Vector2(14, 114)
+		_selector_scroll.size = Vector2(220, height - 164)
 		_selector_strip.custom_minimum_size = Vector2(145, 0)
 		selector_preview.position = Vector2(250, 150)
 		selector_preview.size = Vector2(width - 850, height - 330)

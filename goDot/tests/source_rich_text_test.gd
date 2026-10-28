@@ -4,6 +4,7 @@ const RichSource = preload("res://scripts/presentation/source_rich_text.gd")
 
 var checks := 0
 var failures: Array[String] = []
+var exported_icon_pack_path := ""
 
 func _initialize() -> void:
 	DungeonLocale.set_locale("zh_CN", false)
@@ -26,6 +27,7 @@ func _initialize() -> void:
 	label.set_source("<sprite name=\"buff_gongjili\"><sprite=4>金币 > 0，1 < 2")
 	check(label.text.contains(RichSource.sprite_path("buff_gongjili")) and label.get_parsed_text().contains("【图标：4】金币 > 0，1 < 2"), "Named TMP sprites resolve and numeric sprites retain a bounded fallback")
 	check(RichSource.sprite_path("res://project.godot").is_empty(), "Sprite values only resolve through the extracted resource map")
+	check_exported_icon()
 	var terms: Array = JSON.parse_string(FileAccess.get_file_as_string(RichSource.TERMS_PATH))
 	check(terms.size() == 132, "The complete APK keyword table is available to every altar family")
 	for row in terms:
@@ -48,6 +50,37 @@ func _initialize() -> void:
 	label.queue_free()
 	print("SOURCE_RICH_TEXT_TEST ", JSON.stringify({"checks": checks, "failures": failures, "passed": failures.is_empty()}))
 	quit(0 if failures.is_empty() else 1)
+
+func _finalize() -> void:
+	if not exported_icon_pack_path.is_empty(): DirAccess.remove_absolute(exported_icon_pack_path)
+
+func check_exported_icon() -> void:
+	var original_path := RichSource.sprite_path("buff_gongjili")
+	var imported := ConfigFile.new()
+	var import_error := imported.load(original_path + ".import")
+	check(import_error == OK, "Export regression fixture has imported texture metadata")
+	if import_error != OK: return
+	var texture_path := str(imported.get_value("remap", "path", ""))
+	var fixture_path := "res://__inline_icon_export_test__/buff_gongjili.png"
+	var pack_path := OS.get_temp_dir().path_join("city-inline-icon-%d.pck" % OS.get_process_id())
+	var pack := PCKPacker.new()
+	var pack_error := pack.pck_start(pack_path)
+	if pack_error == OK: pack_error = pack.add_file(fixture_path + ".import", original_path + ".import")
+	if pack_error == OK: pack_error = pack.add_file(texture_path, texture_path)
+	if pack_error == OK: pack_error = pack.flush()
+	check(pack_error == OK, "Export regression fixture packs the remap and compiled texture")
+	if pack_error != OK: return
+	exported_icon_pack_path = pack_path
+	var mounted := ProjectSettings.load_resource_pack(pack_path)
+	check(mounted, "Export regression fixture mounts as a resource pack")
+	if mounted:
+		RichSource._sprites["buff_gongjili"] = fixture_path
+		check(not FileAccess.file_exists(fixture_path), "Packed icon does not require original PNG bytes")
+		check(ResourceLoader.load(fixture_path) is Texture2D, "Packed icon resolves to a usable texture")
+		check(RichSource.sprite_path("buff_gongjili") == fixture_path, "Inline icons accept exported texture remaps")
+		var rendered := RichSource.source_to_bbcode("<#specinfo=gongjili>")
+		check(rendered.contains(fixture_path) and not rendered.contains("【图标："), "Exported reward terms render artwork instead of fallback text")
+		RichSource._sprites["buff_gongjili"] = original_path
 
 func check(value: bool, message: String) -> void:
 	checks += 1

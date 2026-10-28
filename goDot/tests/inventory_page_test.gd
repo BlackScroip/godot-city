@@ -77,14 +77,30 @@ func _run() -> void:
 	var view := _page(rows, _context("storage"))
 	await process_frame
 	view._adapt()
+	var source_image: Image = view._selection_frames[0].texture.get_image()
+	check(source_image.get_size() == Vector2i(68, 68), "Recovered highlight uses the measured 68x68 source sprite")
+	check(source_image.get_pixel(7, 34).a > 0.9 and source_image.get_pixel(8, 34).a < 0.9 and source_image.get_pixel(59, 34).a < 0.9 and source_image.get_pixel(60, 34).a > 0.9, "Horizontal highlight placement follows the actual inner edge of the bright source border")
+	check(source_image.get_pixel(34, 8).a > 0.9 and source_image.get_pixel(34, 9).a < 0.9 and source_image.get_pixel(34, 59).a < 0.9 and source_image.get_pixel(34, 60).a > 0.9, "Vertical highlight placement follows the actual inner edge of the bright source border")
 	for dimensions in [Vector2i(2048, 900), Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]:
 		canvas.size = dimensions
-		await process_frame
+		for frame in 4: await process_frame
 		view._adapt()
+		for frame in 4: await process_frame
 		var factor = minf(dimensions.x / 2048.0, dimensions.y / 900.0)
 		var expected_back = Rect2((Vector2(20, 14) * factor).max(Vector2(12, 8)), (Vector2(120, 100) * factor).max(Vector2(44, 44)))
 		check(view._back.get_global_rect().is_equal_approx(expected_back), "warehouse uses the shared role back bounds %s" % dimensions)
 		check(view._back.get_node("Arrow").texture == DungeonInventoryPage.ROLE_NAVIGATION.BACK_TEXTURE, "warehouse uses the original role arrow")
+		var tile: Control = view.selections[0]
+		var highlight: Control = view._selection_frames[0]
+		var inner := Rect2(highlight.position + highlight.size * Vector2(8.0 / 68.0, 9.0 / 68.0), highlight.size * Vector2(52.0 / 68.0, 51.0 / 68.0))
+		check(inner.is_equal_approx(Rect2(Vector2.ZERO, tile.size)), "warehouse highlight's bright inner edge surrounds the whole tile %s" % dimensions)
+		check(view.item_scroll.get_global_rect().grow(1).encloses(highlight.get_global_rect()), "first warehouse highlight and glow fit the scroll viewport %s" % dimensions)
+		for index in [5, view.selections.size() - 1]:
+			view.selections[index].pressed.emit()
+			for frame in 4: await process_frame
+			check(view.item_scroll.get_global_rect().grow(1).encloses(view._selection_frames[index].get_global_rect()), "rightmost and final warehouse highlights stay visible %s index %d" % [dimensions, index])
+		view.selections[0].pressed.emit()
+		for frame in 4: await process_frame
 	canvas.size = Vector2i(1600, 900)
 	await process_frame
 	view._adapt()

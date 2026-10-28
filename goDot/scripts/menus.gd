@@ -805,6 +805,12 @@ func _character_combat_stats(combat: DungeonCombat, source: Dictionary) -> Dicti
 	result["attribute_values"] = values
 	return result
 
+func _character_stat_bonuses(combat: DungeonCombat, source: Dictionary, defense: float) -> Array:
+	var bonuses = ["%+d" % (ceili(combat.max_health) - int(source.get("hp", 0))), "%+d" % (roundi(combat.effective_attack_power()) - int(source.get("atk", 0))), "%+d" % (roundi(defense) - int(source.get("def", 0))), "%+.1f%%" % (combat.attribute("CriticalRate") / 10.0), "%+.0f%%" % (combat.attribute("CriticalMulti") / 10.0)]
+	for index in bonuses.size():
+		if str(bonuses[index]) in ["+0", "-0", "+0.0%", "-0.0%", "+0%", "-0%"]: bonuses[index] = ""
+	return bonuses
+
 func _enrich(page: String, rows: Array) -> void:
 	var tables = {"characters": "CharData", "weapons": "WeaponData", "partners": "MonsterPartnerData", "talents": "TalentTreeData", "character_talents": "CharTalentData", "tokens": "RelationshipTokenData", "amplifiers": "RelationshipAmplifyData", "meals": "CatMealData", "achievements": "AchieveData", "tasks": "SubAchieveData", "work": "MonsterWorkData", "buildings": "Buildings", "awakening": "CharaTalentAwakeTreeData", "mall": "MallTradeData", "inventory": "LootData", "archive": "LootData"}
 	var table = str(tables.get(page, ""))
@@ -842,10 +848,8 @@ func _enrich(page: String, rows: Array) -> void:
 				preview.set_progression_buffs(binding.roots, binding.externally_counted_numeric_ids)
 				var defense = (preview.defense + preview.attribute("BaseDef") + preview.attribute("DefAddFixed")) * (1.0 + preview.attribute("DefAddRate") / 1000.0)
 				row["stats"] = [["生命", str(ceili(preview.max_health))], ["攻击", str(roundi(preview.effective_attack_power()))], ["防御", str(roundi(defense))], ["暴击率", "%.1f%%" % ((float(preview.fighter.get("critRate", 0)) + preview.attribute("CriticalRate") / 1000.0) * 100)], ["暴击伤害", "%.0f%%" % ((float(preview.fighter.get("critMultiplier", 1.5)) + preview.attribute("CriticalMulti") / 1000.0) * 100)]]
-				row["stats_bonus"] = ["%+d" % (ceili(preview.max_health) - int(source.get("hp", 0))), "%+d" % (roundi(preview.effective_attack_power()) - int(source.get("atk", 0))), "%+d" % (roundi(defense) - int(source.get("def", 0))), "%+.1f%%" % (preview.attribute("CriticalRate") / 10.0), "%+.0f%%" % (preview.attribute("CriticalMulti") / 10.0)]
+				row["stats_bonus"] = _character_stat_bonuses(preview, source, defense)
 				row["combat_stats"] = _character_combat_stats(preview, source)
-				for index in row.stats_bonus.size():
-					if str(row.stats_bonus[index]) in ["+0", "+0.0%", "+0%", "-0.0%"]: row.stats_bonus[index] = ""
 				preview.drain_events()
 				preview._pending.clear()
 				preview.statuses.clear()
@@ -854,6 +858,7 @@ func _enrich(page: String, rows: Array) -> void:
 				row["combat_stats"] = _character_combat_stats(combat, source)
 				var defense = (combat.defense + combat.attribute("BaseDef") + combat.attribute("DefAddFixed")) * (1.0 + combat.attribute("DefAddRate") / 1000.0)
 				row["stats"] = [["生命", "%d / %d" % [ceili(combat.health), ceili(combat.max_health)]], ["攻击", str(roundi(combat.effective_attack_power()))], ["防御", str(roundi(defense))], ["暴击率", "%.1f%%" % ((float(combat.fighter.get("critRate", 0)) + combat.attribute("CriticalRate") / 1000.0) * 100)], ["暴击伤害", "%.0f%%" % ((float(combat.fighter.get("critMultiplier", 1.5)) + combat.attribute("CriticalMulti") / 1000.0) * 100)]]
+				row["stats_bonus"] = _character_stat_bonuses(combat, source, defense)
 		if page == "weapons": row.description += "\n" + clean(source.get("effect_description", "")).replace("|", "\n")
 		row["icon"] = str(row.get("icon", "menu_adventure"))
 		if page in ["inventory", "archive"] and not source.is_empty(): row.icon = "loot:" + str(id)

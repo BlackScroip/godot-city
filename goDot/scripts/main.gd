@@ -310,7 +310,7 @@ func _interaction_prompts(candidates: Array) -> Array[Dictionary]:
 		var color := Color("74d8ff") if kind == "EEUT_AbilityItemTreasureBox" else Color.WHITE
 		var badge = world._event_markers.get(str(candidate.id))
 		var pending: bool = not profile.data.run.active and is_instance_valid(badge) and badge.visible
-		if kind == "EEUT_NPC":
+		if kind in ["EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan"]:
 			var npc_id := int(candidate.data.get("NpcId", 0))
 			title = str(catalog.find("NPCData", npc_id).get("name", "交谈"))
 			icon = "sprite_conversation_talk"
@@ -329,6 +329,9 @@ func _interaction_prompts(candidates: Array) -> Array[Dictionary]:
 				color = Color("b7ef62")
 		prompts.append({"id": str(candidate.id), "text": title, "icon": icon, "color": color, "pending": pending,
 			"action": "world_interact" if profile.data.run.active else "camp_interact"})
+		if profile.data.run.active and kind in ["EEUT_Special_Trader", "EEUT_Special_GemShopMan"]:
+			prompts.back()["action"] = "world_npc_talk"
+			prompts.append({"id": str(candidate.id), "text": "查看商品" if kind == "EEUT_Special_Trader" else "供奉", "icon": "sprite_conversation_buy", "color": Color.WHITE, "pending": false, "action": "world_npc_trade"})
 	if board_index >= 0 and bounty_index > board_index:
 		var board := prompts[board_index]
 		prompts[board_index] = prompts[bounty_index]
@@ -593,6 +596,16 @@ func _action(kind: String, id: Variant, extra: Variant) -> void:
 		"world_interact":
 			if hud.modal_open or world.paused or not profile.data.run.active or not world.interactions or not is_instance_valid(world.player): return
 			if world.interactions.can_interact_at(str(id), world.player.position): world.interactions.interact(str(id))
+		"world_npc_talk", "world_npc_trade":
+			if hud.modal_open or world.paused or _transitioning or _flow_locked() or not profile.data.run.active or not world.interactions or not is_instance_valid(world.player) or world.player.dead: return
+			if not world.interactions.can_interact_at(str(id), world.player.position): return
+			var item: Dictionary = world.interactions._items.get(str(id), {})
+			var npc_kind := str(item.get("marker", {}).get("Type", ""))
+			if npc_kind not in ["EEUT_Special_Trader", "EEUT_Special_GemShopMan"]: return
+			if kind == "world_npc_talk": _open_npc(int(item.data.get("NpcId", 0)))
+			elif npc_kind == "EEUT_Special_GemShopMan": _show_gem_offering(world.interactions._context(item))
+			elif systems.npc_function_status(200101).success: _start_dialogue(200101)
+			else: _start_dialogue(200201)
 		"confirm_stop_work":
 			var state = systems.work_status(int(id))
 			if state.order.is_empty(): return
@@ -1788,6 +1801,7 @@ func _start_dialogue(function_id: int) -> void:
 	menus.current_page = "npc"
 	menus.current_id = int(row.get("npc_index", 0))
 	if str(row.get("func_msg_name", "")) == "Rogue_OpenShop":
+		profile.data["dialogue_state"] = {}
 		if profile.data.run.active: _show_room_shop(campaign.current_room())
 		else: menus.open("mall")
 		return

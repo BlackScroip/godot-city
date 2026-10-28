@@ -228,6 +228,7 @@ func _add_card(row: Dictionary) -> void:
 	var title = _label(str(row.get("title", "")), 20, INK)
 	title.name = "Title"
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	title.max_lines_visible = 2
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
@@ -337,9 +338,9 @@ func _layout() -> void:
 	for card in cards:
 		card.custom_minimum_size = Vector2(width, height)
 		var title = card.get_node("Title")
+		title.add_theme_font_size_override("font_size", 13 if _compact else 20)
 		title.position = Vector2(5, 4)
 		title.size = Vector2(width - 10, height * 0.18)
-		title.add_theme_font_size_override("font_size", 13 if _compact else 20)
 		var icon_side = floor(minf(width * 0.59, height * 0.48))
 		var frame = card.get_node("Frame")
 		frame.position = Vector2((width - icon_side) / 2, height * 0.24)

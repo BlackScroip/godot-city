@@ -61,6 +61,11 @@ for method in result["methods"]:
                     ins["string"] = metadata[strings + location:strings + location + length].decode()
             except (KeyError, StopIteration):
                 pass
+        if ins["op"] == "bl":
+            for register in range(19):
+                registers.pop("x" + str(register), None)
+        elif ins["op"] != "adrp" and ins["op"] not in ("cmp", "tst", "b", "cbz", "cbnz", "tbz", "tbnz") and not ins["op"].startswith(("st", "b.")):
+            registers.pop(args.split(",")[0], None)
 output = root / "goDot/reports/boss-shop-native-20261028.json"
 output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
 print(json.dumps({"output": str(output), "methods": len(result["methods"])}))

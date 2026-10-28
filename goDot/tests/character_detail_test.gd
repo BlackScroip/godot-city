@@ -21,6 +21,12 @@ func check(value: bool, message: String) -> void:
 	assertions += 1
 	if not value: failures.append(message)
 
+func has_label(node: Node, value: String) -> bool:
+	if node is Label and node.text == value: return true
+	for child in node.get_children():
+		if has_label(child, value): return true
+	return false
+
 func _initialize() -> void:
 	_run.call_deferred()
 
@@ -61,6 +67,9 @@ func _run() -> void:
 	check(row.stats[2][1] == str(roundi(combat.defense + 10)), "Detail includes defense modifiers")
 	check(row.stats[3][1] == "20.0%", "Detail includes critical chance modifiers")
 	check(row.stats[4][1] == "175%", "Detail includes critical damage modifiers")
+	var source: Dictionary = game.catalog.find("CharData", 1)
+	check(row.stats_bonus == ["", "%+d" % (roundi(combat.effective_attack_power()) - int(source.atk)), "%+d" % (roundi(combat.defense + 10) - int(source.def)), "+15.0%", "+25%"], "Maze detail reports bonuses against the character base stats")
+	check(has_label(game.hud.page, "(+15.0%)") and has_label(game.hud.page, "(+25%)"), "Maze detail renders bonus parentheses")
 	check(is_equal_approx(row.combat_stats.attack_speed, 1.25), "Attribute attack speed uses current combat modifiers")
 	check(is_equal_approx(row.combat_stats.move_speed, 7.7), "Attribute movement speed uses current combat modifiers")
 	check(row.combat_stats.attribute_values.SkillActive1ChargeSpeed == 125 and row.combat_stats.attribute_values.SkillActive2ChargeSpeed == 300, "Combat snapshot distinguishes skill and burst charge")
@@ -73,6 +82,20 @@ func _run() -> void:
 	check(DungeonStyle.texture(row.artwork) != null, "Character uses recovered full artwork")
 	check(row.buttons.any(func(entry): return entry.action == "page:character_talents"), "Detail links character talents")
 	check(not row.buttons.any(func(entry): return str(entry.action).begins_with("op:")), "Maze detail does not offer camp recruitment or upgrades")
+	combat.max_health += 30
+	menus.open("characters")
+	row = game.hud.page._rows[0]
+	check(row.stats[0][1] == "61 / %d" % ceili(combat.max_health) and row.stats_bonus[0] == "+30", "Health bonus uses maximum health despite damage")
+	check(has_label(game.hud.page, "(+30)"), "Maximum health bonus renders in parentheses")
+	combat.set_external_attributes({"CriticalRate": -100, "CriticalMulti": -250})
+	menus.open("characters")
+	row = game.hud.page._rows[0]
+	check(row.stats_bonus[3] == "-10.0%" and row.stats_bonus[4] == "-25%", "Negative combat modifiers retain their signs")
+	check(has_label(game.hud.page, "(-10.0%)") and has_label(game.hud.page, "(-25%)"), "Negative bonuses render in parentheses")
+	combat.set_external_attributes({})
+	menus.open("characters")
+	row = game.hud.page._rows[0]
+	check(row.stats_bonus[3] == "" and row.stats_bonus[4] == "", "Zero combat bonuses are hidden")
 	for dimensions in [Vector2i(1600, 900), Vector2i(2460, 1080), Vector2i(844, 390)]:
 		canvas.size = dimensions
 		for step in 8: await process_frame
