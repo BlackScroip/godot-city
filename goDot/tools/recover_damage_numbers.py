@@ -36,6 +36,16 @@ def recover(apk, output):
             if obj.type.name != 'MonoBehaviour':
                 continue
             tree = obj.read_typetree()
+            if obj.path_id == -4280675585639441827:
+                (output/'source_font.json').write_text(json.dumps({
+                    'asset_name': tree['m_Name'], 'path_id': str(obj.path_id),
+                    'face': tree['m_FaceInfo'], 'source_guid': tree['m_SourceFontFileGUID']}, indent=2)+'\n')
+                pointer = tree.get('m_SourceFontFile')
+                if pointer and pointer['m_PathID']:
+                    font = PPtr(**pointer, assetsfile=obj.assets_file).deref().read_typetree()
+                    if font.get('m_FontData'):
+                        (output/'source_font.ttf').write_bytes(bytes(font['m_FontData']))
+                        print('Source font:', font['m_Name'])
             name = tree.get('m_Name', '')
             if name not in ['spriteatlas_damagetext_group', 'spriteatlas_bufftext_group']:
                 continue

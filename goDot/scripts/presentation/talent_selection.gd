@@ -15,6 +15,7 @@ var _selection_tween: Tween
 var _submitted := false
 
 const Palette = preload("res://scripts/presentation/choice_palette.gd")
+const RichSource = preload("res://scripts/presentation/source_rich_text.gd")
 const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 const SELECTED_SCALE := 1.08
 
@@ -89,7 +90,8 @@ func _build_card(row: Dictionary) -> void:
 	panel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	panel.gui_input.connect(func(event):
 		if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed) or event.is_action_pressed("ui_accept"):
-			_select(index)
+			if event.is_action_pressed("ui_accept") and selected == index: parts[index].choose.pressed.emit()
+			else: _select(index)
 			panel.accept_event())
 	panel.focus_entered.connect(func(): _select(index))
 	var slot = Control.new()
@@ -148,12 +150,12 @@ func _build_card(row: Dictionary) -> void:
 	var text_stack = VBoxContainer.new()
 	text_stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(text_stack)
-	var description = _label(str(row.get("effect_description", row.get("description", ""))), 25, Palette.color("curse_desc_color" if cursed else "effect"), true)
+	var description = _rich_label(str(row.get("source_description", row.get("effect_description", row.get("description", "")))), 25, Palette.color("curse_desc_color" if cursed else "effect"), true)
 	description.add_theme_color_override("font_outline_color", Palette.outline("Text_EffectDescription"))
 	description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	text_stack.add_child(description)
-	var level_description = _label(str(row.get("level_description", "")), 25, Palette.color("level_description"))
-	level_description.visible = row.has("level_description")
+	var level_description = _rich_label(_level_source(row), 25, Palette.color("level_description"), true)
+	level_description.visible = false
 	text_stack.add_child(level_description)
 	var lower_line = Control.new()
 	lower_line.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -197,6 +199,29 @@ func _label(value: String, font_size: int, color: Color, outlined := false) -> L
 	label.add_theme_constant_override("outline_size", 4 if outlined else 0)
 	return label
 
+func _rich_label(value: String, font_size: int, color: Color, outlined := false) -> RichTextLabel:
+	var label = RichSource.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.add_theme_font_size_override("normal_font_size", font_size)
+	label.add_theme_color_override("default_color", color)
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
+	label.add_theme_color_override("font_outline_color", Color("443d32"))
+	label.add_theme_constant_override("outline_size", 4 if outlined else 0)
+	label.set_source(value)
+	return label
+
+func _level_source(row: Dictionary) -> String:
+	var levels: Array = row.get("talent_level_descriptions", [])
+	if levels.is_empty(): return str(row.get("source_level_description", row.get("level_description", "")))
+	var descriptions: Array[String] = []
+	for level in levels:
+		var current := int(level.get("level", 0)) == int(row.get("target_level", 1))
+		var color := "#f18800" if current else "#b4b4b4"
+		var caption := DungeonLocale.text("等级%d：") % int(level.get("level", 0))
+		descriptions.append("<color=" + color + ">" + caption + str(level.get("source_description", "")) + "</color>")
+	return "\n".join(descriptions)
+
 func _select(index: int) -> void:
 	if index < 0 or index >= parts.size() or _submitted: return
 	if selected == index: return
@@ -209,6 +234,7 @@ func _select(index: int) -> void:
 		part.panel.pivot_offset = part.panel.size * 0.5
 		part.slot.z_index = 1 if i == index else 0
 		part.choose.visible = i == index
+		part.level_description.visible = i == index and not part.level_description.source_text.is_empty()
 		_selection_tween.tween_property(part.panel, "scale", Vector2.ONE * (SELECTED_SCALE if i == index else 1.0), 0.16)
 	selection_effect.set_active(true)
 	_refresh_selection_geometry()
@@ -252,8 +278,9 @@ func _adapt() -> void:
 		part.icon.custom_minimum_size = Vector2(icon_size, icon_size)
 		part.title.add_theme_font_size_override("font_size", maxi(15, int(31 * scale_factor)))
 		part.tag.add_theme_font_size_override("font_size", maxi(11, int(20 * scale_factor)))
-		part.description.add_theme_font_size_override("font_size", maxi(14, int(27 * scale_factor)))
-		part.level_description.add_theme_font_size_override("font_size", maxi(14, int(27 * scale_factor)))
+		for rich in [part.description, part.level_description]:
+			rich.add_theme_font_size_override("normal_font_size", maxi(14, int(27 * scale_factor)))
+			rich.set_source(rich.source_text)
 		part.description.add_theme_constant_override("outline_size", 3 if compact else 4)
 		part.choose.custom_minimum_size.y = maxi(26, int(44 * scale_factor))
 		part.footer.custom_minimum_size.y = part.choose.custom_minimum_size.y

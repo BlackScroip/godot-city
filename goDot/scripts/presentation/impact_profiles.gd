@@ -4,6 +4,12 @@ const FEEL = preload("res://assets/feel_settings.tres")
 const Original = preload("res://scripts/presentation/hit_feedback.gd")
 static var _source_heavy_actions: Dictionary = {}
 
+static func is_source_wolf(hit: Dictionary, source: RefCounted = null) -> bool:
+	var owner: Variant = source if source != null else hit.get("source")
+	if not owner is RefCounted: return false
+	var enemy: Variant = owner.get("enemy")
+	return enemy is Dictionary and int(enemy.get("id", 0)) == 13001
+
 static func is_source_heavy(hit: Dictionary, source: RefCounted = null) -> bool:
 	var owner: Variant = source if source != null else hit.get("source")
 	var player_owned := false
@@ -63,6 +69,10 @@ static func resolve(hit: Dictionary, source: RefCounted = null) -> Dictionary:
 	if profile.critical and category in ["heavy", "explosion"] and not upgraded:
 		profile["stop"] = float(profile.stop) * 1.25
 	profile["stop"] = minf(FEEL.hit_stop_limit, float(profile.stop))
+	if is_source_wolf(hit, source):
+		# Preserve the existing movement profile while presentation uses the APK feedback.
+		profile["source_only"] = true
+		profile["source_feedback"] = original
 	return profile
 
 static func instance_id(hit: Dictionary) -> String:

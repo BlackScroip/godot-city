@@ -1,0 +1,2336 @@
+{
+  "id": 7203,
+  "character_id": 7,
+  "path": "res://assets/characters/fashions/fashion_7203.glb",
+  "prefab": "myplayer_bingqiang_fashion_original_summer_7203",
+  "source_asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Player/myplayer_bingqiang_fashion_original_summer_7203.prefab",
+  "source_apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "apk_manifest": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+  "glb_sha256": "502fea9bb26c3e693bcd67b356cc2212da9fd2e2e35cb42c4eda62a7ef749f17",
+  "bytes": 17845072,
+  "meshes": 3,
+  "skins": 3,
+  "nodes": 184,
+  "animations": [
+    {
+      "name": "inited",
+      "source_name": "Inited",
+      "duration": 1.5000001192092896,
+      "loop": true,
+      "tracks": 300,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:2013861423334960058",
+          "clip_name": "lance@idle",
+          "state_name": "Inited"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "common_dead",
+      "source_name": "common@dead",
+      "duration": 2.0,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-2878185302864788312",
+          "clip_name": "dead",
+          "state_name": "common@dead"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "common_reborn",
+      "source_name": "common@reborn",
+      "duration": 2.500000238418579,
+      "loop": false,
+      "tracks": 162,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-8465575294640755114",
+          "clip_name": "reborn",
+          "state_name": "common@reborn"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "common_summon",
+      "source_name": "common@Summon",
+      "duration": 1.0,
+      "loop": false,
+      "tracks": 162,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:3573507820620170810",
+          "clip_name": "Summon",
+          "state_name": "common@Summon"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_attack3",
+      "source_name": "lance@attack3",
+      "duration": 2.0,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:1176142074085654158",
+          "clip_name": "lance@attack3",
+          "state_name": "lance@attack3"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_attack1",
+      "source_name": "lance@attack1",
+      "duration": 2.0,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-6398494402931860141",
+          "clip_name": "lance@attack1",
+          "state_name": "lance@attack1"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_attack2",
+      "source_name": "lance@attack2",
+      "duration": 2.0,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-6282031058436228847",
+          "clip_name": "lance@attack2",
+          "state_name": "lance@attack2"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_attackderivative",
+      "source_name": "lance@attackDerivative",
+      "duration": 2.500000238418579,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-1747859576062846505",
+          "clip_name": "lance@attackDerivative",
+          "state_name": "lance@attackDerivative"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_dodge",
+      "source_name": "lance@dodge",
+      "duration": 1.0,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-2624912993281176899",
+          "clip_name": "lance@dodge",
+          "state_name": "lance@dodge"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_dodgeattack",
+      "source_name": "lance@dodgeattack",
+      "duration": 2.0,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-5150118771307110086",
+          "clip_name": "lance@dodgeattack",
+          "state_name": "lance@dodgeattack"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_idle",
+      "source_name": "lance@idle",
+      "duration": 1.5000001192092896,
+      "loop": true,
+      "tracks": 300,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:2013861423334960058",
+          "clip_name": "lance@idle",
+          "state_name": "lance@idle"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_run",
+      "source_name": "lance@run",
+      "duration": 1.0,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:1891379992478208371",
+          "clip_name": "lance@run",
+          "state_name": "lance@run"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_skill_mainskill",
+      "source_name": "lance@skill_MainSkill",
+      "duration": 4.0,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:1855428099690292608",
+          "clip_name": "lance@skill_MainSkill",
+          "state_name": "lance@skill_MainSkill"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_skill_subskill",
+      "source_name": "lance@skill_SubSkill",
+      "duration": 2.500000238418579,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:5613442279223800342",
+          "clip_name": "lance@skill_SubSkill",
+          "state_name": "lance@skill_SubSkill"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge",
+      "source_name": "lance@satkCharge",
+      "duration": 1.4666666984558105,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:7714806143831138028",
+          "clip_name": "lance@satkCharge",
+          "state_name": "lance@satkCharge"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satk",
+      "source_name": "lance@satk",
+      "duration": 1.500000238418579,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-4023572893038846228",
+          "clip_name": "lance@satk",
+          "state_name": "lance@satk"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge3_loop_clip",
+      "source_name": "lance@satkCharge3_loop",
+      "duration": 0.16666674613952637,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:6667521843373367020",
+          "clip_name": "lance@satkCharge3_loop",
+          "state_name": "lance@satkCharge3_loop"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_skill_subskill_loop_clip",
+      "source_name": "lance@skill_SubSkill_loop",
+      "duration": 0.13333335518836975,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:6983539550538052118",
+          "clip_name": "lance@skill_SubSkill_loop",
+          "state_name": "lance@skill_SubSkill_loop"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_skill_subskill_start",
+      "source_name": "lance@skill_SubSkill_start",
+      "duration": 0.40000003576278687,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-2493696416954764778",
+          "clip_name": "lance@skill_SubSkill_start",
+          "state_name": "lance@skill_SubSkill_start"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_skill_subskill_end",
+      "source_name": "lance@skill_SubSkill_end",
+      "duration": 1.9666669368743896,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-7624767755354230250",
+          "clip_name": "lance@skill_SubSkill_end",
+          "state_name": "lance@skill_SubSkill_end"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_skill_weapon1skill",
+      "source_name": "lance@skill_Weapon1Skill",
+      "duration": 2.5,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:422287572169811328",
+          "clip_name": "lance@skill_Weapon1Skill",
+          "state_name": "lance@skill_Weapon1Skill"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satk2",
+      "source_name": "lance@satk2",
+      "duration": 2.0,
+      "loop": false,
+      "tracks": 354,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-1543049472166603002",
+          "clip_name": "lance@satk2",
+          "state_name": "lance@satk2"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satk3",
+      "source_name": "lance@satk3",
+      "duration": 2.000000238418579,
+      "loop": false,
+      "tracks": 354,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:846058719926501691",
+          "clip_name": "lance@satk3",
+          "state_name": "lance@satk3"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge2_loop_clip",
+      "source_name": "lance@satkCharge2_loop",
+      "duration": 0.1666666865348816,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-4286881972706779412",
+          "clip_name": "lance@satkCharge2_loop",
+          "state_name": "lance@satkCharge2_loop"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge1_loop_clip",
+      "source_name": "lance@satkCharge1_loop",
+      "duration": 0.16666670143604279,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-5536915101523616020",
+          "clip_name": "lance@satkCharge1_loop",
+          "state_name": "lance@satkCharge1_loop"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge1",
+      "source_name": "lance@satkCharge1",
+      "duration": 0.23333334922790527,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-501310514719924500",
+          "clip_name": "lance@satkCharge1",
+          "state_name": "lance@satkCharge1"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge2",
+      "source_name": "lance@satkCharge2",
+      "duration": 0.2666666805744171,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:8596545084736757484",
+          "clip_name": "lance@satkCharge2",
+          "state_name": "lance@satkCharge2"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "lance_satkcharge3",
+      "source_name": "lance@satkCharge3",
+      "duration": 0.43333345651626587,
+      "loop": false,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:6215902529809506028",
+          "clip_name": "lance@satkCharge3",
+          "state_name": "lance@satkCharge3"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "behit_sword",
+      "source_name": "BeHit_Sword",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-2772994637712679867",
+          "clip_name": "Behit",
+          "state_name": "BeHit_Sword"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "behit_sickle",
+      "source_name": "BeHit_Sickle",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-1096437580714264953",
+          "clip_name": "Behit",
+          "state_name": "BeHit_Sickle"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "behit_axe",
+      "source_name": "BeHit_Axe",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-5548073814456808343",
+          "clip_name": "Behit",
+          "state_name": "BeHit_Axe"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "behit_bow",
+      "source_name": "BeHit_Bow",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-4923697799687916271",
+          "clip_name": "Behit",
+          "state_name": "BeHit_Bow"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "behit_wand",
+      "source_name": "BeHit_Wand",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:-159829633356266237",
+          "clip_name": "Behit",
+          "state_name": "BeHit_Wand"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "behit_orb",
+      "source_name": "BeHit_Orb",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": 165,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:7301064381669150689",
+          "clip_name": "behit",
+          "state_name": "BeHit_Orb"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    },
+    {
+      "name": "blendmove",
+      "source_name": "BlendMove",
+      "duration": 1.0,
+      "loop": true,
+      "tracks": 306,
+      "apk_sources": [
+        {
+          "controller": "CAB-8946d634c3c05feb096d87d6fbf5cdd7:9022483939221134733",
+          "clip": "CAB-904ab0878fd7f4c7cf26cf2fc9adc8a1:1891379992478208371",
+          "clip_name": "lance@run",
+          "state_name": "BlendMove"
+        }
+      ],
+      "sampling": "source streamed cubic coefficients and dense/constant curves resampled at source rate (minimum 30Hz)"
+    }
+  ],
+  "bundle_sources": [
+    {
+      "member": "assets/yoo/DefaultPackage/993d72812de7cc27b7d74d88b5803478.bundle",
+      "sha256": "4f58aa58606fefa5c2aaf4a14f02b393b7254a5a0203ef511b10f6c00e814405"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/328e47c7bb4fe1dc08c2b29d7389c989.bundle",
+      "sha256": "f30ff0c259e5550715b194881b3c8bceea9704700002b68f041116b165036d9e"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/b3d85c6a3658aeb1c74207e6696456ff.bundle",
+      "sha256": "982eda6cbbca2fdbcaa3de20123be631f177d2433786e5f2cf933b55876a793f"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/41465fe18116cf48cb884b1748c6912d.bundle",
+      "sha256": "c9a4270a688f2c0567cea8fa314235780f4d314438d924a83497269026ce7122"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/c468140a77a8770f849e4d5900a60ed2.bundle",
+      "sha256": "b44f4d59c8ac70f87633211a8731b0477536672e405bc469674ca7e7c1d33dc2"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/0502326d3535ed15aa1e127a84d121fa.bundle",
+      "sha256": "d0b4d8d12e3c7fbe2597c58691d72e3d15f9e058b1e542dcf9729e39f120df66"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/670421ff6c4a9035bbb51fb8bf155486.bundle",
+      "sha256": "af59b643a978bfa3bcb7db0e3211087a48c5d2046236229c633e88c43b3bf6d9"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/3a62c9508e7f6abbe81a87f8d5a69b24.bundle",
+      "sha256": "5051c7a75ce6d70e345b106c818867f311b31053dc88403f4d0990ad20d52abc"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/08f6ff0f18bf1e8dbc6aa4c60efe523c.bundle",
+      "sha256": "7613e422186f04decde21646893a6d20a5c88ba270f321e640116089852b95c2"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/36a5679f9f1e3ecf957f6702d3ff5e8f.bundle",
+      "sha256": "51810ecd1b6294eea4a44c2ef70dcd7d6ec2d1ea99b800c1fa1915cad362c8db"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/cee9e011ff08a1fbe09351e5b533a3e0.bundle",
+      "sha256": "468377f627fca6391bcbb383f44fca02a3c47f038cc28b8155285555324d3e76"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/7f40fba875125909bd3e1a8bbebd67f4.bundle",
+      "sha256": "ac7df0e8d139199c3cecb50fdfeb8eb5d51487d010700abc700c91838cb5ab71"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/c42b612549cc67f6ea0de75a0cc62664.bundle",
+      "sha256": "53ee23c2b3313b8c2cb01b3ca14c9c5696d1da41af38e7c6dd74605f23ae2917"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/7f79826fc239c9796cd9d42a20b5326c.bundle",
+      "sha256": "b263c535a4406e011bcde3c1a176ad99c429564aedddb89beed3f498bf66cf02"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/7324651ff6641b1ef8beb0030f287c9c.bundle",
+      "sha256": "2d1422a16c5b4858849a6e7b8d83c94058baf131f9159b02bff3b6a545e23413"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/889ed765b09b87189f4114ee823d6610.bundle",
+      "sha256": "38761116289d7124fe0d289b66649fc0d19d6f56f5d256ecfdc3f4b8f5e0d17a"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/bd2971c9a43ceae693478c4d783c5bf5.bundle",
+      "sha256": "3917a40e9a30487d9a4252232c16162b71e5d0c6c863db7893d8933cf93c426b"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/5d696fecda2a41415526d103e047d102.bundle",
+      "sha256": "718935465cd3747ec29485e96014f209516ea6f1411a45f5c791ad3d0e250fd5"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/9b8b4eb10bc7ac4198e0063ed487657f.bundle",
+      "sha256": "579e720955857ced41dc22ce1e2a353d563dccbd0b639a0dd9934216bc35da1e"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/29af6b0b2c07253d1567630531fec0e9.bundle",
+      "sha256": "936b4905cd4d2c0c2a694fc7873064b23ebb425a9723e89d28c3c4478befd581"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/3961b4d904c55f63b5b6760930cea46b.bundle",
+      "sha256": "2e84065f93bd5b39ab227a14ebea9aaed9f33daeab753f413851199fc349fb33"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/2cec4d6a703e31a087ce975d04fa4f12.bundle",
+      "sha256": "393d9a05bccc7a223cc9836d87c2667d7a504a58378c5fbf7eebac236f4e118a"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/e3760e23149852091a866c8382071b42.bundle",
+      "sha256": "b9654304bf6c20b63862b52691255b56dc099532a21ee1f754e20ce116057d37"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/fc7f9165dae70798b7466648f17d7426.bundle",
+      "sha256": "e941ff82665a0a508d535cde868f5c179d49cf1577a0cab95c958ceed4f34c8e"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+      "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/ee9ece7880db73803095bfb4da47ad8d.bundle",
+      "sha256": "44eb7067a6ebaa83d89b7db9ebc7c7ed6e6d1c133bdeeba437fd308d46440afd"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+      "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/c60856f6fe8d3b9c49cfd930577cb50d.bundle",
+      "sha256": "7686c7ce5b87393d60f5337a0ac8bbf618324dc92a654e1d8b981df65c12107e"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+      "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/bdd8ac4c1cf487c16c92c6ee0a504b17.bundle",
+      "sha256": "03596ac9627ac23fecb9ee6240f868f50a8dd144773f170fff7be1e137d2eaa3"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/fa3bf1143d54bd6ed520c0ac787fc172.bundle",
+      "sha256": "29258a70ecf3018a84c019f8ef15438827081ab276b89fd736b2091cdf8aa556"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/6afd8f101c3f1890248e03c7f86b8d2e.bundle",
+      "sha256": "4ca2d7e4f9ef23b892f899056835ec15bc7d326fa04b4db15c3ff46a5c6c3d7e"
+    },
+    {
+      "member": "assets/yoo/DefaultPackage/6cf9f765ef1c8e037ad4f013333c5a9a.bundle",
+      "sha256": "c1dba3b6790f844eb1123b5a9e958e80a1074c5cd1f09dc7127fe4153bb7f3a7"
+    }
+  ],
+  "renderer_sources": [
+    {
+      "path": "myplayer_bingqiang_fashion_original_summer_7203/artmodel/skin_furry_bingqiang_pifu/Mesh/mesh_hair_pifu",
+      "renderer": "-5825911870563493880",
+      "mesh": "CAB-9af09a3f5bbd8ff589630feff8be477e:280359812210505343",
+      "materials": [
+        "CAB-76f35f30b29905b56c24a80c11245306:2591514225374356544",
+        "CAB-76f35f30b29905b56c24a80c11245306:-3538138146230777704"
+      ]
+    },
+    {
+      "path": "myplayer_bingqiang_fashion_original_summer_7203/artmodel/skin_furry_bingqiang_pifu/Mesh/mesh_face_pifu",
+      "renderer": "2108999263009363976",
+      "mesh": "CAB-9af09a3f5bbd8ff589630feff8be477e:-7838060358467111297",
+      "materials": [
+        "CAB-76f35f30b29905b56c24a80c11245306:6144744064923917403",
+        "CAB-76f35f30b29905b56c24a80c11245306:-3538138146230777704"
+      ]
+    },
+    {
+      "path": "myplayer_bingqiang_fashion_original_summer_7203/artmodel/skin_furry_bingqiang_pifu/Mesh/mesh_body_pf",
+      "renderer": "3594511962176018440",
+      "mesh": "CAB-9af09a3f5bbd8ff589630feff8be477e:-7981204920219650433",
+      "materials": [
+        "CAB-76f35f30b29905b56c24a80c11245306:-7458045431511596631",
+        "CAB-76f35f30b29905b56c24a80c11245306:-3538138146230777704"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "mat_furry_bingqiang_hair_fashion_summer_7203",
+      "source": "CAB-76f35f30b29905b56c24a80c11245306:2591514225374356544",
+      "shader": "NeoShader/NPR_Simple",
+      "source_properties": {
+        "m_TexEnvs": [
+          [
+            "_MainTex",
+            {
+              "m_Texture": {
+                "m_FileID": 2,
+                "m_PathID": -9022247237899652247
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ]
+        ],
+        "m_Ints": [],
+        "m_Floats": [
+          [
+            "_AlphaClip",
+            0.0
+          ],
+          [
+            "_AlphaToMask",
+            0.0
+          ],
+          [
+            "_BASE_COLOR_WEIGHT",
+            1.0
+          ],
+          [
+            "_BUMP_MAP_STRENGTH",
+            0.30000001192092896
+          ],
+          [
+            "_Blend",
+            0.0
+          ],
+          [
+            "_BlendModePreserveSpecular",
+            1.0
+          ],
+          [
+            "_BumpScale",
+            1.0
+          ],
+          [
+            "_CameraDisOutLineScale",
+            0.10000000149011612
+          ],
+          [
+            "_ClearCoatMask",
+            0.0
+          ],
+          [
+            "_ClearCoatSmoothness",
+            0.0
+          ],
+          [
+            "_Cull",
+            2.0
+          ],
+          [
+            "_Cutoff",
+            0.5
+          ],
+          [
+            "_DetailAlbedoMapScale",
+            1.0
+          ],
+          [
+            "_DetailNormalMapScale",
+            1.0
+          ],
+          [
+            "_DstBlend",
+            0.0
+          ],
+          [
+            "_DstBlendAlpha",
+            0.0
+          ],
+          [
+            "_EMISSION_WEIGHT",
+            1.0
+          ],
+          [
+            "_EnableModifyColor",
+            0.0
+          ],
+          [
+            "_EnvironmentReflections",
+            1.0
+          ],
+          [
+            "_FresnelIntensity3",
+            0.20000000298023224
+          ],
+          [
+            "_FresnelPower",
+            2.0
+          ],
+          [
+            "_GlossMapScale",
+            1.0
+          ],
+          [
+            "_Glossiness",
+            0.5
+          ],
+          [
+            "_GlossyReflections",
+            1.0
+          ],
+          [
+            "_METALNESS",
+            0.0
+          ],
+          [
+            "_Metallic",
+            0.0
+          ],
+          [
+            "_Mode",
+            0.0
+          ],
+          [
+            "_ModifyColorIntensity",
+            1.0
+          ],
+          [
+            "_OcclusionStrength",
+            1.0
+          ],
+          [
+            "_OutlineDepthOffset",
+            -0.0010000000474974513
+          ],
+          [
+            "_OutlineMultiplyer",
+            0.10000000149011612
+          ],
+          [
+            "_OutlineWidth",
+            0.10000000149011612
+          ],
+          [
+            "_Parallax",
+            0.019999999552965164
+          ],
+          [
+            "_QueueControl",
+            0.0
+          ],
+          [
+            "_QueueOffset",
+            0.0
+          ],
+          [
+            "_REFLECTIONS_IOR",
+            1.5199999809265137
+          ],
+          [
+            "_REFLECTIONS_ROUGHNESS",
+            0.0
+          ],
+          [
+            "_REFLECTIONS_WEIGHT",
+            1.0
+          ],
+          [
+            "_RampOffset1",
+            0.0
+          ],
+          [
+            "_ReceiveShadows",
+            1.0
+          ],
+          [
+            "_ShadowOffset1",
+            0.0
+          ],
+          [
+            "_Smoothness",
+            0.0
+          ],
+          [
+            "_SmoothnessTextureChannel",
+            0.0
+          ],
+          [
+            "_SpecularHighlights",
+            1.0
+          ],
+          [
+            "_SrcBlend",
+            1.0
+          ],
+          [
+            "_SrcBlendAlpha",
+            1.0
+          ],
+          [
+            "_Surface",
+            0.0
+          ],
+          [
+            "_TRANSPARENCY",
+            0.0
+          ],
+          [
+            "_UVSec",
+            0.0
+          ],
+          [
+            "_UseOutline",
+            1.0
+          ],
+          [
+            "_UseRampMap",
+            0.0
+          ],
+          [
+            "_WorkflowMode",
+            1.0
+          ],
+          [
+            "_ZWrite",
+            1.0
+          ]
+        ],
+        "m_Colors": [
+          [
+            "_BASE_COLOR",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_BaseColor",
+            {
+              "r": 0.5,
+              "g": 0.5,
+              "b": 0.5,
+              "a": 1.0
+            }
+          ],
+          [
+            "_Color",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EMISSION_COLOR",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EmissionColor",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_FresnelColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_MainColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_ModifyColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_OutlineColor",
+            {
+              "r": 0.2528302073478699,
+              "g": 0.2528302073478699,
+              "b": 0.2528302073478699,
+              "a": 0.0
+            }
+          ],
+          [
+            "_REFLECTIONS_COLOR",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_RampShadowColor0",
+            {
+              "r": 0.8396226167678833,
+              "g": 0.7692478895187378,
+              "b": 0.7089266180992126,
+              "a": 1.0
+            }
+          ],
+          [
+            "_SpecColor",
+            {
+              "r": 0.20000000298023224,
+              "g": 0.20000000298023224,
+              "b": 0.20000000298023224,
+              "a": 1.0
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "mat_character_outline",
+      "source": "CAB-76f35f30b29905b56c24a80c11245306:-3538138146230777704",
+      "shader": "NeoShader/NPR_Simple_XRayOutline",
+      "source_properties": {
+        "m_TexEnvs": [],
+        "m_Ints": [],
+        "m_Floats": [
+          [
+            "_AdditionalLightIgnoreCelShade",
+            0.8999999761581421
+          ],
+          [
+            "_AlphaClip",
+            0.0
+          ],
+          [
+            "_Blend",
+            0.0
+          ],
+          [
+            "_BumpScale",
+            1.0
+          ],
+          [
+            "_CameraDisOutLineScale",
+            0.20000000298023224
+          ],
+          [
+            "_CelShadeMidPoint",
+            -0.5
+          ],
+          [
+            "_CelShadeSoftness",
+            0.05000000074505806
+          ],
+          [
+            "_Cull",
+            2.0
+          ],
+          [
+            "_Cutoff",
+            0.5
+          ],
+          [
+            "_DetailNormalMapScale",
+            1.0
+          ],
+          [
+            "_DirectLightMultiplier",
+            1.0
+          ],
+          [
+            "_DstBlend",
+            0.0
+          ],
+          [
+            "_EmissionIdentity",
+            1.409999966621399
+          ],
+          [
+            "_EmissionMulByBaseColor",
+            1.0
+          ],
+          [
+            "_EmissionMult",
+            0.0
+          ],
+          [
+            "_EmissionUseMainTexA",
+            0.0
+          ],
+          [
+            "_EnableModifyColor",
+            0.0
+          ],
+          [
+            "_EnvironmentReflections",
+            1.0
+          ],
+          [
+            "_FirstShadowSmoothoffset",
+            0.0
+          ],
+          [
+            "_FirstShadowThre",
+            0.5
+          ],
+          [
+            "_FirstShadowThreshold",
+            0.44999998807907104
+          ],
+          [
+            "_GlossMapScale",
+            0.0
+          ],
+          [
+            "_Glossiness",
+            0.0
+          ],
+          [
+            "_GlossyReflections",
+            0.0
+          ],
+          [
+            "_IndirectLightMultiplier",
+            1.0
+          ],
+          [
+            "_Inline",
+            0.0
+          ],
+          [
+            "_IsFace",
+            0.0
+          ],
+          [
+            "_IsFaceOnlyAlbedo",
+            0.0
+          ],
+          [
+            "_LightColorIntensity",
+            1.0
+          ],
+          [
+            "_MainLightIgnoreCelShade",
+            0.0
+          ],
+          [
+            "_Metallic",
+            0.0
+          ],
+          [
+            "_Mode",
+            0.0
+          ],
+          [
+            "_ModifyColorIntensity",
+            1.0
+          ],
+          [
+            "_OcclusionRemapEnd",
+            1.0
+          ],
+          [
+            "_OcclusionRemapStart",
+            0.0
+          ],
+          [
+            "_OcclusionStrength",
+            1.0
+          ],
+          [
+            "_OutLineMaxWidth",
+            4.0
+          ],
+          [
+            "_OutLineWidth",
+            0.10899999737739563
+          ],
+          [
+            "_OutlineMultiplyer",
+            0.10000000149011612
+          ],
+          [
+            "_OutlineWidth",
+            0.10000000149011612
+          ],
+          [
+            "_OutlineZOffset",
+            0.18199999630451202
+          ],
+          [
+            "_OutlineZOffsetMaskRemapEnd",
+            1.0
+          ],
+          [
+            "_OutlineZOffsetMaskRemapStart",
+            0.0
+          ],
+          [
+            "_Parallax",
+            0.019999999552965164
+          ],
+          [
+            "_QueueOffset",
+            0.0
+          ],
+          [
+            "_RampOffset1",
+            0.0
+          ],
+          [
+            "_RampOffset2",
+            0.0
+          ],
+          [
+            "_ReceiveShadowMappingAmount",
+            0.6499999761581421
+          ],
+          [
+            "_ReceiveShadowMappingPosOffset",
+            0.0
+          ],
+          [
+            "_ReceiveShadows",
+            1.0
+          ],
+          [
+            "_RimIntensity",
+            1.0
+          ],
+          [
+            "_RimOffset",
+            0.03999999910593033
+          ],
+          [
+            "_RimPower",
+            4.0
+          ],
+          [
+            "_RimRange",
+            1.0
+          ],
+          [
+            "_RimScale",
+            0.10000000149011612
+          ],
+          [
+            "_RimToggle",
+            0.0
+          ],
+          [
+            "_Rimoffset",
+            0.48235300183296204
+          ],
+          [
+            "_Rimtype",
+            0.0
+          ],
+          [
+            "_SceondShadowThre",
+            0.5
+          ],
+          [
+            "_ShadowOffset1",
+            -0.04100000113248825
+          ],
+          [
+            "_ShadowOffset2",
+            -0.0
+          ],
+          [
+            "_ShadowhlightToggle",
+            1.0
+          ],
+          [
+            "_Shininess",
+            1.0
+          ],
+          [
+            "_Smoothness",
+            0.5
+          ],
+          [
+            "_SmoothnessTextureChannel",
+            0.0
+          ],
+          [
+            "_SpecMulti",
+            1.0
+          ],
+          [
+            "_Specgloss",
+            5.647058963775635
+          ],
+          [
+            "_SpecularGloss",
+            50.0
+          ],
+          [
+            "_SpecularHighlights",
+            1.0
+          ],
+          [
+            "_SpecularIntensity",
+            0.0
+          ],
+          [
+            "_SpecularThreshold",
+            0.05882352963089943
+          ],
+          [
+            "_SrcBlend",
+            1.0
+          ],
+          [
+            "_Surface",
+            0.0
+          ],
+          [
+            "_UVSec",
+            0.0
+          ],
+          [
+            "_UseAlphaClipping",
+            0.0
+          ],
+          [
+            "_UseEmission",
+            0.0
+          ],
+          [
+            "_UseLightShadowTex",
+            1.0
+          ],
+          [
+            "_UseOcclusion",
+            0.0
+          ],
+          [
+            "_UseRampMap",
+            0.0
+          ],
+          [
+            "_UseSSSTex",
+            1.0
+          ],
+          [
+            "_WorkflowMode",
+            1.0
+          ],
+          [
+            "_ZWrite",
+            1.0
+          ],
+          [
+            "__dirty",
+            0.0
+          ]
+        ],
+        "m_Colors": [
+          [
+            "_BaseColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_Color",
+            {
+              "r": 0.5188679099082947,
+              "g": 0.5188679099082947,
+              "b": 0.5188679099082947,
+              "a": 1.0
+            }
+          ],
+          [
+            "_Emission",
+            {
+              "r": 0.801886796951294,
+              "g": 0.801886796951294,
+              "b": 0.801886796951294,
+              "a": 0.0
+            }
+          ],
+          [
+            "_EmissionColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EmissionMapChannelMask",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_FirstShadowColor",
+            {
+              "r": 0.6117647290229797,
+              "g": 0.6117647290229797,
+              "b": 0.6117647290229797,
+              "a": 0.0
+            }
+          ],
+          [
+            "_IndirectLightMinColor",
+            {
+              "r": 0.7641509771347046,
+              "g": 0.7641509771347046,
+              "b": 0.7641509771347046,
+              "a": 1.0
+            }
+          ],
+          [
+            "_MainColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_ModifyColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_OcclusionMapChannelMask",
+            {
+              "r": 1.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_OutLineColor",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_OutlineColor",
+            {
+              "r": 0.125490203499794,
+              "g": 0.125490203499794,
+              "b": 0.125490203499794,
+              "a": 1.0
+            }
+          ],
+          [
+            "_RampShadowColor1",
+            {
+              "r": 0.8962264060974121,
+              "g": 0.8962264060974121,
+              "b": 0.8962264060974121,
+              "a": 1.0
+            }
+          ],
+          [
+            "_RampShadowColor2",
+            {
+              "r": 0.849056601524353,
+              "g": 0.7741941809654236,
+              "b": 0.7409220337867737,
+              "a": 1.0
+            }
+          ],
+          [
+            "_RimColor",
+            {
+              "r": 1.7207953929901123,
+              "g": 1.0721185207366943,
+              "b": 0.8919305801391602,
+              "a": 0.0
+            }
+          ],
+          [
+            "_SSSTexColor",
+            {
+              "r": 0.22641509771347046,
+              "g": 0.22641509771347046,
+              "b": 0.22641509771347046,
+              "a": 1.0
+            }
+          ],
+          [
+            "_SecondShadowColor",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_ShadowMapColor",
+            {
+              "r": 1.0,
+              "g": 0.824999988079071,
+              "b": 0.7799999713897705,
+              "a": 1.0
+            }
+          ],
+          [
+            "_SpecColor",
+            {
+              "r": 0.20000000298023224,
+              "g": 0.20000000298023224,
+              "b": 0.20000000298023224,
+              "a": 1.0
+            }
+          ],
+          [
+            "_Specolor",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_SpecularColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 0.0
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "mat_furry_bingqiang_face_fashion_summer_7203",
+      "source": "CAB-76f35f30b29905b56c24a80c11245306:6144744064923917403",
+      "shader": "NeoShader/NPR_Simple",
+      "source_properties": {
+        "m_TexEnvs": [
+          [
+            "_MainTex",
+            {
+              "m_Texture": {
+                "m_FileID": 2,
+                "m_PathID": -7421575742710069975
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ]
+        ],
+        "m_Ints": [],
+        "m_Floats": [
+          [
+            "_AlphaClip",
+            0.0
+          ],
+          [
+            "_AlphaToMask",
+            0.0
+          ],
+          [
+            "_BASE_COLOR_WEIGHT",
+            1.0
+          ],
+          [
+            "_BUMP_MAP_STRENGTH",
+            0.30000001192092896
+          ],
+          [
+            "_Blend",
+            0.0
+          ],
+          [
+            "_BlendModePreserveSpecular",
+            1.0
+          ],
+          [
+            "_BumpScale",
+            1.0
+          ],
+          [
+            "_CameraDisOutLineScale",
+            0.10000000149011612
+          ],
+          [
+            "_ClearCoatMask",
+            0.0
+          ],
+          [
+            "_ClearCoatSmoothness",
+            0.0
+          ],
+          [
+            "_Cull",
+            2.0
+          ],
+          [
+            "_Cutoff",
+            0.5
+          ],
+          [
+            "_DetailAlbedoMapScale",
+            1.0
+          ],
+          [
+            "_DetailNormalMapScale",
+            1.0
+          ],
+          [
+            "_DstBlend",
+            0.0
+          ],
+          [
+            "_DstBlendAlpha",
+            0.0
+          ],
+          [
+            "_EMISSION_WEIGHT",
+            1.0
+          ],
+          [
+            "_EnableModifyColor",
+            0.0
+          ],
+          [
+            "_EnvironmentReflections",
+            1.0
+          ],
+          [
+            "_FresnelIntensity3",
+            0.20000000298023224
+          ],
+          [
+            "_FresnelPower",
+            2.0
+          ],
+          [
+            "_GlossMapScale",
+            1.0
+          ],
+          [
+            "_Glossiness",
+            0.5
+          ],
+          [
+            "_GlossyReflections",
+            1.0
+          ],
+          [
+            "_METALNESS",
+            0.0
+          ],
+          [
+            "_Metallic",
+            0.0
+          ],
+          [
+            "_Mode",
+            0.0
+          ],
+          [
+            "_ModifyColorIntensity",
+            1.0
+          ],
+          [
+            "_OcclusionStrength",
+            1.0
+          ],
+          [
+            "_OutlineDepthOffset",
+            -0.0010000000474974513
+          ],
+          [
+            "_OutlineMultiplyer",
+            0.10000000149011612
+          ],
+          [
+            "_OutlineWidth",
+            0.10000000149011612
+          ],
+          [
+            "_Parallax",
+            0.019999999552965164
+          ],
+          [
+            "_QueueControl",
+            0.0
+          ],
+          [
+            "_QueueOffset",
+            0.0
+          ],
+          [
+            "_REFLECTIONS_IOR",
+            1.5199999809265137
+          ],
+          [
+            "_REFLECTIONS_ROUGHNESS",
+            0.0
+          ],
+          [
+            "_REFLECTIONS_WEIGHT",
+            1.0
+          ],
+          [
+            "_RampOffset1",
+            0.0
+          ],
+          [
+            "_ReceiveShadows",
+            1.0
+          ],
+          [
+            "_ShadowOffset1",
+            0.0
+          ],
+          [
+            "_Smoothness",
+            0.0
+          ],
+          [
+            "_SmoothnessTextureChannel",
+            0.0
+          ],
+          [
+            "_SpecularHighlights",
+            1.0
+          ],
+          [
+            "_SrcBlend",
+            1.0
+          ],
+          [
+            "_SrcBlendAlpha",
+            1.0
+          ],
+          [
+            "_Surface",
+            0.0
+          ],
+          [
+            "_TRANSPARENCY",
+            0.0
+          ],
+          [
+            "_UVSec",
+            0.0
+          ],
+          [
+            "_UseOutline",
+            1.0
+          ],
+          [
+            "_UseRampMap",
+            0.0
+          ],
+          [
+            "_WorkflowMode",
+            1.0
+          ],
+          [
+            "_ZWrite",
+            1.0
+          ]
+        ],
+        "m_Colors": [
+          [
+            "_BASE_COLOR",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_BaseColor",
+            {
+              "r": 0.5,
+              "g": 0.5,
+              "b": 0.5,
+              "a": 1.0
+            }
+          ],
+          [
+            "_Color",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EMISSION_COLOR",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EmissionColor",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_FresnelColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_MainColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_ModifyColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_OutlineColor",
+            {
+              "r": 0.2528302073478699,
+              "g": 0.2528302073478699,
+              "b": 0.2528302073478699,
+              "a": 0.0
+            }
+          ],
+          [
+            "_REFLECTIONS_COLOR",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_RampShadowColor0",
+            {
+              "r": 0.8396226167678833,
+              "g": 0.7692478895187378,
+              "b": 0.7089266180992126,
+              "a": 1.0
+            }
+          ],
+          [
+            "_SpecColor",
+            {
+              "r": 0.20000000298023224,
+              "g": 0.20000000298023224,
+              "b": 0.20000000298023224,
+              "a": 1.0
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "mat_furry_bingqiang_body_fashion_summer_7203",
+      "source": "CAB-76f35f30b29905b56c24a80c11245306:-7458045431511596631",
+      "shader": "NeoShader/NPR_Simple",
+      "source_properties": {
+        "m_TexEnvs": [
+          [
+            "_MainTex",
+            {
+              "m_Texture": {
+                "m_FileID": 2,
+                "m_PathID": 5482245584996757629
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ]
+        ],
+        "m_Ints": [],
+        "m_Floats": [
+          [
+            "_AlphaClip",
+            0.0
+          ],
+          [
+            "_AlphaToMask",
+            0.0
+          ],
+          [
+            "_BASE_COLOR_WEIGHT",
+            1.0
+          ],
+          [
+            "_BUMP_MAP_STRENGTH",
+            0.30000001192092896
+          ],
+          [
+            "_Blend",
+            0.0
+          ],
+          [
+            "_BlendModePreserveSpecular",
+            1.0
+          ],
+          [
+            "_BumpScale",
+            1.0
+          ],
+          [
+            "_CameraDisOutLineScale",
+            0.10000000149011612
+          ],
+          [
+            "_ClearCoatMask",
+            0.0
+          ],
+          [
+            "_ClearCoatSmoothness",
+            0.0
+          ],
+          [
+            "_Cull",
+            2.0
+          ],
+          [
+            "_Cutoff",
+            0.5
+          ],
+          [
+            "_DetailAlbedoMapScale",
+            1.0
+          ],
+          [
+            "_DetailNormalMapScale",
+            1.0
+          ],
+          [
+            "_DstBlend",
+            0.0
+          ],
+          [
+            "_DstBlendAlpha",
+            0.0
+          ],
+          [
+            "_EMISSION_WEIGHT",
+            1.0
+          ],
+          [
+            "_EnableModifyColor",
+            0.0
+          ],
+          [
+            "_EnvironmentReflections",
+            1.0
+          ],
+          [
+            "_FresnelIntensity3",
+            0.20000000298023224
+          ],
+          [
+            "_FresnelPower",
+            2.0
+          ],
+          [
+            "_GlossMapScale",
+            1.0
+          ],
+          [
+            "_Glossiness",
+            0.5
+          ],
+          [
+            "_GlossyReflections",
+            1.0
+          ],
+          [
+            "_METALNESS",
+            0.0
+          ],
+          [
+            "_Metallic",
+            0.0
+          ],
+          [
+            "_Mode",
+            0.0
+          ],
+          [
+            "_ModifyColorIntensity",
+            1.0
+          ],
+          [
+            "_OcclusionStrength",
+            1.0
+          ],
+          [
+            "_OutlineDepthOffset",
+            -0.0010000000474974513
+          ],
+          [
+            "_OutlineMultiplyer",
+            0.10000000149011612
+          ],
+          [
+            "_OutlineWidth",
+            0.10000000149011612
+          ],
+          [
+            "_Parallax",
+            0.019999999552965164
+          ],
+          [
+            "_QueueControl",
+            0.0
+          ],
+          [
+            "_QueueOffset",
+            0.0
+          ],
+          [
+            "_REFLECTIONS_IOR",
+            1.5199999809265137
+          ],
+          [
+            "_REFLECTIONS_ROUGHNESS",
+            0.0
+          ],
+          [
+            "_REFLECTIONS_WEIGHT",
+            1.0
+          ],
+          [
+            "_RampOffset1",
+            0.0
+          ],
+          [
+            "_ReceiveShadows",
+            1.0
+          ],
+          [
+            "_ShadowOffset1",
+            0.0
+          ],
+          [
+            "_Smoothness",
+            0.0
+          ],
+          [
+            "_SmoothnessTextureChannel",
+            0.0
+          ],
+          [
+            "_SpecularHighlights",
+            1.0
+          ],
+          [
+            "_SrcBlend",
+            1.0
+          ],
+          [
+            "_SrcBlendAlpha",
+            1.0
+          ],
+          [
+            "_Surface",
+            0.0
+          ],
+          [
+            "_TRANSPARENCY",
+            0.0
+          ],
+          [
+            "_UVSec",
+            0.0
+          ],
+          [
+            "_UseOutline",
+            1.0
+          ],
+          [
+            "_UseRampMap",
+            0.0
+          ],
+          [
+            "_WorkflowMode",
+            1.0
+          ],
+          [
+            "_ZWrite",
+            1.0
+          ]
+        ],
+        "m_Colors": [
+          [
+            "_BASE_COLOR",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_BaseColor",
+            {
+              "r": 0.5,
+              "g": 0.5,
+              "b": 0.5,
+              "a": 1.0
+            }
+          ],
+          [
+            "_Color",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EMISSION_COLOR",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_EmissionColor",
+            {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_FresnelColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_MainColor",
+            {
+              "r": 0.9716981053352356,
+              "g": 0.9716981053352356,
+              "b": 0.9716981053352356,
+              "a": 1.0
+            }
+          ],
+          [
+            "_ModifyColor",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_OutlineColor",
+            {
+              "r": 0.2528302073478699,
+              "g": 0.2528302073478699,
+              "b": 0.2528302073478699,
+              "a": 0.0
+            }
+          ],
+          [
+            "_REFLECTIONS_COLOR",
+            {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            }
+          ],
+          [
+            "_RampShadowColor0",
+            {
+              "r": 0.8396226167678833,
+              "g": 0.7692478895187378,
+              "b": 0.7089266180992126,
+              "a": 1.0
+            }
+          ],
+          [
+            "_SpecColor",
+            {
+              "r": 0.20000000298023224,
+              "g": 0.20000000298023224,
+              "b": 0.20000000298023224,
+              "a": 1.0
+            }
+          ]
+        ]
+      }
+    }
+  ],
+  "unsupported": {
+    "animation_unbound_path": 3210,
+    "animation_non_trs_binding": 424,
+    "animation_empty_controller_state": 7
+  },
+  "failures": [],
+  "evidence_type": "static packaged fashion prefab, dependency closure, and controller curves",
+  "rendering": "Exact source mesh, skin, texture and colors; Unity custom shaders approximated with PBR; particle systems are not converted"
+}

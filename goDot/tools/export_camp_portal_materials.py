@@ -68,7 +68,7 @@ def main():
         shader_name = shader.get("m_Name") or shader.get("m_ParsedForm", {}).get("m_Name", "")
         src, dst = floats.get("_SrcMode"), floats.get("_DstMode")
         white = {"r": 1, "g": 1, "b": 1, "a": 1}
-        result[name] = {"name": name, "source": f"{obj.assets_file.name}:{obj.path_id}",
+        result[name] = {"name": name, "source": f"{obj.assets_file.name}:{obj.path_id}", "render_queue": data.get("m_CustomRenderQueue", -1),
             "texture": primary["texture"], "texture_scale": primary["scale"], "texture_offset": primary["offset"],
             "textures": maps, "keywords": data.get("m_ValidKeywords", []), "shader": shader_name,
             "color": colors.get("_Color", white), "shape_color": colors.get("_ShapeColor", white),

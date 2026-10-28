@@ -1,0 +1,45 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b7kopjw10jnky"
+path.s3tc="res://.godot/imported/fashion_8004_tex_furry_shuangdao_body_fashion_ice.png-4ad7a7b00a063e2c1ab15f01c6490947.s3tc.ctex"
+path.etc2="res://.godot/imported/fashion_8004_tex_furry_shuangdao_body_fashion_ice.png-4ad7a7b00a063e2c1ab15f01c6490947.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "aeef60d67d6322248d7bc4deae359ae9"
+}
+
+[deps]
+
+source_file="res://assets/characters/fashions/fashion_8004_tex_furry_shuangdao_body_fashion_ice.png"
+dest_files=["res://.godot/imported/fashion_8004_tex_furry_shuangdao_body_fashion_ice.png-4ad7a7b00a063e2c1ab15f01c6490947.s3tc.ctex", "res://.godot/imported/fashion_8004_tex_furry_shuangdao_body_fashion_ice.png-4ad7a7b00a063e2c1ab15f01c6490947.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

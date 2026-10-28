@@ -39,6 +39,13 @@ func snapshot(page: String, mode: String, dimensions: Vector2i, character_id := 
 	if page != "talents":
 		var expected_labels: Array = host.page_context.role_navigation.map(func(entry): return str(entry.label))
 		check(view.navigation.map(func(button): return button.text) == expected_labels, "Visible navigation matches APK mode %s/%s" % [mode, page])
+	else:
+		view.detail_scroll.ensure_control_visible(view.upgrade_button)
+		await settle()
+		var button_size: Vector2 = view.upgrade_button.size
+		check(absf(button_size.y - maxf(44.0, button_size.x * 75.0 / 250.0)) <= 1.0, "Guild action preserves the original oval aspect ratio %s" % dimensions)
+		check(button_size.y >= 44 and button_size.x >= 44, "Guild action retains a usable touch target %s" % dimensions)
+		check(view.detail_scroll.get_global_rect().grow(1).encloses(view.upgrade_button.get_global_rect()), "Guild action can scroll fully into its detail viewport %s" % dimensions)
 	if render_check:
 		var deadline := Time.get_ticks_msec() + 2000
 		while host.modulate.a < 0.999 and Time.get_ticks_msec() < deadline: await process_frame
@@ -95,6 +102,8 @@ func verify_inactive_character_weapon() -> void:
 	game.hud.page.character_view.selections[2].pressed.emit()
 	check(game.selected_character == 1 and game.hud.page.page_context.selected_character == 3, "Browsing an unowned character retains the active actor")
 	game.hud.page.character_view.action_bar.get_child(0).pressed.emit()
+	check(is_instance_valid(game.hud.page.character_view._recruit_overlay) and game.systems.rank(game.profile.data.character_levels, 3) == 0, "Recruitment opens a confirmation before spending materials")
+	if is_instance_valid(game.hud.page.character_view._recruit_overlay): game.hud.page.character_view._recruit_overlay.confirm_button.pressed.emit()
 	check(game.systems.rank(game.profile.data.character_levels, 3) == 1 and int(game.save_store.load_profile().character_levels["3"]) == 1, "Browsed character recruitment is applied and saved")
 	check(game.hud.page.page_context.selected_character == 3 and game.selected_character == 1, "Recruitment refresh retains the browsed character without changing the active actor")
 	var growth: Dictionary = game.systems.character_upgrade_status(3)
@@ -133,7 +142,7 @@ func verify_guild_upgrade() -> void:
 	check(game.systems.rank(game.profile.data.talents, 102) == 1 and int(game.save_store.load_profile().talents["102"]) == 1, "Guild child upgrade is applied and saved")
 	game.hud.page.guild_view.select_category(3)
 	check(game.hud.page.guild_view.node_buttons.size() == 19 and game.hud.page.guild_view.selected_talent == 301, "Actual guild page can navigate to its complete third source branch")
-	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]: await snapshot("talents", "camp", dimensions)
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390), Vector2i(2460, 1080)]: await snapshot("talents", "camp", dimensions)
 
 func _run() -> void:
 	render_check = "--render-check" in OS.get_cmdline_user_args()

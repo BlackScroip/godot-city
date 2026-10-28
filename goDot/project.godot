@@ -14,18 +14,13 @@ config/name="Dungeon Chasers"
 config/description="Dungeon Chasers offline Godot migration"
 config/version="0.1.0"
 run/main_scene="res://scenes/startup.tscn"
-boot_splash/image="res://assets/ui/startup/30e884e8e45f1d6f.png"
-boot_splash/fullsize=true
-boot_splash/bg_color=Color(0.04, 0.07, 0.14, 1)
 config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/bg_color=Color(0.04, 0.07, 0.14, 1)
+boot_splash/image="res://assets/ui/startup/30e884e8e45f1d6f.png"
 
 [autoload]
 
 Locale="*res://scripts/localization.gd"
-
-[internationalization]
-
-locale/fallback="en"
 
 [display]
 
@@ -37,18 +32,17 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=4
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dungeon_ads/plugin.cfg", "res://addons/combat_ai/plugin.cfg")
+
 [navigation]
 
 3d/default_cell_height=0.1
 
 [physics]
 
-common/physics_ticks_per_second=60
 common/physics_interpolation=true
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/dungeon_ads/plugin.cfg", "res://addons/combat_ai/plugin.cfg")
 
 [rendering]
 

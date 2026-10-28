@@ -5,6 +5,7 @@ signal transition_requested(context: Dictionary)
 signal npc_requested(npc_id: String, context: Dictionary)
 signal reward_requested(context: Dictionary)
 signal trap_triggered(context: Dictionary)
+signal attraction_requested(context: Dictionary)
 signal message_requested(name: String, context: Dictionary)
 signal object_changed(marker_id: String, state: Dictionary)
 signal diagnostic_reported(context: Dictionary)
@@ -28,7 +29,7 @@ const ADVENTURE_EVENT := "EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent"
 const SPECIAL_EVENT := "EnvUnit_MonoData_BtnDisplayName_RogueAdventureEvent_Special"
 const MEAL_SHOP := "EnvUnit_MonoData_BtnDisplayName_CatMeal_Shop"
 const ALTAR_EGG := "sprite_abilityitemicon_14104"
-const ROOM_ACTIONS := {ADVENTURE_EVENT: "冒险事件", SPECIAL_EVENT: "特殊事件", OLD_DAY_ALTAR: "旧日祭坛", CURSE_ALTAR: "诅咒祭坛", SACRIFICIAL_ALTAR: "献祭祭坛", PARTNER_SELECTOR: "伙伴技能", SPRING: "饮用泉水", MEAL_SHOP: "猫饭料理"}
+const ROOM_ACTIONS := {ADVENTURE_EVENT: "冒险事件", SPECIAL_EVENT: "特殊事件", OLD_DAY_ALTAR: "旧日祭坛", CURSE_ALTAR: "诅咒祭坛", SACRIFICIAL_ALTAR: "净化石坛", PARTNER_SELECTOR: "伙伴技能", SPRING: "饮用泉水", MEAL_SHOP: "猫饭料理"}
 
 var diagnostics: Array[Dictionary] = []
 var scene := ""
@@ -39,6 +40,7 @@ var _nodes: Dictionary = {}
 var _bindings: Dictionary = {}
 var _definitions: Dictionary = {}
 var _fingerprint := ""
+var _legacy_attraction_fingerprint := ""
 var _diagnostic_keys: Dictionary = {}
 
 func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) -> void:
@@ -83,6 +85,7 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		else: _diagnose(id, "missing_visual", "Exported node identity is absent")
 		if str(marker.get("Type", "")) == "EEUT_CloseArea": item.state.enabled = false
 		if str(marker.get("Type", "")) == "EEUT_ProtectTarget": item.state.enabled = false
+		if str(data.get("UIBtnName", "")) == SACRIFICIAL_ALTAR: item.state.enabled = false
 		item["effect_states"] = {}
 		item["altar_eggs"] = []
 		item["curse_parts"] = []
@@ -117,7 +120,15 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 		identities.append([id, str(marker.get("Type", "")), data, str(binding.get("ConfigId", ""))])
 		_validate_binding(item)
 		_apply(item)
+	_cache_trap_environment_contacts()
 	_fingerprint = JSON.stringify([scene, identities]).sha256_text()
+	_legacy_attraction_fingerprint = ""
+	# Earlier saves included quicksand markers without their newly recovered config binding.
+	var legacy_identities := identities.duplicate(true)
+	for identity in legacy_identities:
+		if identity[1] == "EEUT_AttractTrap" and identity[3] == "11101": identity[3] = ""
+	if legacy_identities != identities:
+		_legacy_attraction_fingerprint = JSON.stringify([scene, legacy_identities]).sha256_text()
 
 func _index_nodes(node: Node) -> void:
 	if not is_instance_valid(node): return
@@ -126,7 +137,7 @@ func _index_nodes(node: Node) -> void:
 
 func _validate_binding(item: Dictionary) -> void:
 	var kind := str(item.marker.get("Type", ""))
-	if kind in ["EEUT_DestoryableItem", "EEUT_TriggerTrap"]:
+	if kind in ["EEUT_DestoryableItem", "EEUT_TriggerTrap", "EEUT_AttractTrap"]:
 		if item.definition.is_empty() or str(item.definition.get("Type", "")) != kind or not item.binding.get("SupportsRules", false):
 			item.state.enabled = false
 			_diagnose(item.id, "missing_config", "No exact source ResId binding for " + kind)
@@ -140,6 +151,13 @@ func _validate_binding(item: Dictionary) -> void:
 		if kind == "EEUT_TriggerTrap":
 			for role in ["Container_EnterTrigger", "Container_EffectTrigger"]:
 				if _volumes(item, role).is_empty(): _diagnose(item.id, "missing_volume", role)
+		elif kind == "EEUT_AttractTrap":
+			if _volumes(item, "Container_EffectTrigger").is_empty(): _diagnose(item.id, "missing_volume", "Container_EffectTrigger")
+			for field in ["AttractTargetPosition", "AttractTargetForward"]:
+				var point: Variant = item.binding.get(field)
+				if not point is Array or point.size() != 3 or not _vector(point).is_finite():
+					item.state.enabled = false
+					_diagnose(item.id, "missing_attract_target", field)
 	elif kind in ["EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan"]:
 		var npc_id := str(item.data.get("NpcId", ""))
 		var catalog = _services.get("catalog")
@@ -377,12 +395,21 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 						item.state.break_remaining = maxf(0, float(item.state.break_remaining) - step)
 						if item.state.break_remaining <= 0: _finish_break(item)
 				"EEUT_TriggerTrap":
-					_advance_trap(item, step, _contains(item, player_position + Vector3.UP * 0.8, 0.35, "Container_EnterTrigger"))
+					var trigger_inside := all_targets.any(func(target): return target.get("position") is Vector3 and camp_allows(str(item.definition.get("TargetCampString", "")), int(target.get("camp", 0))) and _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EnterTrigger"))
+					_advance_trap(item, step, trigger_inside)
 					if item.state.phase != "active": continue
+					_affect_trap_environment(item)
+					if float(item.state.hit_cooldowns.get("*", 0)) > 0.0000001: continue
+					var affected := false
 					for target in all_targets:
 						if not target.get("position") is Vector3: continue
 						if not _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EffectTrigger"): continue
-						_affect(item, target, frame_hits)
+						affected = _affect(item, target, frame_hits) or affected
+					if affected and str(item.definition.get("TriggerTimesType", "")) == "CustomTimeInterval":
+						item.state.hit_cooldowns["*"] = float(item.definition.TriggerCustomParam1)
+				"EEUT_AttractTrap":
+					_attract(item, step, all_targets)
+					player_position = all_targets[0].position
 				"EEUT_PlayerTrigger", "EEUT_SimpleTalkTrigger":
 					item.state.talk_delay = maxf(0, float(item.state.talk_delay) - step)
 					var inside := _contains(item, player_position + Vector3.UP * 0.8, 0.35)
@@ -396,6 +423,46 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 							player_trigger_entered.emit(int(item.data.get("TriggerId", -1)), context)
 						if not name.is_empty(): message_requested.emit(name, context)
 					item.state.inside = inside
+
+func _attract(item: Dictionary, delta: float, targets: Array) -> void:
+	var definition: Dictionary = item.definition
+	var interval := maxf(0.0, float(definition.get("EffectActiveInterval", 0)))
+	if interval > 0:
+		item.state.phase_time += delta
+		if item.state.phase_time + 0.0000001 < interval: return
+		item.state.phase_time = maxf(0.0, item.state.phase_time - interval)
+	var center := _world_position(_vector(item.binding.get("AttractTargetPosition", [])))
+	var forward := _vector(item.binding.get("AttractTargetForward", []))
+	if is_instance_valid(_root) and _root.is_inside_tree(): forward = _root.global_basis * forward
+	forward = forward.normalized()
+	for target in targets:
+		if not target.get("position") is Vector3 or not camp_allows(str(definition.get("EffectCamp", "")), int(target.get("camp", 0))): continue
+		if not _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EffectTrigger"): continue
+		var offset: Vector3 = forward if str(definition.get("DirType", "Point")) == "Dir" else center - target.position
+		offset.y = 0.0
+		var distance_scale := clampf(1.0 - offset.length() * float(definition.get("AttractDistancePercent", 0)) * 0.01, 0.0, 100.0)
+		var force := offset.normalized() * float(definition.get("AttractForce", 0)) * delta * distance_scale
+		if not force.is_finite() or force.length() <= 0.01: continue
+		var context := _context(item)
+		context.merge({"target_id": str(target.get("id", "")), "camp_mask": str(definition.get("EffectCamp", "")), "force": force})
+		attraction_requested.emit(context)
+		# The receiver resolves collision before the next simulation step samples the volume.
+		if context.get("position_after") is Vector3: target.position = context.position_after
+
+func disable_traps() -> int:
+	var count := 0
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) not in ["EEUT_TriggerTrap", "EEUT_AttractTrap"] or not item.state.enabled or item.state.phase == "destroyed": continue
+		item.state.enabled = false
+		item.state.phase = "idle"
+		item.state.phase_time = 0.0
+		item.state.idle_remaining = 0.0
+		item.state.inside = false
+		item.state.hits_once.clear()
+		item.state.hit_cooldowns.clear()
+		_changed(item)
+		count += 1
+	return count
 
 func _advance_trap(item: Dictionary, delta: float, inside: bool) -> void:
 	var state: Dictionary = item.state
@@ -414,6 +481,7 @@ func _advance_trap(item: Dictionary, delta: float, inside: bool) -> void:
 			state.cycle += 1
 			state.hits_once.clear()
 			state.hit_cooldowns.clear()
+			_trap_animation(item, "TriggerAnim")
 			_effect(item, "TriggerStartEffectName")
 			_sound(item, "TriggerStartSound")
 		var key := "TriggerStartTime" if state.phase == "starting" else "TriggerLastingTime" if state.phase == "active" else "TriggerEndTime"
@@ -427,7 +495,9 @@ func _advance_trap(item: Dictionary, delta: float, inside: bool) -> void:
 			"starting":
 				state.phase = "active"
 				if duration == 0 or remaining <= 0: return
-			"active": state.phase = "ending"
+			"active":
+				state.phase = "ending"
+				_trap_animation(item, "TriggerEndAnim")
 			"ending":
 				match str(definition.get("TriggerEndAct", "")):
 					"Destroy":
@@ -441,33 +511,112 @@ func _advance_trap(item: Dictionary, delta: float, inside: bool) -> void:
 				if remaining <= 0: return
 	_diagnose(item.id, "invalid_trap_cycle", "Zero-duration trap cycle exceeds transition limit")
 
-func _affect(item: Dictionary, target: Dictionary, frame_hits: Dictionary) -> void:
+func _affect(item: Dictionary, target: Dictionary, frame_hits: Dictionary) -> bool:
 	var definition: Dictionary = item.definition
 	var id := str(target.get("id", ""))
-	if id.is_empty() or not camp_allows(str(definition.get("TargetCampString", "")), int(target.get("camp", 0))): return
-	if item.state.hits_once.get(id, false) or float(item.state.hit_cooldowns.get(id, 0)) > 0.0000001: return
+	if id.is_empty() or not camp_allows(str(definition.get("TargetCampString", "")), int(target.get("camp", 0))): return false
+	if item.state.hits_once.get(id, false): return false
 	var mode := str(definition.get("TriggerTimesType", ""))
 	if mode == "OnlyOncePerUnit": item.state.hits_once[id] = true
 	elif mode == "CustomTimeInterval":
 		var interval := float(definition.get("TriggerCustomParam1", "0"))
 		if not is_finite(interval) or interval <= 0:
 			_diagnose(item.id, "invalid_trap_interval", str(definition.get("TriggerCustomParam1", "")))
-			return
-		item.state.hit_cooldowns[id] = interval
+			return false
 	elif mode == "PerFrame":
 		var frame_key := str(item.id) + ":" + id
-		if frame_hits.has(frame_key): return
+		if frame_hits.has(frame_key): return false
 		frame_hits[frame_key] = true
 	else:
 		_diagnose(item.id, "unsupported_trap_mode", mode)
-		return
+		return false
 	var buff: Dictionary = definition.get("AddBuffData", {})
 	if str(buff.get("BuffTriggerId", "")).is_empty():
 		_diagnose(item.id, "missing_buff", "Trap AddBuffData has no BuffTriggerId")
-		return
+		return false
 	var context := _context(item)
 	context.merge({"target_id": id, "buff_id": str(buff.BuffTriggerId), "layers": int(buff.get("BuffAddLayer", 1)), "camp_mask": definition.get("TargetCampString", ""), "cycle": item.state.cycle})
 	trap_triggered.emit(context)
+	return true
+
+func _trap_animation(item: Dictionary, field: String) -> void:
+	var clip := str(item.definition.get(field, ""))
+	if clip.is_empty() or not is_instance_valid(item.visual): return
+	for animation in item.visual.find_children("*", "AnimationPlayer", true, false):
+		if animation.has_animation(clip): animation.play(clip)
+
+func _cache_trap_environment_contacts() -> void:
+	var props := _items.values().filter(func(item): return str(item.marker.get("Type", "")) == "EEUT_DestoryableItem")
+	for item in _items.values():
+		if str(item.marker.get("Type", "")) != "EEUT_TriggerTrap" or not item.definition.get("AttackEnvUnit", false): continue
+		item["environment_contacts"] = []
+		for prop in props:
+			if _trap_overlaps_prop(item, prop): item.environment_contacts.append(str(prop.id))
+
+func _affect_trap_environment(item: Dictionary) -> void:
+	for id in item.get("environment_contacts", []):
+		var key := "env:" + str(id)
+		if item.state.hits_once.get(key, false): continue
+		item.state.hits_once[key] = true
+		# Native RegisterEffectTrigger sends AccTenacity=9999 to overlapping environment units.
+		damage_marker(str(id), 9999, 2, "trap:%s:%d" % [item.id, int(item.state.cycle)])
+
+func _trap_overlaps_prop(item: Dictionary, prop: Dictionary) -> bool:
+	for target in prop.colliders:
+		var properties: Dictionary = target.get("properties", {})
+		if int(target.get("kind", 0)) != 65 or not target.get("active", true) or not properties.get("m_Enabled", 1) or properties.get("m_IsTrigger", 0): continue
+		var box := _matrix(target.get("world_matrix", []))
+		if absf(box.basis.determinant()) < 0.00000001: continue
+		box.origin = box * _vector(properties.get("m_Center", {}))
+		var half := _vector(properties.get("m_Size", {})).abs() * 0.5
+		for volume in _volumes(item, "Container_EffectTrigger"):
+			if not volume.get("active", true): continue
+			var settings: Dictionary = volume.get("properties", {})
+			var trap := _matrix(volume.get("world_matrix", []))
+			if absf(trap.basis.determinant()) < 0.00000001: continue
+			trap.origin = trap * _vector(settings.get("m_Center", {}))
+			var scale := trap.basis.get_scale().abs()
+			match int(volume.get("kind", 0)):
+				65:
+					if _boxes_overlap(box, half, trap, _vector(settings.get("m_Size", {})).abs() * 0.5): return true
+				135:
+					var radius := float(settings.get("m_Radius", 0)) * maxf(scale.x, maxf(scale.y, scale.z))
+					if _box_distance_squared(box, half, trap.origin) <= radius * radius: return true
+				136:
+					var axis := int(settings.get("m_Direction", 1))
+					var radius := float(settings.get("m_Radius", 0)) * maxf(scale[(axis + 1) % 3], scale[(axis + 2) % 3])
+					var extent := trap.basis[axis].normalized() * maxf(0.0, float(settings.get("m_Height", 0)) * scale[axis] * 0.5 - radius)
+					var first := trap.origin - extent
+					var last := trap.origin + extent
+					var lower := 0.0
+					var upper := 1.0
+					# Squared distance to a box is convex along the capsule's center segment.
+					for iteration in 32:
+						var a := (2.0 * lower + upper) / 3.0
+						var b := (lower + 2.0 * upper) / 3.0
+						if _box_distance_squared(box, half, first.lerp(last, a)) < _box_distance_squared(box, half, first.lerp(last, b)): upper = b
+						else: lower = a
+					if _box_distance_squared(box, half, first.lerp(last, (lower + upper) * 0.5)) <= radius * radius + 0.000001: return true
+	return false
+
+static func _box_distance_squared(box: Transform3D, half: Vector3, point: Vector3) -> float:
+	var outside := ((box.affine_inverse() * point).abs() - half).max(Vector3.ZERO) * box.basis.get_scale().abs()
+	return outside.length_squared()
+
+static func _boxes_overlap(first: Transform3D, first_half: Vector3, second: Transform3D, second_half: Vector3) -> bool:
+	var axes: Array[Vector3] = []
+	for index in 3:
+		axes.append(first.basis[index].normalized())
+		axes.append(second.basis[index].normalized())
+		for other in 3: axes.append(first.basis[index].cross(second.basis[other]).normalized())
+	var offset := second.origin - first.origin
+	for axis in axes:
+		if axis.length_squared() < 0.0000001: continue
+		var extent := 0.0
+		for index in 3:
+			extent += absf(axis.dot(first.basis[index])) * first_half[index] + absf(axis.dot(second.basis[index])) * second_half[index]
+		if absf(offset.dot(axis)) > extent + 0.000001: return false
+	return true
 
 func _finish_break(item: Dictionary) -> void:
 	if item.state.broken: return
@@ -507,6 +656,14 @@ func set_room_action_consumed(marker_id: String) -> bool:
 	item.state.used = true
 	_changed(item)
 	return true
+
+func set_sacrificial_altars_enabled(active: bool) -> void:
+	for item in _items.values():
+		if str(item.data.get("UIBtnName", "")) != SACRIFICIAL_ALTAR: continue
+		# GenerateSacrificialAltar activates an authored, initially hidden source unit.
+		item.visible = true
+		item.state.enabled = active
+		_changed(item)
 
 func set_curse_altar_consumed(marker_id: String) -> bool:
 	var item: Dictionary = _items.get(marker_id, {})
@@ -619,13 +776,20 @@ func snapshot() -> Dictionary:
 	return {"schema": 1, "scene": scene, "fingerprint": _fingerprint, "objects": objects}
 
 func restore(saved: Dictionary) -> bool:
-	if int(saved.get("schema", 0)) != 1 or saved.get("scene", "") != scene or saved.get("fingerprint", "") != _fingerprint: return false
+	if int(saved.get("schema", 0)) != 1 or saved.get("scene", "") != scene: return false
+	var fingerprint := str(saved.get("fingerprint", ""))
+	if fingerprint != _fingerprint and (_legacy_attraction_fingerprint.is_empty() or fingerprint != _legacy_attraction_fingerprint): return false
 	var objects = saved.get("objects")
 	if not objects is Dictionary or objects.size() != _items.size(): return false
 	for id in _items:
 		if not objects.has(id) or not _valid_state(objects[id], _items[id]): return false
 	for id in _items:
 		_items[id].state = objects[id].duplicate(true)
+		var item: Dictionary = _items[id]
+		if str(item.marker.get("Type", "")) == "EEUT_TriggerTrap" and str(item.definition.get("TriggerTimesType", "")) == "CustomTimeInterval" and not item.state.hit_cooldowns.is_empty():
+			var interval := 0.0
+			for value in item.state.hit_cooldowns.values(): interval = maxf(interval, float(value))
+			item.state.hit_cooldowns = {"*": interval}
 		_items[id]["chest_open_remaining"] = 0.0
 		_apply(_items[id])
 	return true
@@ -645,6 +809,16 @@ func _valid_state(state: Variant, item: Dictionary) -> bool:
 		if not value is bool: return false
 	for value in state.hit_cooldowns.values():
 		if not (value is int or value is float) or not is_finite(float(value)) or float(value) < 0: return false
+	if str(item.marker.get("Type", "")) == "EEUT_TriggerTrap":
+		if float(state.cycle) != floor(float(state.cycle)): return false
+		var duration_key := {"starting": "TriggerStartTime", "active": "TriggerLastingTime", "ending": "TriggerEndTime"}
+		if duration_key.has(str(state.phase)) and float(state.phase_time) > float(item.definition.get(duration_key[str(state.phase)], 0)) + 0.000001: return false
+		if state.phase in ["starting", "active", "ending"] and int(state.cycle) == 0: return false
+		if str(item.definition.get("TriggerTimesType", "")) == "CustomTimeInterval":
+			for value in state.hit_cooldowns.values():
+				if float(value) > float(item.definition.get("TriggerCustomParam1", "0")) + 0.000001: return false
+	elif str(item.marker.get("Type", "")) == "EEUT_AttractTrap":
+		if state.phase != "idle" or (float(item.definition.get("EffectActiveInterval", 0)) == 0 and float(state.phase_time) != 0): return false
 	return true
 
 func state_for(marker_id: String) -> Dictionary:
@@ -652,7 +826,7 @@ func state_for(marker_id: String) -> Dictionary:
 
 func _changed(item: Dictionary) -> void:
 	if item.get("chest_presentation", false) and item.state.opened and is_instance_valid(item.visual) and not item.visual.get_meta("interaction_opened", false):
-		item["chest_open_remaining"] = 1.25
+		item["chest_open_remaining"] = float(item.get("chest_disappear_seconds", 1.0))
 	_apply(item)
 	object_changed.emit(str(item.id), item.state.duplicate(true))
 
@@ -662,6 +836,9 @@ func _apply(item: Dictionary) -> void:
 		active = false
 	if is_instance_valid(item.visual):
 		item.visual.visible = bool(item.visible) and active
+		if str(item.marker.get("Type", "")) in ["EEUT_TriggerTrap", "EEUT_AttractTrap"]:
+			item.visual.visible = bool(item.visible) and not item.state.broken and item.state.phase != "destroyed"
+			item.visual.set_meta("interaction_enabled", active)
 		if item.get("chest_open_remaining", 0.0) > 0.0 and item.state.enabled and not item.state.broken:
 			item.visual.visible = bool(item.visible)
 		item.visual.set_meta("interaction_opened", item.state.opened)
@@ -669,6 +846,8 @@ func _apply(item: Dictionary) -> void:
 			# The source locks interaction/effects, retaining the physical doorway.
 			_set_source_active(item.visual, not item.state.broken)
 			item.visual.set_meta("interaction_enabled", active)
+		elif str(item.data.get("UIBtnName", "")) == SACRIFICIAL_ALTAR:
+			_set_source_active(item.visual, bool(item.visible) and active)
 		elif str(item.marker.get("Type", "")) in ["EEUT_Protal", "EEUT_CloseArea"]:
 			_set_source_active(item.visual, active)
 		elif str(item.marker.get("Type", "")) == "EEUT_ProtectTarget":
@@ -690,7 +869,7 @@ func _apply(item: Dictionary) -> void:
 		_set_source_active(item.effect_states[address], active and (bool(item.state.used) == on))
 	for body in item.bodies:
 		if is_instance_valid(body.node):
-			var solid: bool = not item.state.broken and item.state.phase != "destroyed" if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_ProtectTarget"] else active
+			var solid: bool = not item.state.broken and item.state.phase != "destroyed" if str(item.marker.get("Type", "")) in ["EEUT_StageChangeDoor", "EEUT_ProtectTarget", "EEUT_TriggerTrap", "EEUT_AttractTrap"] else active
 			body.node.collision_layer = int(body.layer) if solid else 0
 			body.node.collision_mask = int(body.mask) if solid else 0
 
@@ -722,7 +901,8 @@ func _contains(item: Dictionary, position: Vector3, actor_radius: float = 0, rol
 	var local_position := _root.global_transform.affine_inverse() * position if is_instance_valid(_root) and _root.is_inside_tree() else position
 	for collider in _volumes(item, role):
 		var properties: Dictionary = collider.get("properties", {})
-		if not collider.get("active", true) or not properties.get("m_Enabled", 1) or (solids_only and properties.get("m_IsTrigger", 0)): continue
+		var active_trap_volume := role == "Container_EffectTrigger" and str(item.marker.get("Type", "")) == "EEUT_TriggerTrap" and str(item.state.phase) == "active"
+		if not collider.get("active", true) or (not properties.get("m_Enabled", 1) and not active_trap_volume) or (solids_only and properties.get("m_IsTrigger", 0)): continue
 		var matrix := _matrix(collider.get("world_matrix", []))
 		if absf(matrix.basis.determinant()) < 0.00000001: continue
 		var center := _vector(properties.get("m_Center", {}))

@@ -11,6 +11,10 @@ const PROFILES = {
 }
 static var _materials: Dictionary = {}
 
+static func release_room_resources() -> void:
+	# Scene and actor surfaces own their materials until the queued nodes are freed.
+	_materials.clear()
+
 static func environment(world: Node3D, region: int, camp: bool) -> void:
 	DungeonStyle.apply_options(world)
 	var profile: Array = PROFILES.get(0 if camp else clampi(region, 1, 5), PROFILES[1])

@@ -172,6 +172,10 @@ func _north_portal(source: Node3D) -> void:
 			var original: Material = mesh.get_active_material(surface)
 			if original == null or not definitions.has(original.resource_name): continue
 			var material: ShaderMaterial = factory.create(definitions[original.resource_name], _portal_textures)
+			# These are fixed portal surfaces; Unity's particle depth fade hides them in Compatibility.
+			material.set_shader_parameter("source_soft_particles", false)
+			# Coplanar imported layers need an explicit backing-first order in Godot.
+			material.render_priority = -1 if original.resource_name.ends_with("_dark") else 1
 			material.resource_name = original.resource_name
 			mesh.set_surface_override_material(surface, material)
 			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -250,7 +254,7 @@ func _update_visibility() -> void:
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(_world): return
-	var paused = _world.paused or _world._background
+	var paused = _world.paused or _world._background or (is_instance_valid(_world.get("hud")) and _world.hud.modal_open)
 	for particle in emitters: particle.speed_scale = 0.0 if paused or not particle.visible else 1.0
 	if paused: return
 	clock += delta

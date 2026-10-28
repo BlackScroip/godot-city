@@ -8,6 +8,7 @@ Requires UnityPy, Pillow, and the dependencies of recover_route_art.
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import zipfile
 
@@ -37,7 +38,17 @@ def digest(payload):
     return hashlib.sha256(payload).hexdigest()
 
 
-def inspect(apk, output):
+def json_safe(value):
+    if isinstance(value, float) and not math.isfinite(value):
+        return str(value)
+    if isinstance(value, dict):
+        return {key: json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_safe(item) for item in value]
+    return value
+
+
+def inspect(apk, output, report):
     output.mkdir(parents=True, exist_ok=True)
     with apk.open("rb") as stream:
         apk_sha = hashlib.file_digest(stream, "sha256").hexdigest()
@@ -116,9 +127,28 @@ def inspect(apk, output):
                                  "path_id": str(component.path_id), "tree": fields})
                     for pointer in fields.get("m_Materials", []):
                         material = deref(pointer, component)
-                        materials[str(material.path_id)] = {
+                        material_tree = material.read_typetree()
+                        material_record = {
                             "name": material.peek_name(), "source": sources[material.assets_file.name],
-                            "tree": material.read_typetree()}
+                            "tree": material_tree, "textures": []}
+                        for slot, properties in material_tree["m_SavedProperties"]["m_TexEnvs"]:
+                            pointer = properties["m_Texture"]
+                            if not pointer["m_PathID"]:
+                                continue
+                            texture = deref(pointer, material)
+                            picture = texture.read().image.convert("RGBA")
+                            suffix = material.peek_name().split("bossnode_")[-1]
+                            filename = "boss_" + suffix + slot.lower() + ".png"
+                            target = output / filename
+                            picture.save(target)
+                            material_record["textures"].append({
+                                "slot": slot, "name": texture.peek_name(),
+                                "path_id": str(texture.path_id),
+                                "source": sources[texture.assets_file.name],
+                                "resource": "res://assets/ui/route/chrome/" + filename,
+                                "dimensions": [picture.width, picture.height],
+                                "png_sha256": digest(target.read_bytes())})
+                        materials[str(material.path_id)] = material_record
                     for pointer in fields.get("m_Children", []):
                         transform = deref(pointer, component)
                         walk(deref(transform.read_typetree()["m_GameObject"], transform), path)
@@ -129,7 +159,8 @@ def inspect(apk, output):
 
         for address in PREFABS:
             asset = lookup[address]
-            record = {"address": address, "path": asset["path"], "images": [], "controllers": []}
+            record = {"address": address, "path": asset["path"], "images": [], "controllers": [],
+                      "button_components": []}
             for obj in objects[asset["bundle"]]:
                 if obj.type.name not in ("MonoBehaviour", "Animator", "Animation"):
                     continue
@@ -137,6 +168,9 @@ def inspect(apk, output):
                 if "m_GameObject" not in tree:
                     continue
                 layout = component_layout(obj, tree)
+                if address == "ATPanel_RoadMapSelect" and "/ATBtn_Select" in layout["path"]:
+                    record["button_components"].append({**layout, "type": obj.type.name,
+                                                        "path_id": str(obj.path_id), "tree": tree})
                 if obj.type.name != "MonoBehaviour":
                     record["controllers"].append({**layout, "type": obj.type.name, "tree": tree})
                     continue
@@ -177,8 +211,54 @@ def inspect(apk, output):
                                     "path_id": str(obj.path_id),
                                     "source": sources[obj.assets_file.name],
                                     "tree": obj.read_typetree()})
-    path = output / "inspection.json"
-    path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    path = report
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(json_safe(result), ensure_ascii=False, indent=2) + "\n")
+    provenance = {key: result[key] for key in ("apk", "apk_sha256", "manifest", "sprites", "limitations")}
+    provenance["effects"] = []
+    for effect in result["effects"]:
+        materials = []
+        for material in effect["materials"].values():
+            properties = material["tree"]["m_SavedProperties"]
+            materials.append({key: material[key] for key in ("name", "source", "textures")} | {
+                "float_parameters": dict(properties["m_Floats"]),
+                "color_parameters": dict(properties["m_Colors"])})
+        particles = []
+        for component in effect["components"]:
+            if component["type"] != "ParticleSystem":
+                continue
+            fields = component["tree"]
+            initial = fields["InitialModule"]
+            particles.append({"name": component["path"].split("/")[-1],
+                              "duration": fields["lengthInSec"], "looping": fields["looping"],
+                              "prewarm": fields["prewarm"],
+                              "lifetime": initial["startLifetime"]["scalar"],
+                              "start_color": initial["startColor"]["maxColor"],
+                              "rate": fields["EmissionModule"]["rateOverTime"]["scalar"]})
+        provenance["effects"].append({"name": effect["name"], "source": effect["source"],
+                                      "materials": materials, "particles": particles})
+    animations = []
+    for clip in result["clips"]:
+        if not (clip["name"] in ("SelectNode", "Anim_RoadMapNode_Init", "Panel_RoadMapSelectOpen")
+                or clip["name"].startswith("CharaCardMove_")):
+            continue
+        fields = clip["tree"]
+        animations.append({"name": clip["name"], "path_id": clip["path_id"], "source": clip["source"],
+                           "sample_rate": fields["m_SampleRate"], "wrap_mode": fields["m_WrapMode"],
+                           "curves": [{"path": curve["path"],
+                                       "attribute": curve.get("attribute", group),
+                                       "keys": curve["curve"]["m_Curve"]}
+                                      for group in ("m_ScaleCurves", "m_PositionCurves", "m_FloatCurves")
+                                      for curve in fields[group]]})
+    provenance["animations"] = [{key: clip[key] for key in ("name", "path_id", "source", "sample_rate", "wrap_mode")}
+                                 | {"curves": [{"path": curve["path"], "attribute": curve["attribute"],
+                                                "keys": [{key: point[key] for key in ("time", "value")}
+                                                         for point in curve["keys"]]}
+                                               for curve in clip["curves"]]}
+                                 for clip in animations]
+    (output / "provenance.json").write_text(json.dumps(json_safe(provenance), ensure_ascii=False, indent=2) + "\n")
+    curve_report = report.with_name(report.stem + "-curves.json")
+    curve_report.write_text(json.dumps(json_safe(animations), ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"output": str(path), "prefabs": len(result["prefabs"]),
                       "clips": len(result["clips"])}))
 
@@ -188,5 +268,7 @@ if __name__ == "__main__":
     parser.add_argument("--apk", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path(__file__).resolve().parents[1]
                         / "assets/ui/route/chrome")
+    parser.add_argument("--report", type=Path, default=Path(__file__).resolve().parents[1]
+                        / "reports/route-chrome-apk-source.json")
     args = parser.parse_args()
-    inspect(args.apk, args.output)
+    inspect(args.apk, args.output, args.report)

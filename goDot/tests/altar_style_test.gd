@@ -83,13 +83,13 @@ func _run() -> void:
 			check(not view.heading.get_global_rect().intersects(view.toolbar.get_global_rect()), "Heading clears toolbar " + kind + str(dimensions))
 			for part in view.parts:
 				check(viewport.grow(0.5).encloses(part.panel.get_global_rect()), "Card fits " + kind + str(dimensions))
-				check(part.scroll.size.y >= 40, "Source text stays scrollable " + kind + str(dimensions))
+				check(part.scroll.size.y >= 40, "Source text stays scrollable %s%s: %s" % [kind, dimensions, part.scroll.size])
 				check(part.title.get_global_rect().end.y <= part.scroll.get_global_rect().position.y, "Name does not overlap effect " + kind + str(dimensions))
 				check(part.panel.get_global_rect().grow(0.5).encloses(part.footer.get_global_rect()), "Confirm area stays within source card " + kind + str(dimensions))
 				for accessory in ["book", "lock", "health"]:
 					if not part.has(accessory): continue
 					check(part.panel.get_global_rect().grow(0.5).encloses(part[accessory].get_global_rect()), "Card accessory fits " + accessory + kind + str(dimensions))
-					check(part[accessory].size.x < part.panel.size.x * 0.5 and part[accessory].size.y < part.panel.size.y * 0.2, "Card accessory keeps its source scale " + accessory + kind + str(dimensions))
+					check(part[accessory].size.x < part.panel.size.x * 0.5 and part[accessory].size.y < part.panel.size.y * 0.2, "Card accessory keeps its source scale %s%s%s: %s within %s" % [accessory, kind, dimensions, part[accessory].size, part.panel.size])
 			await _capture(canvas, kind, dimensions)
 		view._select(1)
 		check(commands.is_empty() and view.parts[1].choose.visible and not view.parts[0].choose.visible, "Preview does not grant an item: " + kind)

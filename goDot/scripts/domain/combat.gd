@@ -45,6 +45,7 @@ var catalog: Dictionary = {}
 var fighter: Dictionary = {}
 var enemy: Dictionary = {}
 var enemy_hit_rules: Dictionary = {}
+var enemy_hit_motion_step := -1.0
 var character_id: int = 0
 var enemy_id: int = 0
 var actor_key: String = ""
@@ -522,7 +523,7 @@ func _enemy_action_advance(delta: float) -> float:
 
 func _tick_enemy_interrupts() -> void:
 	if not enemy_ai_enabled or frozen > 0 or impact_pause > 0 or stagger_remaining > 0: return
-	if _enemy_initial_buffs_pending(): return
+	if _enemy_due_payloads_pending(): return
 	var visited: Dictionary = {current_action: true}
 	for transition in range(12):
 		var changed = false
@@ -534,7 +535,7 @@ func _tick_enemy_interrupts() -> void:
 			var next = _action(str(enemy.group), command.target)
 			if next.is_empty(): continue
 			_start(next, 0)
-			if _enemy_initial_buffs_pending(): return
+			if _enemy_due_payloads_pending(): return
 			# Source helper fallbacks can return to an already checked action at t=0.
 			# Keep the authored transition, then yield until the next AI update.
 			if visited.has(current_action): return
@@ -544,8 +545,9 @@ func _tick_enemy_interrupts() -> void:
 		if not changed: return
 	_report("Enemy action transition budget exceeded: %s" % enemy_id)
 
-func _enemy_initial_buffs_pending() -> bool:
-	return _pending.any(func(event): return int(event.get("sequence", -1)) == _cast_sequence and float(event.get("at", INF)) <= _clock + 0.000001 and event.get("command", {}).get("type", "") == "EET_AddBuff")
+func _enemy_due_payloads_pending() -> bool:
+	# Source event payloads execute before an interrupt at the same action time.
+	return _pending.any(func(event): return _action_event(event) and float(event.get("at", INF)) <= _clock + 0.000001)
 
 func input_block_reason(slot: int) -> String:
 	if fighter.is_empty() or slot < 0 or slot >= fighter.get("skills", []).size(): return "Unknown skill"
@@ -560,7 +562,9 @@ func skill_capacity(slot: int) -> float:
 	if fighter.is_empty() or slot < 0 or slot >= fighter.skills.size(): return 0.0
 	var skill: Dictionary = fighter.skills[slot]
 	if slot == 1:
-		return maxf(0.0, float(skill.maxSp) + float(skill.sp) * (FEEL.dodge_base_extra_uses + attribute("SkillDodgeExtraUseCount")))
+		var maximum := maxf(0.0, float(skill.maxSp) + float(skill.sp) * (FEEL.dodge_base_extra_uses + attribute("SkillDodgeExtraUseCount")))
+		var limit := int(attribute("SkillDodgeLimitMaxUseCount"))
+		return minf(maximum, float(skill.sp) * limit) if limit > 0 else maximum
 	if slot not in [2, 3]: return float(skill.maxSp)
 	var prefix = "SkillActive1" if slot == 2 else "SkillActive2"
 	var maximum = float(skill.maxSp) * (1.0 + attribute(prefix + "MaxSpAddRate") / 1000.0)
@@ -926,6 +930,7 @@ func _tick_segment(delta: float) -> void:
 	if not enemy.is_empty(): EnemyHitReaction.tick(self, delta)
 	var held = minf(action_delta, maxf(impact_pause, stagger_remaining))
 	action_step = maxf(0.0, action_delta - held)
+	if not enemy.is_empty(): enemy_hit_motion_step = EnemyHitReaction.motion_delta(self, action_step, true)
 	if FEEL.impact_enabled and not _using_heavy_graph() and bool(custom_properties.get("_rhythm_enabled", false)) and busy > 0:
 		var phase = action_phase()
 		var rate = 0.92 if phase == "windup" else 1.08 if phase == "impact" else 1.0
@@ -1010,6 +1015,9 @@ func _tick_segment(delta: float) -> void:
 			_trigger_funnel(event)
 		elif event.has("funnel_emit"):
 			_emit_funnel(event)
+		elif event.has("emitter_start"):
+			for pending in _pending:
+				if pending.get("emitter_id", -1) == event.emitter_start: pending.action_timeline = false
 		elif event.has("hit"):
 			_emit_hit(event)
 		else:
@@ -1085,6 +1093,7 @@ func receive(hit: Dictionary, caster_attack: float = 0.0) -> float:
 	definition["element"] = element
 	definition["actType"] = context.get("act_type", definition.get("actType", ""))
 	value *= maxf(0.0, 1.0 - attribute(element + "Resist") / 1000.0)
+	if str(definition.get("actType", "")) == "EnvUnit": value *= maxf(0.0, 1.0 - attribute("EnvUnitDamageResist") / 1000.0)
 	value = clampf(value + float(context.final_add), float(context.min_damage), float(context.max_damage))
 	value = maxf(0.0, value)
 	hit["resolved_calculated_damage"] = value
@@ -1338,7 +1347,7 @@ func add_buff(id: String, layers: int = 1, caster_attack: float = -1.0, depth: i
 		entry.layers = maxi(0, int(entry.layers) - int(raw.get("ReduceLayerWhenLayerMax", 0)))
 	if type == "EBT_NumericalBuff":
 		for stat in definition.get("stats", []):
-			if not SUPPORTED_ATTRIBUTES.has(str(stat.attribute)) and not HIT_REACTION_ATTRIBUTES.has(str(stat.attribute)) and str(stat.attribute) != "SkillActive2ChargeSpeed":
+			if not SUPPORTED_ATTRIBUTES.has(str(stat.attribute)) and not HIT_REACTION_ATTRIBUTES.has(str(stat.attribute)) and str(stat.attribute) not in ["SkillActive2ChargeSpeed", "EnvUnitDamageResist", "SkillDodgeLimitMaxUseCount"]:
 				_report("Attribute needs system adapter: %s buff %s" % [stat.attribute, id])
 	elif type == "Unknown" or (type != "EBT_ConditionBuff" and not str(definition.get("unsupported", "")).is_empty()):
 		_report("Buff rule requires review: %s %s %s" % [id, type, definition.get("unsupported", "")])
@@ -1372,6 +1381,22 @@ func charge_stage() -> int:
 
 func is_transformed() -> bool:
 	return buff_layers("700200") > 0 or buff_layers("200202") > 0 or buff_layers("200400") > 0
+
+func can_be_attracted() -> bool:
+	if health <= 0: return false
+	if enemy.is_empty():
+		EnemyHitReaction.rules_for(0)
+		var state := int(EnemyHitReaction._action_states.get("ActGroup_playerchara/" + current_action, -1))
+		if state in [6, 31, 32] or stagger_remaining > 0: return false
+	return true
+
+func attraction_weight() -> float:
+	EnemyHitReaction.rules_for(enemy_id)
+	var group := "ActGroup_playerchara" if enemy.is_empty() else str(enemy.get("group", ""))
+	var action_rules: Dictionary = EnemyHitReaction._action_hit_rules.get(group + "/" + current_action, {})
+	# UnitRuntimeStatus initializes BaseWeight to 100; enemy configs override it.
+	var value := (100.0 if enemy.is_empty() else float(enemy_hit_rules.get("Weight", 100))) + float(action_rules.get("WeightAddValue", 0)) + attribute("Weight")
+	return value if is_finite(value) and value > 0 else 100.0
 
 func can_receive_attack() -> bool:
 	if not enemy.is_empty(): return bool(custom_properties.get("_action_can_hit", true))
@@ -1590,6 +1615,7 @@ func restore(saved: Dictionary) -> bool:
 	charge_released = bool(saved.get("charge_released", false))
 	charge_elapsed = float(saved.get("charge_elapsed", 0))
 	custom_properties = saved.get("custom_properties", {}).duplicate(true)
+	enemy_hit_motion_step = -1.0
 	if not enemy.is_empty(): EnemyHitReaction.restore_state(self)
 	if not enemy.is_empty() and not current_action.is_empty(): custom_properties["_enemy_spawn_entered"] = true
 	enemy_ai_enabled = bool(custom_properties.get("_enemy_ai_enabled", false)) and enemy_ai != null
@@ -1791,8 +1817,24 @@ func _try_dodge_attack_interrupt(raw: Dictionary) -> bool:
 
 func _schedule(hit: Dictionary, at: float, action_name: String, slot: int, offset: float, summon_id: String = "", origin: Dictionary = {}, target_key: String = "") -> void:
 	hit = _modified_attack_definition(hit)
-	for index in range(clampi(int(hit.get("count", 1)), 1, 100)):
-		_pending.append({"at": at + index * float(hit.get("interval", 0)), "sequence": _cast_sequence, "action": action_name, "slot": slot, "hit": hit, "emit_index": index, "offset": offset, "summon_id": summon_id, "origin": origin.duplicate(true), "target_key": target_key, "action_timeline": summon_id.is_empty()})
+	var raw: Dictionary = _read_raw_json(str(hit.get("raw", "{}")))
+	var emit: Dictionary = raw.get("EmitProperty", {})
+	var emissions: Array = []
+	if raw.get("EmitType", "") == "EET_MultiPoint":
+		var points: Array = emit.get("PointData", [])
+		for index in points.size(): emissions.append({"index": index, "delay": maxf(0, float(points[index].get("Delay", 0)))})
+		emissions.sort_custom(func(a, b): return int(a.index) < int(b.index) if is_equal_approx(float(a.delay), float(b.delay)) else float(a.delay) < float(b.delay))
+		emissions.resize(mini(emissions.size(), clampi(int(hit.get("count", 1)), 0, 100)))
+	else:
+		for index in range(clampi(int(hit.get("count", 1)), 1, 100)):
+			emissions.append({"index": index, "delay": index * float(hit.get("interval", 0))})
+	var emitter_id := int(custom_properties.get("_emitter_sequence", 0)) + 1
+	custom_properties["_emitter_sequence"] = emitter_id
+	if summon_id.is_empty() and emit.has("EndEmitWhenActionChange") and not bool(emit.EndEmitWhenActionChange) and not emissions.is_empty():
+		# An emitter becomes independent when its source event starts, including delayed points.
+		_pending.append({"at": at, "sequence": _cast_sequence, "emitter_start": emitter_id, "action_timeline": true})
+	for emission in emissions:
+		_pending.append({"at": at + float(emission.delay), "sequence": _cast_sequence, "action": action_name, "slot": slot, "hit": hit, "emit_index": int(emission.index), "emitter_id": emitter_id, "offset": offset, "summon_id": summon_id, "origin": origin.duplicate(true), "target_key": target_key, "action_timeline": summon_id.is_empty()})
 
 func source_stop_frame_modifier(definition: Dictionary) -> float:
 	if statuses.is_empty(): return 0.0
@@ -1831,7 +1873,7 @@ func _modified_attack_definition(definition: Dictionary) -> Dictionary:
 		size_add += float(settings.get("ModifyEntity_PhysicEntitySizeAddPercent" if physical else "ModifyEntity_RangePercent", 0)) * int(entry.layers) / 1000.0
 		count_add += int(settings.get("ModifyEmit_Num", 0)) * int(entry.layers)
 		if physical: interval_summons.append_array(settings.get("ModifyEntity_PhysicEntityIntervalAddSummonUnitList", []))
-	for name in str(entity.get("ScaleModifyPropertyName", "")).split("|", false): size_add += attribute(name) / 1000.0
+	size_add += _property_context_total(str(entity.get("ScaleModifyPropertyName", ""))) / 1000.0
 	var factor := maxf(0.0, _spirit_apply(1.0 + size_add, entity.get("ScaleSpiritModifier", {}), self))
 	if is_equal_approx(factor, 1.0) and count_add == 0 and interval_summons.is_empty(): return definition
 	definition = definition.duplicate(true)
@@ -1924,8 +1966,11 @@ func _execute(event: Dictionary) -> void:
 					_cancel_sequence(_cast_sequence)
 					_start(next, 0)
 		"EET_SetCustomPropertyInt32":
-			var property = str(raw.get("CustomProperty", raw.get("Property", "")))
-			custom_properties[property] = int(raw.get("Value", raw.get("Val", raw.get("SetValue", 0))))
+			var property = str(raw.get("CustomProperty", ""))
+			if property.is_empty(): property = str(raw.get("Property", ""))
+			var value = int(raw.get("Value", raw.get("Val", raw.get("SetValue", 0))))
+			if str(raw.get("OperationMethod", "Set")) == "Add": value += int(custom_properties.get(property, 0))
+			custom_properties[property] = value
 		"EET_CanBeHit":
 			pass # Evaluated in action-time order, including active duration windows.
 		"EET_MonsterGeneration":
@@ -1957,12 +2002,14 @@ func _emit_hit(event: Dictionary) -> void:
 	if int(definition.get("damageId", 0)) <= 0:
 		var payload = JSON.parse_string(str(definition.get("raw", "{}")))
 		if not payload is Dictionary: return
-		var ending: Dictionary = payload.get("EntityProperty", {}).get("AddSummonUnitDefOnEnd", {})
+		var entity: Dictionary = payload.get("EntityProperty", {})
+		var ending: Dictionary = entity.get("AddSummonUnitDefOnEnd", {})
 		var end_summon := str(ending.get("AddSummonUnitId", ""))
 		var has_end_summon := end_summon not in ["", "0", "-1"]
-		if payload.get("EntityType", "") != "EET_Physical" and not has_end_summon: return
-		# Pure carriers still need their lifetime so their ending summon can run.
-		definition["carrier_only"] = has_end_summon and definition.get("targetBuffs", []).is_empty() and definition.get("ownerBuffs", []).is_empty()
+		var has_visual := _entity_has_presentation(entity)
+		if payload.get("EntityType", "") != "EET_Physical" and not has_end_summon and not has_visual: return
+		# Visual and ending-summon carriers must not create damage or contact callbacks.
+		definition["carrier_only"] = (has_end_summon or has_visual) and definition.get("targetBuffs", []).is_empty() and definition.get("ownerBuffs", []).is_empty()
 		definition.attribute = "None"
 		definition.element = "None"
 		definition.multiplier = 0.0
@@ -1986,7 +2033,26 @@ func _emit_hit(event: Dictionary) -> void:
 	value *= 1.0 + (attribute(damage_rate_key) + attribute("AllElementDamageRate") + attribute(str(definition.get("element", "")) + "DamageRate")) / 1000.0
 	value *= _damage_multiplier(str(definition.get("actType", "")))
 	_emission_sequence += 1
-	_emit_event("hit", {"definition": definition, "action": event.action, "slot": event.slot, "sequence": event.sequence, "emission": _emission_sequence, "emit_index": int(event.get("emit_index", 0)), "damage": value * (critical_multi if critical else 1.0), "uncritical_damage": value, "critical_rate": critical_rate, "critical_multi": critical_multi, "critical_roll": critical_roll, "critical": critical, "forward_offset": float(event.get("offset", 0)), "projectile": bool(definition.get("projectile", false)), "summon_id": event.get("summon_id", ""), "origin": event.get("origin", {}), "target_key": event.get("target_key", ""), "source": self})
+	var emitted := {"definition": definition, "action": event.action, "slot": event.slot, "sequence": event.sequence, "emission": _emission_sequence, "emit_index": int(event.get("emit_index", 0)), "damage": value * (critical_multi if critical else 1.0), "uncritical_damage": value, "critical_rate": critical_rate, "critical_multi": critical_multi, "critical_roll": critical_roll, "critical": critical, "forward_offset": float(event.get("offset", 0)), "projectile": bool(definition.get("projectile", false)), "summon_id": event.get("summon_id", ""), "origin": event.get("origin", {}), "target_key": event.get("target_key", ""), "source": self}
+	var raw: Dictionary = _read_raw_json(str(definition.get("raw", "{}")))
+	if raw.get("EmitType", "") == "EET_MultiPoint":
+		var points: Array = raw.get("EmitProperty", {}).get("PointData", [])
+		var index := int(event.get("emit_index", 0))
+		if index >= 0 and index < points.size():
+			var random_offset: Dictionary = points[index].get("RandomOffset", {})
+			if random_offset.values().any(func(component): return not is_zero_approx(float(component))):
+				# Native CalcStartPosition scales Random.onUnitSphere in world axes.
+				var y := _random() * 2.0 - 1.0
+				var angle := _random() * TAU
+				var radius := sqrt(maxf(0.0, 1.0 - y * y))
+				emitted["emit_random_offset"] = [cos(angle) * radius * float(random_offset.get("x", 0)), y * float(random_offset.get("y", 0)), sin(angle) * radius * float(random_offset.get("z", 0))]
+	_emit_event("hit", emitted)
+
+func _entity_has_presentation(entity: Dictionary) -> bool:
+	for key in ["EffectTriggerDef", "EffectDelayTriggerDef"]:
+		var effect: Dictionary = entity.get(key, {})
+		if not str(effect.get("EffectName", "")).is_empty() or not str(effect.get("InitSound", "")).is_empty(): return true
+	return not str(entity.get("ModlePrefab", "")).is_empty() or not str(entity.get("CreateSound", "")).is_empty()
 
 func _spawn_summon(id: String, at: float, action_name: String, slot: int, offset: float = 0.0, depth: int = 0, origin: Dictionary = {}, target_key: String = "") -> void:
 	if depth > 8:
@@ -2828,7 +2894,9 @@ func _apply_extra_buff(definition: Dictionary, entry: Dictionary, caster_attack:
 		"EBT_EditorPropertyContext":
 			_emit_event("property_context", {"id": entry.id, "definition": settings})
 		"EBT_SpecialBuffGenerationMonster":
-			_emit_event("spawn_monster", {"enemy_id": int(settings.get("MonsterId", 0)), "spawn_points": settings.get("SpawnPoints", []), "definition": settings})
+			var points: Array = settings.get("SpawnPoints", [])
+			var count := (points.size() if int(settings.get("GenerationMode", 0)) == 1 else 1) * int(entry.layers)
+			_emit_event("spawn_monster", {"enemy_id": int(settings.get("MonsterId", 0)), "spawn_points": points, "generation_count": count, "definition": settings})
 		"EBT_SpecialRevive":
 			if health <= 0:
 				revive(max_health)
@@ -3180,6 +3248,7 @@ func _assemble_heavy_buff(definition: Dictionary) -> Dictionary:
 
 func _reset() -> void:
 	clear_impact_state()
+	enemy_hit_motion_step = -1.0
 	enemy_ai = null
 	enemy_ai_enabled = false
 	_enemy_speed_windows = []
@@ -3248,6 +3317,7 @@ func _emit_event(type: String, content: Dictionary = {}) -> void:
 func _emit_death() -> void:
 	if not _dead_emitted:
 		_dead_emitted = true
+		EnemyHitReaction.clear_motion(self)
 		for window in battle_time_scale_windows():
 			_expire_battle_time_scale_windows(int(window.sequence))
 		_emit_event("died")
@@ -3270,6 +3340,7 @@ func _compare(a: float, b: float, comparison: String) -> bool:
 		_: return a >= b
 
 func _event_before(a: Dictionary, b: Dictionary) -> bool:
+	if float(a.at) == float(b.at) and a.has("emitter_start") != b.has("emitter_start"): return a.has("emitter_start")
 	return float(a.at) < float(b.at)
 
 func _result(success: bool, message: String, id: int = 0) -> Dictionary:

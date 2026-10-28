@@ -1,0 +1,45 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cl01o57cihgnf"
+path.s3tc="res://.godot/imported/fashion_3005_tex_furry_funan_body_Fashion_green.png-b869a7db7426f4cb46a6f207203b08dd.s3tc.ctex"
+path.etc2="res://.godot/imported/fashion_3005_tex_furry_funan_body_Fashion_green.png-b869a7db7426f4cb46a6f207203b08dd.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6a7ed361258d507cd52145089cb0a87a"
+}
+
+[deps]
+
+source_file="res://assets/characters/fashions/fashion_3005_tex_furry_funan_body_Fashion_green.png"
+dest_files=["res://.godot/imported/fashion_3005_tex_furry_funan_body_Fashion_green.png-b869a7db7426f4cb46a6f207203b08dd.s3tc.ctex", "res://.godot/imported/fashion_3005_tex_furry_funan_body_Fashion_green.png-b869a7db7426f4cb46a6f207203b08dd.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

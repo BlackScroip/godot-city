@@ -1,6 +1,9 @@
 class_name DungeonActor
 extends CharacterBody3D
 
+const COLLISION_RADIUS := 0.35
+const COLLISION_CENTER := Vector3(0.0, 0.8, 0.0)
+
 var actor_id := 1
 var is_player := false
 var combat: RefCounted
@@ -37,6 +40,7 @@ var flash_meshes: Array[MeshInstance3D] = []
 var _flash_visible := false
 var action_motion: Array[Dictionary] = []
 const ACTION_MOTION = preload("res://scripts/action_motion.gd")
+const ENEMY_HIT_REACTION = preload("res://scripts/domain/enemy_hit_reaction.gd")
 var action_timeline_duration := 0.0
 var action_cursor := 0.0
 var action_target: DungeonActor
@@ -65,6 +69,7 @@ var _model_shake_rng := RandomNumberGenerator.new()
 
 func begin_death() -> void:
 	clear_impact_state()
+	if combat: ENEMY_HIT_REACTION.clear_motion(combat)
 	end_action_motion()
 	clear_telegraph_aim()
 	dead = true
@@ -107,13 +112,13 @@ func _ready() -> void:
 	collision_mask = 1 | (4 if is_player else 2)
 	var shape = CollisionShape3D.new()
 	var capsule = CapsuleShape3D.new()
-	capsule.radius = 0.35
+	capsule.radius = COLLISION_RADIUS
 	capsule.height = 1.5
 	shape.shape = capsule
-	shape.position.y = 0.8
+	shape.position = COLLISION_CENTER
 	add_child(shape)
 	navigation = NavigationAgent3D.new()
-	navigation.radius = 0.35
+	navigation.radius = COLLISION_RADIUS
 	navigation.height = 1.5
 	navigation.path_desired_distance = 0.4
 	navigation.target_desired_distance = 0.6
@@ -160,6 +165,7 @@ func set_visual(path: String, metadata: Dictionary = {}, prepared_scene: PackedS
 		_model_shake_root.name = "HitModelShake"
 		_model_shake_root.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 		add_child(_model_shake_root)
+	_align_player_prefab_origin()
 	_model_shake_root.add_child(visual)
 	# Position follows the physics body; facing still updates at render frequency.
 	visual.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -192,6 +198,14 @@ func set_visual(path: String, metadata: Dictionary = {}, prepared_scene: PackedS
 			var alias = str(clip.get("source_name", "")).replace("@", "_").to_lower()
 			if not animation_aliases.has(alias): animation_aliases[alias] = str(clip.name)
 		play_animation("idle")
+
+func _align_player_prefab_origin() -> void:
+	if not is_player: return
+	# Full APK prefabs may retain editor placement; the body owns world travel.
+	for child in visual.get_children():
+		if child is Node3D and str(child.name).begins_with("myplayer_"):
+			child.position.x = 0.0
+			child.position.z = 0.0
 
 func _repair_skinned_impact_bounds() -> void:
 	if impact_bounds.size[impact_bounds.size.max_axis_index()] <= 20.0: return
@@ -527,6 +541,9 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if suspended or simulation_scale <= 0: return
+	if not is_player and not dead and combat:
+		var hit_facing := ENEMY_HIT_REACTION.take_facing(combat)
+		if not hit_facing.is_zero_approx(): facing = hit_facing
 	invulnerability = maxf(0, invulnerability - delta)
 	var step = combat.action_step if combat and combat.action_step >= 0 else delta
 	var paused_pose = combat != null and combat.impact_pause > 0
@@ -562,6 +579,12 @@ func _physics_process(delta: float) -> void:
 		var after = dodge_progress(dodge_elapsed / FEEL.dodge_duration)
 		horizontal = dodge_vector * FEEL.dodge_distance * (after - before) / maxf(delta, 0.00001)
 		if dodge_elapsed >= FEEL.dodge_duration: dodge_elapsed = -1.0
+	if not is_player and not dead and combat:
+		var hit_step: float = combat.enemy_hit_motion_step
+		if hit_step < 0:
+			hit_step = ENEMY_HIT_REACTION.motion_delta(combat, maxf(0.0, delta - maxf(combat.frozen, maxf(combat.impact_pause, combat.stagger_remaining))), true)
+		horizontal += ENEMY_HIT_REACTION.advance_motion(combat, hit_step) / maxf(delta, 0.00001)
+		combat.enemy_hit_motion_step = -1.0
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
 	impulse = impulse.move_toward(Vector3.ZERO, delta * 24)

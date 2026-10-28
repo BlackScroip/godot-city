@@ -88896,6 +88896,93 @@
       ],
       "FirstTriggerDelayTime": 0,
       "TriggerIdleTime": 0
+    },
+    {
+      "SceneName": "LevelMap_1020601",
+      "SourceGameObjectId": "1749",
+      "SourceComponentId": "6844",
+      "ApkSourceGameObjectId": "1750",
+      "ConfigId": "11101",
+      "Type": "EEUT_AttractTrap",
+      "ConfigType": "EEUT_AttractTrap",
+      "SupportsRules": true,
+      "CheckDisplayUnlockDataId": "",
+      "OverrideJson": "{}",
+      "Path": [
+        "EnvRoot",
+        "EnvUnitLayer",
+        "EnvUnitGroupSet_Trap",
+        "EnvUnitGroupSet_Trap_PrefabGroup",
+        "EnvUnit_Trap_Sand_Swallow (1)"
+      ],
+      "AttractTargetPosition": [
+        56.10000228881836,
+        0.0,
+        25.48000144958496
+      ],
+      "AttractTargetForward": [
+        0.0,
+        0.0,
+        1.936900019645691
+      ]
+    },
+    {
+      "SceneName": "LevelMap_1020601",
+      "SourceGameObjectId": "1559",
+      "SourceComponentId": "6854",
+      "ApkSourceGameObjectId": "1560",
+      "ConfigId": "11101",
+      "Type": "EEUT_AttractTrap",
+      "ConfigType": "EEUT_AttractTrap",
+      "SupportsRules": true,
+      "CheckDisplayUnlockDataId": "",
+      "OverrideJson": "{}",
+      "Path": [
+        "EnvRoot",
+        "EnvUnitLayer",
+        "EnvUnitGroupSet_Trap",
+        "EnvUnitGroupSet_Trap_PrefabGroup",
+        "EnvUnit_Trap_Sand_Swallow"
+      ],
+      "AttractTargetPosition": [
+        37.4900016784668,
+        0.0,
+        34.599998474121094
+      ],
+      "AttractTargetForward": [
+        0.0,
+        0.0,
+        1.936900019645691
+      ]
+    },
+    {
+      "SceneName": "LevelMap_1020701",
+      "SourceGameObjectId": "5137",
+      "SourceComponentId": "18516",
+      "ApkSourceGameObjectId": "5138",
+      "ConfigId": "11101",
+      "Type": "EEUT_AttractTrap",
+      "ConfigType": "EEUT_AttractTrap",
+      "SupportsRules": true,
+      "CheckDisplayUnlockDataId": "",
+      "OverrideJson": "{}",
+      "Path": [
+        "EnvRoot",
+        "EnvUnitLayer",
+        "EnvUnitGroupSet_Trap",
+        "EnvUnitGroupSet_Trap_PrefabGroup",
+        "EnvUnit_Trap_Sand_Swallow"
+      ],
+      "AttractTargetPosition": [
+        67.93866729736328,
+        0.0,
+        68.05999755859375
+      ],
+      "AttractTargetForward": [
+        0.0,
+        0.0,
+        7.397674083709717
+      ]
     }
   ],
   "Definitions": [
@@ -89422,7 +89509,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Forest_SpineTrap",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 0,
       "BeAttackSound": {
@@ -89507,7 +89594,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Forest_Marsh",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 0,
       "BeAttackSound": {
@@ -89544,8 +89631,8 @@
       "Name_EDT": "陷阱_森林_棘刺从",
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Forest_Thornbush_1x1",
-      "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -89629,8 +89716,8 @@
       "Name_EDT": "陷阱_森林_喷毒蘑菇",
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Forest_PosionMushRoom",
-      "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -89684,7 +89771,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Forest_WaterFloor",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "000",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 0,
       "BeAttackSound": {
@@ -89722,7 +89809,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Forest_SpineTrap_AutoTrigger",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 0,
       "BeAttackSound": {
@@ -89939,7 +90026,7 @@
       "Description_EDT": "",
       "Prefab": "",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90070,8 +90157,8 @@
       "Name_EDT": "陷阱_沙漠_火焰图腾",
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Sand_FireTotem",
-      "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90108,8 +90195,8 @@
       "Name_EDT": "陷阱_沙漠_火焰图腾_自动触发",
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Sand_FireTotem_Auto",
-      "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90147,7 +90234,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Sand_Firefloor_Auto",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90184,8 +90271,8 @@
       "Name_EDT": "陷阱_沙漠_方尖碑_自动触发",
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Sand_StonePillar_Auto",
-      "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90364,7 +90451,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Snow_IceLandMine",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 0,
       "BeAttackSound": {
@@ -90402,7 +90489,7 @@
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Snow_[StormTotem]",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 0,
       "BeAttackSound": {
@@ -90440,7 +90527,7 @@
       "Description_EDT": "",
       "Prefab": "",
       "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90478,7 +90565,7 @@
       "Description_EDT": "",
       "Prefab": "",
       "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90516,7 +90603,7 @@
       "Description_EDT": "",
       "Prefab": "",
       "CanBeAttack": false,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -90780,7 +90867,7 @@
       "Description_EDT": "进入触发区域后发射飞镖",
       "Prefab": "EnvUnit_Trap_Mine_Dart",
       "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -91052,8 +91139,8 @@
       "Name_EDT": "陷阱_沙漠_方尖碑",
       "Description_EDT": "",
       "Prefab": "EnvUnit_Trap_Sand_StonePillar",
-      "CanBeAttack": true,
-      "CanBeAttackCamp": "111",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
       "BeAttackEffect": "",
       "CollisionBulletPenetrationNumber": 99,
       "BeAttackSound": {
@@ -91084,6 +91171,31 @@
       },
       "Type": "EEUT_TriggerTrap",
       "SourceConfig": "_00002_Resource/ActionEngineCfg/EnvUnit/EnvUnitCfg__11111_.json"
+    },
+    {
+      "ID": "11101",
+      "Name_EDT": "陷阱_沙漠_流沙地块",
+      "Description_EDT": "进入后会一直被往中间吸",
+      "Prefab": "EnvUnit_Trap_Sand_Swallow",
+      "CanBeAttack": false,
+      "CanBeAttackCamp": "101",
+      "TargetPriority": 0,
+      "BeAttackEffect": "",
+      "CollisionBulletPenetrationNumber": 0,
+      "BeAttackSound": {
+        "SoundName": ""
+      },
+      "TriggerTouchUnitPlayEffect": "",
+      "TriggerTouchUnitSoundName": {
+        "SoundName": ""
+      },
+      "EffectCamp": "100",
+      "DirType": "Point",
+      "EffectActiveInterval": 0.0,
+      "AttractForce": 200.0,
+      "AttractDistancePercent": 0.0,
+      "Type": "EEUT_AttractTrap",
+      "SourceConfig": "Assets/[00002]Resource/ActionEngineCfg/EnvUnit/EnvUnitCfg_[11101].json"
     }
   ]
 }

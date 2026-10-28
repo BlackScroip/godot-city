@@ -22,6 +22,10 @@ var equipment: HBoxContainer
 var token_title: Label
 var row_buttons: Array[Button] = []
 var token_slots: HBoxContainer
+var token_scroll: ScrollContainer
+var footer: VBoxContainer
+var start_holder: CenterContainer
+var _adapting := false
 var help_overlay: Control
 var help_page := 0
 var selection_tween: Tween
@@ -98,12 +102,19 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 	var prep: Dictionary = context.preparation
 	token_slots = HBoxContainer.new()
 	token_slots.add_theme_constant_override("separation", 8)
-	summary.add_child(token_slots)
+	token_slots.size_flags_horizontal = SIZE_EXPAND_FILL
+	token_scroll = ScrollContainer.new()
+	token_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
+	token_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	token_scroll.custom_minimum_size.y = 48
+	summary.add_child(token_scroll)
+	token_scroll.add_child(token_slots)
 	var equipped: Array = systems.relationship_tokens.equipped()
 	for index in maxi(4, systems.token_slots()):
 		var token_id = int(equipped[index]) if index < equipped.size() else 0
 		var state: Dictionary = systems.token_status(token_id) if token_id > 0 else {}
 		var slot = _button("", str(state.get("icon", "icon_addnum" if index < systems.token_slots() else "锁")), func(): command.emit("page:tokens", token_id, 0))
+		slot.custom_minimum_size = Vector2(44, 44)
 		slot.size_flags_horizontal = SIZE_EXPAND_FILL
 		slot.tooltip_text = str(state.get("name", "添加信物" if index < systems.token_slots() else "扩展信物槽"))
 		for style_state in ["normal", "hover", "pressed"]:
@@ -163,19 +174,27 @@ func configure(_host, data: Array, details: Dictionary) -> void:
 		text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		text.mouse_filter = MOUSE_FILTER_IGNORE
 		line.add_child(text)
-		if not status.unlocked: line.add_child(_picture("锁头", Vector2(42, 52)))
+		var lock = _picture("锁头", Vector2(42, 52))
+		lock.name = "DifficultyLock"
+		lock.visible = not status.unlocked
+		line.add_child(lock)
 		row_buttons.append(key)
 	chaos = HBoxContainer.new()
 	chaos.add_theme_constant_override("separation", 14)
-	right.add_child(chaos)
+	footer = VBoxContainer.new()
+	footer.add_theme_constant_override("separation", 10)
+	add_child(footer)
+	footer.add_child(chaos)
 	reason = DungeonStyle.label("", 18)
 	reason.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	right.add_child(reason)
+	reason.max_lines_visible = 2
+	reason.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	footer.add_child(reason)
 	start = _button("进入迷宫", "冒险图标", func(): command.emit("primary", 0, 0))
 	start.custom_minimum_size = Vector2(240, 52)
-	start.size_flags_horizontal = SIZE_SHRINK_END
-	for state in ["normal", "hover", "pressed"]: start.add_theme_stylebox_override(state, _paper("主城建造离开按钮", 12))
-	right.add_child(start)
+	start_holder = CenterContainer.new()
+	footer.add_child(start_holder)
+	start_holder.add_child(start)
 	resized.connect(_adapt)
 	_refresh()
 	_adapt.call_deferred()
@@ -216,7 +235,7 @@ func _button(text: String, icon: String, callback: Callable) -> Button:
 	var button = Button.new()
 	button.text = text
 	button.clip_text = true
-	button.resized.connect(func(): DungeonStyle.fit_button_text(button, 17 if size.y < 600 else 22))
+	button.resized.connect(func(): DungeonStyle.fit_button_text(button, int(button.get_meta("fit_font_size", 17 if size.y < 600 else 22))))
 	button.add_theme_font_size_override("font_size", 22)
 	button.add_theme_color_override("font_color", INK)
 	button.add_theme_color_override("font_disabled_color", INK.lightened(0.12))
@@ -234,6 +253,7 @@ func _equipment(parent: Control, source: Dictionary, action: String, icon: Strin
 	for state in ["normal", "hover", "pressed"]: key.add_theme_stylebox_override(state, _paper("内容纸", 14))
 	parent.add_child(key)
 	var stack = VBoxContainer.new()
+	stack.add_theme_constant_override("separation", 4)
 	stack.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	stack.offset_left = 14
 	stack.offset_top = 14
@@ -305,6 +325,7 @@ func _refresh() -> void:
 		group.add_child(label)
 	if reward_bar.get_child_count() == 0: reward_bar.add_child(_label("无额外掉落加成", 20))
 	for index in row_buttons.size():
+		row_buttons[index].get_child(0).get_node("DifficultyLock").visible = not systems.difficulty_unlocked(index)
 		var color = [Color("7a8591"), Color("86c941"), Color("448bdc"), Color("ab62c7"), Color("d3a737")][mini(index, 4)]
 		for state in ["normal", "hover", "pressed", "focus"]:
 			var style = DungeonStyle.box(Color(color, 0.65 if index == selected else 0.35), Color("e5edc7") if index == selected else Color(color, 0.7), 3 if index == selected else 1)
@@ -327,21 +348,38 @@ func _refresh() -> void:
 		var claim = _button("领取首通奖励", "Button_ClaimReward", func(): command.emit("claim_chaos_rewards", 0, 0))
 		claim.disabled = status.unclaimed_chaos_rewards.is_empty() or context.get("in_run", false)
 		claim.add_theme_color_override("font_color", Color.WHITE)
+		claim.add_theme_color_override("font_disabled_color", Color("eee7d2"))
+		claim.size_flags_horizontal = SIZE_EXPAND_FILL
 		chaos.add_child(claim)
 	start.disabled = not status.can_start
 	reason.text = str(status.reason)
 	if selected == 10: reason.text += "  已通关 %d 层" % int(status.chaos_cleared)
+	reason.visible = not reason.text.strip_edges().is_empty()
+	reason.tooltip_text = reason.text
 	_fit_rewards()
+	_adapt.call_deferred()
 
 func _fit_rewards() -> void:
 	var compact = size.y < 600
 	for child in reward_bar.get_children():
 		if child is Label: child.add_theme_font_size_override("font_size", 16 if compact else 20)
 		if child is VBoxContainer:
-			child.get_child(0).custom_minimum_size = Vector2(24, 24) if compact else Vector2(42, 42)
-			child.get_child(1).add_theme_font_size_override("font_size", 16 if compact else 20)
+			child.add_theme_constant_override("separation", 0 if compact else 4)
+			child.get_child(0).custom_minimum_size = Vector2(22, 22) if compact else Vector2(42, 42)
+			child.get_child(1).add_theme_font_size_override("font_size", 14 if compact else 20)
+
+func _start_skin(key: String, tint: Color, compact: bool) -> StyleBoxTexture:
+	var style = _paper(key, 12)
+	style.modulate_color = tint
+	style.set_content_margin(SIDE_LEFT, 20 if compact else 36)
+	style.set_content_margin(SIDE_RIGHT, 20 if compact else 36)
+	style.set_content_margin(SIDE_TOP, 4 if compact else 8)
+	style.set_content_margin(SIDE_BOTTOM, 4 if compact else 8)
+	return style
 
 func _adapt() -> void:
+	if _adapting or not is_instance_valid(start) or size.x <= 0 or size.y <= 0: return
+	_adapting = true
 	var compact = size.y < 600
 	var header_margin = ROLE_NAVIGATION.header_margin(size)
 	ROLE_NAVIGATION.configure_header_back_button(header.get_child(0), size, "返回主城")
@@ -354,48 +392,93 @@ func _adapt() -> void:
 	left.position = Vector2(margin, top)
 	left.size = Vector2(left_width, size.y - top - margin)
 	var paper_style = left.get_theme_stylebox("panel").duplicate()
-	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]: paper_style.set_content_margin(side, 12 if compact else 26)
+	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]: paper_style.set_content_margin(side, 8 if compact and size.y < 380 else 12 if compact else 26)
 	left.add_theme_stylebox_override("panel", paper_style)
-	left.get_child(0).add_theme_constant_override("separation", 6 if compact else 16)
+	left.get_child(0).add_theme_constant_override("separation", 4 if compact else 16)
 	token_title.add_theme_font_size_override("font_size", 18 if compact else 21)
-	token_title.custom_minimum_size.y = 30 if compact else 64
+	token_title.custom_minimum_size.y = 32 if compact else 64
 	equipment.custom_minimum_size.y = 122 if compact else 225
-	token_slots.custom_minimum_size.y = 48 if compact else 82
+	token_scroll.custom_minimum_size.y = 48 if compact else 82
+	token_slots.add_theme_constant_override("separation", 6 if compact else 8)
+	for slot in token_slots.get_children():
+		slot.custom_minimum_size = Vector2(44, 44) if compact else Vector2(72, 72)
+		slot.add_theme_constant_override("icon_max_width", 32 if compact else 54)
 	for key in equipment.get_children():
 		var item = key.get_child(0)
+		item.add_theme_constant_override("separation", 2 if compact else 4)
 		item.offset_left = 8 if compact else 14
 		item.offset_top = 8 if compact else 14
 		item.offset_right = -8 if compact else -14
 		item.offset_bottom = -8 if compact else -14
 		item.get_child(1).custom_minimum_size = Vector2(40, 40) if compact else Vector2(64, 64)
 		item.get_child(2).add_theme_font_size_override("font_size", 14 if compact else 17)
+		item.get_child(0).add_theme_font_size_override("font_size", 18 if compact else 22)
 		_fit_equipment_caption(item.get_child(0))
 	for key in left.get_child(0).get_children():
 		if key is Button: DungeonStyle.fit_button_text(key, 17 if compact else 22)
+		if key is HSeparator: key.visible = not compact
 	right.position = Vector2(margin + left_width + gap, top)
-	right.size = Vector2(size.x - margin * 2 - left_width - gap, size.y - top - margin)
+	var right_width = size.x - margin * 2 - left_width - gap
 	var title_width := (150 if compact else 230) if DungeonLocale.current_locale() == "zh_CN" else (300 if compact else 400)
 	header.get_child(1).custom_minimum_size = Vector2(title_width, 42 if compact else 60)
+	header.get_child(2).custom_minimum_size = Vector2(44, 44)
 	for counter in header.get_children():
 		if counter is HBoxContainer: counter.custom_minimum_size.x = 72 if compact else 112
 	reward_bar.custom_minimum_size.y = 32 if compact else 62
-	reward_bar.get_parent().add_theme_stylebox_override("panel", _paper("底框_木元素", 10 if compact else 18))
+	reward_bar.add_theme_constant_override("separation", 8 if compact else 24)
+	reward_bar.get_parent().add_theme_stylebox_override("panel", _paper("底框_木元素", 6 if compact else 18))
 	_fit_rewards()
-	reason.add_theme_font_size_override("font_size", 16 if compact else 18)
+	reason.add_theme_font_size_override("font_size", 14 if compact else 18)
+	reason.size.x = right_width
+	chaos.add_theme_constant_override("separation", 8 if compact else 14)
+	for control in chaos.get_children():
+		if control is Label:
+			control.add_theme_font_size_override("font_size", 16 if compact else 20)
+			control.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		elif control is SpinBox:
+			control.custom_minimum_size = Vector2(76 if compact else 110, 44)
+			control.get_line_edit().add_theme_font_size_override("font_size", 16 if compact else 20)
+			var field_style = DungeonStyle.box(Color("263d41"), Color("9aa88a"), 1)
+			field_style.set_content_margin_all(6)
+			control.get_line_edit().add_theme_stylebox_override("normal", field_style)
+		elif control is Button:
+			control.custom_minimum_size = Vector2(132 if compact else 180, 44)
+			control.add_theme_constant_override("icon_max_width", 24 if compact else 36)
+			control.add_theme_font_size_override("font_size", 15 if compact else 20)
 	right.add_theme_constant_override("separation", 6 if compact else 16)
 	choices.add_theme_constant_override("separation", 10 if compact else 18)
 	for key in row_buttons:
-		key.custom_minimum_size.y = 82 if compact else 116
+		key.custom_minimum_size.y = 76 if compact else 116
 		var line = key.get_child(0)
-		line.get_child(0).custom_minimum_size.x = 66 if compact else 108
-		line.get_child(0).add_theme_font_size_override("font_size", 20 if compact else 27)
-		line.get_child(2).add_theme_font_size_override("font_size", 15 if compact else 20)
-	var start_width := (160 if compact else 240) if DungeonLocale.current_locale().begins_with("zh") else (280 if compact else 340)
-	start.custom_minimum_size = Vector2(start_width, 38 if compact else 52)
-	DungeonStyle.fit_button_text(start, 17 if compact else 22)
+		line.offset_left = 14 if compact else 18
+		line.offset_right = -14 if compact else -18
+		line.add_theme_constant_override("separation", 8 if compact else 16)
+		line.get_child(0).custom_minimum_size.x = 52 if compact else 108
+		line.get_child(0).add_theme_font_size_override("font_size", 18 if compact else 27)
+		line.get_child(2).add_theme_font_size_override("font_size", 14 if compact else 20)
+		if line.get_child_count() > 3: line.get_child(3).custom_minimum_size = Vector2(32, 40) if compact else Vector2(42, 52)
+	var source_scale = ROLE_NAVIGATION.scale_factor(size)
+	var start_size = Vector2(minf(right_width, 787.6 * source_scale), maxf(44, 112.0 * source_scale))
+	start.custom_minimum_size = start_size
+	start.set_meta("fit_font_size", maxi(18, roundi(50 * source_scale)))
+	start.add_theme_constant_override("icon_max_width", 30 if compact else 48)
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]: start.add_theme_color_override(state, INK)
+	start.add_theme_color_override("font_disabled_color", Color("eee7d2"))
+	for state in ["normal", "hover", "pressed"]:
+		var tint = Color(1, 0.947, 0.59) if state == "normal" else Color(1, 0.98, 0.75) if state == "hover" else Color(0.84, 0.77, 0.44)
+		start.add_theme_stylebox_override(state, _start_skin("几何ui-异形白色按钮", tint, compact))
+	start.add_theme_stylebox_override("focus", DungeonStyle.box(Color.TRANSPARENT, Color("e4c87a"), 2))
+	start.add_theme_stylebox_override("disabled", _start_skin("主城建造离开按钮", Color(0.667, 0.667, 0.667), compact))
+	DungeonStyle.fit_button_text(start, int(start.get_meta("fit_font_size")))
+	footer.add_theme_constant_override("separation", 6 if compact else 10)
+	footer.size = Vector2(right_width, 0)
+	footer.size.y = footer.get_combined_minimum_size().y
+	footer.position = Vector2(right.position.x, size.y - margin - footer.size.y)
+	right.size = Vector2(right_width, maxf(0, footer.position.y - top - (8 if compact else 18)))
 	left.set_deferred("size", Vector2(left_width, size.y - top - margin))
 	_reveal_selected.call_deferred()
 	if is_instance_valid(help_overlay): _layout_help()
+	_adapting = false
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(list) or pointer_down or absf(scroll_velocity) < 1.0: return

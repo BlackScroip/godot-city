@@ -1,6 +1,6 @@
 extends DungeonCombat
 
-# Original interpreter retained independently for stepwise differential tests.
+# Independent interpreter, including source payload-before-interrupt ordering.
 func _cache_enemy_timing(definition: Dictionary) -> void:
 	_enemy_speed_windows.clear()
 	_enemy_interrupts.clear()
@@ -16,6 +16,7 @@ func _cache_enemy_timing(definition: Dictionary) -> void:
 
 func _tick_enemy_interrupts() -> void:
 	if not enemy_ai_enabled or frozen > 0 or impact_pause > 0 or stagger_remaining > 0: return
+	if _reference_has_due_payload(): return
 	var visited: Dictionary = {current_action: true}
 	for transition in range(12):
 		var changed = false
@@ -30,9 +31,17 @@ func _tick_enemy_interrupts() -> void:
 			var next = _action(str(enemy.group), str(command.get("target", "")))
 			if next.is_empty(): continue
 			_start(next, 0)
+			if _reference_has_due_payload(): return
 			if visited.has(current_action): return
 			visited[current_action] = true
 			changed = true
 			break
 		if not changed: return
 	_report("Enemy action transition budget exceeded: %s" % enemy_id)
+
+func _reference_has_due_payload() -> bool:
+	for event in _pending:
+		if int(event.get("sequence", -1)) != _cast_sequence: continue
+		var timeline := bool(event.get("action_timeline", event.get("summon_id", "").is_empty() and (event.has("command") or event.has("hit"))))
+		if timeline and float(event.get("at", INF)) <= _clock + 0.000001: return true
+	return false

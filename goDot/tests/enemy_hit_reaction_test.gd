@@ -20,6 +20,7 @@ func _enemy(id := 11001, action := "attack") -> DungeonCombat:
 	target.enemy_ai_enabled = true
 	target.custom_properties["_enemy_spawn_entered"] = true
 	target._start(target._action(str(target.enemy.group), action), 0)
+	target.tick(0.0)
 	target.drain_events()
 	return target
 

@@ -5,6 +5,7 @@ var props: Array[Dictionary] = []
 var clock := 0.0
 var door_materials = preload("res://scripts/presentation/door_materials.gd").new()
 var chest_sources: Dictionary = {}
+var chest_presentation = preload("res://scripts/presentation/chest_source_presentation.gd").new()
 const CHEST_CATALOG := "res://assets/environment_effects/chest_catalog.json"
 
 # Box_Effect children in the APK's EnvUnit_TreasureBox_* subprefabs.
@@ -18,6 +19,7 @@ const CHEST_EFFECTS := {
 
 func configure(source: Node3D) -> void:
 	world = source
+	chest_presentation.configure()
 	if FileAccess.file_exists(CHEST_CATALOG):
 		var catalog = JSON.parse_string(FileAccess.get_file_as_string(CHEST_CATALOG))
 		if catalog is Dictionary: chest_sources = catalog.get("chests", {})
@@ -75,13 +77,19 @@ func refresh_chests() -> void:
 				if str(child.name) == address or str(child.name).begins_with(address + "_"):
 					child.hide()
 					child.set_meta("unityActive", false)
+		# Scene markers may contain an older quality's art. Render the exact
+		# selected subprefab while leaving the interaction root and sockets alive.
+		if item.visual is MeshInstance3D: item.visual.layers = 0
+		for mesh: MeshInstance3D in item.visual.find_children("*", "MeshInstance3D", true, false): mesh.layers = 0
 		var anchor := Node3D.new()
 		anchor.name = "InteractionPresentation"
 		item.visual.add_child(anchor)
 		item["chest_presentation"] = true
 		var quality := str(item.data.get("TreasureType", "Normal"))
 		var source: Dictionary = chest_sources.get("Curse" if quality == "Curse_Final" else quality, {})
+		item["chest_disappear_seconds"] = float(source.get("disappear_time_seconds", 1.0))
 		var entry := {"item": item, "anchor": anchor, "opened": bool(item.state.opened), "effect_address": str(source.get("ambient_effect", CHEST_EFFECTS.get(quality, "")))}
+		chest_presentation.attach(anchor, entry)
 		var effect_anchor := Node3D.new()
 		effect_anchor.name = "ChestSourceEffect"
 		anchor.add_child(effect_anchor)
@@ -92,8 +100,6 @@ func refresh_chests() -> void:
 			effect_anchor.transform *= Transform3D(Basis(rotation_value).scaled(scale_value), DungeonWorld.vector(component.get("position", {})))
 		effect_anchor.visible = bool(source.get("ambient_active", true)) and not bool(item.state.opened)
 		entry["effect_anchor"] = effect_anchor
-		# Some exported markers contain only an empty artmodel socket.
-		if item.visual.find_children("*", "MeshInstance3D", true, false).is_empty(): _chest(anchor, entry)
 		if controller != null and not entry.effect_address.is_empty():
 			var binding: Dictionary = controller.register_anchor(effect_anchor, entry.effect_address)
 			if not binding.is_empty(): entry["effect_binding"] = binding
@@ -117,34 +123,6 @@ func _mesh(parent: Node3D, geometry: Mesh, material: Material, point: Vector3) -
 	mesh.position = point
 	parent.add_child(mesh)
 	return mesh
-
-func _box(parent: Node3D, dimensions: Vector3, point: Vector3, material: Material) -> MeshInstance3D:
-	var geometry = BoxMesh.new()
-	geometry.size = dimensions
-	return _mesh(parent, geometry, material, point)
-
-func _chest(anchor: Node3D, entry: Dictionary) -> void:
-	var wood = _material(Color("596665"))
-	var dark = _material(Color("283c42"))
-	var steel = _material(Color("a5b9b5"), 0, 0.45)
-	_box(anchor, Vector3(1.38, 0.55, 0.86), Vector3(0, 0.34, 0), wood)
-	for y in [0.12, 0.57]:
-		_box(anchor, Vector3(1.45, 0.07, 0.92), Vector3(0, y, 0), steel)
-	for x in [-0.51, 0.51]:
-		_box(anchor, Vector3(0.09, 0.51, 0.91), Vector3(x, 0.35, 0), steel)
-	for y in [0.27, 0.43]:
-		_box(anchor, Vector3(1.29, 0.015, 0.012), Vector3(0, y, 0.437), dark)
-	var lid = Node3D.new()
-	lid.position = Vector3(0, 0.63, -0.43)
-	anchor.add_child(lid)
-	_box(lid, Vector3(1.43, 0.18, 0.9), Vector3(0, 0.04, 0.43), wood)
-	_box(lid, Vector3(1.35, 0.1, 0.7), Vector3(0, 0.16, 0.43), wood)
-	for x in [-0.51, 0.51]:
-		_box(lid, Vector3(0.095, 0.075, 0.91), Vector3(x, 0.19, 0.43), steel)
-	_box(lid, Vector3(1.46, 0.06, 0.94), Vector3(0, -0.035, 0.43), steel)
-	_box(lid, Vector3(0.19, 0.24, 0.065), Vector3(0, -0.08, 0.91), steel)
-	_box(lid, Vector3(0.045, 0.08, 0.016), Vector3(0, -0.08, 0.95), dark)
-	entry["lid"] = lid
 
 func _portal(anchor: Node3D, missing: bool, entry: Dictionary) -> void:
 	# Recovered stone portals retain their source silhouette without generic rings.
@@ -185,37 +163,10 @@ func _process(delta: float) -> void:
 		if entry.has("orb"):
 			entry.orb.position.y = 1.05 + sin(clock * 1.8) * 0.08
 			entry.orb.rotation.y += delta * 0.35
-		if entry.has("lid"):
-			entry.lid.rotation.x = move_toward(entry.lid.rotation.x, -1.65 if state.opened else 0.0, delta * 3.5)
 		if bool(state.opened) != bool(entry.opened):
 			entry.opened = state.opened
 			for child in entry.anchor.get_children():
 				if child is MeshInstance3D and child.mesh is PlaneMesh:
 					child.visible = not state.opened
 		if entry.item.get("chest_presentation", false) and state.opened:
-			_tick_chest_fade(entry, delta)
-
-func _tick_chest_fade(entry: Dictionary, delta: float) -> void:
-	var remaining := maxf(0.0, float(entry.item.get("chest_open_remaining", 0.0)) - delta)
-	entry.item["chest_open_remaining"] = remaining
-	if remaining <= 0.0:
-		entry.item.visual.hide()
-		return
-	# Let the lid finish opening before fading the chest's own materials.
-	if remaining >= 0.75: return
-	if not entry.has("fade_materials"):
-		entry["fade_materials"] = []
-		var meshes: Array = entry.item.visual.find_children("*", "MeshInstance3D", true, false)
-		if entry.item.visual is MeshInstance3D: meshes.append(entry.item.visual)
-		for mesh in meshes:
-			if mesh.mesh == null: continue
-			for surface in mesh.mesh.get_surface_count():
-				var original = mesh.get_active_material(surface)
-				if not original is BaseMaterial3D: continue
-				var material = original.duplicate()
-				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-				mesh.set_surface_override_material(surface, material)
-				entry.fade_materials.append({"material": material, "alpha": material.albedo_color.a})
-			mesh.material_override = null
-	for fade in entry.fade_materials:
-		fade.material.albedo_color.a = float(fade.alpha) * remaining / 0.75
+			chest_presentation.tick(entry, delta)

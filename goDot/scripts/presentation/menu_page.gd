@@ -38,6 +38,7 @@ var awakening_view: Control
 var adventure_event_view: Control
 var page_context: Dictionary = {}
 var _open_tween: Tween
+var _adapting := false
 
 func _ready() -> void:
 	add_theme_stylebox_override("panel", DungeonStyle.panel())
@@ -153,10 +154,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 		stack.remove_child(outcome_view)
 		outcome_view.queue_free()
 		outcome_view = null
-	if is_instance_valid(route_view):
-		stack.remove_child(route_view)
-		route_view.queue_free()
-		route_view = null
+	release_route_view()
 	if is_instance_valid(special):
 		stack.remove_child(special)
 		special.queue_free()
@@ -401,6 +399,8 @@ func _row(parent: Control, row: Dictionary, separator := true) -> void:
 	if separator: item.add_child(HSeparator.new())
 
 func _adapt() -> void:
+	if _adapting: return
+	_adapting = true
 	var compact = size.x < 1000
 	ROLE_NAVIGATION.configure_header_back_button(stack.get_child(0).get_child(0), size, "返回" if page_context.has("back_action") else "关闭")
 	if (page_context.get("camp", false) or page_context.get("room_activity", false)) and _layout in ["list", "grid", "model"]:
@@ -409,11 +409,13 @@ func _adapt() -> void:
 		add_theme_stylebox_override("panel", style)
 		stack.add_theme_constant_override("separation", 8 if get_viewport_rect().size.y < 600 else 16)
 	if stack.get_child(0).visible:
-		var panel = get_theme_stylebox("panel").duplicate()
+		var panel = get_theme_stylebox("panel")
 		var header_margin = ROLE_NAVIGATION.header_margin(size)
-		panel.set_content_margin(SIDE_LEFT, header_margin.x)
-		panel.set_content_margin(SIDE_TOP, header_margin.y)
-		add_theme_stylebox_override("panel", panel)
+		if not is_equal_approx(panel.get_content_margin(SIDE_LEFT), header_margin.x) or not is_equal_approx(panel.get_content_margin(SIDE_TOP), header_margin.y):
+			panel = panel.duplicate()
+			panel.set_content_margin(SIDE_LEFT, header_margin.x)
+			panel.set_content_margin(SIDE_TOP, header_margin.y)
+			add_theme_stylebox_override("panel", panel)
 	resource_bar.add_theme_constant_override("separation", 6 if compact else 12)
 	for line in resource_bar.get_children():
 		line.custom_minimum_size.x = 74 if compact else 130
@@ -432,6 +434,14 @@ func _adapt() -> void:
 			detail.get_child(0).custom_minimum_size = Vector2(art_size, art_size)
 	if detail_scroll.visible:
 		list_scroll.size_flags_stretch_ratio = 1.2 if size.x >= 1100 else 1.0
+	_adapting = false
+
+func release_route_view() -> void:
+	if not is_instance_valid(route_view): return
+	route_view.hide()
+	stack.remove_child(route_view)
+	route_view.queue_free()
+	route_view = null
 
 func displayed_row_count() -> int:
 	if _layout == "dialogue" and is_instance_valid(dialogue_view): return 1

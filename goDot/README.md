@@ -2,6 +2,8 @@
 
 Independent offline GDScript migration. Engine pinned to **Godot 4.7.2.stable.official.ed1daf0bf**. This is a working migration checkpoint; the full original-game parity and three-device acceptance gates are still open. See [MIGRATION_STATUS.md](MIGRATION_STATUS.md).
 
+The 2026-10-28 camp pass completes the dedicated awakening, token, resource, training and dispatch views; preserves selection through actions; unifies back navigation; and protects camp transactions and save recovery. See [the implementation matrix, APK evidence, layout captures and verification](docs/CAMP_SYSTEMS_COMPLETION_20261028.md).
+
 The 2026-10-27 camp update adds independent bounties, per-character token sockets and presets, five-copy amplifier composition, immediate golden-apple credit, relationship dialogue, visitors and adventure history. See [the camp implementation matrix, tests and screenshots](reports/CAMP_COMPLETION_20261027.md). Original APK runtime comparison and Unity RNG sequence equivalence remain unverified.
 
 ## Run

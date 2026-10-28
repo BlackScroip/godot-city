@@ -78,7 +78,7 @@ def inspect(apk, root, stubs):
                 continue
             if address not in symbols or "get {" in symbols[address]:
                 symbols[address] = file.stem + "." + signature.strip()
-            if file.stem == "EnvUnitTriggerTrap" and any(name in signature for name in ["ApplyEffectToUnit", "ProcessUnitList", "RegisterEffectTrigger>b__31_1", "RegisterEnterTrigger>b__30_1", "SwitchState", "Update("]):
+            if file.stem == "EnvUnitAttractTrap" or (file.stem == "UnitRuntimeStatus" and "public UnitRuntimeStatus()" in signature) or (file.stem in ["RoleUnit", "Player"] and any(name in signature for name in ["BeAttract(", "CanAttract(", "GetAttribute_Self(", "GetAttribute(EAttributeType"])) or (file.stem == "EnvUnitTriggerTrap" and any(name in signature for name in ["ApplyEffectToUnit", "ProcessUnitList", "RegisterEffectTrigger>b__31_1", "RegisterEnterTrigger>b__30_1", "SwitchState", "Update(", "Message_DisableTrap", "SetWarningLineVisible", "void Init("])):
                 methods.append((offset, length, address, signature.strip()))
     disassembler = Cs(CS_ARCH_ARM64, CS_MODE_ARM)
     for offset, length, address, signature in methods:
@@ -89,6 +89,13 @@ def inspect(apk, root, stubs):
                 row["callee"] = symbols.get(int(instruction.op_str[1:], 16), "unresolved")
             instructions.append(row)
         result["methods"].append({"name": signature, "address": hex(address), "file_offset": hex(offset), "instructions": instructions})
+    result["attract_float_constants"] = {}
+    for address in [0x1287EB0, 0x1288154]:
+        offset = next(lo + address - va for lo, hi, va in segments if va <= address < va + hi - lo)
+        result["attract_float_constants"][hex(address)] = struct.unpack_from("<f", native, offset)[0]
+    address = 0x12F24A4 + (94 - 1) * 2
+    offset = next(lo + address - va for lo, hi, va in segments if va <= address < va + hi - lo)
+    result["player_weight_switch_target"] = hex(0x315FFC8 + 4 * struct.unpack_from("<H", native, offset)[0])
     result["coverage"] = {"recovered_traps": len(traps), "apk_traps": len(result["traps"]), "recovered_buffs": len(buff_ids), "apk_buffs": len(result["buffs"])}
     return result
 
@@ -99,7 +106,18 @@ if __name__ == "__main__":
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--stubs", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--sync", action="store_true")
     args = parser.parse_args()
     report = inspect(args.apk, args.root, args.stubs)
+    if args.sync:
+        rules_path = args.root / "assets/environment_rules.json"
+        rules = json.loads(rules_path.read_text())
+        for row in rules["Definitions"]:
+            record = report["traps"].get(row["ID"])
+            if record and row["Type"] == "EEUT_TriggerTrap":
+                for key, change in record["differences"].items():
+                    row[key] = change["apk"]
+        rules_path.write_text(json.dumps(rules, ensure_ascii=False, indent=2) + "\n")
+        report["sync_applied"] = True
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(report["coverage"]))

@@ -11,6 +11,7 @@ var current_id := 0
 var _work_refresh := 0.0
 var _work_signature := ""
 var spirit_skills: RefCounted
+var ability_descriptions: RefCounted
 
 func _init(host: Node) -> void:
 	game = host
@@ -19,6 +20,7 @@ func _init(host: Node) -> void:
 	profile = host.profile
 	hud = host.hud
 	spirit_skills = preload("res://scripts/domain/spirit_skills.gd").new(systems)
+	ability_descriptions = preload("res://scripts/domain/ability_descriptions.gd").new(systems)
 
 func command(text: String, action: String, id: Variant = 0, extra: Variant = 0, disabled := false) -> Dictionary:
 	return {"text": text, "action": action, "id": id, "extra": extra, "disabled": disabled}
@@ -33,7 +35,17 @@ func clean(value: Variant) -> String:
 	return DungeonCatalog.clean(value)
 
 func description(row: Dictionary) -> String:
+	if row.has("AbilityItemType"):
+		return clean(ability_source(DungeonCatalog.row_id(row)))
 	return clean(row.get("description", row.get("Description", row.get("effect_description", row.get("unlock_desc", "")))))
+
+func ability_source(ability_id: int, loot_id := 0) -> String:
+	return ability_descriptions.source(ability_id, loot_id, _live_combat())
+
+func _live_combat() -> RefCounted:
+	if game.world is Node and is_instance_valid(game.world.get("player")):
+		return game.world.player.get("combat")
+	return null
 
 func loot_name(id: int) -> String:
 	var row = catalog.find("LootData", id)
@@ -113,7 +125,7 @@ func _material_row(id: int, amount: int) -> Dictionary:
 	if not catalog.find("ShopTreasureBoxData", id).is_empty():
 		buttons.append(command("开启", "op:open_material_box", id))
 	var row = item(clean(systems.material_name(id)) + "  ×%d" % amount, description(source), buttons)
-	row.merge({"material_id": id, "count": amount, "star_num": int(source.get("star_num", 1)), "item_type": str(source.get("item_type", ""))})
+	row.merge({"material_id": id, "count": amount, "star_num": int(source.get("star_num", 1)), "item_type": str(source.get("item_type", "")), "source_description": DungeonCatalog.description(source)})
 	return row
 
 func open(page: String, id: int = 0) -> void:
@@ -495,6 +507,7 @@ func open(page: String, id: int = 0) -> void:
 				if page == "inventory" and (count <= 0 or not bool(row.get("is_visible", true)) or not _role_in_run()): continue
 				var ability = catalog.find("AbilityItems", int(row.get("ability_item_id", row.id)))
 				rows.append(item(loot_name(int(row.id)) + ("  ×%d" % count if count > 0 else ""), description(ability)))
+				rows.back()["source_description"] = ability_source(DungeonCatalog.row_id(ability), int(row.id))
 				rows.back()["loot_id"] = int(row.id)
 				rows.back()["count"] = count
 				rows.back()["star_num"] = int(ability.get("Rare", ability.get("star_num", 1)))
@@ -564,6 +577,7 @@ func open(page: String, id: int = 0) -> void:
 		if not feature.available:
 			for row in rows:
 				row.description = clean(feature.reason) + "\n" + str(row.get("description", ""))
+				if row.has("source_description"): row.source_description = clean(feature.reason) + "\n" + str(row.source_description)
 				for button in row.get("buttons", []):
 					if str(button.action).begins_with("op:"): button.disabled = true
 				row.buttons.append(command("前往建设", "page:buildings", feature.building_id))
@@ -610,6 +624,7 @@ func open(page: String, id: int = 0) -> void:
 	if layout in ["buildings", "guild", "commission", "character", "weapon", "inventory", "shop", "tokens", "camp_service", "awakening"]:
 		context["systems"] = systems
 		context["catalog"] = catalog
+		context["combat"] = _live_combat()
 		context["group_id"] = id
 		context["character_id"] = id if page == "weapons" and id > 0 else game.selected_character
 		if hud.modal_open and is_instance_valid(hud.page) and current_page == str(hud.page.page_context.get("page", "")):

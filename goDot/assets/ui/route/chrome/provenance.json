@@ -1,0 +1,1843 @@
+{
+  "apk": "/Users/hanyu/U3D/City/1061664.apk",
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "manifest": {
+    "member": "assets/yoo/DefaultPackage/DefaultPackage_2026-10-09-1177.bytes",
+    "sha256": "56e106a39cd16b5c090e7f2a32b8889e58f731245a54660ad1b3ee1dbff6c65b"
+  },
+  "sprites": {
+    "checkbox": {
+      "game_object": "Background",
+      "path": "ATPanel_RegionMapSelect/Container/ATToggle_Base/Background",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": 29.0310001373291,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 58.06100082397461,
+          "y": 46.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "勾选框",
+      "sprite_path_id": "-8776225437776842043",
+      "image_path_id": "-8467065198529916133",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 43.0,
+        "height": 43.0
+      },
+      "sprite_border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        43,
+        43
+      ],
+      "alpha_bounds": [
+        0,
+        0,
+        43,
+        43
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "resource": "res://assets/ui/route/chrome/checkbox.png",
+      "png_sha256": "2c75ca1a03126de91aa179e9ad22b9b40d0313095b616d15e6f1ec5d6f38f056"
+    },
+    "search_point": {
+      "game_object": "Image_ResIcon",
+      "path": "ATPanel_RegionMapSelect/Container/ATResBarContainer/ATResBox_SeachPoit/Image_ResIcon",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -5.800000190734863,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 85.0,
+          "y": 85.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "sprite_abilityitemicon_15101",
+      "sprite_path_id": "4722616278204564780",
+      "image_path_id": "-8222785827076222181",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 128.0,
+        "height": 128.0
+      },
+      "sprite_border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        128,
+        128
+      ],
+      "alpha_bounds": [
+        14,
+        12,
+        118,
+        120
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "resource": "res://assets/ui/route/chrome/search_point.png",
+      "png_sha256": "4f29ad319730261e525c403835a003e1a95f1fe1765804bb7dfdaae1b7640201"
+    },
+    "help_button": {
+      "game_object": "Btn_Guide",
+      "path": "ATPanel_RegionMapSelect/Container/Btn_Guide",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchoredPosition": {
+          "x": 74.0,
+          "y": 76.0
+        },
+        "m_SizeDelta": {
+          "x": 100.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        }
+      },
+      "active": false,
+      "name": "须知",
+      "sprite_path_id": "-3264226760608914741",
+      "image_path_id": "-7202622801250200805",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 64.0,
+        "height": 64.0
+      },
+      "sprite_border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        50,
+        50
+      ],
+      "alpha_bounds": [
+        2,
+        2,
+        48,
+        48
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/73e093573530545be1cdc9a36a473a84.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_mallpanel.bundle",
+        "bundle_hash": "73e093573530545be1cdc9a36a473a84",
+        "sha256": "7f13aeeb42f5daac246c173eca252c7c56d68a4289e5301aad079e8a26d2ecda"
+      },
+      "resource": "res://assets/ui/route/chrome/help_button.png",
+      "png_sha256": "1605d616392871b7965873cf67b90c8248e174ca98f4084676cc0fcd27701eb5"
+    },
+    "resource_bar": {
+      "game_object": "Image_Bg",
+      "path": "ATPanel_RegionMapSelect/Container/ATResBarContainer/ATResBox_ExtraChallengeItem/Image_Bg",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -16.700000762939453,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 250.0,
+          "y": 50.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "货币_底",
+      "sprite_path_id": "8416506778996739775",
+      "image_path_id": "-6670903721778326757",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 249.0,
+        "height": 51.0
+      },
+      "sprite_border": {
+        "x": 125.0,
+        "y": 25.0,
+        "z": 124.0,
+        "w": 26.0
+      },
+      "dimensions": [
+        249,
+        51
+      ],
+      "alpha_bounds": [
+        0,
+        0,
+        249,
+        51
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "resource": "res://assets/ui/route/chrome/resource_bar.png",
+      "png_sha256": "8637e4e85bc5cf905943031f7a48c503dab670432b5148fe5e811e285ff0381a"
+    },
+    "magic_essence": {
+      "game_object": "Image_ResIcon",
+      "path": "ATPanel_RegionMapSelect/Container/ATResBarContainer/ATResBox_MagicPoint/Image_ResIcon",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 0.5
+        },
+        "m_AnchoredPosition": {
+          "x": -4.800000190734863,
+          "y": 0.699999988079071
+        },
+        "m_SizeDelta": {
+          "x": 100.0,
+          "y": 100.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "sprite_materialicon_102",
+      "sprite_path_id": "3894177138201564098",
+      "image_path_id": "-4724414044716051685",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 256.0,
+        "height": 256.0
+      },
+      "sprite_border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        256,
+        256
+      ],
+      "alpha_bounds": [
+        66,
+        64,
+        198,
+        195
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/37ac5b64611df5a4d9667145c64539ab.bundle",
+        "bundle_name": "assets_[00002]resource_texture_projectat_icon_item.bundle",
+        "bundle_hash": "37ac5b64611df5a4d9667145c64539ab",
+        "sha256": "2599d76816bb6054c54c96056dbd1f5b3601afd2d64c23385538087c5ee4b032"
+      },
+      "resource": "res://assets/ui/route/chrome/magic_essence.png",
+      "png_sha256": "8c0e26cdfc8d76be9762019a6b3a2f82e7f8f4b1aa42f3d1bdb9bd714b84a37d"
+    },
+    "select_button": {
+      "game_object": "Image_InActive",
+      "path": "ATPanel_RegionMapSelect/Container/ATBtn_Select/Container/Box_Inactive/Image_InActive",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "几何ui-异形白色按钮",
+      "sprite_path_id": "-8412021753276499210",
+      "image_path_id": "-2562474450117504229",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 294.0,
+        "height": 93.0
+      },
+      "sprite_border": {
+        "x": 89.0,
+        "y": 0.0,
+        "z": 92.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        294,
+        86
+      ],
+      "alpha_bounds": [
+        2,
+        2,
+        293,
+        84
+      ],
+      "color": {
+        "r": 0.9150943160057068,
+        "g": 0.9021448493003845,
+        "b": 0.9021448493003845,
+        "a": 1.0
+      },
+      "image_type": 1,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/7f530ec55fc7f8d9944b400833d61148.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_atpanel_shop.bundle",
+        "bundle_hash": "7f530ec55fc7f8d9944b400833d61148",
+        "sha256": "520397640d4320a66514bb3ad10a72f9b0c1ba244f35e0afd47a077d811c0a99"
+      },
+      "resource": "res://assets/ui/route/chrome/select_button.png",
+      "png_sha256": "dda85949bced6235bddc464855b8659aa427f9c9a767d63fb498f01ea4a5aa0d"
+    },
+    "checkmark": {
+      "game_object": "Checkmark",
+      "path": "ATPanel_RegionMapSelect/Container/ATToggle_Base/Background/Checkmark",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_AnchorMax": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_SizeDelta": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "勾选",
+      "sprite_path_id": "8151684169181863557",
+      "image_path_id": "5847539279622460187",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 52.0,
+        "height": 41.0
+      },
+      "sprite_border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        52,
+        41
+      ],
+      "alpha_bounds": [
+        0,
+        1,
+        52,
+        41
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "resource": "res://assets/ui/route/chrome/checkmark.png",
+      "png_sha256": "e0668ad6621eedcf33bc0bbf638761b79016798d55194f6cfbfb49641f026bf6"
+    },
+    "back_button": {
+      "game_object": "Btn_Exit",
+      "path": "ATPanel_RegionMapSelect/Container/ATTitleBox/Btn_Exit",
+      "rect": {
+        "m_AnchorMin": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchorMax": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "m_AnchoredPosition": {
+          "x": 100.0,
+          "y": -80.0
+        },
+        "m_SizeDelta": {
+          "x": 91.0,
+          "y": 79.0
+        },
+        "m_Pivot": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "m_LocalScale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.5
+        },
+        "m_LocalRotation": {
+          "x": -0.0,
+          "y": -0.0,
+          "z": -0.0,
+          "w": 1.0
+        }
+      },
+      "active": true,
+      "name": "退出按钮",
+      "sprite_path_id": "-7962153020995228324",
+      "image_path_id": "8708484427392373531",
+      "sprite_rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 91.0,
+        "height": 79.0
+      },
+      "sprite_border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "dimensions": [
+        91,
+        79
+      ],
+      "alpha_bounds": [
+        0,
+        0,
+        91,
+        79
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "image_type": 0,
+      "source": {
+        "member": "assets/yoo/DefaultPackage/2e308587d339b1d44b8c12870cb5330a.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_projectat_common_20241017.bundle",
+        "bundle_hash": "2e308587d339b1d44b8c12870cb5330a",
+        "sha256": "56aa0b5db448653a6b9d01c174e0e22a8e400f5a093288171b6cb09e5cf10dd1"
+      },
+      "resource": "res://assets/ui/route/chrome/back_button.png",
+      "png_sha256": "5c2ba4c2eefdbba4a4c701a6e8137dcaf462a1f15799463b800065740fac6007"
+    }
+  },
+  "limitations": [
+    "Static serialized prefab and AnimationClip evidence only; original runtime playback was not observed."
+  ],
+  "effects": [
+    {
+      "name": "25052201_fx_ui_bossnode",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/cdd698f7664f907333491eb6dad43a2e.bundle",
+        "bundle_name": "assets_[00002]resource_prefabs_projectat_fx_25052201_fx_ui_bossnode.bundle",
+        "bundle_hash": "cdd698f7664f907333491eb6dad43a2e",
+        "sha256": "81a0066e8f87ea2900d8b36d25945fa87d8df8fbb53668fc34e2fb1ecf31f607"
+      },
+      "materials": [
+        {
+          "name": "mat_fx_25052201_bossnode_glow",
+          "source": {
+            "member": "assets/yoo/DefaultPackage/01db71b2e539697ed1a9ca10877ef328.bundle",
+            "bundle_name": "assets_[00001]media_models_fx_material.bundle",
+            "bundle_hash": "01db71b2e539697ed1a9ca10877ef328",
+            "sha256": "653524e8999548ee14286f10eca067bad27dcb3e41dbc46d25b1f50c5fa39a50"
+          },
+          "textures": [
+            {
+              "slot": "_MainTex",
+              "name": "tex_fx_glow_1",
+              "path_id": "-3389627413894007206",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_glow_maintex.png",
+              "dimensions": [
+                128,
+                128
+              ],
+              "png_sha256": "c20b6525404ff1aa34b07684d2082c800f3d626d1fd2a5e95176c2b12ec499e5"
+            }
+          ],
+          "float_parameters": {
+            "_ColorMask": 15.0,
+            "_DissolveEdgeSoftness": 0.009999999776482582,
+            "_DissolveEdgeWidth": -1.0,
+            "_DissolveStrength": 0.0,
+            "_DissolveTexAdd": 0.0,
+            "_DistortionStrength": 0.0,
+            "_Dst": 10.0,
+            "_MainTexOffsetMulti": 1.0,
+            "_MainTexRotation": 0.0,
+            "_Scr": 5.0,
+            "_Stencil": 0.0,
+            "_StencilComp": 8.0,
+            "_StencilOp": 0.0,
+            "_StencilReadMask": 255.0,
+            "_StencilWriteMask": 255.0,
+            "_SubTex1OffsetMulti": 1.0,
+            "_SubTex1Rotation": 0.0,
+            "_UseAddMode": 0.0,
+            "_UseMainTexRAsAlpha": 0.0,
+            "_UseSubTex1RAsAlpha": 0.0,
+            "_UseUIAlphaClip": 0.0
+          },
+          "color_parameters": {
+            "_Color": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveEdgeColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_DistortionUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_MainTexHDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_MainTexUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_SubTex1HDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_SubTex1UVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          }
+        },
+        {
+          "name": "mat_fx_25052201_bossnode_flow",
+          "source": {
+            "member": "assets/yoo/DefaultPackage/01db71b2e539697ed1a9ca10877ef328.bundle",
+            "bundle_name": "assets_[00001]media_models_fx_material.bundle",
+            "bundle_hash": "01db71b2e539697ed1a9ca10877ef328",
+            "sha256": "653524e8999548ee14286f10eca067bad27dcb3e41dbc46d25b1f50c5fa39a50"
+          },
+          "textures": [
+            {
+              "slot": "_MainTex",
+              "name": "tex_fx_ice_2",
+              "path_id": "-7922060951471237808",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_flow_maintex.png",
+              "dimensions": [
+                256,
+                256
+              ],
+              "png_sha256": "87cf1ac09f4ed0bf96bf25d74b7f400ff84d359aeb52fd55aad0cfa74c6cf102"
+            },
+            {
+              "slot": "_MaskTex",
+              "name": "tex_fx_mask_17",
+              "path_id": "980127524191306380",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_flow_masktex.png",
+              "dimensions": [
+                128,
+                128
+              ],
+              "png_sha256": "5b44992b6dd9ae454c42ca8c7857ce864072782a93c056f86bd7ace700c8b18c"
+            }
+          ],
+          "float_parameters": {
+            "_ColorMask": 15.0,
+            "_DissolveEdgeSoftness": 0.009999999776482582,
+            "_DissolveEdgeWidth": -1.0,
+            "_DissolveStrength": 0.0,
+            "_DissolveTexAdd": 0.0,
+            "_DistortionStrength": 0.0,
+            "_Dst": 10.0,
+            "_MainTexOffsetMulti": 1.0,
+            "_MainTexRotation": 0.0,
+            "_Scr": 5.0,
+            "_Stencil": 0.0,
+            "_StencilComp": 8.0,
+            "_StencilOp": 0.0,
+            "_StencilReadMask": 255.0,
+            "_StencilWriteMask": 255.0,
+            "_SubTex1OffsetMulti": 1.0,
+            "_SubTex1Rotation": 0.0,
+            "_UseAddMode": 0.0,
+            "_UseMainTexRAsAlpha": 1.0,
+            "_UseSubTex1RAsAlpha": 0.0,
+            "_UseUIAlphaClip": 0.0
+          },
+          "color_parameters": {
+            "_Color": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveEdgeColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_DistortionUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_MainTexHDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_MainTexUVSpeed": {
+              "r": 0.0,
+              "g": 0.05000000074505806,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_SubTex1HDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_SubTex1UVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          }
+        },
+        {
+          "name": "mat_fx_25052201_bossnode_streamer",
+          "source": {
+            "member": "assets/yoo/DefaultPackage/01db71b2e539697ed1a9ca10877ef328.bundle",
+            "bundle_name": "assets_[00001]media_models_fx_material.bundle",
+            "bundle_hash": "01db71b2e539697ed1a9ca10877ef328",
+            "sha256": "653524e8999548ee14286f10eca067bad27dcb3e41dbc46d25b1f50c5fa39a50"
+          },
+          "textures": [
+            {
+              "slot": "_DistortionTex",
+              "name": "tex_fx_noise_46",
+              "path_id": "-8359895610716136523",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_streamer_distortiontex.png",
+              "dimensions": [
+                128,
+                128
+              ],
+              "png_sha256": "1b6244e1a65563e9bd3476e465b0feb1670cca10592ef2ef9f1217061083206d"
+            },
+            {
+              "slot": "_MainTex",
+              "name": "tex_fx_noise_36",
+              "path_id": "4207303105710877637",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_streamer_maintex.png",
+              "dimensions": [
+                128,
+                128
+              ],
+              "png_sha256": "31a24a74eb3fe4acc3f68200efc512ea21803e58d4f1f83789339583e528427e"
+            },
+            {
+              "slot": "_MaskTex",
+              "name": "tex_fx_mask_17",
+              "path_id": "980127524191306380",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_streamer_masktex.png",
+              "dimensions": [
+                128,
+                128
+              ],
+              "png_sha256": "5b44992b6dd9ae454c42ca8c7857ce864072782a93c056f86bd7ace700c8b18c"
+            }
+          ],
+          "float_parameters": {
+            "_ColorMask": 15.0,
+            "_DissolveEdgeSoftness": 0.009999999776482582,
+            "_DissolveEdgeWidth": -1.0,
+            "_DissolveStrength": 0.0,
+            "_DissolveTexAdd": 0.0,
+            "_DistortionStrength": 0.15000000596046448,
+            "_Dst": 10.0,
+            "_MainTexOffsetMulti": 1.0,
+            "_MainTexRotation": 0.0,
+            "_Scr": 5.0,
+            "_Stencil": 0.0,
+            "_StencilComp": 8.0,
+            "_StencilOp": 0.0,
+            "_StencilReadMask": 255.0,
+            "_StencilWriteMask": 255.0,
+            "_SubTex1OffsetMulti": 1.0,
+            "_SubTex1Rotation": 0.0,
+            "_UseAddMode": 0.0,
+            "_UseMainTexRAsAlpha": 1.0,
+            "_UseSubTex1RAsAlpha": 0.0,
+            "_UseUIAlphaClip": 0.0
+          },
+          "color_parameters": {
+            "_Color": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveEdgeColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_DistortionUVSpeed": {
+              "r": 0.0,
+              "g": 0.029999999329447746,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_MainTexHDRColor": {
+              "r": 1.4980392456054688,
+              "g": 1.4980392456054688,
+              "b": 1.4980392456054688,
+              "a": 1.0
+            },
+            "_MainTexUVSpeed": {
+              "r": 0.0,
+              "g": 0.029999999329447746,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_SubTex1HDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_SubTex1UVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          }
+        },
+        {
+          "name": "mat_fx_25052201_bossnode_particle",
+          "source": {
+            "member": "assets/yoo/DefaultPackage/01db71b2e539697ed1a9ca10877ef328.bundle",
+            "bundle_name": "assets_[00001]media_models_fx_material.bundle",
+            "bundle_hash": "01db71b2e539697ed1a9ca10877ef328",
+            "sha256": "653524e8999548ee14286f10eca067bad27dcb3e41dbc46d25b1f50c5fa39a50"
+          },
+          "textures": [
+            {
+              "slot": "_MainTex",
+              "name": "tex_fx_glow_11",
+              "path_id": "637520857906903213",
+              "source": {
+                "member": "assets/yoo/DefaultPackage/bfa3212db7fc22681294256f0c4ef36e.bundle",
+                "bundle_name": "share_assets_[00001]media_models_fx_texture.bundle",
+                "bundle_hash": "bfa3212db7fc22681294256f0c4ef36e",
+                "sha256": "81b5f8402e2a7a935166c5dbc607257a7921bab7c39b6227ee829247bba2ca56"
+              },
+              "resource": "res://assets/ui/route/chrome/boss_particle_maintex.png",
+              "dimensions": [
+                256,
+                256
+              ],
+              "png_sha256": "0d3af357cb6ed75a6716144396893aa3e4d70911d32579284d5a4ba102d1807a"
+            }
+          ],
+          "float_parameters": {
+            "_ColorMask": 15.0,
+            "_DissolveEdgeSoftness": 0.009999999776482582,
+            "_DissolveEdgeWidth": -1.0,
+            "_DissolveStrength": 0.0,
+            "_DissolveTexAdd": 0.0,
+            "_DistortionStrength": 0.0,
+            "_Dst": 10.0,
+            "_MainTexOffsetMulti": 1.0,
+            "_MainTexRotation": 0.0,
+            "_Scr": 5.0,
+            "_Stencil": 0.0,
+            "_StencilComp": 8.0,
+            "_StencilOp": 0.0,
+            "_StencilReadMask": 255.0,
+            "_StencilWriteMask": 255.0,
+            "_SubTex1OffsetMulti": 1.0,
+            "_SubTex1Rotation": 0.0,
+            "_UseAddMode": 0.0,
+            "_UseMainTexRAsAlpha": 0.0,
+            "_UseSubTex1RAsAlpha": 0.0,
+            "_UseUIAlphaClip": 0.0
+          },
+          "color_parameters": {
+            "_Color": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveEdgeColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_DissolveUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_DistortionUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_MainTexHDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_MainTexUVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            },
+            "_SubTex1HDRColor": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0,
+              "a": 1.0
+            },
+            "_SubTex1UVSpeed": {
+              "r": 0.0,
+              "g": 0.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          }
+        }
+      ],
+      "particles": [
+        {
+          "name": "25052201_bossnode_glow",
+          "duration": 1.0,
+          "looping": false,
+          "prewarm": false,
+          "lifetime": 1.0,
+          "start_color": {
+            "r": 1.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.3490196168422699
+          },
+          "rate": 0.0
+        },
+        {
+          "name": "25052201_bossnode_flow",
+          "duration": 1.0,
+          "looping": false,
+          "prewarm": false,
+          "lifetime": 1.0,
+          "start_color": {
+            "r": 1.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.501960813999176
+          },
+          "rate": 0.0
+        },
+        {
+          "name": "25052201_bossnode_streamer",
+          "duration": 2.5,
+          "looping": true,
+          "prewarm": true,
+          "lifetime": 5.0,
+          "start_color": {
+            "r": 1.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+          },
+          "rate": 0.0
+        },
+        {
+          "name": "25052201_bossnode_particle",
+          "duration": 1.0,
+          "looping": true,
+          "prewarm": true,
+          "lifetime": 2.5,
+          "start_color": {
+            "r": 1.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+          },
+          "rate": 25.0
+        }
+      ]
+    }
+  ],
+  "animations": [
+    {
+      "name": "CharaCardMove_Down",
+      "path_id": "-8838964545645609186",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": -220.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CharaCardMove_RightDown",
+      "path_id": "-7155731657466306416",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.25,
+              "value": 135.0
+            },
+            {
+              "time": 0.75,
+              "value": 370.0
+            },
+            {
+              "time": 1.0,
+              "value": 510.0
+            }
+          ]
+        },
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.25,
+              "value": 0.0
+            },
+            {
+              "time": 0.75,
+              "value": -215.0
+            },
+            {
+              "time": 1.0,
+              "value": -220.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SelectNode",
+      "path_id": "-6837432384682344964",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 2,
+      "curves": [
+        {
+          "path": "Box_Select",
+          "attribute": "m_ScaleCurves",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            {
+              "time": 0.5,
+              "value": {
+                "x": 1.100000023841858,
+                "y": 1.2000000476837158,
+                "z": 1.100000023841858
+              }
+            },
+            {
+              "time": 1.0,
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CharaCardMove_Up",
+      "path_id": "-6623472963831342828",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": 220.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CharaCardMove_Right",
+      "path_id": "-856537820712506511",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": 510.0
+            }
+          ]
+        },
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Anim_RoadMapNode_Init",
+      "path_id": "896984925705288456",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "Box_NodeState",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Image_Icon",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeState",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 110.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 0.0
+            },
+            {
+              "time": 0.3499999940395355,
+              "value": -20.0
+            },
+            {
+              "time": 0.44999998807907104,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "Image_Icon",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 170.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 0.0
+            },
+            {
+              "time": 0.3499999940395355,
+              "value": -20.0
+            },
+            {
+              "time": 0.44999998807907104,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeState",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeState",
+          "attribute": "m_SizeDelta.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 410.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 331.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeState",
+          "attribute": "m_SizeDelta.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 235.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 190.0
+            }
+          ]
+        },
+        {
+          "path": "Image_Icon",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "Image_Icon",
+          "attribute": "m_SizeDelta.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 130.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 110.0
+            },
+            {
+              "time": 1.0,
+              "value": 110.0
+            }
+          ]
+        },
+        {
+          "path": "Image_Icon",
+          "attribute": "m_SizeDelta.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 130.0
+            },
+            {
+              "time": 0.3333333432674408,
+              "value": 110.0
+            },
+            {
+              "time": 1.0,
+              "value": 110.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectRightUp",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.44999998807907104,
+              "value": 0.0
+            },
+            {
+              "time": 0.5166666507720947,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectRightUp_Active",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.44999998807907104,
+              "value": 0.0
+            },
+            {
+              "time": 0.5166666507720947,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectRight",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.4833333194255829,
+              "value": 0.0
+            },
+            {
+              "time": 0.6499999761581421,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectRight_Active",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.4833333194255829,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectRightDown",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.5166666507720947,
+              "value": 0.0
+            },
+            {
+              "time": 0.699999988079071,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectRightDown_Active",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.5166666507720947,
+              "value": 0.0
+            },
+            {
+              "time": 0.699999988079071,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectUp",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.6499999761581421,
+              "value": 0.0
+            },
+            {
+              "time": 0.7666666507720947,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeConnect/Image_ConnectDown",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.699999988079071,
+              "value": 0.0
+            },
+            {
+              "time": 0.8333333134651184,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Box_NodeIncrement",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.8333333134651184,
+              "value": 0.0
+            },
+            {
+              "time": 1.0,
+              "value": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CharaCardMove_RightUp",
+      "path_id": "4962164730123285242",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/837307ad8e4b6d24c96d17b8f042afb6.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_roadmap.bundle",
+        "bundle_hash": "837307ad8e4b6d24c96d17b8f042afb6",
+        "sha256": "8efa2842754ef8959ccd1343ad5e3aa0cf1ea6567318767ac8d0fab3e9e41ee0"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.x",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.25,
+              "value": 135.0
+            },
+            {
+              "time": 0.75,
+              "value": 370.0
+            },
+            {
+              "time": 1.0,
+              "value": 510.0
+            }
+          ]
+        },
+        {
+          "path": "Chara_Icon",
+          "attribute": "m_AnchoredPosition.y",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.25,
+              "value": 0.0
+            },
+            {
+              "time": 0.75,
+              "value": 215.0
+            },
+            {
+              "time": 1.0,
+              "value": 220.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Panel_RoadMapSelectOpen",
+      "path_id": "-5445173152929746032",
+      "source": {
+        "member": "assets/yoo/DefaultPackage/b1ba7caf22591374354e3a247f38e930.bundle",
+        "bundle_name": "share_assets_[00001]media_uires_animation_at_atpanel_roadmapselect.bundle",
+        "bundle_hash": "b1ba7caf22591374354e3a247f38e930",
+        "sha256": "d9ac47ea53abb77e33baa4ffc284542f95abb0b62f007ce6717eb7aaafd0e188"
+      },
+      "sample_rate": 60.0,
+      "wrap_mode": 0,
+      "curves": [
+        {
+          "path": "",
+          "attribute": "m_Alpha",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 0.0
+            },
+            {
+              "time": 0.30000001192092896,
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "path": "Container_Audio/audio_ui_turnpage",
+          "attribute": "m_IsActive",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 1.0
+            },
+            {
+              "time": 0.1666666716337204,
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "path": "AntiClick ",
+          "attribute": "m_IsActive",
+          "keys": [
+            {
+              "time": 0.0,
+              "value": 1.0
+            },
+            {
+              "time": 0.36666667461395264,
+              "value": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

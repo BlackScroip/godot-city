@@ -14,6 +14,20 @@ var systems:
 func _init(owner_systems) -> void:
 	_owner = weakref(owner_systems)
 
+static func sacrifice_spawn_eligible(room: Dictionary, elapsed_seconds: float, attrs: Dictionary = {}) -> bool:
+	if not is_finite(elapsed_seconds) or elapsed_seconds < 0.0: return false
+	if str(room.get("FightType", "")) != "Regular": return false
+	if str(room.get("EnemyClass", room.get("flow", room.get("Flow", "")))) != "Boss": return false
+	var data: Variant = room.get("FightData", {})
+	if not data is Dictionary: return false
+	var times: Variant = data.get("BossBattleRankTime", [])
+	if not times is Array or times.is_empty() or not (times[0] is int or times[0] is float): return false
+	if not is_finite(float(times[0])) or float(times[0]) <= 0.0: return false
+	# StartRegularFight scales and truncates each time limit before its strict comparison.
+	var multiplier := _f32(1.0 + _f32(_f32(int(attrs.get("BossRatingTimeAddRate", 0))) * _f32(0.001)))
+	var limit := int(_f32(_f32(int(times[0])) * multiplier))
+	return _f32(elapsed_seconds) < float(limit)
+
 func _records() -> Dictionary:
 	var counters: Dictionary = systems.profile.data.run.counters
 	if not counters.get(RECORDS) is Dictionary: counters[RECORDS] = {}
@@ -68,11 +82,11 @@ func _sacrifice_options(excluded: Array = [], count_override: int = -1) -> Array
 func choose_sacrifice(key: String, id: int) -> Dictionary:
 	if not _valid(key): return systems._fail("祭坛不可使用")
 	var record: Dictionary = _records().get(key, {})
-	if record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("献祭已结束")
+	if record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("净化已结束")
 	for option in record.options:
 		if int(option.id) != id: continue
 		var cost := int(option.hp_cost)
-		if float(systems.profile.data.run.max_health) <= cost: return systems._fail("生命上限不足")
+		if float(systems.profile.data.run.max_health) <= cost: return systems._fail("生命值不足，无法继续净化")
 		if not systems.can_add_loot(id): return systems._fail("物品不可领取")
 		adjust_max_health(-cost)
 		var result: Dictionary = systems.add_loot(id, false)
@@ -82,7 +96,7 @@ func choose_sacrifice(key: String, id: int) -> Dictionary:
 		record.options.erase(option)
 		record.selected.append(id)
 		record.taken = int(record.taken) + 1
-		return systems._done("献祭完成", id)
+		return systems._done("净化完成", id)
 	return systems._fail("物品不在祭坛候选中")
 
 func _commit_sacrifice_buys(record: Dictionary) -> void:
@@ -95,7 +109,7 @@ func _free_sacrifice_refresh(record: Dictionary) -> bool:
 func toggle_sacrifice_lock(key: String, id: int) -> Dictionary:
 	if not systems.is_loot_lock_unlocked(): return systems._fail("尚未解锁遗物锁定")
 	var record: Dictionary = _records().get(key, {})
-	if not _valid(key) or record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("献祭已结束")
+	if not _valid(key) or record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("净化已结束")
 	for option in record.options:
 		if int(option.id) != id: continue
 		option.locked = not bool(option.get("locked", false))
@@ -105,7 +119,7 @@ func toggle_sacrifice_lock(key: String, id: int) -> Dictionary:
 func refresh_sacrifice(key: String) -> Dictionary:
 	if not _valid(key): return systems._fail("祭坛不可使用")
 	var record: Dictionary = _records().get(key, {})
-	if record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("献祭已结束")
+	if record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("净化已结束")
 	var free := _free_sacrifice_refresh(record)
 	if not free and int(systems.profile.data.run.counters.get("SelectRefreshTime", 0)) <= 0: return systems._fail("重选次数不足")
 	_commit_sacrifice_buys(record)
@@ -125,11 +139,11 @@ func refresh_sacrifice(key: String) -> Dictionary:
 
 func finish_sacrifice(key: String) -> Dictionary:
 	var record: Dictionary = _records().get(key, {})
-	if not _valid(key) or record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("献祭已结束")
+	if not _valid(key) or record.is_empty() or record.get("closed", false) or str(record.kind) != "sacrifice": return systems._fail("净化已结束")
 	_commit_sacrifice_buys(record)
 	record.closed = true
 	systems._add(systems.profile.data.run.counters, "SelectLootRemainCount_Reward", -1)
-	return systems._done("献祭结束")
+	return systems._done("净化结束")
 
 func adjust_max_health(amount: int) -> void:
 	var run: Dictionary = systems.profile.data.run
@@ -230,5 +244,5 @@ func extra_buff_ids() -> Array:
 		if level > 0 and level <= levels.size(): result.append_array(Catalog.ids(levels[level - 1]))
 	return result.filter(func(id): return int(id) > 0)
 
-func _f32(value: float) -> float:
+static func _f32(value: float) -> float:
 	return PackedFloat32Array([value])[0]

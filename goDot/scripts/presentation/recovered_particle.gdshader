@@ -23,6 +23,8 @@ uniform bool billboard = false;
 uniform bool vertical_billboard = false;
 uniform bool stretched_billboard = false;
 uniform float stretch_length = 1.0;
+uniform float stretch_velocity = 0.0;
+uniform float stretch_speed = 0.0;
 uniform vec2 initial_rotation = vec2(0.0);
 uniform vec2 uv_scale = vec2(1.0);
 uniform vec2 uv_offset = vec2(0.0);
@@ -110,6 +112,7 @@ uniform vec4 source_fade_st = vec4(1.0, 1.0, 0.0, 0.0);
 uniform vec2 source_fade_wrap = vec2(0.0);
 uniform bool use_source_fade = false;
 uniform bool source_fade_input = false;
+uniform bool source_fade_vertex_alpha = false;
 uniform float source_fade_amount = -0.1;
 uniform float source_fade_power = 1.0;
 uniform float source_fade_transition = 0.075;
@@ -213,7 +216,9 @@ void vertex() {
         vec3 direction = normalize(MODEL_MATRIX[1].xyz);
         vec3 right = normalize(cross(direction, INV_VIEW_MATRIX[2].xyz) + INV_VIEW_MATRIX[0].xyz * 0.000001);
         vec3 forward = normalize(cross(right, direction));
-        MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(right * scale.x, 0.0), vec4(direction * scale.y * stretch_length, 0.0), vec4(forward * scale.z, 0.0), MODEL_MATRIX[3]);
+        float emitter_scale = (length(emitter_basis[0]) + length(emitter_basis[1]) + length(emitter_basis[2])) / 3.0;
+        float particle_length = scale.y * stretch_length + stretch_speed * stretch_velocity * emitter_scale;
+        MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(right * scale.x, 0.0), vec4(direction * particle_length, 0.0), vec4(forward * scale.z, 0.0), MODEL_MATRIX[3]);
     } else {
         float angle = INSTANCE_CUSTOM.x;
         VERTEX.xy = mat2(vec2(cos(angle), sin(angle)), vec2(-sin(angle), cos(angle))) * VERTEX.xy;
@@ -322,7 +327,8 @@ void fragment() {
         if (use_source_fade) {
             vec2 fade_base = distorted_uv + vec2(seed) + signed_fraction(source_fade_scroll * (clock + seed));
             float fade_sample = source_sample(source_fade, fade_base * source_fade_st.xy + source_fade_st.zw, source_fade_wrap).r;
-            float fade_value = clamp(1.0 + source_fade_amount - (source_fade_input ? stream0.y : 0.0), 0.0, 1.0);
+            float fade_vertex_alpha = source_fade_vertex_alpha ? COLOR.a : 0.0;
+            float fade_value = clamp(1.0 - fade_vertex_alpha + source_fade_amount - (source_fade_input ? stream0.y : 0.0), 0.0, 1.0);
             float threshold = fade_sample + 1.0 - 2.0 * min(pow(fade_value, source_fade_power), 1.0);
             float transition = max((1.0 - pow(1.0 - fade_value, 5.0)) * source_fade_transition, 0.01);
             float fade_alpha = smoothstep(0.0, transition, threshold);

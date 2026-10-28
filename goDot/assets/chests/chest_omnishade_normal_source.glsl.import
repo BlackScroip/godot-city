@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bmv6y6vuy8421"
+path="res://.godot/imported/chest_omnishade_normal_source.glsl-e32d1790d45a1d1deb777d47e864e5b4.res"
+
+[deps]
+
+source_file="res://assets/chests/chest_omnishade_normal_source.glsl"
+dest_files=["res://.godot/imported/chest_omnishade_normal_source.glsl-e32d1790d45a1d1deb777d47e864e5b4.res"]
+
+[params]
+

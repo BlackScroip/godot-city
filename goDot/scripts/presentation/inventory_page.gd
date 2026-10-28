@@ -9,6 +9,7 @@ const INK := Color("3d3430")
 const GOLD := Color("f0ce70")
 const ITEM_ART = preload("res://scripts/presentation/item_art.gd")
 const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
+const SOURCE_RICH_TEXT = preload("res://scripts/presentation/source_rich_text.gd")
 
 var owner_page: DungeonMenuPage
 var rows: Array = []
@@ -25,7 +26,7 @@ var detail: VBoxContainer
 var detail_icon: TextureRect
 var title_label: Label
 var name_label: Label
-var description_label: RichTextLabel
+var description_label: SourceRichText
 var action_bar: HBoxContainer
 var empty_label: Label
 var _catalog: DungeonCatalog
@@ -47,6 +48,7 @@ var filter_bar: HBoxContainer
 var filter_buttons: Array[Button] = []
 var inventory_filter := "all"
 var _spirit_skills: RefCounted
+var _ability_descriptions: RefCounted
 
 func configure(host: DungeonMenuPage, data: Array, page_context: Dictionary = {}) -> void:
 	owner_page = host
@@ -54,7 +56,9 @@ func configure(host: DungeonMenuPage, data: Array, page_context: Dictionary = {}
 	context = page_context
 	_catalog = context.get("catalog") as DungeonCatalog
 	_systems = context.get("systems")
-	if _systems != null: _spirit_skills = preload("res://scripts/domain/spirit_skills.gd").new(_systems)
+	if _systems != null:
+		_spirit_skills = preload("res://scripts/domain/spirit_skills.gd").new(_systems)
+		_ability_descriptions = preload("res://scripts/domain/ability_descriptions.gd").new(_systems)
 	for path in ["res://assets/ui/role_character/resource_map.json", "res://assets/ui/role_inventory/resource_map.json"]:
 		if FileAccess.file_exists(path):
 			var mapping = JSON.parse_string(FileAccess.get_file_as_string(path))
@@ -279,11 +283,7 @@ func _build_detail() -> void:
 	line.add_theme_stylebox_override("separator", rule)
 	line.custom_minimum_size.y = 1
 	detail.add_child(line)
-	description_label = RichTextLabel.new()
-	description_label.bbcode_enabled = true
-	description_label.fit_content = true
-	description_label.scroll_active = false
-	description_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	description_label = SOURCE_RICH_TEXT.new()
 	description_label.add_theme_color_override("default_color", INK)
 	description_label.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
 	description_label.add_theme_color_override("font_outline_color", Color("f5f2ea"))
@@ -318,13 +318,13 @@ func select_item(index_or_key: Variant) -> void:
 		child.queue_free()
 	if selected < 0:
 		name_label.text = "暂无精灵" if inventory_filter == "spirits" else "暂无物品"
-		description_label.text = ""
+		description_label.set_source("")
 		detail_icon.texture = null
 		return
 	var row: Dictionary = rows[selected]
 	name_label.text = _item_name(row)
 	detail_icon.texture = _item_texture(row)
-	description_label.text = _item_description(row)
+	description_label.set_source(_item_description(row))
 	for action in row.get("buttons", []):
 		var button := Button.new()
 		button.text = str(action.get("text", action.get("label", "开启")))
@@ -362,18 +362,23 @@ func _item_texture(row: Dictionary) -> Texture2D:
 	return _texture(key)
 
 func _item_description(row: Dictionary) -> String:
-	var text := str(row.get("description", ""))
+	var text := str(row.get("source_description", ""))
 	if text.is_empty() and _catalog != null:
-		var definition: Dictionary = _catalog.find("MaterialData", int(row.get("material_id", 0))) if row.has("material_id") else _catalog.find("AbilityItems", int(_catalog.find("LootData", int(row.get("loot_id", 0))).get("ability_item_id", row.get("loot_id", 0))))
-		text = DungeonCatalog.clean(DungeonCatalog.description(definition))
+		if row.has("material_id"):
+			text = DungeonCatalog.description(_catalog.find("MaterialData", int(row.material_id)))
+		else:
+			var loot_id := int(row.get("loot_id", 0))
+			var ability_id := int(_catalog.find("LootData", loot_id).get("ability_item_id", loot_id))
+			text = _ability_descriptions.source(ability_id, loot_id, context.get("combat")) if _ability_descriptions != null else DungeonCatalog.description(_catalog.find("AbilityItems", ability_id))
+	if text.is_empty(): text = str(row.get("description", ""))
 	var acquisition := str(row.get("acquisition", ""))
-	if not acquisition.is_empty(): text += "\n[color=#af810e]获取途径：[/color]" + acquisition
+	if not acquisition.is_empty(): text += "\n<color=#af810e>获取途径：</color>" + acquisition
 	if _is_spirit(row):
 		var spirit: Dictionary = _spirit_skills.definition(int(row.loot_id))
-		text = "[color=#886115]已附加 · %s[/color]\n\n%s" % [spirit.grade, text]
+		text = "<color=#886115>已附加 · %s</color>\n\n%s" % [spirit.grade, text]
 		var options: Array = _spirit_skills.upgrade_options(int(row.loot_id))
 		if not options.is_empty():
-			text += "\n\n[color=#886115]进阶与融合[/color]"
+			text += "\n\n<color=#886115>进阶与融合</color>"
 			for option in options:
 				text += "\n%s · %s" % [option.name, "可获取" if option.available else "未满足条件"]
 				if not option.available and not str(option.requirement).is_empty(): text += "\n" + str(option.requirement)
@@ -438,6 +443,7 @@ func _adapt() -> void:
 	name_label.add_theme_constant_override("outline_size", 3 if _compact else 5)
 	description_label.add_theme_font_size_override("normal_font_size", 13 if _compact else 23)
 	description_label.add_theme_font_size_override("bold_font_size", 13 if _compact else 23)
+	description_label.set_source(description_label.source_text)
 	detail.add_theme_constant_override("separation", 8 if _compact else 14)
 	for button in action_bar.get_children():
 		button.custom_minimum_size = Vector2(64, 30) if _compact else Vector2(100, 48)

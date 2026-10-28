@@ -5,6 +5,11 @@ var failures: Array[String] = []
 var commands: Array = []
 var rendered := false
 
+class PageRecorder extends DungeonHud:
+	var captured_rows: Array = []
+	func show_page(_title: String, rows: Array, _layout := "list", _context: Dictionary = {}) -> void:
+		captured_rows = rows
+
 func _initialize() -> void:
 	_run.call_deferred()
 
@@ -30,18 +35,17 @@ func _run() -> void:
 	page.command.connect(func(kind, id, extra): commands.append([kind, id, extra]))
 	var catalog := DungeonCatalog.new()
 	check(catalog.load_all(), "Source catalog loads")
-	var rows: Array = []
-	for id in [106, 112, 113]:
-		var source := catalog.find("CharTalentData", id)
-		var levels := DungeonCatalog.ids(source.get("level_data_id_list", ""))
-		var level := catalog.find("CharTalentLevelData", levels[0]) if not levels.is_empty() else {}
-		rows.append({"config_id": id, "title": source.get("name", ""), "icon": source.get("icon_name", ""), "target_level": 1, "description": DungeonCatalog.clean(source.get("description", "")), "level_description": DungeonCatalog.clean(level.get("effect_description", "")), "buttons": [{"action": "choose_talent", "id": id, "extra": "selection-proof"}]})
-	rows[0]["marked"] = true
+	var rows := _real_reward_rows(catalog)
 	page.display("选择角色天赋", rows, "talent")
 	var view = page.special.get_child(0)
 	await settle()
 	check(view.selected == -1 and not view.selection_effect.visible, "An unopened choice has no selected card or selection effect")
 	check(view.parts.all(func(part): return not part.choose.visible), "Confirmation is hidden until a card is selected")
+	check(view.parts.all(func(part): return not part.level_description.visible), "Only the selected card reveals its level details")
+	check(view.parts[0].description is SourceRichText and view.parts[0].description.text.contains("[color=#f28e00]"), "The real reward row retains the source orange enhanced-heavy phrase")
+	check(view.parts[1].description.text.contains("[color=#ff8029]剑心[/color]") and view.parts[1].description.text.contains("[color=#ff4f4f]攻击力[/color]"), "The real reward UI preserves orange sword-heart and red attack words")
+	check(view.parts[2].description.text.contains("[color=#e99f0d]普通攻击[/color]") and view.parts[2].description.text.contains("[img="), "Ordinary attacks retain their source color and inline artwork")
+	check(view.parts[1].description.text.contains(SourceRichText.sprite_path("buff_jianxin")) and view.parts[1].description.text.contains(SourceRichText.sprite_path("buff_gongjili")), "The UI loads the actual recovered keyword sprites")
 	view.parts[0].choose.pressed.emit()
 	check(commands.is_empty(), "A hidden unselected confirmation cannot grant a reward")
 	for dimensions in [Vector2i(2460, 1080), Vector2i(1600, 900), Vector2i(844, 390)]:
@@ -58,6 +62,8 @@ func _run() -> void:
 			check(commands.is_empty(), "Preview never submits a reward %s/%d" % [dimensions, index])
 			check(view.parts[index].panel.scale.is_equal_approx(Vector2.ONE * 1.08), "Selected card reaches the reference enlargement %s/%d" % [dimensions, index])
 			check(view.parts[index].choose.visible and view.selection_effect.visible, "Selected card exposes confirmation and light %s/%d" % [dimensions, index])
+			check(view.parts[index].level_description.visible and view.parts[index].level_description.text.contains("[color=#f18800]等级1："), "Selected card shows the current target level in orange")
+			check(view.parts[index].level_description.text.contains("[color=#b4b4b4]等级2：") and view.parts[index].level_description.text.contains("[color=#b4b4b4]等级3："), "Other source levels are visible with subdued emphasis")
 			for other in range(3):
 				check(view.parts[other].slot.get_global_rect().is_equal_approx(before[other]), "Selecting never moves its stable card slot")
 				if other != index:
@@ -74,6 +80,13 @@ func _run() -> void:
 			await RenderingServer.frame_post_draw
 			var lit := canvas.get_texture().get_image()
 			lit.save_png("res://reports/character-complete-selected-%dx%d.png" % [dimensions.x, dimensions.y])
+			var colored_words := 0
+			var description_area: Rect2 = view.parts[1].description.get_global_rect().intersection(view.parts[1].scroll.get_global_rect())
+			for y in range(int(description_area.position.y), int(description_area.end.y)):
+				for x in range(int(description_area.position.x), int(description_area.end.x)):
+					var word := lit.get_pixel(x, y)
+					if word.r > 0.65 and word.r > word.g * 1.25 and word.g > word.b * 1.1: colored_words += 1
+			check(colored_words > 15, "Source orange/red keywords appear in actual rendered text %s" % dimensions)
 			view.selection_effect.hide()
 			await RenderingServer.frame_post_draw
 			var unlit := canvas.get_texture().get_image()
@@ -93,9 +106,18 @@ func _run() -> void:
 			check(lit.get_data() != animated.get_data(), "Selection light and source stars animate %s" % dimensions)
 	view.parts[2].choose.pressed.emit()
 	view.parts[2].choose.pressed.emit()
-	check(commands == [["choose_talent", 113, "selection-proof"]], "Repeated confirmation emits the exact selected reward only once")
+	check(commands == [["choose_talent", 118, "selection-proof"]], "Repeated confirmation emits the exact selected reward only once")
 	view._select(0)
 	check(view.selected == 2, "A submitted choice cannot change while completion is pending")
+	var second_level_rows: Array = rows.duplicate(true)
+	second_level_rows[2].target_level = 2
+	second_level_rows[2].buttons[0].disabled = true
+	page.display("选择角色天赋", second_level_rows, "talent")
+	view = page.special.get_child(0)
+	view._select(2)
+	check(view.parts[2].level_description.text.contains("[color=#f18800]等级2：") and view.parts[2].level_description.text.contains("[color=#b4b4b4]等级1："), "Upgraded candidates highlight their actual target level rather than always level one")
+	view.parts[2].choose.pressed.emit()
+	check(commands.size() == 1, "Disabled source actions stay blocked after preview selection")
 	page.queue_free()
 	canvas.queue_free()
 	await process_frame
@@ -105,3 +127,29 @@ func _run() -> void:
 	file.close()
 	print("CHARACTER_COMPLETE_SELECTION ", JSON.stringify(report))
 	quit(0 if failures.is_empty() else 1)
+
+func _real_reward_rows(catalog: DungeonCatalog) -> Array:
+	var game = load("res://scripts/main.gd").new()
+	game.catalog = catalog
+	game.profile = DungeonProfile.new()
+	game.profile.data.character_levels["1"] = 15
+	game.systems = DungeonSystems.new(catalog, game.profile)
+	game.hud = PageRecorder.new()
+	game.menus = DungeonMenus.new(game)
+	game.save_store = DungeonSaveStore.new("/private/tmp/character-selection-%d.json" % Time.get_ticks_usec())
+	check(game.systems.begin_run(817024, 1, 100).success, "Actual reward flow starts a run")
+	game.profile.data.run["talent_rewards"] = []
+	game.systems.queue_character_talent_reward("High")
+	var reward: Dictionary = game.systems.pending_character_talent_reward()
+	reward.choices = [107, 116, 118]
+	reward.levels = {"107": 1, "116": 1, "118": 1}
+	reward.key = "selection-proof"
+	game.systems.toggle_character_talent_mark(107)
+	game._talent_rewards()
+	var rows: Array = game.hud.captured_rows
+	check(rows[0].source_description == catalog.find("CharTalentData", 107).description and rows[2].talent_level_descriptions.size() == 3, "Real gameplay forwards untouched source text and every talent level to the UI")
+	game.hud.free()
+	game.ads.free()
+	game.resource_audio.free()
+	game.free()
+	return rows

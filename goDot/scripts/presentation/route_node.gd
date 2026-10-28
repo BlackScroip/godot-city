@@ -8,6 +8,7 @@ var chosen := false:
 		if chosen == value: return
 		chosen = value
 		if is_node_ready(): _animate_selection()
+		if is_node_ready(): _sync_boss_effect()
 		queue_redraw()
 var visited := false
 var portrait: Texture2D
@@ -18,6 +19,7 @@ const ROOM_OUTLINE_UV = Rect2(21.0 / 331.0, 21.0 / 190.0, 289.0 / 331.0, 148.0 /
 const SELECTED_FRAME_SIZE = Vector2(ROOM_CONTENT_SCALE / ROOM_OUTLINE_UV.size.x, ROOM_CONTENT_SCALE / ROOM_OUTLINE_UV.size.y)
 const SELECTION_PEAK_SCALE = 1.055
 const WORLD_SELECTED_FRAME_SCALE = 1.12
+const BOSS_EFFECT = preload("res://scripts/presentation/route_boss_effect.gd")
 const BADGE_ART = "res://assets/ui/route/badges/"
 const BADGE_IDS = {"gold": "70001", "magic": "70002", "mineral": "10000", "partner": "13006", "spirit": "13008"}
 const BADGE_ICON_SIZES = {"gold": Vector2(1, 55.0 / 60), "magic": Vector2(1, 55.0 / 60), "mineral": Vector2(46.0 / 60, 55.0 / 60), "partner": Vector2(54.0 / 60, 55.0 / 60), "spirit": Vector2(44.0 / 60, 57.5 / 60)}
@@ -39,6 +41,7 @@ var _badge_alpha := 1.0:
 		queue_redraw()
 var _selection_tween: Tween
 var _reveal_tween: Tween
+var boss_effect
 static var icons: Array[AtlasTexture] = []
 
 func _ready() -> void:
@@ -54,8 +57,18 @@ func _ready() -> void:
 	if room.get("vertical", false): tooltip_text += "（换路消耗 %d 点刻印圣典）" % int(room.get("shift_cost", 1))
 	if not available and portrait == null and not room.get("selectable", false): tooltip_text += "（已通过）" if visited else "（后续路线）"
 	resized.connect(queue_redraw)
+	resized.connect(_sync_boss_effect)
 	visibility_changed.connect(_animate_selection)
+	if room.get("map_mode", "rooms") != "world" and room.get("flow", "") == "Boss" and not room.get("is_hidden", false):
+		boss_effect = BOSS_EFFECT.new()
+		boss_effect.name = "BossEffect"
+		add_child(boss_effect)
+		_sync_boss_effect()
 	if chosen: _animate_selection()
+
+func _sync_boss_effect() -> void:
+	if not is_instance_valid(boss_effect): return
+	boss_effect.configure(_selected_frame_rect(SELECTION_PEAK_SCALE), 1.0 if available or chosen else 0.0)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED: queue_redraw()

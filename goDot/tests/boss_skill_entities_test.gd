@@ -53,6 +53,7 @@ func _boss(id: int, action: String, select: Callable) -> Dictionary:
 			var emit: Dictionary = raw.get("EmitProperty", {})
 			var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
 			var offset = DungeonWorld.vector(emit.get("EmitOffset", {})) + Basis(Vector3.UP, yaw) * DungeonWorld.vector(emit.get("AfterRotateEmitOffset", {}))
+			if raw.get("EmitType", "") == "EET_MultiPoint": offset = DungeonWorld.vector(emit.PointData[0].Offset)
 			var center: Vector3 = point + DungeonProjectile.orient(offset, boss.facing)
 			world.player.position = center
 			world._consume(boss, event)

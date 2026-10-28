@@ -74,7 +74,13 @@ func _run() -> void:
 	check(not view._roster_overlay.visible, "Selection returns to the source details page")
 	check(_events.back() == ["page:awakening", 1, 0], "Browsing a locked character never equips it")
 	view.action_bar.get_child(0).pressed.emit()
-	check(_events.back() == ["op:unlock_character", 2, 0], "Recruit forwards the existing unlock contract")
+	check(is_instance_valid(view._recruit_overlay) and view._recruit_overlay.confirm_button.disabled, "Recruit exposes exact source costs and unavailable reason before spending")
+	profile.data.buildings["1"] = 1
+	systems.grant_material(502, 10)
+	view._recruit_overlay.refresh()
+	view._recruit_overlay.confirm_button.pressed.emit()
+	check(_events.back() == ["op:unlock_character", 2, 0], "Recruit confirmation forwards the existing unlock contract")
+	profile.data.materials["502"] = 0
 	view.navigation[1].pressed.emit()
 	check(_events.back() == ["page:weapons", 2, 0], "Weapon navigation follows browsed character")
 	view.navigation[2].pressed.emit()
@@ -96,7 +102,7 @@ func _run() -> void:
 		check(view.action_bar.get_global_rect().end.y <= view.get_global_rect().end.y, "Progression commands remain visible " + str(dimensions))
 		var back_rect = view._back_button.get_global_rect()
 		var factor = minf(dimensions.x / 2048.0, dimensions.y / 900.0)
-		check(back_rect.position.is_equal_approx(Vector2(20, 14) * factor) and back_rect.size.is_equal_approx(Vector2(120, 100) * factor), "Shared back button fits source geometry " + str(dimensions))
+		check(back_rect.position.is_equal_approx((Vector2(20, 14) * factor).max(Vector2(12, 8))) and back_rect.size.is_equal_approx((Vector2(120, 100) * factor).max(Vector2(44, 44))), "Shared back button fits source geometry and touch minimum " + str(dimensions))
 		check(view.navigation.back().get_global_rect().end.y <= view.get_global_rect().end.y, "All left navigation remains visible " + str(dimensions))
 		var stats = view.detail.get_node("SourceAttributes")
 		check(stats.get_child_count() == 5, "Five original attribute icons and values exist " + str(dimensions))
@@ -144,7 +150,7 @@ func _run() -> void:
 	for step in 4: await process_frame
 	view._fashion_overlay.swatches[1].pressed.emit()
 	check(view._selected_fashion().id == 1002 and view._fashion_overlay.visible, "Selecting a swatch previews it inside the fashion page")
-	check(view._fashion_overlay._model_button.disabled, "Unrecovered alternate 3D is disabled")
+	check(not view._fashion_overlay._model_button.disabled, "Recovered alternate fashion exposes its exact 3D preview")
 	check(host.page_context.fashion_open and host.page_context.selected_fashion == 1002, "Fashion selection survives a command refresh")
 	var action = view._fashion_overlay.find_child("FashionAction", true, false)
 	check(action.disabled, "Insufficient material disables fashion purchase")

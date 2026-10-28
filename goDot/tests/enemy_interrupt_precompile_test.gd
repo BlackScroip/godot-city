@@ -23,10 +23,11 @@ func _run() -> void:
 		_source_actions(enemy, catalog.actions)
 		_runtime(enemy)
 	_predicate_cases()
+	_pending_payload_cases()
 	_transition_cases()
 	_reconfiguration()
 	check(catalog == unchanged, "Compilation and evaluation preserve the entire source catalog")
-	var report := {"passed": failures.is_empty(), "checks": checks, "failures": failures, "enemies": catalog.enemies.size(), "source_action_pairs": action_pairs, "source_predicate_types": source_predicates.keys(), "scope": "Exact original-interpreter comparisons of full snapshots, pending events, emitted events and impact timers. Every source enemy/action, authored boundary/epsilon, dynamic properties, mixed 30/60/120Hz AI and combat ticks, JSON restore, all implemented/unknown predicate kinds, source order, cycle yield and the 12-transition guard."}
+	var report := {"passed": failures.is_empty(), "checks": checks, "failures": failures, "enemies": catalog.enemies.size(), "source_action_pairs": action_pairs, "source_predicate_types": source_predicates.keys(), "scope": "Independent-interpreter comparisons of full snapshots, pending events, emitted events and impact timers, including source payload-before-interrupt ordering. Every source enemy/action, authored boundary/epsilon, dynamic properties, mixed 30/60/120Hz AI and combat ticks, JSON restore, all implemented/unknown predicate kinds, source order, cycle yield and the 12-transition guard."}
 	FileAccess.open("res://reports/enemy-interrupt-precompile.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("ENEMY_INTERRUPT_PRECOMPILE ", JSON.stringify(report))
 	quit(0 if failures.is_empty() else 1)
@@ -77,7 +78,9 @@ func _source_actions(enemy: Dictionary, actions: Array) -> void:
 			for actor in pair:
 				actor.clear_impact_state()
 				actor.frozen = 0
+				actor.health = actor.max_health
 				actor._start(action, 0)
+				actor.tick(0.0)
 				actor.health = 0 if index % 7 == 6 else actor.max_health
 				actor.custom_properties["OP_AIAction"] = probe.get("request", ["idle", "run", "attack1"][index % 3])
 				actor.custom_properties["AttackModeStr"] = "satk" if index % 3 == 0 else "normal"
@@ -165,6 +168,29 @@ func _fixture(actions: Array) -> Array:
 		actor._start(actions[0], 0)
 		actor.drain_events()
 	return pair
+
+func _pending_payload_cases() -> void:
+	var payload := {"enabled": true, "type": "EET_SetCustomPropertyInt32", "time": 0.0, "duration": 0.0, "raw": "{\"Property\":\"InitialPayload\",\"Value\":1}"}
+	var pair := _fixture([_action("entry", [payload, _command("done")]), _action("done", [])])
+	for actor in pair: actor._tick_enemy_interrupts()
+	_equal(pair, "Initial payload blocks an otherwise eligible interrupt")
+	check(pair[0].current_action == "entry" and not pair[0].custom_properties.has("InitialPayload"), "Initial action remains until its due payload executes")
+	for actor in pair: actor.tick(0.0)
+	_equal(pair, "Initial payload is executed without advancing action time")
+	check(pair[0].current_action == "entry" and pair[0].custom_properties.get("InitialPayload", 0) == 1, "Zero tick executes the initial payload before interrupt evaluation")
+	for actor in pair: actor._tick_enemy_interrupts()
+	_equal(pair, "Consumed initial payload permits the interrupt")
+	check(pair[0].current_action == "done", "Initial action interrupts after its payload has executed")
+	pair = _fixture([_action("entry", [_command("middle")]), _action("middle", [payload, _command("done")]), _action("done", [])])
+	for actor in pair: actor._tick_enemy_interrupts()
+	_equal(pair, "Transition waits at the next action's due payload")
+	check(pair[0].current_action == "middle" and not pair[0].custom_properties.has("InitialPayload"), "A newly entered action cannot skip its initial payload")
+	for actor in pair: actor.tick(0.0)
+	_equal(pair, "New action payload executes before continuing the chain")
+	check(pair[0].current_action == "middle" and pair[0].custom_properties.get("InitialPayload", 0) == 1, "New action remains active while its initial payload executes")
+	for actor in pair: actor._tick_enemy_interrupts()
+	_equal(pair, "Consumed new action payload permits the next transition")
+	check(pair[0].current_action == "done", "The action chain continues after the new payload has executed")
 
 func _transition_cases() -> void:
 	var first := _command("first")

@@ -46,6 +46,7 @@ func configure(_host, _rows: Array, context: Dictionary) -> void:
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	title_label.minimum_size_changed.connect(_fit_title_height.call_deferred)
 	add_child(title_label)
 	divider = _picture("11")
 	divider.stretch_mode = TextureRect.STRETCH_SCALE
@@ -55,7 +56,6 @@ func configure(_host, _rows: Array, context: Dictionary) -> void:
 	add_child(story_scroll)
 	story = RICH_TEXT.new()
 	story.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	story.add_theme_font_override("normal_font", DungeonStyle.font())
 	story.add_theme_color_override("default_color", Color.WHITE)
 	story.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.75))
 	story.add_theme_constant_override("shadow_offset_y", 1)
@@ -74,26 +74,22 @@ func configure(_host, _rows: Array, context: Dictionary) -> void:
 		button.tooltip_text = DungeonCatalog.clean(choice.get("reason", ""))
 		button.set_meta("choice", choice)
 		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
-			var style := StyleBoxTexture.new()
-			style.texture = _texture("几何ui-暗圆角矩形")
-			style.texture_margin_left = 26
-			style.texture_margin_right = 26
-			style.texture_margin_top = 26
-			style.texture_margin_bottom = 26
-			style.modulate_color = Color("fff0ba") if state in ["hover", "focus"] else Color("cccccc") if state == "pressed" else Color.WHITE
-			button.add_theme_stylebox_override(state, style)
-		var paper := _picture("几何ui-白圆角矩形")
-		paper.stretch_mode = TextureRect.STRETCH_SCALE
+			button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+		var frame := _choice_surface("几何ui-暗圆角矩形", Vector4(38, 39, 38, 39))
+		frame.name = "ChoiceFrame"
+		button.add_child(frame)
+		var paper := _choice_surface("几何ui-白圆角矩形", Vector4(38, 38, 38, 40))
+		paper.name = "ChoicePaper"
 		paper.modulate = Color("aaaaaa") if button.disabled else Color.WHITE
 		button.add_child(paper)
-		paper.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		paper.offset_left = 7
-		paper.offset_right = -7
-		paper.offset_top = 7
-		paper.offset_bottom = -7
+		button.mouse_entered.connect(func(): frame.modulate = Color("fff0ba"))
+		button.mouse_exited.connect(func(): frame.modulate = Color.WHITE)
+		button.focus_entered.connect(func(): frame.modulate = Color("fff0ba"))
+		button.focus_exited.connect(func(): frame.modulate = Color.WHITE)
+		button.button_down.connect(func(): paper.modulate = Color("dddddd"))
+		button.button_up.connect(func(): paper.modulate = Color.WHITE)
 		var label := RICH_TEXT.new()
 		label.name = "ChoiceText"
-		label.add_theme_font_override("normal_font", DungeonStyle.font())
 		label.add_theme_color_override("default_color", Color("716247") if button.disabled else Color("79531e"))
 		button.add_child(label)
 		button.pressed.connect(func():
@@ -143,16 +139,33 @@ func _picture(key: String) -> TextureRect:
 	image.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return image
 
+func _choice_surface(key: String, borders: Vector4) -> NinePatchRect:
+	var surface := NinePatchRect.new()
+	surface.texture = _texture(key)
+	surface.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# Borders are the recovered Unity sprite's left/top/right/bottom slice widths.
+	surface.patch_margin_left = int(borders.x)
+	surface.patch_margin_top = int(borders.y)
+	surface.patch_margin_right = int(borders.z)
+	surface.patch_margin_bottom = int(borders.w)
+	return surface
+
+func _fit_title_height() -> void:
+	if not is_instance_valid(title_label): return
+	# Label wrapping settles after its width changes; discard the old multiline height.
+	title_label.size.y = maxf(40 if size.y < 600 else 64, title_label.get_minimum_size().y)
+
 func _layout() -> void:
 	if not is_instance_valid(story) or size.x <= 0 or size.y <= 0: return
 	var compact := size.y < 600
 	var portrait := size.x < size.y
 	var content_x := size.x * 0.43 if not portrait else 20.0
 	var content_width := size.x * 0.50 if not portrait else size.x - 40.0
-	var title_y := size.y * 0.095 if not portrait else size.y * 0.25
+	var title_y := maxf(size.y * 0.095, 58 if compact else 72) if not portrait else size.y * 0.25
 	var title_height := 40.0 if compact else 64.0
 	back_button.position = Vector2(14, 12)
 	NAVIGATION.configure_header_back_button(back_button, size, "返回")
+	back_button.size = NAVIGATION.header_button_size(size)
 	resource_bar.position = Vector2(size.x - (270 if compact or portrait else 390), 16)
 	resource_bar.size = Vector2(250 if compact or portrait else 370, 36 if compact else 48)
 	for counter in resource_bar.get_children():
@@ -170,6 +183,7 @@ func _layout() -> void:
 	title_label.position = Vector2(content_x, title_y)
 	title_label.size = Vector2(content_width, title_height)
 	title_label.add_theme_font_size_override("font_size", 24 if compact or portrait else 36)
+	_fit_title_height.call_deferred()
 	divider.position = Vector2(content_x + content_width * 0.08, title_y + title_height + 2)
 	divider.size = Vector2(content_width * 0.84, 16 if compact else 24)
 	var story_top := divider.position.y + divider.size.y + (8 if compact else 14)
@@ -186,6 +200,13 @@ func _layout() -> void:
 
 func _layout_choice(button: Button) -> void:
 	var compact := size.y < 600 or size.x < size.y
+	var surface_scale := 0.5 if compact else 0.65
+	for surface_name in ["ChoiceFrame", "ChoicePaper"]:
+		var surface: NinePatchRect = button.get_node(surface_name)
+		var inset := 4.0 if surface_name == "ChoicePaper" else 0.0
+		surface.position = Vector2.ONE * inset
+		surface.scale = Vector2.ONE * surface_scale
+		surface.size = (button.size - Vector2.ONE * inset * 2) / surface_scale
 	var label: RichTextLabel = button.get_node("ChoiceText")
 	label.add_theme_font_size_override("normal_font_size", 16 if compact else 24)
 	var padding := 18.0 if compact else 30.0

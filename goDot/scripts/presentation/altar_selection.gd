@@ -1,6 +1,5 @@
 extends "res://scripts/presentation/talent_selection.gd"
 
-const RichSource = preload("res://scripts/presentation/source_rich_text.gd")
 const ALTAR_PATH := "res://assets/ui/altar/"
 
 var help_button: Button
@@ -11,6 +10,7 @@ static var _loot_tags: Dictionary = {}
 
 func configure(page: DungeonMenuPage, rows: Array) -> void:
 	super.configure(page, rows)
+	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
 	# Collection choices share the source talent card, with their own action bar.
 	for child in toolbar.get_children():
 		if child == character_button: continue
@@ -83,18 +83,25 @@ func _build_card(row: Dictionary) -> void:
 	if row.has("hp_cost"):
 		var health := HBoxContainer.new()
 		health.alignment = BoxContainer.ALIGNMENT_CENTER
+		health.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		health.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		var health_icon := DungeonStyle.picture(str(Palette.data().resources["生命值降低"]), Vector2(28, 28))
 		health.add_child(health_icon)
 		var price := _label("-%d" % int(row.hp_cost), 24, Color("c91630"), true)
 		price.autowrap_mode = TextServer.AUTOWRAP_OFF
 		health.add_child(price)
-		add_child(health)
+		var health_slot := MarginContainer.new()
+		health_slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		health_slot.add_theme_constant_override("margin_top", 2)
+		health_slot.add_theme_constant_override("margin_bottom", 6)
+		health_slot.add_child(health)
+		part.stack.add_child(health_slot)
+		part.stack.move_child(health_slot, part.title.get_index())
 		part["health"] = health
 	if row.has("lock_command") and bool(row.get("lock_visible", true)):
 		var entry: Dictionary = row.lock_command
 		var lock := _tool_button("", "锁", "解锁候选物" if bool(row.get("locked", false)) else "锁定候选物，重选时保留")
-		lock.name = "SacrificeLock"
+		lock.name = "SacrificeLock_%d" % (parts.size() - 1)
 		lock.icon = Palette.texture("lock_1" if bool(row.get("locked", false)) else "unlock_1")
 		lock.toggle_mode = true
 		lock.button_pressed = bool(row.get("locked", false))
@@ -130,6 +137,7 @@ func _adapt() -> void:
 			badge.add_theme_stylebox_override("panel", style)
 		part.description.add_theme_font_size_override("normal_font_size", maxi(14, int(28 * factor)))
 		part.description.set_source(part.description.source_text)
+		part.scroll.custom_minimum_size.y = 40
 		part.footer.custom_minimum_size.y = maxf(26, 84 * factor)
 		part.choose.custom_minimum_size = Vector2(0, maxf(26, 60 * factor))
 		if part.has("health"):
@@ -148,7 +156,15 @@ func _adapt() -> void:
 
 func _fit_toolbar() -> void:
 	super._fit_toolbar()
-	if is_instance_valid(heading): heading.size.x = maxf(0, toolbar.position.x - heading.position.x - 16)
+	if is_instance_valid(heading):
+		heading.size = Vector2(maxf(0, toolbar.position.x - heading.position.x - 16), back_button.size.y)
+
+func _fit_cards() -> void:
+	super._fit_cards()
+	if not is_instance_valid(cards) or size.y >= 600: return
+	if not parts.any(func(part): return part.has("health")): return
+	cards.position.y = size.y * 0.15
+	cards.size.y = size.y * 0.80
 
 func _update_separators() -> void:
 	super._update_separators()
@@ -158,10 +174,6 @@ func _update_separators() -> void:
 			var icon_rect: Rect2 = part.icon_frame.get_global_rect()
 			part.book.position = Vector2(icon_rect.end.x - global_position.x - part.book.size.x * 0.5, icon_rect.position.y - global_position.y - part.book.size.y * 0.3)
 		if part.has("lock"): part.lock.position = part.panel.global_position - global_position + Vector2(10, 30) * factor
-		if part.has("health"):
-			var icon_rect: Rect2 = part.icon_frame.get_global_rect()
-			part.health.size = part.health.get_combined_minimum_size()
-			part.health.position = Vector2(icon_rect.get_center().x - global_position.x - part.health.size.x * 0.5, icon_rect.end.y - global_position.y - part.health.size.y * 0.4)
 
 func _show_help() -> void:
 	if is_instance_valid(help_dialog):

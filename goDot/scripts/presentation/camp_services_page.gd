@@ -333,7 +333,15 @@ func _show_detail() -> void:
 		details.add_child(preview)
 		preview.custom_minimum_size = Vector2(0, 160 if compact else 280)
 		preview.show_model(str(row.model))
-	if not str(row.get("description", "")).strip_edges().is_empty():
+	if not str(row.get("source_description", "")).strip_edges().is_empty():
+		var description = preload("res://scripts/presentation/source_rich_text.gd").new()
+		description.name = "SourceDescription"
+		description.add_theme_font_size_override("normal_font_size", 16 if compact else 20)
+		description.add_theme_color_override("default_color", INK)
+		description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		description.set_source(str(row.source_description).strip_edges())
+		details.add_child(description)
+	elif not str(row.get("description", "")).strip_edges().is_empty():
 		details.add_child(_label(str(row.description).strip_edges(), 16 if compact else 20))
 	if row.has("progress") and row.has("required"):
 		var bar = ProgressBar.new()

@@ -58,7 +58,13 @@ def inspect(apk, project, recover_lines=False):
 
             record = {"address": address, "asset_path": asset["path"],
                       "bundle_hash": bundles[asset["bundle"]]["hash"], "bundle_sha256": primary_sha,
-                      "layout": {}, "lines": [], "sprite_checks": {}}
+                      "layout": {}, "lines": [], "sprite_checks": {}, "slot_style": {}, "transforms": {}}
+            for key, tree in transforms.items():
+                path = hierarchy(key)
+                if address == "ATSlot_RoadMapNode":
+                    record["transforms"][path] = {field: tree[field] for field in (
+                        "m_AnchorMin", "m_AnchorMax", "m_AnchoredPosition", "m_SizeDelta",
+                        "m_Pivot", "m_LocalScale", "m_LocalRotation") if field in tree}
 
             def inspect_sprite(sprite_obj):
                 name = sprite_obj.peek_name()
@@ -90,6 +96,12 @@ def inspect(apk, project, recover_lines=False):
                 if obj.type.name != "MonoBehaviour":
                     continue
                 tree = obj.read_typetree()
+                if "lineColor_Gray" in tree:
+                    record["slot_style"] = {key: value for key, value in tree.items()
+                                            if key.startswith("lineColor_") or key.startswith("imageColor_")}
+                    for key, pointer in tree.items():
+                        if key.startswith("sprite_Right") and pointer["m_PathID"]:
+                            record["slot_style"][key] = deref(pointer, obj).peek_name()
                 if "mColumnNodeSpace" in tree:
                     record["layout"] = {key: tree[key] for key in (
                         "mColumnNodeSpace", "mLineNodeSpace", "mFirtNodeInitPos", "mMapMargin", "mGroupSize") if key in tree}

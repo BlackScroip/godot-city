@@ -23,6 +23,15 @@ func _run() -> void:
 	game.world.paused = false
 	game.hud.update_combat(game.world.player.combat, true)
 	game.world.player.position = Vector3(29.72984, 0.1, 78.39)
+	game.world.player.reset_physics_interpolation()
+	game.world.snap_camera()
+	game.world.set_process(false)
+	game.world.camera.position = Vector3(29.72984, 1.0, 81.0) + game.world._camera_offset
+	game.world.camera.look_at(Vector3(29.72984, 1.0, 81.0))
+	game.world.camera.reset_physics_interpolation()
+	await create_timer(0.2).timeout
+	game.process_mode = Node.PROCESS_MODE_DISABLED
+	for particle in game.find_children("*", "CPUParticles3D", true, false): particle.speed_scale = 0.0
 	var fx = game.world.environment_root.get_node("CampEffects")
 	if fx.north_portal_surfaces.size() != 5: failures.append("North portal must restore all five APK mesh materials")
 	var definitions: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment_effects/camp_north_portal_materials.json")).materials
@@ -64,6 +73,10 @@ func _run() -> void:
 	clock_before = fx.clock
 	fx._process(0.1)
 	if fx.clock != clock_before: failures.append("Portal animation does not pause")
+	game.world.paused = false
+	game.hud.modal_open = true
+	fx._process(0.1)
+	if fx.clock != clock_before: failures.append("Portal animation does not pause with a menu")
 	game.queue_free()
 	await process_frame
 	print("CAMP_PORTAL_CENTER ", JSON.stringify({"failures": failures}))

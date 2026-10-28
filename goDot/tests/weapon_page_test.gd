@@ -71,7 +71,7 @@ func _run() -> void:
 		for frame in 12: await process_frame
 		var bounds = Rect2(Vector2.ZERO, Vector2(dimensions))
 		var factor = minf(dimensions.x / 2048.0, dimensions.y / 900.0)
-		var expected_back = Rect2(Vector2(20, 14) * factor, Vector2(120, 100) * factor)
+		var expected_back = Rect2((Vector2(20, 14) * factor).max(Vector2(12, 8)), (Vector2(120, 100) * factor).max(Vector2(44, 44)))
 		for header in [page.canvas, page.selector]:
 			var back = header.get_node("RoleBackButton")
 			check(back.get_global_rect().is_equal_approx(expected_back), "main and selector use the shared role back bounds %s" % dimensions)
@@ -94,6 +94,44 @@ func _run() -> void:
 	page.preview._fit()
 	check(not page.preview.is_inside_tree(), "deferred preview resize safely returns after menu removal")
 	page.queue_free()
+	await process_frame
+	viewport.size = Vector2i(1600, 900)
+	var sickle_page = WeaponPage.new()
+	viewport.add_child(sickle_page)
+	sickle_page.size = viewport.size
+	sickle_page.configure(null, _rows(2), {"catalog": catalog, "systems": systems, "character_id": 2, "selected_weapon": 202, "equipped_weapon": 201, "resources": [["material:101", "1378"]]})
+	check(sickle_page.preview._effects.size() == 1 and sickle_page.selector_preview._effects.size() == 1, "Sickle main and selector replace the recovered FX surface with its original shader parameters")
+	if not sickle_page.preview._effects.is_empty():
+		var effect: ShaderMaterial = sickle_page.preview._effects[0]
+		check(effect.get_shader_parameter("use_source_mask") and effect.get_shader_parameter("use_source_fade"), "Sickle effect retains the APK mask and fade instead of an opaque noise rectangle")
+		check(effect.get_shader_parameter("source_fade_vertex_alpha"), "Sickle fade uses vertex alpha from its verified APK shader variant")
+		check(effect.get_shader_parameter("source_mask") is Texture2D and effect.get_shader_parameter("source_distort") is Texture2D, "Sickle source mask and distortion textures are loaded")
+	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
+		viewport.size = dimensions
+		sickle_page.size = dimensions
+		sickle_page.set_selector_open(false)
+		for frame in 12: await process_frame
+		await _capture(viewport, sickle_page, "sickle-main", dimensions)
+		sickle_page.set_selector_open(true)
+		for frame in 12: await process_frame
+		await _capture(viewport, sickle_page, "sickle-selector", dimensions)
+	if DisplayServer.get_name() != "headless" and not sickle_page.selector_preview._effects.is_empty():
+		var effect: ShaderMaterial = sickle_page.selector_preview._effects[0]
+		sickle_page.selector_preview.set_process(false)
+		effect.set_shader_parameter("clock", 0.0)
+		for frame in 4: await process_frame
+		await RenderingServer.frame_post_draw
+		var before: Image = sickle_page.selector_preview.viewport.get_texture().get_image()
+		effect.set_shader_parameter("clock", 0.3)
+		for frame in 4: await process_frame
+		await RenderingServer.frame_post_draw
+		var after: Image = sickle_page.selector_preview.viewport.get_texture().get_image()
+		var animated_pixels := 0
+		for y in range(0, before.get_height(), 2):
+			for x in range(0, before.get_width(), 2):
+				if before.get_pixel(x, y) != after.get_pixel(x, y): animated_pixels += 1
+		check(animated_pixels > 10, "Recovered sickle distortion and fade visibly animate without changing the model framing")
+	sickle_page.queue_free()
 	await process_frame
 	viewport.size = Vector2i(2048, 900)
 	var eighth_page = WeaponPage.new()
@@ -148,3 +186,10 @@ func _capture(viewport: SubViewport, page, mode: String, dimensions: Vector2i) -
 		for x in range(0, model_picture.get_width(), 4):
 			if model_picture.get_pixel(x, y).a > 0.1: pixels += 1
 	check(pixels > 50, "original real weapon renders nontransparent model pixels " + mode + str(dimensions))
+	if mode.begins_with("sickle"):
+		var border_pixels := 0
+		for x in model_picture.get_width():
+			if model_picture.get_pixel(x, 0).a > 0.1 or model_picture.get_pixel(x, model_picture.get_height() - 1).a > 0.1: border_pixels += 1
+		for y in model_picture.get_height():
+			if model_picture.get_pixel(0, y).a > 0.1 or model_picture.get_pixel(model_picture.get_width() - 1, y).a > 0.1: border_pixels += 1
+		check(border_pixels == 0, "Sickle model and source effect stay fully inside the viewport " + mode + str(dimensions))

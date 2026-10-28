@@ -1,0 +1,28 @@
+{
+  "asset_name": "ZiTiQuanWeiJunHei-W3-2 SDF",
+  "path_id": "-4280675585639441827",
+  "face": {
+    "m_FaceIndex": 0,
+    "m_FamilyName": "Alibaba PuHuiTi 3.0",
+    "m_StyleName": "95 ExtraBold",
+    "m_PointSize": 23,
+    "m_Scale": 1.0,
+    "m_UnitsPerEM": 1000,
+    "m_LineHeight": 32.20000076293945,
+    "m_AscentLine": 24.380001068115234,
+    "m_CapLine": 16.0,
+    "m_MeanLine": 13.0,
+    "m_Baseline": 0.0,
+    "m_DescentLine": -7.820000171661377,
+    "m_SuperscriptOffset": 24.380001068115234,
+    "m_SuperscriptSize": 0.5,
+    "m_SubscriptOffset": -7.820000171661377,
+    "m_SubscriptSize": 0.5,
+    "m_UnderlineOffset": -2.299999952316284,
+    "m_UnderlineThickness": 1.149999976158142,
+    "m_StrikethroughOffset": 5.199999809265137,
+    "m_StrikethroughThickness": 1.149999976158142,
+    "m_TabWidth": 6.0
+  },
+  "source_guid": "77dfdc697c346dd4fb0ba5a4c49d5d2a"
+}

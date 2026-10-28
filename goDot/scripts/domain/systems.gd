@@ -1482,10 +1482,16 @@ func _gather_ability_buffs(id: int, count: int, roots: Dictionary, counted: Arra
 	var next_path = path.duplicate()
 	next_path.append(id)
 	if str(row.get("TriggerEventType", "")) in ["", "None"]:
-		_gather_buffs(row.get("ModifyBuff", ""), count, roots, counted)
+		var description_state = preload("res://scripts/domain/ability_descriptions.gd").new(self)
+		var factor = description_state.effect_factor(row, count)
+		for buff in Catalog.ids(row.get("ModifyBuff", "")):
+			_gather_buffs(buff, description_state.capped_buff_layers(buff, factor), roots, counted)
 		for component in row.get("CombineDataList", []):
 			var data = component.get("Data", {})
-			if component.get("CombineDataType", "") == "NormalModifyBuff" and component.get("ConditionList", []).is_empty() and data.get("TargetType", "") == "Player" and int(data.get("ModifyBuffChance", 0)) >= 1000: _gather_buffs(data.get("ModifyBuff", ""), count, roots, counted)
+			if component.get("CombineDataType", "") == "NormalModifyBuff" and component.get("ConditionList", []).is_empty() and data.get("TargetType", "") == "Player" and int(data.get("ModifyBuffChance", 0)) >= 1000:
+				var component_count = description_state.component_factor(row, data, count) if bool(row.get("EnableCaculateAttributeSource", false)) else count
+				for buff in Catalog.ids(data.get("ModifyBuff", "")):
+					_gather_buffs(buff, description_state.capped_buff_layers(buff, component_count), roots, counted)
 	for child in Catalog.ids(row.get("ExtraAbilityItemIDList", "")): _gather_ability_buffs(child, count, roots, counted, next_path)
 
 func _gather_buffs(value, count: int, roots: Dictionary, counted: Array) -> void:
@@ -2388,7 +2394,19 @@ func _event_rewards(abilities, loot) -> void:
 		for i in mini(99, int(pair[1]) if pair.size() > 1 else 1): effects.instant(catalog.find("AbilityItems", id), [id])
 	for token in str(loot).replace("|", ",").split(",", false):
 		var pair = token.split(":")
-		for i in mini(99, int(pair[1]) if pair.size() > 1 else 1): add_loot(int(pair[0]), false)
+		var id = int(pair[0])
+		var ability = catalog.find("AbilityItems", int(catalog.find("LootData", id).get("ability_item_id", 0)))
+		for i in mini(99, int(pair[1]) if pair.size() > 1 else 1):
+			var replaced: Dictionary = {}
+			# Native event grants replace the new loot's rejected predecessors.
+			for previous in Catalog.ids(ability.get("RejectIdArray", "")):
+				var key = str(previous)
+				if previous != id and profile.data.run.inventory.has(key):
+					replaced[key] = profile.data.run.inventory[key]
+					profile.data.run.inventory.erase(key)
+			var reward = add_loot(id, false)
+			if not reward.success:
+				for key in replaced: profile.data.run.inventory[key] = replaced[key]
 	_depth -= 1
 
 func resolve_event(key: String, choice_id: int) -> Dictionary:
@@ -2440,6 +2458,9 @@ func _resolve_event(key: String, choice_id: int) -> Dictionary:
 	return _fail("事件不存在")
 
 func acknowledge_event(key: String) -> Dictionary:
+	return _camp_transaction(func(): return _acknowledge_event(key))
+
+func _acknowledge_event(key: String) -> Dictionary:
 	if not profile.data.run.active: return _fail("没有进行中的冒险")
 	for encounter in profile.data.run.events:
 		if str(encounter.key) != key: continue
@@ -2451,6 +2472,11 @@ func acknowledge_event(key: String) -> Dictionary:
 func purification_rule(id: int) -> Dictionary:
 	var row = catalog.find("LootData", id)
 	if row.get("loot_type", "") != "诅咒遗物": return {}
+	return loot_state_change_rule(id)
+
+func loot_state_change_rule(id: int) -> Dictionary:
+	var row = catalog.find("LootData", id)
+	if row.get("loot_type", "") != "诅咒遗物" and id not in [20138, 20162, 20406, 20415, 20417, 20422]: return {}
 	for component in catalog.find("AbilityItems", int(row.ability_item_id)).get("CombineDataList", []):
 		if component.get("CombineDataType", "") == "StateChange": return component
 	return {}
@@ -2459,7 +2485,7 @@ func purification_target(id: int) -> int:
 	return int(purification_rule(id).get("Data", {}).get("AfterAbilityItemLootId", 0))
 
 func _reset_purification(id: int) -> void:
-	for i in purification_rule(id).get("ConditionList", []).size(): profile.data.run.counters["purify:" + str(id) + ":" + str(i)] = 0
+	for i in loot_state_change_rule(id).get("ConditionList", []).size(): profile.data.run.counters["purify:" + str(id) + ":" + str(i)] = 0
 
 func purification_progress(id: int) -> String:
 	var result = []
@@ -2473,7 +2499,7 @@ func record_purification_event(event_type: String, param1: String = "", amount: 
 	if not profile.data.run.active or amount <= 0 or event_type not in ["KillEnemy", "EnterNode", "CompleteNode", "BuyNormalShopItem", "ChangeResCount", "CompleteRegion", "TradeWithGemShopMan"]: return _fail("净化事件无效")
 	for key in profile.data.run.inventory.keys():
 		if int(profile.data.run.inventory[key]) <= 0: continue
-		var rule = purification_rule(int(key))
+		var rule = loot_state_change_rule(int(key))
 		if rule.is_empty(): continue
 		var conditions = rule.get("ConditionList", [])
 		for i in conditions.size():
@@ -2482,8 +2508,21 @@ func record_purification_event(event_type: String, param1: String = "", amount: 
 			if conditions[i].get("ConditionType", "") != "RecordValue" or str(trigger.get("EventType", "")) != event_type: continue
 			if str(trigger.get("Param1", "")) not in ["", "-1", param1] or str(trigger.get("Param2", "")) not in ["", param2]: continue
 			_add(profile.data.run.counters, "purify:" + str(key) + ":" + str(i), amount)
-		purify_loot(int(key), false)
+		if catalog.find("LootData", int(key)).get("loot_type", "") == "诅咒遗物": purify_loot(int(key), false)
+		else: _upgrade_recorded_loot(int(key), rule)
 	return _done("净化进度已记录") if notify else _ok()
+
+func _upgrade_recorded_loot(id: int, rule: Dictionary) -> void:
+	var conditions = rule.get("ConditionList", [])
+	if conditions.is_empty(): return
+	for i in conditions.size():
+		var condition = conditions[i].get("Condition", {})
+		var value = int(profile.data.run.counters.get("purify:" + str(id) + ":" + str(i), 0))
+		if conditions[i].get("ConditionType", "") != "RecordValue" or value < int(condition.get("MinValue", 0)) or value > int(condition.get("MaxValue", 2147483647)): return
+	var target = int(rule.get("Data", {}).get("AfterAbilityItemLootId", 0))
+	if catalog.find("LootData", target).is_empty(): return
+	_add(profile.data.run.inventory, id, -1)
+	if not add_loot(target, false).success: _add(profile.data.run.inventory, id, 1)
 
 func purify_loot(id: int, notify: bool = true) -> Dictionary:
 	var rule = purification_rule(id)
@@ -2760,8 +2799,8 @@ func gem_offering_status(instance_key: String = "") -> Dictionary:
 	var offer = get_gem_offering(instance_key)
 	var price = gem_offering_price(offer)
 	var used = bool(offer.get("used", false))
-	var reason = "请在冒险中供奉" if not profile.data.run.active else "供奉配置不可用" if offer.is_empty() or catalog.config.get("GemShopCfg", {}).get("CostPriceList", []).is_empty() else "已经供奉过了" if used else "没有可用宝石" if _gem_offering_candidates(attributes()).is_empty() else "魔力不足" if material(102) < price else ""
-	return {"offer": offer, "key": str(offer.get("key", "")), "price": price, "free": price == 0, "used": used, "remaining": 0 if used else 1, "can_buy": reason.is_empty(), "reason": reason}
+	var reason = "请在冒险中供奉" if not profile.data.run.active else "供奉配置不可用" if offer.is_empty() or catalog.config.get("GemShopCfg", {}).get("CostPriceList", []).is_empty() else "报价已失效" if int(offer.get("region", 0)) != int(profile.data.run.region) else "已经供奉过了" if used else "没有可用宝石" if _gem_offering_candidates(attributes()).is_empty() else "魔力不足" if material(102) < price else ""
+	return {"offer": offer, "key": str(offer.get("key", "")), "instance_key": str(offer.get("instance_key", "")), "price": price, "free": price == 0, "used": used, "remaining": 0 if used else 1, "can_buy": reason.is_empty(), "reason": reason}
 
 func _gem_offering_candidates(attrs: Dictionary) -> Array:
 	var candidates = _pool_candidates(int(catalog.config.get("GemShopCfg", {}).get("GemPoolId", 0)))

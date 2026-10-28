@@ -13,14 +13,22 @@ const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
 
 class WeaponPreview extends SubViewportContainer:
 
+	const EFFECT_MATERIAL = preload("res://scripts/presentation/recovered_effect_material.gd")
+	const SOURCE_MATERIALS := "res://assets/ui/role_weapon/source_materials.json"
 	var viewport: SubViewport
 	var pivot: Node3D
 	var camera: Camera3D
 	var model_path := ""
 	var has_model := false
 	var bounds := AABB()
+	var _source_materials: Dictionary = {}
+	var _effect_textures: Dictionary = {}
+	var _effects: Array[ShaderMaterial] = []
+	var _elapsed := 0.0
 
 	func _ready() -> void:
+		var source = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_MATERIALS))
+		if source is Dictionary: _source_materials = source.get("materials", {})
 		stretch = true
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 		viewport = SubViewport.new()
@@ -52,6 +60,8 @@ class WeaponPreview extends SubViewportContainer:
 
 	func show_model(path: String) -> void:
 		model_path = path
+		_effects.clear()
+		_elapsed = 0.0
 		for child in pivot.get_children():
 			pivot.remove_child(child)
 			child.queue_free()
@@ -64,11 +74,24 @@ class WeaponPreview extends SubViewportContainer:
 		model.rotation_degrees = Vector3(90, 0, 0)
 		var first := true
 		for mesh in model.find_children("*", "MeshInstance3D", true, false):
+			for surface in mesh.mesh.get_surface_count():
+				var material: Material = mesh.get_active_material(surface)
+				if material == null or not _source_materials.has(material.resource_name): continue
+				var definition: Dictionary = _source_materials[material.resource_name]
+				var effect: ShaderMaterial = EFFECT_MATERIAL.create(definition, _effect_textures)
+				effect.set_shader_parameter("source_fade_vertex_alpha", bool(definition.get("fade_vertex_alpha", false)))
+				mesh.set_surface_override_material(surface, effect)
+				_effects.append(effect)
 			var box: AABB = mesh.global_transform * mesh.get_aabb()
 			bounds = box if first else bounds.merge(box)
 			first = false
 		has_model = not first
 		_fit()
+
+	func _process(delta: float) -> void:
+		if _effects.is_empty() or not is_visible_in_tree(): return
+		_elapsed += delta
+		for material in _effects: material.set_shader_parameter("clock", _elapsed)
 
 	func _fit() -> void:
 		if not is_inside_tree() or not is_instance_valid(viewport) or not is_instance_valid(camera) or not camera.is_inside_tree(): return

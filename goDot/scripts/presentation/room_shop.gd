@@ -291,8 +291,8 @@ func _layout() -> void:
 	merchant.position = Vector2(margin, heading - 6)
 	merchant.size = Vector2(left_width + margin, size.y - heading - 32)
 	var info_height := 160.0 if _compact else 236.0
-	investment.position = Vector2(margin, size.y - info_height - (44 if _compact else 72))
-	investment.size = Vector2(left_width, info_height)
+	investment.get_theme_stylebox("panel").set_content_margin_all(8 if _compact else 12)
+	investment.get_child(0).add_theme_constant_override("separation", 5 if _compact else 7)
 	for line in investment.get_child(0).get_children():
 		if line is HBoxContainer:
 			for control in line.get_children():
@@ -300,6 +300,20 @@ func _layout() -> void:
 	deposit.add_theme_font_size_override("font_size", 14 if _compact else 20)
 	deposit.add_theme_constant_override("icon_max_width", 18 if _compact else 28)
 	deposit.get_parent().get_child(0).add_theme_font_size_override("font_size", 14 if _compact else 20)
+	var action_gap := 8.0 if _compact else 12.0
+	var action_height := 36.0 if _compact else 58.0
+	var price_height := 20.0 if _mode == "buy" and not refresh_cost.text.is_empty() else 0.0
+	var action_y := size.y - action_height - price_height - (8 if _compact else 14)
+	footer.position = Vector2(margin, action_y)
+	footer.size = Vector2(left_width - action_height - action_gap, action_height)
+	footer.add_theme_font_size_override("font_size", 15 if _compact else 20)
+	refresh.position = Vector2(margin + left_width - action_height, action_y)
+	refresh.size = Vector2(action_height, action_height)
+	refresh_cost.visible = price_height > 0
+	refresh_cost.position = Vector2(margin + left_width - 90, action_y + action_height)
+	refresh_cost.size = Vector2(90, 20)
+	investment.size = Vector2(left_width, maxf(info_height, investment.get_combined_minimum_size().y))
+	investment.position = Vector2(margin, action_y - action_gap - investment.size.y)
 	tabs.position = Vector2(right_x, heading)
 	tabs.size = Vector2(right_width, 36 if _compact else 70)
 	for tab in [purchase_tab, seal_tab]:
@@ -337,13 +351,6 @@ func _layout() -> void:
 		card.get_node("State").position = Vector2(3, height * 0.65)
 		card.get_node("State").size = Vector2(width - 6, height * 0.15)
 		card.get_node("State").add_theme_font_size_override("font_size", 12 if _compact else 18)
-	refresh.position = Vector2(right_x - (46 if _compact else 72), size.y - (64 if _compact else 104))
-	refresh.size = Vector2(36, 36) if _compact else Vector2(58, 58)
-	refresh_cost.position = refresh.position + Vector2(-45 if _compact else -16, refresh.size.y)
-	refresh_cost.size = Vector2(82 if _compact else 90, 20)
-	footer.position = Vector2(margin, size.y - (38 if _compact else 58))
-	footer.size = Vector2(left_width, 30 if _compact else 44)
-	footer.add_theme_font_size_override("font_size", 15 if _compact else 20)
 	if is_instance_valid(modal): _layout_modal()
 
 func _modal_stack(title: String) -> VBoxContainer:
@@ -387,8 +394,11 @@ func _show_item(row: Dictionary) -> void:
 	var source_icon = DungeonItemArt.source_texture(int(row.get("loot_id", 0)))
 	if source_icon: icon.texture = source_icon
 	stack.add_child(icon)
-	var description = _label(str(row.get("description", "")), 16 if _compact else 21, PAPER)
-	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var description = preload("res://scripts/presentation/source_rich_text.gd").new()
+	description.name = "SourceDescription"
+	description.add_theme_font_size_override("normal_font_size", 16 if _compact else 21)
+	description.add_theme_color_override("default_color", PAPER)
+	description.set_source(str(row.get("source_description", row.get("description", ""))))
 	description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var body = ScrollContainer.new()
 	body.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED

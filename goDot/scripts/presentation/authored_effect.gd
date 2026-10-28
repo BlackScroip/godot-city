@@ -5,6 +5,7 @@ var model_players: Array[Dictionary] = []
 var model_styles: Array[Dictionary] = []
 const ModelMaterialAnimation = preload("res://scripts/presentation/model_material_animation.gd")
 const Descriptors = preload("res://scripts/presentation/effect_descriptors.gd")
+const ChestSmokeVelocity = preload("res://scripts/presentation/chest_smoke_velocity.gd")
 var age := 0.0
 var lifetime := 0.0
 var unsupported: Array = []
@@ -218,6 +219,7 @@ static func gradient(value: Dictionary) -> Gradient:
 
 func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, suppressed_layers: Array = []) -> void:
 	definition = Descriptors.resolve(definition)
+	var wolf_embedded := str(definition.get("source", "")).ends_with("/monster_senlinlangwang.prefab")
 	unsupported = definition.get("unsupported", [])
 	for model in definition.get("models", []):
 		var path = str(model.get("scene", ""))
@@ -241,13 +243,14 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 	var layers: Array = resolved_layers(definition)
 	layers.sort_custom(func(left: Dictionary, right: Dictionary) -> bool: return _layer_priority(left) > _layer_priority(right))
 	var budget = LOW_PARTICLE_BUDGET if low_quality else FULL_PARTICLE_BUDGET
+	var logical_emitter_count := 0
 	for layer in layers:
 		if str(layer.get("name", "")) in suppressed_layers: continue
 		if not layer.get("active", true): continue
 		if layer.get("materials", []).is_empty() or not layer.get("renderer", {}).get("enabled", true): continue
 		if int(layer.get("renderer", {}).get("render_mode", 0)) == 5: continue
 		if int(layer.get("renderer", {}).get("render_mode", 0)) == 4 and str(layer.get("mesh", "")).is_empty(): continue
-		if emitters.size() >= (8 if low_quality else 18): break
+		if logical_emitter_count >= (8 if low_quality else 18): break
 		if particle_count >= budget: break
 		var emission: Dictionary = layer.get("emission", {})
 		if not emission.get("enabled", true): continue
@@ -268,6 +271,8 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		var lifetime_range := scalar_range(initial.get("startLifetime", {}), 0.3)
 		particle.lifetime = clampf(lifetime_range.y, 0.02, 8)
 		particle.lifetime_randomness = clampf(1.0 - lifetime_range.x / particle.lifetime, 0, 1)
+		if wolf_embedded and bool(layer.get("prewarm", false)) and bool(layer.get("looping", false)):
+			particle.preprocess = maxf(particle.lifetime, float(layer.get("duration", particle.lifetime)))
 		var count := 0.0
 		for burst in emission.get("m_Bursts", []): count += scalar(burst.get("countCurve", {}), 1)
 		var rate = scalar(emission.get("rateOverTime", {}))
@@ -323,6 +328,17 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 						elif shape_type == 12:
 							point = Vector3(lerpf(-radius, radius, fraction), 0, 0)
 							normal = Vector3(0, 0, 1)
+						elif wolf_embedded and shape_type in [8, 9]:
+							# ConeVolume starts throughout the cone, including its authored length.
+							var cone_length := maxf(0, float(shape.get("length", 0)))
+							var slope := tan(cone_angle)
+							var end_radius: float = radius + cone_length * slope
+							var volume_fraction := fmod((point_index + 0.5) * 0.61803398875, 1.0)
+							var depth: float = (pow(lerpf(pow(radius, 3), pow(end_radius, 3), volume_fraction), 1.0 / 3.0) - radius) / slope if absf(slope) > 0.000001 else cone_length * volume_fraction
+							var radial_fraction := 1.0 if shape_type == 9 else sqrt(fraction)
+							r = (radius + depth * slope) * radial_fraction
+							point = Vector3(cos(angle) * r, sin(angle) * r, depth)
+							normal = Vector3(cos(angle) * slope * radial_fraction, sin(angle) * slope * radial_fraction, 1).normalized()
 						points.append(point)
 						normals.append(normal)
 					particle.emission_points = points
@@ -437,7 +453,12 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			recovered.set_shader_parameter("billboard", int(renderer.get("render_mode", 0)) == 0 and int(renderer.get("alignment", 0)) in [0, 3])
 			recovered.set_shader_parameter("vertical_billboard", int(renderer.get("render_mode", 0)) == 3)
 			recovered.set_shader_parameter("stretched_billboard", int(renderer.get("render_mode", 0)) == 1)
-			recovered.set_shader_parameter("stretch_length", maxf(1, float(renderer.get("length_scale", 1))))
+			recovered.set_shader_parameter("stretch_length", maxf(0 if wolf_embedded else 1, float(renderer.get("length_scale", 1))))
+			if wolf_embedded:
+				recovered.set_shader_parameter("stretch_velocity", maxf(0, float(renderer.get("velocity_scale", 0))))
+				# CPU particle velocity magnitude is not exposed to spatial shaders.
+				# Use the authored range midpoint; direction still follows each particle.
+				recovered.set_shader_parameter("stretch_speed", (speed_range.x + speed_range.y) * 0.5)
 			recovered.set_shader_parameter("initial_rotation", Vector2(scalar(initial.get("startRotationX", {})), scalar(initial.get("startRotationY", {}))) if bool(initial.get("rotation3D", false)) else Vector2.ZERO)
 			recovered.set_shader_parameter("uv_scale", Vector2(material.uv1_scale.x, material.uv1_scale.y))
 			recovered.set_shader_parameter("uv_offset", Vector2(material.uv1_offset.x, material.uv1_offset.y))
@@ -476,7 +497,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			for burst in bursts:
 				if float(burst.get("probability", 1)) <= 0: continue
 				for cycle in clampi(int(burst.get("cycleCount", 1)), 1, 6):
-					if emitters.size() >= (8 if low_quality else 18): break
+					if logical_emitter_count >= (8 if low_quality else 18): break
 					if particle_count >= budget: break
 					var instance = particle if first else particle.duplicate()
 					if not first: node.add_child(instance)
@@ -486,12 +507,19 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 					particle_count += instance.amount
 					instance.explosiveness = 1.0
 					var at = delay + float(burst.get("time", 0)) + cycle * float(burst.get("repeatInterval", 0))
-					emitters.append({"node": instance, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": burst_period > 0.0, "burst_period": burst_period, "duration": duration / speed_scale, "ground_fade": ground_fade})
-					lifetime = maxf(lifetime, (at + instance.lifetime) / speed_scale)
+					var maximum_lifetime: float = instance.lifetime
+					var instances: Array[CPUParticles3D] = [instance]
+					if ChestSmokeVelocity.handles(layer):
+						instances = ChestSmokeVelocity.split_burst(instance, layer, value_curve(modules.ClampVelocityModule.magnitude))
+					for current in instances:
+						emitters.append({"node": current, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": burst_period > 0.0, "burst_period": burst_period, "duration": duration / speed_scale, "ground_fade": ground_fade})
+					logical_emitter_count += 1
+					lifetime = maxf(lifetime, (at + maximum_lifetime) / speed_scale)
 		else:
 			particle.one_shot = false
 			particle_count += particle.amount
 			emitters.append({"node": particle, "delay": delay / speed_scale, "started": false, "speed": speed_scale, "loop": bool(layer.get("looping", false)), "duration": duration / speed_scale, "ground_fade": ground_fade})
+			logical_emitter_count += 1
 		lifetime = maxf(lifetime, (delay + (duration if rate > 0 else 0.0) + particle.lifetime) / speed_scale)
 
 func set_visual_gain(value: float, crimson := false) -> void:
@@ -534,6 +562,7 @@ func restart() -> void:
 		emitter.erase("last_speed")
 		emitter.erase("last_basis")
 		emitter.node.emitting = false
+		ChestSmokeVelocity.restart_particle(emitter.node)
 		emitter.node.restart()
 		emitter.node.emitting = false
 

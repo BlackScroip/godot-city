@@ -32,6 +32,7 @@ func _run() -> void:
 	for dimensions in [Vector2i(2460, 1080), Vector2i(1600, 900), Vector2i(844, 390), Vector2i(640, 900)]:
 		for scope in ["world", "rooms"]:
 			await _check_page(scope, dimensions)
+	await _check_reference_world()
 	canvas.queue_free()
 	display.queue_free()
 	await process_frame
@@ -86,6 +87,7 @@ func _check_page(scope: String, dimensions: Vector2i) -> void:
 		check(node.chosen and page.selected_index == index, "Selecting the clipped candidate changes selection: %s node %d" % [label, index])
 		_assert_visible(page, node, "Selected peak is visible: %s node %d" % [label, index])
 		if scope == "rooms": _assert_arrows_clear(page, node, label)
+		_assert_chrome(page, label)
 	var selected = page.nodes[29]
 	var layout = selected.get_rect()
 	var narrowest := INF
@@ -107,6 +109,7 @@ func _check_page(scope: String, dimensions: Vector2i) -> void:
 			"Contracted selection stroke aligns with the room border: " + label)
 		selected._selection_scale = animated_scale
 	await _capture(scope, dimensions)
+	if scope == "rooms" and dimensions == Vector2i(1600, 900): await _check_boss_pixels(selected)
 	var focused = page.nodes[16]
 	_partially_clip(page, focused, true)
 	await process_frame
@@ -138,6 +141,20 @@ func _check_page(scope: String, dimensions: Vector2i) -> void:
 		check(locked.chosen and page.confirm.disabled, "Locked world region keeps its selection with entry disabled: " + label)
 		page._confirm()
 		check(emitted.is_empty(), "Locked region never dispatches entry: " + label)
+	var destination = page.nodes[16]
+	page._select(int(destination.room.node_id), int(destination.room.layer_index))
+	var duration = page.play_departure(int(destination.room.node_id), int(destination.room.layer_index))
+	check(is_equal_approx(duration, 1.0), "Confirmed travel retains the recovered one-second duration: " + label)
+	check(is_instance_valid(page._departing_portrait) and page._departing_portrait.texture != null, "Travel displays the actual character portrait: " + label)
+	var start = page._departing_portrait.position
+	await create_timer(0.4).timeout
+	check(page._departing_portrait.position.distance_to(start) > 1, "Character visibly travels toward its destination: " + label)
+	check(page.play_departure(int(destination.room.node_id), int(destination.room.layer_index)) == 0.0, "Repeated confirmation cannot restart travel: " + label)
+	page._select(int(page.nodes[0].room.node_id), int(page.nodes[0].room.layer_index))
+	check(page.nodes[16].chosen and page.back_button.disabled and page.map_switch.disabled, "Travel locks route changes until transition: " + label)
+	await create_timer(0.7).timeout
+	var center: Vector2 = destination._world_frame_rect().get_center() if scope == "world" else destination.size * 0.5
+	check(page._departing_portrait.get_rect().get_center().distance_to(destination.position + center) < 1, "Travel finishes at the selected node center: " + label)
 	page.queue_free()
 	await process_frame
 
@@ -177,7 +194,7 @@ func _assert_arrows_clear(page: DungeonRoutePage, selected: DungeonRouteNode, la
 			var areas = page._vertical_path_rects(edge)
 			check(areas.size() == 2, "Both vertical arrows remain visible beside an expanded frame: " + label)
 			for area in areas:
-				check(area.size.y >= 8.0, "Vertical arrows retain a readable size: " + label)
+				check(area.size.y >= 14.0, "Vertical arrows retain a readable size: " + label)
 				check(not bounds.grow(-0.5).intersects(area), "Expanded frame clears both vertical arrows: " + label)
 		else:
 			var path = page._path_geometry(edge)
@@ -188,6 +205,72 @@ func _assert_arrows_clear(page: DungeonRoutePage, selected: DungeonRouteNode, la
 
 func _rect_polygon(rect: Rect2) -> PackedVector2Array:
 	return PackedVector2Array([rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)])
+
+func _assert_chrome(page: DungeonRoutePage, label: String) -> void:
+	for bar in page.resource_counters.get_children():
+		var icon = bar.get_node("Icon") as TextureRect
+		check(icon.texture != null and icon.size.x >= 24 and icon.size.y >= 24, "Resource icon is initialized and readable: " + label)
+		check(icon.texture is AtlasTexture and icon.texture.atlas != null, "Resource counter uses the recovered icon with transparent padding removed: " + label)
+		check(not icon.get_rect().intersects(bar.get_node("Amount").get_rect()), "Resource icon does not cover its amount: " + label)
+	check(page.get_global_rect().grow(1).encloses(page.selection_info.get_global_rect()), "Selected title remains inside viewport: " + label)
+	check(page.selection_info.get_global_rect().end.y <= page.scroll.position.y + 1, "Selected title never overlaps graph: " + label)
+	if page.size.x >= 800:
+		check(absf(page.confirm.global_position.x + page.confirm.size.x * 0.5 - page.size.x * 0.5) < 2, "Confirm button is centered independently of checkbox: " + label)
+
+func _check_boss_pixels(node: DungeonRouteNode) -> void:
+	check(is_instance_valid(node.boss_effect) and node.boss_effect.visible, "Reachable boss uses recovered red effect layers")
+	if DisplayServer.get_name() == "headless" or not is_instance_valid(node.boss_effect): return
+	if node._selection_tween: node._selection_tween.kill()
+	node._selection_scale = 1.0
+	var material: ShaderMaterial = node.boss_effect.effect_material
+	material.set_shader_parameter("preview_time", 0.0)
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var first = canvas.get_texture().get_image()
+	material.set_shader_parameter("preview_time", 8.0)
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var second = canvas.get_texture().get_image()
+	node.boss_effect.intensity = 0.0
+	await process_frame
+	await RenderingServer.frame_post_draw
+	var without = canvas.get_texture().get_image()
+	var area = Rect2i(node.boss_effect.get_global_rect()).intersection(Rect2i(Vector2i.ZERO, canvas.size))
+	var red_pixels := 0
+	var moving_pixels := 0
+	for y in range(area.position.y, area.end.y):
+		for x in range(area.position.x, area.end.x):
+			var a = first.get_pixel(x, y)
+			var b = second.get_pixel(x, y)
+			var plain = without.get_pixel(x, y)
+			if a.r - plain.r > 0.02: red_pixels += 1
+			if absf(a.r - b.r) > 0.02: moving_pixels += 1
+	check(red_pixels > 20, "Boss glow produces visible red pixels")
+	check(moving_pixels > 20, "Boss flow changes rendered pixels over time")
+	node.boss_effect.intensity = 1.0
+	material.set_shader_parameter("preview_time", -1.0)
+	node._animate_selection()
+
+func _check_reference_world() -> void:
+	var campaign = DungeonCampaign.new()
+	check(campaign.configure() and campaign.generate(12345, 0).success, "Reference world uses actual campaign data")
+	for dimensions in [Vector2i(2460, 1080), Vector2i(844, 390)]:
+		canvas.size = dimensions
+		background.size = Vector2(dimensions)
+		var page = DungeonRoutePage.new()
+		page.theme = DungeonStyle.theme()
+		canvas.add_child(page)
+		page.size = Vector2(dimensions)
+		page.configure(campaign.region_map(), {"map_scope": "world", "first_layer": 1, "current_layer": 1,
+			"portrait": "sprite_cardicon_square_jiannan", "character": "迷宫入口", "magic": 60, "search": 2})
+		await create_timer(0.9).timeout
+		page._select(2, 1)
+		await create_timer(0.5).timeout
+		_assert_visible(page, page.nodes[page.selected_index], "Actual forest highlight remains fully visible")
+		_assert_chrome(page, "Actual campaign world")
+		await _capture("world-reference", dimensions)
+		page.queue_free()
+		await process_frame
 
 func _capture(scope: String, dimensions: Vector2i) -> void:
 	if DisplayServer.get_name() == "headless": return

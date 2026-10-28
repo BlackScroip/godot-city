@@ -312,6 +312,7 @@ func release_environment() -> void:
 		_number_pool.append(number.node)
 	_numbers.clear()
 	if presentation: presentation.release_room_resources()
+	DungeonWorldStyle.release_room_resources()
 	_camera_impulses.clear()
 	_seen_impacts.clear()
 	_seen_blasts.clear()
@@ -369,11 +370,13 @@ func load_environment(id: Variant, camp := false, completion_chest_quality: Stri
 		environment_action.emit("npc", context))
 	interactions.reward_requested.connect(func(context): environment_action.emit("reward", context))
 	interactions.message_requested.connect(func(message, context):
+		if message == "EnvUnit_DisableAllTraps": interactions.disable_traps()
 		if message == "EnvUnit_InteractProtectTarget": start_protection_encounter()
 		else: world_message.emit(message, context))
 	interactions.player_trigger_entered.connect(func(id, _context):
 		if id == 1: enter_room_encounter())
 	interactions.trap_triggered.connect(_environment_trap)
+	interactions.attraction_requested.connect(_environment_attract)
 	interactions.diagnostic_reported.connect(func(context): _diagnostic("Environment: " + str(context)))
 	interactions.setup(environment_root, semantic_markers, {"colliders": markers, "catalog": systems.catalog if systems else null, "camp": camp, "is_unlocked": func(id): return systems.is_unlocked(int(id)) if systems else false})
 	if not camp: interactions.set_completion_chest_quality(completion_chest_quality)
@@ -596,7 +599,7 @@ func create_player(combat: RefCounted, character_id: int, position_data: Variant
 	player.position = vector(environment_entry.get("player_start", {} ) if position_data is Dictionary and position_data.is_empty() else position_data) + Vector3.UP * 0.05
 	player.previous_position = player.position
 	player.reset_physics_interpolation()
-	player.set_visual(asset_path("characters", character_id), catalog.get("characters", {}).get(str(character_id), {}))
+	player.set_visual(_player_visual_path(character_id), catalog.get("characters", {}).get(str(character_id), {}))
 	DungeonWorldStyle.apply_models(player)
 	var facing = vector(environment_entry.get("player_rotation", {}))
 	player.face_direction(Vector3(sin(deg_to_rad(facing.y)), 0, cos(deg_to_rad(facing.y))))
@@ -610,6 +613,22 @@ func create_player(combat: RefCounted, character_id: int, position_data: Variant
 	snap_camera()
 	if _camp_camera: camp_training.configure(self)
 	return player
+
+func _player_visual_path(character_id: int) -> String:
+	if systems and systems.has_method("character_fashion_equipped"):
+		var equipped: Dictionary = systems.character_fashion_equipped()
+		var path := preload("res://scripts/presentation/character_fashion_models.gd").path_for(int(equipped.get(str(character_id), 0)))
+		if not path.is_empty(): return path
+	return asset_path("characters", character_id)
+
+func refresh_player_fashion() -> bool:
+	if not is_instance_valid(player): return false
+	var path := _player_visual_path(player.actor_id)
+	if is_instance_valid(player.visual) and player.visual.scene_file_path == path: return false
+	player.set_visual(path, catalog.get("characters", {}).get(str(player.actor_id), {}))
+	player.visual.rotation.y = atan2(player.facing.x, player.facing.z)
+	DungeonWorldStyle.apply_models(player.visual)
+	return true
 
 func camp_training_status() -> Dictionary:
 	return camp_training.status()
@@ -1077,6 +1096,7 @@ func use_skill(slot: int, pressed := true) -> Dictionary:
 		if slot in [5, 6]:
 			result = _partner_controller().request(player.combat, slot - 5) if pressed and systems else {"success": not pressed}
 			if pressed and result.get("success", false):
+				systems.effects.dispatch_message("Rogue_MonsterPartnerSkillUsed", {"slot": slot - 5})
 				var target := _nearest_enemy(player.position)
 				if is_instance_valid(target) and player.position.distance_squared_to(target.position) <= 400.0 and int(runtime_settings.get("target_mode", 0)) != 2:
 					player.face_direction(target.position - player.position)
@@ -1529,7 +1549,11 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 			var definition: Dictionary = event.get("definition", {})
 			var raw = _raw_definition(definition)
 			if raw.get("EntityType", "EET_Physical" if definition.get("projectile", false) else "") == "EET_Physical":
-				presentation.attack_emitted(actor, event, _hit_origin(actor, event))
+				if raw.get("EmitType", "") == "EET_MultiPoint":
+					var transform_data := DungeonProjectile.multipoint_transform(event, _hit_origin(actor, event), _hit_facing(actor, event))
+					presentation.attack_emitted(actor, event, transform_data.position, transform_data.facing)
+				else:
+					presentation.attack_emitted(actor, event, _hit_origin(actor, event))
 			else:
 				var transform_data = _frame_entity_transform(actor, event)
 				presentation.attack_emitted(actor, event, transform_data.position, transform_data.facing)
@@ -1549,6 +1573,7 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 		"message":
 			var definition: Dictionary = event.get("definition", event)
 			var message = str(definition.get("MessageName", definition.get("MsgName", event.get("name", ""))))
+			if message == "EnvUnit_DisableAllTraps" and interactions: interactions.disable_traps()
 			if message == "Rogue_RewardSlimeBeHit":
 				_drop_reward_slime(actor, str(definition.get("MsgArg1", definition.get("Arg1", event.get("argument", "")))))
 				return
@@ -1563,7 +1588,7 @@ func _consume(actor: DungeonActor, event: Dictionary) -> void:
 		"heal":
 			if float(event.get("amount", 0)) > 0: _healing_number(actor.position + Vector3.UP * 1.8, float(event.amount))
 		"evaded_hit":
-			if str(event.get("dodge_type", "")) != "Block": _dodge_number(actor)
+			if str(event.get("dodge_type", "")) != "Block": _dodge_number(actor, str(event.get("dodge_type", "")) == "BeHiterAutoDodge")
 		"area":
 			_consume_area(actor, event)
 		"command":
@@ -1647,7 +1672,7 @@ func _tick_attack_entities(delta: float) -> void:
 		if not is_instance_valid(source):
 			active_attack_entities.erase(entry)
 			continue
-		var raw = _raw_definition(entry.hit.get("definition", {}))
+		var raw = _read_definition(entry.hit.get("definition", {}))
 		if bool(raw.get("DeadActionChanged", false)) and int(entry.hit.get("sequence", -1)) != source.combat._cast_sequence:
 			active_attack_entities.erase(entry)
 			continue
@@ -1663,7 +1688,7 @@ func _tick_attack_entities(delta: float) -> void:
 		if not is_instance_valid(source):
 			pending_attack_entities.erase(entry)
 			continue
-		var raw = _raw_definition(entry.hit.get("definition", {}))
+		var raw = _read_definition(entry.hit.get("definition", {}))
 		if bool(raw.get("DeadActionChanged", false)) and int(entry.hit.get("sequence", -1)) != source.combat._cast_sequence:
 			pending_attack_entities.erase(entry)
 			continue
@@ -1686,6 +1711,7 @@ func _activate_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
 		saved["entity_contacts"] = {}
 		saved["entity_age"] = 0.0
 		var transform_data = _frame_entity_transform(actor, saved)
+		saved["entity_hit_origin"] = DungeonProjectile._array(transform_data.position)
 		presentation.entity_activated(actor, saved, transform_data.position, transform_data.facing)
 		_hit_area(actor, saved)
 		var lifetime = maxf(0.0, float(raw.get("EntityProperty", {}).get("CheckTime", 0)))
@@ -1696,17 +1722,18 @@ func _finish_attack_entity(actor: DungeonActor, hit: Dictionary) -> void:
 	var raw = _raw_definition(hit.get("definition", {}))
 	var point = vector(hit.get("impact_origin", DungeonProjectile._array(_hit_origin(actor, hit))))
 	var ending: Dictionary = raw.get("EntityProperty", {}).get("AddSummonUnitDefOnEnd", {}).duplicate(true)
-	var yaw := deg_to_rad(float(raw.get("EmitProperty", {}).get("EmitRotation", {}).get("y", 0)))
-	ending["world_facing"] = DungeonProjectile._array(_hit_facing(actor, hit).rotated(Vector3.UP, yaw))
+	ending["world_facing"] = DungeonProjectile._array(_frame_entity_transform(actor, hit).facing)
 	_spawn_from_definition(actor, ending, point, hit)
 
 func _frame_entity_transform(source: DungeonActor, hit: Dictionary) -> Dictionary:
 	var definition: Dictionary = hit.get("definition", hit.get("area", {}))
-	var raw = _raw_definition(definition)
+	var raw = _read_definition(definition)
 	var facing = _hit_facing(source, hit)
 	var center = _hit_origin(source, hit) + facing * (float(hit.get("forward_offset", 0)) + float(definition.get("offset", 0)))
 	var hit_facing = vector(hit.get("trial_facing", facing))
 	var emit: Dictionary = raw.get("EmitProperty", {})
+	if raw.get("EmitType", "") == "EET_MultiPoint":
+		return DungeonProjectile.multipoint_transform(hit, _hit_origin(source, hit) + facing * float(hit.get("forward_offset", 0)), hit_facing)
 	if not emit.is_empty():
 		var yaw = deg_to_rad(float(emit.get("EmitRotation", {}).get("y", 0)))
 		var local_offset = float(hit.get("forward_offset", 0)) + (0.0 if emit.has("EmitOffset") else float(definition.get("offset", 0)))
@@ -1717,7 +1744,7 @@ func _frame_entity_transform(source: DungeonActor, hit: Dictionary) -> Dictionar
 
 func _hit_area(source: DungeonActor, hit: Dictionary, area := false) -> void:
 	var definition: Dictionary = hit.get("definition", hit.get("area", {}))
-	var raw = _raw_definition(definition)
+	var raw = _read_definition(definition)
 	var entity: Dictionary = raw.get("EntityProperty", {})
 	var width = maxf(0, float(definition.get("width", 1)))
 	var length_value = maxf(0, float(definition.get("length", 1)))
@@ -1725,6 +1752,9 @@ func _hit_area(source: DungeonActor, hit: Dictionary, area := false) -> void:
 	var center: Vector3 = transform_data.position
 	var hit_facing: Vector3 = transform_data.facing
 	hit["impact_origin"] = DungeonProjectile._array(center)
+	hit["impact_forward"] = DungeonProjectile._array(hit_facing)
+	hit["impact_entity_type"] = "frame"
+	if not hit.has("entity_hit_origin"): hit["entity_hit_origin"] = DungeonProjectile._array(center)
 	hit["impact_radius"] = maxf(width, length_value) * 0.5
 	for target in actors:
 		if not is_instance_valid(target) or target.dead or target.is_player == source.is_player: continue
@@ -1781,7 +1811,7 @@ func _damage_environment_shape(from: Vector3, to: Vector3, direction: Vector3, s
 func _environment_tenacities(hit: Dictionary) -> Array[int]:
 	var amount := 0
 	var result: Array[int] = []
-	for feedback in HitFeedback.normalize(hit.get("definition", hit)).hit_actions:
+	for feedback in HitFeedback.read(hit.get("definition", hit)).hit_actions:
 		amount += int(feedback.acc_tenacity)
 		result.append(maxi(0, amount))
 	return result
@@ -1800,12 +1830,29 @@ func _apply_hit(source: DungeonActor, target: DungeonActor, hit: Dictionary) -> 
 	if target.get_meta("camp_training", false) and not camp_training.active: return
 	_bind_impact(target)
 	hit["source"] = source.combat
+	var entity_origin := vector(hit.get("entity_hit_origin", hit.get("impact_origin", DungeonProjectile._array(source.position))))
+	var center := target.position + target.COLLISION_CENTER
+	var toward_entity := entity_origin - center
+	var normal := toward_entity.normalized() if toward_entity.length() > 0.00001 else Vector3.ZERO
+	var hit_point := center + Vector3(normal.x, 0.0, normal.z) * target.COLLISION_RADIUS * 0.9
+	var hit_direction := vector(hit.get("impact_forward", DungeonProjectile._array(source.facing))) if hit.get("impact_entity_type", "frame") == "physical" else center - entity_origin
+	hit["hit_geometry"] = {
+		"attacker_position": DungeonProjectile._array(source.position),
+		"attacker_forward": DungeonProjectile._array(source.facing),
+		"attackee_position": DungeonProjectile._array(target.position),
+		"attackee_forward": DungeonProjectile._array(target.facing),
+		"entity_position": DungeonProjectile._array(hit_point),
+		"entity_forward": DungeonProjectile._array(hit_direction),
+	}
 	if not hit.has("emission"):
 		_impact_serial += 1
 		hit["emission"] = "world:%s" % _impact_serial
 	if not hit.has("impact_position"): hit["impact_position"] = DungeonProjectile._array(target.position + Vector3.UP * 0.65)
 	hit["distance"] = source.position.distance_to(target.position)
 	target.combat.receive(hit, source.combat.effective_attack_power())
+	if not target.is_player:
+		var hit_facing := target.ENEMY_HIT_REACTION.take_facing(target.combat)
+		if not hit_facing.is_zero_approx(): target.facing = hit_facing
 	if bool(hit.get("resolved_accepted", false)): source.combat.confirm_hit(hit)
 	if target.combat.health <= 0: _die(target)
 
@@ -1834,6 +1881,8 @@ func _on_impact(hit: Dictionary, target: DungeonActor) -> void:
 		presentation.impact(visual_source, target, hit)
 		if bool(profile.get("source_only", false)):
 			_queue_source_shakes(profile.get("source_feedback", {}).get("camera_shakes", []))
+			if ImpactProfiles.is_source_wolf(hit, source.combat if source else null) and damage > 0 and (profile.category != "continuous" or float(profile.distance) > 0):
+				_apply_feedback(source, target, hit)
 		else:
 			target.hit_flash(float(profile.flash))
 			target.combat.apply_hit_stop(float(profile.stop) * float(source_hit_stop_percent) / 100.0)
@@ -1894,7 +1943,7 @@ func _projectile(source: DungeonActor, hit: Dictionary) -> DungeonProjectile:
 
 func _add_projectile_visual(state: DungeonProjectile, source: DungeonActor) -> void:
 	state.hit["source_key"] = state.source_key
-	var source_only := ImpactProfiles.is_source_heavy(state.hit, source.combat)
+	var source_only := ImpactProfiles.is_source_heavy(state.hit, source.combat) or ImpactProfiles.is_source_wolf(state.hit, source.combat)
 	if source_only:
 		var key := ImpactProfiles.instance_id(state.hit)
 		state.hit["_source_stop_identity"] = key
@@ -1996,6 +2045,8 @@ func _tick_projectiles(delta: float) -> void:
 				var contact = Geometry3D.get_closest_point_to_segment(target.position + Vector3.UP * 0.65, state.previous, state.position)
 				contact_hit["impact_position"] = DungeonProjectile._array(contact)
 				contact_hit["impact_origin"] = DungeonProjectile._array(state.position)
+				contact_hit["impact_forward"] = DungeonProjectile._array(state.direction)
+				contact_hit["impact_entity_type"] = "physical"
 				contact_hit["impact_radius"] = state.radius
 				contact_hit["contact"] = int(state.hits.get(key, 0))
 				contact_hit["ranged"] = state.motion_type not in ["EMAT_FollowOwner", "EMAT_RotateOwner"]
@@ -2029,8 +2080,8 @@ func _cancel_attached_projectiles(source: DungeonActor, sequence: int, keep := f
 func _apply_feedback(source: DungeonActor, target: DungeonActor, hit: Dictionary) -> void:
 	if target.get_meta("camp_training", false): return
 	var profile: Dictionary = hit.profile if hit.has("profile") else ImpactProfiles.resolve(hit, source.combat if source else null)
-	# Monster hit reactions are settled through source tenacity and action interrupts.
-	if not target.is_player and profile.category != "continuous": return
+	# Monster force is settled by EnemyHitReaction, independently of visual feedback.
+	if not target.is_player: return
 	var factor = ImpactProfiles.reaction_scale(target.combat)
 	var origin = vector(hit.get("impact_origin", DungeonProjectile._array(source.position if source else target.position)))
 	var direction = target.position - origin if profile.category == "explosion" or not source else target.position - source.position
@@ -2062,7 +2113,10 @@ func _diagnostic(message: String) -> void:
 
 static func _raw_definition(definition: Dictionary) -> Dictionary:
 	# Callers may edit commands, including nested fields; keep their payload private.
-	return HitFeedback.raw({"raw": definition.get("raw", "{}")}).duplicate(true)
+	return _read_definition(definition).duplicate(true)
+
+static func _read_definition(definition: Dictionary) -> Dictionary:
+	return HitFeedback.raw({"raw": definition.get("raw", "{}")})
 
 func _actor_by_key(key: String) -> DungeonActor:
 	if key.is_empty(): return null
@@ -2123,7 +2177,7 @@ func _spawn_monsters(source: DungeonActor, event: Dictionary) -> void:
 		_diagnostic("Monster generation has no enemy ID")
 		return
 	var points: Array = event.get("spawn_points", definition.get("SpawnPoints", []))
-	var total = int(definition.get("GenerationTotalCount", 0))
+	var total = int(event.get("generation_count", definition.get("GenerationTotalCount", 0)))
 	for property in str(definition.get("GenerationTotalCountModifyAddValue", "")).split("|", false):
 		var value: Variant = source.combat.property_value(property)
 		if value is int or value is float: total += int(value)
@@ -2418,6 +2472,16 @@ func restore_transients(snapshot: Dictionary) -> void:
 		for field in unit:
 			if field != "effect_token": restored[field] = unit[field]
 
+func _environment_attract(context: Dictionary) -> void:
+	var force: Variant = context.get("force")
+	if not force is Vector3 or not force.is_finite(): return
+	for actor in actors:
+		if not is_instance_valid(actor) or actor.dead or actor.suspended or not actor.is_inside_tree() or actor.is_queued_for_deletion() or actor.combat == null: continue
+		if str(context.get("target_id", "")) != ("player" if actor.is_player else str(actor.combat.actor_key)): continue
+		if not DungeonWorldInteractions.camp_allows(str(context.get("camp_mask", "")), 2 if actor.is_player else 3) or not actor.combat.can_be_attracted(): continue
+		actor.move_and_collide(force / actor.combat.attraction_weight())
+		context["position_after"] = actor.global_position
+
 func _environment_trap(context: Dictionary) -> void:
 	_impact_serial += 1
 	var emission = "environment:%s" % _impact_serial
@@ -2433,15 +2497,17 @@ func _environment_trap(context: Dictionary) -> void:
 		var buff_id := str(context.get("buff_id", ""))
 		var definition: Dictionary = actor.combat._buff_index.get(buff_id, {})
 		var layers := maxi(1, int(context.get("layers", 1)))
+		var caster: DungeonCombat = player.combat if is_instance_valid(player) else actor.combat
 		# Instant environment hits use the same immunity, shield and on-hit rules as attacks.
 		# Retaining a zero-lifetime status until the next tick loses its recipient-specific damage tier.
 		if str(definition.get("type", "")) == "EBT_SpecialTriggerRangeDamage" and float(definition.get("duration", -1)) == 0 and float(definition.get("firstDelay", 0)) == 0:
-			var area: Dictionary = actor.combat._status_area(definition, null)
-			actor.combat._status_range_visual(definition, null)
-			_consume_area(actor, {"type": "area", "id": buff_id, "host_key": actor.combat.actor_key, "source_key": "environment", "definition": area, "layers": layers, "caster_attack": actor.combat.effective_attack_power(), "damage": float(area.get("damage", 0)) * layers, "emission": emission + ":" + str(actor.combat.actor_key), "continuous": false, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
+			var area: Dictionary = actor.combat._status_area(definition, caster)
+			actor.combat._status_range_visual(definition, caster)
+			_consume_area(actor, {"type": "area", "id": buff_id, "host_key": actor.combat.actor_key, "source": caster, "definition": area, "layers": layers, "caster_attack": caster.effective_attack_power(), "damage": float(area.get("damage", 0)) * layers, "emission": emission + ":" + str(actor.combat.actor_key), "continuous": false, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
 		else:
 			var previous = actor.combat.health
-			actor.combat.add_buff(buff_id, layers)
+			actor.combat.bind_buff_caster(buff_id, caster)
+			actor.combat.add_buff(buff_id, layers, caster.effective_attack_power())
 			actor.combat.confirm_direct_damage(previous, {"source_key": "environment", "emission": emission, "ranged": true, "impact_category": "explosion" if context.get("explosion", false) else "light", "impact_origin": context.get("position", DungeonProjectile._array(actor.position)), "impact_radius": context.get("radius", 1.0)})
 		if actor.combat.health <= 0: _die(actor)
 
@@ -2496,11 +2562,12 @@ func _enemy_count() -> int:
 func _damage_number(point: Vector3, amount: float, received: bool, critical := false, element := "Physical") -> void:
 	_spawn_number(point, amount, received, false, critical, element)
 
-func _dodge_number(actor: DungeonActor) -> void:
+func _dodge_number(actor: DungeonActor, automatic := false) -> void:
 	if not actor.is_player or actor.dead: return
-	if _impact_clock - float(actor.get_meta("last_dodge_caption", -10.0)) < 0.18: return
+	if _impact_clock - float(actor.get_meta("last_dodge_caption", -10.0)) < 0.3: return
 	actor.set_meta("last_dodge_caption", _impact_clock)
-	_spawn_number(actor.position + Vector3.UP * 1.8, 1.0, false, false, false, "Physical", true)
+	var caption := DungeonLocale.keyed("keyword_AutoDodge" if automatic else "keyword_Dodge", "自动闪避" if automatic else "闪避")
+	_spawn_number(actor.position + Vector3.UP * 1.8, 1.0, false, false, false, "Physical", true, caption)
 
 func _healing_number(point: Vector3, amount: float) -> void:
 	_spawn_number(point, amount, false, true)
@@ -2512,7 +2579,7 @@ static func number_text(amount: float, mode: int, healing := false) -> String:
 		elif amount >= 1000: value = ("%.1f" % (amount / 1000.0)).trim_suffix(".0") + "K"
 	return ("+" if healing else "") + value
 
-func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool, critical := false, element := "Physical", dodge := false) -> void:
+func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool, critical := false, element := "Physical", dodge := false, caption := "") -> void:
 	var mode := int(runtime_settings.get("healing_numbers" if healing else "damage_numbers", 0))
 	if (mode == 2 and not dodge) or amount <= 0.0: return
 	var text: Node3D
@@ -2524,7 +2591,7 @@ func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool,
 	if healing: style = "heal"
 	elif received: style = "hurt"
 	if dodge: style = "dodge"
-	text.configure("闪避" if dodge else number_text(amount, mode, healing), style, critical and not dodge and not healing)
+	text.configure(caption if dodge else number_text(amount, mode, healing), style, critical and not dodge and not healing)
 	var nearby := 0
 	for entry in _numbers:
 		if entry.age < 0.25 and entry.origin.distance_squared_to(point) < 1.0: nearby += 1
@@ -2533,7 +2600,7 @@ func _spawn_number(point: Vector3, amount: float, received: bool, healing: bool,
 	var lane := float((nearby % 3) - 1)
 	var origin := point + right * lane * 0.45 + up * float(nearby / 3) * 0.25
 	text.position = origin
-	text.scale = Vector3.ONE
+	text.scale = Vector3.ONE * _number_screen_scale(origin)
 	text.show()
 	_numbers.append({"node": text, "origin": origin, "travel": right * lane * 0.65 + up * 1.1, "age": 0.0, "amount": amount, "healing": healing, "dodge": dodge})
 
@@ -2543,19 +2610,30 @@ func _make_damage_number() -> Node3D:
 	text.hide()
 	return text
 
+func _number_screen_scale(point: Vector3) -> float:
+	if not is_instance_valid(camera) or camera.is_position_behind(point): return 1.0
+	var pixels_per_unit := camera.unproject_position(point).distance_to(camera.unproject_position(point + camera.global_basis.y))
+	# APK PopEffect_Damage: 20 pt; Canvas reference height 1080. Preserve UI size across camera zooms.
+	return (20.0 / 68.0) * get_viewport().get_visible_rect().size.y / 1080.0 / maxf(0.001, pixels_per_unit * 0.007)
+
 func _tick_damage_numbers(delta: float) -> void:
 	for index in range(_numbers.size() - 1, -1, -1):
 		var entry = _numbers[index]
 		entry.age += delta
-		if entry.age >= 1.0:
+		var is_dodge: bool = entry.get("dodge", false)
+		var lifetime := 0.95 if is_dodge else 1.0
+		if entry.age >= lifetime:
 			entry.node.hide()
 			_number_pool.append(entry.node)
 			_numbers.remove_at(index)
 		else:
 			var progress := clampf(float(entry.age) / 0.5, 0.0, 1.0)
 			entry.node.position = entry.origin + entry.travel * (1.0 - pow(1.0 - progress, 3.0))
-			entry.node.scale = Vector3.ONE * lerpf(1.0, 2.205, minf(float(entry.age) / 0.1, 1.0))
-			entry.node.modulate = Color(1, 1, 1, minf(float(entry.age) / 0.05, 1.0) * clampf((1.0 - float(entry.age)) / 0.2, 0.0, 1.0))
+			var pop_scale := lerpf(1.0, 1.5, minf(float(entry.age) / 0.04, 1.0)) if is_dodge else lerpf(1.0, 2.205, minf(float(entry.age) / 0.1, 1.0))
+			entry.node.scale = Vector3.ONE * _number_screen_scale(entry.node.position) * pop_scale
+			var fade_in := 0.1 if is_dodge else 0.05
+			var fade_out := 0.3 if is_dodge else 0.2
+			entry.node.modulate = Color(1, 1, 1, minf(float(entry.age) / fade_in, 1.0) * clampf((lifetime - float(entry.age)) / fade_out, 0.0, 1.0))
 
 func show_material_gain(point: Vector3, id: int, amount: int) -> void:
 	var feedback := Node3D.new()

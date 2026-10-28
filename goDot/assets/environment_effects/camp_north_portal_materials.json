@@ -43,6 +43,7 @@
     "mat_fx_23121601_portalblue_energyflow": {
       "name": "mat_fx_23121601_portalblue_energyflow",
       "source": "CAB-e355e6b0d05ab47d2012d0e8ccc2b413:-6885912256693291747",
+      "render_queue": 3012,
       "texture": "res://assets/environment_effects/texture_6443e414c92a1ed37ac0.png",
       "texture_scale": {
         "x": 1.0,
@@ -445,6 +446,7 @@
     "mat_fx_23121601_portalblue_sand": {
       "name": "mat_fx_23121601_portalblue_sand",
       "source": "CAB-e355e6b0d05ab47d2012d0e8ccc2b413:-6379003569937065302",
+      "render_queue": 3017,
       "texture": "res://assets/environment_effects/texture_99c2307c587179565797.png",
       "texture_scale": {
         "x": 1.5,
@@ -809,6 +811,7 @@
     "mat_fx_23121601_portalblue_dark": {
       "name": "mat_fx_23121601_portalblue_dark",
       "source": "CAB-e355e6b0d05ab47d2012d0e8ccc2b413:-4582281040700504641",
+      "render_queue": 3017,
       "texture": "res://assets/environment_effects/texture_028ac71c1e32e81e9d82.png",
       "texture_scale": {
         "x": 1.0,
@@ -1174,6 +1177,7 @@
     "mat_fx_23121601_portalblue_energyflowlight": {
       "name": "mat_fx_23121601_portalblue_energyflowlight",
       "source": "CAB-e355e6b0d05ab47d2012d0e8ccc2b413:5133760333061429080",
+      "render_queue": 3017,
       "texture": "res://assets/environment_effects/texture_bccddadd04a36dd35e56.png",
       "texture_scale": {
         "x": 1.0,
@@ -1558,6 +1562,7 @@
     "mat_fx_23121601_portalblue_glow": {
       "name": "mat_fx_23121601_portalblue_glow",
       "source": "CAB-e355e6b0d05ab47d2012d0e8ccc2b413:8286939208088711446",
+      "render_queue": 3017,
       "texture": "res://assets/environment_effects/texture_1013a40f2fe0d54ec7f5.png",
       "texture_scale": {
         "x": 3.0,

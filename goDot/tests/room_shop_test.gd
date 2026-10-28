@@ -82,6 +82,12 @@ func _layout_checks(catalog, systems, shop: Dictionary) -> void:
 		for frame in 8: await process_frame
 		for control in [page.header, page.investment, page.tabs, page.scroll, page.refresh, page.footer]:
 			check(page.get_global_rect().encloses(control.get_global_rect()), "Shop control fits %s: %s %s" % [dimensions, control.get_class(), control.get_global_rect()])
+		check(not page.investment.get_global_rect().intersects(page.footer.get_global_rect()), "Investment panel cannot cover continue button " + str(dimensions))
+		check(not page.investment.get_global_rect().intersects(page.refresh.get_global_rect()), "Refresh button stays outside investment panel " + str(dimensions))
+		check(not page.footer.get_global_rect().intersects(page.refresh.get_global_rect()), "Continue and refresh buttons remain separate targets " + str(dimensions))
+		for action in page.deposit.get_parent().get_children():
+			check(page.investment.get_global_rect().encloses(action.get_global_rect()), "Investment action stays within its panel " + str(dimensions))
+			check(not action.get_global_rect().intersects(page.footer.get_global_rect()), "Investment action remains clickable above continue " + str(dimensions))
 		check(page.cards.size() == 7 and page.grid.columns == 4, "Seven reference cards retain four columns " + str(dimensions))
 		check(page.cards[0].size.x >= 100 and page.cards[0].size.y >= 120, "Readable shop cards " + str(dimensions))
 		if DisplayServer.get_name() != "headless":

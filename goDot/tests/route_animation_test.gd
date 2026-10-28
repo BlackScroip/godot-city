@@ -67,9 +67,12 @@ func _run() -> void:
 		while not page._opening_started: await process_frame
 		await create_timer(0.12).timeout
 		check(page.nodes.front().modulate.a > page.nodes.back().modulate.a, "Opening reveals earlier columns first at %s (first %.3f, last %.3f)" % [dimensions, page.nodes.front().modulate.a, page.nodes.back().modulate.a])
+		check(is_zero_approx(page.nodes.front()._badge_alpha), "Rewards wait until the card entrance has completed")
 		await create_timer(0.70).timeout
 		check(page.nodes.all(func(node): return is_equal_approx(node.modulate.a, 1.0)), "Opening reveals all nodes within one second")
 		check(is_equal_approx(page._opening_alpha, 1.0), "Connections finish their opening fade")
+		await create_timer(0.5).timeout
+		check(page.nodes.all(func(node): return is_equal_approx(node._badge_alpha, 1.0) and is_zero_approx(node._reveal_offset)), "Staggered reward reveal and entrance rebound finish")
 		var choices = page.nodes.filter(func(node): return node.available)
 		check(choices.size() == 3, "Animation keeps all three reachable choices")
 		choices[0].pressed.emit()

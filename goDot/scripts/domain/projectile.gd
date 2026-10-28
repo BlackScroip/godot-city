@@ -118,6 +118,16 @@ static func emission_facing(raw: Dictionary, index: int, facing: Vector3, toward
 	var offset = float(emit.get("DegreeOffet", 0)) if mode == "EAE_Circle_DirToTarget" else 0.0
 	return direction.rotated(Vector3.UP, deg_to_rad(start + index * step + offset))
 
+static func multipoint_transform(event: Dictionary, point: Vector3, facing: Vector3) -> Dictionary:
+	var raw := DungeonWorld._read_definition(event.get("definition", {}))
+	var points: Array = raw.get("EmitProperty", {}).get("PointData", [])
+	var index := int(event.get("emit_index", 0))
+	if index < 0 or index >= points.size(): return {"position": point, "facing": facing}
+	var selected: Dictionary = points[index]
+	var offset := DungeonWorld.vector(selected.get("Offset", {}))
+	var yaw := deg_to_rad(float(selected.get("Rotate", {}).get("y", 0)))
+	return {"position": point + orient(offset, facing) + DungeonWorld.vector(event.get("emit_random_offset", [])), "facing": facing.rotated(Vector3.UP, yaw)}
+
 func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vector3, owner_facing: Vector3 = Vector3.INF) -> void:
 	reset()
 	hit = event.duplicate(true)
@@ -132,7 +142,11 @@ func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vecto
 	motion_type = str(raw.get("MotionAnimatorType", "EMAT_Line"))
 	direction = facing.normalized() if facing.length_squared() > 0.001 else Vector3.FORWARD
 	var emit: Dictionary = raw.get("EmitProperty", {})
-	if raw.get("EmitType", "") == "EET_ARC":
+	if raw.get("EmitType", "") == "EET_MultiPoint":
+		var transform_data := multipoint_transform(hit, point, direction)
+		owner_offset = transform_data.position - point
+		direction = transform_data.facing
+	elif raw.get("EmitType", "") == "EET_ARC":
 		var basis = owner_facing if owner_facing.is_finite() else facing
 		owner_offset = orient(DungeonWorld.vector(emit.get("PosOffset", {})), basis) + basis * float(emit.get("RadiusOffset", 0))
 	else:

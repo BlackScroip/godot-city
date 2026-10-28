@@ -31,15 +31,15 @@ func _run() -> void:
 	check(banner.clock.modulate.a == 0, "Time is not shown before the native 1.8 second delay")
 	banner.advance(0.002)
 	check(banner.clock.modulate.a == 1, "Time appears after the native 1.8 second delay")
+	check(not banner.title.visible and banner.clock.get_theme_font_size("font_size") == 64, "Time replaces the victory title at the source 64 point size")
 	banner.present("room:1", 120)
 	check(is_equal_approx(banner.battle_seconds, 73.456), "Repeated completion cannot replace or restart the displayed result")
 	for dimensions in [Vector2i(2460, 1080), Vector2i(1600, 900), Vector2i(844, 390)]:
 		canvas.size = dimensions
-		banner.size = Vector2(dimensions)
 		for frame in 3: await process_frame
 		var bounds := Rect2(Vector2.ZERO, Vector2(dimensions))
 		check(bounds.encloses(banner.banner.get_global_rect()), "Completion banner fits %s" % dimensions)
-		check(not banner.title.get_global_rect().intersects(banner.clock.get_global_rect()), "Title and time do not overlap")
+		check(not banner.title.visible and banner.clock.modulate.a == 1, "Victory and time occupy the source title slot without simultaneous text")
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
 			canvas.get_texture().get_image().save_png("/private/tmp/battle-complete-%dx%d.png" % [dimensions.x, dimensions.y])

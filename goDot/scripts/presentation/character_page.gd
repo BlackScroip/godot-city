@@ -13,6 +13,7 @@ const SOURCE_MAP := "res://assets/ui/role_character/resource_map.json"
 const FASHION_DATA := "res://assets/ui/role_character/CharaFashionConfigData.json"
 const STAT_ICONS := ["icon_hp_white", "icon_atk_white", "icon_def_white", "icon_criticalrate_white", "icon_criticalmulti_white"]
 const ROLE_NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
+const FASHION_MODELS = preload("res://scripts/presentation/character_fashion_models.gd")
 
 var owner_page: DungeonMenuPage
 var rows: Array = []
@@ -66,6 +67,7 @@ var _fashions: Array = []
 var _source_map: Dictionary = {}
 var _preview_fashion := 0
 var _upgrade_overlay: Control
+var _recruit_overlay: Control
 
 func configure(host: DungeonMenuPage, data: Array, page_context: Dictionary = {}) -> void:
 	owner_page = host
@@ -319,7 +321,8 @@ func _select_showcase(index: int) -> void:
 	_clear(showcase)
 	var fashion = _selected_fashion()
 	var art_key = str(fashion.get("illustration_path", row.get("artwork", "")))
-	var has_model = int(fashion.get("id", _character_id() * 1000 + 1)) == _character_id() * 1000 + 1
+	var model_path := _fashion_model_path(fashion)
+	var has_model := not model_path.is_empty()
 	if not has_model:
 		use_model = false
 		_store_context("use_model", false)
@@ -329,7 +332,7 @@ func _select_showcase(index: int) -> void:
 		preview.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		preview.custom_minimum_size = Vector2(100, 90)
 		showcase.add_child(preview)
-		preview.show_model(str(row.get("model", "")))
+		preview.show_model(model_path)
 	else:
 		var image = _picture(art_key, Vector2(100, 90))
 		image.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -357,6 +360,13 @@ func _select_showcase(index: int) -> void:
 	_refresh_detail()
 	_adapt.call_deferred()
 
+func _fashion_model_path(fashion: Dictionary) -> String:
+	var id := int(fashion.get("id", _character_id() * 1000 + 1))
+	var path := FASHION_MODELS.path_for(id)
+	if path.is_empty() and id == _character_id() * 1000 + 1:
+		path = str(rows[selected].get("model", ""))
+	return path
+
 func set_detail_tab(tab: String) -> void:
 	active_tab = tab
 	_store_context("character_mode", tab)
@@ -379,6 +389,7 @@ func _refresh_detail() -> void:
 		detail.add_child(caption)
 		var source = _source()
 		biography = _label(DungeonCatalog.clean(DungeonCatalog.description(source)) if not source.is_empty() else str(row.get("description", "")).get_slice("\n金币", 0), 20)
+		biography.visible = not biography.text.begins_with("CharaData_Description_")
 		biography.add_theme_constant_override("line_spacing", -6)
 		biography.add_theme_color_override("font_color", PAPER)
 		detail.add_child(biography)
@@ -585,6 +596,10 @@ func _character_id() -> int:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_cancel"): return
+	if is_instance_valid(_recruit_overlay) and _recruit_overlay.visible:
+		_recruit_overlay.queue_free()
+		get_viewport().set_input_as_handled()
+		return
 	if is_instance_valid(_upgrade_overlay) and _upgrade_overlay.visible:
 		_upgrade_overlay.queue_free()
 		get_viewport().set_input_as_handled()
@@ -690,6 +705,10 @@ func _command_button(entry: Dictionary) -> Button:
 		result.disabled = bool(context.get("in_run", false))
 		result.pressed.connect(func(): _show_upgrade(int(entry.get("id", _character_id()))))
 		return result
+	if str(entry.get("action", "")) == "op:unlock_character" and context.get("systems"):
+		result.disabled = bool(context.get("in_run", false))
+		result.pressed.connect(func(): _show_recruit(int(entry.get("id", _character_id()))))
+		return result
 	result.pressed.connect(func(): command.emit(str(entry.get("action", "")), entry.get("id", 0), entry.get("extra", 0)))
 	return result
 
@@ -700,6 +719,14 @@ func _show_upgrade(id: int) -> void:
 	_upgrade_overlay.configure(context.systems, id)
 	_upgrade_overlay.confirmed.connect(func(character_id): command.emit("op:upgrade_character", character_id, 0))
 	_upgrade_overlay.canceled.connect(func(): _upgrade_overlay.hide())
+
+func _show_recruit(id: int) -> void:
+	if is_instance_valid(_recruit_overlay): _recruit_overlay.queue_free()
+	_recruit_overlay = preload("res://scripts/presentation/character_recruit_dialog.gd").new()
+	_stage.add_child(_recruit_overlay)
+	_recruit_overlay.configure(context.systems, id)
+	_recruit_overlay.confirmed.connect(func(character_id): command.emit("op:unlock_character", character_id, 0))
+	_recruit_overlay.canceled.connect(func(): _recruit_overlay.hide())
 
 func _flat(fill: Color, border := Color.TRANSPARENT, width := 1) -> StyleBoxFlat:
 	var result = DungeonStyle.box(fill, border, width)

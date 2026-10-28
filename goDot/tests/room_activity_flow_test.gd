@@ -183,7 +183,9 @@ func _run() -> void:
 			if available.is_empty(): break
 			var selected: Dictionary = available.back()
 			game._action("event_choice", int(selected.id), {"key": encounter.key, "marker_id": str(event.id)})
-		check(encounter.finished and event.state.used, "Finishing optional event consumes its own marker")
+		check(encounter.finished and game.hud.modal_open and not event.state.used, "Finished event retains its authored outcome until confirmation")
+		game._action("event_continue", 0, {"key": encounter.key, "marker_id": str(event.id)})
+		check(event.state.used, "Confirming optional event consumes its own marker")
 		check(game.campaign.state.phase == "room" and game.world.room_stage == stage, "Optional event does not resolve combat or change gates")
 		var count: int = game.profile.data.run.events.size()
 		game.world.interactions.interact(str(event.id))
@@ -202,6 +204,11 @@ func _run() -> void:
 	altar = _item(DungeonWorldInteractions.SACRIFICIAL_ALTAR)
 	check(not altar.is_empty(), "Boss room contains source sacrificial altar")
 	if not altar.is_empty():
+		while not game.campaign.room_ready():
+			if not game.campaign.clear_wave().success: break
+		game.world.elapsed = 1.0
+		game.world.room_stage = "open"
+		game._finish_room()
 		combat = game.world.player.combat
 		game.profile.data.run.counters["rogue-event-buff:100200101"] = 1
 		game._apply_growth()
@@ -212,8 +219,12 @@ func _run() -> void:
 		var key: String = "sacrifice:" + game._room_key + ":" + str(altar.id)
 		var state: Dictionary = game._room_choices().open_sacrifice(key)
 		check(game.hud.modal_open and altar.state.used and not state.options.is_empty(), "Sacrifice source activation consumes marker and opens priced choices")
-		var locks: Array = game.hud.page.find_children("SacrificeLock", "Button", true, false)
-		check(locks.size() == state.options.size(), "Each sacrifice candidate exposes a separate lock control")
+		var locks: Array = game.hud.page.find_children("SacrificeLock*", "Button", true, false)
+		check(locks.is_empty(), "Sacrifice lock controls require source permanent talent 221")
+		game.profile.data.talents["221"] = 1
+		game._show_sacrifice(key)
+		locks = game.hud.page.find_children("SacrificeLock*", "Button", true, false)
+		check(locks.size() == state.options.size(), "Each sacrifice candidate exposes a separate unlocked lock control")
 		if not locks.is_empty():
 			var locked_id := int(state.options[0].id)
 			var locked_cost := int(state.options[0].hp_cost)
@@ -230,7 +241,7 @@ func _run() -> void:
 		game._load_room(true)
 		await _wait()
 		game._process(0.016)
-		check(game.hud.primary.visible and game.hud.primary.text == "继续献祭", "Pending sacrifice has a visible usable interaction prompt after reload")
+		check(game.hud.primary.visible and game.hud.primary.text == "继续净化", "Pending purification has a visible usable interaction prompt after reload")
 		game._interact()
 		state = game._room_choices().open_sacrifice(key)
 		check(game.hud.modal_open and state.options == candidates, "Pending sacrifice restores identical candidates and prices after save reload")

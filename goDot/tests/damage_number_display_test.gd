@@ -40,6 +40,11 @@ func _run() -> void:
 	check(world._numbers[0].origin != world._numbers[1].origin, "Consecutive hits separate")
 	world._tick_damage_numbers(0.3)
 	check(number.modulate.a == 1.0, "Number remains readable before fade")
+	var original_size := world.camera.size
+	var screen_scale := world._number_screen_scale(Vector3.ZERO)
+	world.camera.size = original_size * 2.0
+	check(is_equal_approx(world._number_screen_scale(Vector3.ZERO), screen_scale * 2.0), "Camera zoom preserves APK screen font size")
+	world.camera.size = original_size
 	world._tick_damage_numbers(0.7)
 	check(world._numbers.is_empty(), "Completed numbers recycle")
 	world._damage_number(Vector3.ZERO, 9, true)
@@ -50,7 +55,9 @@ func _run() -> void:
 	var health := combat.health
 	world._apply_hit(target, world.player, {"damage": 50.0, "definition": {}})
 	check(combat.health == health and world._numbers.size() == 1, "Actual player dodge avoids damage and shows caption")
-	check(world._numbers.back().node.glyph_names == ["buff_shanbi"], "Dodge uses APK caption")
+	check(world._numbers.back().node.caption.text == "闪避" and world._numbers.back().node.caption.font_size == 32, "Dodge uses APK tips text size")
+	check(world._numbers.back().node.caption.font.resource_path == "res://assets/ui/boss_intro/font_a8fb15c8685836d5.ttf", "Dodge uses the APK Alibaba ExtraBold font")
+	check(world._numbers.back().node.caption.modulate == Color.GREEN, "Dodge uses native green text")
 	world._apply_hit(target, world.player, {"damage": 50.0, "definition": {}})
 	check(world._numbers.size() == 1, "Same-frame dodge contacts do not stack captions")
 	world.apply_settings({"damage_numbers": 2})
@@ -66,6 +73,7 @@ func _run() -> void:
 	world._impact_clock += 1.0
 	for event in combat.events: world._consume(world.player, event)
 	check(world._numbers.size() == 1, "Automatic dodge reaches world display")
+	check(world._numbers.back().node.text == "自动闪避", "Automatic dodge uses its distinct APK localization key")
 	world._tick_damage_numbers(1.0)
 	combat._dodge_time = 0
 	combat._block_time = 0.3
@@ -82,7 +90,7 @@ func _run() -> void:
 		for viewport_size in [Vector2i(1600, 900), Vector2i(844, 390)]:
 			root.size = viewport_size
 			world._numbers.clear()
-			world._damage_number(Vector3(-2, 1.8, 0), 107, false, false, "Fire")
+			world._damage_number(Vector3(-3, 1.8, 0), 107, false, false, "Fire")
 			world._damage_number(Vector3(0, 1.8, 0), 214, false, true, "Fire")
 			world._impact_clock += 1
 			world._dodge_number(world.player)

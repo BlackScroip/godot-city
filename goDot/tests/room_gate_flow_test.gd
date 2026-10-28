@@ -148,7 +148,7 @@ func _run() -> void:
 	_check(game.world.room_stage == "clearing", "Barrier stays closed until one second after clear")
 	_tick(0.001)
 	_check(game.world.room_stage == "rewards" and game.campaign.state.phase == "reward", "One second releases barriers and enables completion rewards")
-	_check(game.hud.battle_complete.visible and is_equal_approx(game.hud.battle_complete.battle_seconds, game.world.elapsed), "Completion publishes the frozen room combat time")
+	_check(not game.hud.battle_complete.visible and game.hud.battle_complete.room_key.is_empty(), "Ordinary combat completion does not publish Boss completion statistics")
 	_gates(false, false, true)
 	await _restore_stage("rewards")
 	_check(not game.hud.battle_complete.visible, "Restoring a completed room does not replay its completion banner")
@@ -170,7 +170,32 @@ func _run() -> void:
 	if not exits.is_empty():
 		game.world.interactions.interact(str(exits[0].id))
 		_check(transitions.count == 1, "Explicit exit interaction dispatches one transition")
+	await _check_boss_completion()
 	_finish()
+
+func _check_boss_completion() -> void:
+	await _wait_loading()
+	var bosses: Array = game.campaign.database.Nodes.filter(func(node): return node.Flow == "Boss" and int(node.MinDifficulty) == 0)
+	_check(not bosses.is_empty(), "Boss completion fixture exists")
+	if bosses.is_empty(): return
+	_check(game.campaign.start_practice(int(bosses[0].Id), 42).success, "Boss practice starts")
+	game._load_room()
+	await _wait_loading()
+	game.hud.close_page()
+	game.world.paused = false
+	_check(not game.hud.battle_complete.visible, "Entering a Boss room does not show completion statistics")
+	game.world.enter_room_encounter()
+	for wave in int(game.campaign.state.wave_count):
+		_defeat_wave()
+		_tick(0.051)
+	_tick(1.0)
+	_check(game.campaign.state.phase == "reward", "Defeating the Boss completes the room")
+	_check(game.hud.battle_complete.visible and is_equal_approx(game.hud.battle_complete.battle_seconds, game.world.elapsed), "Boss completion publishes the frozen combat time")
+	var seconds: float = game.hud.battle_complete.battle_seconds
+	game._finish_room()
+	_check(is_equal_approx(game.hud.battle_complete.battle_seconds, seconds), "Repeated completion preserves Boss statistics")
+	await _restore_stage("rewards")
+	_check(not game.hud.battle_complete.visible, "Restoring a defeated Boss does not replay statistics")
 
 func _finish() -> void:
 	var report := {"passed": failures.is_empty(), "checks": checks, "failures": failures, "restored_stages": stages}

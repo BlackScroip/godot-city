@@ -33,6 +33,7 @@ class NodeBadge extends Control:
 				draw_circle(Vector2(size.x - 4, 4), 7, Color("ffddae"), false, 1.5, true)
 
 const INK = Color("453e36")
+const UPGRADE_ART = preload("res://assets/ui/prepare/sprite_39ebe9c97d61.png")
 var systems
 var catalog
 var selected_category = 1
@@ -273,15 +274,25 @@ func _show_detail() -> void:
 	upgrade_button = Button.new()
 	upgrade_button.text = "已满级" if int(status.level) >= int(status.max_level) else "升级" if int(status.level) > 0 else "解锁"
 	upgrade_button.disabled = not status.can_upgrade
-	upgrade_button.custom_minimum_size.y = 36 if _compact else 48
+	upgrade_button.custom_minimum_size.y = 44
 	upgrade_button.add_theme_font_size_override("font_size", 15 if _compact else 20)
-	upgrade_button.add_theme_color_override("font_color", INK)
+	upgrade_button.add_theme_color_override("font_color", Color.WHITE)
+	upgrade_button.add_theme_color_override("font_hover_color", Color.WHITE)
+	upgrade_button.add_theme_color_override("font_pressed_color", Color.WHITE)
 	upgrade_button.add_theme_color_override("font_disabled_color", Color("3f5045"))
 	for state in ["normal", "hover", "pressed", "disabled"]:
-		upgrade_button.add_theme_stylebox_override(state, _skin("商店按钮_底", Vector4(32, 12, 32, 12), Color("a7aba5") if state == "disabled" else Color.WHITE, 6))
+		var tint = Color(0.81132078, 0.80998135, 0.80749381) if state == "disabled" else Color(0.29019609, 0.32549021, 0.4)
+		if state == "hover": tint = tint.lightened(0.1)
+		upgrade_button.add_theme_stylebox_override(state, _skin(UPGRADE_ART.resource_path, Vector4.ZERO, tint, 6))
+	upgrade_button.resized.connect(_size_upgrade_button)
 	upgrade_button.pressed.connect(func(): command.emit("op:upgrade_global_talent", selected_talent, 0))
 	detail.add_child(upgrade_button)
 	detail_scroll.scroll_vertical = 0
+
+func _size_upgrade_button() -> void:
+	if not is_instance_valid(upgrade_button): return
+	var height = maxf(44, ceilf(upgrade_button.size.x * UPGRADE_ART.get_height() / UPGRADE_ART.get_width()))
+	if not is_equal_approx(upgrade_button.custom_minimum_size.y, height): upgrade_button.custom_minimum_size.y = height
 
 func select_talent(id: int) -> void:
 	if not node_buttons.has(id): return

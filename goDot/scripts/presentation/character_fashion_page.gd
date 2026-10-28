@@ -70,7 +70,6 @@ func configure(page) -> void:
 func select_fashion(id: int) -> void:
 	if not fashions.any(func(row): return int(row.id) == id): return
 	selected_id = id
-	_use_model = false
 	host._preview_fashion = id
 	host._store_context("selected_fashion", id)
 	for index in swatches.size():
@@ -120,7 +119,9 @@ func _status(fashion: Dictionary) -> Dictionary:
 func _refresh_art() -> void:
 	host._clear(_art)
 	var fashion = _fashion()
-	var has_model = selected_id == host._character_id() * 1000 + 1
+	var model_path: String = host._fashion_model_path(fashion)
+	var has_model := not model_path.is_empty()
+	if not has_model: _use_model = false
 	_model_button.disabled = not has_model
 	_model_button.tooltip_text = "查看角色模型" if has_model else "此时装尚未恢复3D模型"
 	_model_button.text = "2D" if _use_model else "3D"
@@ -129,7 +130,7 @@ func _refresh_art() -> void:
 		var preview = DungeonModelPreview.new()
 		_art.add_child(preview)
 		preview.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		preview.show_model(str(host.rows[host.selected].get("model", "")))
+		preview.show_model(model_path)
 	else:
 		var art = host._picture(str(fashion.get("illustration_path", "")), Vector2.ZERO)
 		_art.add_child(art)
@@ -151,7 +152,14 @@ func _refresh_details() -> void:
 	var title = host._label(str(fashion.get("name", "")), 38)
 	_details.add_child(title)
 	host._rect(title, 45, 17, 430, 56)
-	var description = host._label(DungeonCatalog.clean(str(fashion.get("description", ""))), 23)
+	var description = SourceRichText.new()
+	description.name = "FashionDescription"
+	description.fit_content = false
+	description.scroll_active = true
+	description.mouse_filter = Control.MOUSE_FILTER_STOP
+	description.add_theme_font_size_override("normal_font_size", 23)
+	description.add_theme_color_override("default_color", host.PAPER)
+	description.set_source(str(fashion.get("description", "")))
 	_details.add_child(description)
 	host._rect(description, 44, 90, 455, 90)
 	var divider = host._picture("ArtLineDown_white", Vector2.ZERO)
@@ -169,15 +177,25 @@ func _refresh_details() -> void:
 	var effects = VBoxContainer.new()
 	effects.name = "FashionEffects"
 	effects.add_theme_constant_override("separation", 7)
-	_details.add_child(effects)
-	host._rect(effects, 44, 253, 455, 100)
+	effects.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var effects_scroll = ScrollContainer.new()
+	effects_scroll.name = "FashionEffectsScroll"
+	effects_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_details.add_child(effects_scroll)
+	host._rect(effects_scroll, 44, 253, 455, 190)
+	effects_scroll.add_child(effects)
 	for pair in [["unlock_hp_add", "生命"], ["unlock_atk_add", "攻击"], ["unlock_def_add", "防御"], ["unlock_criti_rate_add", "暴击率"], ["unlock_criti_mult_add", "暴击伤害"]]:
 		var amount = int(fashion.get(pair[0], 0))
 		if amount == 0: continue
 		var value = "%+.1f%%" % (amount / 10.0) if "criti" in pair[0] else "%+d" % amount
 		effects.add_child(host._label("%s  %s" % [pair[1], value], 24))
 	var effect_text = str(fashion.get("effect_description", ""))
-	if not effect_text.begins_with("CharaFashion_") and not effect_text.is_empty(): effects.add_child(host._label(DungeonCatalog.clean(effect_text), 23))
+	if not effect_text.begins_with("CharaFashion_") and not effect_text.is_empty():
+		var effect_description = SourceRichText.new()
+		effect_description.add_theme_font_size_override("normal_font_size", 23)
+		effect_description.add_theme_color_override("default_color", host.PAPER)
+		effect_description.set_source(effect_text)
+		effects.add_child(effect_description)
 	var card_line = host._picture("ArtLineDown_1_white", Vector2.ZERO)
 	card_line.stretch_mode = TextureRect.STRETCH_SCALE
 	_details.add_child(card_line)
