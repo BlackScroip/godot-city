@@ -136,6 +136,8 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 			item.colliders.append(collider)
 			var body = _nodes.get("Collider_" + str(collider.get("fileID", "")))
 			if body is CollisionObject3D: item.bodies.append({"node": body, "layer": body.collision_layer, "mask": body.collision_mask})
+		if str(marker.get("Type", "")) in ["EEUT_TriggerTrap", "EEUT_AttractTrap"]:
+			_cache_trap_volumes(item)
 		_items[id] = item
 		var kind := str(marker.get("Type", ""))
 		if kind in TICKED_TYPES: _ticked_items.append(item)
@@ -427,10 +429,11 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 						if item.state.break_remaining <= 0: _finish_break(item)
 				"EEUT_TriggerTrap":
 					var trigger_inside := false
-					for target in all_targets:
-						if target.get("position") is Vector3 and camp_allows(str(item.definition.get("TargetCampString", "")), int(target.get("camp", 0))) and _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EnterTrigger"):
-							trigger_inside = true
-							break
+					if str(item.definition.get("TriggerCondition", "")) != "Auto":
+						for target in all_targets:
+							if target.get("position") is Vector3 and camp_allows(str(item.definition.get("TargetCampString", "")), int(target.get("camp", 0))) and _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EnterTrigger"):
+								trigger_inside = true
+								break
 					_advance_trap(item, step, trigger_inside)
 					if item.state.phase != "active": continue
 					_affect_trap_environment(item)
@@ -928,8 +931,45 @@ func _sound(item: Dictionary, field: String) -> void:
 	var name := str(value.get("SoundName", "")) if value is Dictionary else str(value)
 	if not name.is_empty(): sound_requested.emit(name)
 
+func _cache_trap_volumes(item: Dictionary) -> void:
+	item["trap_volumes"] = {}
+	item["trap_bounds"] = {}
+	for role in ["Container_EnterTrigger", "Container_EffectTrigger"]:
+		var volumes := _volumes(item, role)
+		item.trap_volumes[role] = volumes
+		var bounds := AABB()
+		var has_bounds := false
+		for collider in volumes:
+			var matrix := _matrix(collider.get("world_matrix", []))
+			if absf(matrix.basis.determinant()) < 0.00000001: continue
+			var properties: Dictionary = collider.get("properties", {})
+			var center := _vector(properties.get("m_Center", {}))
+			var scale := matrix.basis.get_scale().abs()
+			var shape_bounds: AABB
+			match int(collider.get("kind", 0)):
+				65:
+					var half := _vector(properties.get("m_Size", {})).abs() * 0.5
+					shape_bounds = matrix * AABB(center - half, half * 2.0)
+				135, 136:
+					var radius := float(properties.get("m_Radius", 0)) * maxf(scale.x, maxf(scale.y, scale.z))
+					var extent := Vector3.ONE * radius
+					if int(collider.get("kind", 0)) == 136:
+						var axis := int(properties.get("m_Direction", 1))
+						radius = float(properties.get("m_Radius", 0)) * maxf(scale[(axis + 1) % 3], scale[(axis + 2) % 3])
+						extent = Vector3.ONE * radius
+						var half_length := maxf(0.0, float(properties.get("m_Height", 0)) * scale[axis] * 0.5 - radius)
+						extent += matrix.basis[axis].normalized().abs() * half_length
+					shape_bounds = AABB(matrix * center - extent, extent * 2.0)
+				_:
+					has_bounds = false
+					break
+			bounds = bounds.merge(shape_bounds) if has_bounds else shape_bounds
+			has_bounds = true
+		if has_bounds: item.trap_bounds[role] = bounds
+
 func _volumes(item: Dictionary, role: String) -> Array:
 	if role.is_empty(): return item.colliders
+	if item.get("trap_volumes", {}).has(role): return item.trap_volumes[role]
 	var matching: Array = []
 	var segment := "/" + role + "/"
 	for collider in item.colliders:
@@ -940,6 +980,8 @@ func _contains(item: Dictionary, position: Vector3, actor_radius: float = 0, rol
 	var volumes := _volumes(item, role)
 	if volumes.is_empty(): return false
 	var local_position := _root.global_transform.affine_inverse() * position if is_instance_valid(_root) and _root.is_inside_tree() else position
+	var bounds: Dictionary = item.get("trap_bounds", {})
+	if bounds.has(role) and not bounds[role].grow(absf(actor_radius) * 3.0 + 0.00001).has_point(local_position): return false
 	for collider in volumes:
 		var properties: Dictionary = collider.get("properties", {})
 		var active_trap_volume := role == "Container_EffectTrigger" and str(item.marker.get("Type", "")) == "EEUT_TriggerTrap" and str(item.state.phase) == "active"

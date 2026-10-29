@@ -18,7 +18,7 @@ func _run() -> void:
 	while game._loading or game._transitioning: await process_frame
 	game.hud.close_page()
 	var granted: Array = []
-	for id in [20210, 20211, 20220, 20230, 20260]:
+	for id in [20210, 20211, 20220, 20230, 20240, 20250, 20255, 20260, 20265]:
 		granted.append({"id": id, "success": game.systems.add_loot(id).success})
 	game._apply_growth()
 	game.world.auto_attack_enabled = false
@@ -43,4 +43,4 @@ func _run() -> void:
 	print(JSON.stringify({"granted": granted, "companions": count, "sample_colors": colors.size(), "saved": result == OK, "motion_visible": motion_visible, "position": str(game.world.player.position)}))
 	game.queue_free()
 	await process_frame
-	quit(0 if count >= 2 and colors.size() > 50 and result == OK and motion_visible else 1)
+	quit(0 if count == 8 and colors.size() > 50 and result == OK and motion_visible else 1)

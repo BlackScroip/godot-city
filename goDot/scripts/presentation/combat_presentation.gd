@@ -38,6 +38,27 @@ const WOLF_BURST_INSTANCES := {
 	"24042501_fx_enemy_senlinlangwang_attack4_flyslash": 4,
 	"fx_other_enemyatkrangerectangle_fowardz": 5,
 }
+const SOURCE_WARNING_ENEMIES := [13001, 33001]
+const DEER_BURST_INSTANCES := {
+	"24070201_fx_enemy_jiaolu_attack1_warning": 32,
+	"24070201_fx_enemy_jiaolu_attack1_icethorn": 32,
+	"24070201_fx_enemy_jiaolu_attack1_accumulation": 4,
+	"24070301_fx_enemy_jiaolu_attack2_trampled": 16,
+	"24070801_fx_enemy_jiaolu_attack3_soul": 32,
+	"24070801_fx_enemy_jiaolu_attack3_soulparticle": 6,
+	"24070801_fx_enemy_jiaolu_attack3_icecone": 4,
+	"24071001_fx_enemy_jiaolu_attack4_swept": 2,
+	"24071001_fx_enemy_jiaolu_attack4_shockwave": 12,
+	"24071101_fx_enemy_jiaolu_attack5_explode": 24,
+	"24071101_fx_enemy_jiaolu_attack5_icesphere": 2,
+	"24071101_fx_enemy_jiaolu_attack5_icethorn": 24,
+	"24071601_fx_enemy_jiaolu_attack6_icethornwarning": 8,
+	"24071601_fx_enemy_jiaolu_attack6_icethorn": 8,
+	"fx_other_enemyatkrangerectangle": 32,
+	"fx_other_enemyatkrange360": 32,
+	"24050701_fx_enemy_generichit": 8,
+	"24072301_fx_enemy_generichitice": 16,
+}
 var _prepared_group_media: Dictionary = {}
 var _authored_templates: Dictionary = {}
 var _active_particles := 0
@@ -48,6 +69,8 @@ var _preparation_head := 0
 var _warm_viewport: SubViewport
 var _warm_particles: Array[Dictionary] = []
 var authored_builds := 0
+var authored_runtime_instances := 0
+var authored_runtime_by_key: Dictionary = {}
 var authored_reuses := 0
 var _sound_serial := 0
 var _summon_serial := 0
@@ -301,18 +324,22 @@ func _collect_media(value: Variant, source: DungeonCombat, effects: Dictionary, 
 		for child in value: _collect_media(child, source, effects, sounds, pending)
 	elif value is String:
 		var key = _key(value)
-		if media.get("effects", {}).has(key) and ("enemyatkrange" not in key or source.enemy_id == 13001): effects[key] = true
+		if media.get("effects", {}).has(key) and ("enemyatkrange" not in key or source.enemy_id in SOURCE_WARNING_ENEMIES): effects[key] = true
 		if media.get("audio", {}).has(key) or catalog.get("audio", {}).has(key): sounds[key] = true
 
 func prepare_combat(combats: Array) -> void:
 	var effects: Dictionary = {}
 	var sounds: Dictionary = {}
 	var groups: Dictionary = {}
-	var wolf_bursts := combats.any(func(source): return source.enemy_id == 13001)
-	if wolf_bursts:
-		# Keep one ordinary cache slot per asset plus bounded concurrent wolf instances.
-		_authored_pool_limit = FEEL.effect_budget
-		for count in WOLF_BURST_INSTANCES.values(): _authored_pool_limit += int(count) - 1
+	var burst_instances: Dictionary = {}
+	if combats.any(func(source): return source.enemy_id == 13001): burst_instances.merge(WOLF_BURST_INSTANCES)
+	if combats.any(func(source): return source.enemy_id == 33001):
+		for key in DEER_BURST_INSTANCES: burst_instances[key] = maxi(int(burst_instances.get(key, 1)), int(DEER_BURST_INSTANCES[key]))
+	if not burst_instances.is_empty():
+		# Retain concurrent casts in addition to the ordinary per-asset cache.
+		var capacity: int = FEEL.effect_budget
+		for count in burst_instances.values(): capacity += int(count) - 1
+		_authored_pool_limit = maxi(_authored_pool_limit, capacity)
 	for source: DungeonCombat in combats:
 		var group = str(source.enemy.get("group", "ActGroup_playerchara"))
 		var prefix = str(source.fighter.get("combo", [""])[0]).get_slice("_", 0) if source.enemy.is_empty() else ""
@@ -355,7 +382,7 @@ func prepare_combat(combats: Array) -> void:
 			if template != null:
 				_authored_templates.erase(cache_key)
 				_authored_templates[cache_key] = template
-			var count := int(WOLF_BURST_INSTANCES.get(key, 1)) if wolf_bursts else 1
+			var count := int(burst_instances.get(key, 1))
 			if (template != null and authored_pool.get(cache_key, []).size() >= _preparation_count(template, count, low_quality)) or _preparation_keys.has(cache_key): continue
 			_preparation.append({"effect": key, "cache_key": cache_key, "low": low_quality, "source_only": source_only, "count": count})
 			_preparation_keys[cache_key] = true
@@ -446,6 +473,15 @@ func _warm_rendering(authored: Node3D) -> void:
 		particle.restart()
 		particle.request_particles_process(1.0 / 60.0)
 		_warm_particles.append({"node": particle, "frame": Engine.get_process_frames()})
+	# Skinned skill models have shader variants that particle-only warmup misses.
+	if not authored.model_players.is_empty() or not authored.model_styles.is_empty():
+		for child in authored.get_children():
+			if not child is Node3D or child is CPUParticles3D or child.find_children("*", "MeshInstance3D", true, false).is_empty(): continue
+			var model: Node3D = child.duplicate(0)
+			model.position = Vector3.ZERO
+			model.scale = Vector3.ONE * 0.1
+			_warm_viewport.add_child(model)
+			_warm_particles.append({"node": model, "frame": Engine.get_process_frames()})
 	_warm_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 func _authored_cache_key(key: String, source_only: bool) -> String:
@@ -458,6 +494,8 @@ func _take_authored(key: String, cache_key: String, low: bool, source_only := fa
 		var authored: Node3D = authored_pool[cache_key].pop_back()
 		if authored_pool[cache_key].is_empty(): authored_pool.erase(cache_key)
 		return authored
+	authored_runtime_instances += 1
+	authored_runtime_by_key[key] = int(authored_runtime_by_key.get(key, 0)) + 1
 	return _authored_template(key, cache_key, low, source_only).instantiate_effect()
 
 func _authored_template(key: String, cache_key: String, low: bool, source_only: bool) -> Node3D:
@@ -539,7 +577,7 @@ func _reserve_effect(particles: int, emitters: int, important: bool, priority: b
 	return true
 
 func emit_effect(actor: DungeonActor, name: String, point: Vector3, dimensions := Vector3(2, 1, 2), duration := 0.35, follow: Node3D = null, important := false, sequence := -1, loop := false, priority := false, source_only := false) -> void:
-	source_only = source_only or (not actor.is_player and actor.combat.enemy_id == 13001)
+	source_only = source_only or (not actor.is_player and actor.combat.enemy_id in SOURCE_WARNING_ENEMIES)
 	if not important and get_viewport().get_camera_3d() and point.distance_to(get_viewport().get_camera_3d().global_position) > 48: return
 	var key = _effect_key(actor, name)
 	var definition: Dictionary = media.get("effects", {}).get(key, {})
@@ -661,13 +699,13 @@ func _anchor(actor: DungeonActor, definition: Dictionary) -> Node3D:
 	if not actor.is_player and not str(dummy.get("CustomDummyName", "")).is_empty(): unresolved_anchors[str(actor.actor_id) + ":" + name] = true
 	return actor
 
-func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point := Vector3.INF, use_action_clock := true, source_only := false, facing := Vector3.ZERO) -> void:
+func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point := Vector3.INF, use_action_clock := true, source_only := false, facing := Vector3.ZERO, cast_priority := false) -> void:
 	source_only = source_only or _source_style(actor) or bool(definition.get("attack_modifier_style", false))
 	var name = str(definition.get("EffectName", ""))
 	if name.is_empty(): return
-	var source_wolf: bool = not actor.is_player and actor.combat.enemy_id == 13001
-	var source_warning: bool = source_wolf and ("enemyatkrange" in name.to_lower() or "attackrange" in name.to_lower() or "attackprompt" in name.to_lower() or "rangepointer" in name.to_lower())
-	if not actor.is_player and "enemyatkrange" in name.to_lower() and not source_wolf:
+	var source_enemy: bool = not actor.is_player and actor.combat.enemy_id in SOURCE_WARNING_ENEMIES
+	var source_warning: bool = source_enemy and ("enemyatkrange" in name.to_lower() or "attackrange" in name.to_lower() or "attackprompt" in name.to_lower() or "rangepointer" in name.to_lower())
+	if not actor.is_player and "enemyatkrange" in name.to_lower() and not source_enemy:
 		_authored_telegraph(actor, definition, sequence, point, -1.0, facing)
 		return
 	var anchor = _anchor(actor, definition)
@@ -687,21 +725,24 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 	if duration <= 0: duration = maxf(actor.action_time, 0.3) if loop else 0.45
 	var playback_speed = maxf(0.1, float(definition.get("EffectSpeed", 1)))
 	duration /= playback_speed
-	var owned = sequence if definition.get("DestoryWhenActionSwitch", false) or (loop and not source_wolf) else -1
+	var owned = sequence if definition.get("DestoryWhenActionSwitch", false) or (loop and not source_enemy) else -1
 	var protected_tail: bool = not actor.is_player and BOSS_FULL_LIFETIME_EFFECTS.has(_effect_key(actor, name))
 	var emitted_before = spawned
-	emit_effect(actor, name, location, dimensions, duration, anchor if follows else null, source_warning, owned, loop, protected_tail, source_only)
+	emit_effect(actor, name, location, dimensions, duration, anchor if follows else null, source_warning, owned, loop, protected_tail or cast_priority, source_only)
 	if spawned > emitted_before:
 		# Keep the poison silhouette through its authored tail without detaching it from action cancellation.
-		if protected_tail: active.back().detached = false
+		if protected_tail or cast_priority: active.back().detached = false
 		if source_warning or (not actor.is_player and "attackprompt" in _key(name)): actor.lock_telegraph_aim(sequence)
 		active.back()["source_warning"] = source_warning
 		active.back().clock_sequence = sequence if use_action_clock and definition.get("SpeedScaleByOwnerActionSpeed", true) else -1
 		active.back().playback_speed = playback_speed
 		active.back().detach_after = maxf(0, float(definition.get("DelayTimeToWorldPos", 0))) / 1000.0
-		if (not loop or source_wolf) and float(definition.get("DelayTimeToDestroy", 0)) <= 0 and active.back().authored:
+		if (not loop or source_enemy) and float(definition.get("DelayTimeToDestroy", 0)) <= 0 and active.back().authored:
 			var source_lifetime: float = active.back().authored.lifetime
-			active.back().duration = maxf(0.05, (source_lifetime if source_wolf or BOSS_FULL_LIFETIME_EFFECTS.has(active.back().key) else minf(source_lifetime, 4.0)) / playback_speed)
+			active.back().duration = maxf(0.05, (source_lifetime if source_enemy or BOSS_FULL_LIFETIME_EFFECTS.has(active.back().key) else minf(source_lifetime, 4.0)) / playback_speed)
+			if loop and actor.combat.enemy_id == 33001 and active.back().authored.emitters.any(func(emitter): return bool(emitter.loop)):
+				# A looping blizzard without a timer ends at its authored stop/action switch.
+				active.back().duration = INF
 		active.back().root.rotation = Vector3(0, yaw, 0) + DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0
 		if bone_bound: active.back().root.global_basis = anchor.global_basis.orthonormalized() * Basis.from_euler(DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0)
 		if not source_only and _sword_slash(_key(name)): active.back().root.rotate_y(PI)
@@ -714,7 +755,7 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 
 func action_started(actor: DungeonActor, event: Dictionary) -> void:
 	cancel_actor(actor, int(event.sequence))
-	if not actor.is_player and actor.combat.enemy_id != 13001:
+	if not actor.is_player and actor.combat.enemy_id not in SOURCE_WARNING_ENEMIES:
 		var definition = actor.combat._action(str(actor.combat.enemy.group), str(event.action))
 		var authored: Array = (definition.get("events", []) + definition.get("hits", [])).filter(func(command): return command.get("enabled", false) and "enemyatkrange" in str(command.get("raw", "")).to_lower())
 		# Authored warnings dispatch on their actual event, with live source conditions.
@@ -826,7 +867,8 @@ func command(actor: DungeonActor, event: Dictionary) -> void:
 					effect = effect.duplicate(true)
 					var size: Vector3 = _source_dimensions(effect.get("Scale", {})) * factor
 					effect["Scale"] = {"x": size.x, "y": size.y, "z": size.z}
-			trigger(actor, effect, int(event.sequence), Vector3.INF, not raw.get("IgnoreActionSpeed", false), preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(event, actor.combat))
+			# Keep the cast silhouette visible when its simultaneous field burst fills the budget.
+			trigger(actor, effect, int(event.sequence), Vector3.INF, not raw.get("IgnoreActionSpeed", false), preload("res://scripts/presentation/impact_profiles.gd").is_source_heavy(event, actor.combat), Vector3.ZERO, not actor.is_player and actor.combat.enemy_id == 33001)
 		"EET_StopEffect":
 			var key = _key(raw.get("EffectName", raw.get("EffectId", "")))
 			for i in range(active.size() - 1, -1, -1):
@@ -931,8 +973,13 @@ func projectile_started(actor: DungeonActor, state: DungeonProjectile, visual: N
 		return
 	var before := spawned
 	var dimensions := _source_dimensions(state.entity.get("ModlePrefabSize", {}), Vector3.ONE if source_only else Vector3.ONE * clampf(state.radius * 2, 0.6, 3))
+	if state.is_light_spirit_sword(): dimensions = Vector3.ONE
 	emit_effect(actor, name, state.position, dimensions, state.lifetime, visual, false, -1, true, false, source_only)
-	if spawned > before and active.back().authored: active.back().authored.scale = dimensions
+	if spawned > before:
+		if active.back().authored: active.back().authored.scale = dimensions
+		if state.is_light_spirit_sword() or (not actor.is_player and actor.combat.enemy_id == 33001):
+			active.back().follow_rotation = true
+			active.back().root.global_basis = visual.global_basis
 
 func projectile_ended(actor: DungeonActor, state: DungeonProjectile) -> void:
 	var original_name := str(state.entity.get("EntityEndEffect", ""))

@@ -13,6 +13,7 @@ var age := 0.0
 var lifetime := 0.0
 var unsupported: Array = []
 var _running := false
+var _last_speed_multiplier := -1.0
 static var _additive_shader: Shader
 static var _material_libraries: Dictionary = {}
 const CURVE_SAMPLES := 48
@@ -286,6 +287,7 @@ static func gradient(value: Dictionary) -> Gradient:
 	return result
 
 func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, suppressed_layers: Array = []) -> void:
+	_last_speed_multiplier = -1.0
 	definition = Descriptors.resolve(definition)
 	var wolf_embedded := str(definition.get("source", "")).ends_with("/monster_senlinlangwang.prefab")
 	unsupported = definition.get("unsupported", [])
@@ -296,6 +298,9 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		if not packed is PackedScene: continue
 		var visual: Node3D = packed.instantiate()
 		add_child(visual)
+		if model.has("cast_shadow"):
+			for mesh: MeshInstance3D in visual.find_children("*", "MeshInstance3D", true, false):
+				mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if model.cast_shadow else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		if model.has("material_animation"):
 			var runtime = ModelMaterialAnimation.new()
 			runtime.configure(visual, model.material_animation, textures)
@@ -682,6 +687,7 @@ func instantiate_effect() -> Node3D:
 func restart() -> void:
 	age = 0
 	_running = true
+	_last_speed_multiplier = -1.0
 	show()
 	play_model_animation("")
 	for retained in retained_particles: retained.node.hide()
@@ -697,47 +703,58 @@ func restart() -> void:
 		emitter.node.emitting = false
 
 func advance(delta: float, paused: bool, playback_rate := 1.0) -> void:
-	if not paused and _running:
+	var advancing := not paused and _running
+	var next_age := age + delta
+	var speed_multiplier := 0.0 if paused else maxf(0, playback_rate)
+	# Authored emitter speeds are immutable; only pause/playback changes need writes.
+	if _last_speed_multiplier != speed_multiplier:
+		for emitter in emitters:
+			var speed: float = emitter.speed * speed_multiplier
+			emitter.node.speed_scale = speed
+			emitter.last_speed = speed
+		_last_speed_multiplier = speed_multiplier
+	if advancing:
 		for entry in model_players: entry.node.advance(delta)
 		for entry in model_styles: entry.runtime.advance(delta)
 	for emitter in emitters:
-		var speed = 0.0 if paused else emitter.speed * maxf(0, playback_rate)
-		if emitter.get("last_speed", -1.0) != speed:
-			emitter.node.speed_scale = speed
-			emitter.last_speed = speed
-		if emitter.get("uniform_follower", false): continue
-		if not emitter.started and (paused or age + delta < float(emitter.delay)): continue
-		if emitter.started and not emitter.loop and age > float(emitter.get("uniform_end", float(emitter.delay) + float(emitter.duration))): continue
-		if not paused and emitter.node.material_override is ShaderMaterial:
-			if emitter.get("uses_clock", true): emitter.node.material_override.set_shader_parameter("clock", age)
+		var particle: CPUParticles3D = emitter.node
+		var delay: float = emitter.delay
+		var end: float = delay + float(emitter.duration)
+		var uniform_active: bool = not emitter.get("uniform_follower", false) and not paused
+		if uniform_active:
+			uniform_active = next_age >= delay if not emitter.started else emitter.loop or age <= float(emitter.get("uniform_end", end))
+		if uniform_active and particle.material_override is ShaderMaterial:
+			var material: ShaderMaterial = particle.material_override
+			if emitter.get("uses_clock", true): material.set_shader_parameter("clock", age)
 			if emitter.get("ground_fade", false):
 				var ground_level := global_position.y - 0.08
 				if emitter.get("last_ground", INF) != ground_level:
-					emitter.node.material_override.set_shader_parameter("ground_level", ground_level)
+					material.set_shader_parameter("ground_level", ground_level)
 					emitter.last_ground = ground_level
 			if emitter.get("uses_basis", true):
-				var basis_value: Basis = emitter.node.global_basis
+				var basis_value: Basis = particle.global_basis
 				if not emitter.has("last_basis") or not basis_value.is_equal_approx(emitter.last_basis):
-					emitter.node.material_override.set_shader_parameter("emitter_basis", basis_value)
+					material.set_shader_parameter("emitter_basis", basis_value)
 					emitter.last_basis = basis_value
-	if paused or not _running: return
-	age += delta
+		if not advancing: continue
+		# Schedule against the next age while shader clocks retain the previous age.
+		if (not emitter.started and next_age >= delay) or (emitter.has("next_burst") and next_age >= float(emitter.next_burst)):
+			emitter.started = true
+			particle.restart()
+			particle.emitting = true
+			var period := float(emitter.get("burst_period", 0.0))
+			if period > 0.0:
+				emitter.next_burst = delay + (floorf((next_age - delay) / period) + 1.0) * period
+		if emitter.started and not emitter.loop and next_age > end and particle.emitting:
+			particle.emitting = false
+	if not advancing: return
+	age = next_age
 	for retained in retained_particles:
 		retained.node.visible = age >= float(retained.delay)
 		var phase := clampf((age - float(retained.delay)) / maxf(0.0001, float(retained.duration)), 0.0, 1.0)
 		retained.node.multimesh.set_instance_custom_data(0, Color(float(retained.angle), phase, 0.0, 0.0))
 		if retained.get("uses_clock", true) and retained.node.material_override is ShaderMaterial:
 			retained.node.material_override.set_shader_parameter("clock", age)
-	for emitter in emitters:
-		if (not emitter.started and age >= float(emitter.delay)) or (emitter.has("next_burst") and age >= float(emitter.next_burst)):
-			emitter.started = true
-			emitter.node.restart()
-			emitter.node.emitting = true
-			var period := float(emitter.get("burst_period", 0.0))
-			if period > 0.0:
-				# Burst-only layers still repeat on each authored system cycle.
-				emitter.next_burst = float(emitter.delay) + (floorf((age - float(emitter.delay)) / period) + 1.0) * period
-		if emitter.started and not emitter.loop and age > float(emitter.delay) + float(emitter.duration): emitter.node.emitting = false
 
 func stop() -> void:
 	_running = false

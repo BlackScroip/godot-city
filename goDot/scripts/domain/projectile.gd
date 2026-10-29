@@ -290,6 +290,12 @@ func wall_collision(point: Vector3, normal: Vector3) -> void:
 static func orient(offset: Vector3, forward: Vector3) -> Vector3:
 	return Vector3(forward.z, 0, -forward.x) * offset.x + Vector3.UP * offset.y + forward * offset.z
 
+func is_light_spirit_sword() -> bool:
+	return motion_type == "EMAT_RotateOwner" and str(entity.get("ModlePrefab", "")).to_lower().get_file() == "24010801_fx_buff_lightspirit_sword.prefab"
+
+func orbit_facing() -> Vector3:
+	return direction.rotated(Vector3.UP, _rotate_angle_speed * age)
+
 func snapshot() -> Dictionary:
 	return {"position": _array(position), "previous": _array(previous), "direction": _array(direction), "origin": _array(origin), "destination": _array(destination), "owner_offset": _array(owner_offset), "speed": speed, "age": age, "distance": distance, "lifetime": lifetime, "max_distance": max_distance if is_finite(max_distance) else -1, "motion_type": motion_type, "entity": entity.duplicate(true), "motion": motion.duplicate(true), "hit": hit.duplicate(true), "hits": hits.duplicate(), "last_hit_times": last_hit_times.duplicate(), "interval_summon_times": interval_summon_times.duplicate(), "passed": passed, "source_key": source_key, "target_key": target_key, "source_player": source_player, "radius": radius}
 

@@ -176,6 +176,27 @@ func _test_volumes_and_shapes() -> void:
 	_compare(current, reference, item, replacement.global_transform * Vector3.ZERO, 0.35, "", false, "Setup invalidates the old root inverse")
 	parent.free()
 
+func _test_cached_trap_bounds() -> void:
+	var environment := Node3D.new()
+	root.add_child(environment)
+	var current := Interactions.new()
+	var reference := ReferenceInteractions.new()
+	_setup(current, environment)
+	_setup(reference, environment)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 13579
+	for kind in [65, 135, 136]:
+		var collider := _volume(kind)
+		collider.world_matrix = [0.0, 0.0, 1.5, 3.0, 0.0, 0.7, 0.0, 1.0, -2.0, 0.0, 0.0, -4.0, 0.0, 0.0, 0.0, 1.0]
+		for axis in [0, 1, 2]:
+			collider.properties.m_Direction = axis
+			var item := _item([collider])
+			current._cache_trap_volumes(item)
+			for sample in 300:
+				var point := Vector3(rng.randf_range(-1, 7), rng.randf_range(-3, 5), rng.randf_range(-8, 0))
+				_compare(current, reference, item, point, 0.35, "Container_EffectTrigger", false, "cached bounds shape %d axis %d sample %d" % [kind, axis, sample])
+	environment.free()
+
 func _test_dynamic_colliders() -> void:
 	var environment := Node3D.new()
 	root.add_child(environment)
@@ -340,6 +361,7 @@ func _benchmark() -> void:
 
 func _run() -> void:
 	_test_volumes_and_shapes()
+	_test_cached_trap_bounds()
 	_test_dynamic_colliders()
 	_test_callback_root_and_phase()
 	_test_tick_order_and_callbacks()

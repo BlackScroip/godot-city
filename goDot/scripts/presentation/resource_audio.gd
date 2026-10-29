@@ -10,6 +10,9 @@ const STEP_MIN_INTERVAL := 0.32
 const STEP_EFFECT := "23040705_fx_sickle_run"
 const CAMP_MUSIC := ["audio_music_maincity_1", "audio_music_maincity_2", "audio_music_maincity_3"]
 const REGION_MUSIC := ["audio_music_area_1", "audio_music_area_2", "audio_music_area_3", "audio_music_area_4", "audio_music_area_5"]
+const ICE_FLOOR_SOUND := "audio_fx_trap_ice_land_mine_trigger_delay"
+const ICE_FLOOR_GAIN := 0.25
+const ICE_FLOOR_INTERVAL := 0.35
 
 var enabled := true:
 	set(value):
@@ -44,6 +47,7 @@ var _music_track := 0
 var _music_layer: Dictionary = {}
 var _music_wait := 0.0
 var _music_started := false
+var _ice_floor_cooldown := 0.0
 
 func configure(value: Dictionary, world: DungeonWorld) -> void:
 	apply_settings(DungeonSettings.read_options())
@@ -148,6 +152,7 @@ func enter_environment(region: int, camp: bool) -> void:
 	_step_cooldown = 0.0
 	_tracked_player = 0
 	_step_index = 0
+	_ice_floor_cooldown = 0.0
 	# World layers cannot leak across rooms; menu and transition feedback can finish.
 	for index in range(pending.size() - 1, -1, -1):
 		if pending[index].world: pending.remove_at(index)
@@ -168,9 +173,13 @@ func _queue_named(name: String, pause_with_world: bool) -> void:
 	if layers.is_empty():
 		if not key.is_empty(): missing[key] = true
 		return
+	if key == ICE_FLOOR_SOUND:
+		if _ice_floor_cooldown > 0.0: return
+		_ice_floor_cooldown = ICE_FLOOR_INTERVAL
 	_serial += 1
 	for layer in layers.slice(0, VOICE_BUDGET):
 		layer = layer.duplicate()
+		if key == ICE_FLOOR_SOUND: layer["volume"] = float(layer.get("volume", 1.0)) * ICE_FLOOR_GAIN
 		layer["_bus"] = DungeonStyle.audio_bus(key, layer)
 		var clips: Array = layer.get("clips", [])
 		if clips.is_empty(): continue
@@ -199,6 +208,7 @@ func _process(delta: float) -> void:
 		_stop_all()
 		return
 	var paused := _paused()
+	if not paused: _ice_floor_cooldown = maxf(0.0, _ice_floor_cooldown - delta)
 	for voice in voices: voice.stream_paused = paused and bool(voice.get_meta("world", false))
 	for voice in ambience: voice.stream_paused = paused
 	for index in _ambient_layers.size():

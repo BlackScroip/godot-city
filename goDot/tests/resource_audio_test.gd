@@ -19,6 +19,7 @@ func run() -> void:
 		{"clips": [clip], "volume": 0.25, "pitch": 0.5, "delay": 0.1},
 		{"clips": [clip], "volume": 0.5, "pitch": 1.5, "delay": 0.25}
 	]
+	media.audio["audio_fx_trap_ice_land_mine_trigger_delay"] = [{"clips": [clip], "volume": 0.8}]
 	var source = DungeonWorld.new()
 	var audio = ResourceAudio.new()
 	root.add_child(audio)
@@ -43,6 +44,12 @@ func run() -> void:
 	check(audio.played == 2 and audio.pending.is_empty(), "Second layer keeps its independent delay")
 	check(is_equal_approx(audio.voices[1].pitch_scale, 1.5), "Second layer retains its own pitch")
 	check(audio.sound_cache.size() == 1, "Layers sharing a clip decode it only once")
+	audio.play_named(audio.ICE_FLOOR_SOUND)
+	audio.play_named(audio.ICE_FLOOR_SOUND)
+	check(audio.pending.size() == 1 and is_equal_approx(audio.pending[0].layer.volume, 0.2), "Ice floor traps attenuate and coalesce simultaneous sounds")
+	audio._process(audio.ICE_FLOOR_INTERVAL)
+	audio.play_named(audio.ICE_FLOOR_SOUND)
+	check(audio.pending.size() == 1, "Ice floor sound can play again after the interval")
 	audio.enabled = false
 	check(audio.pending.is_empty() and not audio.voices.any(func(voice): return voice.playing), "Muting immediately stops event voices")
 	audio.play_event("ui_confirm")

@@ -2015,6 +2015,9 @@ func _projectile(source: DungeonActor, hit: Dictionary) -> DungeonProjectile:
 	var dummy := str(raw.get("EmitProperty", {}).get("DummyData", {}).get("DummyType", ""))
 	hit["owner_height"] = 0.0 if dummy == "Unit_FootBottom" else 0.75
 	state.configure(hit, origin + Vector3.UP * float(hit.owner_height) + facing * float(hit.get("forward_offset", 0)), direction, target_point, facing)
+	if state.is_light_spirit_sword():
+		state.advance(0.0, source.position + Vector3.UP * float(hit.owner_height), source.facing)
+		state.previous = state.position
 	state.source_key = str(source.combat.actor_key)
 	state.source_player = source.is_player
 	state.target_key = str(target.combat.actor_key) if target else ""
@@ -2033,8 +2036,14 @@ func _add_projectile_visual(state: DungeonProjectile, source: DungeonActor) -> v
 	mesh.transform = Transform3D.IDENTITY
 	mesh.material_override = _projectile_materials[0 if source.is_player else 1]
 	mesh.position = state.position
-	mesh.visible = not source_only and not (_attached_projectile(state) and str(state.entity.get("ModlePrefab", "")).is_empty())
+	var source_deer: bool = not source.is_player and source.combat.enemy_id == 33001
+	if source_deer: mesh.rotation.y = atan2(state.direction.x, state.direction.z)
+	if state.is_light_spirit_sword():
+		var radial := state.orbit_facing()
+		mesh.rotation.y = atan2(radial.x, radial.z)
+	mesh.visible = not source_only and not source_deer and not (_attached_projectile(state) and str(state.entity.get("ModlePrefab", "")).is_empty())
 	presentation.projectile_started(source, state, mesh)
+	if state.is_light_spirit_sword(): mesh.hide()
 	projectiles.append({"source": source, "state": state, "visual": mesh})
 	_warn_budget("projectiles", projectiles.size(), FEEL.projectile_warning_budget)
 
@@ -2117,6 +2126,11 @@ func _tick_projectiles(delta: float) -> void:
 			if prop_size.length_squared() < 0.001: prop_size = Vector3.ONE * state.radius * 2.0
 			_damage_environment_shape(state.previous + prop_offset, state.position + prop_offset, state.direction, prop_size, str(state.entity.get("ColliderType", "Cube")), tenacities, source, prop_hit_id)
 		visual.position = state.position
+		if not source.is_player and source.combat.enemy_id == 33001:
+			visual.rotation.y = atan2(state.direction.x, state.direction.z)
+		if state.is_light_spirit_sword():
+			var radial := state.orbit_facing()
+			visual.rotation.y = atan2(radial.x, radial.z)
 		var targets: Array = actors if source.is_player else [player]
 		for target in targets:
 			if not is_instance_valid(target) or target.dead or target.is_player == source.is_player: continue

@@ -29,7 +29,22 @@ func _visual(prefab: String, low: bool) -> Node3D:
 					var path := str(binding.get("texture", ""))
 					if not path.is_empty() and not _textures.has(path): _textures[path] = load(path)
 		var template = AuthoredEffect.new()
-		template.configure(definition, low, _textures)
+		var suppressed: Array = []
+		var kept_accent := false
+		for layer in definition.get("layers", []):
+			var name := str(layer.get("name", ""))
+			if name == "sprite_icon": continue
+			if not layer.get("active", true) or not layer.get("emission", {}).get("enabled", true) or not layer.get("renderer", {}).get("enabled", true): continue
+			if not kept_accent:
+				kept_accent = true
+			else:
+				suppressed.append(name)
+		template.configure(definition, low, _textures, suppressed)
+		template.particle_count = 0
+		for emitter in template.emitters:
+			if emitter.node.get_parent().get_meta("source_layer", "") != "sprite_icon":
+				emitter.node.amount = mini(emitter.node.amount, 6)
+			template.particle_count += emitter.node.amount
 		_templates[key] = template
 	return _templates[key].instantiate_effect()
 
@@ -124,7 +139,7 @@ func advance(delta: float, player: Node3D, paused := false) -> void:
 		var target := _destination(player.position, facing, int(entry.slot), raw)
 		var point: Vector3 = entry.position
 		var teleported := point.distance_squared_to(target) > 100.0
-		var speed := maxf(0.0, float(raw.get("LineQueueMoveSpeed", raw.get("MoveToOwnerSpeed", 3.0))))
+		var speed := maxf(float(raw.get("LineQueueMoveSpeed", raw.get("MoveToOwnerSpeed", 3.0))), point.distance_to(target) * 4.0)
 		point = target if teleported else point.move_toward(target, speed * delta)
 		entry.position = point
 		entry.visual.position = point
@@ -132,7 +147,15 @@ func advance(delta: float, player: Node3D, paused := false) -> void:
 func _destination(point: Vector3, direction: Vector3, slot: int, raw: Dictionary) -> Vector3:
 	var base := float(raw.get("LineQueueBaseDistance", raw.get("MoveToOwnerMinDistance", 1.5)))
 	var spacing := float(raw.get("LineQueueSpacing", raw.get("SeparationDistance", 1.0)))
-	return point - direction * (base + slot * spacing) + DungeonWorld.vector(raw.get("InitPosOffset", {}))
+	var ring := 1
+	var index := slot
+	while index >= ring * 8:
+		index -= ring * 8
+		ring += 1
+	var signed_index := int((index + 1) / 2) * (1 if index % 2 == 1 else -1)
+	var angle := TAU * float(signed_index) / float(ring * 8)
+	var offset := (-direction).rotated(Vector3.UP, angle) * (base + (ring - 1) * spacing)
+	return point + offset + DungeonWorld.vector(raw.get("InitPosOffset", {}))
 
 func clear() -> void:
 	for entry in entries.values(): entry.visual.queue_free()

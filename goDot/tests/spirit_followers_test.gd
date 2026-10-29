@@ -67,6 +67,23 @@ func _run() -> void:
 	profile.data.run.inventory = {"20210": 1, "20211": 1, "20212": 1, "20232": 1, "20270": 1}
 	followers.sync_from_run(systems, player)
 	check(followers.entries.keys() == [20270], "Source combined spirit replaces both component families and their lower tiers")
+	profile.data.run.inventory = {"20210": 1, "20220": 1, "20230": 1, "20240": 1, "20250": 1, "20255": 1, "20260": 1, "20265": 1}
+	player.position = Vector3.ZERO
+	player.facing = Vector3.FORWARD
+	followers.sync_from_run(systems, player)
+	check(followers.entries.size() == 8, "Eight independent spirits remain present")
+	for frame in 240:
+		player.position += Vector3(5.0 / 60.0, 0, 0)
+		followers.advance(1.0 / 60.0, player)
+	var positions: Array = []
+	for entry in followers.entries.values():
+		check((entry.position as Vector3).distance_to(player.position) < 4.0, "Each spirit keeps up with a moving owner")
+		for other in positions: check((entry.position as Vector3).distance_to(other) > 0.5, "Spirits have distinct formation positions")
+		positions.append(entry.position)
+		check(entry.visual.emitters.size() <= 2 and entry.visual.particle_count <= 7, "Follower particle simulation stays bounded")
+	player.facing = Vector3.RIGHT
+	for frame in 180: followers.advance(1.0 / 60.0, player)
+	for entry in followers.entries.values(): check((entry.position as Vector3).distance_to(player.position) < 2.1, "Formation remains close after turning")
 	var recorder := PresentationRecorder.new()
 	profile.data.run.inventory = {"20210": 1}
 	followers.sync_from_run(systems, player)
@@ -116,7 +133,7 @@ func _run() -> void:
 		for low in [false, true]:
 			var recovered: Node3D = followers._visual(prefab, low)
 			followers.add_child(recovered)
-			check(not recovered.emitters.is_empty() and recovered.particle_count <= (144 if low else 384), "Every recovered prefab instantiates within its particle budget: " + prefab)
+			check(not recovered.emitters.is_empty() and recovered.emitters.size() <= 2 and recovered.particle_count <= 7, "Every follower retains its body within the reduced particle budget: " + prefab)
 			_check_persistent_icon(recovered, definition, "%s low=%s" % [prefab, low])
 			recovered.free()
 		for texture in definition.textures:
