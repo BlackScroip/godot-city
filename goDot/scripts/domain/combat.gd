@@ -8,6 +8,7 @@ const EnemyHitReaction = preload("res://scripts/domain/enemy_hit_reaction.gd")
 const HIT_REACTION_ATTRIBUTES := ["Weight", "PushForceResist", "PushForceAddRate", "BaseTenacity", "BaseTenacityRecover", "TenacityAccAddRate", "BaseWeakTime"]
 
 const DATA_PATH = "res://assets/data/combat.json"
+const SUBSKILL_RECHARGE_RATE := 2.0
 const SUPPORTED_ATTRIBUTES = ["BaseAtk", "BaseDef", "BaseHp", "MoveSpeedRate", "HpAddFixed", "HpAddRate", "AttackSpeedRate", "Monster_AttackCDRate", "AtkAddFixed", "AtkAddRate", "DefAddFixed", "DefAddRate", "CriticalRate", "CriticalMulti", "NormalAtkDamageRate", "DodgeAtkDamageRate", "SubSkillDamageRate", "MainSkillDamageRate", "SpecialAtkDamageRate", "MonsterPartnerDamageRate", "AllElementDamageRate", "AllElementResist", "HealRate", "ShieldEmpower", "None", "FireDamageRate", "WaterDamageRate", "ThunderDamageRate", "WindDamageRate", "LightDamageRate", "DarkDamageRate", "IceDamageRate", "FireResist", "WaterResist", "ThunderResist", "WindResist", "LightResist", "DarkResist", "IceResist", "SpiritTrigger", "SpiritEnhance", "SpiritRange", "SpiritDuration", "SpiritCount", "SkillActive1ExtraUseCount", "SkillActive1MaxSpAddRate", "SkillActive1CostSpAddRate", "SkillActive2ExtraUseCount", "SkillActive2MaxSpAddRate", "SkillActive2CostSpAddRate"]
 static var _shared_catalog: Dictionary = {}
 static var _shared_actions: Dictionary = {}
@@ -631,6 +632,13 @@ func dodge_recharge_remaining() -> float:
 	if fighter.is_empty() or float(energy[1]) >= skill_capacity(1): return 0.0
 	return maxf(0.0, dodge_recharge_duration() - _dodge_recharge_elapsed)
 
+func subskill_recharge_duration() -> float:
+	return skill_cost(2) / SUBSKILL_RECHARGE_RATE
+
+func subskill_recharge_remaining() -> float:
+	var missing := skill_cost(2) - minf(float(energy[2]), skill_capacity(2))
+	return missing / SUBSKILL_RECHARGE_RATE if missing > 0.001 else 0.0
+
 func cancel_held_input() -> void:
 	custom_properties.InputSkill = false
 	custom_properties["InputSkill1_LongPress"] = false
@@ -986,7 +994,7 @@ func _tick_segment(delta: float) -> void:
 		_dodge_recharge_elapsed += delta
 		for slot in range(mini(5, fighter.skills.size())):
 			cooldowns[slot] = maxf(0.0, float(cooldowns[slot]) - delta)
-			var recovered = delta * 2.0 if slot == 2 else 0.0
+			var recovered = delta * SUBSKILL_RECHARGE_RATE if slot == 2 else 0.0
 			# APK grants the original max_sp per update after the last-use delay.
 			if slot == 1 and delta > 0 and _dodge_recharge_elapsed + 0.000001 >= dodge_recharge_duration():
 				recovered = float(fighter.skills[slot].maxSp)
@@ -3207,6 +3215,12 @@ static func _read_raw_json(encoded: String) -> Variant:
 		_raw_json_cursor = (_raw_json_cursor + 1) % RAW_JSON_CACHE_CAPACITY
 	_raw_json_cache[encoded] = parsed
 	return parsed
+
+static func shared_character_definitions() -> Array:
+	if _shared_catalog.is_empty():
+		var loader = DungeonCombat.new()
+		if not loader._load_catalog(null): return []
+	return _shared_catalog.get("characters", [])
 
 func _load_catalog(value: Variant) -> bool:
 	if _heavy_catalog.is_empty():

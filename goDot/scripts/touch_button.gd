@@ -162,13 +162,13 @@ func _draw() -> void:
 			var points = PackedVector2Array([center])
 			for i in range(33): points.append(center + Vector2.from_angle(-PI / 2 + angle * i / 32.0) * radius)
 			draw_colored_polygon(points, mask_color)
-		var value = "%.1f" % cooldown
+	var remaining = maxf(cooldown, recharge_remaining if unavailable else 0.0)
+	if remaining > 0:
+		var value = "%.1f" % maxf(0.1, remaining)
 		var font = get_theme_default_font()
-		draw_string(font, Vector2(center.x - font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x / 2, center.y + 8), value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
-	elif recharge_remaining > 0 and unavailable:
-		var value = "%.1f" % recharge_remaining
-		var font = get_theme_default_font()
-		draw_string(font, Vector2(center.x - font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x / 2, center.y + 8), value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
+		var origin = Vector2(center.x - font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x / 2, center.y + 8)
+		draw_string_outline(font, origin, value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, 4, Color(0, 0, 0, 0.85))
+		draw_string(font, origin, value, HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
 	if stock >= 0:
 		draw_string(get_theme_default_font(), Vector2(size.x * 0.65, 23), str(stock), HORIZONTAL_ALIGNMENT_LEFT, -1, 22)
 

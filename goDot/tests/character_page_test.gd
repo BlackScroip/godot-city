@@ -38,6 +38,7 @@ func _run() -> void:
 	view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	canvas.add_child(view)
 	view.configure(host, rows, context)
+	check(view._combat_characters.is_empty(), "Character details defer loading battle style data")
 	view.command.connect(func(kind, id, extra): _events.append([kind, id, extra]))
 	for step in 8: await process_frame
 	check(view.name_label.text == "凯", "Selected identity uses real recovered name")
@@ -86,6 +87,7 @@ func _run() -> void:
 	view.navigation[2].pressed.emit()
 	check(_events.back() == ["page:storage", 0, 0], "Storage opens owned materials")
 	view.style_button.pressed.emit()
+	check(is_same(view._combat_characters, DungeonCombat.shared_character_definitions()), "Camp battle style reuses the shared combat catalog")
 	check(view.active_tab == "style" and host.page_context.character_mode == "style", "Battle style tab persists")
 	check(view.detail.get_children().any(func(child): return child is Label and "暗夜镰术" in child.text), "Battle style reads the selected character's real skill names")
 	view.details_button.pressed.emit()

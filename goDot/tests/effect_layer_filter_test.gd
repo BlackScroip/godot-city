@@ -22,6 +22,8 @@ func run() -> void:
 		"24080201_fx_sword_satk_drawknife": ["24080201_drawknife_star", "24080201_drawknife_particle"],
 		"24080201_fx_sword_satk_drawknifestrengthen": ["24080201_drawknifestrengthen_fire"],
 		"23102601_fx_wand_atk_move": ["23102601_move_bubble", "23102601_move_spray"],
+		"23082101_fx_skill_firesword_cuilianzhijian_slash1": ["23082101_slash1_slash1", "23082101_slash1_slash2", "23082101_slash1_slash3", "23082101_slash1_particle"],
+		"23082101_fx_skill_firesword_cuilianzhijian_slash2": ["23082101_slash2_slash1", "23082101_slash2_slash2", "23082101_slash2_slash3", "23082101_slash2_particle"],
 		"23081901_fx_skill_firesword_niyanzhiren_accumulation": ["23081901_accumulation_flash", "23081901_accumulation_ring", "23081901_accumulation_line", "23081901_accumulation_fire"],
 		"23081901_fx_skill_firesword_niyanzhiren_fireslash": ["23081901_fireslash_slash1_1", "23081901_fireslash_slash2_1", "23081901_fireslash_slash3_1", "23081901_fireslash_slash1_2", "23081901_fireslash_slash2_2", "23081901_fireslash_slash3_2", "23081901_fireslash_fire1", "23081901_fireslash_fire2"],
 		"23102601_fx_wand_atk_launch": ["23102601_launch_flash", "23102601_launch_spray", "23102601_launch_ring"],

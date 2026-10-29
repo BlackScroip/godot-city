@@ -759,6 +759,9 @@ func update_combat(combat: RefCounted, camp: bool) -> void:
 		key.stock = int((float(combat.energy[slot]) + 0.001) / cost) if cost > 0 and capacity > cost else -1
 		key.recharge_remaining = combat.dodge_recharge_remaining() if slot == 1 else 0.0
 		key.recharge_total = combat.dodge_recharge_duration() if slot == 1 else 1.0
+		if slot == 2:
+			key.recharge_remaining = combat.subskill_recharge_remaining()
+			key.recharge_total = combat.subskill_recharge_duration()
 		key.charging = slot == 0 and combat.charging
 		key.charge_fraction = clampf(combat.charge_elapsed / 1.5, 0, 1) if key.charging else 0.0
 		key.resource_fraction = combat.skill_charge_fraction(slot, true) if slot == 3 else -1.0

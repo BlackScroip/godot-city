@@ -80,8 +80,6 @@ func configure(host: DungeonMenuPage, data: Array, page_context: Dictionary = {}
 	clip_contents = true
 	_source_map = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_MAP))
 	_fashions = JSON.parse_string(FileAccess.get_file_as_string(FASHION_DATA))
-	var recovered = JSON.parse_string(FileAccess.get_file_as_string("res://assets/data/combat.json"))
-	if recovered is Dictionary: _combat_characters = recovered.get("characters", [])
 	_background = _picture("charamenumask_1", Vector2.ZERO)
 	_background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
@@ -454,6 +452,12 @@ func _build_spirit_skills() -> void:
 		icons.add_child(key)
 
 func _build_battle_style() -> void:
+	if _combat_characters.is_empty():
+		var combat: DungeonCombat = context.get("combat") as DungeonCombat
+		if combat and not combat.catalog.is_empty():
+			_combat_characters = combat.catalog.get("characters", [])
+		else:
+			_combat_characters = DungeonCombat.shared_character_definitions()
 	var fighter: Dictionary = {}
 	for entry in _combat_characters:
 		if int(entry.get("id", 0)) == _character_id(): fighter = entry; break

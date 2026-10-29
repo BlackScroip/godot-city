@@ -46,6 +46,8 @@ extends Resource
 	"24080201_fx_sword_satk_drawknife": ["24080201_drawknife_ring"],
 	"24080201_fx_sword_satk_drawknifestrengthen": ["24080201_drawknifestrengthen_airwave"],
 	"23102601_fx_wand_atk_move": ["23102601_move_ripple", "23102601_move_wave"],
+	"23082101_fx_skill_firesword_cuilianzhijian_slash1": ["23082101_slash1_fire"],
+	"23082101_fx_skill_firesword_cuilianzhijian_slash2": ["23082101_slash2_fire"],
 	"23081901_fx_skill_firesword_niyanzhiren_accumulation": ["23081901_accumulation_floorglow"],
 	"23081901_fx_skill_firesword_niyanzhiren_fireslash": [
 		"23081901_fireslash_airwave", "23081901_fireslash_crack",

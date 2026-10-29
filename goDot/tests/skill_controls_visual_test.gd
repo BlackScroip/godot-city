@@ -39,7 +39,8 @@ func run() -> void:
 		await process_frame
 		await process_frame
 		game.hud._layout()
-		combat.cooldowns[2] = 2.4
+		combat.cooldowns[2] = 0.001
+		combat.energy[2] = combat.skill_cost(2) - 4.8
 		game.hud.update_combat(combat, false)
 		var label = "%dx%d" % [dimensions.x, dimensions.y]
 		var normal: Image = await capture(canvas, label + "-idle")
@@ -81,10 +82,9 @@ func run() -> void:
 			button._advance_feedback(0.12)
 		await capture(canvas, label + "-rebound")
 		for button in [key, dodge, ultimate]: button._advance_feedback(0.1)
-		combat.cooldowns[2] = 1.2
-		game.hud.skill_buttons[2].cooldown = 1.2
-		game.hud.skill_buttons[2].cooldown_total = 2.4
-		game.hud.skill_buttons[2].queue_redraw()
+		combat.cooldowns[2] = 0.0
+		combat.energy[2] = combat.skill_cost(2) - 2.4
+		game.hud.update_combat(combat, false)
 		key.charging = true
 		key.charge_fraction = 0.65
 		key.queue_redraw()

@@ -32,6 +32,7 @@ func run() -> void:
 	root.content_scale_size = Vector2i.ZERO
 	hud = DungeonHud.new()
 	root.add_child(hud)
+	check_subskill_countdown()
 	hud.skill.connect(func(slot, pressed): events.append([slot, pressed]))
 	hud.action.connect(func(kind, mode, _extra):
 		if kind == "auto_attack_mode": hud.set_attack_mode(mode))
@@ -138,3 +139,30 @@ func run() -> void:
 	print("SKILL_CONTROLS ", JSON.stringify({"assertions": assertions, "failures": failures, "viewports": layouts.size()}))
 	hud.free()
 	quit(0 if failures.is_empty() else 1)
+
+func check_subskill_countdown() -> void:
+	var key: DungeonTouchButton = hud.skill_by_slot[2]
+	for character in range(1, 9):
+		var combat := DungeonCombat.new()
+		combat.configure(null, null, character)
+		hud.update_combat(combat, false)
+		check(key.recharge_remaining == 0 and not key.unavailable, "Full subskill has no countdown: %d" % character)
+		check(combat.request_attack(2).success, "Real subskill cast starts: %d" % character)
+		hud.update_combat(combat, false)
+		var duration := combat.skill_cost(2) / 2.0
+		check(is_equal_approx(key.recharge_remaining, duration) and is_equal_approx(key.recharge_total, duration) and key.unavailable, "Cast shows actual recharge seconds: %d" % character)
+		combat.tick(0.25)
+		hud.update_combat(combat, false)
+		check(is_equal_approx(key.recharge_remaining, duration - 0.25), "Countdown follows combat time: %d" % character)
+		combat.tick(duration)
+		hud.update_combat(combat, false)
+		check(key.recharge_remaining == 0 and not key.unavailable, "Countdown clears when usable: %d" % character)
+		combat._external["SkillActive1CostSpAddRate"] = 500.0
+		combat._external["SkillActive1ExtraUseCount"] = 1.0
+		combat.energy[2] = combat.skill_cost(2)
+		hud.update_combat(combat, false)
+		check(key.recharge_remaining == 0 and not key.unavailable, "Stored use stays usable while below capacity: %d" % character)
+		combat.energy[2] = combat.skill_cost(2) - 2.0
+		hud.update_combat(combat, false)
+		check(is_equal_approx(key.recharge_remaining, 1.0) and is_equal_approx(key.recharge_total, duration * 1.5), "Modified cost counts only missing energy: %d" % character)
+		combat.drain_events()

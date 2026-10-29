@@ -60,6 +60,11 @@ func _run() -> void:
 	game.hud.set_adventure_mode(true)
 	game.hud.navigation.get_node("menu_character").pressed.emit()
 	check(navigation_actions == ["page:characters"] and menus.current_page == "characters", "Maze HUD character button opens character detail")
+	check(game.hud.page.character_view._combat_characters.is_empty(), "Opening character details does not load another combat catalog")
+	game.hud.page.character_view.style_button.pressed.emit()
+	check(is_same(game.hud.page.character_view._combat_characters, combat.catalog.get("characters")), "Battle style reuses the live combat character data")
+	check(game.hud.page.character_view.detail.get_children().any(func(child): return child is Label and "普通攻击" in child.text), "Battle style displays skills from live combat data")
+	game.hud.page.character_view.details_button.pressed.emit()
 	check(game.hud.page._rows.size() == 1, "Maze detail only shows the active character")
 	var row: Dictionary = game.hud.page._rows[0]
 	check(row.stats[0][1] == "61 / %d" % ceili(combat.max_health), "Detail uses current health")
