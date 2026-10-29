@@ -75,11 +75,13 @@ func verify_forge_selector() -> void:
 		for control in [view._selector_scroll, view.selector_preview, view._selector_inside, view.selector_actions]:
 			check(view.get_global_rect().grow(1).encloses(control.get_global_rect()), "Forge section fits " + str(dimensions))
 		for button in view.action_buttons:
-			check(button.get_global_rect().size.y >= 43.9, "Forge actions retain a 44px touch target " + str(dimensions))
+			check(button.get_global_rect().size.y >= 51.9, "Forge actions retain an expanded touch target " + str(dimensions))
 		var last: Control = view._selector_strip.get_child(-1)
 		var last_id: int = int(view.weapon_buttons.keys().back())
 		view.select_weapon(last_id)
 		await settle()
+		for button in view.action_buttons:
+			check(button.get_global_rect().size.y >= 51.9, "Forge actions retain their touch target after switching weapons " + str(dimensions))
 		check(view._selector_scroll.get_global_rect().grow(1).encloses(last.get_global_rect()), "Final forge weapon is reachable by vertical scrolling")
 		check(view._selector_scroll.get_global_rect().grow(1).encloses(last.get_node("Selected").get_global_rect()), "Final forge highlight and glow remain visible")
 		view.select_weapon(101)

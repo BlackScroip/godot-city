@@ -18,6 +18,8 @@ The APK was inspected statically. The runtime observations below describe this G
 | --- | --- |
 | `BattleGlobalSysAtrribute_Common` constructor, VA `0x30898ac` | Default combo keep time is 2000 ms. |
 | `BattleManager.ChangeHitCount`, VA `0x3090c94` | Adds hits and renews the countdown for positive additions. The native game reads its effective duration from a Rogue attribute. |
+| `AttackHit.ProcessHitUnit`, VA `0x2fd953c` | After its accepted-hit and type checks, passes `ActionAttackDef.HitComboCaculate` and the critical flag to `ChangeHitCount`. A zero addition does not renew the timer. |
+| `ActionAttackDef` constructor, VA `0x2ffd6cc` | Initializes `HitComboCaculate` to 1; serialized attack definitions can override it. For example, summon `16311003` specifies 0. |
 | `BattleManager.UpdateHitCount`, VA `0x3090dc4` | Decrements the live combo timer and clears it at zero. |
 | `BattleManager.ClearHitCount`, VA `0x3090f04` | Clears hit count, remaining time and damage accumulated during the combo. |
 | `Panel_PlayerBattleCtrl.UpdateHitCountInfoBox`, VA `0x30ed93c` | Shows the box only for positive hits and positive remaining-time ratio; otherwise requests hide. |
@@ -29,7 +31,7 @@ The APK was inspected statically. The runtime observations below describe this G
 
 ## Project Behavior
 
-- Room entry starts with the statistics hidden. Only accepted positive player damage to an enemy starts or renews the live combo.
+- Room entry starts with the statistics hidden. Accepted positive player damage from an attack collision starts or renews the live combo according to its authored `HitComboCaculate`; non-attack status damage and zero-count attacks do not extend it.
 - Hits, damage and DPS describe the current combo. The existing cumulative room counters and adventure settlement damage remain separate.
 - Two seconds without a valid hit clears the live combo. The last displayed figures survive during the 0.3-second fade, avoiding a visible zero flash.
 - A hit during fading reveals the group immediately and starts a new combo, including a new DPS clock.
@@ -39,16 +41,18 @@ The APK was inspected statically. The runtime observations below describe this G
 - All readout controls ignore pointer input. Boss and enemy health displays retain independent visibility.
 - Numeric text fits fixed widths. Progress textures use stretchable fixed bounds so their original 256-pixel width cannot enlarge the panel.
 
-The current adapter implements the native default two-second duration. Native Rogue modifiers that alter combo duration, its custom sprite-font digits, stage-entry motion and optional short-number formatting are not reconstructed here. Godot layout and digit colors are presentation choices. The readout receives an update every active main-loop frame, so it does not add the native message-delivery watchdog.
+The current adapter implements the native default two-second duration. It retains the project's positive-health-damage requirement for emitting impacts, so accepted zero-damage or fully absorbed contacts are not yet proven equivalent to the APK. While a combo is active, other settled damage remains included in the displayed total; this attribution is a project choice, not established by the counter call alone. Native Rogue modifiers that alter combo duration, its custom sprite-font digits, stage-entry motion and optional short-number formatting are not reconstructed here. Godot layout and digit colors are presentation choices. The readout receives an update every active main-loop frame, so it does not add the native message-delivery watchdog.
 
 ## Verification
 
 | Suite | Checks | Result |
 | --- | ---: | --- |
-| `battle_readout_visibility_test.gd` | 110 | Passed: timer boundaries, fade interruption, save compatibility, stage artwork, numeric fitting, pause and independent boss health. |
+| `battle_readout_visibility_test.gd` | 115 | Passed: authored combo increments, non-attack damage, timer boundaries, fade interruption, save compatibility, stage artwork, numeric fitting, pause and independent boss health. |
 | `battle_readout_flow_test.gd`, graphical | 24 | Passed: actual game impact callback, post-combat countdown, backgrounding, simulation speed, settlement counters and rendered visibility. |
 | `battle_presentation_test.gd`, headless | 41 | Passed: existing battle tally and boss presentation checks. |
 | `enemy_health_display_test.gd`, headless | 33 | Passed: existing enemy health behavior. |
+
+The 2026-10-29 combo-rule change was also checked headlessly with `battle_readout_flow_test.gd` (18 checks) and `battle_presentation_test.gd` (42 checks). The graphical results above predate that change.
 
 Graphical captures cover 1600x900, 844x390 and 2460x1080. For each size, pixel comparisons confirm that an active readout is nonblank and that the fully hidden readout leaves no pixels compared with its idle frame. Manual screenshot review also checks placement and progress width.
 

@@ -36,6 +36,7 @@ const WOLF_BURST_INSTANCES := {
 	"24042901_fx_enemy_senlinlangwang_roar_eruption": 4,
 	"24042201_fx_enemy_senlinlangwang_attack2_rangepointer": 4,
 	"24042501_fx_enemy_senlinlangwang_attack4_flyslash": 4,
+	"fx_other_enemyatkrangerectangle_fowardz": 5,
 }
 var _prepared_group_media: Dictionary = {}
 var _authored_templates: Dictionary = {}
@@ -56,12 +57,28 @@ const Telegraph = preload("res://scripts/presentation/attack_telegraph.gd")
 const AuthoredEffect = preload("res://scripts/presentation/authored_effect.gd")
 const Descriptors = preload("res://scripts/presentation/effect_descriptors.gd")
 const WOLF_EMBEDDED_PATH := "res://assets/combat_presentation/wolf_embedded/catalog.json"
+const BOSS_EMBEDDED_PATH := "res://assets/combat_presentation/boss_embedded/catalog.json"
+const BossEmbeddedTrail = preload("res://scripts/presentation/boss_embedded_trail.gd")
+const BOSS_FULL_LIFETIME_EFFECTS := {"26071801_fx_enemy_mojiehua_attack3_duyejidang": true}
+# At reduced density, leave room for a large Boss cast and two small hit effects.
+const BOSS_TRANSIENT_EMITTER_RESERVE_LOW := 23
+const BOSS_TRANSIENT_EMITTER_RESERVE_FULL := 36
+const BOSS_EMBEDDED_RETRY_SECONDS := 2.0
 static var _wolf_embedded: Dictionary = {}
+static var _boss_embedded: Dictionary = {}
 var telegraphs: Array[Dictionary] = []
 var unresolved_anchors: Dictionary = {}
 var _buff_styles: Dictionary = {}
 var _buff_style_bindings: Dictionary = {}
+var _live_buff_effects: Dictionary = {}
 var _replacement_buff_ids: Array[String] = []
+var _boss_embedded_actors: Dictionary = {}
+var _boss_embedded_live: Dictionary = {}
+var _boss_embedded_queue: Array[Dictionary] = []
+var _boss_embedded_queued: Dictionary = {}
+var _boss_embedded_head := 0
+var _boss_embedded_recovery_continuation := false
+var _boss_embedded_retry_remaining := BOSS_EMBEDDED_RETRY_SECONDS
 
 func configure(value: Dictionary) -> void:
 	apply_settings(DungeonSettings.read_options())
@@ -69,9 +86,13 @@ func configure(value: Dictionary) -> void:
 	if _wolf_embedded.is_empty():
 		var embedded = JSON.parse_string(FileAccess.get_file_as_string(WOLF_EMBEDDED_PATH))
 		if embedded is Dictionary: _wolf_embedded = embedded
+	if _boss_embedded.is_empty():
+		var embedded = JSON.parse_string(FileAccess.get_file_as_string(BOSS_EMBEDDED_PATH))
+		if embedded is Dictionary: _boss_embedded = embedded
 	media = Descriptors.load_catalog().duplicate()
 	media["effects"] = media.get("effects", {}).duplicate()
 	media.effects.merge(_wolf_embedded.get("effects", {}))
+	media.effects.merge(_boss_embedded.get("effects", {}))
 	var tuning_path = "res://assets/data/monster_presentation_tuning.json"
 	if FileAccess.file_exists(tuning_path): monster_tuning = JSON.parse_string(FileAccess.get_file_as_string(tuning_path))
 	for index in FEEL.audio_budget:
@@ -109,6 +130,7 @@ func _apply_effect_opacity(effect: Dictionary) -> void:
 			if not particle.has_meta("settings_base_alpha"): particle.set_meta("settings_base_alpha", particle.color.a)
 			particle.color.a = float(particle.get_meta("settings_base_alpha")) * gain
 		for model in effect.authored.find_children("*", "MeshInstance3D", true, false): model.transparency = 1.0 - gain
+	for trail in effect.get("active_boss_trails", []): trail.set_opacity(gain)
 	effect.sparks.color.a = gain
 
 func _collect_heavy_audio(value: Variant, sounds: Dictionary, summons: Dictionary) -> void:
@@ -323,6 +345,8 @@ func prepare_combat(combats: Array) -> void:
 		_prepared_group_media[media_key] = {"effects": group_effects, "sounds": group_sounds}
 		effects.merge(group_effects)
 		sounds.merge(group_sounds)
+	for source: DungeonCombat in combats:
+		for key in _boss_embedded.get("actors", {}).get(str(source.enemy_id), []): effects[key] = true
 	for key in effects:
 		if media.effects[key].get("layers", []).is_empty() and media.effects[key].get("models", []).is_empty(): continue
 		for source_only in [false, true] if FEEL.effect_emitter_suppressions.has(key) else [false]:
@@ -474,19 +498,40 @@ func _store_authored(cache_key: String, authored: Node3D) -> void:
 	authored_pool[cache_key] = entries
 	_authored_pool_size += 1
 
-func _reserve_effect(particles: int, emitters: int, important: bool, priority: bool) -> bool:
+func _can_evict_effect(effect: Dictionary, important: bool, priority: bool) -> bool:
+	return not effect.important and (important or not effect.get("priority", false)) and (important or priority or int(effect.get("summon_token", 0)) == 0)
+
+func _reserve_effect(particles: int, emitters: int, important: bool, priority: bool, boss_priority := false, boss_persistent := false) -> bool:
 	var budget = FEEL.low_effect_budget if low_quality else FEEL.effect_budget
 	var particle_limit = FEEL.low_particle_budget if low_quality else FEEL.particle_budget
 	var emitter_limit = FEEL.low_emitter_budget if low_quality else FEEL.emitter_budget
-	if not important:
+	if not important and not boss_priority:
 		var multiplier: float = [0.35, 0.65, 1.0][effects_density]
 		budget = maxi(4, int(budget * multiplier))
 		particle_limit = maxi(128, int(particle_limit * multiplier))
 		emitter_limit = maxi(8, int(emitter_limit * multiplier))
+		if boss_persistent and effects_density < 2:
+			var full_limit: int = FEEL.low_emitter_budget if low_quality else FEEL.emitter_budget
+			var reserve := BOSS_TRANSIENT_EMITTER_RESERVE_LOW if low_quality else BOSS_TRANSIENT_EMITTER_RESERVE_FULL
+			emitter_limit = mini(emitter_limit, maxi(8, full_limit - reserve))
+	if active.size() >= budget or pool.is_empty() or _active_particles + particles > particle_limit or _active_emitters + emitters > emitter_limit:
+		var reclaimable := 0
+		var reclaimed_particles := 0
+		var reclaimed_emitters := 0
+		for effect in active:
+			if not _can_evict_effect(effect, important, priority): continue
+			reclaimable += 1
+			if effect.authored:
+				reclaimed_particles += int(effect.authored.particle_count)
+				reclaimed_emitters += effect.authored.emitters.size()
+			if active.size() - reclaimable < budget and (not pool.is_empty() or reclaimable > 0) and _active_particles - reclaimed_particles + particles <= particle_limit and _active_emitters - reclaimed_emitters + emitters <= emitter_limit:
+				break
+		if active.size() - reclaimable >= budget or (pool.is_empty() and reclaimable == 0) or _active_particles - reclaimed_particles + particles > particle_limit or _active_emitters - reclaimed_emitters + emitters > emitter_limit:
+			return false
 	while active.size() >= budget or pool.is_empty() or _active_particles + particles > particle_limit or _active_emitters + emitters > emitter_limit:
 		var victim := -1
 		for i in active.size():
-			if not active[i].important and (important or not active[i].get("priority", false)) and (important or priority or int(active[i].get("summon_token", 0)) == 0):
+			if _can_evict_effect(active[i], important, priority):
 				victim = i
 				break
 		if victim < 0: return false
@@ -503,17 +548,25 @@ func emit_effect(actor: DungeonActor, name: String, point: Vector3, dimensions :
 		return
 	var cache_key = _authored_cache_key(key, source_only)
 	var authored: Node3D
+	# Keep short Boss feedback within the hard cap without letting persistent summons consume its reserve.
+	var boss_effect: bool = priority and not actor.is_player and actor.combat.enemy.get("rank", "") == "Boss"
+	var boss_priority: bool = boss_effect and not loop
+	var boss_persistent: bool = boss_effect and loop
 	var has_authored: bool = not definition.get("layers", []).is_empty() or not definition.get("models", []).is_empty()
 	if has_authored:
 		# Reserve first: eviction can return the exact instance this cast needs.
 		var retained: Array = authored_pool.get(cache_key, [])
 		var prototype: Node3D = retained.back() if not retained.is_empty() else _authored_template(key, cache_key, low_quality, source_only)
-		if not _reserve_effect(prototype.particle_count, prototype.emitters.size(), important, priority): return
+		if not _reserve_effect(prototype.particle_count, prototype.emitters.size(), important, priority, boss_priority, boss_persistent): return
 		authored = _take_authored(key, cache_key, low_quality, source_only)
-	elif not _reserve_effect(0, 0, important, priority): return
+	elif not _reserve_effect(0, 0, important, priority, boss_priority, boss_persistent): return
 	var entry: Dictionary = pool.pop_back()
 	entry.erase("buff_style")
+	entry.erase("buff_actor_id")
 	entry.erase("embedded_effect")
+	entry.erase("boss_embedded_key")
+	entry.erase("boss_embedded_actor_id")
+	entry.erase("active_boss_trails")
 	entry["source_warning"] = false
 	var textures: Array = media.get("effects", {}).get(key, {}).get("textures", [])
 	if not key.is_empty() and not media.get("effects", {}).has(key): missing[key] = true
@@ -543,7 +596,7 @@ func emit_effect(actor: DungeonActor, name: String, point: Vector3, dimensions :
 		_active_emitters += authored.emitters.size()
 		entry["cache_key"] = cache_key
 		entry.mesh.hide()
-		if not loop and follow == null: entry.duration = maxf(float(entry.duration), minf(authored.lifetime, 4.0))
+		if not loop and follow == null: entry.duration = maxf(float(entry.duration), authored.lifetime if BOSS_FULL_LIFETIME_EFFECTS.has(key) else minf(authored.lifetime, 4.0))
 	_apply_effect_opacity(entry)
 	active.append(entry)
 	spawned += 1
@@ -635,9 +688,12 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 	var playback_speed = maxf(0.1, float(definition.get("EffectSpeed", 1)))
 	duration /= playback_speed
 	var owned = sequence if definition.get("DestoryWhenActionSwitch", false) or (loop and not source_wolf) else -1
+	var protected_tail: bool = not actor.is_player and BOSS_FULL_LIFETIME_EFFECTS.has(_effect_key(actor, name))
 	var emitted_before = spawned
-	emit_effect(actor, name, location, dimensions, duration, anchor if follows else null, source_warning, owned, loop, false, source_only)
+	emit_effect(actor, name, location, dimensions, duration, anchor if follows else null, source_warning, owned, loop, protected_tail, source_only)
 	if spawned > emitted_before:
+		# Keep the poison silhouette through its authored tail without detaching it from action cancellation.
+		if protected_tail: active.back().detached = false
 		if source_warning or (not actor.is_player and "attackprompt" in _key(name)): actor.lock_telegraph_aim(sequence)
 		active.back()["source_warning"] = source_warning
 		active.back().clock_sequence = sequence if use_action_clock and definition.get("SpeedScaleByOwnerActionSpeed", true) else -1
@@ -645,7 +701,7 @@ func trigger(actor: DungeonActor, definition: Dictionary, sequence := -1, point 
 		active.back().detach_after = maxf(0, float(definition.get("DelayTimeToWorldPos", 0))) / 1000.0
 		if (not loop or source_wolf) and float(definition.get("DelayTimeToDestroy", 0)) <= 0 and active.back().authored:
 			var source_lifetime: float = active.back().authored.lifetime
-			active.back().duration = maxf(0.05, (source_lifetime if source_wolf else minf(source_lifetime, 4.0)) / playback_speed)
+			active.back().duration = maxf(0.05, (source_lifetime if source_wolf or BOSS_FULL_LIFETIME_EFFECTS.has(active.back().key) else minf(source_lifetime, 4.0)) / playback_speed)
 		active.back().root.rotation = Vector3(0, yaw, 0) + DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0
 		if bone_bound: active.back().root.global_basis = anchor.global_basis.orthonormalized() * Basis.from_euler(DungeonWorld.vector(definition.get("Euler", {})) * PI / 180.0)
 		if not source_only and _sword_slash(_key(name)): active.back().root.rotate_y(PI)
@@ -780,6 +836,8 @@ func command(actor: DungeonActor, event: Dictionary) -> void:
 		"EET_SetGameObjectActive":
 			if not actor.is_player and actor.combat.enemy_id == 13001:
 				for name in raw.get("gameobjectNames", []): _set_embedded_effect(actor, str(name), bool(raw.get("booleanToSet", false)))
+			elif not actor.is_player:
+				for name in raw.get("gameobjectNames", []): _set_boss_embedded_group(actor, str(name), bool(raw.get("booleanToSet", false)))
 
 func attack_emitted(actor: DungeonActor, hit: Dictionary, origin: Vector3, facing := Vector3.ZERO) -> void:
 	# Entity styles retain the modifiers active at creation across their delay/lifetime.
@@ -1012,13 +1070,34 @@ func _emit_buff_style(actor: DungeonActor, raw: Dictionary, name: String, loop :
 		active.back().duration = INF
 		active.back().clock_sequence = -1
 
+func _track_buff_effect(actor: DungeonActor, effect: Dictionary, identity: String) -> void:
+	var actor_id := actor.get_instance_id()
+	var owned: Dictionary = _live_buff_effects.get(actor_id, {})
+	var entries: Array = owned.get(identity, [])
+	entries.append(effect)
+	owned[identity] = entries
+	_live_buff_effects[actor_id] = owned
+	effect["buff_style"] = identity
+	effect["buff_actor_id"] = actor_id
+
+func _untrack_buff_effect(effect: Dictionary) -> void:
+	if not effect.has("buff_actor_id"): return
+	var actor_id := int(effect.buff_actor_id)
+	var owned: Dictionary = _live_buff_effects.get(actor_id, {})
+	var identity := str(effect.buff_style)
+	var entries: Array = owned.get(identity, [])
+	entries.erase(effect)
+	if entries.is_empty(): owned.erase(identity)
+	if owned.is_empty(): _live_buff_effects.erase(actor_id)
+
 func _set_embedded_effect(actor: DungeonActor, name: String, enabled: bool) -> void:
 	var binding: Dictionary = _wolf_embedded.get("bindings", {}).get(name, {})
 	if binding.is_empty(): return
 	var existing := -1
-	for index in active.size():
-		if active[index].actor.get_ref() == actor and active[index].get("embedded_effect", "") == name:
-			existing = index
+	var owned: Dictionary = _live_buff_effects.get(actor.get_instance_id(), {})
+	for effect in owned.get("embedded:" + name, []):
+		if effect.get("embedded_effect", "") == name:
+			existing = active.find(effect)
 			break
 	if not enabled:
 		if existing >= 0: _recycle(existing)
@@ -1043,11 +1122,185 @@ func _set_embedded_effect(actor: DungeonActor, name: String, enabled: bool) -> v
 	effect.duration = INF
 	effect.clock_sequence = -1
 	effect["embedded_effect"] = name
-	effect["buff_style"] = "embedded:" + name
+	_track_buff_effect(actor, effect, "embedded:" + name)
+
+func register_boss_embedded(actor: DungeonActor) -> void:
+	if actor.is_player: return
+	var keys: Array = _boss_embedded.get("actors", {}).get(str(actor.combat.enemy_id), [])
+	if keys.is_empty(): return
+	var actor_id := actor.get_instance_id()
+	if _boss_embedded_actors.has(actor_id): return
+	var desired: Dictionary = {}
+	var saved: Variant = actor.combat.custom_properties.get("_boss_embedded_objects", {})
+	if not saved is Dictionary: saved = {}
+	_boss_embedded_actors[actor_id] = {"actor": weakref(actor), "desired": desired}
+	for key in keys:
+		var binding: Dictionary = _boss_embedded.bindings[key]
+		var enabled := bool(saved.get(_key(binding.name), binding.get("source_root_active", false)))
+		if enabled:
+			desired[key] = true
+			_queue_boss_embedded(actor_id, key)
+
+func _queue_boss_embedded(actor_id: int, key: String, recovery := false) -> void:
+	var identity := str(actor_id) + ":" + key
+	if _boss_embedded_queued.has(identity): return
+	_boss_embedded_queued[identity] = true
+	_boss_embedded_queue.append({"actor_id": actor_id, "key": key, "identity": identity, "recovery": recovery})
+
+func _set_boss_embedded_group(actor: DungeonActor, name: String, enabled: bool) -> void:
+	register_boss_embedded(actor)
+	var actor_id := actor.get_instance_id()
+	if not _boss_embedded_actors.has(actor_id): return
+	var desired: Dictionary = _boss_embedded_actors[actor_id].desired
+	var matched := false
+	for key in _boss_embedded.actors[str(actor.combat.enemy_id)]:
+		if _key(_boss_embedded.bindings[key].name) != _key(name): continue
+		matched = true
+		if enabled:
+			desired[key] = true
+			if not _boss_embedded_live.get(actor_id, {}).has(key): _queue_boss_embedded(actor_id, key)
+		else:
+			desired.erase(key)
+			var effect: Dictionary = _boss_embedded_live.get(actor_id, {}).get(key, {})
+			if not effect.is_empty():
+				var index := active.find(effect)
+				if index >= 0: _recycle(index)
+	if matched:
+		var saved: Variant = actor.combat.custom_properties.get("_boss_embedded_objects", {})
+		if not saved is Dictionary: saved = {}
+		saved[_key(name)] = enabled
+		actor.combat.custom_properties["_boss_embedded_objects"] = saved
+
+func _process_boss_embedded_queue() -> void:
+	var started := Time.get_ticks_usec()
+	var processed := 0
+	while _boss_embedded_head < _boss_embedded_queue.size() and processed < 2:
+		var request: Dictionary = _boss_embedded_queue[_boss_embedded_head]
+		_boss_embedded_head += 1
+		_boss_embedded_queued.erase(request.identity)
+		var actor_id := int(request.actor_id)
+		var state: Dictionary = _boss_embedded_actors.get(actor_id, {})
+		if not state.is_empty():
+			var actor = state.actor.get_ref()
+			if not is_instance_valid(actor) or actor.dead:
+				_forget_boss_embedded(actor_id)
+			elif state.desired.has(request.key) and not _boss_embedded_live.get(actor_id, {}).has(request.key):
+				var is_recovery := bool(request.get("recovery", false))
+				if not is_recovery or _boss_embedded_fits(str(request.key), true):
+					_start_boss_embedded(actor, str(request.key))
+					if is_recovery and _boss_embedded_live.get(actor_id, {}).has(request.key): _boss_embedded_recovery_continuation = true
+		processed += 1
+		if Time.get_ticks_usec() - started >= FEEL.combat_prepare_usec: break
+	if _boss_embedded_head >= _boss_embedded_queue.size():
+		_boss_embedded_queue.clear()
+		_boss_embedded_head = 0
+		if _boss_embedded_recovery_continuation:
+			_boss_embedded_recovery_continuation = false
+			_recover_boss_embedded()
+
+func _boss_embedded_fits(key: String, prepare_missing := false) -> bool:
+	var multiplier: float = [0.35, 0.65, 1.0][effects_density]
+	var budget := maxi(4, int((FEEL.low_effect_budget if low_quality else FEEL.effect_budget) * multiplier))
+	var particle_limit := maxi(128, int((FEEL.low_particle_budget if low_quality else FEEL.particle_budget) * multiplier))
+	var emitter_limit := maxi(8, int((FEEL.low_emitter_budget if low_quality else FEEL.emitter_budget) * multiplier))
+	if active.size() >= budget or pool.is_empty(): return false
+	var cache_key := _authored_cache_key(key, true)
+	var entries: Array = authored_pool.get(cache_key, [])
+	var prototype: Node3D = entries.back() if not entries.is_empty() else _authored_templates.get(cache_key)
+	if prototype == null and prepare_missing: prototype = _authored_template(key, cache_key, low_quality, true)
+	return prototype == null or (_active_particles + prototype.particle_count <= particle_limit and _active_emitters + prototype.emitters.size() <= emitter_limit)
+
+func _recover_boss_embedded() -> void:
+	if not _boss_embedded_queue.is_empty(): return
+	var camera := get_viewport().get_camera_3d()
+	for actor_id in _boss_embedded_actors.keys():
+		var state: Dictionary = _boss_embedded_actors[actor_id]
+		var actor = state.actor.get_ref()
+		if not is_instance_valid(actor) or actor.dead:
+			_forget_boss_embedded(actor_id)
+			continue
+		if camera and actor.global_position.distance_to(camera.global_position) > 48: continue
+		for key in state.desired:
+			if _boss_embedded_live.get(actor_id, {}).has(key): continue
+			var binding: Dictionary = _boss_embedded.bindings[key]
+			var anchor_name := str(binding.get("bone", ""))
+			if anchor_name.is_empty(): anchor_name = str(binding.get("node", ""))
+			if unresolved_anchors.has(str(actor.actor_id) + ":" + anchor_name): continue
+			if not _boss_embedded_fits(str(key)): continue
+			_queue_boss_embedded(int(actor_id), str(key), true)
+			return
+
+func _start_boss_embedded(actor: DungeonActor, key: String) -> void:
+	var binding: Dictionary = _boss_embedded.bindings[key]
+	var anchor_name := str(binding.get("bone", ""))
+	if anchor_name.is_empty(): anchor_name = str(binding.get("node", ""))
+	if anchor_name.is_empty(): return
+	var anchor := _anchor(actor, {"DummyData": {"CustomDummyName": anchor_name}})
+	if anchor == actor: return
+	var parent_transform := Transform3D.IDENTITY
+	for item in binding.get("parent_transform_chain", []):
+		var q: Dictionary = item.get("rotation", {})
+		var rotation_value := Quaternion(float(q.get("x", 0)), float(q.get("y", 0)), float(q.get("z", 0)), float(q.get("w", 1))).normalized()
+		parent_transform *= Transform3D(Basis(rotation_value).scaled(_source_dimensions(item.get("scale", {}))), DungeonWorld.vector(item.get("position", {})))
+	var before := spawned
+	emit_effect(actor, key, anchor.to_global(parent_transform.origin), Vector3.ONE, INF, anchor, false, -1, true, false, true)
+	if spawned == before: return
+	var effect: Dictionary = active.back()
+	effect.root.global_transform = anchor.global_transform * parent_transform
+	effect.offset = parent_transform.origin
+	effect.follow_rotation = true
+	effect.rotation_offset = parent_transform.basis
+	effect.duration = INF
+	effect.clock_sequence = -1
+	var actor_id := actor.get_instance_id()
+	effect["boss_embedded_key"] = key
+	effect["boss_embedded_actor_id"] = actor_id
+	var definition := effect_definition(key)
+	var sources: Array = definition.get("trails", [])
+	if not sources.is_empty():
+		var library: Dictionary = AuthoredEffect.material_library(definition)
+		var trail_pool: Array = effect.get("boss_trail_pool", [])
+		var live_trails: Array = []
+		for source in sources:
+			if not source.get("active", true) or not source.get("enabled", true) or not source.get("emitting", true): continue
+			var materials: Array = source.get("materials", [])
+			if materials.is_empty(): continue
+			var material: Dictionary = library.get(str(materials[0].get("reference", "")), {}) if materials[0].has("reference") else materials[0]
+			if material.is_empty():
+				missing["trail_material:" + key] = true
+				continue
+			if trail_pool.size() <= live_trails.size(): trail_pool.append(BossEmbeddedTrail.new())
+			var trail = trail_pool[live_trails.size()]
+			trail.configure(effect.root, source, material, texture_cache, low_quality)
+			trail.set_opacity(float(effect.get("settings_opacity", 1.0)))
+			live_trails.append(trail)
+		effect["boss_trail_pool"] = trail_pool
+		effect["active_boss_trails"] = live_trails
+	var live: Dictionary = _boss_embedded_live.get(actor_id, {})
+	live[key] = effect
+	_boss_embedded_live[actor_id] = live
+
+func _untrack_boss_embedded(effect: Dictionary) -> void:
+	if not effect.has("boss_embedded_actor_id"): return
+	var actor_id := int(effect.boss_embedded_actor_id)
+	var live: Dictionary = _boss_embedded_live.get(actor_id, {})
+	live.erase(str(effect.boss_embedded_key))
+	if live.is_empty(): _boss_embedded_live.erase(actor_id)
+
+func _forget_boss_embedded(actor_id: int) -> void:
+	_boss_embedded_actors.erase(actor_id)
+	var live: Dictionary = _boss_embedded_live.get(actor_id, {}).duplicate()
+	for effect in live.values():
+		var index := active.find(effect)
+		if index >= 0: _recycle(index)
+	_boss_embedded_live.erase(actor_id)
 
 func sync_buffs(actors: Array) -> void:
 	for actor in actors:
-		if is_instance_valid(actor) and not actor.dead: sync_actor_buffs(actor)
+		if not is_instance_valid(actor): continue
+		if actor.dead:
+			if _boss_embedded_actors.has(actor.get_instance_id()): _forget_boss_embedded(actor.get_instance_id())
+		else: sync_actor_buffs(actor)
 	for id in _buff_styles.keys():
 		var actor = _buff_styles[id].actor.get_ref()
 		if not is_instance_valid(actor) or actor.dead: _buff_styles.erase(id)
@@ -1058,9 +1311,8 @@ func sync_actor_buffs(actor: DungeonActor) -> void:
 	var previous: Dictionary = _buff_styles.get(actor_id, {}).get("styles", {})
 	if actor.combat.statuses.is_empty() and previous.is_empty(): return
 	var current: Dictionary = {}
-	var live: Dictionary = {}
-	for effect in active:
-		if effect.actor.get_ref() == actor and effect.has("buff_style"): live[effect.buff_style] = true
+	# Preserve the start-of-sync snapshot if emitting a style evicts another one.
+	var live: Dictionary = _live_buff_effects.get(actor_id, {}).duplicate()
 	for owner_id in actor.combat.statuses:
 		if actor.combat.buff_layers(str(owner_id)) <= 0: continue
 		var styles = _buff_style_definitions(actor, str(owner_id))
@@ -1084,11 +1336,14 @@ func sync_actor_buffs(actor: DungeonActor) -> void:
 			if live.has(identity): continue
 			var before = spawned
 			_emit_buff_style(actor, raw, keep, true)
-			if spawned > before: active.back()["buff_style"] = identity
+			if spawned > before: _track_buff_effect(actor, active.back(), identity)
 	for identity in previous:
 		if current.has(identity): continue
-		for index in range(active.size() - 1, -1, -1):
-			if active[index].actor.get_ref() == actor and active[index].get("buff_style", "") == identity: _recycle(index)
+		var owned: Dictionary = _live_buff_effects.get(actor_id, {})
+		var entries: Array = owned.get(identity, []).duplicate()
+		for entry_index in range(entries.size() - 1, -1, -1):
+			var index := active.find(entries[entry_index])
+			if index >= 0: _recycle(index)
 		_emit_buff_style(actor, previous[identity], str(previous[identity].get("EndEffect", "")))
 		play_sound(str(previous[identity].get("EndSound", {}).get("SoundName", "")), actor.position, actor)
 	_buff_styles[actor_id] = {"actor": weakref(actor), "styles": current}
@@ -1120,6 +1375,13 @@ func play_sound(name: String, point: Vector3, actor: DungeonActor, sequence := -
 func _process(delta: float) -> void:
 	delta *= simulation_scale
 	if not suspended and has_pending_preparation(): prepare_step()
+	if not suspended and not has_pending_preparation():
+		_process_boss_embedded_queue()
+		if not _boss_embedded_actors.is_empty():
+			_boss_embedded_retry_remaining -= delta
+			if _boss_embedded_retry_remaining <= 0:
+				_boss_embedded_retry_remaining = BOSS_EMBEDDED_RETRY_SECONDS
+				_recover_boss_embedded()
 	for voice in voices: voice.stream_paused = suspended or not audio_enabled
 	for effect in active:
 		var rate = _effect_clock_rate(effect)
@@ -1155,6 +1417,7 @@ func _process(delta: float) -> void:
 			else:
 				_recycle(i)
 				continue
+		for trail in effect.get("active_boss_trails", []): trail.advance(delta * _effect_clock_rate(effect))
 		var fraction = effect.age / effect.duration
 		if effect.body_burst: effect.burst_material.set_shader_parameter("phase", fraction)
 		if effect.mesh.visible:
@@ -1204,6 +1467,10 @@ func _effect_clock_rate(effect: Dictionary) -> float:
 
 func _recycle(index: int) -> void:
 	var effect = active[index]
+	for trail in effect.get("active_boss_trails", []): trail.stop()
+	effect.erase("active_boss_trails")
+	_untrack_buff_effect(effect)
+	_untrack_boss_embedded(effect)
 	_summon_effects.erase(int(effect.get("summon_token", 0)))
 	if effect.authored:
 		var authored = effect.authored
@@ -1224,10 +1491,16 @@ func cancel_actor(actor: DungeonActor, keep_sequence := -2) -> void:
 		if telegraphs[i].actor.get_ref() == actor and telegraphs[i].sequence != keep_sequence: _remove_telegraph(i)
 	for i in range(active.size() - 1, -1, -1):
 		var entry = active[i]
-		if not entry.has("buff_style") and not entry.get("detached", false) and entry.actor.get_ref() == actor and (keep_sequence == -2 or (entry.sequence >= 0 and entry.sequence != keep_sequence)): _recycle(i)
+		if not entry.has("buff_style") and not entry.has("boss_embedded_key") and not entry.get("detached", false) and entry.actor.get_ref() == actor and (keep_sequence == -2 or (entry.sequence >= 0 and entry.sequence != keep_sequence)): _recycle(i)
 
 func clear() -> void:
 	_buff_styles.clear()
+	_boss_embedded_actors.clear()
+	_boss_embedded_queue.clear()
+	_boss_embedded_queued.clear()
+	_boss_embedded_head = 0
+	_boss_embedded_recovery_continuation = false
+	_boss_embedded_retry_remaining = BOSS_EMBEDDED_RETRY_SECONDS
 	_preparation.clear()
 	_preparation_keys.clear()
 	_preparation_head = 0
@@ -1239,6 +1512,7 @@ func clear() -> void:
 		if actor: actor.clear_telegraph_aim()
 	while not telegraphs.is_empty(): _remove_telegraph(telegraphs.size() - 1)
 	while not active.is_empty(): _recycle(active.size() - 1)
+	_boss_embedded_live.clear()
 	_summon_effects.clear()
 	sound_queue.clear()
 	for voice in voices: voice.stop()

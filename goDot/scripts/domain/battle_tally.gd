@@ -25,11 +25,22 @@ func record(impact: Dictionary, player_key: String) -> void:
 	if not bool(impact.get("resolved_accepted", false)) or settled <= 0.0: return
 	hits += 1
 	damage += settled
-	if combo_hits == 0:
-		combo_sequence += 1
-	combo_hits += 1
-	combo_damage += settled
-	combo_remaining = COMBO_KEEP_SECONDS
+	var count := _combo_increment(impact)
+	if count > 0:
+		if combo_hits == 0:
+			combo_sequence += 1
+		combo_hits += count
+		combo_remaining = COMBO_KEEP_SECONDS
+	if combo_hits > 0: combo_damage += settled
+
+func _combo_increment(impact: Dictionary) -> int:
+	if not bool(impact.get("attack_collision", true)): return 0
+	if bool(impact.get("continuous", false)) and not impact.has("definition"): return 0
+	var definition: Dictionary = impact.get("definition", {})
+	var raw: Variant = definition.get("raw", {})
+	if raw is String: raw = JSON.parse_string(raw)
+	if not raw is Dictionary: raw = {}
+	return maxi(0, int(raw.get("HitComboCaculate", 1)))
 
 func advance(delta: float, fighting: bool, running: bool = true) -> void:
 	if not running: return
@@ -67,7 +78,7 @@ func restore(saved: Dictionary) -> void:
 	combo_sequence = 0
 	var combo: Dictionary = saved.get("combo", {}) if saved.get("combo", {}) is Dictionary else {}
 	combo_remaining = clampf(float(combo.get("remaining", 0.0)), 0.0, COMBO_KEEP_SECONDS)
-	combo_hits = clampi(int(combo.get("hits", 0)), 0, hits)
+	combo_hits = maxi(0, int(combo.get("hits", 0)))
 	combo_damage = clampf(float(combo.get("damage", 0.0)), 0.0, damage)
 	combo_elapsed = maxf(0.0, float(combo.get("elapsed", 0.0)))
 	combo_sequence = maxi(0, int(combo.get("sequence", 0)))

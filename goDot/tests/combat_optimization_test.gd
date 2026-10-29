@@ -96,6 +96,23 @@ func _hud_and_pool_cases() -> void:
 	world.add_child(player)
 	world.player = player
 	world.actors.append(player)
+	var feedback_state := DungeonProjectile.new()
+	var feedback_entry := {}
+	var feedback := {"FeedbackList": [{"FeedbackType": "EHT_HitAction", "AccTenacity": 2}, {"FeedbackType": "EHT_HitAction", "AccTenacity": 3}]}
+	feedback_state.hit = {"definition": {"raw": JSON.stringify(feedback)}}
+	check(world._projectile_environment_tenacities(feedback_entry, feedback_state) == [2, 5], "Projectile environment feedback preserves cumulative tenacity")
+	check(feedback_entry.has("environment_tenacities") and world._projectile_environment_tenacities(feedback_entry, feedback_state) == [2, 5], "Encoded projectile feedback is cached")
+	feedback.FeedbackList[0].AccTenacity = 7
+	feedback_state.hit.definition.raw = JSON.stringify(feedback)
+	check(world._projectile_environment_tenacities(feedback_entry, feedback_state) == [7, 10], "Changing encoded feedback invalidates projectile cache")
+	feedback_state.hit.definition.raw = feedback
+	feedback.FeedbackList[0].AccTenacity = 1
+	check(world._projectile_environment_tenacities(feedback_entry, feedback_state) == [1, 4], "Mutable feedback dictionaries are read without stale caching")
+	world._impact_clock = 8.0
+	check(world._impact_is_recent({"hit": 0.0}, "hit"), "Impact deduplication includes the eight-second boundary")
+	world._impact_clock = 8.001
+	check(not world._impact_is_recent({"hit": 0.0}, "hit"), "Expired impact can be processed before the next cleanup scan")
+	world._impact_clock = 0.0
 	world._automatic_heavy_held = true
 	player.combat.request_attack(4)
 	var sequence: int = player.combat._cast_sequence

@@ -6,12 +6,16 @@ signal closed
 const INK = Color("101b20")
 const PAPER = Color("eeeae0")
 const GOLD = Color("c7ae6e")
+const NAVIGATION = preload("res://scripts/presentation/role_navigation.gd")
+const ART_ROOT = "res://assets/ui/room_shop/"
 const RARITIES = [Color("737b79"), Color("56893c"), Color("3280a4"), Color("a045ab"), Color("c2a344")]
+static var _art_map: Dictionary = {}
 var rows: Array = []
 var context: Dictionary = {}
 var header: Control
 var magic_text: Label
 var free_text: Label
+var search_text: Label
 var merchant: TextureRect
 var investment: PanelContainer
 var level_text: Label
@@ -33,6 +37,18 @@ var _mode := "buy"
 var _built := false
 var _compact := false
 
+func _art(key: String) -> Texture2D:
+	if _art_map.is_empty():
+		_art_map = JSON.parse_string(FileAccess.get_file_as_string(ART_ROOT + "resource_map.json"))
+	return load(str(_art_map[key])) as Texture2D if _art_map.has(key) else DungeonStyle.texture(key)
+
+func _source_box(key: String, tint := Color.WHITE, margin := 0.0) -> StyleBoxTexture:
+	var box := StyleBoxTexture.new()
+	box.texture = _art(key)
+	box.modulate_color = tint
+	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]: box.set_texture_margin(side, margin)
+	return box
+
 func configure(data: Array, state: Dictionary) -> void:
 	rows = data
 	context = state
@@ -47,39 +63,47 @@ func configure(data: Array, state: Dictionary) -> void:
 func _build() -> void:
 	_built = true
 	var shade = ColorRect.new()
-	shade.color = Color(0.035, 0.065, 0.075, 0.85)
+	shade.color = Color(0.035, 0.065, 0.075, 0.56)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(shade)
 	header = Control.new()
 	add_child(header)
-	var back = _button("", "res://assets/ui/prepare/sprite_395376c50fe4.png")
+	var back = NAVIGATION.create_back_button("返回房间")
 	back.name = "Back"
-	back.tooltip_text = "返回房间"
-	for state in ["normal", "hover", "pressed"]: back.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	back.pressed.connect(func(): closed.emit())
 	header.add_child(back)
-	var title = _label("迷宫商店", 36, PAPER)
+	var title = DungeonStyle.picture("", Vector2.ZERO)
+	title.texture = _art("迷宫商店")
 	title.name = "Title"
 	header.add_child(title)
 	var resources = HBoxContainer.new()
 	resources.name = "Resources"
 	resources.add_theme_constant_override("separation", 14)
 	header.add_child(resources)
-	for item in [["res://assets/ui/camp/portraits/sprite_materialicon_102.png", str(context.get("magic", 0))], ["sprite_conversation_buy", str(context.get("free", 0))]]:
+	for item in [["sprite_materialicon_102", str(context.get("magic", 0))], ["sprite_abilityitemicon_15101", "%d/%d" % [int(context.get("search", 0)), int(context.get("search_max", 3))]]]:
+		var holder = PanelContainer.new()
+		holder.add_theme_stylebox_override("panel", _source_box("货币_底", Color.WHITE, 16))
+		resources.add_child(holder)
 		var line = HBoxContainer.new()
 		line.add_theme_constant_override("separation", 6)
-		resources.add_child(line)
-		line.add_child(DungeonStyle.picture(item[0], Vector2(30, 30)))
+		holder.add_child(line)
+		var icon = DungeonStyle.picture("", Vector2(30, 30))
+		icon.texture = _art(item[0])
+		line.add_child(icon)
 		var value = _label(item[1], 24, PAPER)
+		value.custom_minimum_size.x = 75
 		line.add_child(value)
 		if magic_text == null: magic_text = value
-		else: free_text = value
+		else: search_text = value
+	free_text = _label("", 16, PAPER)
+	free_text.name = "FreePurchases"
+	add_child(free_text)
 	merchant = DungeonStyle.picture("res://assets/ui/camp/portraits/characterillustration_shangdian_normal.png", Vector2.ZERO)
 	merchant.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	add_child(merchant)
 	investment = PanelContainer.new()
-	investment.add_theme_stylebox_override("panel", DungeonStyle.box(Color(0.02, 0.04, 0.04, 0.84), GOLD, 2))
+	investment.add_theme_stylebox_override("panel", _source_box("31", Color(1, 1, 1, 0.84), 24))
 	add_child(investment)
 	var stack = VBoxContainer.new()
 	stack.add_theme_constant_override("separation", 7)
@@ -98,7 +122,8 @@ func _build() -> void:
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.pressed.connect(_show_levels)
 	actions.add_child(info)
-	deposit = _button("%d 存入" % int(status.get("deposit", 0)), "res://assets/ui/camp/portraits/sprite_materialicon_102.png")
+	deposit = _button("%d 存入" % int(status.get("deposit", 0)))
+	deposit.icon = _art("sprite_materialicon_102")
 	deposit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	deposit.disabled = bool(status.get("max_level", false)) or int(status.get("remaining", 0)) <= 0 or int(context.get("magic", 0)) < int(status.get("deposit", 0))
 	deposit.tooltip_text = "本局存入次数已用完" if int(status.get("remaining", 0)) <= 0 else "魔力不足" if int(context.get("magic", 0)) < int(status.get("deposit", 0)) else "商店已达最高等级" if status.get("max_level", false) else "存入商店"
@@ -109,12 +134,14 @@ func _build() -> void:
 	add_child(tabs)
 	purchase_tab = _button("购买", "sprite_conversation_buy")
 	seal_tab = _button("封印", "sprite_conversation_crystallize")
+	purchase_tab.icon = _art("已解锁遗物")
+	seal_tab.icon = _art("解锁")
 	for tab in [purchase_tab, seal_tab]:
 		tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		tab.toggle_mode = true
 		for state in ["normal", "hover", "pressed"]:
 			tab.add_theme_color_override("font_color" if state == "normal" else "font_" + state + "_color", PAPER)
-			tab.add_theme_stylebox_override(state, DungeonStyle.box(Color(0.035, 0.045, 0.055, 0.8) if state == "pressed" else Color(0.02, 0.03, 0.035, 0.5), GOLD if state == "pressed" else Color("505850"), 1))
+			tab.add_theme_stylebox_override(state, _source_box("6", Color(1, 1, 1, 0.9 if state == "pressed" else 0.45)))
 		tabs.add_child(tab)
 	purchase_tab.pressed.connect(func(): _select_mode("buy"))
 	seal_tab.pressed.connect(func(): _select_mode("seal"))
@@ -130,7 +157,10 @@ func _build() -> void:
 	empty.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	empty.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	add_child(empty)
-	refresh = _button("", "res://assets/ui/prepare/button_refresh_1.png")
+	refresh = _button("")
+	refresh.icon = _art("Button_Refresh")
+	refresh.add_theme_constant_override("icon_max_width", 64)
+	for state in ["normal", "hover", "pressed", "disabled"]: refresh.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	refresh.tooltip_text = str(status.get("refresh_reason", "")) if not status.get("can_refresh", true) else "刷新商品 · 剩余 %d 次" % int(status.get("refresh_remaining", 0))
 	if not refresh.icon: refresh.text = "↻"
 	refresh.disabled = not bool(status.get("can_refresh", int(status.get("refresh_remaining", 0)) > 0))
@@ -148,9 +178,13 @@ func _build() -> void:
 
 func _update_state() -> void:
 	footer.text = "返回房间" if context.get("return_to_room", false) else "继续前进"
+	footer.visible = not context.get("return_to_room", false)
 	var status: Dictionary = context.get("shop", {})
 	magic_text.text = str(context.get("magic", 0))
 	free_text.text = str(context.get("free", 0))
+	free_text.visible = int(context.get("free", 0)) > 0
+	free_text.tooltip_text = "剩余免费购买次数"
+	search_text.text = "%d/%d" % [int(context.get("search", 0)), int(context.get("search_max", 3))]
 	level_text.text = str(status.get("level", 1))
 	next_text.text = "最高等级" if status.get("max_level", false) else str(status.get("next_needed", 0))
 	remaining_text.text = str(status.get("remaining", 0))
@@ -183,14 +217,19 @@ func _button(value: String, icon_key := "") -> Button:
 	button.add_theme_color_override("font_focus_color", INK)
 	button.add_theme_color_override("font_disabled_color", Color("747773"))
 	for state in ["normal", "hover", "pressed", "disabled"]:
-		var box = DungeonStyle.box(Color("e5e2d6") if state == "normal" else Color("fff7d6") if state in ["hover", "pressed"] else Color("5b625e"), GOLD, 1)
+		var box = _source_box("几何ui-椭圆白色按钮", Color.WHITE if state == "normal" else Color("fff7d6") if state in ["hover", "pressed"] else Color("7c8182"))
+		box.set_texture_margin(SIDE_LEFT, 45)
+		box.set_texture_margin(SIDE_RIGHT, 45)
 		box.set_content_margin_all(5)
 		button.add_theme_stylebox_override(state, box)
 	return button
 
 func _stat_line(parent: Node, title: String, value: String) -> Label:
+	var panel = PanelContainer.new()
+	panel.add_theme_stylebox_override("panel", _source_box("商店升级详情选项_底", Color.WHITE, 12))
+	parent.add_child(panel)
 	var line = HBoxContainer.new()
-	parent.add_child(line)
+	panel.add_child(line)
 	var key = _label(title, 22, PAPER)
 	key.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	line.add_child(key)
@@ -219,9 +258,9 @@ func _add_card(row: Dictionary) -> void:
 	var card = Button.new()
 	card.clip_contents = true
 	card.tooltip_text = str(row.get("title", "")) + "\n" + str(row.get("description", ""))
-	card.add_theme_stylebox_override("normal", DungeonStyle.box(PAPER, GOLD, 2))
-	card.add_theme_stylebox_override("hover", DungeonStyle.box(Color("fff8df"), GOLD, 2))
-	card.add_theme_stylebox_override("pressed", DungeonStyle.box(Color("e3d8b2"), GOLD, 2))
+	card.add_theme_stylebox_override("normal", _source_box("商品_底框_1"))
+	card.add_theme_stylebox_override("hover", _source_box("商品_底框_1", Color("fff8df")))
+	card.add_theme_stylebox_override("pressed", _source_box("商品_底框_1", Color("e3d8b2")))
 	grid.add_child(card)
 	cards.append(card)
 	card.set_meta("row", row)
@@ -234,10 +273,12 @@ func _add_card(row: Dictionary) -> void:
 	title.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
 	card.add_child(title)
 	var rarity = clampi(int(row.get("rarity", 1)), 1, 5)
-	var frame = Panel.new()
+	title.add_theme_color_override("font_color", RARITIES[rarity - 1])
+	var frame = TextureRect.new()
+	frame.texture = load("res://assets/ui/role_inventory/slotfg_rare_square_%d_v2.png" % rarity)
+	frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	frame.name = "Frame"
 	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	frame.add_theme_stylebox_override("panel", DungeonStyle.box(RARITIES[rarity - 1].darkened(0.12), Color("b7b8aa"), 2))
 	card.add_child(frame)
 	var icon = DungeonStyle.picture(str(row.get("icon", "")), Vector2.ZERO)
 	var source_icon = DungeonItemArt.source_texture(int(row.get("loot_id", 0)))
@@ -253,9 +294,11 @@ func _add_card(row: Dictionary) -> void:
 	price_band.name = "PriceBand"
 	price_band.color = Color("58433f")
 	price_band.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	price_band.visible = false
 	card.add_child(price_band)
 	var price_icon = DungeonStyle.picture("res://assets/ui/camp/portraits/sprite_materialicon_102.png", Vector2.ZERO)
 	price_icon.name = "PriceIcon"
+	price_icon.texture = _art("sprite_materialicon_102")
 	card.add_child(price_icon)
 	var price = _label(("+" if _mode == "seal" else "") + str(row.get("price", 0)) if not row.get("free", false) else "免费", 24, PAPER)
 	price.name = "Price"
@@ -278,16 +321,22 @@ func _layout() -> void:
 	_compact = size.y < 560
 	var margin := 18.0 if _compact else 36.0
 	var heading := 54.0 if _compact else 88.0
-	header.position = Vector2(margin, 8)
-	header.size = Vector2(size.x - margin * 2, heading)
-	header.get_node("Back").position = Vector2.ZERO
-	header.get_node("Back").size = Vector2(48, 42) if _compact else Vector2(68, 64)
-	header.get_node("Title").position = Vector2(58, 0) if _compact else Vector2(82, 2)
-	header.get_node("Title").size = Vector2(230, heading)
-	header.get_node("Title").add_theme_font_size_override("font_size", 24 if _compact else 36)
+	header.position = Vector2.ZERO
+	header.size = Vector2(size.x, heading)
+	NAVIGATION.place_back_button(header.get_node("Back"), NAVIGATION.scale_factor(size))
+	var back: Button = header.get_node("Back")
+	header.get_node("Title").position = Vector2(back.position.x + back.size.x + 12, 8)
+	header.get_node("Title").size = Vector2(140 if _compact else 230, heading - 12)
 	var resources = header.get_node("Resources")
-	resources.position = Vector2(header.size.x - (226 if _compact else 310), 3)
+	resources.position = Vector2(header.size.x - margin - (226 if _compact else 310), 10)
 	resources.size = Vector2(226 if _compact else 310, 38 if _compact else 56)
+	for holder in resources.get_children():
+		var line = holder.get_child(0)
+		line.get_child(0).custom_minimum_size = Vector2.ONE * (22 if _compact else 30)
+		line.get_child(1).custom_minimum_size.x = 60 if _compact else 95
+		line.get_child(1).add_theme_font_size_override("font_size", 18 if _compact else 24)
+	free_text.position = Vector2(margin, heading)
+	free_text.size = Vector2(60, 24)
 	var left_width = floor(size.x * 0.29)
 	var right_x = floor(size.x * 0.42)
 	if _compact: right_x = floor(size.x * 0.35)
@@ -298,6 +347,7 @@ func _layout() -> void:
 	investment.get_theme_stylebox("panel").set_content_margin_all(8 if _compact else 12)
 	investment.get_child(0).add_theme_constant_override("separation", 5 if _compact else 7)
 	for line in investment.get_child(0).get_children():
+		if line is PanelContainer: line = line.get_child(0)
 		if line is HBoxContainer:
 			for control in line.get_children():
 				if control is Label: control.add_theme_font_size_override("font_size", 14 if _compact else 22)
@@ -343,7 +393,7 @@ func _layout() -> void:
 		title.size = Vector2(width - 10, height * 0.18)
 		var icon_side = floor(minf(width * 0.59, height * 0.48))
 		var frame = card.get_node("Frame")
-		frame.position = Vector2((width - icon_side) / 2, height * 0.24)
+		frame.position = Vector2((width - icon_side) / 2, maxf(height * 0.24, title.position.y + title.size.y + 3))
 		frame.size = Vector2(icon_side, icon_side)
 		card.get_node("PriceBand").position = Vector2(3, height * 0.8)
 		card.get_node("PriceBand").size = Vector2(width - 6, height * 0.2 - 3)
@@ -379,8 +429,7 @@ func _modal_stack(title: String) -> VBoxContainer:
 	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	heading.add_child(caption)
-	var close = _button("×")
-	close.custom_minimum_size = Vector2(34, 34)
+	var close = NAVIGATION.create_header_back_button(size, "返回商店")
 	close.pressed.connect(_close_modal)
 	heading.add_child(close)
 	_layout_modal.call_deferred()

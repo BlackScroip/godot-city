@@ -5,6 +5,9 @@ static var cache: Dictionary = {}
 static var relics: Dictionary = {}
 static var relics_loaded := false
 
+static func release_cached_textures() -> void:
+	cache.clear()
+
 static func source_texture(id: int, material := false) -> Texture2D:
 	var key := "source:%s:%d" % [material, id]
 	if cache.has(key): return cache[key]

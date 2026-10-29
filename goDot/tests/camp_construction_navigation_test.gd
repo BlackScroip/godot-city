@@ -34,10 +34,38 @@ func _run() -> void:
 				check(region.navigation_mesh == old_mesh, "Unchanged colliders reuse the existing mesh")
 			else:
 				changed += 1
+				check(world._camp_navigation_pending and region.navigation_mesh == old_mesh, "Changed colliders bake asynchronously while retaining the old mesh")
+				world._camp_destination = "pending-test"
+				world._camp_stall_time = 0.0
+				check(world._camp_navigation_velocity(2.0) == Vector3.ZERO and world._camp_destination == "pending-test" and world._camp_stall_time == 0.0, "Automatic navigation waits without accumulating stall time")
+				world._cancel_camp_navigation()
+				var deadline := Time.get_ticks_msec() + 30000
+				while world._camp_navigation_pending and Time.get_ticks_msec() < deadline:
+					await process_frame
+				check(not world._camp_navigation_pending, "Background navigation bake finishes")
 				check(region.navigation_mesh != old_mesh, "Changed colliders select a different mesh")
 			await process_frame
 	check(changed > 0, "Construction exercises collider changes")
 	check(reused > 0, "Later construction stages reuse navigation")
+	game.profile.data.buildings["1"] = 0
+	world.refresh_camp_progression()
+	game.profile.data.buildings["2"] = 0
+	world.refresh_camp_progression()
+	var latest_key: String = world._camp_navigation_key()
+	var deadline := Time.get_ticks_msec() + 30000
+	while world._camp_navigation_pending and Time.get_ticks_msec() < deadline:
+		await process_frame
+	check(not world._camp_navigation_pending and region.navigation_mesh == world._navigation_cache.get(latest_key), "Rapid construction changes apply only the latest navigation")
+	var latest_mesh: NavigationMesh = region.navigation_mesh
+	world._finish_camp_navigation("stale", NavigationMesh.new(), world._navigation_generation - 1, world.environment_root)
+	check(region.navigation_mesh == latest_mesh and not world._navigation_cache.has("stale"), "A stale bake cannot replace or cache the latest mesh")
+	game.profile.data.buildings["3"] = 0
+	world.refresh_camp_progression()
+	var old_root: Node3D = world.environment_root
+	var old_generation: int = world._navigation_generation
+	world.release_environment()
+	world._finish_camp_navigation("released", NavigationMesh.new(), old_generation, old_root)
+	check(not world._camp_navigation_pending and world.navigation_region == null and not world._navigation_cache.has("released"), "A bake cannot update a released environment")
 	print("CAMP CONSTRUCTION NAVIGATION: changed=%d reused=%d failures=%s" % [changed, reused, failures])
 	game.queue_free()
 	await process_frame

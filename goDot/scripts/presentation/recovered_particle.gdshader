@@ -118,6 +118,7 @@ uniform vec2 source_fade_wrap = vec2(0.0);
 uniform bool use_source_fade = false;
 uniform bool source_fade_input = false;
 uniform bool source_fade_vertex_alpha = false;
+uniform bool source_fade_vertex_alpha_only = false;
 uniform float source_fade_amount = -0.1;
 uniform float source_fade_power = 1.0;
 uniform float source_fade_transition = 0.075;
@@ -338,7 +339,7 @@ void fragment() {
             combined.a *= clamp(difference * source_soft_factor, 0.0, 1.0);
         }
         ALBEDO = combined.rgb * source_tint.rgb * COLOR.rgb * visual_gain;
-        opacity = combined.a * COLOR.a * source_alpha;
+        opacity = combined.a * (source_fade_vertex_alpha_only ? 1.0 : COLOR.a) * source_alpha;
         if (source_rim) {
             // Exact APK RIM_ON GLES variant: Fresnel shape, additive/multiplicative blend, alpha erosion.
             float rim = clamp(source_rim_shape.y * pow(max(1.0 - abs(dot(rim_normal, rim_view)), 0.0), source_rim_shape.z) + source_rim_shape.x, 0.0, 1.0);

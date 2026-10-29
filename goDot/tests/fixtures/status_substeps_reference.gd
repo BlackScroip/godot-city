@@ -10,6 +10,7 @@ func _tick_segment(delta: float) -> void:
 	if not enemy.is_empty(): EnemyHitReaction.tick(self, delta)
 	var held = minf(action_delta, maxf(impact_pause, stagger_remaining))
 	action_step = maxf(0.0, action_delta - held)
+	if not enemy.is_empty(): enemy_hit_motion_step = EnemyHitReaction.motion_delta(self, action_step, true)
 	if FEEL.impact_enabled and not _using_heavy_graph() and bool(custom_properties.get("_rhythm_enabled", false)) and busy > 0:
 		var phase = action_phase()
 		var rate = 0.92 if phase == "windup" else 1.08 if phase == "impact" else 1.0
@@ -90,6 +91,9 @@ func _tick_segment(delta: float) -> void:
 			_trigger_funnel(event)
 		elif event.has("funnel_emit"):
 			_emit_funnel(event)
+		elif event.has("emitter_start"):
+			for pending in _pending:
+				if pending.get("emitter_id", -1) == event.emitter_start: pending.action_timeline = false
 		elif event.has("hit"):
 			_emit_hit(event)
 		else:

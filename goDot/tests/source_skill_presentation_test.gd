@@ -5,6 +5,7 @@ const SourceImpact = preload("res://scripts/presentation/source_heavy_impact.gd"
 var checks := 0
 var failures: Array[String] = []
 var projectile_cases := 0
+var projectile_creation_cases := 0
 var spirit_cases := 0
 var delayed_cases := 0
 var preload_effects := 0
@@ -69,8 +70,8 @@ func _run() -> void:
 	_modifier_styles(presentation, actor)
 	_source_preload(presentation, actor)
 	_effective_summon_scale(presentation, actor)
-	check(projectile_cases >= 60 and spirit_cases >= 15, "All available Boss projectile and Spirit damage definitions are exercised")
-	var report := {"apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505", "checks": checks, "failures": failures, "boss_projectiles": projectile_cases, "spirit_damage_definitions": spirit_cases, "delayed_entities": delayed_cases, "preloaded_effect_dependencies": preload_effects, "preloaded_sound_dependencies": preload_sounds, "scope": "Recovered source dispatch, projectile/end scaling, creation versus activation effects, nested range Buff styles, impact payloads, attack-ID-scoped style replacements with creation-time snapshots, all 33 spirit ability media closures, and dynamic ground summon raw scale resolved once. Headless checks do not establish Unity shader equivalence or device FPS."}
+	check(projectile_cases >= 60 and projectile_creation_cases >= 23 and spirit_cases >= 15, "All available Boss projectile, independent creation effect and Spirit damage definitions are exercised")
+	var report := {"apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505", "checks": checks, "failures": failures, "boss_projectiles": projectile_cases, "boss_projectile_creation_effects": projectile_creation_cases, "spirit_damage_definitions": spirit_cases, "delayed_entities": delayed_cases, "preloaded_effect_dependencies": preload_effects, "preloaded_sound_dependencies": preload_sounds, "scope": "Recovered source dispatch, projectile/end scaling, creation versus activation effects, nested range Buff styles, impact payloads, attack-ID-scoped style replacements with creation-time snapshots, all 33 spirit ability media closures, and dynamic ground summon raw scale resolved once. Headless checks do not establish Unity shader equivalence or device FPS."}
 	FileAccess.open("res://reports/source-skill-presentation-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t") + "\n")
 	print("SOURCE_SKILL_PRESENTATION ", JSON.stringify(report))
 	# Let particle work finish before the SceneTree destroys its renderer resources.
@@ -95,7 +96,22 @@ func _projectile(presentation: Node3D, actor: DungeonActor, visual: Node3D, defi
 	state.radius = 9.0
 	state.lifetime = 2.0
 	presentation.attack_emitted(actor, state.hit, state.position)
+	var creation := str(state.entity.get("EffectTriggerDef", {}).get("EffectName", ""))
+	var model := str(state.entity.get("ModlePrefab", ""))
+	var independent_creation := not actor.is_player and not creation.is_empty() and not model.is_empty()
+	var warning_creation: bool = independent_creation and "enemyatkrange" in creation.to_lower() and actor.combat.enemy_id != 13001
+	if independent_creation:
+		projectile_creation_cases += 1
+		if warning_creation:
+			check(presentation.telegraphs.size() == 1 and presentation.telegraphs[0].key == presentation._key(creation), label + " emits its independent creation warning")
+		else:
+			check(presentation.active.size() == 1 and presentation.active[0].key == presentation._key(creation), label + " emits its independent creation effect")
 	presentation.projectile_started(actor, state, visual)
+	if independent_creation:
+		if warning_creation:
+			check(presentation.telegraphs.size() == 1, label + " keeps exactly one creation warning after projectile activation")
+		else:
+			check(presentation.active.filter(func(effect): return effect.key == presentation._key(creation)).size() == 1, label + " keeps exactly one creation effect after projectile activation")
 	var name := str(state.entity.get("ModlePrefab", ""))
 	if name.is_empty(): name = str(state.entity.get("EffectTriggerDef", {}).get("EffectName", ""))
 	if not name.is_empty():

@@ -56,7 +56,7 @@
   },
   "footsteps": {
     "camp": ["audio_fx_movestep_gravel_01"],
-    "1": ["audio_fx_movestep_glassdirt_01", "audio_fx_movestep_glassdirt_02", "audio_fx_movestep_glassdirt_03", "audio_fx_movestep_glassdirt_04"],
+    "1": ["audio_fx_movestep_glassdirt_01", "audio_fx_movestep_glassdirt_03", "audio_fx_movestep_glassdirt_04"],
     "2": ["audio_fx_movestep_sanddirt_01"],
     "3": ["audio_fx_movestep_sonwdirt_01"],
     "4": ["audio_fx_movestep_minedirt_01"],

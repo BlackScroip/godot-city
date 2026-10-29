@@ -99,6 +99,9 @@ static func texture(key: String) -> Texture2D:
 	_textures[key] = result
 	return result
 
+static func release_cached_textures() -> void:
+	_textures.clear()
+
 static func box(color: Color, border := Color.TRANSPARENT, width := 1) -> StyleBoxFlat:
 	var result = StyleBoxFlat.new()
 	result.bg_color = color

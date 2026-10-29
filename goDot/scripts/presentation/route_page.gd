@@ -30,6 +30,7 @@ var selection_icon: TextureRect
 var selection_description: Label
 var _selection_submitted := false
 var _scroll_initialized := false
+var _initial_scroll_pending := false
 var _scroll_view_width := 0.0
 var _last_layout_scroll := 0
 var _preserve_browsing := false
@@ -359,8 +360,12 @@ func _layout() -> void:
 			var other = int(row.layer_index) * 100000000 + int(neighbor)
 			if int(row.node_id) < int(neighbor) and by_id.has(other): _add_edge(nodes[index], by_id[other], true)
 	graph.queue_redraw()
-	_restore_scroll.call_deferred(center_column)
-	if not _opening_started: _play_opening.call_deferred()
+	if not _scroll_initialized:
+		if not _initial_scroll_pending:
+			_initial_scroll_pending = true
+			_initialize_scroll.call_deferred()
+	else:
+		_restore_scroll.call_deferred(center_column)
 
 func _layout_selection_info() -> void:
 	var short_view = size.y < 540
@@ -396,6 +401,24 @@ func _play_opening() -> void:
 		var column = clampf(floorf((node.position.x - scroll.scroll_horizontal) / column_width), 0, 4)
 		var lane = clampf(float(node.room.get("lane", 0)), 0, 2)
 		node.reveal(column * 0.07 + lane * 0.02)
+
+func _initialize_scroll() -> void:
+	while is_inside_tree() and not is_queued_for_deletion():
+		if not is_visible_in_tree():
+			await visibility_changed
+			continue
+		_layout()
+		# ScrollContainer updates its scrollbar range after its child is laid out.
+		var tree = get_tree()
+		for frame in 2:
+			await tree.process_frame
+			if not is_inside_tree() or is_queued_for_deletion(): return
+		if is_visible_in_tree(): break
+	if not is_inside_tree() or is_queued_for_deletion(): return
+	_scroll_to_current()
+	_scroll_initialized = true
+	_initial_scroll_pending = false
+	_play_opening()
 
 func _restore_scroll(center_column: float) -> void:
 	if not is_inside_tree() or is_queued_for_deletion(): return

@@ -29,6 +29,7 @@ var last_snapshot_ms := 0.0
 var _save_warning := ""
 var _loading := false
 var _transitioning := false
+var _settlement_camp_environment_id := 0
 var _exit_after_reward := false
 var _death_pending := false
 var _death_remaining := 0.0
@@ -439,6 +440,8 @@ func _camp() -> void:
 	_loading = false
 	_play_music(0, true)
 	resource_audio.enter_environment(0, true)
+	# Only a camp created after the run ended has a clean player to reuse.
+	_settlement_camp_environment_id = world.environment_root.get_instance_id() if not profile.data.run.active and not profile.data.run.get("outcome", {}).is_empty() else 0
 
 func _action(kind: String, id: Variant, extra: Variant) -> void:
 	if _transitioning or boss_intro.active: return
@@ -1072,15 +1075,20 @@ func _select_node(id: int, layer_index := -1) -> void:
 	world.paused = hud.modal_open
 	_show_region_notice()
 
-func _release_transition_environment() -> void:
+func _release_transition_environment(release_world := true, release_ui_cache := false) -> void:
 	if DisplayServer.get_name() != "headless": await RenderingServer.frame_post_draw
 	hud.page.release_route_view()
+	hud.page.release_outcome_view()
+	if hud.page._layout == "outcome": hud.page.page_context = {}
 	hud.close_page()
 	world.clear_input()
-	world.release_environment()
+	if release_world: world.release_environment()
 	# process_frame runs before deferred deletion, so let a complete frame retire first.
 	await get_tree().process_frame
 	await get_tree().process_frame
+	if release_ui_cache:
+		DungeonStyle.release_cached_textures()
+		DungeonItemArt.release_cached_textures()
 	if DisplayServer.get_name() != "headless": await RenderingServer.frame_post_draw
 
 func _fail_room_transition(message: String, restore_world := false) -> void:
@@ -1533,7 +1541,7 @@ func _show_room_shop(room: Dictionary) -> void:
 			"source_description": _loot_source_description(int(held)),
 			"icon": "loot:" + str(held), "loot_id": int(held), "rarity": int(quote.rarity), "price": int(quote.magic), "count": int(quote.count), "action": "seal_room_loot"})
 	seal_rows.sort_custom(func(a, b): return int(a.loot_id) < int(b.loot_id))
-	hud.show_page("迷宫商店", rows, "room_shop", {"shop": systems.room_shop_status(_room_key), "magic": systems.material(102), "free": free, "seal_rows": seal_rows, "mode": _room_shop_mode, "return_to_room": str(room.get("flow", "")) != "Shop"})
+	hud.show_page("迷宫商店", rows, "room_shop", {"shop": systems.room_shop_status(_room_key), "magic": systems.material(102), "search": systems.search_point_count(), "search_max": systems.search_point_max(), "free": free, "seal_rows": seal_rows, "mode": _room_shop_mode, "return_to_room": str(room.get("flow", "")) != "Shop"})
 	_save()
 
 func _player_defeated() -> void:
@@ -1709,14 +1717,20 @@ func _result_next() -> void:
 func _result_camp() -> void:
 	var result: Dictionary = profile.data.run.get("outcome", {})
 	if _transitioning or result.is_empty() or result.get("stage", "summary") != "rewards": return
+	var reuse_camp = _settlement_camp_environment_id != 0 and world._camp_camera and is_instance_valid(world.environment_root) and is_instance_valid(world.player) and world.environment_root.get_instance_id() == _settlement_camp_environment_id
 	_transitioning = true
 	world.paused = true
 	world.clear_input()
 	room_loading.begin("营地")
 	await get_tree().process_frame
-	await _release_transition_environment()
+	await _release_transition_environment(not reuse_camp, true)
 	profile.data.run.erase("outcome")
-	_camp()
+	if reuse_camp:
+		_settlement_camp_environment_id = 0
+		systems.clear_completed_run()
+		hud.set_adventure_mode(false)
+		hud.update_counters(systems, difficulty)
+	else: _camp()
 	room_loading.set_progress(0.85)
 	while world.presentation.has_pending_preparation():
 		world.presentation.prepare_step()

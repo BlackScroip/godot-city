@@ -125,6 +125,10 @@ func _run() -> void:
 		world.refresh_camp_progression()
 		world.camp_camera.focus_remaining = 0.0
 		world.snap_camera()
+	var navigation_deadline := Time.get_ticks_msec() + 30000
+	while world._camp_navigation_pending and Time.get_ticks_msec() < navigation_deadline:
+		await process_frame
+	check(not world._camp_navigation_pending, "Construction navigation is ready before movement simulation")
 	var task: Dictionary = world.camp_facility("tasks")
 	world.player.position = task.position + Vector3(2, 0.05, -4)
 	world.snap_camera()

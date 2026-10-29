@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 const COLLISION_RADIUS := 0.35
 const COLLISION_CENTER := Vector3(0.0, 0.8, 0.0)
+const NAVIGATION_STEER_ACTIONS := ["run", "forward", "move"]
 
 var actor_id := 1
 var is_player := false
@@ -428,7 +429,7 @@ func _action_displacement() -> Vector3:
 					ACTION_MOTION.aim(self, raw, elapsed)
 				"EET_Move":
 					var direction = ACTION_MOTION.direction(raw, self)
-					if not is_player and combat.custom_properties.get("_navigation_steer", false) and combat.current_action in ["run", "forward", "move"] and str(raw.get("MoveDirType", "")) == "EMDT_FrontFace" and desired_velocity.length_squared() > 0.01:
+					if not is_player and combat.custom_properties.get("_navigation_steer", false) and combat.current_action in NAVIGATION_STEER_ACTIONS and str(raw.get("MoveDirType", "")) == "EMDT_FrontFace" and desired_velocity.length_squared() > 0.01:
 						direction = desired_velocity.normalized()
 						ACTION_MOTION.turn(self, direction, false, 1, elapsed)
 					displacement += direction * ACTION_MOTION.distance(raw, float(motion.duration), first, last, combat)

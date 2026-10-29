@@ -46,7 +46,9 @@ func _run() -> void:
 		var raw := DungeonWorld._raw_definition(row)
 		if "attackrange360" in str(raw.get("EffectTriggerDef", {}).get("EffectName", "")):
 			await _warning(presentation, wolf, raw.EffectTriggerDef, Vector3(7, 0, -4), Vector3.FORWARD)
+	await _projectile_warnings(presentation, wolf)
 	check(presentation.authored_builds == prepared_builds, "Wolf source warnings are prepared during loading")
+	await _effect_only_projectile(presentation, wolf)
 	presentation.clear()
 	var claw: Dictionary = action.events.filter(func(row): return row.get("enabled", false) and row.get("type", "") == "EET_PlayEffect" and "claw1" in str(row.get("raw", "")))[0]
 	var claw_copy := claw.duplicate(true)
@@ -114,6 +116,61 @@ func _embedded_rage(presentation: Node3D, wolf: DungeonActor) -> void:
 	check(presentation.active.is_empty(), "Removing rage deactivates both embedded roots")
 	check(presentation.unresolved_anchors.is_empty(), "Both rage attachment bones resolve in the shipped model")
 	presentation.clear()
+
+func _projectile_warnings(presentation: Node3D, wolf: DungeonActor) -> void:
+	for action_id in ["attack2", "attack3"]:
+		presentation.clear()
+		var action: Dictionary = wolf.combat._action("ActGroup_senlinlangwang", action_id)
+		var definitions: Array = action.hits.filter(func(row): return row.get("enabled", false) and "enemyatkrangerectangle_fowardz" in str(row.get("raw", "")).to_lower())
+		check(definitions.size() == 1, action_id + " has one source projectile warning definition")
+		if definitions.is_empty(): continue
+		var definition: Dictionary = definitions[0]
+		var source_copy := definition.duplicate(true)
+		var raw := DungeonWorld._raw_definition(definition)
+		var warning: Dictionary = raw.EntityProperty.EffectTriggerDef
+		var points: Array = raw.EmitProperty.PointData
+		var origin := Vector3(7, 0, -4)
+		var reused: int = presentation.authored_reuses
+		for index in points.size():
+			var hit := {"definition": definition, "sequence": wolf.combat._cast_sequence, "emit_index": index}
+			var transform_data := DungeonProjectile.multipoint_transform(hit, origin, wolf.facing)
+			presentation.attack_emitted(wolf, hit, transform_data.position, transform_data.facing)
+			check(presentation.active.size() == index + 1, "%s emits warning %d at creation" % [action_id, index])
+			if presentation.active.size() != index + 1: continue
+			var effect: Dictionary = presentation.active.back()
+			var yaw := atan2(transform_data.facing.x, transform_data.facing.z)
+			var expected: Vector3 = transform_data.position + Basis(Vector3.UP, yaw) * DungeonWorld.vector(warning.Position)
+			check(effect.source_warning and effect.source_only and effect.key == presentation._key(warning.EffectName), "%s warning %d retains its source prefab" % [action_id, index])
+			check(effect.root.global_position.is_equal_approx(expected), "%s warning %d uses the emission point and rotation" % [action_id, index])
+			check(effect.authored.scale.is_equal_approx(DungeonWorld.vector(warning.Scale)), "%s warning %d retains its source scale" % [action_id, index])
+		check(presentation.authored_reuses - reused == points.size(), action_id + " reuses all prewarmed warning instances")
+		check(definition == source_copy, action_id + " warning preserves the imported source definition")
+	presentation.clear()
+	await process_frame
+
+func _effect_only_projectile(presentation: Node3D, wolf: DungeonActor) -> void:
+	var action: Dictionary = wolf.combat._action("ActGroup_Chimera", "attack4")
+	var definitions: Array = action.hits.filter(func(row): return row.get("enabled", false) and "25030501_fx_enemy_qimeila_attack4_stormwarning" in str(row.get("raw", "")))
+	check(not definitions.is_empty(), "Effect-only projectile fixture exists")
+	if definitions.is_empty(): return
+	var definition: Dictionary = definitions[0]
+	var raw := DungeonWorld._raw_definition(definition)
+	check(str(raw.EntityProperty.get("ModlePrefab", "")).is_empty(), "Effect-only projectile has no separate source model")
+	var state := DungeonProjectile.new()
+	state.hit = {"definition": definition}
+	state.entity = raw.EntityProperty
+	state.motion_type = str(raw.get("MotionAnimatorType", ""))
+	state.position = Vector3(1, 0, 2)
+	state.lifetime = 2.0
+	var visual := Node3D.new()
+	root.add_child(visual)
+	presentation.attack_emitted(wolf, state.hit, state.position)
+	check(presentation.active.is_empty(), "Effect-only projectile does not duplicate its creation visual")
+	presentation.projectile_started(wolf, state, visual)
+	check(presentation.active.size() == 1 and presentation.active[0].key == presentation._key(raw.EntityProperty.EffectTriggerDef.EffectName), "Effect-only projectile retains one moving source visual")
+	presentation.clear()
+	visual.queue_free()
+	await process_frame
 
 func _warning(presentation: Node3D, wolf: DungeonActor, definition: Dictionary, point: Vector3, facing: Vector3) -> void:
 	wolf.combat._cast_sequence = 31

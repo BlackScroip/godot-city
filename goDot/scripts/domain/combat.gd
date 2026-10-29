@@ -300,7 +300,7 @@ func tick_enemy_ai(delta: float, context: Dictionary) -> Dictionary:
 	input["hp_ratio"] = health / max_health
 	input["move_speed"] = move_speed
 	input["attack_cooldown"] = enemy_attack_cooldown()
-	input["self_buffs"] = statuses.keys()
+	if enemy_ai.needs_self_buffs: input["self_buffs"] = statuses.keys()
 	input["current_action"] = current_action
 	var result: Dictionary = enemy_ai.tick(delta, input)
 	custom_properties["OP_AIAction"] = result.action
@@ -2463,6 +2463,10 @@ func stat_value(name: String) -> float:
 func notify_gameplay(kind: String, payload: Dictionary = {}) -> void:
 	if _condition_depth > 16:
 		_report("Condition event recursion exceeds 16")
+		return
+	if statuses.is_empty():
+		if kind == "cause_damage":
+			custom_properties["ComboCount"] = int(custom_properties.get("ComboCount", 0)) + 1
 		return
 	_condition_depth += 1
 	if kind == "cause_damage":

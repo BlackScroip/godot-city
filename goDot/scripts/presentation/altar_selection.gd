@@ -126,6 +126,8 @@ func _adapt() -> void:
 	super._adapt()
 	if not is_inside_tree() or not is_instance_valid(host) or size.y < 1: return
 	var factor := clampf(size.y / 1080.0, 0.3, 1.5)
+	var gap := cards.get_theme_constant("separation")
+	var available_width := (size.x - maxf(12, 28 * factor) * 2 - gap * (parts.size() - 1)) / maxi(1, parts.size())
 	for part in parts:
 		part.stack.add_theme_constant_override("separation", maxi(3, int(6 * factor)))
 		part.tags.custom_minimum_size.y = maxf(18, 48 * factor)
@@ -138,8 +140,8 @@ func _adapt() -> void:
 		part.description.add_theme_font_size_override("normal_font_size", maxi(14, int(28 * factor)))
 		part.description.set_source(part.description.source_text)
 		part.scroll.custom_minimum_size.y = 40
-		part.footer.custom_minimum_size.y = maxf(26, 84 * factor)
-		part.choose.custom_minimum_size = Vector2(0, maxf(26, 60 * factor))
+		part.footer.custom_minimum_size.y = maxf(44, 84 * factor)
+		part.choose.custom_minimum_size = Vector2(minf(270 * factor, available_width * 0.7), maxf(44, 60 * factor))
 		if part.has("health"):
 			part.health.get_child(0).custom_minimum_size = Vector2.ONE * maxf(16, 28 * factor)
 			part.health.get_child(1).add_theme_font_size_override("font_size", maxi(13, int(24 * factor)))

@@ -22,6 +22,9 @@ var diagnostics: Array = []
 var graph_name := ""
 var source := ""
 var trace_enabled := true
+var needs_wall_query := false
+var needs_target_buffs := false
+var needs_self_buffs := false
 var _nodes: Dictionary = {}
 var _children: Dictionary = {}
 var _variables: Dictionary = {}
@@ -44,6 +47,9 @@ var _native_timing: Dictionary = {}
 
 func configure(definition: Dictionary, graph: Dictionary, seed_value: int = 1) -> bool:
 	_native_runner = null
+	needs_wall_query = false
+	needs_target_buffs = false
+	needs_self_buffs = false
 	blackboard.clear()
 	diagnostics.clear()
 	_nodes.clear()
@@ -142,7 +148,13 @@ func _prepare_value(value: Variant) -> Variant:
 	for key in value:
 		# Parameter values remain the original data; only serialized bindings compile.
 		result[key] = value[key] if key == "_value" else _prepare_value(value[key])
-	if value.has("$type"): result[RUNTIME_TYPE] = _type(value)
+	if value.has("$type"):
+		var type := _type(value)
+		result[RUNTIME_TYPE] = type
+		if type == "NCCondition_CheckTargetLineCollisionWall": needs_wall_query = true
+		if type == "NCCondition_RoleUnit_CheckBuffExist":
+			if _name(value.get("SelfGo", {})) == "IP_Target": needs_target_buffs = true
+			else: needs_self_buffs = true
 	if value.has("_targetVariableID") or value.has("_name") or value.has("_value"):
 		result[RUNTIME_PARAMETER_NAME] = _name(value)
 	return result

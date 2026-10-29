@@ -19,6 +19,7 @@ var description := TextureRect.new()
 var stage := -1
 var _resources: Dictionary = {}
 var _last_hits := 0
+var _last_damage := -1.0
 var _last_sequence := -1
 var _hiding := false
 var _hide_elapsed := 0.0
@@ -102,11 +103,13 @@ func _update_stats(tally: RefCounted, delta: float) -> void:
 		if changed:
 			hits.text = str(tally.combo_hits)
 			_fit_value(hits, 52)
-			total.text = str(roundi(tally.combo_damage))
-			_fit_value(total)
 			_pulse_remaining = 0.1
 			_last_hits = tally.combo_hits
 			_last_sequence = tally.combo_sequence
+		if changed or _last_damage != tally.combo_damage:
+			total.text = str(roundi(tally.combo_damage))
+			_fit_value(total)
+			_last_damage = tally.combo_damage
 		_dps_remaining -= delta
 		if fresh or _dps_remaining <= 0.0:
 			rate.text = str(roundi(tally.combo_dps()))

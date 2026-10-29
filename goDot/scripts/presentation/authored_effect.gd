@@ -8,6 +8,7 @@ const ModelMaterialAnimation = preload("res://scripts/presentation/model_materia
 const Descriptors = preload("res://scripts/presentation/effect_descriptors.gd")
 const ChestSmokeVelocity = preload("res://scripts/presentation/chest_smoke_velocity.gd")
 const RetainedParticle = preload("res://scripts/presentation/retained_particle.gd")
+const SourceMaterial = preload("res://scripts/presentation/recovered_effect_material.gd")
 var age := 0.0
 var lifetime := 0.0
 var unsupported: Array = []
@@ -17,6 +18,21 @@ static var _material_libraries: Dictionary = {}
 const CURVE_SAMPLES := 48
 const FULL_PARTICLE_BUDGET := 384
 const LOW_PARTICLE_BUDGET := 144
+# These recovered prefabs contain overlapping, timed bursts that need separate emitters.
+const BOSS_BURST_LAYERS := {
+	"26071801_fx_enemy_mojiehua_attack3_duyejidang": {"26071801_duyejidang_splashes": 5},
+	"26091901_fx_enemy_dilong_roartostone_fall": {"26091901_fall_particle": 4},
+	"24120601_fx_enemy_feimolong_bullet_lighting_thunderwarning": {"24120601_thunderwarning_particle": 4, "24120601_thunder_lightning": 2, "24120601_thunder_lightningring": 2},
+	"24120901_fx_enemy_feimolong_bullet_lighting_darkwarning": {"24120601_thunderwarning_particle": 4, "24120601_thunder_lightning": 2, "24120601_thunder_lightningring": 2},
+}
+const BOSS_SILHOUETTE_LAYERS := {
+	"26071801_fx_enemy_mojiehua_attack3_duyejidang": [
+		"26070901_shoubuxuli_mofa", "26070901_shoubuxuli_boom", "26071801_duyejidang_trails",
+		"26071801_duyejidang_ring_big", "26071801_duyejidang_ring_left", "26071801_duyejidang_ring_right",
+		"26071801_duyejidang_kuoshan", "26071801_duyejidang_smoke",
+	],
+}
+const BOSS_LOW_EMITTER_OVERRIDES := {"26071801_fx_enemy_mojiehua_attack3_duyejidang": 15}
 # Recovered MASK_ON bindings from the APK material bundle; import catalog stays intact.
 const MATERIAL_MASKS = {
 	"mat_fx_23082401_blast_blast_3.mat": {"texture": "res://assets/combat_presentation/9cafdfac0c122c38f74b.png", "offset": Vector2(-0.05, 0), "power": 0.8},
@@ -124,23 +140,72 @@ static func _layer_priority(layer: Dictionary) -> int:
 	if "particle" in name or "spark" in name or "debris" in name: return 1
 	return 2
 
+static func emitter_budget(definition: Dictionary, low_quality: bool) -> int:
+	var source_name := str(definition.get("source", "")).get_file().get_basename().to_lower()
+	if BOSS_BURST_LAYERS.has(source_name): return int(BOSS_LOW_EMITTER_OVERRIDES.get(source_name, 12)) if low_quality else 28
+	return 8 if low_quality else 18
+
+static func _boss_burst_target(layer: Dictionary, source_name: String, low_quality: bool) -> int:
+	if not low_quality or not BOSS_BURST_LAYERS.has(source_name): return 0
+	var emission: Dictionary = layer.get("emission", {})
+	if scalar(emission.get("rateOverTime", {})) > 0: return 0
+	var bursts: Array = emission.get("m_Bursts", [])
+	var cycles := 0
+	for burst in bursts:
+		if float(burst.get("probability", 1)) > 0: cycles += maxi(1, int(burst.get("cycleCount", 1)))
+	if cycles <= 1: return 0
+	return int(BOSS_BURST_LAYERS[source_name].get(str(layer.get("name", "")), 0))
+
+static func _effect_layer_priority(layer: Dictionary, source_name: String, low_quality: bool) -> int:
+	if _boss_burst_target(layer, source_name, low_quality) > 0: return 5
+	if low_quality and str(layer.get("name", "")) in BOSS_SILHOUETTE_LAYERS.get(source_name, []): return 4
+	return _layer_priority(layer)
+
+static func _spread_burst_events(events: Array, limit: int) -> Array:
+	if events.size() <= limit: return events
+	if limit <= 0: return []
+	events.sort_custom(func(left: Dictionary, right: Dictionary) -> bool: return float(left.time) < float(right.time))
+	if limit == 1: return [events[(events.size() - 1) / 2]]
+	var selected: Array = []
+	for index in limit:
+		selected.append(events[roundi(float(index) * float(events.size() - 1) / float(limit - 1))])
+	return selected
+
 static func _uses_reconstructed_ribbon(layer: Dictionary, source: Dictionary) -> bool:
 	if int(layer.get("renderer", {}).get("render_mode", 0)) != 4: return false
-	if not bool(source.get("alpha_from_luminance", false)) or source.get("blend", "") == "add": return false
+	if not bool(source.get("alpha_from_luminance", false)) or SourceMaterial.blend_mode(source) == "add": return false
 	var name = str(layer.get("name", "")).to_lower()
 	return "slash" in name or "swept" in name or "trail" in name
 
 static func _uses_reconstructed_water_shell(layer: Dictionary, source: Dictionary) -> bool:
-	if int(layer.get("renderer", {}).get("render_mode", 0)) != 4 or source.get("blend", "") != "alpha": return false
+	if int(layer.get("renderer", {}).get("render_mode", 0)) != 4 or SourceMaterial.blend_mode(source) != "alpha": return false
 	return _material_name(source) in ["mat_fx_23102601_bomb.mat", "mat_fx_23102601_bomblight.mat"]
 
 static func _uses_reconstructed_water_splash(source: Dictionary) -> bool:
-	if source.get("blend", "") != "alpha": return false
+	if SourceMaterial.blend_mode(source) != "alpha": return false
 	return _material_name(source) in ["mat_fx_23110201_hit_prick.mat", "mat_fx_23102601_explode_prick.mat"]
 
 static func _material_name(source: Dictionary) -> String:
 	var name = str(source.get("name", ""))
 	return name + ("" if name.ends_with(".mat") else ".mat") if not name.is_empty() else str(source.get("source", "")).get_file()
+
+static func _uses_shader_clock(source: Dictionary) -> bool:
+	if not source.has("source_floats") or not str(source.get("shader", "")).begins_with("AllIn1Vfx/"): return false
+	var values: Dictionary = source.source_floats
+	var keywords: Array = source.get("keywords", [])
+	for index in 3:
+		var number := str(index + 1)
+		if index > 0 and "SHAPE" + number + "_ON" not in keywords: continue
+		var prefix := "_Shape" + ("" if index == 0 else number)
+		if float(values.get(prefix + "XSpeed", 0)) != 0 or float(values.get(prefix + "YSpeed", 0)) != 0: return true
+		if "SHAPE" + number + "ROTATE_ON" in keywords and float(values.get(prefix + "RotationSpeed", 0)) != 0: return true
+		if "SHAPE" + number + "DISTORT_ON" in keywords and float(values.get(prefix + "DistortAmount", 0)) != 0:
+			if float(values.get(prefix + "DistortXSpeed", 0)) != 0 or float(values.get(prefix + "DistortYSpeed", 0)) != 0: return true
+	if "DISTORT_ON" in keywords and float(values.get("_DistortAmount", 0)) != 0:
+		if float(values.get("_DistortTexXSpeed", 0)) != 0 or float(values.get("_DistortTexYSpeed", 0)) != 0: return true
+	if "FADE_ON" in keywords:
+		if float(values.get("_FadeScrollXSpeed", 0)) != 0 or float(values.get("_FadeScrollYSpeed", 0)) != 0: return true
+	return false
 
 static func material_library(definition: Dictionary) -> Dictionary:
 	definition = Descriptors.resolve(definition)
@@ -244,21 +309,38 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 						player.get_animation(name).loop_mode = Animation.LOOP_LINEAR if clip.get("loop", false) else Animation.LOOP_NONE
 			model_players.append({"node": player, "path": get_path_to(player), "default": str(model.get("default_animation", "")), "aliases": model.get("aliases", {})})
 	var layers: Array = resolved_layers(definition)
-	layers.sort_custom(func(left: Dictionary, right: Dictionary) -> bool: return _layer_priority(left) > _layer_priority(right))
-	var budget = LOW_PARTICLE_BUDGET if low_quality else FULL_PARTICLE_BUDGET
+	var source_name := str(definition.get("source", "")).get_file().get_basename().to_lower()
+	var boss_burst_effect := BOSS_BURST_LAYERS.has(source_name)
+	layers.sort_custom(func(left: Dictionary, right: Dictionary) -> bool:
+		var left_priority := _effect_layer_priority(left, source_name, low_quality)
+		var right_priority := _effect_layer_priority(right, source_name, low_quality)
+		return left_priority > right_priority
+	)
+	layers = layers.filter(func(layer: Dictionary) -> bool:
+		if str(layer.get("name", "")) in suppressed_layers or not layer.get("active", true): return false
+		if layer.get("materials", []).is_empty() or not layer.get("renderer", {}).get("enabled", true): return false
+		var mode := int(layer.get("renderer", {}).get("render_mode", 0))
+		if mode == 5 or (mode == 4 and str(layer.get("mesh", "")).is_empty()): return false
+		return bool(layer.get("emission", {}).get("enabled", true))
+	)
+	var budget: int = LOW_PARTICLE_BUDGET if low_quality else FULL_PARTICLE_BUDGET
+	var emitter_budget := emitter_budget(definition, low_quality)
 	var logical_emitter_count := 0
-	for layer in layers:
-		if str(layer.get("name", "")) in suppressed_layers: continue
-		if not layer.get("active", true): continue
-		if layer.get("materials", []).is_empty() or not layer.get("renderer", {}).get("enabled", true): continue
-		if int(layer.get("renderer", {}).get("render_mode", 0)) == 5: continue
-		if int(layer.get("renderer", {}).get("render_mode", 0)) == 4 and str(layer.get("mesh", "")).is_empty(): continue
-		if logical_emitter_count >= (8 if low_quality else 18): break
+	for layer_index in layers.size():
+		var layer: Dictionary = layers[layer_index]
+		if logical_emitter_count >= emitter_budget: break
 		if particle_count >= budget: break
 		var emission: Dictionary = layer.get("emission", {})
-		if not emission.get("enabled", true): continue
+		# Reserve later silhouettes while keeping selected reduced-quality burst timelines.
+		var remaining_layers := layers.size() - layer_index - 1
+		var current_slots := maxi(1, _boss_burst_target(layer, source_name, low_quality))
+		var reserved_emitters := mini(remaining_layers, maxi(0, emitter_budget - logical_emitter_count - current_slots))
+		var reserved_particles := mini(remaining_layers, budget - particle_count - 1)
+		var layer_emitter_limit := emitter_budget - reserved_emitters
+		var layer_particle_limit := budget - reserved_particles
 		var node = Node3D.new()
 		node.set_meta("source_layer", str(layer.get("name", "")))
+		node.set_meta("source_layer_id", str(layer.get("source_file_id", layer.get("name", ""))))
 		add_child(node)
 		var transform_value = Transform3D.IDENTITY
 		for item in layer.get("transform_chain", []):
@@ -279,7 +361,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		var count := 0.0
 		for burst in emission.get("m_Bursts", []): count += scalar(burst.get("countCurve", {}), 1)
 		var rate = scalar(emission.get("rateOverTime", {}))
-		var layer_budget = mini(budget - particle_count, 32 if low_quality else 96)
+		var layer_budget = mini(layer_particle_limit - particle_count, 32 if low_quality else 96)
 		if int(initial.get("maxNumParticles", 0)) > 0: layer_budget = mini(layer_budget, int(initial.maxNumParticles))
 		particle.amount = clampi(int(ceil(maxf(count, rate * particle.lifetime))), 1, layer_budget)
 		particle.explosiveness = 1.0 if count > 0 and rate <= 0 else 0.0
@@ -386,7 +468,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			var source: Dictionary = materials[0]
 			material.albedo_texture = textures.get(str(source.get("texture", "")))
 			material.albedo_color = rgba(source.get("color", {}))
-			material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD if source.get("blend", "") == "add" else BaseMaterial3D.BLEND_MODE_MIX
+			material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD if SourceMaterial.blend_mode(source) == "add" else BaseMaterial3D.BLEND_MODE_MIX
 			var uv_scale: Dictionary = source.get("texture_scale", {})
 			var uv_offset: Dictionary = source.get("texture_offset", {})
 			material.uv1_scale = Vector3(float(uv_scale.get("x", 1)), float(uv_scale.get("y", 1)), 1)
@@ -425,7 +507,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		if not materials.is_empty():
 			var source: Dictionary = materials[0]
 			var recovered = ShaderMaterial.new()
-			if source.get("blend", "") == "add":
+			if SourceMaterial.blend_mode(source) == "add":
 				if _additive_shader == null:
 					_additive_shader = Shader.new()
 					_additive_shader.code = preload("res://scripts/presentation/recovered_particle.gdshader").code.replace("blend_mix", "blend_add")
@@ -479,7 +561,7 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 				recovered.set_shader_parameter("motion_curve", _integrated_motion(velocity_module, particle.lifetime))
 				recovered.set_shader_parameter("use_motion_curve", true)
 				recovered.set_shader_parameter("world_motion", bool(velocity_module.get("inWorldSpace", false)))
-			preload("res://scripts/presentation/recovered_effect_material.gd").apply_source(recovered, source, textures)
+			SourceMaterial.apply_source(recovered, source, textures)
 			if modules.has("CustomDataModule"):
 				var custom: Dictionary = modules.CustomDataModule
 				for stream_index in 2:
@@ -489,13 +571,15 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 			particle.material_override = recovered
 		particle.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		particle.extra_cull_margin = 8
+		var uses_clock := not materials.is_empty() and _uses_shader_clock(materials[0])
+		var uses_basis := int(renderer.get("render_mode", 0)) == 1 or (modules.has("VelocityModule") and not bool(modules.VelocityModule.get("inWorldSpace", false)))
 		if RetainedParticle.handles(layer):
 			# Unity PauseUntilReplaced keeps this stationary single-burst particle alive.
 			var retained := RetainedParticle.create(particle, layer)
 			node.add_child(retained)
 			var burst: Dictionary = emission.m_Bursts[0]
 			var speed := maxf(0.01, float(layer.get("simulation_speed", 1.0)))
-			retained_particles.append({"node": retained, "path": get_path_to(retained), "delay": (scalar(layer.get("start_delay", {})) + float(burst.get("time", 0.0))) / speed, "duration": particle.lifetime / speed, "angle": deg_to_rad(particle.angle_min)})
+			retained_particles.append({"node": retained, "path": get_path_to(retained), "delay": (scalar(layer.get("start_delay", {})) + float(burst.get("time", 0.0))) / speed, "duration": particle.lifetime / speed, "angle": deg_to_rad(particle.angle_min), "uses_clock": uses_clock})
 			lifetime = maxf(lifetime, float(retained_particles.back().delay) + float(retained_particles.back().duration))
 			particle_count += 1
 			logical_emitter_count += 1
@@ -509,31 +593,49 @@ func configure(definition: Dictionary, low_quality: bool, textures: Dictionary, 
 		var bursts: Array = emission.get("m_Bursts", [])
 		if not bursts.is_empty() and rate <= 0:
 			var first := true
+			var events: Array = []
 			for burst in bursts:
 				if float(burst.get("probability", 1)) <= 0: continue
-				for cycle in clampi(int(burst.get("cycleCount", 1)), 1, 6):
-					if logical_emitter_count >= (8 if low_quality else 18): break
-					if particle_count >= budget: break
-					var instance = particle if first else particle.duplicate()
-					if not first: node.add_child(instance)
-					first = false
-					instance.one_shot = true
-					instance.amount = clampi(int(scalar(burst.get("countCurve", {}), 1)), 1, mini(layer_budget, budget - particle_count))
-					particle_count += instance.amount
-					instance.explosiveness = 1.0
-					var at = delay + float(burst.get("time", 0)) + cycle * float(burst.get("repeatInterval", 0))
-					var maximum_lifetime: float = instance.lifetime
-					var instances: Array[CPUParticles3D] = [instance]
-					if ChestSmokeVelocity.handles(layer):
-						instances = ChestSmokeVelocity.split_burst(instance, layer, value_curve(modules.ClampVelocityModule.magnitude))
-					for current in instances:
-						emitters.append({"node": current, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": burst_period > 0.0, "burst_period": burst_period, "duration": duration / speed_scale, "ground_fade": ground_fade})
-					logical_emitter_count += 1
-					lifetime = maxf(lifetime, (at + maximum_lifetime) / speed_scale)
+				for cycle in clampi(int(burst.get("cycleCount", 1)), 1, 10 if boss_burst_effect else 6):
+					events.append({"burst": burst, "time": float(burst.get("time", 0)) + cycle * float(burst.get("repeatInterval", 0))})
+			if boss_burst_effect and low_quality:
+				var slots := mini(layer_emitter_limit - logical_emitter_count, layer_particle_limit - particle_count)
+				events = _spread_burst_events(events, slots)
+			if boss_burst_effect and events.size() > 1:
+				events.sort_custom(func(left: Dictionary, right: Dictionary) -> bool: return float(left.time) < float(right.time))
+			var uniform_leader: Dictionary = {}
+			for event_index in events.size():
+				if logical_emitter_count >= layer_emitter_limit or particle_count >= layer_particle_limit: break
+				var event: Dictionary = events[event_index]
+				var instance = particle if first else particle.duplicate()
+				if not first: node.add_child(instance)
+				first = false
+				instance.one_shot = true
+				var particle_slots := layer_particle_limit - particle_count
+				if boss_burst_effect and low_quality: particle_slots -= events.size() - event_index - 1
+				instance.amount = clampi(int(scalar(event.burst.get("countCurve", {}), 1)), 1, mini(layer_budget, particle_slots))
+				particle_count += instance.amount
+				instance.explosiveness = 1.0
+				var at: float = delay + float(event.time)
+				var maximum_lifetime: float = instance.lifetime
+				var instances: Array[CPUParticles3D] = [instance]
+				if ChestSmokeVelocity.handles(layer):
+					instances = ChestSmokeVelocity.split_burst(instance, layer, value_curve(modules.ClampVelocityModule.magnitude))
+				for current in instances:
+					var entry := {"node": current, "delay": at / speed_scale, "started": false, "speed": speed_scale, "loop": burst_period > 0.0, "burst_period": burst_period, "duration": duration / speed_scale, "ground_fade": ground_fade, "uses_clock": uses_clock, "uses_basis": uses_basis}
+					if boss_burst_effect and events.size() > 1 and instances.size() == 1:
+						entry["uniform_group"] = str(get_path_to(node))
+						if uniform_leader.is_empty(): uniform_leader = entry
+						else: entry["uniform_follower"] = true
+						uniform_leader["uniform_end"] = maxf(float(uniform_leader.get("uniform_end", 0)), float(entry.delay) + float(entry.duration))
+					emitters.append(entry)
+				logical_emitter_count += 1
+				lifetime = maxf(lifetime, (at + maximum_lifetime) / speed_scale)
 		else:
 			particle.one_shot = false
 			particle_count += particle.amount
-			emitters.append({"node": particle, "delay": delay / speed_scale, "started": false, "speed": speed_scale, "loop": bool(layer.get("looping", false)), "duration": duration / speed_scale, "ground_fade": ground_fade})
+			# The final emitted particles outlive the emission period.
+			emitters.append({"node": particle, "delay": delay / speed_scale, "started": false, "speed": speed_scale, "loop": bool(layer.get("looping", false)), "duration": duration / speed_scale, "uniform_end": (delay + duration + particle.lifetime) / speed_scale, "ground_fade": ground_fade, "uses_clock": uses_clock, "uses_basis": uses_basis})
 			logical_emitter_count += 1
 		lifetime = maxf(lifetime, (delay + (duration if rate > 0 else 0.0) + particle.lifetime) / speed_scale)
 
@@ -544,8 +646,9 @@ func set_visual_gain(value: float, crimson := false) -> void:
 			emitter.node.material_override.set_shader_parameter("crimson_blade", crimson)
 
 func instantiate_effect() -> Node3D:
-	# Share meshes, textures and baked curves; each emitter owns its mutable uniforms.
+	# Mutable uniforms belong to this instance; related bursts may share them within a layer.
 	var instance = get_script().new()
+	var group_materials := {}
 	instance.lifetime = lifetime
 	instance.particle_count = particle_count
 	instance.unsupported = unsupported
@@ -567,7 +670,11 @@ func instantiate_effect() -> Node3D:
 	for emitter in emitters:
 		var entry = emitter.duplicate()
 		var particle: CPUParticles3D = instance.get_child(emitter.node.get_parent().get_index()).get_child(emitter.node.get_index())
-		particle.material_override = emitter.node.material_override.duplicate()
+		var group := str(emitter.get("uniform_group", ""))
+		if group.is_empty(): particle.material_override = emitter.node.material_override.duplicate()
+		else:
+			if not group_materials.has(group): group_materials[group] = emitter.node.material_override.duplicate()
+			particle.material_override = group_materials[group]
 		entry.node = particle
 		instance.emitters.append(entry)
 	return instance
@@ -583,6 +690,7 @@ func restart() -> void:
 		emitter.erase("next_burst")
 		emitter.erase("last_speed")
 		emitter.erase("last_basis")
+		emitter.erase("last_ground")
 		emitter.node.emitting = false
 		ChestSmokeVelocity.restart_particle(emitter.node)
 		emitter.node.restart()
@@ -597,20 +705,28 @@ func advance(delta: float, paused: bool, playback_rate := 1.0) -> void:
 		if emitter.get("last_speed", -1.0) != speed:
 			emitter.node.speed_scale = speed
 			emitter.last_speed = speed
+		if emitter.get("uniform_follower", false): continue
+		if not emitter.started and (paused or age + delta < float(emitter.delay)): continue
+		if emitter.started and not emitter.loop and age > float(emitter.get("uniform_end", float(emitter.delay) + float(emitter.duration))): continue
 		if not paused and emitter.node.material_override is ShaderMaterial:
-			emitter.node.material_override.set_shader_parameter("clock", age)
-			if emitter.get("ground_fade", false): emitter.node.material_override.set_shader_parameter("ground_level", global_position.y - 0.08)
-			var basis_value: Basis = emitter.node.global_basis
-			if not emitter.has("last_basis") or not basis_value.is_equal_approx(emitter.last_basis):
-				emitter.node.material_override.set_shader_parameter("emitter_basis", basis_value)
-				emitter.last_basis = basis_value
+			if emitter.get("uses_clock", true): emitter.node.material_override.set_shader_parameter("clock", age)
+			if emitter.get("ground_fade", false):
+				var ground_level := global_position.y - 0.08
+				if emitter.get("last_ground", INF) != ground_level:
+					emitter.node.material_override.set_shader_parameter("ground_level", ground_level)
+					emitter.last_ground = ground_level
+			if emitter.get("uses_basis", true):
+				var basis_value: Basis = emitter.node.global_basis
+				if not emitter.has("last_basis") or not basis_value.is_equal_approx(emitter.last_basis):
+					emitter.node.material_override.set_shader_parameter("emitter_basis", basis_value)
+					emitter.last_basis = basis_value
 	if paused or not _running: return
 	age += delta
 	for retained in retained_particles:
 		retained.node.visible = age >= float(retained.delay)
 		var phase := clampf((age - float(retained.delay)) / maxf(0.0001, float(retained.duration)), 0.0, 1.0)
 		retained.node.multimesh.set_instance_custom_data(0, Color(float(retained.angle), phase, 0.0, 0.0))
-		if retained.node.material_override is ShaderMaterial:
+		if retained.get("uses_clock", true) and retained.node.material_override is ShaderMaterial:
 			retained.node.material_override.set_shader_parameter("clock", age)
 	for emitter in emitters:
 		if (not emitter.started and age >= float(emitter.delay)) or (emitter.has("next_burst") and age >= float(emitter.next_burst)):

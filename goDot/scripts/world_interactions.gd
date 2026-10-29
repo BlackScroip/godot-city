@@ -18,6 +18,7 @@ const RULES_PATH := "res://assets/environment_rules.json"
 const AltarBillboards = preload("res://scripts/presentation/altar_billboards.gd")
 const INTERACTIVE := ["EEUT_DoorController", "EEUT_StageChangeDoor", "EEUT_AbilityItemTreasureBox", "EEUT_NPC", "EEUT_Special_Trader", "EEUT_Special_GemShopMan", "EEUT_Special_MonsterWork", "EEUT_BillBoard", "EEUT_UIInteractable", "EEUT_Protal", "EEUT_ProtectTarget"]
 const PASSIVE := ["EEUT_AreaInfoMarker", "EEUT_Door", "EEUT_CloseArea"]
+const TICKED_TYPES := ["EEUT_StageChangeDoor", "EEUT_DestoryableItem", "EEUT_TriggerTrap", "EEUT_AttractTrap", "EEUT_PlayerTrigger", "EEUT_SimpleTalkTrigger"]
 const PHASES := ["idle", "starting", "active", "ending", "finished", "destroyed"]
 const SPRITES_ALTAR := "EnvUnit_MonoData_BtnDisplayName_SpritesAltar"
 const CURSE_ALTAR := "EnvUnit_MonoData_BtnDisplayName_CurseAltar"
@@ -36,6 +37,10 @@ var scene := ""
 var _root: Node3D
 var _services: Dictionary = {}
 var _items: Dictionary = {}
+var _ticked_items: Array[Dictionary] = []
+var _collider_items: Dictionary = {}
+var _has_damageable_colliders := false
+var _requires_combat_targets := false
 var _nodes: Dictionary = {}
 var _bindings: Dictionary = {}
 var _definitions: Dictionary = {}
@@ -47,6 +52,10 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 	_root = environment_root
 	_services = services
 	_items.clear()
+	_ticked_items.clear()
+	_collider_items.clear()
+	_has_damageable_colliders = false
+	_requires_combat_targets = false
 	_nodes.clear()
 	_bindings.clear()
 	_definitions.clear()
@@ -128,6 +137,13 @@ func setup(environment_root: Node3D, markers: Array, services: Dictionary = {}) 
 			var body = _nodes.get("Collider_" + str(collider.get("fileID", "")))
 			if body is CollisionObject3D: item.bodies.append({"node": body, "layer": body.collision_layer, "mask": body.collision_mask})
 		_items[id] = item
+		var kind := str(marker.get("Type", ""))
+		if kind in TICKED_TYPES: _ticked_items.append(item)
+		if kind in ["EEUT_TriggerTrap", "EEUT_AttractTrap"]: _requires_combat_targets = true
+		for body in item.bodies:
+			if _collider_items.has(body.node): continue
+			_collider_items[body.node] = id
+			if kind == "EEUT_DestoryableItem": _has_damageable_colliders = true
 		identities.append([id, str(marker.get("Type", "")), identity_data, str(binding.get("ConfigId", ""))])
 		_validate_binding(item)
 		_apply(item)
@@ -364,10 +380,14 @@ func damage_marker(marker_id: String, acc_tenacity: float, source_camp: int = 2,
 
 func damage_collider(collider: CollisionObject3D, acc_tenacity: float, source_camp: int = 2, hit_id := "") -> bool:
 	if not is_instance_valid(collider): return false
-	for item in _items.values():
-		for body in item.bodies:
-			if body.node == collider: return damage_marker(str(item.id), acc_tenacity, source_camp, hit_id)
-	return false
+	var marker_id: String = _collider_items.get(collider, "")
+	return not marker_id.is_empty() and damage_marker(marker_id, acc_tenacity, source_camp, hit_id)
+
+func has_damageable_colliders() -> bool:
+	return _has_damageable_colliders
+
+func requires_combat_targets() -> bool:
+	return _requires_combat_targets
 
 func damage_segment(from: Vector3, to: Vector3, radius: float, acc_tenacity: float, source_camp: int = 2, hit_id := "") -> Array:
 	var damaged: Array = []
@@ -391,7 +411,7 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 	while remaining > 0:
 		var step := minf(0.02, remaining)
 		remaining -= step
-		for item in _items.values():
+		for item in _ticked_items:
 			if not item.state.enabled or item.state.broken: continue
 			match str(item.marker.get("Type", "")):
 				"EEUT_StageChangeDoor":
@@ -406,7 +426,11 @@ func tick(delta: float, player_position: Vector3, targets: Array = []) -> void:
 						item.state.break_remaining = maxf(0, float(item.state.break_remaining) - step)
 						if item.state.break_remaining <= 0: _finish_break(item)
 				"EEUT_TriggerTrap":
-					var trigger_inside := all_targets.any(func(target): return target.get("position") is Vector3 and camp_allows(str(item.definition.get("TargetCampString", "")), int(target.get("camp", 0))) and _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EnterTrigger"))
+					var trigger_inside := false
+					for target in all_targets:
+						if target.get("position") is Vector3 and camp_allows(str(item.definition.get("TargetCampString", "")), int(target.get("camp", 0))) and _contains(item, target.position + Vector3.UP * 0.8, 0.35, "Container_EnterTrigger"):
+							trigger_inside = true
+							break
 					_advance_trap(item, step, trigger_inside)
 					if item.state.phase != "active": continue
 					_affect_trap_environment(item)
@@ -906,11 +930,17 @@ func _sound(item: Dictionary, field: String) -> void:
 
 func _volumes(item: Dictionary, role: String) -> Array:
 	if role.is_empty(): return item.colliders
-	return item.colliders.filter(func(collider): return ("/" + str(collider.get("path", "")) + "/").contains("/" + role + "/"))
+	var matching: Array = []
+	var segment := "/" + role + "/"
+	for collider in item.colliders:
+		if ("/" + str(collider.get("path", "")) + "/").contains(segment): matching.append(collider)
+	return matching
 
 func _contains(item: Dictionary, position: Vector3, actor_radius: float = 0, role: String = "", solids_only: bool = false) -> bool:
+	var volumes := _volumes(item, role)
+	if volumes.is_empty(): return false
 	var local_position := _root.global_transform.affine_inverse() * position if is_instance_valid(_root) and _root.is_inside_tree() else position
-	for collider in _volumes(item, role):
+	for collider in volumes:
 		var properties: Dictionary = collider.get("properties", {})
 		var active_trap_volume := role == "Container_EffectTrigger" and str(item.marker.get("Type", "")) == "EEUT_TriggerTrap" and str(item.state.phase) == "active"
 		if not collider.get("active", true) or (not properties.get("m_Enabled", 1) and not active_trap_volume) or (solids_only and properties.get("m_IsTrigger", 0)): continue
@@ -918,9 +948,9 @@ func _contains(item: Dictionary, position: Vector3, actor_radius: float = 0, rol
 		if absf(matrix.basis.determinant()) < 0.00000001: continue
 		var center := _vector(properties.get("m_Center", {}))
 		var scale := matrix.basis.get_scale().abs()
-		var point := matrix.affine_inverse() * local_position - center
 		match int(collider.get("kind", 0)):
 			65:
+				var point := matrix.affine_inverse() * local_position - center
 				var half := _vector(properties.get("m_Size", {})).abs() * 0.5
 				var offset := (point.abs() - half).max(Vector3.ZERO) * scale
 				if offset.length_squared() <= actor_radius * actor_radius: return true
@@ -943,7 +973,7 @@ func _world_position(position: Vector3) -> Vector3:
 static func camp_allows(mask: String, camp: int) -> bool:
 	if mask.length() != 3: return false
 	for character in mask:
-		if character not in ["0", "1"]: return false
+		if character != "0" and character != "1": return false
 	var slot := 0 if camp == 2 else 1 if camp == 1 else 2 if camp == 3 else -1
 	return slot >= 0 and mask[slot] == "1"
 

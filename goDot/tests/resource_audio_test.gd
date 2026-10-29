@@ -96,33 +96,61 @@ func run() -> void:
 	var actor = DungeonActor.new()
 	root.add_child(actor)
 	actor.set_physics_process(false)
+	actor.is_player = true
+	actor.combat = DungeonCombat.new()
+	var presentation = preload("res://scripts/presentation/combat_presentation.gd").new()
+	root.add_child(presentation)
+	presentation.configure({})
+	presentation.set_process(false)
+	source.presentation = presentation
 	source.player = actor
 	actor.locomotion = Vector3.RIGHT
 	audio._physics_process(0)
-	actor.position.x += 0.7
-	audio._physics_process(0)
+	actor.position.x += 1.4
+	audio._physics_process(0.2)
 	check(audio.footsteps == 0, "Small travel accumulates without an early footstep")
-	actor.position.x += 0.7
-	audio._physics_process(0)
+	actor.position.x += 1.4
+	audio._physics_process(0.2)
 	check(audio.footsteps == 1 and audio.pending.size() == 1, "A walking stride triggers its regional ground sound")
+	check(presentation.active.size() == 1 and presentation.active[0].key == audio.STEP_EFFECT and presentation.active[0].authored != null and presentation.active[0].authored.particle_count > 0, "A walking stride emits the recovered foot-level smoke")
+	check(not audio.bindings.footsteps["1"].has("audio_fx_movestep_glassdirt_02"), "Grass footsteps exclude the clip shared with bee movement")
+	actor.position.x += 2.8
+	audio._physics_process(0.1)
+	check(audio.footsteps == 1, "High movement speed cannot exceed the minimum step interval")
+	audio._physics_process(0.23)
+	check(audio.footsteps == 1, "A blocked player cannot trigger a pending step without displacement")
+	actor.position.x += 0.1
+	audio._physics_process(0.01)
+	check(audio.footsteps == 2 and presentation.active.size() == 2, "A deferred stride triggers once its minimum interval has elapsed")
 	source.paused = true
 	actor.position.x += 2
 	audio._physics_process(0)
-	check(audio.footsteps == 1, "Paused motion does not create steps")
+	check(audio.footsteps == 2, "Paused motion does not create steps")
 	source.paused = false
 	actor.dodge_elapsed = 0.1
 	actor.position.x += 1.5
 	audio._physics_process(0)
-	check(audio.footsteps == 1, "A dodge does not produce walking steps")
+	check(audio.footsteps == 2, "A dodge does not produce walking steps")
 	actor.dodge_elapsed = -1
 	actor.position.x += 30
 	audio._physics_process(0)
-	check(audio.footsteps == 1, "A teleport displacement does not create walking steps")
+	check(audio.footsteps == 2, "A teleport displacement does not create walking steps")
 	actor.suspended = true
 	actor.position.x += 1.5
 	audio._physics_process(0)
-	check(audio.footsteps == 1, "Suspended portal motion does not create steps")
+	check(audio.footsteps == 2, "Suspended portal motion does not create steps")
 	audio.enabled = false
+	actor.suspended = false
+	actor.position.x += 2.8
+	audio._physics_process(0.4)
+	check(audio.footsteps == 3 and presentation.active.size() == 3 and audio.pending.is_empty(), "Muted audio still produces walking smoke without queueing sound")
+	check(presentation.active.all(func(entry): return entry.authored.emitters.all(func(emitter): return emitter.node.material_override != null)), "Walking smoke has recovered particle materials")
+	presentation.suspended = true
+	presentation._process(2.0)
+	check(presentation.active.size() == 3, "Pause preserves active walking smoke")
+	presentation.suspended = false
+	presentation._process(2.0)
+	check(presentation.active.is_empty() and presentation._active_particles == 0 and presentation._active_emitters == 0, "Walking smoke expires and releases its particle budget")
 	var cached: int = audio.sound_cache.size()
 	audio.play_music(1, true)
 	check(audio._music_playlist.size() == 3 and audio.sound_cache.size() == cached and audio.music_starts == 0, "Selecting camp music while muted records its three tracks without decoding")
@@ -185,6 +213,7 @@ func run() -> void:
 	FileAccess.open("res://reports/resource-audio-tests.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("RESOURCE_AUDIO ", JSON.stringify(report))
 	actor.free()
+	presentation.free()
 	source.ground_loot.free()
 	source.spirit_followers.free()
 	source.player_transfer.free()

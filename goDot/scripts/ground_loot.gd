@@ -366,7 +366,7 @@ func advance_collection(delta: float, target: Vector3, systems: RefCounted) -> A
 	for entry in entries.duplicate():
 		if not is_automatic(entry):
 			entry.age += delta
-			if float(entry.age) < PICKUP_DELAY or not preferred_pickup(entry, systems) or (entry.position as Vector3).distance_to(target) >= 2.4: continue
+			if float(entry.age) < PICKUP_DELAY or (entry.position as Vector3).distance_to(target) >= 2.4 or not preferred_pickup(entry, systems): continue
 			var result: Dictionary
 			if entry.material:
 				systems.grant_material(entry.id, entry.amount)

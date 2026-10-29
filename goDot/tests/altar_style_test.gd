@@ -92,8 +92,21 @@ func _run() -> void:
 					check(part[accessory].size.x < part.panel.size.x * 0.5 and part[accessory].size.y < part.panel.size.y * 0.2, "Card accessory keeps its source scale %s%s%s: %s within %s" % [accessory, kind, dimensions, part[accessory].size, part.panel.size])
 			await _capture(canvas, kind, dimensions)
 		view._select(1)
+		for frame in 12: await process_frame
 		check(commands.is_empty() and view.parts[1].choose.visible and not view.parts[0].choose.visible, "Preview does not grant an item: " + kind)
-		view.parts[1].choose.pressed.emit()
+		if kind == "sprites":
+			var button: Button = view.parts[1].choose
+			check(button.size.x >= 80 and button.size.y >= 44, "Mobile spirit confirmation has an expanded touch target")
+			var point := button.get_global_transform_with_canvas() * Vector2(8, button.size.y * 0.5)
+			for pressed in [true, false]:
+				var event := InputEventMouseButton.new()
+				event.button_index = MOUSE_BUTTON_LEFT
+				event.pressed = pressed
+				event.position = point
+				canvas.push_input(event)
+				await process_frame
+		else:
+			view.parts[1].choose.pressed.emit()
 		check(commands.pop_back() == ["choose_sacrifice" if kind == "sacrificial" else "choose_loot", scenarios[kind][1], "altar:style"], "Explicit confirm grants exact displayed candidate: " + kind)
 		if kind == "sprites":
 			view._show_help()

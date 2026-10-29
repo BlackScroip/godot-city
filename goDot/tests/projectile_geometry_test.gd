@@ -37,7 +37,11 @@ func _run() -> void:
 	check(world._projectile_mesh.get_faces().size() / 3 == 168, "The tiny fallback sphere has 168 triangles")
 	check(is_equal_approx(world._projectile_mesh.radius, 0.13) and is_equal_approx(world._projectile_mesh.height, 0.26), "Fallback sphere dimensions are preserved")
 	check(fallback.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF, "Only the fallback sphere skips its shadow pass")
-	check(projectile.snapshot() == before, "Attaching visual geometry does not change projectile state")
+	var after := projectile.snapshot()
+	var stop_identity := str(after.hit.get("_source_stop_identity", ""))
+	check(not stop_identity.is_empty() and world._source_stop_projectiles.get(stop_identity, 0) == 1, "Wolf projectile registers its existing source hit-stop identity")
+	after.hit.erase("_source_stop_identity")
+	check(after == before, "Attaching visual geometry leaves the remaining projectile state unchanged")
 	check(is_equal_approx(projectile.radius, 0.6) and projectile.entity.ColliderType == "Sphere", "Authored collision size stays independent of the visual sphere")
 	check(not world.presentation.active.is_empty(), "The recovered projectile model remains emitted")
 	var authored: Node3D = world.presentation.active.back().authored

@@ -3,9 +3,15 @@ extends RefCounted
 const PARTICLE = preload("res://scripts/presentation/recovered_particle.gdshader")
 static var _additive: Shader
 
+static func blend_mode(source: Dictionary) -> String:
+	var values: Dictionary = source.get("source_floats", {})
+	if str(source.get("shader", "")) == "AllIn1Vfx/AllIn1VfxSRPBatch" and values.get("_SrcMode") == 1 and values.get("_DstMode") == 1:
+		return "add"
+	return str(source.get("blend", ""))
+
 static func create(source: Dictionary, textures: Dictionary) -> ShaderMaterial:
 	var result := ShaderMaterial.new()
-	if source.get("blend", "") == "add":
+	if blend_mode(source) == "add":
 		if _additive == null:
 			_additive = Shader.new()
 			_additive.code = PARTICLE.code.replace("blend_mix", "blend_add")

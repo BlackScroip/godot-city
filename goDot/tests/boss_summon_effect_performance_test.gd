@@ -64,6 +64,16 @@ func _run() -> void:
 			presentation.summon_ended(stale)
 			_check(replacement > stale and replacement_entry.root.global_position.is_equal_approx(Vector3(5, 0, 2)), "A stale token cannot move or dispose a reused effect")
 			_check(presentation.active.size() == count, "Stale disposal preserves the replacement")
+			var evicted_token: int = tokens[1]
+			var evicted_root: Node3D = presentation.active[0].root
+			var budget: int = presentation.FEEL.low_effect_budget if low else presentation.FEEL.effect_budget
+			for index in budget - count:
+				presentation.summon_started(boss, {"Prefab": PREFAB}, Vector3(7, 0, 3))
+			presentation.emit_effect(boss, PREFAB, Vector3(7, 0, 3), Vector3.ONE, 1.0, null, true, -1, false, false, true)
+			var reused_position := evicted_root.global_position
+			presentation.summon_updated(evicted_token, Vector3(99, 0, 99))
+			presentation.summon_ended(evicted_token)
+			_check(presentation.active.size() == budget and evicted_root.global_position.is_equal_approx(reused_position), "Budget eviction invalidates the old token before its root is reused")
 			presentation.clear()
 			presentation.summon_updated(replacement, Vector3.ONE)
 			presentation.summon_ended(replacement)

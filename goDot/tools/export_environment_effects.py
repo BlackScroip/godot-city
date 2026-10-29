@@ -50,6 +50,7 @@ def main():
     parser.add_argument("--merge-catalog", action="store_true", help="Preserve existing catalog definitions outside the selected addresses")
     parser.add_argument("--shared-materials", action="store_true", help="Store complete source material records once per source object")
     parser.add_argument("--include-root-transform", action="store_true", help="Preserve source prefab root TRS for action effects")
+    parser.add_argument("--include-trails", action="store_true", help="Export TrailRenderer parameters and materials alongside particles")
     parser.add_argument("--report", type=Path, default=ROOT / "goDot/reports/environment-effects-extraction.json")
     args = parser.parse_args()
     OUT = args.output_directory
@@ -190,7 +191,7 @@ def main():
             candidates = [o for o in bundle_objects if o.type.name == "GameObject" and tree(o).get("m_Name", "").lower() == asset["subroot"]]
             if len(candidates) != 1: raise RuntimeError("Ambiguous embedded root: " + asset["subroot"] + " " + str(len(candidates)))
             root = candidates[0]
-        layers, unsupported, visited = [], set(), set()
+        layers, trails, unsupported, visited = [], [], set(), set()
 
         def walk(go, chain, inherited_active, is_root=False):
             if go is None or key(go) in visited: return
@@ -230,6 +231,20 @@ def main():
                     "length_scale": renderer.get("m_LengthScale", 1), "velocity_scale": renderer.get("m_VelocityScale", 0), "alignment": renderer.get("m_RenderAlignment", 0)},
                     "materials": mats,
                     "mesh": mesh_resource, "unsupported": unresolved})
+            trail = by_type.get("TrailRenderer")
+            if trail and args.include_trails:
+                trail_data = tree(trail)
+                parameters = trail_data.get("m_Parameters", {})
+                mats = [material(resolve(trail, ref)) for ref in trail_data.get("m_Materials", [])]
+                trails.append({"name": data.get("m_Name", ""), "source_file_id": str(trail.path_id), "active": active,
+                    "transform_chain": chain, "duration": trail_data.get("m_Time", 0),
+                    "min_vertex_distance": trail_data.get("m_MinVertexDistance", 0),
+                    "width_multiplier": parameters.get("widthMultiplier", 1), "width_curve": compact(parameters.get("widthCurve", {})),
+                    "color_gradient": compact(parameters.get("colorGradient", {})), "alignment": parameters.get("alignment", 0),
+                    "texture_mode": parameters.get("textureMode", 0), "texture_scale": parameters.get("textureScale", {}),
+                    "corner_vertices": parameters.get("numCornerVertices", 0), "cap_vertices": parameters.get("numCapVertices", 0),
+                    "emitting": bool(trail_data.get("m_Emitting", False)), "enabled": bool(trail_data.get("m_Enabled", False)),
+                    "materials": [m for m in mats if m]})
             for kind in by_type:
                 if kind in ("MonoBehaviour", "Animator", "Animation", "TrailRenderer", "MeshRenderer", "SkinnedMeshRenderer"): unsupported.add(kind)
             for child_ref in tr.get("m_Children", []):
@@ -239,8 +254,9 @@ def main():
         walk(root, [], True, True)
         effects[asset["address"].lower()] = {"source": asset["path"], "source_sha256": bundles[asset["bundle"]]["sha256"],
             "source_root": source(root), "particle_systems": len(layers), "layers": layers,
-            "textures": sorted({t["texture"] for layer in layers for m in layer["materials"] for t in m["textures"]}),
+            "textures": sorted({t["texture"] for layer in layers + trails for m in layer["materials"] for t in m["textures"]}),
             "unsupported": sorted(unsupported), "mode": "APK Unity particle data; Godot runtime approximation"}
+        if args.include_trails: effects[asset["address"].lower()]["trails"] = trails
         print(asset["address"], len(layers), flush=True)
     identity = hashlib.sha256(args.apk.read_bytes()).hexdigest()
     catalog_path = OUT / "catalog.json"
@@ -252,7 +268,7 @@ def main():
         library_path.write_text(json.dumps(finite_json(library), separators=(",", ":"), allow_nan=False) + "\n")
         for name, effect in effects.items():
             effect["material_library"] = resource_prefix + "materials.json"
-            for layer in effect["layers"]:
+            for layer in effect["layers"] + effect.get("trails", []):
                 layer["materials"] = [{"reference": value["source"]} for value in layer["materials"]]
     for name, effect in effects.items():
         previous = catalog.get("effects", {}).get(name, {})

@@ -1,0 +1,121 @@
+{
+  "apk_sha256": "ee8c917ab487ddeab4109d400d6d8b2036ef80f35fef952b78895819d1551505",
+  "scope": "Serialized ParticleSystem and TrailRenderer objects in exact matched actor prefab bundles; excludes external dependencies, aliases and remote resources.",
+  "bosses": [
+    {
+      "id": 13001,
+      "candidate": "monster_senlinlangwang.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_senlinlangwang.prefab",
+      "member": "assets/yoo/DefaultPackage/be34b43adc246c73c9b86c58fc3e455b.bundle",
+      "bundle_sha256": "494404869e169ce81cb90a378ba28e6921c79538d5467db9b8599a68a03cb88b",
+      "particle_systems": 5,
+      "trail_renderers": 0
+    },
+    {
+      "id": 23001,
+      "candidate": "monster_gelifenniaoshou.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_gelifenniaoshou.prefab",
+      "member": "assets/yoo/DefaultPackage/5d80bfb9032377374356e35f483b518e.bundle",
+      "bundle_sha256": "e841a3a1b99f112a0b2b31051cf9ca1ef0c52885ecfc449530676f1baaa047fa",
+      "particle_systems": 0,
+      "trail_renderers": 0
+    },
+    {
+      "id": 33001,
+      "candidate": "myenemy_jiaolu.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_jiaolu.prefab",
+      "member": "assets/yoo/DefaultPackage/621a0a2d6a326d83232c30598205ee3c.bundle",
+      "bundle_sha256": "4689d65bf7c1e8087e0d0d72e7f1315482f0579dac8e0d90757096defd13c436",
+      "particle_systems": 0,
+      "trail_renderers": 0
+    },
+    {
+      "id": 43001,
+      "candidate": "myenemy_jushimoxiang.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_jushimoxiang.prefab",
+      "member": "assets/yoo/DefaultPackage/f3d258b1153f77fa81aa206616a1b135.bundle",
+      "bundle_sha256": "2dc795d327e7e8fdf53cf4c0d721ce4dadd5188124fdb34ac6fcfc076f5b5ccf",
+      "particle_systems": 0,
+      "trail_renderers": 0
+    },
+    {
+      "id": 52001,
+      "candidate": "myenemy_chimera.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_chimera.prefab",
+      "member": "assets/yoo/DefaultPackage/9b1f4fa5e6de9b29f7dc8cef1e456db8.bundle",
+      "bundle_sha256": "8c24d5762642103796db41382dfb5b00f941cd9928a109c9d58a68c9bb5fd383",
+      "particle_systems": 0,
+      "trail_renderers": 0
+    },
+    {
+      "id": 52003,
+      "candidate": "myenemy_sishen.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_sishen.prefab",
+      "member": "assets/yoo/DefaultPackage/165ed5fcfc12954cb9e65137d8e705b6.bundle",
+      "bundle_sha256": "497371cd1ef283ba9645a4708bf0499bebd0d020cf7870610fbf3c3dfe34ce44",
+      "particle_systems": 8,
+      "trail_renderers": 0
+    },
+    {
+      "id": 53001,
+      "candidate": "myenemy_feimolong.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_feimolong.prefab",
+      "member": "assets/yoo/DefaultPackage/5a208e992bc862c818adba86917b252e.bundle",
+      "bundle_sha256": "79a1fe9e3c8cfafcb6c5b373902fc6f87c8133c804e5ddd3a4d435677a4823f0",
+      "particle_systems": 63,
+      "trail_renderers": 6
+    },
+    {
+      "id": 13002,
+      "candidate": "monster_mojiehua.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/monster_mojiehua.prefab",
+      "member": "assets/yoo/DefaultPackage/c6d5a2e61b2b28add72d1948bf6265b1.bundle",
+      "bundle_sha256": "bd19ddd6834e0a5707e296a38892dbe9e6076c43857f57530e49dae5324afe50",
+      "particle_systems": 0,
+      "trail_renderers": 0
+    },
+    {
+      "id": 23002,
+      "candidate": "myenemy_dilong.prefab",
+      "candidate_from_imported_actor": true,
+      "manifest_matches": 1,
+      "status": "inspected",
+      "asset": "Assets/[00002]Resource/Prefabs/BattleSys/Role/Monster/myenemy_dilong.prefab",
+      "member": "assets/yoo/DefaultPackage/e7655aa758a78348ca7be57cf4940917.bundle",
+      "bundle_sha256": "14300b054334e9e9f634107e6e8f1f23d57a9b590c4b56f564b00326009e2d99",
+      "particle_systems": 0,
+      "trail_renderers": 0
+    },
+    {
+      "id": 33002,
+      "candidate": "myenemy_jianchihu.prefab",
+      "candidate_from_imported_actor": false,
+      "manifest_matches": 0,
+      "status": "unavailable_or_ambiguous"
+    }
+  ]
+}

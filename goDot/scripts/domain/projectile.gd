@@ -133,12 +133,13 @@ func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vecto
 	hit = event.duplicate(true)
 	hit.erase("source")
 	var definition: Dictionary = hit.get("definition", {})
-	var raw = JSON.parse_string(str(definition.get("raw", "{}")))
-	if not raw is Dictionary: raw = {}
-	entity = raw.get("EntityProperty", {})
+	var raw := DungeonWorld._read_definition(definition)
+	# Cached definitions are shared and read-only; projectile state keeps its own
+	# mutable copies just as it did when parsing a fresh payload for every shot.
+	entity = raw.get("EntityProperty", {}).duplicate(true)
 	hit_interval = maxf(0.0, float(raw.get("EffectActiveIntervalToEachUnit", 0)))
 	hit_limit = maxi(1, int(raw.get("EffectActiveTotalCountToEachUnit", 999999)))
-	motion = raw.get("MotionAnimatorProperty", {})
+	motion = raw.get("MotionAnimatorProperty", {}).duplicate(true)
 	motion_type = str(raw.get("MotionAnimatorType", "EMAT_Line"))
 	direction = facing.normalized() if facing.length_squared() > 0.001 else Vector3.FORWARD
 	var emit: Dictionary = raw.get("EmitProperty", {})

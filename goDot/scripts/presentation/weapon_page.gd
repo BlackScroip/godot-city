@@ -460,8 +460,10 @@ func select_weapon(id: int) -> void:
 		var button = Button.new()
 		button.text = str(entry.get("text", ""))
 		button.tooltip_text = selector_status.text
-		button.custom_minimum_size = Vector2(0, 55)
-		if context.get("weapon_selector_direct", false): button.custom_minimum_size = Vector2(250, 70)
+		button.custom_minimum_size = Vector2(0, 80)
+		if context.get("weapon_selector_direct", false):
+			var ratio := minf(size.x / DESIGN.x, size.y / DESIGN.y)
+			button.custom_minimum_size = Vector2(340, maxf(100, 52 / ratio) if ratio > 0 else 100)
 		button.add_theme_font_size_override("font_size", 27)
 		if context.get("weapon_selector_direct", false): button.add_theme_font_size_override("font_size", 40)
 		button.add_theme_color_override("font_color", INK)
@@ -553,7 +555,7 @@ func _adapt() -> void:
 		selector_artwork.size = selector_preview.size
 		_selector_inside.position = Vector2(width - 550, 150)
 		_selector_inside.size = Vector2(510, height - 200)
-		var action_height = maxf(80, 44 / ratio)
+		var action_height = maxf(100, 52 / ratio)
 		selector_actions.position = Vector2(260, height - action_height - 35)
 		selector_actions.size = Vector2(width - 890, action_height)
 		for button in action_buttons: button.custom_minimum_size.y = action_height

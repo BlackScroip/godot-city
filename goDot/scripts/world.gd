@@ -48,6 +48,7 @@ var _numbers: Array[Dictionary] = []
 var _budget_warnings: Dictionary = {}
 var _physics_serial := 0
 var _perception: Dictionary = {}
+var _perception_ray := PhysicsRayQueryParameters3D.create(Vector3.ZERO, Vector3.ZERO, 1)
 var _enemy_scenes: Dictionary = {}
 var _actor_index: Dictionary = {}
 var _auto_attack := 0.0
@@ -68,6 +69,8 @@ var auto_attack_enabled: bool:
 var _automatic_heavy_held := false
 var navigation_region: NavigationRegion3D
 var _navigation_cache: Dictionary = {}
+var _navigation_generation := 0
+var _camp_navigation_pending := false
 var _environment_generation := 0
 var _actor_serial := 0
 var summon_units: Array[Dictionary] = []
@@ -192,6 +195,7 @@ var _impact_clock := 0.0
 var _impact_serial := 0
 var _seen_impacts: Dictionary = {}
 var _seen_blasts: Dictionary = {}
+var _impact_prune_remaining := 0.0
 
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -269,6 +273,8 @@ func asset_path(kind: String, id: Variant) -> String:
 	return str(entry.get("path", "")) if entry is Dictionary else str(entry)
 
 func release_environment() -> void:
+	_navigation_generation += 1
+	_camp_navigation_pending = false
 	# Callers may yield a frame here so queued GPU/scene resources retire before loading.
 	camp_training.clear()
 	trial_room.reset()
@@ -447,7 +453,7 @@ func refresh_camp_progression() -> void:
 			body.collision_layer = 1 if camp_progression.collider_active(marker) else 0
 	_apply_camp_interaction_states()
 	camp_visitors.refresh(self)
-	_build_navigation(_camp_navigation_key())
+	_build_navigation(_camp_navigation_key(), true)
 	_event_refresh_at = 0
 	if is_instance_valid(player): camp_training.refresh()
 
@@ -552,7 +558,10 @@ static func unity_matrix(values: Array) -> Transform3D:
 	if values.size() != 16: return Transform3D.IDENTITY
 	return Transform3D(Basis(Vector3(values[0], values[4], values[8]), Vector3(values[1], values[5], values[9]), Vector3(values[2], values[6], values[10])), Vector3(values[3], values[7], values[11]))
 
-func _build_navigation(key: String) -> void:
+func _build_navigation(key: String, async_bake := false) -> void:
+	_navigation_generation += 1
+	var generation := _navigation_generation
+	_camp_navigation_pending = false
 	if not is_instance_valid(navigation_region) or navigation_region.get_parent() != environment_root:
 		navigation_region = NavigationRegion3D.new()
 		environment_root.add_child(navigation_region)
@@ -571,10 +580,26 @@ func _build_navigation(key: String) -> void:
 		mesh.filter_walkable_low_height_spans = true
 		var source = NavigationMeshSourceGeometryData3D.new()
 		NavigationServer3D.parse_source_geometry_data(mesh, source, environment_root)
+		if async_bake:
+			_camp_navigation_pending = true
+			NavigationServer3D.bake_from_source_geometry_data_async(mesh, source, _finish_camp_navigation.bind(key, mesh, generation, environment_root))
+			return
 		NavigationServer3D.bake_from_source_geometry_data(mesh, source)
-		_navigation_cache[key] = mesh
-		while _navigation_cache.size() > 3:
-			_navigation_cache.erase(_navigation_cache.keys()[0])
+		_cache_navigation(key, mesh)
+	_apply_navigation_mesh(mesh)
+
+func _finish_camp_navigation(key: String, mesh: NavigationMesh, generation: int, root: Node3D) -> void:
+	if generation != _navigation_generation or not is_instance_valid(root) or root != environment_root or not is_instance_valid(navigation_region): return
+	_camp_navigation_pending = false
+	_cache_navigation(key, mesh)
+	_apply_navigation_mesh(mesh)
+
+func _cache_navigation(key: String, mesh: NavigationMesh) -> void:
+	_navigation_cache[key] = mesh
+	while _navigation_cache.size() > 3:
+		_navigation_cache.erase(_navigation_cache.keys()[0])
+
+func _apply_navigation_mesh(mesh: NavigationMesh) -> void:
 	navigation_region.navigation_mesh = mesh
 	collision_report["navigation_polygons"] = mesh.get_polygon_count()
 	NavigationServer3D.map_force_update(get_world_3d().navigation_map)
@@ -763,6 +788,7 @@ func interact_camp_marker(marker_id: String) -> Dictionary:
 
 func _camp_navigation_velocity(delta: float) -> Vector3:
 	if _camp_destination.is_empty(): return Vector3.ZERO
+	if _camp_navigation_pending: return Vector3.ZERO
 	var item := _camp_marker(_camp_destination)
 	if not _camp_facility_available(item):
 		_cancel_camp_navigation()
@@ -902,6 +928,7 @@ func spawn_wave(spawns: Array, difficulty: int, seed_value: int) -> void:
 		actors.append(actor)
 		_actor_index[str(actor.combat.actor_key)] = actor
 		_bind_impact(actor)
+		if presentation: presentation.register_boss_embedded(actor)
 		if not restoring: actor.combat.begin_enemy_spawn()
 		for event in actor.combat.drain_events(): _consume(actor, event)
 		combats.append(actor.combat)
@@ -1340,9 +1367,12 @@ func _physics_process(delta: float) -> void:
 		if not collected.is_empty():
 			environment_action.emit("auto_loot", {"coin": collected.any(func(entry): return int(entry.get("id", 0)) == 101)})
 	_impact_clock += delta
-	for cache in [_seen_impacts, _seen_blasts]:
-		for key in cache.keys():
-			if _impact_clock - float(cache[key]) > 8.0: cache.erase(key)
+	_impact_prune_remaining -= delta
+	if _impact_prune_remaining <= 0.0:
+		_impact_prune_remaining = 0.25
+		for cache in [_seen_impacts, _seen_blasts]:
+			for key in cache.keys():
+				if _impact_clock - float(cache[key]) > 8.0: cache.erase(key)
 	if fighting: elapsed += delta
 	_tick_wave_spawns(delta)
 	var movement = Vector2.ZERO
@@ -1398,20 +1428,36 @@ func _physics_process(delta: float) -> void:
 		actor.previous_position = actor.position
 		actor.combat.custom_properties["InputMove"] = actor.desired_velocity.length_squared() > 0.01
 		actor.combat.notify_gameplay("move", {"moving": actor.desired_velocity.length_squared() > 0.01, "distance": travelled, "delta": delta})
+		var enemy_line_queried := false
+		var blocked := false
+		var enemy_distance_squared := 0.0
+		var enemy_uses_perception := false
 		if actor.get_meta("camp_training", false):
 			actor.desired_velocity = Vector3.ZERO
 			actor.combat._tick_enemy_interrupts()
 		elif not actor.is_player:
+			enemy_uses_perception = true
 			var direction = player.position - actor.position
 			direction.y = 0
+			enemy_distance_squared = direction.length_squared()
 			var monster_index = int(monster_indices.get(actor.actor_id, 0))
 			monster_indices[actor.actor_id] = monster_index + 1
-			var blocked = _line_blocked(actor, direction.length_squared())
-			actor.combat.custom_properties["_navigation_steer"] = blocked
-			actor.combat.tick_enemy_ai(delta, {"target_available": not player.dead, "distance": direction.length(), "line_blocked": blocked, "battle_time": elapsed, "monster_index": monster_index, "target_buffs": player.combat.statuses.keys()})
+			var ai = actor.combat.enemy_ai
+			enemy_line_queried = (ai != null and ai.needs_wall_query) or actor.combat.current_action in DungeonActor.NAVIGATION_STEER_ACTIONS
+			if enemy_line_queried:
+				blocked = _line_blocked(actor, enemy_distance_squared)
+			else:
+				_perception.erase(actor.get_instance_id())
+			var ai_context = {"target_available": not player.dead, "distance": direction.length(), "line_blocked": blocked, "battle_time": elapsed, "monster_index": monster_index}
+			if ai != null and ai.needs_target_buffs: ai_context["target_buffs"] = player.combat.statuses.keys()
+			actor.combat.tick_enemy_ai(delta, ai_context)
 			actor.desired_velocity = _chase(actor, player.position, delta) if actor.combat.enemy_navigation_requested() and not player.dead else Vector3.ZERO
 		actor.combat.tick(delta)
 		for event in actor.combat.drain_events(): _consume(actor, event)
+		if enemy_uses_perception:
+			if not enemy_line_queried and actor.combat.current_action in DungeonActor.NAVIGATION_STEER_ACTIONS:
+				blocked = _line_blocked(actor, enemy_distance_squared)
+			actor.combat.custom_properties["_navigation_steer"] = blocked
 		if actor.combat.health <= 0: _die(actor)
 	for actor in actors:
 		if is_instance_valid(actor): actor._physics_process(delta)
@@ -1421,8 +1467,9 @@ func _physics_process(delta: float) -> void:
 	_tick_summons(delta)
 	if interactions:
 		var targets: Array = []
-		for actor in actors:
-			if is_instance_valid(actor) and not actor.dead and not actor.is_player: targets.append({"id": str(actor.combat.actor_key), "position": actor.position, "camp": 3})
+		if interactions.requires_combat_targets():
+			for actor in actors:
+				if is_instance_valid(actor) and not actor.dead and not actor.is_player: targets.append({"id": str(actor.combat.actor_key), "position": actor.position, "camp": 3})
 		interactions.tick(delta, player.position, targets)
 	_tick_wave_clear(delta)
 
@@ -1479,9 +1526,16 @@ func _line_blocked(actor: DungeonActor, distance_squared: float) -> bool:
 	if not cached.is_empty():
 		urgent = urgent or actor.position.distance_squared_to(cached.origin) > 0.25 or player.position.distance_squared_to(cached.target) > 0.25 or bool(cached.blocked)
 	if urgent or (_physics_serial + key) % stride == 0:
-		var query = PhysicsRayQueryParameters3D.create(actor.position + Vector3.UP * 0.8, player.position + Vector3.UP * 0.8, 1)
-		cached = {"origin": actor.position, "target": player.position, "blocked": not get_world_3d().direct_space_state.intersect_ray(query).is_empty()}
-		_perception[key] = cached
+		_perception_ray.from = actor.position + Vector3.UP * 0.8
+		_perception_ray.to = player.position + Vector3.UP * 0.8
+		var blocked := not get_world_3d().direct_space_state.intersect_ray(_perception_ray).is_empty()
+		if cached.is_empty():
+			cached = {"origin": actor.position, "target": player.position, "blocked": blocked}
+			_perception[key] = cached
+		else:
+			cached.origin = actor.position
+			cached.target = player.position
+			cached.blocked = blocked
 	return bool(cached.blocked)
 
 func _register_battle_scale(actor: DungeonActor, window: Dictionary) -> void:
@@ -1797,7 +1851,13 @@ func _hit_area(source: DungeonActor, hit: Dictionary, area := false) -> void:
 		_damage_environment_shape(center, center, hit_facing, size, str(definition.get("shape", "Cube")), tenacities, source, hit_id)
 
 func _damage_environment_shape(from: Vector3, to: Vector3, direction: Vector3, size: Vector3, shape_type: String, tenacities: Array[int], source: DungeonActor, hit_id: String) -> void:
-	if tenacities.is_empty(): return
+	if not interactions or not interactions.has_damageable_colliders(): return
+	var can_damage := false
+	for tenacity in tenacities:
+		if tenacity > 0:
+			can_damage = true
+			break
+	if not can_damage: return
 	var shape: Shape3D
 	if shape_type == "Sphere":
 		shape = SphereShape3D.new()
@@ -1814,7 +1874,7 @@ func _damage_environment_shape(from: Vector3, to: Vector3, direction: Vector3, s
 		query.transform = Transform3D(basis, from.lerp(to, float(step) / steps))
 		for contact in get_world_3d().direct_space_state.intersect_shape(query, 128):
 			for index in tenacities.size():
-				interactions.damage_collider(contact.collider, tenacities[index], 2 if source.is_player else 1, hit_id + ":" + str(index))
+				if tenacities[index] > 0: interactions.damage_collider(contact.collider, tenacities[index], 2 if source.is_player else 1, hit_id + ":" + str(index))
 
 func _environment_tenacities(hit: Dictionary) -> Array[int]:
 	var amount := 0
@@ -1823,6 +1883,16 @@ func _environment_tenacities(hit: Dictionary) -> Array[int]:
 		amount += int(feedback.acc_tenacity)
 		result.append(maxi(0, amount))
 	return result
+
+func _projectile_environment_tenacities(projectile: Dictionary, state: DungeonProjectile) -> Array[int]:
+	var definition: Dictionary = state.hit.get("definition", state.hit)
+	var raw: Variant = definition.get("raw", definition)
+	if raw is String:
+		if not projectile.has("environment_raw") or projectile.environment_raw != raw:
+			projectile["environment_raw"] = raw
+			projectile["environment_tenacities"] = _environment_tenacities(state.hit)
+		return projectile.environment_tenacities
+	return _environment_tenacities(state.hit)
 
 func _environment_hit_id(source: DungeonActor, hit: Dictionary) -> String:
 	if not hit.has("emission"):
@@ -1873,7 +1943,7 @@ func _on_impact(hit: Dictionary, target: DungeonActor) -> void:
 	var source = _actor_by_key(str(hit.get("source_key", "")))
 	var instance = ImpactProfiles.instance_id(hit)
 	var key = instance + ":" + str(hit.get("contact", 0)) + ":" + str(target.combat.actor_key)
-	if _seen_impacts.has(key): return
+	if _impact_is_recent(_seen_impacts, key): return
 	_seen_impacts[key] = _impact_clock
 	var point = vector(hit.get("impact_position", DungeonProjectile._array(target.position + Vector3.UP * 0.65)))
 	var profile = ImpactProfiles.resolve(hit, source.combat if source else null)
@@ -1926,10 +1996,13 @@ func _queue_impact_shake(profile: Dictionary, point: Vector3) -> void:
 
 func _blast(source: DungeonActor, hit: Dictionary, profile: Dictionary, point: Vector3) -> void:
 	var key = ImpactProfiles.instance_id(hit)
-	if _seen_blasts.has(key): return
+	if _impact_is_recent(_seen_blasts, key): return
 	_seen_blasts[key] = _impact_clock
 	_queue_impact_shake(profile, point)
 	presentation.explosion(source, point, profile)
+
+func _impact_is_recent(cache: Dictionary, key: String) -> bool:
+	return cache.has(key) and _impact_clock - float(cache[key]) <= 8.0
 
 func _projectile(source: DungeonActor, hit: Dictionary) -> DungeonProjectile:
 	var state = _projectile_state_pool.pop_back() if not _projectile_state_pool.is_empty() else DungeonProjectile.new()
@@ -2027,7 +2100,8 @@ func _tick_projectiles(delta: float) -> void:
 		var expires_now := state.finished and not was_finished
 		if expires_now: state.finished = false
 		var props_enabled := interactions != null and bool(state.entity.get("IsCheckEnvUnitCollider", true)) and state.age >= float(state.entity.get("EnableGlobalCollisionDelayTime", 0))
-		var tenacities: Array = _environment_tenacities(state.hit) if props_enabled else []
+		var tenacities: Array[int] = []
+		if props_enabled: tenacities = _projectile_environment_tenacities(projectile, state)
 		var prop_hit_id := _environment_hit_id(source, state.hit) if props_enabled else ""
 		if bool(state.entity.get("IsCheckEnvCollider", true)) and state.previous.distance_squared_to(state.position) > 0.00001:
 			var query = PhysicsRayQueryParameters3D.create(state.previous, state.position, 1)
@@ -2035,7 +2109,7 @@ func _tick_projectiles(delta: float) -> void:
 			if not wall.is_empty():
 				if props_enabled:
 					for index in tenacities.size():
-						interactions.damage_collider(wall.collider, tenacities[index], 2 if source.is_player else 1, prop_hit_id + ":" + str(index))
+						if tenacities[index] > 0: interactions.damage_collider(wall.collider, tenacities[index], 2 if source.is_player else 1, prop_hit_id + ":" + str(index))
 				state.wall_collision(wall.position, wall.normal)
 		if props_enabled:
 			var prop_offset := DungeonProjectile.orient(vector(state.entity.get("ModelBoxColliderCenterOffset", {})), state.direction)

@@ -87,7 +87,16 @@ func configure(event: Dictionary, point: Vector3, facing: Vector3, target: Vecto
 	motion_type = str(raw.get("MotionAnimatorType", "EMAT_Line"))
 	direction = facing.normalized() if facing.length_squared() > 0.001 else Vector3.FORWARD
 	var emit: Dictionary = raw.get("EmitProperty", {})
-	if raw.get("EmitType", "") == "EET_ARC":
+	# Multi-point emission was added after this movement reference was frozen.
+	if raw.get("EmitType", "") == "EET_MultiPoint":
+		var points: Array = emit.get("PointData", [])
+		var index := int(event.get("emit_index", 0))
+		if index >= 0 and index < points.size():
+			var selected: Dictionary = points[index]
+			var emitted_position := point + orient(DungeonWorld.vector(selected.get("Offset", {})), direction) + DungeonWorld.vector(event.get("emit_random_offset", []))
+			owner_offset = emitted_position - point
+			direction = direction.rotated(Vector3.UP, deg_to_rad(float(selected.get("Rotate", {}).get("y", 0))))
+	elif raw.get("EmitType", "") == "EET_ARC":
 		var basis = owner_facing if owner_facing.is_finite() else facing
 		owner_offset = orient(DungeonWorld.vector(emit.get("PosOffset", {})), basis) + basis * float(emit.get("RadiusOffset", 0))
 	else:

@@ -199,6 +199,23 @@ func _check_completed_room_positions() -> void:
 				captures.append(path)
 			page.queue_free()
 			await process_frame
+			if cleared == 3 and dimensions == Vector2i(844, 390):
+				var menu = DungeonMenuPage.new()
+				menu.theme = DungeonStyle.theme()
+				canvas.add_child(menu)
+				menu.size = Vector2(dimensions)
+				menu.hide()
+				await _settle()
+				menu.display("选择路线", rows, "route", {"map_scope": "rooms", "first_layer": int(rows[0].layer_index), "current_layer": int(campaign.state.layer_index)})
+				menu.show()
+				await _settle()
+				var actual_page = menu.route_view
+				for index in actual_page.nodes.size():
+					if not actual_page.rows[index].is_anchor and not actual_page.rows[index].available: continue
+					var bounds = actual_page.nodes[index].get_rect()
+					check(bounds.position.x >= actual_page.scroll.scroll_horizontal - 1 and bounds.end.x <= actual_page.scroll.scroll_horizontal + actual_page.scroll.size.x + 1, "Completed-room menu shows current and available rooms")
+				menu.queue_free()
+				await process_frame
 
 func _check_menu_room_position() -> void:
 	for dimensions in [Vector2i(1600, 900), Vector2i(844, 390)]:
@@ -212,7 +229,11 @@ func _check_menu_room_position() -> void:
 		menu.theme = DungeonStyle.theme()
 		canvas.add_child(menu)
 		menu.size = Vector2(dimensions)
+		menu.hide()
+		await _settle()
 		menu.display("选择路线", rows, "route", {"map_scope": "rooms", "first_layer": 0, "current_layer": 7})
+		menu.show()
+		check(not menu.route_view._opening_started and menu.route_view.nodes[0].modulate.a == 0.0, "Route stays hidden until initial positioning at %s" % dimensions)
 		await _settle()
 		var page = menu.route_view
 		var bounds = page.nodes[6].selection_bounds()

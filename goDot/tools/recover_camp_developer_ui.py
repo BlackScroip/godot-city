@@ -12,6 +12,7 @@ from UnityPy.classes.PPtr import PPtr
 from PIL import Image, ImageDraw
 
 from inspect_camp_progression import manifest_records
+from repair_white_button_art import SPRITE_NAME, repair as repair_white_button
 
 
 def sha(data):
@@ -101,6 +102,8 @@ def recover(apk, output, prefab='ATPanel_MainCityDeveloper', folder='developer')
                 row['sprite'] = name
                 if name not in exported:
                     picture = sprite.image.convert('RGBA')
+                    if name == SPRITE_NAME and picture.size in {(250, 75), (284, 84)}:
+                        picture = repair_white_button(picture)
                     stem = re.sub(r'[^A-Za-z0-9_.-]', '_', name)
                     if stem != name:
                         stem += '_' + sha(name.encode())[:10]

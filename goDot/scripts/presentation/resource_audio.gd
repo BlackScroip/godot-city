@@ -5,7 +5,9 @@ const VOICE_BUDGET := 8
 const AMBIENT_BUDGET := 4
 const QUEUE_BUDGET := 24
 const CACHE_BUDGET := 32
-const STEP_DISTANCE := 1.35
+const STEP_DISTANCE := 2.7
+const STEP_MIN_INTERVAL := 0.32
+const STEP_EFFECT := "23040705_fx_sickle_run"
 const CAMP_MUSIC := ["audio_music_maincity_1", "audio_music_maincity_2", "audio_music_maincity_3"]
 const REGION_MUSIC := ["audio_music_area_1", "audio_music_area_2", "audio_music_area_3", "audio_music_area_4", "audio_music_area_5"]
 
@@ -32,6 +34,7 @@ var _serial := 0
 var _region := 0
 var _camp := false
 var _step_distance := 0.0
+var _step_cooldown := 0.0
 var _last_position := Vector3.ZERO
 var _tracked_player := 0
 var _step_index := 0
@@ -76,6 +79,7 @@ func configure(value: Dictionary, world: DungeonWorld) -> void:
 	_ambient_layers.clear()
 	_tracked_player = 0
 	_step_distance = 0.0
+	_step_cooldown = 0.0
 
 func apply_settings(settings: Dictionary) -> void:
 	DungeonStyle.apply_audio_options(settings)
@@ -141,6 +145,7 @@ func enter_environment(region: int, camp: bool) -> void:
 	_region = region
 	_camp = camp
 	_step_distance = 0.0
+	_step_cooldown = 0.0
 	_tracked_player = 0
 	_step_index = 0
 	# World layers cannot leak across rooms; menu and transition feedback can finish.
@@ -261,7 +266,7 @@ func _stream(path: String) -> AudioStream:
 	_cache_order.append(path)
 	return resource
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_instance_valid(_world) or not is_instance_valid(_world.player):
 		_tracked_player = 0
 		return
@@ -272,18 +277,23 @@ func _physics_process(_delta: float) -> void:
 		_tracked_player = identity
 		_last_position = point
 		_step_distance = 0.0
+		_step_cooldown = 0.0
 		return
 	var travelled := Vector2(point.x - _last_position.x, point.z - _last_position.z).length()
 	_last_position = point
-	if _blocked() or _paused() or player.dead or player.suspended or player.dodge_elapsed >= 0 or player.knockback_elapsed >= 0 or player.locomotion.length_squared() < 0.1 or travelled > STEP_DISTANCE * 2.0:
+	if _background or _world._background or _paused() or player.dead or player.suspended or player.dodge_elapsed >= 0 or player.knockback_elapsed >= 0 or player.locomotion.length_squared() < 0.1 or travelled > STEP_DISTANCE * 2.0:
 		_step_distance = 0.0
 		return
-	_step_distance += travelled
-	if _step_distance < STEP_DISTANCE: return
-	_step_distance = fmod(_step_distance, STEP_DISTANCE)
+	_step_cooldown = maxf(0.0, _step_cooldown - delta)
+	_step_distance = minf(_step_distance + travelled, STEP_DISTANCE)
+	if _step_distance < STEP_DISTANCE or _step_cooldown > 0.0 or travelled <= 0.0001: return
+	_step_distance = 0.0
+	_step_cooldown = STEP_MIN_INTERVAL
+	if is_instance_valid(_world.presentation):
+		_world.presentation.emit_effect(player, STEP_EFFECT, _world.presentation.to_local(point), Vector3.ONE, 0.35, null, false, -1, false, false, true)
 	var names: Array = bindings.get("footsteps", {}).get("camp" if _camp else str(_region), [])
-	if names.is_empty(): return
-	_queue_named(str(names[_step_index % names.size()]), true)
+	if not _blocked() and not names.is_empty():
+		_queue_named(str(names[_step_index % names.size()]), true)
 	_step_index += 1
 	footsteps += 1
 
@@ -293,7 +303,6 @@ func _stop_all() -> void:
 	for voice in ambience: voice.stop()
 	# Music keeps its playback cursor through mute and application suspension.
 	if music: music.stream_paused = true
-	_step_distance = 0.0
 
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_APPLICATION_PAUSED]:

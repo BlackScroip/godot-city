@@ -150,10 +150,7 @@ func display(title: String, rows: Array, layout := "list", context: Dictionary =
 	camp_service_view = null
 	awakening_view = null
 	adventure_event_view = null
-	if is_instance_valid(outcome_view):
-		stack.remove_child(outcome_view)
-		outcome_view.queue_free()
-		outcome_view = null
+	release_outcome_view()
 	release_route_view()
 	if is_instance_valid(special):
 		stack.remove_child(special)
@@ -443,6 +440,13 @@ func release_route_view() -> void:
 	stack.remove_child(route_view)
 	route_view.queue_free()
 	route_view = null
+
+func release_outcome_view() -> void:
+	if not is_instance_valid(outcome_view): return
+	outcome_view.hide()
+	stack.remove_child(outcome_view)
+	outcome_view.queue_free()
+	outcome_view = null
 
 func displayed_row_count() -> int:
 	if _layout == "dialogue" and is_instance_valid(dialogue_view): return 1

@@ -85,14 +85,18 @@ func _run() -> void:
 		root.size = dimensions
 		for frame in 5: await process_frame
 		var view: Control = game.hud.page.room_shop_view
-		check(view.context.return_to_room and view.footer.text == "返回房间", "Boss footer returns to room: " + str(dimensions))
+		check(view.context.return_to_room and not view.footer.visible and view.header.get_node("Back").has_meta("camp_back_navigation"), "Boss uses shared back navigation: " + str(dimensions))
 		check(view.get_global_rect().encloses(view.footer.get_global_rect()), "Boss footer fits viewport: " + str(dimensions))
+		for button in [view.deposit, view.deposit.get_parent().get_child(0)]:
+			for state in ["normal", "hover", "pressed", "disabled"]:
+				var style: StyleBoxTexture = button.get_theme_stylebox(state)
+				check(style.texture_margin_top == 0 and style.texture_margin_bottom == 0 and style.texture_margin_left == 45 and style.texture_margin_right == 45, "Shop button preserves white pill background: " + state + " " + str(dimensions))
 		for card in view.cards:
 			check(not card.get_node("Title").get_global_rect().intersects(card.get_node("Frame").get_global_rect()), "Goods title does not overlap icon: " + str(dimensions) + " " + str([card.get_node("Title").get_rect(), card.get_node("Frame").get_rect()]))
 		if DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
 			root.get_texture().get_image().save_png("res://reports/boss-shop-%dx%d.png" % [dimensions.x, dimensions.y])
-	game.hud.page.room_shop_view.footer.pressed.emit()
+	game.hud.page.room_shop_view.header.get_node("Back").pressed.emit()
 	check(not game.hud.modal_open and not game.world.paused, "Boss footer closes shop and resumes room")
 	check(game.campaign.state.phase == phase and game.world.room_stage == stage, "Shop operations never complete or skip the Boss encounter")
 	game._start_dialogue(200101)

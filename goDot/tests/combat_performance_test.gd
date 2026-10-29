@@ -105,7 +105,9 @@ func _run() -> void:
 		presentation.emit_effect(actor, key, Vector3.ZERO)
 		check(presentation.authored_reuses == before_reuse + 1, "Scene changes retain reusable effects")
 		presentation.clear()
-		check(presentation._authored_pool_size <= presentation._authored_pool_limit and presentation._authored_pool_limit <= presentation.FEEL.effect_budget + 47 and presentation._authored_templates.size() <= presentation.FEEL.effect_template_budget, "Persistent caches remain bounded, including prepared wolf bursts")
+		var wolf_pool_limit: int = presentation.FEEL.effect_budget
+		for count in presentation.WOLF_BURST_INSTANCES.values(): wolf_pool_limit += int(count) - 1
+		check(presentation._authored_pool_size <= presentation._authored_pool_limit and presentation._authored_pool_limit <= wolf_pool_limit and presentation._authored_templates.size() <= presentation.FEEL.effect_template_budget, "Persistent caches remain bounded, including prepared wolf bursts")
 	var first := Telegraph.new()
 	var second := Telegraph.new()
 	first.configure(Vector2(2, 3))
